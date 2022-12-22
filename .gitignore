@@ -17,3 +17,4 @@ BackEnd/src/main/resources/application.properties
  
 # 예외
 #!제외할 파일명.txt
+*.properties
