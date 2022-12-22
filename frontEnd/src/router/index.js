@@ -64,21 +64,31 @@ const routes = [
     name: 'signup',
     component: () => import('../components/signup/SignupView.vue')
   },
-  //   정주희 Part
+  //   정주희 Part_mypage
   {
-    path: '/myProfile',
-    name: 'myProfile',
+    path: '/mypage',
+    name: 'mypage',
+    component: () => import('../components/myPage/MypageCom.vue')
+  },
+  {
+    path: '/myticket',
+    name: 'myticket',
+    component: () => import('../components/myPage/TicketCom')
+  },
+  {
+    path: '/myprofile',
+    name: 'myprofile',
     component: () => import('../components/myPage/ProfileCom.vue')
   },
   {
-    path: '/myQna',
-    name: 'myQna',
-    component: () => import('../components/myPage/MyqnaCom.vue')
+    path: '/mywish',
+    name: 'mywish',
+    component: () => import('../components/myPage/WishCom')
   },
   {
-    path: '/myWish',
-    name: 'myWish',
-    component: () => import('../components/myPage/WishCom.vue')
+    path: '/myqna',
+    name: 'myqna',
+    component: () => import('../components/myPage/MyqnaCom')
   },
   //   김철원 Part
   {

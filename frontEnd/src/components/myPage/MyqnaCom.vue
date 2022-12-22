@@ -28,7 +28,6 @@
       </div>
     </div>
 
-    <!-- ㅇㅇㅇ 여기 div 원본은 testCom에 있음-->
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width">
@@ -39,12 +38,12 @@
               <!-- 프로필 이미지 업로드 추가 v-if -->
               <!-- <div v-if="images" class="user-img"> -->
               <div class="user-img">
-                <img src="images/uploads/user-img.png" alt=""/>
-                <br/>
-                <!-- <a href="#" class="redbtn">Change avatar</a> -->
+                <img src="images/uploads/user-img.png" alt="" />
+                <br />
+                <a href="#" class="redbtn">Change avatar</a>
               </div>
-                  <!-- 프로필 이미지 업로드 추가 v-else -->
-                  <!-- <div
+              <!-- 프로필 이미지 업로드 추가 v-else -->
+              <!-- <div
                       v-else
                       class="w-full h-full flex items-center justify-center cursor-pointer hover:bg-pink-100"
                       @click="clickInputTag()"
@@ -94,7 +93,7 @@
               <div class="user-fav">
                 <p>Account Details</p>
                 <ul>
-                  <li class="active">
+                  <li>
                     <router-link to="/mypage">내정보</router-link>
                   </li>
                   <li>
@@ -102,6 +101,9 @@
                   </li>
                   <li>
                     <router-link to="/mywish">찜한 영화</router-link>
+                  </li>
+                  <li class="active">
+                    <router-link to="/myqna">나의 문의내역</router-link>
                   </li>
                   <li>
                     <router-link to="/myprofile">개인정보 수정</router-link>
@@ -111,9 +113,6 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <li>
-                    <router-link to="/myqna">나의 문의내역</router-link>
-                  </li>
                   <li><a href="#">Log out</a></li>
                   <li><a href="#">탈퇴하기</a></li>
                 </ul>
@@ -122,41 +121,81 @@
           </div>
           <!-- 공통 왼쪽 메뉴 끝 -->
 
-
           <!-- 오른쪽 본문 내용 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
-              <p>나의 문의내역<span>1</span> in total</p>
-              <label>Sort by:</label>
+              <p>나의 문의내역</p>
               <select>
-                <option value="range">-- 등록일순 --</option>
-                <option value="saab">-- 평점높은순 --</option>
+                <option value="range">-- 2022년 --</option>
+                <option value="saab">-- 2021년 --</option>
               </select>
-              <a href="userfavoritelist.html" class="list"
-                ><i class="ion-ios-list-outline active"></i
-              ></a>
-              <a href="userfavoritegrid.html" class="grid"
-                ><i class="ion-grid"></i
-              ></a>
             </div>
-            <p>문의내역이 없습니다.</p>
 
-            <!-- 페이지 -->
-            <ul class="pagination">
-              <li class="icon-prev">
-                <a href="#"><i class="ion-ios-arrow-left"></i></a>
-              </li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">21</a></li>
-              <li><a href="#">22</a></li>
-              <li class="icon-next">
-                <a href="#"><i class="ion-ios-arrow-right"></i></a>
-              </li>
-            </ul>
+            <!-- TODO: v-if 걸기. 넘어오는 데이터 없으면 뜨도록..? -->
+            <div v-if="!submitted">
+              <p>문의내역이 없습니다.</p>
+            </div>
+
+            <div v-else>
+              <!-- TODO: qna 테이블시작 -->
+              <table class="qnabox">
+                <colgroup>
+                  <col style="width: 120px" />
+                  <col />
+                  <col style="width: 120px" />
+                  <col />
+                </colgroup>
+                <tbody>
+                <tr>
+                  <th scope="row">
+                    |
+                    <label for="name">이름</label>
+                    <em class="font-orange">*</em>
+                  </th>
+                  <td>{{ qna.name }}</td>
+                  <th scope="row">
+                    |
+                    <label for="name">이메일</label>
+                    <em class="font-orange">*</em>
+                  </th>
+                  <td>{{ qna.email }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    |
+                    <label for="name">휴대전화</label>
+                    <em class="font-orange">*</em>
+                  </th>
+                  <td>
+                    {{ qna.phonenumber1 }} - {{ qna.phonenumber2 }} -
+                    {{ qna.phonenumber3 }}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    |
+                    <label for="qnaTitle">제목</label>
+                    <em class="font-orange">*</em>
+                  </th>
+                  <td>{{ qna.title }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    |
+                    <label for="textarea">내용</label>
+                    <em class="font-orange">*</em>
+                  </th>
+                  <td colspan="3">{{ qna.content }}</td>
+                </tr>
+                </tbody>
+              </table>
+              <!-- qna 테이블 끝 -->
+              <!-- 삭제버튼 시작 -->
+              <div class="col-xs-4">
+                <a href="#" class="redbtn" @click="d">삭제하기</a>
+              </div>
+              <!-- 삭제버튼 끝 -->
+            </div>
           </div>
         </div>
       </div>
@@ -164,12 +203,14 @@
   </div>
 </template>
 
-
 <script>
 // import axios from "axios";   // 프로필이미지 업로드
-import custom from '@/assets/js/custom';
+import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
 
+// 수빈이 addQna 에서 등록한거 불러오려고 함
+import QnaDataService from "@/services/QnaDataService.js";
+// import email from "@/assets/js/email.js";
 
 export default {
   // data: () => ({
@@ -188,9 +229,10 @@ export default {
         name: "",
         answer: "",
       },
-      message: ""
-
-    }
+      message: "",
+      // 수빈이 AddQna 받아오기
+      qna: [], // TODO: 정주희 qna관련 추가_수빈이 addQna에서 보낸 qna 정보
+    };
   },
   methods: {
     // uploadImage: function () {
@@ -214,9 +256,10 @@ export default {
 
     // 종학이 백엔드 데이터 받는 함수
     getUser(username) {
-      username = "forbob"
+      username = "forbob";
       console.log(username);
-      userService.getUserUsername(username)
+      userService
+          .getUserUsername(username)
           .then((response) => {
             this.CurrentUser = {
               email: response.data.email,
@@ -228,18 +271,74 @@ export default {
               day: response.data.day,
               name: response.data.name,
               answer: response.data.answer,
-            }
+            };
             console.log(this.CurrentUser);
             // console.log(response.data);
-          }).catch(err => console.log(err));
-    }
+          })
+          .catch((err) => console.log(err));
+    },
+
+    // TODO: 수빈이 addQna 함수 받아서 데이터만 뿌리기
+    retrieveQna() {
+      QnaDataService.getAll().catch((e) => {
+        console.log(e);
+      });
+    },
   },
   mounted() {
     custom();
-    this.getUser(); // 종학이 백엔드 데이터 
-  }
+    this.getUser(); // 종학이 백엔드 데이터
+    this.retrieveQna(); // TODO: 수빈이 데이터 뿌리기..
+  },
 };
 </script>
 
-
-<style></style>
+<style>
+/* 수빈이 AddQna 양식 */
+.qnabox {
+  border: 2px solid;
+  color: aliceblue;
+  padding: 5%;
+}
+.qna {
+  background: black;
+}
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: whitesmoke;
+}
+.font-orange {
+  color: red;
+}
+#hpNum1 {
+  width: 60px;
+}
+#hpNum2 {
+  width: 60px;
+}
+#hpNum3 {
+  width: 60px;
+}
+.boxing {
+  display: inline !important ;
+  width: 100%;
+  height: 70%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555555;
+  background-color: #fff;
+  background-image: none;
+  /* border: 1px solid #aaa; */
+}
+.button {
+  margin-top: 5%;
+  text-align: center;
+  box-shadow: none !important;
+}
+/* .information {
+  margin-top: 3%;
+  margin-left: 10%;
+} */
+</style>

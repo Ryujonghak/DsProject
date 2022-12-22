@@ -358,8 +358,9 @@
                     MY PAGE <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
-                    <li><a href="landing.html">내정보</a></li>
-                    <li><a href="404.html">결제내역</a></li>
+                    <li><router-link to="/mypage">내정보</router-link></li>
+                    <li><router-link to="/myticket">예매내역</router-link></li>
+<!--                    <li><a href="404.html">결제내역</a></li>-->
                   </ul>
                 </li>
                 <li class="dropdown first">

@@ -28,7 +28,6 @@
       </div>
     </div>
 
-    <!-- ㅇㅇㅇ 여기 div 원본은 testCom에 있음-->
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width">
@@ -39,12 +38,12 @@
               <!-- 프로필 이미지 업로드 추가 v-if -->
               <!-- <div v-if="images" class="user-img"> -->
               <div class="user-img">
-                <img src="images/uploads/user-img.png" alt=""/>
-                <br/>
+                <img src="images/uploads/user-img.png" alt="" />
+                <br />
                 <a href="#" class="redbtn">Change avatar</a>
               </div>
-                  <!-- 프로필 이미지 업로드 추가 v-else -->
-                  <!-- <div
+              <!-- 프로필 이미지 업로드 추가 v-else -->
+              <!-- <div
                       v-else
                       class="w-full h-full flex items-center justify-center cursor-pointer hover:bg-pink-100"
                       @click="clickInputTag()"
@@ -91,6 +90,8 @@
                   <!-- 프로필 로그인 정보 표시 끝 -->
                 </ul>
               </div>
+
+              <!-- todo: active가 안됨 -->
               <div class="user-fav">
                 <p>Account Details</p>
                 <ul>
@@ -104,6 +105,9 @@
                     <router-link to="/mywish">찜한 영화</router-link>
                   </li>
                   <li>
+                    <router-link to="/myqna">나의 문의내역</router-link>
+                  </li>
+                  <li>
                     <router-link to="/myprofile">개인정보 수정</router-link>
                   </li>
                 </ul>
@@ -111,9 +115,6 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <li>
-                    <router-link to="/myqna">나의 문의내역</router-link>
-                  </li>
                   <li><a href="#">Log out</a></li>
                   <li><a href="#">탈퇴하기</a></li>
                 </ul>
@@ -135,249 +136,256 @@
               <p>이름, 아이디, 이메일 중 하나 ..</p>
             </div> -->
 
-            <!-- 자주가는 극장 -->
+            <!-- 즐겨찾는 영화관 -->
             <div class="page-single movie_list">
               <div class="container">
                 <div class="row ipad-width2">
                   <div class="col-md-8 col-sm-12 col-xs-12">
+                    <!-- 즐겨찾는 영화관 -->
                     <div class="topbar-filter">
                       <p>즐겨찾는 영화관 <span>1</span> in total</p>
+
+                      <a href="moviegrid.html" class="grid"
+                      ><i class="ion-grid"></i
+                      ></a>
                     </div>
+                    <!-- 내용 -->
+                    <p>dd</p>
                   </div>
                 </div>
               </div>
             </div>
 
-               <!-- 오른쪽 본문 내용 -->
-          <div class="col-md-11 col-sm-12 col-xs-12">
-            <div class="topbar-filter user">
-              <p>나의 아카이브 <span>8 movies</span> in total</p>
-              <select>
-                <option value="range">-- 개봉일순 --</option>
-                <option value="saab">-- 평점높은순 --</option>
-              </select>
-              <!-- <a href="userfavoritelist.html" class="list"
+            <!-- 오른쪽 본문 내용 -->
+            <div class="col-md-11 col-sm-12 col-xs-12">
+              <div class="topbar-filter user">
+                <p>나의 아카이브 <span>8 movies</span> in total</p>
+                <select>
+                  <option value="range">-- 개봉일순 --</option>
+                  <option value="saab">-- 평점높은순 --</option>
+                </select>
+                <!-- <a href="userfavoritelist.html" class="list"
                 ><i class="ion-ios-list-outline active"></i
               ></a> -->
-              <a href="userfavoritegrid.html" class="grid"
-                ><i class="ion-grid"></i
-              ></a>
-            </div>
-
-            <div class="flex-wrap-movielist">
-              <!-- 상영작 1 -->
-              <div class="movie-item-style-2 movie-item-style-1">
-                <img src="images/uploads/mv1.jpg" alt="" />
-                <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                <!-- TODO: style.css _ hvr-inner 수정함 -->
-                <div class="hvr-inner">
-                  <h6>
-                    <a href="#">영웅 <span>(2022)</span></a>
-                  </h6>
-                  <p>
-                    Run Time: {{ }} 2h 21’ <br />
-                    Director: {{  }} dd <br />
-                    Watched: 2022/12/22
-                  </p>
-                  <p class="time sm-text">your reviews:</p>
-                  <h6>Best Musical movie in my opinion</h6>
-                </div>
-                <!-- 제목 -->
-                <div class="mv-item-infor">
-                  <h6><a href="#">영웅</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>8.1</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
+                <!-- <a href="userfavoritegrid.html" class="grid"
+                  ><i class="ion-grid"></i
+                ></a> -->
               </div>
 
-              <!-- 상영작 2 -->
-              <div class="movie-item-style-2 movie-item-style-1">
-                <img src="images/uploads/mv1.jpg" alt="" />
-                <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                <!-- TODO: style.css _ hvr-inner 수정함 -->
-                <div class="hvr-inner">
-                  <h6>
-                    <a href="#">영웅 <span>(2022)</span></a>
-                  </h6>
-                  <p>
-                    Run Time: {{ }} 2h 21’ <br />
-                    Director: {{  }} dd <br />
-                    Watched: 2022/12/22
-                  </p>
-                  <p class="time sm-text">your reviews:</p>
-                  <h6>Best Musical movie in my opinion</h6>
+              <div class="flex-wrap-movielist">
+                <!-- 상영작 1 -->
+                <div class="movie-item-style-2 movie-item-style-1">
+                  <img src="images/uploads/mv1.jpg" alt="" />
+                  <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
+                  <!-- TODO: style.css _ hvr-inner 수정함 -->
+                  <div class="hvr-inner">
+                    <h6>
+                      <a href="#">영웅 <span>(2022)</span></a>
+                    </h6>
+                    <p>
+                      Run Time: {{}} 2h 21’ <br />
+                      Director: {{}} dd <br />
+                      Watched: 2022/12/22
+                    </p>
+                    <p class="time sm-text">your reviews:</p>
+                    <h6>Best Musical movie in my opinion</h6>
+                  </div>
+                  <!-- 제목 -->
+                  <div class="mv-item-infor">
+                    <h6><a href="#">영웅</a></h6>
+                    <p class="rate">
+                      <i class="ion-android-star"></i><span>8.1</span> /10
+                      <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                    </p>
+                  </div>
                 </div>
-                <!-- 제목 -->
-                <div class="mv-item-infor">
-                  <h6><a href="#">영웅</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>8.1</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 3 -->
-              <div class="movie-item-style-2 movie-item-style-1">
-                <img src="images/uploads/mv1.jpg" alt="" />
-                <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                <!-- TODO: style.css _ hvr-inner 수정함 -->
-                <div class="hvr-inner">
-                  <h6>
-                    <a href="#">영웅 <span>(2022)</span></a>
-                  </h6>
-                  <p>
-                    Run Time: {{ }} 2h 21’ <br />
-                    Director: {{  }} dd <br />
-                    Watched: 2022/12/22
-                  </p>
-                  <p class="time sm-text">your reviews:</p>
-                  <h6>Best Musical movie in my opinion</h6>
-                </div>
-                <!-- 제목 -->
-                <div class="mv-item-infor">
-                  <h6><a href="#">영웅</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>8.1</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 4 -->
-              <div class="movie-item-style-2 movie-item-style-1">
-                <img src="images/uploads/mv1.jpg" alt="" />
-                <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                <!-- TODO: style.css _ hvr-inner 수정함 -->
-                <div class="hvr-inner">
-                  <h6>
-                    <a href="#">영웅 <span>(2022)</span></a>
-                  </h6>
-                  <p>
-                    Run Time: {{ }} 2h 21’ <br />
-                    Director: {{  }} dd <br />
-                    Watched: 2022/12/22
-                  </p>
-                  <p class="time sm-text">your reviews:</p>
-                  <h6>Best Musical movie in my opinion</h6>
-                </div>
-                <!-- 제목 -->
-                <div class="mv-item-infor">
-                  <h6><a href="#">영웅</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>8.1</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 5 -->
-              <div class="movie-item-style-2 movie-item-style-1">
-                <img src="images/uploads/mv1.jpg" alt="" />
-                <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                <!-- TODO: style.css _ hvr-inner 수정함 -->
-                <div class="hvr-inner">
-                  <h6>
-                    <a href="#">영웅 <span>(2022)</span></a>
-                  </h6>
-                  <p>
-                    Run Time: {{ }} 2h 21’ <br />
-                    Director: {{  }} dd <br />
-                    Watched: 2022/12/22
-                  </p>
-                  <p class="time sm-text">your reviews:</p>
-                  <h6>Best Musical movie in my opinion</h6>
-                </div>
-                <!-- 제목 -->
-                <div class="mv-item-infor">
-                  <h6><a href="#">영웅</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>8.1</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 6 -->
-              <div class="movie-item-style-2 movie-item-style-1">
-                <img src="images/uploads/mv1.jpg" alt="" />
-                <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                <!-- TODO: style.css _ hvr-inner 수정함 -->
-                <div class="hvr-inner">
-                  <h6>
-                    <a href="#">영웅 <span>(2022)</span></a>
-                  </h6>
-                  <p>
-                    Run Time: {{ }} 2h 21’ <br />
-                    Director: {{  }} dd <br />
-                    Watched: 2022/12/22
-                  </p>
-                  <p class="time sm-text">your reviews:</p>
-                  <h6>Best Musical movie in my opinion</h6>
-                </div>
-                <!-- 제목 -->
-                <div class="mv-item-infor">
-                  <h6><a href="#">영웅</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>8.1</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 7 -->
-              <div class="movie-item-style-2 movie-item-style-1">
-                <img src="images/uploads/mv1.jpg" alt="" />
-                <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                <!-- TODO: style.css _ hvr-inner 수정함 -->
-                <div class="hvr-inner">
-                  <h6>
-                    <a href="#">영웅 <span>(2022)</span></a>
-                  </h6>
-                  <p>
-                    Run Time: {{ }} 2h 21’ <br />
-                    Director: {{  }} dd <br />
-                    Watched: 2022/12/22
-                  </p>
-                  <p class="time sm-text">your reviews:</p>
-                  <h6>Best Musical movie in my opinion</h6>
-                </div>
-                <!-- 제목 -->
-                <div class="mv-item-infor">
-                  <h6><a href="#">영웅</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>8.1</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 8 -->
-              <div class="movie-item-style-2 movie-item-style-1">
-                <img src="images/uploads/mv1.jpg" alt="" />
-                <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                <!-- TODO: style.css _ hvr-inner 수정함 -->
-                <div class="hvr-inner">
-                  <h6>
-                    <a href="#">영웅 <span>(2022)</span></a>
-                  </h6>
-                  <p>
-                    Run Time: {{ }} 2h 21’ <br />
-                    Director: {{  }} dd <br />
-                    Watched: 2022/12/22
-                  </p>
-                  <p class="time sm-text">your reviews:</p>
-                  <h6>Best Musical movie in my opinion</h6>
-                </div>
-                <!-- 제목 -->
-                <div class="mv-item-infor">
-                  <h6><a href="#">영웅</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>8.1</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-            </div>
 
-            <!-- 페이지 -->
-            <!-- <ul class="pagination">
+                <!-- 상영작 2 -->
+                <div class="movie-item-style-2 movie-item-style-1">
+                  <img src="images/uploads/mv1.jpg" alt="" />
+                  <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
+                  <!-- TODO: style.css _ hvr-inner 수정함 -->
+                  <div class="hvr-inner">
+                    <h6>
+                      <a href="#">영웅 <span>(2022)</span></a>
+                    </h6>
+                    <p>
+                      Run Time: {{}} 2h 21’ <br />
+                      Director: {{}} dd <br />
+                      Watched: 2022/12/22
+                    </p>
+                    <p class="time sm-text">your reviews:</p>
+                    <h6>Best Musical movie in my opinion</h6>
+                  </div>
+                  <!-- 제목 -->
+                  <div class="mv-item-infor">
+                    <h6><a href="#">영웅</a></h6>
+                    <p class="rate">
+                      <i class="ion-android-star"></i><span>8.1</span> /10
+                      <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                    </p>
+                  </div>
+                </div>
+                <!-- 상영작 3 -->
+                <div class="movie-item-style-2 movie-item-style-1">
+                  <img src="images/uploads/mv1.jpg" alt="" />
+                  <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
+                  <!-- TODO: style.css _ hvr-inner 수정함 -->
+                  <div class="hvr-inner">
+                    <h6>
+                      <a href="#">영웅 <span>(2022)</span></a>
+                    </h6>
+                    <p>
+                      Run Time: {{}} 2h 21’ <br />
+                      Director: {{}} dd <br />
+                      Watched: 2022/12/22
+                    </p>
+                    <p class="time sm-text">your reviews:</p>
+                    <h6>Best Musical movie in my opinion</h6>
+                  </div>
+                  <!-- 제목 -->
+                  <div class="mv-item-infor">
+                    <h6><a href="#">영웅</a></h6>
+                    <p class="rate">
+                      <i class="ion-android-star"></i><span>8.1</span> /10
+                      <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                    </p>
+                  </div>
+                </div>
+                <!-- 상영작 4 -->
+                <div class="movie-item-style-2 movie-item-style-1">
+                  <img src="images/uploads/mv1.jpg" alt="" />
+                  <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
+                  <!-- TODO: style.css _ hvr-inner 수정함 -->
+                  <div class="hvr-inner">
+                    <h6>
+                      <a href="#">영웅 <span>(2022)</span></a>
+                    </h6>
+                    <p>
+                      Run Time: {{}} 2h 21’ <br />
+                      Director: {{}} dd <br />
+                      Watched: 2022/12/22
+                    </p>
+                    <p class="time sm-text">your reviews:</p>
+                    <h6>Best Musical movie in my opinion</h6>
+                  </div>
+                  <!-- 제목 -->
+                  <div class="mv-item-infor">
+                    <h6><a href="#">영웅</a></h6>
+                    <p class="rate">
+                      <i class="ion-android-star"></i><span>8.1</span> /10
+                      <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                    </p>
+                  </div>
+                </div>
+                <!-- 상영작 5 -->
+                <div class="movie-item-style-2 movie-item-style-1">
+                  <img src="images/uploads/mv1.jpg" alt="" />
+                  <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
+                  <!-- TODO: style.css _ hvr-inner 수정함 -->
+                  <div class="hvr-inner">
+                    <h6>
+                      <a href="#">영웅 <span>(2022)</span></a>
+                    </h6>
+                    <p>
+                      Run Time: {{}} 2h 21’ <br />
+                      Director: {{}} dd <br />
+                      Watched: 2022/12/22
+                    </p>
+                    <p class="time sm-text">your reviews:</p>
+                    <h6>Best Musical movie in my opinion</h6>
+                  </div>
+                  <!-- 제목 -->
+                  <div class="mv-item-infor">
+                    <h6><a href="#">영웅</a></h6>
+                    <p class="rate">
+                      <i class="ion-android-star"></i><span>8.1</span> /10
+                      <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                    </p>
+                  </div>
+                </div>
+                <!-- 상영작 6 -->
+                <div class="movie-item-style-2 movie-item-style-1">
+                  <img src="images/uploads/mv1.jpg" alt="" />
+                  <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
+                  <!-- TODO: style.css _ hvr-inner 수정함 -->
+                  <div class="hvr-inner">
+                    <h6>
+                      <a href="#">영웅 <span>(2022)</span></a>
+                    </h6>
+                    <p>
+                      Run Time: {{}} 2h 21’ <br />
+                      Director: {{}} dd <br />
+                      Watched: 2022/12/22
+                    </p>
+                    <p class="time sm-text">your reviews:</p>
+                    <h6>Best Musical movie in my opinion</h6>
+                  </div>
+                  <!-- 제목 -->
+                  <div class="mv-item-infor">
+                    <h6><a href="#">영웅</a></h6>
+                    <p class="rate">
+                      <i class="ion-android-star"></i><span>8.1</span> /10
+                      <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                    </p>
+                  </div>
+                </div>
+                <!-- 상영작 7 -->
+                <div class="movie-item-style-2 movie-item-style-1">
+                  <img src="images/uploads/mv1.jpg" alt="" />
+                  <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
+                  <!-- TODO: style.css _ hvr-inner 수정함 -->
+                  <div class="hvr-inner">
+                    <h6>
+                      <a href="#">영웅 <span>(2022)</span></a>
+                    </h6>
+                    <p>
+                      Run Time: {{}} 2h 21’ <br />
+                      Director: {{}} dd <br />
+                      Watched: 2022/12/22
+                    </p>
+                    <p class="time sm-text">your reviews:</p>
+                    <h6>Best Musical movie in my opinion</h6>
+                  </div>
+                  <!-- 제목 -->
+                  <div class="mv-item-infor">
+                    <h6><a href="#">영웅</a></h6>
+                    <p class="rate">
+                      <i class="ion-android-star"></i><span>8.1</span> /10
+                      <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                    </p>
+                  </div>
+                </div>
+                <!-- 상영작 8 -->
+                <div class="movie-item-style-2 movie-item-style-1">
+                  <img src="images/uploads/mv1.jpg" alt="" />
+                  <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
+                  <!-- TODO: style.css _ hvr-inner 수정함 -->
+                  <div class="hvr-inner">
+                    <h6>
+                      <a href="#">영웅 <span>(2022)</span></a>
+                    </h6>
+                    <p>
+                      Run Time: {{}} 2h 21’ <br />
+                      Director: {{}} dd <br />
+                      Watched: 2022/12/22
+                    </p>
+                    <p class="time sm-text">your reviews:</p>
+                    <h6>Best Musical movie in my opinion</h6>
+                  </div>
+                  <!-- 제목 -->
+                  <div class="mv-item-infor">
+                    <h6><a href="#">영웅</a></h6>
+                    <p class="rate">
+                      <i class="ion-android-star"></i><span>8.1</span> /10
+                      <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 페이지 -->
+              <!-- <ul class="pagination">
               <li class="icon-prev">
                 <a href="#"><i class="ion-ios-arrow-left"></i></a>
               </li>
@@ -392,7 +400,8 @@
                 <a href="#"><i class="ion-ios-arrow-right"></i></a>
               </li>
             </ul> -->
-          </div>
+            </div>
+
             <!-- 예매내역 -->
             <div class="page-single movie_list">
               <div class="container">
@@ -406,147 +415,123 @@
                       ><i class="ion-grid"></i
                       ></a>
                     </div>
-                    <!-- 예매한 영화 1 : 상영 예정 -->
-                        <div class="movie-item-style-2">
-                              <!-- todo) 이미지크기...  -->
-                              <img src="images/poster/영웅.jpg" alt="" />
-                              <div class="mv-item-infor">
-                                <h6>
-                                  <!-- todo) 영화 상세보기 링크 변경 -->
-                                  <a href="moviesingle.html"
-                                    >영웅 <span>(2022)</span></a
-                                  >
-                                </h6>
-                                <!-- 별점 -->
-                                <p class="rate">
-                                  <i class="ion-android-star"></i
-                                  ><span>8.1</span> /10
-                                </p>
-                                <p>
-                                  Director: 윤제균
-                                </p>
-                                <p class="describe">
-                                  Run Time: 120분 <a>12세 관람가</a>
-                                </p>
-                                
-                                <div class="col-xs-12">
-                                  <p class="movie-detail-content col-xs-6">
-                                    예매번호
-                                  </p>
-                                  <p class="col-xs-6">{{}}</p>
-                                </div>
-                                <div class="col-xs-12">
-                                  <p class="movie-detail-content col-xs-6">
-                                    관람일시
-                                  </p>
-                                  <p class="col-xs-6">{{}}</p>
-                                </div>
-                                <div class="col-xs-12">
-                                  <p class="movie-detail-content col-xs-6">
-                                    상영관
-                                  </p>
-                                  <p class="col-xs-6">{{}}</p>
-                                </div>
-                                <div class="col-xs-12">
-                                  <p class="movie-detail-content col-xs-6">
-                                    좌석정보
-                                  </p>
-                                  <p class="col-xs-6">{{}}</p>
-                                </div>
-                                <p class="describe col-xs-12"></p>
-                                <div class="col-xs-12">
-                                  <p class="movie-detail-content col-xs-6">
-                                    결제금액
-                                  </p>
-                                  <p class="col-xs-6">{{}}</p>
-                                </div>
-                              </div>
-                            </div>
-                    <!-- 예매취소 버튼  -->
-                    <div class="movie-item-style-2">
-                      <a href="#" class="redbtn">예매 취소</a>
-                    </div>
 
-                    <!-- 예매한 영화 2 : 상영 예정 -->
-                             <!-- 예매한 영화 1 : 상영 예정 -->
-                             <div class="movie-item-style-2">
-                              <!-- todo) 이미지크기...  -->
-                              <img src="images/poster/영웅.jpg" alt="" />
-                              <div class="mv-item-infor">
-                                <h6>
-                                  <!-- todo) 영화 상세보기 링크 변경 -->
-                                  <a href="moviesingle.html"
-                                    >영웅 <span>(2022)</span></a
-                                  >
-                                </h6>
-                                <!-- 별점 -->
-                                <p class="rate">
-                                  <i class="ion-android-star"></i
-                                  ><span>8.1</span> /10
-                                </p>
-                                <p>
-                                  Director: 윤제균
-                                </p>
-                                <p class="describe">
-                                  Run Time: 120분 <a>12세 관람가</a>
-                                </p>
-                                
-                                <div class="col-xs-12">
-                                  <p class="movie-detail-content col-xs-6">
-                                    예매번호
-                                  </p>
-                                  <p class="col-xs-6">{{}}</p>
-                                </div>
-                                <div class="col-xs-12">
-                                  <p class="movie-detail-content col-xs-6">
-                                    관람일시
-                                  </p>
-                                  <p class="col-xs-6">{{}}</p>
-                                </div>
-                                <div class="col-xs-12">
-                                  <p class="movie-detail-content col-xs-6">
-                                    상영관
-                                  </p>
-                                  <p class="col-xs-6">{{}}</p>
-                                </div>
-                                <div class="col-xs-12">
-                                  <p class="movie-detail-content col-xs-6">
-                                    좌석정보
-                                  </p>
-                                  <p class="col-xs-6">{{}}</p>
-                                </div>
-                                <p class="describe col-xs-12"></p>
-                                <div class="col-xs-12">
-                                  <p class="movie-detail-content col-xs-6">
-                                    결제금액
-                                  </p>
-                                  <p class="col-xs-6">{{}}</p>
-                                </div>
-                              </div>
-                            </div>
-                    <!-- 예매취소 버튼  -->
+                    <!-- 예매한 영화-->
                     <div class="movie-item-style-2">
-                      <a href="#" class="redbtn">예매 취소</a>
+                      <!-- todo) 이미지크기...  -->
+                      <img src="images/poster/영웅.jpg" alt="" />
+                      <div class="mv-item-infor">
+                        <h6>
+                          <!-- todo) 영화 상세보기 링크 변경 -->
+                          <a href="moviesingle.html"
+                          >영웅 <span>(2022)</span></a
+                          >
+                        </h6>
+                        <p class="rate">
+                          <i class="ion-android-star"></i><span>8.1</span> /10
+                        </p>
+
+                        <p class="describe">
+                          Run Time: 120분 <a>12세 관람가</a>
+                        </p>
+
+                        <div class="col-xs-12">
+                          <p class="movie-detail-content col-xs-4">예매번호</p>
+                          <p class="col-xs-6">{{}}</p>
+                        </div>
+                        <div class="col-xs-12">
+                          <p class="movie-detail-content col-xs-4">관람일시</p>
+                          <p class="col-xs-6">{{}}</p>
+                        </div>
+                        <div class="col-xs-12">
+                          <p class="movie-detail-content col-xs-4">상영관</p>
+                          <p class="col-xs-6">{{}}</p>
+                        </div>
+                        <div class="col-xs-12">
+                          <p class="movie-detail-content col-xs-4">좌석정보</p>
+                          <p class="col-xs-6">{{}}</p>
+                        </div>
+                        <p class="describe col-xs-12"></p>
+                        <div class="col-xs-12">
+                          <p class="movie-detail-content col-xs-4">결제금액</p>
+                          <p class="col-xs-4">{{}}</p>
+                          <!-- 예매취소 버튼 -->
+                          <div class="col-xs-4">
+                            <a href="#" class="redbtn">예매취소</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 예매한 영화-->
+                    <div class="movie-item-style-2">
+                      <!-- todo) 이미지크기...  -->
+                      <img src="images/poster/영웅.jpg" alt="" />
+                      <div class="mv-item-infor">
+                        <h6>
+                          <!-- todo) 영화 상세보기 링크 변경 -->
+                          <a href="moviesingle.html"
+                          >영웅 <span>(2022)</span></a
+                          >
+                        </h6>
+                        <p class="rate">
+                          <i class="ion-android-star"></i><span>8.1</span> /10
+                        </p>
+
+                        <p class="describe">
+                          Run Time: 120분 <a>12세 관람가</a>
+                        </p>
+
+                        <div class="col-xs-12">
+                          <p class="movie-detail-content col-xs-4">예매번호</p>
+                          <p class="col-xs-6">{{}}</p>
+                        </div>
+                        <div class="col-xs-12">
+                          <p class="movie-detail-content col-xs-4">관람일시</p>
+                          <p class="col-xs-6">{{}}</p>
+                        </div>
+                        <div class="col-xs-12">
+                          <p class="movie-detail-content col-xs-4">상영관</p>
+                          <p class="col-xs-6">{{}}</p>
+                        </div>
+                        <div class="col-xs-12">
+                          <p class="movie-detail-content col-xs-4">좌석정보</p>
+                          <p class="col-xs-6">{{}}</p>
+                        </div>
+                        <p class="describe col-xs-12"></p>
+                        <div class="col-xs-12">
+                          <p class="movie-detail-content col-xs-4">결제금액</p>
+                          <p class="col-xs-4">{{}}</p>
+                          <!-- 예매취소 버튼 -->
+                          <div class="col-xs-4">
+                            <a href="#" class="redbtn">예매취소</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div class="row ipad-width2">
-                  <div class="col-md-8 col-sm-12 col-xs-12">
-                    <!-- QnA  -->
-                    <div class="topbar-filter">
-                      <p>나의 문의내역 <span>0</span> in total</p>
-                      <a href="moviegrid.html" class="grid"
-                      ><i class="ion-grid"></i
-                      ></a>
+              <!-- 나의 문의내역 -->
+              <div class="page-single movie_list">
+                <div class="container">
+                  <div class="row ipad-width2">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                      <!-- 즐겨찾는 영화관 -->
+                      <div class="topbar-filter">
+                        <p>나의 문의내역 <span>1</span> in total</p>
+                        <a href="moviegrid.html" class="grid"
+                        ><i class="ion-grid"></i
+                        ></a>
+                      </div>
+                      <!-- 내용 -->
+                      <p>dd</p>
                     </div>
-                    <p>문의내역이 없습니다.</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -555,9 +540,8 @@
 
 <script>
 // import axios from "axios";   // 프로필이미지 업로드
-import custom from '@/assets/js/custom';
+import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
-
 
 export default {
   // data: () => ({
@@ -576,9 +560,8 @@ export default {
         name: "",
         answer: "",
       },
-      message: ""
-
-    }
+      message: "",
+    };
   },
   methods: {
     // uploadImage: function () {
@@ -602,9 +585,10 @@ export default {
 
     // 종학이 백엔드 데이터 받는 함수
     getUser(username) {
-      username = "forbob"
+      username = "forbob";
       console.log(username);
-      userService.getUserUsername(username)
+      userService
+          .getUserUsername(username)
           .then((response) => {
             this.CurrentUser = {
               email: response.data.email,
@@ -616,16 +600,17 @@ export default {
               day: response.data.day,
               name: response.data.name,
               answer: response.data.answer,
-            }
+            };
             console.log(this.CurrentUser);
             // console.log(response.data);
-          }).catch(err => console.log(err));
-    }
+          })
+          .catch((err) => console.log(err));
+    },
   },
   mounted() {
     custom();
-    this.getUser(); // 종학이 백엔드 데이터 
-  }
+    this.getUser(); // 종학이 백엔드 데이터
+  },
 };
 </script>
 

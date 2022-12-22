@@ -180,6 +180,8 @@ export default {
         title: "",
         content: "",
       },
+      // TODO: 정주희 추가
+      submitted: false,
     };
   },
   methods: {
@@ -198,6 +200,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           alert("등록이 완료되었습니다");
+          this.submitted = true;  // TODO: 정주희 추가
           this.$router.push("/qna");
         })
         // 실패하면 .catch() 에러메세지가 전송됨

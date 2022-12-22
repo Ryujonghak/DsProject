@@ -28,8 +28,7 @@
       </div>
     </div>
 
-      <!-- ㅇㅇㅇ 여기 div 원본은 testCom에 있음-->
-      <div class="page-single">
+    <div class="page-single">
       <div class="container">
         <div class="row ipad-width">
           <!-- todo: 이부분 나브 다른 Mypage 컴포넌트들 공통 -->
@@ -39,12 +38,12 @@
               <!-- 프로필 이미지 업로드 추가 v-if -->
               <!-- <div v-if="images" class="user-img"> -->
               <div class="user-img">
-                <img src="images/uploads/user-img.png" alt=""/>
-                <br/>
-                <!-- <a href="#" class="redbtn">Change avatar</a> -->
+                <img src="images/uploads/user-img.png" alt="" />
+                <br />
+                <a href="#" class="redbtn">Change avatar</a>
               </div>
-                  <!-- 프로필 이미지 업로드 추가 v-else -->
-                  <!-- <div
+              <!-- 프로필 이미지 업로드 추가 v-else -->
+              <!-- <div
                       v-else
                       class="w-full h-full flex items-center justify-center cursor-pointer hover:bg-pink-100"
                       @click="clickInputTag()"
@@ -94,14 +93,17 @@
               <div class="user-fav">
                 <p>Account Details</p>
                 <ul>
-                  <li class="active">
+                  <li>
                     <router-link to="/mypage">내정보</router-link>
                   </li>
                   <li>
                     <router-link to="/myticket">예매내역</router-link>
                   </li>
-                  <li>
+                  <li class="active">
                     <router-link to="/mywish">찜한 영화</router-link>
+                  </li>
+                  <li>
+                    <router-link to="/myqna">나의 문의내역</router-link>
                   </li>
                   <li>
                     <router-link to="/myprofile">개인정보 수정</router-link>
@@ -111,9 +113,6 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <li>
-                    <router-link to="/myqna">나의 문의내역</router-link>
-                  </li>
                   <li><a href="#">Log out</a></li>
                   <li><a href="#">탈퇴하기</a></li>
                 </ul>
@@ -126,17 +125,10 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
               <p>찜한 영화목록 <span>8 movies</span> in total</p>
-              <label>Sort by:</label>
               <select>
-                <option value="range">-- 개봉일순 --</option>
-                <option value="saab">-- 평점높은순 --</option>
+                <option value="range">-- 2022년 --</option>
+                <option value="saab">-- 2021년 --</option>
               </select>
-              <a href="userfavoritelist.html" class="list"
-                ><i class="ion-ios-list-outline active"></i
-              ></a>
-              <a href="userfavoritegrid.html" class="grid"
-                ><i class="ion-grid"></i
-              ></a>
             </div>
 
             <div class="flex-wrap-movielist">
@@ -272,24 +264,23 @@
                 </div>
               </div>
             </div>
-            
-              <!-- 페이지 -->
-              <ul class="pagination">
-                <li class="icon-prev">
-                  <a href="#"><i class="ion-ios-arrow-left"></i></a>
-                </li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#">21</a></li>
-                <li><a href="#">22</a></li>
-                <li class="icon-next">
-                  <a href="#"><i class="ion-ios-arrow-right"></i></a>
-                </li>
-              </ul>
 
+            <!-- 페이지 -->
+            <ul class="pagination">
+              <li class="icon-prev">
+                <a href="#"><i class="ion-ios-arrow-left"></i></a>
+              </li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">...</a></li>
+              <li><a href="#">21</a></li>
+              <li><a href="#">22</a></li>
+              <li class="icon-next">
+                <a href="#"><i class="ion-ios-arrow-right"></i></a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -299,9 +290,8 @@
 
 <script>
 // import axios from "axios";   // 프로필이미지 업로드
-import custom from '@/assets/js/custom';
+import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
-
 
 export default {
   // data: () => ({
@@ -320,9 +310,8 @@ export default {
         name: "",
         answer: "",
       },
-      message: ""
-
-    }
+      message: "",
+    };
   },
   methods: {
     // uploadImage: function () {
@@ -346,9 +335,10 @@ export default {
 
     // 종학이 백엔드 데이터 받는 함수
     getUser(username) {
-      username = "forbob"
+      username = "forbob";
       console.log(username);
-      userService.getUserUsername(username)
+      userService
+          .getUserUsername(username)
           .then((response) => {
             this.CurrentUser = {
               email: response.data.email,
@@ -360,16 +350,17 @@ export default {
               day: response.data.day,
               name: response.data.name,
               answer: response.data.answer,
-            }
+            };
             console.log(this.CurrentUser);
             // console.log(response.data);
-          }).catch(err => console.log(err));
-    }
+          })
+          .catch((err) => console.log(err));
+    },
   },
   mounted() {
     custom();
-    this.getUser(); // 종학이 백엔드 데이터 
-  }
+    this.getUser(); // 종학이 백엔드 데이터
+  },
 };
 </script>
 
