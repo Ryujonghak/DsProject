@@ -35,44 +35,10 @@
           <!-- 공통 왼쪽 메뉴 시작 -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
-              <!-- 프로필 이미지 업로드 추가 v-if -->
-              <!-- <div v-if="images" class="user-img"> -->
               <div class="user-img">
                 <img src="images/uploads/user-img.png" alt="" />
                 <br />
-                <a href="#" class="redbtn">Change avatar</a>
               </div>
-              <!-- 프로필 이미지 업로드 추가 v-else -->
-              <!-- <div
-                      v-else
-                      class="w-full h-full flex items-center justify-center cursor-pointer hover:bg-pink-100"
-                      @click="clickInputTag()"
-                  >
-                    <input
-                        ref="image"
-                        id="input"
-                        type="file"
-                        name="image"
-                        accept="image/*"
-                        multiple="multiple"
-                        class="hidden"
-                        @change="uploadImage()"
-                    />
-                    <svg
-                        class="w-8 h-8"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                      <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div> -->
               <div class="user-fav">
                 <ul>
                   <li class="active">
@@ -113,7 +79,8 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <li><a href="#">Log out</a></li>
+<!--                  <li><a href="#">Log out</a></li>-->
+                  <li><a href="#" @click.prevent="logout">Log out</a></li>
                   <li><a href="#">탈퇴하기</a></li>
                 </ul>
               </div>
@@ -276,6 +243,13 @@ export default {
             // console.log(response.data);
           })
           .catch((err) => console.log(err));
+    },
+    // 로그아웃 함수 -> 공통함수 호출
+    logout() {
+      // this.$store.dispatch("모듈명/함수명")
+      this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
+      this.$router.push("/"); // 강제 홈페이지로 이동
+
     },
 
     // TODO: 수빈이 addQna 함수 받아서 데이터만 뿌리기
