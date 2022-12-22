@@ -1,10 +1,10 @@
 # 파일 제외 (파일명.확장자)
 #파일명.txt
+ *.properties
  
 # 현재 경로에 있는 파일만 제외 (다른 경로의 동일한 파일명은 추적)
 #/파일명.txt
 
- 
 # 특정 경로안의 특정 파일 제외
 #폴더명/파일명.txt
 BackEnd/src/main/resources/application.properties
