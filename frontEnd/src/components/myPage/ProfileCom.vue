@@ -197,7 +197,7 @@
                     />
                   </div>
                 </div>
-                <!--                  비밀번호 질문 정답 제출버튼-->
+                <!--                  비밀번호 질문 정답 제출버튼 -> 버튼 클릭시 변경폼 보이도록 -->
                 <div class="row">
                   <div class="col-md-2">
                     <!--                      TODO: @click="findpwd2"-->
@@ -350,6 +350,22 @@ export default {
           .catch((error) => {
             console.log(error);
           });
+    },
+    // 패스워드찾기 버튼 클릭시 실행됨 -> TODO: 질문 답 입력 후 버튼 클릭 맞겠지?
+    findpwd2() {
+      var objUsername = document.getElementById("username2");
+      var objanswer = document.getElementById("answer"); //answer
+      if (objUsername.value == "") {
+        alert("username 입력해주세요.");
+        return false;
+      } else {
+        if (objanswer.value == "") {
+          alert("answer을 입력해주세요.");
+          return false;
+        } else {
+          this.findByPwd();
+        }
+      }
     },
     //새비밀번호 변경하기
     changePwd() {
