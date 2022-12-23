@@ -31,7 +31,7 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width">
-          <!-- todo: 이부분 나브 다른 Mypage 컴포넌트들 공통 -->
+          <!-- todo: 이부분 나브 다른 Mypage 컴포넌트들 공통 - 여기만 프로필이미지변경 주석처리됨-->
           <!-- 공통 왼쪽 메뉴 시작 -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
@@ -113,7 +113,9 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <li><a href="#">Log out</a></li>
+<!--                  TODO: logout 클릭이벤트-->
+<!--                  <li><a href="#">Log out</a></li>-->
+                  <li><a href="#" @click.prevent="logout">Log out</a></li>
                   <li><a href="#">탈퇴하기</a></li>
                 </ul>
               </div>
@@ -153,31 +155,15 @@
                         v-model="CurrentUser.email"
                     />
                   </div>
-                  <div class="col-md-6 form-it">
-                    <label>@</label>
-                    <select>
-                      <option value="email">직접입력</option>
-                      <option value="email">@naver.com</option>
-                      <option value="email">@google.com</option>
-                      <option value="email">@daum.net</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 form-it">
-                    <label>전화번호</label>
-                    <input
-                        type="text"
-                        placeholder="010-1234-1234"
-                        v-model="CurrentUser.phone"
-                    />
-                  </div>
-                  <div class="col-md-6 form-it">
-                    <label>주소</label>
-                    <input
-                        type="text"
-                        placeholder="부산광역시 부산진구 중앙대로 668 "
-                    />
+                  <div class="row">
+                    <div class="col-md-6 form-it">
+                      <label>전화번호</label>
+                      <input
+                          type="text"
+                          placeholder="010-1234-1234"
+                          v-model="CurrentUser.phone"
+                      />
+                    </div>
                   </div>
                 </div>
                 <!-- 저장 버튼 -->
@@ -201,10 +187,9 @@
                       <option value="pwquestion">아버지의 성함은?</option>
                     </select>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-md-6 form-it">
-                    <label>비밀번호 확인용 정답</label>
+<!--                    label 에 for="answer" 추가 -->
+                    <label for="answer">비밀번호 확인용 정답</label>
                     <input
                         type="text"
                         placeholder="정답을 한글로 입력하세요"
@@ -212,19 +197,28 @@
                     />
                   </div>
                 </div>
+                <!--                  비밀번호 질문 정답 제출버튼 -> 버튼 클릭시 변경폼 보이도록 -->
+                <div class="row">
+                  <div class="col-md-2">
+                    <!--                      TODO: @click="findpwd2"-->
+                    <input class="submit" type="submit" @click="findpwd2()" />
+                  </div>
+                </div>
+                <br>
+                <br>
                 <!-- TODO: 질문의 정답이 일치하면 아래 div 보이도록...ㅋ : class="pwcheck"-->
                 <div class="pwcheck">
                   <div class="row">
                     <div class="col-md-6 form-it">
-                      <label>변경할 비밀번호</label>
+<!--                      label 에 for="password" 추가 -->
+                      <label for="password">변경할 비밀번호</label>
                       <input
                           type="text"
                           placeholder="영문자, 숫자, 특수문자 조합 8~12자리"
                           v-model="CurrentUser.password"
                       />
                     </div>
-                  </div>
-                  <div class="row">
+
                     <div class="col-md-6 form-it">
                       <label>비밀번호 확인</label>
                       <input
@@ -236,7 +230,8 @@
                   <!-- 제출 버튼 -->
                   <div class="row">
                     <div class="col-md-2">
-                      <input class="submit" type="submit" value="change" />
+<!--                      TODO: 비밀번호 변경 클릭 이벤트-->
+                      <input class="submit" type="submit" value="change" @click="changePwd(password)"/>
                     </div>
                   </div>
                 </div>
@@ -316,6 +311,76 @@ export default {
             // console.log(response.data);
           })
           .catch((err) => console.log(err));
+    },
+    // 로그아웃 함수 -> 공통함수 호출
+    logout() {
+      // this.$store.dispatch("모듈명/함수명")
+      this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
+      this.$router.push("/"); // 강제 홈페이지로 이동
+    },
+    // TODO: 비밀번호 확인용 질문인가?
+    // 비밀번호 확인 back으로 보내기
+    findByPwd() {
+      this.findUsername = this.username;
+      this.findAnswer = this.answer;
+      userService
+          .getFindByPassword(this.findUsername, this.findAnswer)
+          .then((response) => {
+            this.user = response.data;
+            // if(this.user == true){
+            //   alert(response.data.username);
+            //    // 비밀번호 확인 메서드 실행 시
+            // this.loginid = false;
+            // this.findid = false;
+            // this.findpwd = false;
+            // this.findsuccess = false;
+            // this.findsuccessPwd = true;
+            // }else{
+            //   alert("아무것도아님")
+            // }
+            console.log(this.user);
+            alert(response.data.username);
+            //비밀번호 확인 메서드 실행 시
+            this.loginid = false;
+            this.findid = false;
+            this.findpwd = false;
+            this.findsuccess = false;
+            this.findsuccessPwd = true;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
+    // 패스워드찾기 버튼 클릭시 실행됨 -> TODO: 질문 답 입력 후 버튼 클릭 맞겠지?
+    findpwd2() {
+      var objUsername = document.getElementById("username2");
+      var objanswer = document.getElementById("answer"); //answer
+      if (objUsername.value == "") {
+        alert("username 입력해주세요.");
+        return false;
+      } else {
+        if (objanswer.value == "") {
+          alert("answer을 입력해주세요.");
+          return false;
+        } else {
+          this.findByPwd();
+        }
+      }
+    },
+    //새비밀번호 변경하기
+    changePwd() {
+      this.user.password = this.password;
+      userService
+          .putChangePassword(this.user.id, this.user)
+          .then((response) => {
+            this.message = response.data.message;
+            alert("비밀번호가 변경되었습니다.");
+            this.$router.push("/myprofile"); // 강제 마이페이지 개인정보수정화면으로 이동
+          })
+          .catch((error) => {
+            alert("에러");
+            console.log(error);
+          });
     },
   },
   mounted() {

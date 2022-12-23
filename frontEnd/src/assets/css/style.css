@@ -4341,7 +4341,7 @@ ul {
 .movie-item-style-1 .hvr-inner {
   position: absolute;
   top: 0;
-  /* TODO: 수정 _mypage-내정보-나의아카이브쪽 포스터에 마우스 올리면 뜨는 예매하기 버튼임...*/
+  /* TODO: 수정 _mypage-내정보-나의아카이브쪽 포스터에 마우스 올리면 뜨는 예매하기 버튼임...근데 안먹음ㅋ */
   background-color: #dd003f;
   /* background-color: #544e6b; */
   padding: 8px 15px;
