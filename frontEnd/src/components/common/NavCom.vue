@@ -355,7 +355,7 @@
                     MY PAGE <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
-                    <li><a href="landing.html">내정보</a></li>
+                    <li><a href="/mypage">내정보</a></li>
                     <li><a href="404.html">결제내역</a></li>
                   </ul>
                 </li>
