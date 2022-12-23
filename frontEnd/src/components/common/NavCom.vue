@@ -195,19 +195,9 @@
           <div class="row">
             <label for="name">
               고객님의 아이디는 {{ username }} 입니다.
-              <!-- 고객님의 아이디는 user.username 입니다. -->
+
             </label>
           </div>
-          <!-- <div class="row">
-            <label for="textbox">
-              <input
-                type="text"
-                name="hidden"
-                id="hidden"
-                required
-              />
-            </label>
-          </div> -->
           <div class="row">
             <button type="submit" @click="successlogin()">Login</button>
           </div>
@@ -231,12 +221,16 @@
                 name="password"
                 id="password"
                 v-model="password"
+               
               />
             </label>
           </div>
+          <!-- <button @click="changePassword">비밀번호 변경하기</button> -->
           <div class="row">
-            <button type="submit" @click="changePwd(password)">수정하기</button>
+            <button type="submit" @click="updatePwd(user.id,changePwd,user)">수정하기</button>
+            <button class="tohomelogin" @click="tohome()">로그인 하기</button>
           </div>
+          <p>{{ message }}</p>
         </div>
       </div>
       <!-- 패스워드찾기 성공시 뜨는 팝업 끝  -->
@@ -422,7 +416,8 @@ export default {
       findsuccess: false, // 아이디 찾기 성공창
       findsuccessPwd: false, // 새 비밀번호 창
       password: "",
-
+      changePwd: false, 
+      submitted: false,
       // Find 용
       findName: "",
       findEmail: "",
@@ -596,6 +591,7 @@ export default {
     },
 
     // 비밀번호 확인 back으로 보내기
+    // TODO: 1222 수정
     findByPwd() {
       this.findUsername = this.username;
       this.findAnswer = this.answer;
@@ -603,50 +599,73 @@ export default {
         .getFindByPassword(this.findUsername, this.findAnswer)
         .then((response) => {
           this.user = response.data;
-          // if(this.user == true){
-          //   alert(response.data.username);
-          //    // 비밀번호 확인 메서드 실행 시 
-          // this.loginid = false;
-          // this.findid = false;
-          // this.findpwd = false;
-          // this.findsuccess = false;
-          // this.findsuccessPwd = true;
-          // }else{
-          //   alert("아무것도아님")
-          // }
           console.log(this.user);
-          alert(response.data.username);
-          //비밀번호 확인 메서드 실행 시 
-          this.loginid = false;
-          this.findid = false;
-          this.findpwd = false;
-          this.findsuccess = false;
-          this.findsuccessPwd = true;
+          var test = this.user;
+          alert(JSON.stringify(test));
+          if (response.data.username == undefined) {
+            //비밀번호 실패시 팝업이 넘어가지 않음
+            this.loginid = false;
+            this.findid = false;
+            this.findpwd = true;
+            this.findsuccess = false;
+            this.findsuccessPwd = false;
+          } else {
+            //비밀번호 성공시 비밀번호 팝업이 뜸
+            this.loginid = false;
+            this.findid = false;
+            this.findpwd = false;
+            this.findsuccess = false;
+            this.findsuccessPwd = true;
+          }
         })
         .catch((error) => {
           console.log(error);
         });
     },
 
-    //새비밀번호 변경하기
-
-    changePwd() {
-      this.user.password = this.password;
-      userService
-        .putChangePassword(this.user.id, this.user)
-        .then((response) => {
-          this.message = response.data.message;
-          alert("변경");
-        })
-        .catch((error) => {
-          alert("에러");
-          console.log(error);
-        });
+    // //새비밀번호 변경하기
+    // TODO:1222수정
+    updatePwd(id,changePwd,user) {
+      // this.user.id;
+      // this.changePwd = true;
+      // this.user;
+      this.message = "";
+      this.submitted = true;
+      user.password= this.password;
+      // var test = this.user;
+      // alert(JSON.stringify(test));
+      // form 유효성 체크 검사
+      // this.$validator.validate() : 유효하면 isValid = true , 아니면 isValid = false
+      // this.$validator.validate().then((isValid) => {
+      //   if (isValid) {
+          // user 값 초기화
+          // this.user = new User("", "", "", this.role);
+          //  공유 저장소의 새사용자 등록 함수 실행
+          userService
+            .update(id,changePwd,user)
+            .then((response) => {
+              console.log(response.data);
+              this.message = "The password was updated successfully!";
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        // }
+      // });
     },
+    // changePassword(){
+    //   this.user.password="";
+    //   this.changePwd=true;
+    // }
+    tohome(){
+      this.loginid = true;
+      this.findid = false;
+      this.findpwd = false;
+      this.findsuccess = false;
+      this.findsuccessPwd = false;
+    }
+   
   },
-  //   components:{
-  //     FindIdVue
-  //  }
 };
 </script>
 
@@ -697,4 +716,8 @@ input {
 // #hidden{
 //   background: none !important;
 // }
+.tohomelogin{
+  background: none !important;
+  color: black !important;
+}
 </style>
