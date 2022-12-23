@@ -112,6 +112,21 @@ const routes = [
     name: 'allMovie',
     component: () => import('@/views/choi/AllMovies.vue')
   },
+  {
+    path: '/userInfoAdmin',
+    name: 'userInfoAdmin',
+    component: () => import('@/views/choi/UserInfoCom.vue')
+  },
+  {
+    path: '/adminInfoAdmin',
+    name: 'adminInfoAdmin',
+    component: () => import('@/views/choi/AdminInfoCom.vue')
+  },
+  {
+    path: '/reservInfoAdmin',
+    name: 'reservInfoAdmin',
+    component: () => import('@/views/choi/ReservInfoCom.vue')
+  },
   // {
   //   path: '/mainDetail',
   //   name: 'mainDetail',

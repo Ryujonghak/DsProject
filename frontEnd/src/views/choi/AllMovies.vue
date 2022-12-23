@@ -56,12 +56,12 @@
             <!-- TODO: MOVIES 안의 MIVIE 데이터들 가져와서 포스터/타이틀 데이터 돌려주기 (전체 영화 데이터 가져오기) -->
             <div class="celebrity-items" v-show="allMovies">
               <div class="ceb-item">
-                <a href="/movie-detail"
+                <a href="/movieDetail"
                   ><img src="images/uploads/ceb9.jpg" alt=""
                 /></a>
                 <div class="ceb-infor">
-                  <!-- <h2><a href="/movie-detail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movie-detail">모든</a></h2>
+                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
+                  <h2><a href="/movieDetail">모든</a></h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
                     {{ 9.7 }}/10</span
@@ -69,12 +69,12 @@
                 </div>
               </div>
               <div class="ceb-item">
-                <a href="/movie-detail"
+                <a href="/movieDetail"
                   ><img src="images/uploads/ceb9.jpg" alt=""
                 /></a>
                 <div class="ceb-infor">
-                  <!-- <h2><a href="/movie-detail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movie-detail">모든</a></h2>
+                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
+                  <h2><a href="/movieDetail">모든</a></h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
                     {{ 9.7 }}/10</span
@@ -82,12 +82,12 @@
                 </div>
               </div>
               <div class="ceb-item">
-                <a href="/movie-detail"
+                <a href="/movieDetail"
                   ><img src="images/uploads/ceb9.jpg" alt=""
                 /></a>
                 <div class="ceb-infor">
-                  <!-- <h2><a href="/movie-detail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movie-detail">모든</a></h2>
+                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
+                  <h2><a href="/movieDetail">모든</a></h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
                     {{ 9.7 }}/10</span
@@ -95,12 +95,12 @@
                 </div>
               </div>
               <div class="ceb-item">
-                <a href="/movie-detail"
+                <a href="/movieDetail"
                   ><img src="images/uploads/ceb9.jpg" alt=""
                 /></a>
                 <div class="ceb-infor">
-                  <!-- <h2><a href="/movie-detail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movie-detail">모든</a></h2>
+                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
+                  <h2><a href="/movieDetail">모든</a></h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
                     {{ 9.7 }}/10</span
@@ -114,12 +114,12 @@
             <!-- TODO: MOVIES 안의 MIVIE 데이터들 가져와서 포스터/타이틀 데이터 돌려주기 (현재 상영하고 있는 영화 데이터만 가져오기) -->
             <div class="celebrity-items" v-show="nowPlaying">
               <div class="ceb-item">
-                <a href="/movie-detail"
+                <a href="/movieDetail"
                   ><img src="images/uploads/ceb9.jpg" alt=""
                 /></a>
                 <div class="ceb-infor">
-                  <!-- <h2><a href="/movie-detail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movie-detail">현재</a></h2>
+                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
+                  <h2><a href="/movieDetail">현재</a></h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
                     {{ 9.7 }}/10</span
@@ -127,12 +127,12 @@
                 </div>
               </div>
               <div class="ceb-item">
-                <a href="/movie-detail"
+                <a href="/movieDetail"
                   ><img src="images/uploads/ceb9.jpg" alt=""
                 /></a>
                 <div class="ceb-infor">
-                  <!-- <h2><a href="/movie-detail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movie-detail">현재</a></h2>
+                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
+                  <h2><a href="/movieDetail">현재</a></h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
                     {{ 9.7 }}/10</span
@@ -140,12 +140,12 @@
                 </div>
               </div>
               <div class="ceb-item">
-                <a href="/movie-detail"
+                <a href="/movieDetail"
                   ><img src="images/uploads/ceb9.jpg" alt=""
                 /></a>
                 <div class="ceb-infor">
-                  <!-- <h2><a href="/movie-detail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movie-detail">현재</a></h2>
+                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
+                  <h2><a href="/movieDetail">현재</a></h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
                     {{ 9.7 }}/10</span

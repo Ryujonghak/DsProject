@@ -36,12 +36,12 @@
                 </div>
                 <div class="btn-transform transform-vertical">
                   <div>
-                    <a href="#" class="item item-1 yellowbtn">
+                    <a href="/userInfoAdmin" class="item item-1 yellowbtn">
                       <i class="ion-card"></i>예매하기</a
                     >
                   </div>
                   <div>
-                    <a href="#" class="item item-2 yellowbtn"
+                    <a href="/userInfoAdmin" class="item item-2 yellowbtn"
                       ><i class="ion-card"></i
                     ></a>
                   </div>

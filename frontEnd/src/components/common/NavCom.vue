@@ -3,11 +3,13 @@
     <!--end of preloading-->
 
     <!--login form popup-->
-    <div class="login-wrapper" id="login-content">
+    <div class="login-wrapper" id="login-content" v-show="popupClose">
       <div class="login-content" v-show="loginid">
-        <a href="#" class="close">x</a>
+        <!-- <a href="#" class="close">x</a> -->
         <h3>Login</h3>
-        <div @submit.prevent="handleLogin">
+        <!--        <div @submit.prevent="handleLogin">-->
+        <!--        로그인 수정-->
+        <div>
           <div class="row">
             <label for="username">
               Username:
@@ -31,6 +33,7 @@
               />
             </label>
           </div>
+
           <div class="row">
             <div class="remember">
               <button @click="toggleShow()" class="findbtn">
@@ -40,7 +43,7 @@
             </div>
           </div>
           <div class="row">
-            <button type="submit">Login</button>
+            <button type="submit" @click="handleLogin()">Login</button>
           </div>
         </div>
         <div class="row">
@@ -58,7 +61,9 @@
               class="img-fluid"
               href="http://localhost:8000/oauth2/authorization/naver"
               role="button"
-              ><img src="@/assets/images_kang/Components/common/Navcom/btn_naverSignUp.png.png" alt=""
+              ><img
+                src="@/assets/images_kang/Components/common/Navcom/btn_naverSignUp.png.png"
+                alt=""
             /></a>
             <a
               class="img-fluid"
@@ -87,7 +92,6 @@
                 id="name"
                 placeholder="이름을 입력하세요"
                 v-model="name"
-                v-validate="'required'"
               />
               <div
                 v-if="errors.has('name')"
@@ -195,9 +199,19 @@
           <div class="row">
             <label for="name">
               고객님의 아이디는 {{ username }} 입니다.
-
+              <!-- 고객님의 아이디는 user.username 입니다. -->
             </label>
           </div>
+          <!-- <div class="row">
+            <label for="textbox">
+              <input
+                type="text"
+                name="hidden"
+                id="hidden"
+                required
+              />
+            </label>
+          </div> -->
           <div class="row">
             <button type="submit" @click="successlogin()">Login</button>
           </div>
@@ -221,13 +235,13 @@
                 name="password"
                 id="password"
                 v-model="password"
-               
               />
             </label>
           </div>
-          <!-- <button @click="changePassword">비밀번호 변경하기</button> -->
           <div class="row">
-            <button type="submit" @click="updatePwd(user.id,changePwd,user)">수정하기</button>
+            <button type="submit" @click="updatePwd(user.id, changePwd, user)">
+              수정하기
+            </button>
             <button class="tohomelogin" @click="tohome()">로그인 하기</button>
           </div>
           <p>{{ message }}</p>
@@ -251,19 +265,7 @@
                   <a href="#page-top"></a>
                 </li>
 
-                <li class="dropdown first">
-                  <a
-                    class="btn btn-default dropdown-toggle lv1 happy"
-                    data-toggle="dropdown"
-                  >
-                    전체보기 <i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </a>
-                  <ul class="dropdown-menu level1">
-                    <li><a href="index.html">Home 01</a></li>
-                    <li><a href="homev2.html">Home 02</a></li>
-                    <li><a href="homev3.html">Home 03</a></li>
-                  </ul>
-                </li>
+                <li><router-link to="/allMovie">전체보기</router-link></li>
 
                 <li class="dropdown first">
                   <a
@@ -343,7 +345,8 @@
             </div>
             <div class="col-xs-5 navbar-menu">
               <ul class="nav navbar-nav flex-child-menu menu-right col">
-                <li class="dropdown first">
+                <!-- 회원 로그인시 마이페이지  -->
+                <li class="dropdown first" v-if="!currentUser">
                   <a
                     class="btn btn-default dropdown-toggle lv1"
                     data-toggle="dropdown"
@@ -352,11 +355,12 @@
                     MY PAGE <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
-                    <li><router-link to="/mypage">내정보</router-link></li>
-                    <li><router-link to="/myticket">예매내역</router-link></li>
-<!--                    <li><a href="404.html">결제내역</a></li>-->
+                    <li><a href="landing.html">내정보</a></li>
+                    <li><a href="404.html">결제내역</a></li>
                   </ul>
                 </li>
+                <!-- 회원 로그인시 마이페이지 끝  -->
+
                 <li class="dropdown first">
                   <a
                     class="btn btn-default dropdown-toggle lv1"
@@ -371,6 +375,24 @@
                     <li><router-link to="/addqna">QNA</router-link></li>
                   </ul>
                 </li>
+
+                <!-- 어드민 로그인시 어드민 나브바 시작-->
+                <li class="dropdown first" v-if="currentUser">
+                  <a
+                    class="btn btn-default dropdown-toggle lv1"
+                    data-toggle="dropdown"
+                    data-hover="dropdown"
+                  >
+                    ADMIN <i class="fa fa-angle-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="dropdown-menu level1">
+                    <li><a href="landing.html">회원관리</a></li>
+                    <li><a href="404.html">게시판관리</a></li>
+                    <li><a href="404.html">결제관리</a></li>
+                  </ul>
+                </li>
+                <!-- 어드민 로그인시 어드민 나브바 끝-->
+
                 <li v-if="!currentUser" class="loginLink">
                   <a href="#">LOG In</a>
                 </li>
@@ -387,11 +409,11 @@
               </ul>
             </div>
           </div>
-          <!-- <!— /.navbar-collapse —> -->
+          <!-- <!— <!— /.navbar-collapse —> —> -->
         </nav>
       </div>
     </header>
-    <!-- <!— END | Header —> -->
+    <!-- <!— <!— END | Header —> —> -->
   </div>
 </template>
 
@@ -416,13 +438,14 @@ export default {
       findsuccess: false, // 아이디 찾기 성공창
       findsuccessPwd: false, // 새 비밀번호 창
       password: "",
-      changePwd: false, 
+      changePwd: false,
       submitted: false,
       // Find 용
       findName: "",
       findEmail: "",
       findUsername: "",
       findAnswer: "",
+      popupClose: true, // 팝업창 자동 닫힘
     };
   },
   computed: {
@@ -457,7 +480,7 @@ export default {
     handleLogin() {
       // 로그인 로직 처리
       this.loading = true;
-      // vee-validate 함수 처리 방법
+      // vee-validate 함수 findid처리 방법
       this.$validator.validateAll().then((isValid) => {
         // validateAll() 모두 통과하면 -> isValid = true  (유효함)
         //                             -> isValid = false (유효하지 않음)
@@ -473,7 +496,11 @@ export default {
           this.$store
             .dispatch("auth/login", this.user)
             .then(() => {
-              this.$router.push("/profile"); // 로그인 성공하면 강제 /profile 페이지 이동
+              alert("환영합니다");
+              this.popupClose = !this.popupClose;
+              window.location.reload();
+              this.currentUser();
+              this.showAdminBoard();
             })
             // 참고) if/else 문 대신에 -> or(||) and(&&) 연산자를 사용할때도 있음
             // 로직체크 순서 : true || false, false && true
@@ -493,7 +520,9 @@ export default {
     logout() {
       // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
-      this.$router.push("/login"); // 강제 /login 페이지로 이동
+      this.popupClose = !this.popupClose;
+      window.location.reload();
+      this.adminlogin = false;
     },
     toggleShow() {
       this.loginid = false;
@@ -582,7 +611,7 @@ export default {
         .getFindByIdName(this.findName, this.findEmail)
         .then((response) => {
           this.username = response.data.username;
-          alert(response.data.username);
+          // alert(response.data.username);
           console.log(response.data.username);
         })
         .catch((error) => {
@@ -600,8 +629,8 @@ export default {
         .then((response) => {
           this.user = response.data;
           console.log(this.user);
-          var test = this.user;
-          alert(JSON.stringify(test));
+          // var test = this.user;
+          // alert(JSON.stringify(test));
           if (response.data.username == undefined) {
             //비밀번호 실패시 팝업이 넘어가지 않음
             this.loginid = false;
@@ -625,46 +654,46 @@ export default {
 
     // //새비밀번호 변경하기
     // TODO:1222수정
-    updatePwd(id,changePwd,user) {
+    updatePwd(id, changePwd, user) {
       // this.user.id;
       // this.changePwd = true;
       // this.user;
       this.message = "";
       this.submitted = true;
-      user.password= this.password;
+      user.password = this.password;
       // var test = this.user;
       // alert(JSON.stringify(test));
       // form 유효성 체크 검사
       // this.$validator.validate() : 유효하면 isValid = true , 아니면 isValid = false
       // this.$validator.validate().then((isValid) => {
       //   if (isValid) {
-          // user 값 초기화
-          // this.user = new User("", "", "", this.role);
-          //  공유 저장소의 새사용자 등록 함수 실행
-          userService
-            .update(id,changePwd,user)
-            .then((response) => {
-              console.log(response.data);
-              this.message = "The password was updated successfully!";
-            })
-            .catch((e) => {
-              console.log(e);
-            });
-        // }
+      // user 값 초기화
+      // this.user = new User("", "", "", this.role);
+      //  공유 저장소의 새사용자 등록 함수 실행
+      userService
+        .update(id, changePwd, user)
+        .then((response) => {
+          console.log(response.data);
+          alert("새로운 비밀번호로 변경되었습니다.");
+          this.message = "The password was updated successfully!";
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      // }
       // });
     },
     // changePassword(){
     //   this.user.password="";
     //   this.changePwd=true;
     // }
-    tohome(){
+    tohome() {
       this.loginid = true;
       this.findid = false;
       this.findpwd = false;
       this.findsuccess = false;
       this.findsuccessPwd = false;
-    }
-   
+    },
   },
 };
 </script>
@@ -716,7 +745,7 @@ input {
 // #hidden{
 //   background: none !important;
 // }
-.tohomelogin{
+.tohomelogin {
   background: none !important;
   color: black !important;
 }
