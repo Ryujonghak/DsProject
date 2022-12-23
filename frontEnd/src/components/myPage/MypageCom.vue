@@ -528,6 +528,18 @@ export default {
         answer: "",
       },
       message: "",
+
+      // 예매내역 : 백에서 가져와야함 //////////////////////////////
+      // TODO: 예매내역 + 영화고유번호에 맞는 포스터이미지
+      ReservedMovie: {
+        id: "",   // 회원테이블 아이디
+        movieCd: "",  // 영화고유번호
+        scheNo: "",   // 상영스케줄
+        cnt: "",      // 예매 수량
+        price: "",    // 결제금액
+        paidDate: "", // 결제일(예매날짜)
+      },
+      reservedMovieImages: "", // TODO: 예매한 영화포스터 -> 영화고유번호에 해당하는 이미지 불러와야함
     };
   },
   methods: {
@@ -579,6 +591,10 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
+
+    // TODO: 예매한 영화정보 가져오기
+    ReservedMovieList() {}
+
   },
   mounted() {
     custom();

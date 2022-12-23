@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>{{ CurrentUser.name }}’s profile</h1>
+              <h1>{{ User.name }}’s profile</h1>
               <ul class="breadcumb">
                 <li class="active">
                   <router-link to="/">Home</router-link>
@@ -38,8 +38,8 @@
               <!-- 프로필 이미지 업로드 추가 v-if -->
               <!-- <div v-if="images" class="user-img"> -->
               <div class="user-img">
-                <img src="images/uploads/user-img.png" alt="" />
-                <br />
+                <img src="images/uploads/user-img.png" alt=""/>
+                <br/>
                 <a href="#" class="redbtn">Change avatar</a>
               </div>
               <!-- 프로필 이미지 업로드 추가 v-else -->
@@ -81,11 +81,11 @@
                   <!-- 프로필 로그인 정보 표시 시작-->
                   <li style="color: white">
                     <strong style="color: white">이름 </strong>
-                    <label>{{ CurrentUser.name }}</label>
+                    <label>{{ User.name }}</label>
                   </li>
                   <li style="color: white">
                     <strong style="color: white">아이디 </strong>
-                    <label>{{ CurrentUser.username }}</label>
+                    <label>{{ User.username }}</label>
                   </li>
                   <!-- 프로필 로그인 정보 표시 끝 -->
                 </ul>
@@ -113,8 +113,9 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-<!--                  TODO: logout 클릭이벤트-->
-<!--                  <li><a href="#">Log out</a></li>-->
+                  <!--                  TODO: logout 클릭이벤트-->
+                  <!--                  <li><a href="#">Log out</a></li>-->
+                  <!--                  <li><a @click="logout">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
                   <li><a href="#">탈퇴하기</a></li>
                 </ul>
@@ -134,7 +135,7 @@
                     <input
                         type="text"
                         placeholder="홍길동"
-                        v-model="CurrentUser.name"
+                        v-model="User.name"
                     />
                   </div>
                   <div class="col-md-6 form-it">
@@ -142,7 +143,7 @@
                     <input
                         type="text"
                         placeholder="영문자 6자 이상"
-                        v-model="CurrentUser.username"
+                        v-model="User.username"
                     />
                   </div>
                 </div>
@@ -152,24 +153,22 @@
                     <input
                         type="text"
                         placeholder="hong@gmail.com"
-                        v-model="CurrentUser.email"
+                        v-model="User.email"
                     />
                   </div>
-                  <div class="row">
-                    <div class="col-md-6 form-it">
-                      <label>전화번호</label>
-                      <input
-                          type="text"
-                          placeholder="010-1234-1234"
-                          v-model="CurrentUser.phone"
-                      />
-                    </div>
+                  <div class="col-md-6 form-it">
+                    <label>전화번호</label>
+                    <input
+                        type="text"
+                        placeholder="010-1234-5678"
+                        v-model="User.phone"
+                    />
                   </div>
                 </div>
                 <!-- 저장 버튼 -->
                 <div class="row">
                   <div class="col-md-2">
-                    <input class="submit" type="submit" value="save" />
+                    <input class="submit" type="submit" value="저장하기"/>
                   </div>
                 </div>
               </form>
@@ -188,34 +187,40 @@
                     </select>
                   </div>
                   <div class="col-md-6 form-it">
-<!--                    label 에 for="answer" 추가 -->
+                    <!--                    TODO: label 에 for="answer" 추가 -->
+                    <!--                    TODO: v-model에 Current.answer하면 백엔연동시 답이 뜨므로 숨겨야 함...
+                                                  폼에 입력된 값이랑 회원데이터값 비교해서 맞으면 changePwdForm 떠야하는데... -->
                     <label for="answer">비밀번호 확인용 정답</label>
                     <input
+                        id="answer"
                         type="text"
                         placeholder="정답을 한글로 입력하세요"
-                        v-model="CurrentUser.answer"
+                        v-model="checkanswer"
                     />
                   </div>
                 </div>
-                <!--                  비밀번호 질문 정답 제출버튼 -> 버튼 클릭시 변경폼 보이도록 -->
+                <!--                 TODO: 비밀번호 질문 정답 제출버튼 -> 버튼 클릭시 변경폼 보이도록 (type = button) -->
                 <div class="row">
                   <div class="col-md-2">
-                    <!--                      TODO: @click="findpwd2"-->
-                    <input class="submit" type="submit" @click="findpwd2()" />
+                    <!--                      TODO: @click="findpwd"-->
+                    <input class="submit" type="button" value="질문확인버튼" @click="findpwd"/>
                   </div>
                 </div>
                 <br>
                 <br>
-                <!-- TODO: 질문의 정답이 일치하면 아래 div 보이도록...ㅋ : class="pwcheck"-->
-                <div class="pwcheck">
+                <!-- TODO: 질문의 정답이 일치하면 아래 div 보이도록...ㅋ : v-show="changePwdForm"  class="pwcheck"-->
+                <div v-show="changePwdForm" class="pwcheck">
+                  <!--                <div>-->
                   <div class="row">
                     <div class="col-md-6 form-it">
-<!--                      label 에 for="password" 추가 -->
+                      <!--                      label 에 for="password" 추가 -->
+                      <!--                      TODO: label 에 for="password" 추가 -->
+                      <!--                      TODO: v-model에 User.password하면 기존 패스워드 들어감...숨겨야해 -->
                       <label for="password">변경할 비밀번호</label>
                       <input
                           type="text"
                           placeholder="영문자, 숫자, 특수문자 조합 8~12자리"
-                          v-model="CurrentUser.password"
+                          v-model="User.password"
                       />
                     </div>
 
@@ -230,8 +235,8 @@
                   <!-- 제출 버튼 -->
                   <div class="row">
                     <div class="col-md-2">
-<!--                      TODO: 비밀번호 변경 클릭 이벤트-->
-                      <input class="submit" type="submit" value="change" @click="changePwd(password)"/>
+                      <!--                      TODO: 비밀번호 변경 클릭 이벤트 : updatePwd -->
+                      <input class="submit" type="submit" value="change" @click="updatePwd(password)"/>
                     </div>
                   </div>
                 </div>
@@ -247,7 +252,8 @@
 <script>
 // import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
-import userService from "@/services/user.service";
+import UserService from "@/services/user.service.js";
+import User from "@/model/user";
 
 export default {
   // data: () => ({
@@ -255,138 +261,117 @@ export default {
   // }),
   data() {
     return {
-      CurrentUser: {
-        email: "",
-        password: "",
-        username: "",
-        phone: null,
-        year: null,
-        month: null,
-        day: null,
-        name: "",
-        answer: "",
-      },
+      // User: new User(),
+      User: new User(),
       message: "",
+      checkanswer: "",    // 비번찾기문제 폼에 입력된 값  TODO: 정주희 추가
+      changePwdForm: false,
+      // objanswer: "",
+      // username: "",
     };
   },
-  methods: {
-    // uploadImage: function () {
-    //   let form = new FormData();
-    //   let image = this.$refs["image"].files[0];
-    //
-    //   form.append("image", image);
-    //
-    //   axios
-    //     .post("/upload", form, {
-    //       header: { "Content-Type": "multipart/form-data" },
-    //     })
-    //     .then(({ data }) => {
-    //       this.images = data;
-    //     })
-    //     .catch((err) => console.log(err));
-    // },
-    // clickInputTag: function () {
-    //   this.$refs["image"].click();
-    // },
+  methods:
+      {
+        // uploadImage: function () {
+        //   let form = new FormData();
+        //   let image = this.$refs["image"].files[0];
+        //
+        //   form.append("image", image);
+        //
+        //   axios
+        //     .post("/upload", form, {
+        //       header: { "Content-Type": "multipart/form-data" },
+        //     })
+        //     .then(({ data }) => {
+        //       this.images = data;
+        //     })
+        //     .catch((err) => console.log(err));
+        // },
+        // clickInputTag: function () {
+        //   this.$refs["image"].click();
+        // },
 
-    // 종학이 백엔드 데이터 받는 함수
-    getUser(username) {
-      username = "forbob";
-      console.log(username);
-      userService
-          .getUserUsername(username)
-          .then((response) => {
-            this.CurrentUser = {
-              email: response.data.email,
-              password: response.data.password,
-              username: response.data.username,
-              phone: response.data.phone,
-              year: response.data.year,
-              month: response.data.month,
-              day: response.data.day,
-              name: response.data.name,
-              answer: response.data.answer,
-            };
-            console.log(this.CurrentUser);
-            // console.log(response.data);
-          })
-          .catch((err) => console.log(err));
-    },
-    // 로그아웃 함수 -> 공통함수 호출
-    logout() {
-      // this.$store.dispatch("모듈명/함수명")
-      this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
-      this.$router.push("/"); // 강제 홈페이지로 이동
-    },
-    // TODO: 비밀번호 확인용 질문인가?
-    // 비밀번호 확인 back으로 보내기
-    findByPwd() {
-      this.findUsername = this.username;
-      this.findAnswer = this.answer;
-      userService
-          .getFindByPassword(this.findUsername, this.findAnswer)
-          .then((response) => {
-            this.user = response.data;
-            // if(this.user == true){
-            //   alert(response.data.username);
-            //    // 비밀번호 확인 메서드 실행 시
-            // this.loginid = false;
-            // this.findid = false;
-            // this.findpwd = false;
-            // this.findsuccess = false;
-            // this.findsuccessPwd = true;
-            // }else{
-            //   alert("아무것도아님")
-            // }
-            console.log(this.user);
-            alert(response.data.username);
-            //비밀번호 확인 메서드 실행 시
-            this.loginid = false;
-            this.findid = false;
-            this.findpwd = false;
-            this.findsuccess = false;
-            this.findsuccessPwd = true;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-    },
-    // 패스워드찾기 버튼 클릭시 실행됨 -> TODO: 질문 답 입력 후 버튼 클릭 맞겠지?
-    findpwd2() {
-      var objUsername = document.getElementById("username2");
-      var objanswer = document.getElementById("answer"); //answer
-      if (objUsername.value == "") {
-        alert("username 입력해주세요.");
-        return false;
-      } else {
-        if (objanswer.value == "") {
-          alert("answer을 입력해주세요.");
-          return false;
-        } else {
-          this.findByPwd();
-        }
-      }
-    },
-    //새비밀번호 변경하기
-    changePwd() {
-      this.user.password = this.password;
-      userService
-          .putChangePassword(this.user.id, this.user)
-          .then((response) => {
-            this.message = response.data.message;
-            alert("비밀번호가 변경되었습니다.");
-            this.$router.push("/myprofile"); // 강제 마이페이지 개인정보수정화면으로 이동
-          })
-          .catch((error) => {
-            alert("에러");
-            console.log(error);
-          });
-    },
-  },
+        // 종학이 백엔드 데이터 받는 함수
+        getUser() {
+          alert("getUser start");
+          UserService
+              .getUserUsername("forbob")
+              .then((response) => {
+                this.User = {
+                  email: response.data.email,
+                  username: response.data.username,
+                  phone: response.data.phone,
+                  year: response.data.year,
+                  month: response.data.month,
+                  day: response.data.day,
+                  name: response.data.name,
+                  answer: response.data.answer,
+                };
+                console.log(this.User);
+                // console.log(response.data);
+              })
+              .catch((err) => console.log(err));
+        },
+
+        // 로그아웃 함수 -> 공통함수 호출
+        logout() {
+          // this.$store.dispatch("모듈명/함수명")
+          this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
+          alert("로그아웃 되었습니다")
+          this.$router.push("/"); // 강제 홈페이지로 이동
+        },
+        // 패스워드찾기 버튼 클릭시 실행됨 -> (유효성 검사) TODO: 비번질문 답 입력 후 제출버튼 클릭
+        // TODO: 무조건 alert 보안질문 불일치로 넘어감..ㅋ
+        // findpwd() {
+        //    var objanswer = document.getElementById("answer");
+        //   alert(this.objanswer)
+        //   if (this.objanswer.value == null) {
+        //     alert("비밀번호 확인용 질문의 정답을 입력하세요")
+        //   } else {
+        //     if (this.objanswer.value == this.User.answer) {
+        //       // this.updatePwd(this.User.id, changePwd, this.User);
+        //       alert("보안질문 일치");
+        //       this.changePwdForm = true;  // v-show 숨겨진거 보이기
+        //
+        //     } else {
+        //       this.changePwdForm = false;
+        //       alert("보안질문 불일치");
+        //     }
+        //   }
+        // },
+        // 새비밀번호 변경하기
+        // TODO:1222수정
+        updatePwd(id, changePwd, User) {
+          // this.User.id;
+          // this.changePwd = true;
+          // this.User;
+          this.message = "";
+          this.submitted = true; //
+          User.password = this.password;
+          // var test = this.User;
+          // alert(JSON.stringify(test));
+          // form 유효성 체크 검사
+          // this.$validator.validate() : 유효하면 isValid = true , 아니면 isValid = false
+          // this.$validator.validate().then((isValid) => {
+          //   if (isValid) {
+          // User 값 초기화
+          // this.User = new User("", "", "", this.role);
+          //  공유 저장소의 새사용자 등록 함수 실행
+          UserService
+              .update(id, changePwd, User)
+              .then((response) => {
+                console.log(response.data);
+                this.message = "The password was updated successfully!";
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+        },
+      },
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
-  },
+  }
 };
 </script>
 

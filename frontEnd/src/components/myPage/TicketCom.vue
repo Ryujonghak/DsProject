@@ -136,7 +136,7 @@
                     <p>Run Time: 120분 <a>12세 관람가</a></p>
                     <span class="time sm">2022년 10월 12일</span>
                     <br />
-                    <span class="time sm">DS CINEMA 서면</span>
+                    <span class="time sm">DS CINEMA 서면 1관 </span>
                     <br />
                     <span class="time sm-text">18:00</span>
                     <span class="time sm"> I5</span>
@@ -174,7 +174,7 @@
                     <p>Run Time: 120분 <a>12세 관람가</a></p>
                     <span class="time sm">2022년 10월 12일</span>
                     <br />
-                    <span class="time sm">DS CINEMA 서면</span>
+                    <span class="time sm">DS CINEMA 서면 2관</span>
                     <br />
                     <span class="time sm-text">18:00</span>
                     <span class="time sm"> I5</span>
@@ -212,7 +212,7 @@
                     <p>Run Time: 120분 <a>12세 관람가</a></p>
                     <span class="time sm">2022년 10월 12일</span>
                     <br />
-                    <span class="time sm">DS CINEMA 서면</span>
+                    <span class="time sm">DS CINEMA 서면 3관</span>
                     <br />
                     <span class="time sm-text">18:00</span>
                     <span class="time sm"> I5</span>

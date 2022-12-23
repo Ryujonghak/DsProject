@@ -4341,14 +4341,17 @@ ul {
 .movie-item-style-1 .hvr-inner {
   position: absolute;
   top: 0;
+  /* TODO: 수정 _mypage-내정보-나의아카이브쪽 포스터에 마우스 올리면 뜨는 예매하기 버튼임...근데 안먹음ㅋ */
   background-color: #dd003f;
+  /* background-color: #544e6b; */
   padding: 8px 15px;
-  text-align: center;
-  margin-left: 30px;
-  margin-top: 110px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  border-radius: 30px;
+  /* text-align: center; */
+  /* margin-left: 30px; */
+  margin-top: 30px;
+  /* margin-top: 110px; */
+  /* -webkit-border-radius: 30px; */
+  /* -moz-border-radius: 30px; */
+  /* border-radius: 30px; */
   cursor: pointer;
   -moz-opacity: 0;
   -khtml-opacity: 0;
@@ -5662,6 +5665,7 @@ ul {
   height: 598px;
 }
 /*series single hero*/
+/* 결제 화면 페이지 백그라운드 이미지임 */
 .sr-single-hero {
   background: url('../images/uploads/sr-single.jpg') no-repeat;
   height: 598px;
@@ -5672,7 +5676,7 @@ ul {
 }
 .common-hero {
   height: 385px;
-  background: black;
+  background: url('../images/uploads/user-hero-bg.jpg') no-repeat;
 }
 .common-hero:before {
   background-color: rgba(0, 0, 0, 0.4);
@@ -7038,13 +7042,13 @@ p.ceb-single {
 .overlay .login-content .social-btn-2 a i {
   margin-right: 10px;
 }
-/* .overlay .login-content .social-btn-2 .fb {
+.overlay .login-content .social-btn-2 .fb {
   background-color: #3a5a9a;
   margin-right: 15px;
 }
 .overlay .login-content .social-btn-2 .tw {
   background-color: #00b9ef;
-} */
+}
 .slider {
   /* background: url('../images/uploads/slider-bg.jpg') no-repeat; */
   background-position: center;
