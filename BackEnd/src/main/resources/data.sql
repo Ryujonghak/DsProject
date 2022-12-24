@@ -173,4 +173,36 @@ VALUES (SQ_USER.NEXTVAL,
 INSERT INTO TB_USER_ROLE
 VALUES (1, 2);
 
+INSERT INTO TB_USER
+VALUES (SQ_USER.NEXTVAL,
+        'ryu@naver.com',
+        '$2a$10$TG1a5ywSrGNgf7/fFH.m0.EdTzHax8AGYNeAr8aIseF3DKyO0lDti',
+        'ryu',
+        01012345678,
+        1995,
+        11,
+        11,
+        '류종학',
+        '동성직업전문학교',
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
+INSERT INTO TB_USER
+VALUES (SQ_USER.NEXTVAL,
+        'kang@naver.com',
+        '$2a$10$TG1a5ywSrGNgf7/fFH.m0.EdTzHax8AGYNeAr8aIseF3DKyO0lDti',
+        'kang',
+        01012345678,
+        1995,
+        11,
+        11,
+        '류종학',
+        '동성직업전문학교',
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
 COMMIT;
