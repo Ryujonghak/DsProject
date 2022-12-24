@@ -1,5 +1,5 @@
 <template>
-  <div>안녕하세요.</div>
+  <div>안녕하세요. 아리입니다.</div>
 </template>
 
 <script>
