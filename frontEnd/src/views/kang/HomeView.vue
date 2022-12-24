@@ -27,7 +27,7 @@
             <!-- 아바타 영화포스터 -->
             <div class="movie-item">
               <div class="mv-img">
-                <a href="#"
+                <a href="/mainDetail"
                   ><img
                     src="@/assets/images_kang/Views/HomeView/poster/ABATA.jpg"
                     alt=""
@@ -39,7 +39,7 @@
                 <div class="cate">
                   <span class="blue"><a href="#">SF/판타지</a></span>
                 </div>
-                <h6><a href="#">아바타</a></h6>
+                <h6><a href="/mainDetail">아바타</a></h6>
                 <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
               </div>
             </div>

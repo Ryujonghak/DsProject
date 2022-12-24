@@ -38,7 +38,7 @@
                             <a href="#">아바타: 물의 길 <span>2022</span></a>
                           </h1>
                           <div class="social-btn" style="margin-top:1%">
-                            <a href="/movie-detail" class="parent-btn"
+                            <a href="/movieDetail" class="parent-btn"
                               ><i class="ion-play"></i>상세보기 ></a
                             >
                             <a href="#" class="parent-btn" @click="likeSave"
