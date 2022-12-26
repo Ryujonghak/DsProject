@@ -16,7 +16,7 @@
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="movie-img">
               <!-- {{ movie.posterUrl }} -->
-              <img :src=movie.posterUrl alt="poster" />
+              <img :src="movie.posterUrl" alt="poster" />
               <div class="movie-btn">
                 <div class="btn-transform transform-vertical red">
                   <div>
@@ -113,80 +113,98 @@
                           </div>
                           <!-- 표지 이미지들 (최대 4개까지 가져오고싶음) -->
                           <!-- 이미지 가져오기 test 시작 -->
-                          <div>
+                          <!-- <div>
                             <ul>
                               <li
                                 :class="{ active: index == currentIndex }"
-                                v-for="(data, index) in movie"
+                                v-for="(data, index) in movie.imageUrl"
                                 :key="index"
                                 @click="setActiveDept(data, index)"
                               >
-                                {{ data.imageUrl }}
+                                {{ data }}
                               </li>
                             </ul>
-                          </div>
-                          <!-- FIXME: 이렇게는 안 되는거? 그럼 어떻게 구현하면 좋을까요? 게다가 URL이 한두개가 아님요 -->
-                          <!-- <div class="mvsingle-item ov-item">
-                            <a
-                              class="img-lightbox"
-                              data-fancybox-group="gallery"
-                              href="{{ data.imageUrl }}"
-                              ><img src="images/uploads/image1.jpg" alt=""
-                            /></a>
                           </div> -->
+                          <!-- FIXME: 이렇게는 안 되는거? 그럼 어떻게 구현하면 좋을까요? 게다가 URL이 한두개가 아님요 -->
+                          <span class="mvsingle-item ov-item">
+                            <a
+                              :class="{ active: index == currentIndex }"
+                              v-for="(data, index) in movie.imageUrl"
+                              :key="index"
+                              class="img-lightbox"
+                              data-fancybox-group="gallery"
+                              :href="data"
+                              ><img
+                                class="small-thumnail"
+                                :src="data"
+                                alt="썸네일"
+                            /></a>
+                          </span>
                           <!-- 이미지 가져오기 test 끝 -->
-                          <div class="mvsingle-item ov-item">
-                            <a
-                              class="img-lightbox"
-                              data-fancybox-group="gallery"
-                              href="images/uploads/image11.jpg"
-                              ><img src="images/uploads/image1.jpg" alt=""
-                            /></a>
-                            <a
-                              class="img-lightbox"
-                              data-fancybox-group="gallery"
-                              href="images/uploads/image21.jpg"
-                              ><img src="images/uploads/image2.jpg" alt=""
-                            /></a>
-                            <a
-                              class="img-lightbox"
-                              data-fancybox-group="gallery"
-                              href="images/uploads/image31.jpg"
-                              ><img src="images/uploads/image3.jpg" alt=""
-                            /></a>
-                            <div class="vd-it">
-                              <img
-                                class="vd-img"
-                                src="images/uploads/image4.jpg"
-                                alt=""
-                              />
-                              <a
-                                class="fancybox-media hvr-grow"
-                                href="https://www.youtube.com/embed/o-0hcF97wy0"
-                                ><img src="images/uploads/play-vd.png" alt=""
-                              /></a>
-                            </div>
-                          </div>
                           <div class="title-hd-sm">
                             <h4>출연/대표작</h4>
                           </div>
                           <!-- 목록 불러오기 테스트 시작 -->
+                          <!-- <div class="mvcast-item">
+                            <ul class= "col-xs-6">
+                              <li
+                                class="cast-it"
+                                style="color: #abb7c4"
+                                :class="{ active: index == currentIndex }"
+                                v-for="(data, index) in movie.actor"
+                                :key="index"
+                                @click="setActiveDept(data, index)"
+                              >
+                                {{ data }}
+                              </li>
+                            </ul>
+                            <ul class="col-xs-6">
+                              <li
+                                class="cast-it"
+                                style="color: #abb7c4"
+                                :class="{ active: index == currentIndex }"
+                                v-for="(data, index) in movie.role"
+                                :key="index"
+                                @click="setActiveDept(data, index)"
+                              >
+                                {{ data }}
+                              </li>
+                            </ul>
+                          </div> -->
+                          <!-- 2번째 실험 시작 -->
                           <div class="mvcast-item">
-                            <ul
-                              class="cast-it"
-                              style="color: #abb7c4"
-                              :class="{ active: index == currentIndex }"
-                              v-for="(data, index) in movie.actor"
-                              :key="index"
-                              @click="setActiveDept(data, index)"
-                            >
-                              <li class="cast-left">
+                            <ul class="col-xs-6">
+                              <li
+                                class="cast-it"
+                                style="color: #abb7c4"
+                                :class="{ active: index == currentIndex }"
+                                v-for="(data, index) in movie.actor"
+                                :key="index"
+                                @click="setActiveDept(data, index)"
+                              >
+                                {{ data }}
+                              </li>
+                            </ul>
+                            <ul class="col-xs-6">
+                              <li
+                                class="cast-it"
+                                style="color: #abb7c4"
+                                :class="{ active: index == currentIndex }"
+                                v-for="(data, index) in movie.role"
+                                :key="index"
+                                @click="setActiveDept(data, index)"
+                              >
                                 {{ data }}
                               </li>
                             </ul>
                           </div>
+                          <!-- <div class="mvcast-item">
+
+                                {{ movie.actor }}
+                          </div> -->
+
                           <!-- TODO: 밑의 식으로 반복 가능한지 데이터 들어오면 확인해보기 (ul 반복시키기) -->
-                          <div class="mvcast-item">
+                          <!-- <div class="mvcast-item">
                             <ul class="cast-it" style="color: #abb7c4">
                               <li class="cast-left">data.actor</li>
                               <li>data.major</li>
@@ -195,13 +213,12 @@
                               <li class="cast-left">data.actor</li>
                               <li>data.major</li>
                             </ul>
-                            <ul class="cast-it" style="color: #abb7c4">
-                              <li class="cast-left">data.actor</li>
-                              <li>자세히보기(위키피디아 링크)</li>
-                            </ul>
-                          </div>
+                          </div> -->
                           <!-- 목록 불러오기 테스트 끝 -->
-                          <div class="title-hd-sm">
+                          <div
+                            class="title-hd-sm col-xs-12"
+                            style="padding-left: 0"
+                          >
                             <h4>누적관객수</h4>
                           </div>
                           <!-- <p>{{ movie.누적관객수 }}</p> -->
@@ -413,18 +430,20 @@
                               :key="index"
                               ><i class="ion-ios-star"></i
                             ></span> -->
-                            <span
-                              class="movie-image-box"
-                              v-for="(i, index) in movieImages"
-                              :key="index"
-                              ><a
+                            <div class="mvsingle-item ov-item">
+                              <a
+                                :class="{ active: index == currentIndex }"
+                                v-for="(data, index) in movie.imageUrl"
+                                :key="index"
                                 class="img-lightbox"
                                 data-fancybox-group="gallery"
-                                href="images/uploads/image11.jpg"
+                                :href="data"
                                 ><img
-                                  src="images/uploads/image1.jpg"
-                                  alt="" /></a
-                            ></span>
+                                  class="small-thumnail"
+                                  :src="data"
+                                  alt="썸네일"
+                              /></a>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -445,6 +464,10 @@
 /* eslint-disable */
 import custom from "@/assets/js/custom.js";
 export default {
+  mounted() {
+    custom();
+    this.cutNames();
+  },
   data() {
     return {
       movie: {
@@ -453,23 +476,31 @@ export default {
           " 아바타: 물의 길 은 판도라 행성에서 '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로, 샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이출연하고 존 랜도가 프로듀싱을 맡았다.",
         genre: "액션, 어드벤쳐, SF",
         pubdate: "2022.12.14",
-        rating: 9.4,
-        starRating: 9, // 나중에 백엔드에서 평점 가져오기 (TODO: 정수로 받아야 합니다,,)
+        rating: 4.5,
+        starRating: 0, // 나중에 백엔드에서 평점 가져오기 (TODO: 정수로 받아야 합니다,,)
         runTime: "192h",
         genre: "액션, 어드벤쳐, SF",
         director: "최아리",
-        actor: ["홍길동", "임꺽정", "장길산"],
+        actor: "최아리,강수빈,정주희",
+        role: "아바타1,아바타2,아바타3",
         watchedPeople: "2,945,915",
         review: "",
         youtubeUrl: "https://www.youtube.com/watch?v=7Q70_m-59O8&t=7s",
-        posterUrl: "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
-        imageUrl: "", // 약 4~6개 정도 주소 백엔드에 넣어두는건 어떤지 고민입니다.
+        posterUrl:
+          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
+        imageUrl:
+          "https://movie-phinf.pstatic.net/20221110_282/16680463363384H0hJ_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_147/1668046384890YVGlu_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_141/1668046432203AKL6P_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221123_280/1669180665184phjkW_JPEG/movie_image.jpg?type=m665_443_2", // 약 4~6개 정도 주소 백엔드에 넣어두는건 어떤지 고민입니다.
       },
-
-      movieImages: 8, // 나중에 백엔드에서 이미지 가져오기 (평점이랑 다르게 함수 짤 예정..)
     };
   },
   methods: {
+    cutNames() {
+      this.movie.actor = this.movie.actor.split(",");
+      this.movie.role = this.movie.role.split(",");
+      this.movie.imageUrl = this.movie.imageUrl.split(",");
+      this.movie.starRating = Math.floor(this.movie.rating);
+      alert(this.movie.starRating);
+    },
     likeSave() {
       alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
     },
@@ -506,9 +537,6 @@ export default {
           console.log(e);
         });
     },
-  },
-  mounted() {
-    custom();
   },
 };
 </script>
@@ -589,4 +617,8 @@ export default {
   max-width: 750px;
   margin: auto;
 }
+/* .small-thumnail {
+  width: 20%;
+  height: 50%;
+} */
 </style>
