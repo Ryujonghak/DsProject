@@ -197,13 +197,12 @@ export default {
   },
   methods: {
     upload(e) {
-      let imageFile = e.target.files; // 업로드한 파일의 데이터가 여기있음.
+      let imageFile = e.target.files; 
 
-      // console.log(imageFile[0]);
 
       let url = URL.createObjectURL(imageFile[0]); // 파일의 필요한 데이터만을 url 변수에 넣음
 
-      console.log(url); // 확인
+      console.log(url);
 
       this.imageUrl = url; // 미리 작성해둔 imageUrl : ' ' 변수에 가지고있는 경로데이터 넣기
 
