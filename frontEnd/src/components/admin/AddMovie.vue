@@ -178,7 +178,7 @@
             </tbody>
           </table>
           <div class="search">
-            <button type="submit" class="btn_col" style="float: right">
+            <button type="submit" class="regbtn" style="float: right">
               등록하기
             </button>
           </div>
@@ -230,4 +230,19 @@ textarea {
     border: none;
     resize: none;
   }
+  .regbtn {
+  background: #DD003F;
+  color:aliceblue;
+  border-radius: 25px !important;
+  box-shadow: none !important;
+  width: 10%;
+  padding: 1%;
+}
+button{
+  border: none !important;
+}
+button:active {
+  outline: none !important; 
+  box-shadow: none !important;
+}
 </style>

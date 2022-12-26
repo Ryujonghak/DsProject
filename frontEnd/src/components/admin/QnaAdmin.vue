@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="hero user-hero">
+ <div>
+  <div class="hero user-hero">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -57,52 +57,93 @@
             </div>
           </div>
           <!-- <!— 왼쪽 메뉴바 끝 —> -->
-
           <div class="col-md-9 col-sm-12 col-xs-12">
-            <div class="topbar-filter">
-              <h3 style="color: aliceblue">리뷰 관리</h3>
-              <select>
-                <option value="abata">아바타:물의길</option>
-                <option value="apartment">신비아파트 어쩌구</option>
-                <option value="hero">영웅</option>
-              </select>
+            <div style="margin-bottom:3%">
+              <h3 style="color: aliceblue">QnA 관리</h3>
             </div>
 
             <!-- 전체정렬 -->
 
-            <!--리뷰 테이블 관리 시작 (list)  -->
+            <!--qna 전체 테이블 시작 (list)  -->
             <div class="movie-item-style-2 userrate">
               <div class="mv-item-infor">
                 <table class="notice_table">
                   <colgroup>
+                    <col style="width: 10%" />
                     <col style="width: 15%" />
                     <col style="width: 15%" />
-                    <col style="width: 55%" />
+                    <col style="width: 10%" />
+                    <col style="width: auto%" />
                     <col style="width: 15%" />
                   </colgroup>
                   <thead>
                     <tr>
-                      <th scope="col">영화명</th>
-                      <th scope="col">작성자명</th>
-                      <th scope="col">리뷰</th>
-                      <th scope="col">Delete Btn</th>
+                      <th scope="col">이름</th>
+                      <th scope="col">이메일</th>
+                      <th scope="col">휴대전화</th>
+                      <th scope="col">제목</th>
+                      <th scope="col">내용</th>
+                      <th scope="col">답변여부</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(data, index) in reviews" v-bind:key="index">
-                      <td>{{ data.movieName }}</td>
-                      <td>{{ data.username }}</td>
-                      <td>{{ data.content }}</td>
-                      <td>
-                        <button class="deletebtn">삭제</button>
-                      </td>
+                    <tr >
+                     <td>이름</td>
+                     <td>이메일</td>
+                     <td>휴대전화</td>
+                     <td>제목</td>
+                     <td>내용</td>
                     </tr>
                   </tbody>
                 </table>
+                <div class="search">
+                  <button type="button" class="btn_col2" @click="writeNotice">
+                    답변하기
+                  </button>
+                </div>
               </div>
             </div>
-            <!--리뷰 테이블 관리 테이블 끝  -->
+            <!--qna 전체조회 테이블 끝  -->
 
+            <!--qna 답변작성 폼 시작 (add)-->
+            <div v-show="registerNotice">
+              <table class="noticeboxnoticebox">
+                <colgroup>
+                  <col style="width: 10%" />
+                  <col style="width: 15%" />
+                  <col style="width: 15%" />
+                  <col style="width: auto" />
+                  <col style="width: 15%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="noticelabel">
+                      |
+                      <label for="textarea">답변내용</label>
+                    </th>
+                    <td colspan="5">
+                      <div class="textarea">
+                        <textarea
+                          id="textarea"
+                          name="custInqCn"
+                          rows="5"
+                          cols="30"
+                          title="내용입력"
+                          class="input-textarea boxing"
+                          placeholder="내용을 입력해주세요."
+                        ></textarea>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="search">
+                <button type="button" class="btn_col2" @click="createNotice">
+                  등록하기
+                </button>
+              </div>
+            </div>
+            <!--공지사항 작성 폼 끝 -->
             <div class="topbar-filter">
               <label>Movies per page:</label>
               <select>
@@ -119,64 +160,18 @@
         </div>
       </div>
     </div>
-  </div>
+ </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      board: false,
-      reviews: [
-        {
-          movieName: "아바타",
-          username: "forbob",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-        },
-        {
-          movieName: "영웅",
-          username: "forbob",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-        },
-      ],
-    };
-  },
-  methods: {
-    boardclick() {
-      this.board = !this.board;
-    },
-  },
-};
+
+}
 </script>
 
 <style lang="scss" scoped>
-th {
-  color: aliceblue;
-  border: 1px solid aliceblue;
-  //border-right: 2px solid aliceblue;
-  text-align: center;
-}
-td {
+th,td{
   color: aliceblue;
   border-bottom: 1px solid aliceblue;
-  text-align: center;
-  vertical-align: middle !important;
 }
-.deletebtn {
-  background: #dd003f;
-  color: aliceblue;
-  border-radius: 3px !important;
-  box-shadow: none !important;
-  width: 50%;
-}
-button {
-  border: none !important;
-}
-button:active {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
 </style>

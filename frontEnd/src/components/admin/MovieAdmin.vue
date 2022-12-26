@@ -51,6 +51,7 @@
                 <p>기타</p>
                 <ul>
                   <li><router-link to="/review-admin">리뷰관리</router-link></li>
+                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                   <li><a href="#">Log out</a></li>
                 </ul>
               </div>
@@ -70,22 +71,22 @@
                 <option value="range">-- Choose option --</option>
                 <option value="saab">-- Choose option 2--</option>
               </select>
-              <button>
+              <button class="regbtn" style="color:aliceblue">
                 <router-link to="/addMovie-admin">등록</router-link>
               </button>
             </div>
             <div class="flex-wrap-movielist user-fav-list">
               <div class="movie-item-style-2">
-                <img src="images/uploads/mv1.jpg" alt="" />
+                <img src=	https://img.megabox.co.kr/SharedImg/2022/12/16/9vUySe7DNMro6tdYRPEbjzF2ebr48MwE_420.jpg alt="아바타 물의길" />
                 <div class="mv-item-infor">
                   <h6 style="color: aliceblue">
                     영화이름:
-                    <a href="#">oblivion <span>(2012)</span></a>
+                    <a href="#">아바타 : 물의길 <span>(2022)</span></a>
                   </h6>
                   <h6 style="color: aliceblue">
                     평점:
                     <p class="rate">
-                      <i class="ion-android-star"></i><span>8.1</span> /10
+                      <i class="ion-android-star"></i><span>4.1</span> /5
                     </p>
                   </h6>
                   <p class="describe">
@@ -277,5 +278,19 @@ h4 {
 .redbtn {
   height: 2% !important;
   float: right !important;
+  box-shadow:none !important;
+}
+.regbtn{
+  background: rgb(255, 255, 0);
+  width: 10%;
+  border-radius: 25px;
+  padding: 1%;
+}
+button{
+  border: none !important;
+}
+button:active {
+  outline: none !important; 
+  box-shadow: none !important;
 }
 </style>
