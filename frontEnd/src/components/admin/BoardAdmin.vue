@@ -50,6 +50,7 @@
                 <p>기타</p>
                 <ul>
                   <li><router-link to="/review-admin">리뷰관리</router-link></li>
+                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                   <li><a href="#">Log out</a></li>
                 </ul>
               </div>
@@ -174,7 +175,7 @@
                 </tbody>
               </table>
               <div class="search">
-                <button type="button" class="btn_col" @click="createNotice">
+                <button type="button" class="btn_col2" @click="createNotice">
                   등록하기
                 </button>
               </div>
@@ -298,13 +299,14 @@ th,td{
 }
 .btn_col2 {
   box-sizing: border-box;
-  border-radius: 4px;
-  border: 1px solid #414141;
-  color: #ffffff !important;
+  border-radius: 25px;
+  color: black !important;
   text-align: center;
   vertical-align: middle;
-  background-color: #414141;
+  background: rgb(255, 255, 0);
   display: inline !important;
+  padding: 1%;
+  width: 10%;
 }
 .noticebox {
   color: inherit;
@@ -326,7 +328,16 @@ th,td{
   color: #ffffff !important;
 }
 .editbtn{
-  color: aliceblue;
-  background:rgb(75, 139, 75);
+  color:black;
+  background: rgb(255, 255, 0);
+  border-radius: 25px;
+  width: 50%;
+}
+button{
+  border: none !important;
+}
+button:active {
+  outline: none !important; 
+  box-shadow: none !important;
 }
 </style>

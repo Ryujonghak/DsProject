@@ -49,9 +49,8 @@
               <div class="user-fav">
                 <p>기타</p>
                 <ul>
-                  <li>
-                    <router-link to="/review-admin">리뷰관리</router-link>
-                  </li>
+                  <li><router-link to="/review-admin">리뷰관리</router-link></li>
+                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                   <li><a href="#">Log out</a></li>
                 </ul>
               </div>
@@ -61,10 +60,10 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter">
               <h3 style="color: aliceblue">영화관 관리</h3>
-              <label>Sort by:</label>
               <select>
-                <option value="range">-- Choose option --</option>
-                <option value="saab">-- Choose option 2--</option>
+                <option value="abata">아바타:물의길</option>
+                <option value="apartment">신비아파트 어쩌구</option>
+                <option value="hero">영웅</option>
               </select>
             </div>
 
@@ -115,9 +114,6 @@
                 <colgroup>
                   <col style="width: 10%" />
                   <col style="width: 25%" />
-                  <col style="width: 25%" />
-                  <col style="width: auto" />
-                  <col style="width: auto" />
                 </colgroup>
                 <tbody>
                   <tr>
@@ -137,7 +133,7 @@
                   <tr>
                     <th scope="row" class="noticelabel">
                       |
-                      <label for="noticeTitle">이름</label>
+                      <label for="noticeTitle">영화관</label>
                     </th>
                     <td>
                       <input
@@ -269,13 +265,14 @@ td {
 }
 .btn_col2 {
   box-sizing: border-box;
-  border-radius: 4px;
-  border: 1px solid #414141;
-  color: #ffffff !important;
+  border-radius: 25px;
+  color: black !important;
   text-align: center;
   vertical-align: middle;
-  background-color: #414141;
+  background: rgb(255, 255, 0);
   display: inline !important;
+  padding: 1%;
+  width: 10%;
 }
 .noticebox {
   color: aliceblue;
@@ -284,24 +281,31 @@ td {
 }
 .btn_col {
   box-sizing: border-box;
-  border-radius: 4px;
-  border: 1px solid #414141;
-  color: #ffffff !important;
+  border-radius: 25px;
+  color: black !important;
   text-align: center;
   vertical-align: middle;
-  background-color: #414141;
+  background: rgb(255, 255, 0);
   display: inline !important;
-  margin-bottom: 2%;
+  padding: 1%;
+  width: 10%;
 }
 
 .noticelabel {
   color: #ffffff !important;
 }
 .editbtn {
-  background: #dd003f;
+  background: #dd003f !important;
   color: aliceblue;
   border-radius: 3px !important;
   box-shadow: none !important;
   width: 50%;
+}
+button{
+  border: none !important;
+}
+button:active {
+  outline: none !important; 
+  box-shadow: none !important;
 }
 </style>
