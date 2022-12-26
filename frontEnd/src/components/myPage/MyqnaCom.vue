@@ -198,7 +198,10 @@ export default {
       },
       message: "",
       // 수빈이 AddQna 받아오기
-      qna: [], // TODO: 정주희 qna관련 추가_수빈이 addQna에서 보낸 qna 정보
+      // TODO: 정주희 qna관련 추가_수빈이 addQna에서 보낸 qna 정보
+      qna: {
+
+      }, 
     };
   },
   methods: {

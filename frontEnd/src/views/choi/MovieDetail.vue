@@ -337,7 +337,7 @@
                                 <i class="ion-android-star"></i>
                                 <i class="ion-android-star last"></i>
                               </div>
-                              <!-- TODO: 우리가,, 꼭 아이디를 받아와서 넣어야 할까? -->
+                              <!-- TODO: 우리가,, 꼭 아이디를 받아와서 넣어야 할까? 정주희: 네 -->
                               <p class="time" style="fontsize: 100%">
                                 choiari1002
                               </p>
@@ -499,7 +499,7 @@ export default {
       this.movie.role = this.movie.role.split(",");
       this.movie.imageUrl = this.movie.imageUrl.split(",");
       this.movie.starRating = Math.floor(this.movie.rating);
-      alert(this.movie.starRating);
+      // alert(this.movie.starRating);
     },
     likeSave() {
       alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
