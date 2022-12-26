@@ -317,7 +317,10 @@
                         </div>
                         <div class="mv-user-review-item">
                           <div class="user-infor">
-                            <img src="@/assets/images_choi/Views/choi/MovieDetail/user.png" alt="user" />
+                            <img
+                              src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                              alt="user"
+                            />
                             <div>
                               <div class="no-star">
                                 <i class="ion-android-star"></i>
@@ -350,7 +353,10 @@
                         </div>
                         <div class="mv-user-review-item">
                           <div class="user-infor">
-                            <img src="@/assets/images_choi/Views/choi/MovieDetail/user.png" alt="user" />
+                            <img
+                              src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                              alt="user"
+                            />
                             <div>
                               <div class="no-star">
                                 <i class="ion-android-star"></i>
@@ -455,7 +461,32 @@ import custom from "@/assets/js/custom.js";
 export default {
   data() {
     return {
-      movie: null,
+      movie: {
+        title: "아바타: 물의 길",
+        synopsis: "",
+        genre: "액션, 어드벤쳐, SF",
+        rating: 9.4,
+        ratingStar: 9, // 정수로 받아야 하는 평점 (별 반복문 돌리기 위해서)
+        director: 최아리,
+        actor: ["홍길동", "임꺽정", "장길산"],
+        opening: "2022.12.26",
+        runtime: "192h",
+        watchedPeople: "2,945,915",
+        youtubeUrl: "https://www.youtube.com/watch?v=7Q70_m-59O8&t=7s", // 예고편은 하나만 가져오기
+        imageUrl: "" // 일단 빈 칸 (약 5~7 정도 넣으면 어떨까요?)
+      },
+      // - 영화 제목
+// - 영화 줄거리 (시놉시스)
+// - 장르
+// - 관람등급
+// - 영화 평점 (정수로 변환해서 받아야 합니다.)
+// - 개봉 날짜
+// - 영화 길이 (러닝타임)
+// - 감독
+// - 배우들 (대표작을 넣을지 말지 고민중. 종학이가 추천한 api로 위키피디아 링크 연결도 괜찮은 방법 같습니다.)
+// - 유튜브 예고편 url
+// - 이미지 주소 (포스터 와 스틸컷 등 -> 포스터 1개 따로 스틸컷 이미지들 따로 있으면 편할듯 합니다.)
+// - 누적 관객수 (가져올 수 있으면)
       userRatingNumber: 9, // 나중에 백엔드에서 평점 가져오기 (TODO: 정수로 받아야 합니다,,)
       movieImages: 8, // 나중에 백엔드에서 이미지 가져오기 (평점이랑 다르게 함수 짤 예정..)
     };
@@ -465,7 +496,7 @@ export default {
       alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
     },
     // axios, 모든 영화 정보 조회 요청 함수
-    // TODO: but 문제는 우리는 앞에서 클릭하면 들어오는 영화의 정보만 가지고 들어와야 하기 때문에 다르게 구현해야한다,, 일단 대충 가져옴
+    // TODO: but 문제는 우리는 앞에서 클릭하면 들어오는 영화의 정보만 가지고 들어와야 하기 때문에 다르게 구현해야한다. 일단 대충 가져옴
     retrieveMovie() {
       MovieDataService.getAll()
         // 성공하면 .then() 결과가 전송됨
@@ -517,7 +548,8 @@ export default {
 /*movie single hero*/
 /* TODO: 이미지 이걸로 통일하는거 어떤지 물어보기 */
 .mv-single-hero {
-  background: url(@/assets/images_choi/Views/choi/MovieDetail/movie-theater02.jpg) no-repeat;
+  background: url(@/assets/images_choi/Views/choi/MovieDetail/movie-theater02.jpg)
+    no-repeat;
   /* height: 598px; */
   width: 100%;
 }

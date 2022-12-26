@@ -1,5 +1,5 @@
 <template>
-  <div>안녕하세요. 아리입니다.</div>
+  <div>테스트에용.</div>
 </template>
 
 <script>
