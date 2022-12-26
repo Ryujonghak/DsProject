@@ -72,7 +72,7 @@
                 <div class="rate">
                   <i class="ion-android-star"></i>
                   <p>
-                    <span>{{ movie.rating }}</span> /10<br />
+                    <span>{{ movie.rating }}</span> /5<br />
                     <!-- <span>{{ movie.userRating }}</span> /10<br /> -->
                   </p>
                 </div>
@@ -129,7 +129,7 @@
                           <span class="mvsingle-item ov-item">
                             <a
                               :class="{ active: index == currentIndex }"
-                              v-for="(data, index) in movie.imageUrl"
+                              v-for="(data, index) in movie.tempImgUrl"
                               :key="index"
                               class="img-lightbox"
                               data-fancybox-group="gallery"
@@ -303,6 +303,7 @@
                             </fieldset>
                             <div>
                               <textarea
+                                v-model="userReview"
                                 class="col-auto form-control"
                                 style="fontsize: 91%"
                                 type="text"
@@ -318,75 +319,36 @@
                             >
                           </div>
                         </div>
-                        <div class="mv-user-review-item">
+                        <div
+                          class="mv-user-review-item"
+                          v-for="(data, index) in review"
+                          :key="index"
+                        >
                           <div class="user-infor">
                             <img
                               src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
                               alt="user"
                             />
                             <div>
-                              <div class="no-star">
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star last"></i>
+                              <div class="rate-star">
+                                <span
+                                  class="rate-star-result"
+                                  v-for="(i, index) in data.rating"
+                                  :key="index"
+                                  ><i
+                                    class="ion-ios-star"
+                                    style="color: #f5b50a"
+                                  ></i
+                                ></span>
                               </div>
                               <!-- TODO: 우리가,, 꼭 아이디를 받아와서 넣어야 할까? -->
                               <p class="time" style="fontsize: 100%">
-                                choiari1002
+                                {{ data.username }}
                               </p>
                             </div>
                           </div>
                           <p style="margin-top: 2%">
-                            아바타 2는 아직 안 봤는데 넘 기대되구요,, 1도 재밌게
-                            봤었구요,, 저는 집에 가고 싶구요,, 리뷰쓰기는 또
-                            어떻게 작동시켜야 하는지 까마득 하구요,, 시간은
-                            흐르는데 다 끝난건 없는거 같구요,, 자신감
-                            하락하구요,, ㅜㅜ,, 너무 혼내지 말기,, 다시 리뷰로
-                            돌아가서 아바타 언제 보려나 싶지만 얼른 보고싶고
-                            선리뷰 별 드립니다. 사실 이건 영화를 봐야지 쓸 수
-                            있는 리뷰랍니다.
-                          </p>
-                        </div>
-                        <div class="mv-user-review-item">
-                          <div class="user-infor">
-                            <img
-                              src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
-                              alt="user"
-                            />
-                            <div>
-                              <div class="no-star">
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star last"></i>
-                              </div>
-                              <p class="time" style="fontsize: 100%">
-                                choichoi1002
-                              </p>
-                            </div>
-                          </div>
-                          <p style="margin-top: 2%">
-                            아바타 2는 아직 안 봤는데 넘 기대되구요,, 1도 재밌게
-                            봤었구요,, 저는 집에 가고 싶구요,, 리뷰쓰기는 또
-                            어떻게 작동시켜야 하는지 까마득 하구요,, 시간은
-                            흐르는데 다 끝난건 없는거 같구요,, 자신감
-                            하락하구요,, ㅜㅜ,, 너무 혼내지 말기,, 다시 리뷰로
-                            돌아가서 아바타 언제 보려나 싶지만 얼른 보고싶고
-                            선리뷰 별 드립니다. 사실 이건 영화를 봐야지 쓸 수
-                            있는 리뷰랍니다.
+                            {{ data.content }}
                           </p>
                         </div>
                         <div class="topbar-filter">
@@ -490,7 +452,30 @@ export default {
           "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
         imageUrl:
           "https://movie-phinf.pstatic.net/20221110_282/16680463363384H0hJ_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_147/1668046384890YVGlu_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_141/1668046432203AKL6P_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221123_280/1669180665184phjkW_JPEG/movie_image.jpg?type=m665_443_2", // 약 4~6개 정도 주소 백엔드에 넣어두는건 어떤지 고민입니다.
+        tempImgUrl: [],
       },
+      review: [
+        {
+          movieCode: 1,
+          rating: 4,
+          username: "choiari1002",
+          content: "그래픽이 너무 멋졌어요.",
+        },
+        {
+          movieCode: 1,
+          rating: 5,
+          username: "subin1234",
+          content: "가족들이랑 재밌게 봤습니다.",
+        },
+        {
+          movieCode: 1,
+          rating: 3,
+          username: "juhee5678",
+          content: "재밌지만 아쉬워요.",
+        },
+      ],
+      userReview: "",
+      userStarRaing: 3,
     };
   },
   methods: {
@@ -498,8 +483,11 @@ export default {
       this.movie.actor = this.movie.actor.split(",");
       this.movie.role = this.movie.role.split(",");
       this.movie.imageUrl = this.movie.imageUrl.split(",");
+      // 썸네일 이미지 2장만 보이게 설정
+      this.movie.tempImgUrl[0] = this.movie.imageUrl[0];
+      this.movie.tempImgUrl[1] = this.movie.imageUrl[1];
+      // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
       this.movie.starRating = Math.floor(this.movie.rating);
-      alert(this.movie.starRating);
     },
     likeSave() {
       alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
@@ -519,10 +507,11 @@ export default {
     // FIXME: 새로운 리뷰 저장 함수
     saveReview() {
       // 임시 객체 변수 -> springboot 전송
-      // 부서번호는(dno) 자동생성되므로 빼고 전송함
+      // 백데이터에 우리가 새로 받은 userStarRaing, 넣어주기
+      // BUT 그렇다면 username, movieCode 등은 자동으로 넘어갈 수 있는지
       let data = {
-        rating: this.review.rating,
-        content: this.review.content,
+        rating: this.userStarRaing,
+        content: this.userReview,
       };
 
       // insert 요청 함수 호출
