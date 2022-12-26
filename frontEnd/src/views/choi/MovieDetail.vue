@@ -16,7 +16,7 @@
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="movie-img">
               <!-- {{ movie.posterUrl }} -->
-              <img src="images/uploads/movie-single.jpg" alt="" />
+              <img :src=movie.posterUrl alt="poster" />
               <div class="movie-btn">
                 <div class="btn-transform transform-vertical red">
                   <div>
@@ -27,8 +27,9 @@
                   <div>
                     <!-- TODO: 유튜브 URL, 영화 이름, 예매 페이지 연결 등 백엔드 데이터 받아와야 하는 곳 -->
                     <!-- {{ movie.youtubeUrl }} -->
+                    <!-- href={{ movie.youtubeUrl }} -->
                     <a
-                      href="https://www.youtube.com/watch?v=7Q70_m-59O8&t=7s"
+                      :href="movie.youtubeUrl"
                       class="item item-2 redbtn fancybox-media hvr-grow"
                       ><i class="ion-play"></i
                     ></a>
@@ -54,7 +55,7 @@
           <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="movie-single-ct main-content">
               <h1 class="bd-hd">
-                {{ movie.title }}<span>movie.pubDate (ex.2022)</span>
+                {{ movie.title }}<span>{{ movie.pubdate }}</span>
               </h1>
               <div class="social-btn">
                 <!-- TODO: 찜하기 구현, 클릭하면 데이터를 저장..? 어떻게 구현하는거? 하하하 -->
@@ -71,7 +72,7 @@
                 <div class="rate">
                   <i class="ion-android-star"></i>
                   <p>
-                    <span>{{ 9.4 }}</span> /10<br />
+                    <span>{{ movie.rating }}</span> /10<br />
                     <!-- <span>{{ movie.userRating }}</span> /10<br /> -->
                   </p>
                 </div>
@@ -79,7 +80,7 @@
                   <p>별점:</p>
                   <span
                     class="rate-star-result"
-                    v-for="(i, index) in userRatingNumber"
+                    v-for="(i, index) in movie.starRating"
                     :key="index"
                     ><i class="ion-ios-star"></i
                   ></span>
@@ -100,14 +101,7 @@
                         <div class="col-md-8 col-sm-12 col-xs-12">
                           <!-- {{ currentMovie.synopsis }} -->
                           <p>
-                            아바타: 물의 길 은 판도라 행성에서 '제이크 설리'와
-                            '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과
-                            살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고
-                            견뎌내야 할 상처에 대한 이야기를 그렸다.<br /><br />월드와이드
-                            역대 흥행 순위 1위를 기록한 전편에 이어 제임스
-                            카메론 감독이 13년만에 선보이는 영화로, 샘 워싱턴,
-                            조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이
-                            출연하고 존 랜도가 프로듀싱을 맡았다.
+                            {{ movie.synopsis }}
                           </p>
                           <div class="title-hd-sm">
                             <h4>포스터/스틸컷</h4>
@@ -177,17 +171,20 @@
                             <h4>출연/대표작</h4>
                           </div>
                           <!-- 목록 불러오기 테스트 시작 -->
-                          <!-- <ul class="list-group">
-                            <li
-                              class="list-group-item"
+                          <div class="mvcast-item">
+                            <ul
+                              class="cast-it"
+                              style="color: #abb7c4"
                               :class="{ active: index == currentIndex }"
-                              v-for="(data, index) in movie"
+                              v-for="(data, index) in movie.actor"
                               :key="index"
                               @click="setActiveDept(data, index)"
                             >
-                              {{ data.actor }}
-                            </li>
-                          </ul> -->
+                              <li class="cast-left">
+                                {{ data }}
+                              </li>
+                            </ul>
+                          </div>
                           <!-- TODO: 밑의 식으로 반복 가능한지 데이터 들어오면 확인해보기 (ul 반복시키기) -->
                           <div class="mvcast-item">
                             <ul class="cast-it" style="color: #abb7c4">
@@ -204,16 +201,6 @@
                             </ul>
                           </div>
                           <!-- 목록 불러오기 테스트 끝 -->
-                          <div class="mvcast-item">
-                            <div class="cast-it">
-                              <p class="cast-left">홍길동</p>
-                              <p>바람과 함께 사라지다</p>
-                            </div>
-                            <div class="cast-it">
-                              <p class="cast-left">홍길동</p>
-                              <p>바람과 함께 사라지다</p>
-                            </div>
-                          </div>
                           <div class="title-hd-sm">
                             <h4>누적관객수</h4>
                           </div>
@@ -225,23 +212,22 @@
                         <div class="col-md-4 col-xs-12 col-sm-12">
                           <div class="sb-it">
                             <h6>감독:</h6>
-                            <!-- <p>{{ movie.director }}</p> -->
-                            <p>임꺽정</p>
+                            <p>{{ movie.director }}</p>
                           </div>
                           <div class="sb-it">
                             <h6>장르:</h6>
                             <!-- <p>{{ currentMovie.genre }}</p> -->
-                            <p>액션, SF, 어드벤처</p>
+                            <p>{{ movie.genre }}</p>
                           </div>
                           <div class="sb-it">
                             <h6>개봉:</h6>
-                            <!-- <p>{{ currentMovie.개봉일 }}</p> -->
-                            <p>2022.12.14</p>
+                            <p>{{ movie.pubdate }}</p>
+                            <!-- <p>2022.12.14</p> -->
                           </div>
                           <div class="sb-it">
                             <h6>러닝타임:</h6>
                             <!-- <p>{{ currentMovie.러닝타임 }}</p> -->
-                            <p>192 분</p>
+                            <p>{{ movie.runTime }}</p>
                           </div>
                         </div>
                         <!-- 오른쪽 사이드 바 끝 -->
@@ -461,35 +447,25 @@ import custom from "@/assets/js/custom.js";
 export default {
   data() {
     return {
-      movie: [
-        {
-          title: "아바타: 물의 길",
-          synopsis: "",
-          genre: "액션, 어드벤쳐, SF",
-          rating: 9.4,
-          ratingStar: 9, // 정수로 받아야 하는 평점 (별 반복문 돌리기 위해서)
-          director: 최아리,
-          actor: ["홍길동", "임꺽정", "장길산"],
-          opening: "2022.12.26",
-          runtime: "192h",
-          watchedPeople: "2,945,915",
-          youtubeUrl: "https://www.youtube.com/watch?v=7Q70_m-59O8&t=7s", // 예고편은 하나만 가져오기
-          imageUrl: "", // 일단 빈 칸 (약 5~7 정도 넣으면 어떨까요?)
-        },
-      ],
-      // - 영화 제목
-      // - 영화 줄거리 (시놉시스)
-      // - 장르
-      // - 관람등급
-      // - 영화 평점 (정수로 변환해서 받아야 합니다.)
-      // - 개봉 날짜
-      // - 영화 길이 (러닝타임)
-      // - 감독
-      // - 배우들 (대표작을 넣을지 말지 고민중. 종학이가 추천한 api로 위키피디아 링크 연결도 괜찮은 방법 같습니다.)
-      // - 유튜브 예고편 url
-      // - 이미지 주소 (포스터 와 스틸컷 등 -> 포스터 1개 따로 스틸컷 이미지들 따로 있으면 편할듯 합니다.)
-      // - 누적 관객수 (가져올 수 있으면)
-      userRatingNumber: 9, // 나중에 백엔드에서 평점 가져오기 (TODO: 정수로 받아야 합니다,,)
+      movie: {
+        title: "아바타: 물의 길",
+        synopsis:
+          " 아바타: 물의 길 은 판도라 행성에서 '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로, 샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이출연하고 존 랜도가 프로듀싱을 맡았다.",
+        genre: "액션, 어드벤쳐, SF",
+        pubdate: "2022.12.14",
+        rating: 9.4,
+        starRating: 9, // 나중에 백엔드에서 평점 가져오기 (TODO: 정수로 받아야 합니다,,)
+        runTime: "192h",
+        genre: "액션, 어드벤쳐, SF",
+        director: "최아리",
+        actor: ["홍길동", "임꺽정", "장길산"],
+        watchedPeople: "2,945,915",
+        review: "",
+        youtubeUrl: "https://www.youtube.com/watch?v=7Q70_m-59O8&t=7s",
+        posterUrl: "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
+        imageUrl: "", // 약 4~6개 정도 주소 백엔드에 넣어두는건 어떤지 고민입니다.
+      },
+
       movieImages: 8, // 나중에 백엔드에서 이미지 가져오기 (평점이랑 다르게 함수 짤 예정..)
     };
   },
@@ -501,13 +477,10 @@ export default {
     // TODO: but 문제는 우리는 앞에서 클릭하면 들어오는 영화의 정보만 가지고 들어와야 하기 때문에 다르게 구현해야한다. 일단 대충 가져옴
     retrieveMovie() {
       MovieDataService.getAll()
-        // 성공하면 .then() 결과가 전송됨
         .then((response) => {
-          this.movie = response.data; // springboot 의 전송된 부서 정보
-          // 디버깅 콘솔에 정보 출력
+          this.movie = response.data;
           console.log(response.data);
         })
-        // 실패하면 .catch() 에 에러가 전송됨
         .catch((e) => {
           console.log(e);
         });
@@ -523,12 +496,9 @@ export default {
 
       // insert 요청 함수 호출
       DeptDataService.create(data)
-        // 성공하면 .then() 결과가 전송됨
         .then((response) => {
           this.dept.dno = response.data.dno;
-          // 콘솔 로그 출력(response.data)
           console.log(response.data);
-          // 변수 submmited
           this.submitted = true;
         })
         // 실패하면 .catch() 결과가 전송됨
