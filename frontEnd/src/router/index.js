@@ -89,6 +89,12 @@ const routes = [
     name: 'theater-admin',
     component: () => import('@/components/admin/TheaterAdmin.vue')
   },
+     // 리뷰관리 페이지 
+     {
+      path: '/review-admin',
+      name: 'review-admin',
+      component: () => import('@/components/admin/ReviewAdmin.vue')
+    },
 
 
 

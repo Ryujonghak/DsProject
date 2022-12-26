@@ -49,7 +49,7 @@
               <div class="user-fav">
                 <p>기타</p>
                 <ul>
-                  <li><a href="#">관리자관리</a></li>
+                  <li><router-link to="/review-admin">리뷰관리</router-link></li>
                   <li><a href="#">Log out</a></li>
                 </ul>
               </div>
@@ -97,6 +97,7 @@
                       <td>{{ notice.title }}</td>
                       <td>{{ notice.content }}</td>
                       <td>{{ notice.regdate }}</td>
+                      <td><button class="editbtn">Edit</button></td>
                     </tr>
                   </tbody>
                 </table>
@@ -232,16 +233,14 @@ export default {
   },
   methods: {
     retrieveNotice() {
-      NoticeDataService.getAll(this.title, this.page - 1, this.pageSize) //데이터쪽에서 가져오려면 앞에 this를 붙여야함
-        // 성공하면 .then() 결과가 전송됨
+      NoticeDataService.getAll(this.title, this.page - 1, this.pageSize) 
+       
         .then((response) => {
-          const { data, totalItems } = response.data; //springboot의 전송된 맵 정보
-          this.data = data; //스프링부트에서 전송한 데이터
-          this.count = totalItems; //스프링부트에서 전송한 페이지정보(총 건수)
-          // 디버깅 콘솔에 정보 출력
+          const { data, totalItems } = response.data;
+          this.data = data; 
+          this.count = totalItems; 
           console.log(response.data);
         })
-        // 실패하면 .catch() 에 에러가 전송됨
         .catch((e) => {
           console.log(e);
         });
@@ -289,9 +288,13 @@ export default {
 .notice_table {
   margin-top: 3%;
   text-align: center;
-  color: inherit;
-  background: white;
-  border: 1 solid white;
+  color: aliceblue;
+  background: inherit;
+}
+th,td{
+  border-bottom: 1px solid aliceblue;
+  border-right:1px solid aliceblue;
+  text-align: center;
 }
 .btn_col2 {
   box-sizing: border-box;
@@ -321,5 +324,9 @@ export default {
 
 .noticelabel {
   color: #ffffff !important;
+}
+.editbtn{
+  color: aliceblue;
+  background:rgb(75, 139, 75);
 }
 </style>

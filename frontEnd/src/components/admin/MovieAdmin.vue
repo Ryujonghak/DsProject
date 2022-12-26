@@ -6,7 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
-              <h4>영화 관리 페이지 </h4>
+              <h4>영화 관리 페이지</h4>
             </div>
           </div>
         </div>
@@ -34,8 +34,14 @@
                     </a>
                     <ul class="dropdown" v-show="board">
                       <li><a>공지사항 관리</a></li>
-                      <li><router-link to="/movie-admin">영화 관리</router-link></li>
-                      <li><router-link to="/theater-admin">영화관 관리</router-link></li>
+                      <li>
+                        <router-link to="/movie-admin">영화 관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/theater-admin"
+                          >영화관 관리</router-link
+                        >
+                      </li>
                     </ul>
                   </li>
                   <li><a href="#">결제관리</a></li>
@@ -44,7 +50,7 @@
               <div class="user-fav">
                 <p>기타</p>
                 <ul>
-                  <li><a href="#">관리자관리</a></li>
+                  <li><router-link to="/review-admin">리뷰관리</router-link></li>
                   <li><a href="#">Log out</a></li>
                 </ul>
               </div>
@@ -64,20 +70,23 @@
                 <option value="range">-- Choose option --</option>
                 <option value="saab">-- Choose option 2--</option>
               </select>
-              <button><router-link to="/addMovie-admin">등록</router-link></button>
+              <button>
+                <router-link to="/addMovie-admin">등록</router-link>
+              </button>
             </div>
             <div class="flex-wrap-movielist user-fav-list">
               <div class="movie-item-style-2">
                 <img src="images/uploads/mv1.jpg" alt="" />
                 <div class="mv-item-infor">
-                  <h6 style="color:aliceblue">
+                  <h6 style="color: aliceblue">
                     영화이름:
                     <a href="#">oblivion <span>(2012)</span></a>
                   </h6>
-                  <h6 style="color:aliceblue">평점:
+                  <h6 style="color: aliceblue">
+                    평점:
                     <p class="rate">
-                    <i class="ion-android-star"></i><span>8.1</span> /10
-                  </p>
+                      <i class="ion-android-star"></i><span>8.1</span> /10
+                    </p>
                   </h6>
                   <p class="describe">
                     Earth's mightiest heroes must come together and learn to
@@ -85,15 +94,16 @@
                     his alien army from enslaving humanity...
                   </p>
                   <p class="run-time">
-                    Run Time: 2h21’ . <span>MMPA: PG-13 </span> .
-                    <span>Release: 1 May 2015</span>
+                    상영시간: 2h21’ . <span>관람등급: PG-13 </span> .
+                    <span>개봉날짜: 1 May 2015</span>
                   </p>
-                  <p>Director: <a href="#">Joss Whedon</a></p>
+                  <p>감독: <a href="#">Joss Whedon</a></p>
                   <p>
-                    Stars: <a href="#">Robert Downey Jr.,</a>
+                    출연진: <a href="#">Robert Downey Jr.,</a>
                     <a href="#">Chris Evans,</a>
                     <a href="#"> Chris Hemsworth</a>
                   </p>
+                  <button class="redbtn" @click="deleteMovie">삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -123,6 +133,7 @@
                     <a href="#">Samuel L. Jackson,</a>
                     <a href="#"> Scarlett Johansson</a>
                   </p>
+                  <button class="redbtn" @click="deleteMovie">삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -148,6 +159,7 @@
                     Stars: <a href="#">Paul Rudd,</a>
                     <a href="#"> Michael Douglas</a>
                   </p>
+                  <button class="redbtn" @click="deleteMovie">삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -173,6 +185,7 @@
                     Stars: <a href="#">Robert Downey Jr., </a>
                     <a href="#"> Guy Pearce,</a><a href="#">Don Cheadle</a>
                   </p>
+                  <button class="redbtn" @click="deleteMovie">삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -199,6 +212,7 @@
                     <a href="#"> Natalie Portman,</a
                     ><a href="#">Tom Hiddleston</a>
                   </p>
+                  <button class="redbtn" @click="deleteMovie">삭제</button>
                 </div>
               </div>
             </div>
@@ -238,13 +252,30 @@ export default {
     boardclick() {
       this.board = !this.board;
     },
+
+    // delete 버튼 클릭시 실행됨 
+    // deleteMovie() {
+    //     QnaDataService.delete(this.currentData.qno)
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       alert("삭제되었습니다.")
+    //       this.$router.push("/qna");
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-h4{
-    color: aliceblue;
-    margin-right: 10%;
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
+}
+.redbtn {
+  height: 2% !important;
+  float: right !important;
 }
 </style>

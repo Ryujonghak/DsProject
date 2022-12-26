@@ -7,7 +7,7 @@
           <div class="cover03"></div>
         <iframe
             class="video"
-            src="https://www.youtube.com/embed/JxT8a4E_r1o?rel=0&loop=1&playlist=JxT8a4E_r1o&autoplay=1&mute=1"
+            src="https://www.youtube.com/embed/OLLJYT-_BWw?rel=0&loop=1&playlist=OLLJYT-_BWw&autoplay=1&mute=1"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
