@@ -382,7 +382,7 @@
                           </div>
                         </div>
                         <div class="title-hd-sm">
-                          <h4>포스터/스틸컷<span> (3)</span></h4>
+                          <h4>포스터/스틸컷<span> ({{ imageUrlLength }})</span></h4>
                         </div>
                         <div class="mvsingle-item media-item">
                           <div>
@@ -476,6 +476,7 @@ export default {
       ],
       userReview: "",
       userStarRaing: 3,
+      imageUrlLength: 0
     };
   },
   methods: {
@@ -483,6 +484,8 @@ export default {
       this.movie.actor = this.movie.actor.split(",");
       this.movie.role = this.movie.role.split(",");
       this.movie.imageUrl = this.movie.imageUrl.split(",");
+      // 가져온 이미지 url 개수
+      this.imageUrlLength = this.movie.imageUrl.length;
       // 썸네일 이미지 2장만 보이게 설정
       this.movie.tempImgUrl[0] = this.movie.imageUrl[0];
       this.movie.tempImgUrl[1] = this.movie.imageUrl[1];
