@@ -1,5 +1,5 @@
 <template>
-  <div class="noticelist" style="background:black">
+  <div class="noticelist" style="background: black">
     <div class="hero common-hero">
       <div class="container">
         <div class="row">
@@ -15,7 +15,7 @@
       </div>
     </div>
     <!-- search 관련 div 시작 -->
-    <div class="container" style="padding:3%; background: white;">
+    <div class="container" style="padding: 3%; background: white">
       <fieldset class="search_wrap" id="search_wrap1">
         <select class="ty3" title="검색조건 제목 선택" id="selectCondition1">
           <option value="1" selected>제목</option>
@@ -37,6 +37,7 @@
         <colgroup>
           <col style="width: 10%" />
           <col style="width: 15%" />
+          <col style="width: 15%" />
           <col style="width: auto" />
           <col style="width: 15%" />
         </colgroup>
@@ -45,15 +46,17 @@
             <th scope="col">번호</th>
             <th scope="col">구분</th>
             <th scope="col">제목</th>
+            <th scope="col">내용</th>
             <th scope="col">등록일</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr v-for="notice in notices" v-bind:key="notice">
+            <td>{{ notice.id }}</td>
+            <td>{{ notice.type }}</td>
+            <td>{{ notice.title }}</td>
+            <td>{{ notice.content }}</td>
+            <td>{{ notice.regdate }}</td>
           </tr>
         </tbody>
       </table>
@@ -63,7 +66,28 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      notices: [
+        {
+          id: 1,
+          type: "success",
+          title: "Success",
+          content: "This is a success message",
+          regdate: "2020-01-01",
+        },
+        {
+          id: 2,
+          type: "success",
+          title: "Success",
+          content: "This is a success message",
+          regdate: "2020-01-01",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -82,7 +106,7 @@ export default {};
   margin-top: 3%;
   text-align: center;
   color: inherit;
-  background:whitesmoke;
+  background: whitesmoke;
 }
 tbody {
   display: table-row-group;
@@ -133,7 +157,6 @@ tbody {
 }
 th {
   text-align: center;
-  color:#414141
+  color: #414141;
 }
-
 </style>
