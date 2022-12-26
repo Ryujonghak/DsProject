@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+  //강수빈 part
   {
     path: '/',
     name: 'home',
@@ -64,6 +65,33 @@ const routes = [
     name: 'signup',
     component: () => import('../components/signup/SignupView.vue')
   },
+  //공지사항관리 페이지
+  {
+    path: '/test',
+    name: 'board-admin',
+    component: () => import('@/components/admin/BoardAdmin.vue')
+  },
+  // 영화관리 페이지 
+  {
+    path: '/movie-admin',
+    name: 'movie-admin',
+    component: () => import('@/components/admin/MovieAdmin.vue')
+  },
+     // 영화 추가 페이지 
+     {
+      path: '/addMovie-admin',
+      name: 'addmovie-admin',
+      component: () => import('@/components/admin/AddMovie.vue')
+    },
+   // 영화관관리 페이지 
+   {
+    path: '/theater-admin',
+    name: 'theater-admin',
+    component: () => import('@/components/admin/TheaterAdmin.vue')
+  },
+
+
+
   //   정주희 Part_mypage
   {
     path: '/mypage',
