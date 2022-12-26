@@ -109,6 +109,11 @@ const routes = [
     component: () => import('../components/myPage/ProfileCom.vue')
   },
   {
+    path: '/archive',
+    name: 'archive',
+    component: () => import('../components/myPage/ArchiveCom.vue')
+  },
+  {
     path: '/mywish',
     name: 'mywish',
     component: () => import('../components/myPage/WishCom')
