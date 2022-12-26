@@ -1187,17 +1187,17 @@ input[type="color"],
   background-image: none;
   border: 1px solid #aaa;
   -webkit-transition: border-color ease-in-out 0.15s,
-    box-shadow ease-in-out 0.15s;
+  box-shadow ease-in-out 0.15s;
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   -webkit-transition: border-color ease-in-out 0.15s,
-    box-shadow ease-in-out 0.15s 0.3s ease-out;
+  box-shadow ease-in-out 0.15s 0.3s ease-out;
   -moz-transition: border-color ease-in-out 0.15s,
-    box-shadow ease-in-out 0.15s 0.3s ease-out;
+  box-shadow ease-in-out 0.15s 0.3s ease-out;
   -o-transition: border-color ease-in-out 0.15s,
-    box-shadow ease-in-out 0.15s 0.3s ease-out;
+  box-shadow ease-in-out 0.15s 0.3s ease-out;
   transition: border-color ease-in-out 0.15s,
-    box-shadow ease-in-out 0.15s 0.3s ease-out;
+  box-shadow ease-in-out 0.15s 0.3s ease-out;
 }
 select:focus,
 textarea:focus,
@@ -2446,11 +2446,11 @@ tbody.collapse.in {
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 1px 0 rgba(255, 255, 255, 0.1);
+  0 1px 0 rgba(255, 255, 255, 0.1);
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 1px 0 rgba(255, 255, 255, 0.1);
+  0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 1px 0 rgba(255, 255, 255, 0.1);
+  0 1px 0 rgba(255, 255, 255, 0.1);
   margin-top: 8px;
   margin-bottom: 8px;
 }
@@ -4440,14 +4440,17 @@ ul {
 .movie-item-style-1 .hvr-inner {
   position: absolute;
   top: 0;
+  /* TODO: 수정 _mypage-내정보-나의아카이브쪽 포스터에 마우스 올리면 뜨는 예매하기 버튼임...근데 안먹음ㅋ */
   background-color: #dd003f;
+  /* background-color: #544e6b; */
   padding: 8px 15px;
-  text-align: center;
-  margin-left: 30px;
-  margin-top: 110px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  border-radius: 30px;
+  /* text-align: center; */
+  /* margin-left: 30px; */
+  margin-top: 30px;
+  /* margin-top: 110px; */
+  /* -webkit-border-radius: 30px; */
+  /* -moz-border-radius: 30px; */
+  /* border-radius: 30px; */
   cursor: pointer;
   -moz-opacity: 0;
   -khtml-opacity: 0;
@@ -5199,7 +5202,7 @@ ul {
   border: none;
   height: 40px;
   background: url("../images/uploads/search-bgsb.png") no-repeat right 20px
-    center;
+  center;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -5762,6 +5765,7 @@ ul {
   height: 598px;
 }
 /*series single hero*/
+/* 결제 화면 페이지 백그라운드 이미지임 */
 .sr-single-hero {
   background: url("../images/uploads/sr-single.jpg") no-repeat;
   height: 598px;
@@ -5772,7 +5776,7 @@ ul {
 }
 .common-hero {
   height: 385px;
-  background: black;
+  background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
 }
 .common-hero:before {
   background-color: rgba(0, 0, 0, 0.4);
@@ -6235,11 +6239,11 @@ ul {
   align-items: inherit;
 }
 .movie-single
-  .movie-single-ct
-  .tab.review
-  .mv-user-review-item
-  .user-infor
-  img {
+.movie-single-ct
+.tab.review
+.mv-user-review-item
+.user-infor
+img {
   margin-right: 30px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -7146,13 +7150,13 @@ p.ceb-single {
 .overlay .login-content .social-btn-2 a i {
   margin-right: 10px;
 }
-/* .overlay .login-content .social-btn-2 .fb {
+.overlay .login-content .social-btn-2 .fb {
   background-color: #3a5a9a;
   margin-right: 15px;
 }
 .overlay .login-content .social-btn-2 .tw {
   background-color: #00b9ef;
-} */
+}
 .slider {
   /* background: url('../images/uploads/slider-bg.jpg') no-repeat; */
   background-position: center;
@@ -7699,24 +7703,24 @@ p.ceb-single {
   color: #dd003f;
 }
 .buster-light
-  .movie-single
-  .movie-single-ct
-  .mvcast-item
-  .cast-it
-  .series-it
-  a {
+.movie-single
+.movie-single-ct
+.mvcast-item
+.cast-it
+.series-it
+a {
   color: #020d18;
 }
 .buster-light .movie-single .movie-single-ct .mvsingle-item .vd-infor h6 a {
   color: #020d18;
 }
 .buster-light
-  .movie-single
-  .movie-single-ct
-  .mvsingle-item
-  .vd-item:hover
-  h6
-  a {
+.movie-single
+.movie-single-ct
+.mvsingle-item
+.vd-item:hover
+h6
+a {
   color: #dd003f;
 }
 .buster-light .movie-single .movie-single-ct .tab h3 {
@@ -8000,11 +8004,11 @@ header .navbar-default .navbar-nav .dropdown .dropdown-menu.level1 {
   left: -15px;
 }
 header
-  .navbar-default
-  .navbar-nav
-  .dropdown
-  .dropdown-menu.level1
-  .dropdown-toggle {
+.navbar-default
+.navbar-nav
+.dropdown
+.dropdown-menu.level1
+.dropdown-toggle {
   display: flex;
   justify-content: space-between;
 }
@@ -8243,20 +8247,20 @@ header#headerv3-light {
     padding: 10px 15px;
   }
   header
-    .navbar-default
-    .navbar-nav
-    .dropdown.first.open
-    .dropdown-menu
-    li:hover {
+  .navbar-default
+  .navbar-nav
+  .dropdown.first.open
+  .dropdown-menu
+  li:hover {
     background-color: #0f2133;
   }
   header
-    .navbar-default
-    .navbar-nav
-    .dropdown.first.open
-    .dropdown-menu
-    li:hover
-    a {
+  .navbar-default
+  .navbar-nav
+  .dropdown.first.open
+  .dropdown-menu
+  li:hover
+  a {
     color: #dcf836;
   }
   header .menu-left {
