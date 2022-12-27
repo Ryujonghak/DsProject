@@ -137,7 +137,7 @@
                           title="내용입력"
                           class="input-textarea boxing"
                           placeholder="내용을 입력해주세요."
-                          v-model="currentQna.textarea"
+                          v-model="textarea"
                         ></textarea>
                       </div>
                     </td>
@@ -171,7 +171,7 @@
 </template>
 
 <script>
-import QnaDataService from '@/services/QnaDataService';
+//import QnaDataService from '@/services/QnaDataService';
 export default {
   data() {
     return {
@@ -206,22 +206,18 @@ export default {
     },
 
     //답변 등록하기 버튼 클릭시
-    registerAnswer() {
-      if (this.textarea) {
-        QnaDataService.update(this.currentQna.qno, this.currentQna.textarea)
-        .then((response) => {
-          console.log(response.data);
-          alert("답변이 완료되었습니다.");
+     registerAnswer() {
+       if (this.textarea) {
+           alert("답변이 완료되었습니다.");
           this.successAnswer = true;
           this.writeAnswer = false;
-        })
-        .catch((e)=>
-        console.log(e))
-        this.successAnswer = false;
-      }else{
+       }
+    else{
         alert("실패");
+       this.successAnswer = false;
       }
   },
+  //},
 },
 }
 </script>
