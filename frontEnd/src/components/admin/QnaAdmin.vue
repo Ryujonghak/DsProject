@@ -36,8 +36,12 @@
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
-                      <li><router-link to="/review-admin">리뷰관리</router-link></li>
-                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
+                      <li>
+                        <router-link to="/review-admin">리뷰관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/qna-admin">QnA 답변관리</router-link>
+                      </li>
                     </ul>
                   </li>
                   <li><a href="#">결제관리</a></li>
@@ -82,7 +86,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="question,index in questiones" v-bind:key="index">
+                    <tr
+                      v-for="(question, index) in questiones"
+                      v-bind:key="index"
+                    >
                       <td>{{ question.qno }}</td>
                       <td>{{ question.name }}</td>
                       <td>{{ question.email }}</td>
@@ -90,8 +97,16 @@
                       <td>{{ question.title }}</td>
                       <td>{{ question.content }}</td>
                       <td>
-                        <button class="regbtn" @click="writeQna" v-show="writeAnswer">답변하기</button>
-                        <button class="successbtn" v-show="successAnswer">답변완료</button>
+                        <button
+                          class="regbtn"
+                          @click="writeQna"
+                          v-show="writeAnswer"
+                        >
+                          답변하기
+                        </button>
+                        <button class="successbtn" v-show="successAnswer">
+                          답변완료
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -104,9 +119,7 @@
             <div v-show="registerQna">
               <table class="noticeboxnoticebox">
                 <colgroup>
-            
                   <col style="width: auto" />
-                
                 </colgroup>
                 <tbody>
                   <tr>
@@ -124,7 +137,7 @@
                           title="내용입력"
                           class="input-textarea boxing"
                           placeholder="내용을 입력해주세요."
-                          v-model=textarea
+                          v-model="currentQna.textarea"
                         ></textarea>
                       </div>
                     </td>
@@ -140,7 +153,7 @@
             <!--공지사항 작성 폼 끝 -->
             <div class="topbar-filter">
               <label>Movies per page:</label>
-              <select >
+              <select>
                 <option value="range">20 Movies</option>
                 <option value="saab">10 Movies</option>
               </select>
@@ -158,12 +171,13 @@
 </template>
 
 <script>
+import QnaDataService from '@/services/QnaDataService';
 export default {
   data() {
     return {
       questiones: [
         {
-          qno:1,
+          qno: 1,
           name: "강수빈",
           email: "isug1004@daum.net",
           phone: "010-6368-3193",
@@ -172,15 +186,16 @@ export default {
             "안녕하세요, 영화관문의드립니다. 영화관에서는 외부음식 반입이 금지인가요? 아니면 가능한가요? 어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸 ",
         },
       ],
-      textarea:"",
+      textarea: "",
       registerQna: false,
       successAnswer: false,
       writeAnswer: true,
-      board:false
+      board: false,
+      currentQna:null,
     };
   },
   methods: {
-    //답변하기 버튼 클릭시 
+    //답변하기 버튼 클릭시
     writeQna() {
       this.registerQna = !this.registerQna;
       this.successAnswer = false;
@@ -190,20 +205,25 @@ export default {
       this.board = !this.board;
     },
 
-    //답변 등록하기 버튼 클릭시 
-    registerAnswer(){
-      if(this.textarea){
-        alert("답변이 완료되었습니다.")
-        this.successAnswer = true;
-        this.writeAnswer = false;
-        
-      }else{
-        alert("실패")
+    //답변 등록하기 버튼 클릭시
+    registerAnswer() {
+      if (this.textarea) {
+        QnaDataService.update(this.currentQna.qno, this.currentQna.textarea)
+        .then((response) => {
+          console.log(response.data);
+          alert("답변이 완료되었습니다.");
+          this.successAnswer = true;
+          this.writeAnswer = false;
+        })
+        .catch((e)=>
+        console.log(e))
         this.successAnswer = false;
+      }else{
+        alert("실패");
       }
-    }
   },
-};
+},
+}
 </script>
 
 <style lang="scss" scoped>
@@ -218,24 +238,23 @@ textarea {
   border: none;
   resize: none;
 }
-.regbtn{
+.regbtn {
   background: rgb(255, 255, 0);
   color: black;
   border-radius: 20px;
   vertical-align: middle !important;
 }
-button{
+button {
   border: none !important;
 }
 button:active {
-  outline: none !important; 
+  outline: none !important;
   box-shadow: none !important;
 }
-.successbtn{
+.successbtn {
   background: rgb(83, 255, 74);
   color: black;
   border-radius: 20px;
   vertical-align: middle !important;
-
 }
 </style>
