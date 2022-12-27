@@ -186,8 +186,10 @@
 export default {
   data() {
     return {
+      // 전체상영작/현재상영작 따로 볼 수 있는 v-show
       allMovies: true,
       nowPlaying: false
+      // 전체 movie 데이터
     }
   },
   methods: {
