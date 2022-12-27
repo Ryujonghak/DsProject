@@ -80,7 +80,7 @@
                   <p>별점:</p>
                   <span
                     class="rate-star-result"
-                    v-for="(i, index) in movie.starRating"
+                    v-for="(i, index) in starRating"
                     :key="index"
                     ><i class="ion-ios-star"></i
                   ></span>
@@ -258,7 +258,7 @@
                         <div class="rv-hd">
                           <div class="div">
                             <h3>DS CINEMA</h3>
-                            <h2>아바타: 물의 길</h2>
+                            <h2>{{ movie.title }}</h2>
                           </div>
                         </div>
                         <div class="rv-hd">
@@ -341,7 +341,6 @@
                                   ></i
                                 ></span>
                               </div>
-                              <!-- TODO: 우리가,, 꼭 아이디를 받아와서 넣어야 할까? -->
                               <p class="time" style="fontsize: 100%">
                                 {{ data.username }}
                               </p>
@@ -351,7 +350,8 @@
                             {{ data.content }}
                           </p>
                         </div>
-                        <div class="topbar-filter">
+                        <!-- FIXME: 페이징 처리 고민중 -->
+                        <!-- <div class="topbar-filter">
                           <label>Reviews per page:</label>
                           <select>
                             <option value="range">5 Reviews</option>
@@ -367,7 +367,7 @@
                             <a href="#">6</a>
                             <a href="#"><i class="ion-arrow-right-b"></i></a>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     <!-- 2) 리뷰 파트 끝 -->
@@ -378,11 +378,13 @@
                         <div class="rv-hd">
                           <div>
                             <h3>DS CINEMA</h3>
-                            <h2>아바타: 물의 길</h2>
+                            <h2>{{ movie.title }}</h2>
                           </div>
                         </div>
                         <div class="title-hd-sm">
-                          <h4>포스터/스틸컷<span> ({{ imageUrlLength }})</span></h4>
+                          <h4>
+                            포스터/스틸컷<span> ({{ imageUrlLength }})</span>
+                          </h4>
                         </div>
                         <div class="mvsingle-item media-item">
                           <div>
@@ -438,16 +440,16 @@ export default {
           " 아바타: 물의 길 은 판도라 행성에서 '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로, 샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이출연하고 존 랜도가 프로듀싱을 맡았다.",
         genre: "액션, 어드벤쳐, SF",
         pubdate: "2022.12.14",
-        rating: 4.5,
-        starRating: 0, // 나중에 백엔드에서 평점 가져오기 (TODO: 정수로 받아야 합니다,,)
-        runTime: "192h",
+        rating: 4.5, // 백엔드에서 가져온 평점
+
+        runTime: "192",
         genre: "액션, 어드벤쳐, SF",
         director: "최아리",
         actor: "최아리,강수빈,정주희",
         role: "아바타1,아바타2,아바타3",
         watchedPeople: "2,945,915",
         review: "",
-        youtubeUrl: "https://www.youtube.com/watch?v=7Q70_m-59O8&t=7s",
+        youtubeUrl: "https://youtu.be/d9MyW72ELq0",
         posterUrl:
           "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
         imageUrl:
@@ -474,9 +476,10 @@ export default {
           content: "재밌지만 아쉬워요.",
         },
       ],
+      starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
       userReview: "",
       userStarRaing: 3,
-      imageUrlLength: 0
+      imageUrlLength: 0,
     };
   },
   methods: {
@@ -490,7 +493,7 @@ export default {
       this.movie.tempImgUrl[0] = this.movie.imageUrl[0];
       this.movie.tempImgUrl[1] = this.movie.imageUrl[1];
       // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
-      this.movie.starRating = Math.floor(this.movie.rating);
+      this.starRating = Math.floor(this.movie.rating);
     },
     likeSave() {
       alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
