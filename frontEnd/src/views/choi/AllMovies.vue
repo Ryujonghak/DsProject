@@ -23,14 +23,14 @@
               <!-- TODO: 상영작만 보기 눌리면 상영작들만 뜨고 다시 눌리면 전체보기 뜨게 만들기. v-show 로 나눠볼예정 -->
               <div>
                 <label class="switcher">
-                  <input type="checkbox" @click="showAll" />
+                  <input type="checkbox" @click="showNowPlaying" />
                   <div class="switcher__indicator"></div>
                   <span style="font-size: 100%">상영작만 보기</span>
                 </label>
               </div>
               <!-- 체크박스 스위치 끝 -->
 
-              <div class="col-xs-8">
+              <div class="col-xs-8" v-show="allMovies">
                 <div class="search-movie col-xs-8">
                   <form>
                     <input
@@ -44,7 +44,26 @@
                 <div class="col-xs-4">
                   <p class="search-numbers">
                     <!-- 검색된 항목 개수 데이터 넣어주기 -->
-                    <span>{{ 5 }}</span
+                    <span>{{ movies.length }}</span
+                    >개의 영화가 검색되었습니다.
+                  </p>
+                </div>
+              </div>
+              <div class="col-xs-8" v-show="nowPlaying">
+                <div class="search-movie col-xs-8">
+                  <form>
+                    <input
+                      class="form-control"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                  </form>
+                </div>
+                <div class="col-xs-4">
+                  <p class="search-numbers">
+                    <!-- 검색된 항목 개수 데이터 넣어주기 -->
+                    <span>{{ nowPlayingMovies.length }}</span
                     >개의 영화가 검색되었습니다.
                   </p>
                 </div>
@@ -55,55 +74,22 @@
             <!-- 모든 영화 목록 시작 -->
             <!-- TODO: MOVIES 안의 MIVIE 데이터들 가져와서 포스터/타이틀 데이터 돌려주기 (전체 영화 데이터 가져오기) -->
             <div class="celebrity-items" v-show="allMovies">
-              <div class="ceb-item">
+              <div
+                class="ceb-item"
+                v-for="(data, index) in movies"
+                :key="index"
+              >
                 <a href="/movieDetail"
                   ><img src="images/uploads/ceb9.jpg" alt=""
                 /></a>
                 <div class="ceb-infor">
                   <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movieDetail">모든</a></h2>
+                  <h2>
+                    <a href="/movieDetail">{{ data.mname }}</a>
+                  </h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
-                    {{ 9.7 }}/10</span
-                  >
-                </div>
-              </div>
-              <div class="ceb-item">
-                <a href="/movieDetail"
-                  ><img src="images/uploads/ceb9.jpg" alt=""
-                /></a>
-                <div class="ceb-infor">
-                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movieDetail">모든</a></h2>
-                  <span
-                    ><i class="ion-android-star" style="color: #f5b50a"></i>
-                    {{ 9.7 }}/10</span
-                  >
-                </div>
-              </div>
-              <div class="ceb-item">
-                <a href="/movieDetail"
-                  ><img src="images/uploads/ceb9.jpg" alt=""
-                /></a>
-                <div class="ceb-infor">
-                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movieDetail">모든</a></h2>
-                  <span
-                    ><i class="ion-android-star" style="color: #f5b50a"></i>
-                    {{ 9.7 }}/10</span
-                  >
-                </div>
-              </div>
-              <div class="ceb-item">
-                <a href="/movieDetail"
-                  ><img src="images/uploads/ceb9.jpg" alt=""
-                /></a>
-                <div class="ceb-infor">
-                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movieDetail">모든</a></h2>
-                  <span
-                    ><i class="ion-android-star" style="color: #f5b50a"></i>
-                    {{ 9.7 }}/10</span
+                    {{ data.rating }}/5</span
                   >
                 </div>
               </div>
@@ -113,42 +99,22 @@
             <!-- 현재상영작만 시작 -->
             <!-- TODO: MOVIES 안의 MIVIE 데이터들 가져와서 포스터/타이틀 데이터 돌려주기 (현재 상영하고 있는 영화 데이터만 가져오기) -->
             <div class="celebrity-items" v-show="nowPlaying">
-              <div class="ceb-item">
+              <div
+                class="ceb-item"
+                v-for="(data, index) in nowPlayingMovies"
+                :key="index"
+              >
                 <a href="/movieDetail"
                   ><img src="images/uploads/ceb9.jpg" alt=""
                 /></a>
                 <div class="ceb-infor">
                   <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movieDetail">현재</a></h2>
+                  <h2>
+                    <a href="/movieDetail">{{ data.mname }}</a>
+                  </h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
-                    {{ 9.7 }}/10</span
-                  >
-                </div>
-              </div>
-              <div class="ceb-item">
-                <a href="/movieDetail"
-                  ><img src="images/uploads/ceb9.jpg" alt=""
-                /></a>
-                <div class="ceb-infor">
-                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movieDetail">현재</a></h2>
-                  <span
-                    ><i class="ion-android-star" style="color: #f5b50a"></i>
-                    {{ 9.7 }}/10</span
-                  >
-                </div>
-              </div>
-              <div class="ceb-item">
-                <a href="/movieDetail"
-                  ><img src="images/uploads/ceb9.jpg" alt=""
-                /></a>
-                <div class="ceb-infor">
-                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
-                  <h2><a href="/movieDetail">현재</a></h2>
-                  <span
-                    ><i class="ion-android-star" style="color: #f5b50a"></i>
-                    {{ 9.7 }}/10</span
+                    {{ data.rating }}/10</span
                   >
                 </div>
               </div>
@@ -184,19 +150,50 @@
 
 <script>
 export default {
+  mounted() {
+    this.test01();
+  },
   data() {
     return {
       // 전체상영작/현재상영작 따로 볼 수 있는 v-show
       allMovies: true,
-      nowPlaying: false
+      nowPlaying: false,
       // 전체 movie 데이터
-    }
+      movies: [
+        { mname: "아바타", rating: 4.5, status: "Y" },
+        { mname: "영웅", rating: 3.7, status: "Y" },
+        { mname: "신비아파트", rating: 4.8, status: "N" },
+        { mname: "흑표범", rating: 4.3, status: "N" },
+      ],
+      // TODO: 검색 기능 추가
+      searchStatue: "",
+      nowPlayingMovies: [],
+    };
   },
   methods: {
-    showAll() {
-      this.allMovies = !this.allMovies
-      this.nowPlaying = !this.nowPlaying
-    }
+    test01() {
+      let temp = new Array();
+
+      for (let i = 0; i < this.movies.length; i++) {
+        if (this.movies[i].status == "Y") {
+          temp.push(this.movies[i]);
+        }
+      }
+      this.nowPlayingMovies = temp;
+    },
+    showNowPlaying() {
+      // let temp = new Array();
+
+      // for (let i = 0; i < this.movies.length; i++) {
+      //   if (this.movies[i].status == "Y") {
+      //     temp.push(this.movies[i]);
+      //   }
+      // }
+      // this.nowPlayingMovies = temp;
+
+      this.allMovies = !this.allMovies;
+      this.nowPlaying = !this.nowPlaying;
+    },
     // FIXME: 처음 화면 로딩되면 전체 조회해서 화면에 출력하는 함수 + 현재 상영작만 보는 검색 함수 만들기
   },
 };
@@ -204,7 +201,8 @@ export default {
 
 <style scoped>
 .common-hero {
-  background: url("@/assets/images_choi/Views/choi/AllMovie/test_image.jpeg") no-repeat;
+  background: url("@/assets/images_choi/Views/choi/AllMovie/test_image.jpeg")
+    no-repeat;
 }
 .search-numbers {
   padding: 0;

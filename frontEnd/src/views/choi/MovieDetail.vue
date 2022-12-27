@@ -113,18 +113,6 @@
                           </div>
                           <!-- 표지 이미지들 (최대 4개까지 가져오고싶음) -->
                           <!-- 이미지 가져오기 test 시작 -->
-                          <!-- <div>
-                            <ul>
-                              <li
-                                :class="{ active: index == currentIndex }"
-                                v-for="(data, index) in movie.imageUrl"
-                                :key="index"
-                                @click="setActiveDept(data, index)"
-                              >
-                                {{ data }}
-                              </li>
-                            </ul>
-                          </div> -->
                           <!-- FIXME: 이렇게는 안 되는거? 그럼 어떻게 구현하면 좋을까요? 게다가 URL이 한두개가 아님요 -->
                           <span class="mvsingle-item ov-item">
                             <a
@@ -145,42 +133,14 @@
                             <h4>출연/대표작</h4>
                           </div>
                           <!-- 목록 불러오기 테스트 시작 -->
-                          <!-- <div class="mvcast-item">
-                            <ul class= "col-xs-6">
-                              <li
-                                class="cast-it"
-                                style="color: #abb7c4"
-                                :class="{ active: index == currentIndex }"
-                                v-for="(data, index) in movie.actor"
-                                :key="index"
-                                @click="setActiveDept(data, index)"
-                              >
-                                {{ data }}
-                              </li>
-                            </ul>
-                            <ul class="col-xs-6">
-                              <li
-                                class="cast-it"
-                                style="color: #abb7c4"
-                                :class="{ active: index == currentIndex }"
-                                v-for="(data, index) in movie.role"
-                                :key="index"
-                                @click="setActiveDept(data, index)"
-                              >
-                                {{ data }}
-                              </li>
-                            </ul>
-                          </div> -->
                           <!-- 2번째 실험 시작 -->
                           <div class="mvcast-item">
                             <ul class="col-xs-6">
                               <li
                                 class="cast-it"
                                 style="color: #abb7c4"
-                                :class="{ active: index == currentIndex }"
                                 v-for="(data, index) in movie.actor"
                                 :key="index"
-                                @click="setActiveDept(data, index)"
                               >
                                 {{ data }}
                               </li>
@@ -189,10 +149,8 @@
                               <li
                                 class="cast-it"
                                 style="color: #abb7c4"
-                                :class="{ active: index == currentIndex }"
                                 v-for="(data, index) in movie.role"
                                 :key="index"
-                                @click="setActiveDept(data, index)"
                               >
                                 {{ data }}
                               </li>

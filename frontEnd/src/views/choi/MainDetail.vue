@@ -76,7 +76,7 @@
           <!-- 동영상 위 글자 끝 -->
           <iframe
             class="video"
-            src="https://www.youtube.com/embed/BYG_xR6goA0?rel=0&loop=1&playlist=BYG_xR6goA0&autoplay=1&mute=1"
+            :src="changedUrl"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -127,7 +127,6 @@ export default {
       // TODO: 배경에 유튜브 비디오를 넣기 위해서 주소에서 필요한 부분만 잘라와야 합니다.
       const cutYoutubeUrl = this.movie.youtubeUrl.substring(17); // ex.kihrFxwdMb4
       // 다른 주소랑 붙여주기
-      // "https://www.youtube.com/embed/BYG_xR6goA0?rel=0&loop=1&playlist=BYG_xR6goA0&autoplay=1&mute=1"
       this.changedUrl =
         "https://www.youtube.com/embed/" +
         cutYoutubeUrl +
