@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
-  //강수빈 part
+  //TODO 강수빈 part
 
   //홈뷰
   {
@@ -88,12 +88,6 @@ const routes = [
     name: "addmovie-admin",
     component: () => import("@/components/admin/AddMovie.vue"),
   },
-  // 영화관관리 페이지
-  {
-    path: "/theater-admin",
-    name: "theater-admin",
-    component: () => import("@/components/admin/TheaterAdmin.vue"),
-  },
   // 리뷰관리 페이지
   {
     path: "/review-admin",
@@ -107,7 +101,7 @@ const routes = [
     component: () => import("@/components/admin/QnaAdmin.vue"),
   },
 
-  //   정주희 Part_mypage
+  //TODO   정주희 Part_mypage
   {
     path: "/mypage",
     name: "mypage",
@@ -134,14 +128,14 @@ const routes = [
     component: () => import("../components/myPage/MyqnaCom"),
   },
 
-  //   김철원 Part
+  //TODO   김철원 Part
   {
     path: "/ModalView",
     name: "ModalView",
     component: () => import("@/views/kim/ModalView.vue"),
   },
 
-  //   최아리 Part
+  //TODO   최아리 Part
   {
     path: "/mainDetail",
     name: "mainDetail",

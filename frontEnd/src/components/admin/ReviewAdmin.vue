@@ -36,21 +36,15 @@
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
-                      <li>
-                        <router-link to="/theater-admin"
-                          >영화관 관리</router-link
-                        >
-                      </li>
+                      <li><router-link to="/review-admin">리뷰관리</router-link></li>
+                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                     </ul>
                   </li>
                   <li><a href="#">결제관리</a></li>
                 </ul>
               </div>
               <div class="user-fav">
-                <p>기타</p>
                 <ul>
-                  <li><router-link to="/review-admin">리뷰관리</router-link></li>
-                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                   <li><a href="#">Log out</a></li>
                 </ul>
               </div>
@@ -61,20 +55,21 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter">
               <h3 style="color: aliceblue">리뷰 관리</h3>
-              <select>
-                <option value="abata">아바타:물의길</option>
-                <option value="apartment">신비아파트 어쩌구</option>
-                <option value="hero">영웅</option>
+              <select id="selectBox" name="selectBox" v-model="searchMovieName">
+                <option value="" selected="selected" @click="retrieveMovie">영화 전체</option>
+                <option value="아바타:물의길"  @click="retrieveMovie">아바타:물의길</option>
+                <option value="신비아파트"  @click="retrieveMovie">신비아파트</option>
+                <option value="영웅"  @click="retrieveMovie">영웅</option>
               </select>
             </div>
 
             <!-- 전체정렬 -->
-
             <!--리뷰 테이블 관리 시작 (list)  -->
             <div class="movie-item-style-2 userrate">
               <div class="mv-item-infor">
                 <table class="notice_table">
                   <colgroup>
+                    <col style="width: 5%" />
                     <col style="width: 15%" />
                     <col style="width: 15%" />
                     <col style="width: 55%" />
@@ -82,6 +77,7 @@
                   </colgroup>
                   <thead>
                     <tr>
+                      <th scope="col">id</th>
                       <th scope="col">영화명</th>
                       <th scope="col">작성자명</th>
                       <th scope="col">리뷰</th>
@@ -90,7 +86,8 @@
                   </thead>
                   <tbody>
                     <tr v-for="(data, index) in reviews" v-bind:key="index">
-                      <td>{{ data.movieName }}</td>
+                      <td>{{ data.id }}</td>
+                      <td>{{ data.movieCode }}</td>
                       <td>{{ data.username }}</td>
                       <td>{{ data.content }}</td>
                       <td>
@@ -127,16 +124,47 @@ export default {
   data() {
     return {
       board: false,
+      selected: "" ,
       reviews: [
         {
-          movieName: "아바타",
+          id:"1",
+          movieCode: "아바타:물의길",
           username: "forbob",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          movieName: "영웅",
+          id:"2",
+          movieCode: "영웅",
           username: "forbob",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id:"3",
+          movieCode: "신비아파트",
+          username: "forbob",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id:"4",
+          movieCode: "영웅",
+          username: "subin",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id:"5",
+          movieCode: "아바타:물의길",
+          username: "subin",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id:"6",
+          movieCode: "신비아파트",
+          username: "subin",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
@@ -144,9 +172,34 @@ export default {
     };
   },
   methods: {
+    //왼쪽 메뉴바 slide효과
     boardclick() {
       this.board = !this.board;
     },
+
+    //select박스 선택시 함수실행
+    // retrieveMovie(){
+    //   ReviewDataService.getAll(this.searchMovieName)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((e)=>{
+    //     console.log(e);
+    //   })
+    // },
+
+    //삭제버튼 클릭시 
+    // deletebtn(){
+    //   ReviewDataService.delete(this.currentUser.id)
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       this.$router.push("/review-admin");
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // }
+
   },
 };
 </script>
@@ -178,5 +231,4 @@ button:active {
   outline: none !important;
   box-shadow: none !important;
 }
-
 </style>

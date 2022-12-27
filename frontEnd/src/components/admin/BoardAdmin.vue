@@ -36,21 +36,15 @@
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
-                      <li>
-                        <router-link to="/theater-admin"
-                          >영화관 관리</router-link
-                        >
-                      </li>
+                      <li><router-link to="/review-admin">리뷰관리</router-link></li>
+                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                     </ul>
                   </li>
                   <li><a href="#">결제관리</a></li>
                 </ul>
               </div>
               <div class="user-fav">
-                <p>기타</p>
                 <ul>
-                  <li><router-link to="/review-admin">리뷰관리</router-link></li>
-                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                   <li><a href="#">Log out</a></li>
                 </ul>
               </div>
@@ -215,21 +209,23 @@ export default {
       notices:[
         {
           id: 1,
-          type: "success",
-          title: "cusseess",
-          content: "dfdafafd",
+          type: "영화예매",
+          title: "예매시 주의사항",
+          content: " As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.Dagent, Black Widow, to battle a new threat...",
         },
       ],
       registerNotice: false,
 
       // 게시판관리 v-show
       board: false,
+
+      
       //페이징을 위한 변수 정의
       page: 1,
       count: 0, //전체 데이터 건수
       pageSize: 3,
 
-      pageSizes: [3, 6, 9], //select box에 넣을 기본 데이터
+      pageSizes: [3, 6, 9], 
     };
   },
   methods: {
@@ -265,19 +261,17 @@ export default {
         content: this.content,
       };
       NoticeDataService.create(data)
-        // 성공하면 then() 결과가 전송됨
         .then((response) => {
           this.notice.id = response.data.id;
-          // 콘솔 로그 출력(response.data)
           console.log(response.data);
           // 변수 submitted
           this.submitted = true;
         })
-        // 실패하면 .catch() 결과가 전송됨
         .catch((e) => {
           console.log(e);
         });
     },
+        //왼쪽 메뉴바 slide효과
     boardclick() {
       this.board = !this.board;
     },
@@ -294,7 +288,6 @@ export default {
 }
 th,td{
   border-bottom: 1px solid aliceblue;
-  border-right:1px solid aliceblue;
   text-align: center;
 }
 .btn_col2 {
@@ -339,5 +332,11 @@ button{
 button:active {
   outline: none !important; 
   box-shadow: none !important;
+}
+textarea {
+  width: 100%;
+  height: 6.25em;
+  border: none;
+  resize: none;
 }
 </style>

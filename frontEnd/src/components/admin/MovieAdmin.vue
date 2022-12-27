@@ -37,21 +37,15 @@
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
-                      <li>
-                        <router-link to="/theater-admin"
-                          >영화관 관리</router-link
-                        >
-                      </li>
+                      <li><router-link to="/review-admin">리뷰관리</router-link></li>
+                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                     </ul>
                   </li>
                   <li><a href="#">결제관리</a></li>
                 </ul>
               </div>
               <div class="user-fav">
-                <p>기타</p>
                 <ul>
-                  <li><router-link to="/review-admin">리뷰관리</router-link></li>
-                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                   <li><a href="#">Log out</a></li>
                 </ul>
               </div>
@@ -250,6 +244,8 @@ export default {
     };
   },
   methods: {
+
+        //왼쪽 메뉴바 slide효과
     boardclick() {
       this.board = !this.board;
     },
