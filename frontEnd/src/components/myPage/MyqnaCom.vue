@@ -103,7 +103,8 @@
               <p>문의내역이 없습니다.</p>
             </div>
 
-            <div v-else>
+            <div>
+            <!-- <div v-else> -->
               <!-- TODO: qna 테이블시작 -->
               <table class="qnabox">
                 <colgroup>

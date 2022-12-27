@@ -81,7 +81,7 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-<!--                  <li><a href="#">Log out</a></li>-->
+                  <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
                   <li><a href="#">탈퇴하기</a></li>
                 </ul>
@@ -91,55 +91,64 @@
           <!-- 공통 왼쪽 메뉴 끝 -->
 
           <!-- 오른쪽 본문 내용 -->
-          
           <div class="col-md-9 col-sm-12 col-xs-12">
             <!-- 프로필 -->
-            <!-- <div class="container mb-4">
-              <img
-                src="@/assets/image/av.png"
-                class="mt-neg100 mb-4 rounded-circle"
-                width="128"
-              />
-              <h1 class="font-weight-bold title">Sal(닉네임)</h1>
-              <p>이름, 아이디, 이메일 중 하나 ..</p>
-            </div> -->
+            <div class="col-xs-11 movie-item-style-2 userrate">
+              <div class="row">
+                <div class="col-xs-3 mv-user-review-item">
+                  <!-- <div class="user-infor"> -->
+                  <img
+                    src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                    alt="user"
+                  />
+                  <div>
+                    <!-- <p>{{ CurrentUser.id }} choichoi</p> -->
+                    <h3>{{ CurrentUser.name }} 님</h3>
+                    <h3>환영해요!</h3>
+                    <!-- </div> -->
+                  </div>
+                </div>
 
-            
-            <div class="row">
-              <div class="col-xs-12 movie-item-style-2 userrate">
-                <div class="mv-user-review-item">
-                  <div class="user-infor">
-                    <img
-                      src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
-                      alt="user"
-                    />
-                    <div>
-                      <p class="time" style="fontsize: 100%">choichoi1002</p>
-                    </div>
+                <div class="col-xs-6 mv-user-review-item">
+                  <!-- <div class="user-infor"> -->
+                  <h6>즐겨찾는 영화관</h6>
+                  <div>
+                    <table>
+                      <tr>
+                        <td>
+                          <h6><a href="#"></a></h6>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="mv-item-infor">
+                            <h6><a href="#">영화관1</a></h6>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="mv-item-infor">
+                            <h6><a href="#">영화관2</a></h6>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="mv-item-infor">
+                            <h6><a href="#">영화관3</a></h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="col-xs-2 mv-user-review-item">
+                  <h6>나의 등급</h6>
+                  <div>
+                    <img src="../myPage/welcome.png" alt="">
                   </div>
                 </div>
               </div>
             </div>
-
             <!-- 즐겨찾는 영화관 -->
-            <div class="page-single movie_list">
-              <div class="container">
-                <div class="row ipad-width2">
-                  <div class="col-md-8 col-sm-12 col-xs-12">
-                    <!-- 즐겨찾는 영화관 -->
-                    <div class="topbar-filter">
-                      <p>즐겨찾는 영화관 <span>1</span> in total</p>
-
-                      <a href="moviegrid.html" class="grid"
-                      ><i class="ion-grid"></i
-                      ></a>
-                    </div>
-                    <!-- 내용 -->
-                    <p>dd</p>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <!-- 오른쪽 본문 내용 -->
             <div class="col-md-11 col-sm-12 col-xs-12">
@@ -397,7 +406,7 @@
                       <p>예매내역 <span>1</span> in total</p>
 
                       <a href="moviegrid.html" class="grid"
-                      ><i class="ion-grid"></i
+                        ><i class="ion-grid"></i
                       ></a>
                     </div>
 
@@ -409,7 +418,7 @@
                         <h6>
                           <!-- todo) 영화 상세보기 링크 변경 -->
                           <a href="moviesingle.html"
-                          >영웅 <span>(2022)</span></a
+                            >영웅 <span>(2022)</span></a
                           >
                         </h6>
                         <p class="rate">
@@ -455,7 +464,7 @@
                         <h6>
                           <!-- todo) 영화 상세보기 링크 변경 -->
                           <a href="moviesingle.html"
-                          >영웅 <span>(2022)</span></a
+                            >영웅 <span>(2022)</span></a
                           >
                         </h6>
                         <p class="rate">
@@ -506,7 +515,7 @@
                       <div class="topbar-filter">
                         <p>나의 문의내역 <span>1</span> in total</p>
                         <a href="moviegrid.html" class="grid"
-                        ><i class="ion-grid"></i
+                          ><i class="ion-grid"></i
                         ></a>
                       </div>
                       <!-- 내용 -->
@@ -523,9 +532,8 @@
   </div>
 </template>
 
-
 <script>
-/* eslint-disable */ 
+/* eslint-disable */
 
 // import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
@@ -597,23 +605,23 @@ export default {
       username = "forbob";
       console.log(username);
       userService
-          .getUserUsername(username)
-          .then((response) => {
-            this.CurrentUser = {
-              email: response.data.email,
-              password: response.data.password,
-              username: response.data.username,
-              phone: response.data.phone,
-              year: response.data.year,
-              month: response.data.month,
-              day: response.data.day,
-              name: response.data.name,
-              answer: response.data.answer,
-            };
-            console.log(this.CurrentUser);
-            // console.log(response.data);
-          })
-          .catch((err) => console.log(err));
+        .getUserUsername(username)
+        .then((response) => {
+          this.CurrentUser = {
+            email: response.data.email,
+            password: response.data.password,
+            username: response.data.username,
+            phone: response.data.phone,
+            year: response.data.year,
+            month: response.data.month,
+            day: response.data.day,
+            name: response.data.name,
+            answer: response.data.answer,
+          };
+          console.log(this.CurrentUser);
+          // console.log(response.data);
+        })
+        .catch((err) => console.log(err));
     },
     // 로그아웃 함수 -> 공통함수 호출
     logout() {
