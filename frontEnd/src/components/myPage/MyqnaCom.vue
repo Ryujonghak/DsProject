@@ -98,12 +98,12 @@
               </select>
             </div>
 
-            <!-- TODO: v-if 걸기. 넘어오는 데이터 없으면 뜨도록..? -->
-            <div v-if="!submitted">
-              <p>문의내역이 없습니다.</p>
+            <!-- TODO: v-show 걸기. 넘어오는 데이터 없으면 뜨도록 -->
+            <div v-show="!submitted">
+              <h3>문의내역이 없습니다.</h3>
             </div>
 
-            <div v-else>
+            <div v-show="submitted">
               <!-- TODO: qna 테이블시작 -->
               <table class="qnabox">
                 <colgroup>
@@ -198,7 +198,10 @@ export default {
       },
       message: "",
       // 수빈이 AddQna 받아오기
-      qna: [], // TODO: 정주희 qna관련 추가_수빈이 addQna에서 보낸 qna 정보
+      // TODO: 정주희 qna관련 추가_수빈이 addQna에서 보낸 qna 정보
+      qna: {
+
+      }, 
     };
   },
   methods: {

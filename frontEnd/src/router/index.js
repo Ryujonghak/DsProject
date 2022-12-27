@@ -123,12 +123,21 @@ const routes = [
     component: () => import("../components/myPage/WishCom"),
   },
   {
+    path: '/archive',
+    name: 'archive',
+    component: () => import('../components/myPage/ArchiveCom.vue')
+  },
+  {
     path: "/myqna",
     name: "myqna",
     component: () => import("../components/myPage/MyqnaCom"),
   },
-
-  //TODO   김철원 Part
+  {
+    path: '/mytest',
+    name: 'mytest',
+    component: () => import('../components/myPage/testCom.vue')
+  },
+  //   김철원 Part
   {
     path: "/ModalView",
     name: "ModalView",
@@ -173,7 +182,10 @@ const routes = [
   // },
 ];
 
+
+/* eslint-disable */ 
 const router = new VueRouter({
+  
   mode: "history",
   base: process.env.BASE_URL,
   routes,
