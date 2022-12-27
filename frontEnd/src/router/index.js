@@ -124,9 +124,20 @@ const routes = [
     component: () => import("../components/myPage/ProfileCom.vue"),
   },
   {
+
     path: "/mywish",
     name: "mywish",
     component: () => import("../components/myPage/WishCom"),
+
+    path: '/archive',
+    name: 'archive',
+    component: () => import('../components/myPage/ArchiveCom.vue')
+  },
+  {
+    path: '/mywish',
+    name: 'mywish',
+    component: () => import('../components/myPage/WishCom')
+
   },
   {
     path: "/myqna",
@@ -134,6 +145,13 @@ const routes = [
     component: () => import("../components/myPage/MyqnaCom"),
   },
 
+
+
+  {
+    path: '/mytest',
+    name: 'mytest',
+    component: () => import('../components/myPage/testCom.vue')
+  },
   //   김철원 Part
   {
     path: "/ModalView",

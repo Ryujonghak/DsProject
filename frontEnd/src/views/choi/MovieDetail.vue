@@ -452,6 +452,7 @@ export default {
       this.movie.tempImgUrl[1] = this.movie.imageUrl[1];
       // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
       this.starRating = Math.floor(this.movie.rating);
+      this.movie.starRating = Math.floor(this.movie.rating);
     },
     likeSave() {
       alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
