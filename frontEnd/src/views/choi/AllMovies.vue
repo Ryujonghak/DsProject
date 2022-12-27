@@ -85,7 +85,7 @@
                 <div class="ceb-infor">
                   <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
                   <h2>
-                    <a href="/movieDetail">{{ data.mname }}</a>
+                    <a href="/movieDetail">{{ data.title }}</a>
                   </h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
@@ -110,7 +110,7 @@
                 <div class="ceb-infor">
                   <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
                   <h2>
-                    <a href="/movieDetail">{{ data.mname }}</a>
+                    <a href="/movieDetail">{{ data.title }}</a>
                   </h2>
                   <span
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
@@ -160,10 +160,10 @@ export default {
       nowPlaying: false,
       // 전체 movie 데이터
       movies: [
-        { mname: "아바타", rating: 4.5, status: "Y" },
-        { mname: "영웅", rating: 3.7, status: "Y" },
-        { mname: "신비아파트", rating: 4.8, status: "N" },
-        { mname: "흑표범", rating: 4.3, status: "N" },
+        { title: "아바타", rating: 4.5, status: "Y" },
+        { title: "영웅", rating: 3.7, status: "Y" },
+        { title: "신비아파트", rating: 4.8, status: "N" },
+        { title: "흑표범", rating: 4.3, status: "N" },
       ],
       // TODO: 검색 기능 추가
       searchStatue: "",
