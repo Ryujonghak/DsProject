@@ -93,7 +93,85 @@
 
           <!-- 오른쪽 본문 내용 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
-        
+
+
+            <!-- 2) 리뷰 파트 시작 -->
+            <div class="topbar-filter user">
+              <p>리뷰 작성하기<span>8 movies</span> in total</p>
+              <a href="userfavoritegrid.html" class="grid"
+                ><i class="ion-grid"></i
+              ></a>
+            </div>
+
+            <div id="reviews" class="tab review">
+              <div class="row" style="padding: 3%">
+                <div class="rv-hd">
+                  <!-- 클릭시 예매정보 넘어가서 표시됨 -->
+                  <div class="div">
+                    <h2>아바타: 물의 길{{  }}</h2>
+                  </div>
+                </div>
+                <div class="rv-hd">
+                  <form
+                    class="review-form col-xs-9"
+                    name="myform"
+                    id="myform"
+                    method="post"
+                  >
+                    <fieldset>
+                      <!-- <span class="review-form-style">별점을 선택해주세요</span> -->
+                      <input
+                        type="radio"
+                        name="reviewStar"
+                        value="5"
+                        id="rate1"
+                      /><label for="rate1">★</label>
+                      <input
+                        type="radio"
+                        name="reviewStar"
+                        value="4"
+                        id="rate2"
+                      /><label for="rate2">★</label>
+                      <input
+                        type="radio"
+                        name="reviewStar"
+                        value="3"
+                        id="rate3"
+                      /><label for="rate3">★</label>
+                      <input
+                        type="radio"
+                        name="reviewStar"
+                        value="2"
+                        id="rate4"
+                      /><label for="rate4">★</label>
+                      <input
+                        type="radio"
+                        name="reviewStar"
+                        value="1"
+                        id="rate5"
+                      /><label for="rate5">★</label>
+                    </fieldset>
+                    <div>
+                      <textarea
+                        class="col-auto form-control"
+                        style="fontsize: 91%"
+                        type="text"
+                        id="reviewContents"
+                        placeholder="평점 및 영화 관람평을 작성해주세요. 주제와 무관한 리뷰 또는 스포일러는 삭제될 수 있습니다."
+                      ></textarea>
+                    </div>
+                  </form>
+                  <div class="col-xs-3">
+                    <!-- 리뷰 작성 버튼에 함수 걸어주기 -->
+                    <a href="#" class="redbtn" @click="saveReview"
+                      >관람평 작성</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 2) 리뷰 파트 끝 -->
+
 
             <!-- 나의 리뷰  -->
             <div class="topbar-filter user">
@@ -102,6 +180,7 @@
                 ><i class="ion-grid"></i
               ></a>
             </div>
+
             <!-- 나의 리뷰 내용 시작 -->
             <div class="row">
               <!-- 리뷰 : 1 -->
@@ -123,8 +202,8 @@
                 <div class="col-xs-8">
                   <div class="row" style="padding: 3%">
                     <!-- ㅇㅇ -->
-                    <div class="mv-user-review-item">
-                      <div class="user-infor">
+                    <div class="user-infor">
+                      <div class="mv-user-review-item">
                         <!-- 별점 v-for 반복문 -->
                         <div class="rate-star">
                           <h6>
@@ -135,6 +214,7 @@
                               :key="index"
                               ><i class="ion-ios-star"></i
                             ></span>
+                            <!-- <span>{{ movie.userRating }}</span> -->
                           </h6>
                         </div>
                       </div>

@@ -99,13 +99,13 @@
             </div>
 
             <!-- TODO: v-show 걸어야 함! -->
-            <div v-show="!booked">
+            <div v-show="unbooking">
               <h3>예매내역이 없습니다.</h3>
             </div>
 
             <!-- 예매내역 -->
             <!-- TODO: v-show 걸어야 함! -->
-            <div v-show="booked">
+            <div v-show="!unbooking">
               <!-- <div> -->
               <div class="page-single userfav_list">
                 <div class="container">
@@ -234,143 +234,145 @@
             </div>
 
             <!-- 예매내역 없을 때에만 공백 띄우기 -->
-            <div v-show="!book">
+            <div v-show="unbooking">
               <div class="blank"></div>
             </div>
 
-            <!-- 본 영화 내역 -->
-            <div class="topbar-filter user">
-              <p>본 영화 <span>1 movies</span> in total</p>
-              <select>
-                <option value="range">-- 2022년 --</option>
-                <option value="saab">-- 2021년 --</option>
-              </select>
-            </div>
-            <!-- 페이지  -->
-            <div class="topbar-filter">
-              <label>Movies per page:</label>
-              <select>
-                <option value="range">20 Movies</option>
-                <option value="saab">10 Movies</option>
-              </select>
-              <div class="pagination2">
-                <span>Page 1 of 1:</span>
-                <a class="active" href="#">1</a>
-                <a href="#"><i class="ion-arrow-right-b"></i></a>
+            <div>
+              <!-- 본 영화 내역 -->
+              <div class="topbar-filter user">
+                <p>본 영화 <span>1 movies</span> in total</p>
+                <select>
+                  <option value="range">-- 2022년 --</option>
+                  <option value="saab">-- 2021년 --</option>
+                </select>
               </div>
-            </div>
-            <!-- 본 영화 -->
-            <div class="row">
-              <div class="col-xs-12 movie-item-style-2 userrate">
-                <!-- 포스터 -->
-                <div class="col-xs-2">
-                  <img src="images/uploads/mv1.jpg" alt="" />
+              <!-- 페이지  -->
+              <div class="topbar-filter">
+                <label>Movies per page:</label>
+                <select>
+                  <option value="range">20 Movies</option>
+                  <option value="saab">10 Movies</option>
+                </select>
+                <div class="pagination2">
+                  <span>Page 1 of 1:</span>
+                  <a class="active" href="#">1</a>
+                  <a href="#"><i class="ion-arrow-right-b"></i></a>
                 </div>
-                <!-- 영화정보 -->
-                <div class="col-xs-8">
-                  <div class="mv-item-infor">
-                    <h6>
-                      <a href="#">영웅 <span>(2022)</span></a>
-                    </h6>
-                    <!-- 별점 -->
-                    <p class="rate">
-                      <i class="ion-android-star"></i>
-                      <span>8.1</span> /10
-                    </p>
-                    <p>Run Time: 120분 <a>12세 관람가</a></p>
-                    <span class="time sm">2022년 10월 12일</span>
-                    <br />
-                    <span class="time sm">DS CINEMA 서면</span>
-                    <br />
-                    <span class="time sm-text">18:00</span>
-                    <span class="time sm"> I5</span>
-                    <span class="time sm"> I6</span>
-                  </div>
-                </div>
-                <!-- 영화정보 끝 -->
-                <!-- 예매취소 버튼 -->
-                <div class="col-xs-2">
-                  <div class="movie-item-style-2">
-                    <a href="#" class="redbtn">리뷰 쓰기</a>
-                  </div>
-                </div>
-                <!-- 예매취소 버튼 끝 -->
               </div>
-            </div>
-            <!-- 본 영화 -->
-            <div class="row">
-              <div class="col-xs-12 movie-item-style-2 userrate">
-                <!-- 포스터 -->
-                <div class="col-xs-2">
-                  <img src="images/uploads/mv1.jpg" alt="" />
-                </div>
-                <!-- 영화정보 -->
-                <div class="col-xs-8">
-                  <div class="mv-item-infor">
-                    <h6>
-                      <a href="#">영웅 <span>(2022)</span></a>
-                    </h6>
-                    <!-- 별점 -->
-                    <p class="rate">
-                      <i class="ion-android-star"></i>
-                      <span>8.1</span> /10
-                    </p>
-                    <p>Run Time: 120분 <a>12세 관람가</a></p>
-                    <span class="time sm">2022년 10월 12일</span>
-                    <br />
-                    <span class="time sm">DS CINEMA 서면</span>
-                    <br />
-                    <span class="time sm-text">18:00</span>
-                    <span class="time sm"> I5</span>
-                    <span class="time sm"> I6</span>
+              <!-- 본 영화 -->
+              <div class="row">
+                <div class="col-xs-12 movie-item-style-2 userrate">
+                  <!-- 포스터 -->
+                  <div class="col-xs-2">
+                    <img src="images/uploads/mv1.jpg" alt="" />
                   </div>
-                </div>
-                <!-- 영화정보 끝 -->
-                <!-- 예매취소 버튼 -->
-                <div class="col-xs-2">
-                  <div class="movie-item-style-2">
-                    <a href="#" class="redbtn">예매 취소</a>
+                  <!-- 영화정보 -->
+                  <div class="col-xs-8">
+                    <div class="mv-item-infor">
+                      <h6>
+                        <a href="#">영웅 <span>(2022)</span></a>
+                      </h6>
+                      <!-- 별점 -->
+                      <p class="rate">
+                        <i class="ion-android-star"></i>
+                        <span>8.1</span> /10
+                      </p>
+                      <p>Run Time: 120분 <a>12세 관람가</a></p>
+                      <span class="time sm">2022년 10월 12일</span>
+                      <br />
+                      <span class="time sm">DS CINEMA 서면</span>
+                      <br />
+                      <span class="time sm-text">18:00</span>
+                      <span class="time sm"> I5</span>
+                      <span class="time sm"> I6</span>
+                    </div>
                   </div>
+                  <!-- 영화정보 끝 -->
+                  <!-- 버튼 -->
+                  <div class="col-xs-2">
+                    <div class="movie-item-style-2">
+                      <a href="#" class="redbtn">리뷰 쓰기</a>
+                    </div>
+                  </div>
+                  <!-- 버튼 끝 -->
                 </div>
-                <!-- 예매취소 버튼 끝 -->
               </div>
-            </div>
-            <!-- 본 영화 -->
-            <div class="row">
-              <div class="col-xs-12 movie-item-style-2 userrate">
-                <!-- 포스터 -->
-                <div class="col-xs-2">
-                  <img src="images/uploads/mv1.jpg" alt="" />
-                </div>
-                <!-- 영화정보 -->
-                <div class="col-xs-8">
-                  <div class="mv-item-infor">
-                    <h6>
-                      <a href="#">영웅 <span>(2022)</span></a>
-                    </h6>
-                    <!-- 별점 -->
-                    <p class="rate">
-                      <i class="ion-android-star"></i>
-                      <span>8.1</span> /10
-                    </p>
-                    <p>Run Time: 120분 <a>12세 관람가</a></p>
-                    <span class="time sm">2022년 10월 12일</span>
-                    <br />
-                    <span class="time sm">DS CINEMA 서면</span>
-                    <br />
-                    <span class="time sm-text">18:00</span>
-                    <span class="time sm"> I5</span>
-                    <span class="time sm"> I6</span>
+              <!-- 본 영화 -->
+              <div class="row">
+                <div class="col-xs-12 movie-item-style-2 userrate">
+                  <!-- 포스터 -->
+                  <div class="col-xs-2">
+                    <img src="images/uploads/mv1.jpg" alt="" />
                   </div>
-                </div>
-                <!-- 영화정보 끝 -->
-                <!-- 예매취소 버튼 -->
-                <div class="col-xs-2">
-                  <div class="movie-item-style-2">
-                    <a href="#" class="redbtn">예매 취소</a>
+                  <!-- 영화정보 -->
+                  <div class="col-xs-8">
+                    <div class="mv-item-infor">
+                      <h6>
+                        <a href="#">영웅 <span>(2022)</span></a>
+                      </h6>
+                      <!-- 별점 -->
+                      <p class="rate">
+                        <i class="ion-android-star"></i>
+                        <span>8.1</span> /10
+                      </p>
+                      <p>Run Time: 120분 <a>12세 관람가</a></p>
+                      <span class="time sm">2022년 10월 12일</span>
+                      <br />
+                      <span class="time sm">DS CINEMA 서면</span>
+                      <br />
+                      <span class="time sm-text">18:00</span>
+                      <span class="time sm"> I5</span>
+                      <span class="time sm"> I6</span>
+                    </div>
                   </div>
+                  <!-- 영화정보 끝 -->
+                  <!-- 버튼 -->
+                  <div class="col-xs-2">
+                    <div class="movie-item-style-2">
+                      <a href="#" class="redbtn">리뷰 쓰기</a>
+                    </div>
+                  </div>
+                  <!-- 버튼 끝 -->
                 </div>
-                <!-- 예매취소 버튼 끝 -->
+              </div>
+              <!-- 본 영화 -->
+              <div class="row">
+                <div class="col-xs-12 movie-item-style-2 userrate">
+                  <!-- 포스터 -->
+                  <div class="col-xs-2">
+                    <img src="images/uploads/mv1.jpg" alt="" />
+                  </div>
+                  <!-- 영화정보 -->
+                  <div class="col-xs-8">
+                    <div class="mv-item-infor">
+                      <h6>
+                        <a href="#">영웅 <span>(2022)</span></a>
+                      </h6>
+                      <!-- 별점 -->
+                      <p class="rate">
+                        <i class="ion-android-star"></i>
+                        <span>8.1</span> /10
+                      </p>
+                      <p>Run Time: 120분 <a>12세 관람가</a></p>
+                      <span class="time sm">2022년 10월 12일</span>
+                      <br />
+                      <span class="time sm">DS CINEMA 서면</span>
+                      <br />
+                      <span class="time sm-text">18:00</span>
+                      <span class="time sm"> I5</span>
+                      <span class="time sm"> I6</span>
+                    </div>
+                  </div>
+                  <!-- 영화정보 끝 -->
+                  <!-- 버튼 -->
+                  <div class="col-xs-2">
+                    <div class="movie-item-style-2">
+                      <a href="#" class="redbtn">리뷰 쓰기</a>
+                    </div>
+                  </div>
+                  <!-- 버튼 끝 -->
+                </div>
               </div>
             </div>
 
@@ -510,11 +512,6 @@
               </li>
             </ul>
           </div>
-
-          <!-- </div>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -566,6 +563,8 @@ export default {
         imageUrl:
           "https://movie-phinf.pstatic.net/20221110_282/16680463363384H0hJ_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_147/1668046384890YVGlu_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_141/1668046432203AKL6P_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221123_280/1669180665184phjkW_JPEG/movie_image.jpg?type=m665_443_2", // 약 4~6개 정도 주소 백엔드에 넣어두는건 어떤지 고민입니다.
       },
+      // TODO: 예매 테이블 추가 
+      unbooking: true,
     };
   },
   methods: {

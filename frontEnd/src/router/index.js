@@ -129,6 +129,11 @@ const routes = [
     name: 'myqna',
     component: () => import('../components/myPage/MyqnaCom')
   },
+  {
+    path: '/mytest',
+    name: 'mytest',
+    component: () => import('../components/myPage/testCom.vue')
+  },
   //   김철원 Part
   {
     path: '/ModalView',

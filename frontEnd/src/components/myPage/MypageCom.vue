@@ -154,9 +154,11 @@
             <div class="container">
               <div class="row ipad-width2">
                 <div class="col-md-8 col-sm-12 col-xs-12">
-                  <!-- 예매내역 -->
+                  <!-- 아카이브 나브 -->
                   <div class="topbar-filter">
-                    <p>나의 아카이브 <span>8</span> in total</p>
+                    <a href="/archive"
+                      ><p>나의 아카이브 <span>8</span> in total</p></a
+                    >
                     <a href="userfavoritegrid.html" class="grid"
                       ><i class="ion-grid"></i
                     ></a>
@@ -170,7 +172,7 @@
                       <!-- 영화에 마우스 올리면 나오는 관람정보 -->
                       <div class="hvr-inner">
                         <h6>
-                          <router-link to="/archive"
+                          <router-link to="/movieDetail"
                             >아바타 <span>(2022)</span></router-link
                           >
                         </h6>
@@ -182,7 +184,6 @@
                         <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
                         <p class="time sm-text">
                           나의 별점
-                          <!--  -->
                           <!-- 별점 v-for -->
                           <i class="ion-android-star"></i><span>4.0</span>
                         </p>
@@ -193,7 +194,7 @@
                       </div>
                       <!-- 영화 라벨 -->
                       <div class="mv-item-infor">
-                        <h6><a href="#">아바타</a></h6>
+                        <h6><a href="/movieDetail">아바타</a></h6>
                         <p class="rate">
                           <i class="ion-android-star"></i><span>4.3</span> /5
                           <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
@@ -207,7 +208,7 @@
                       <!-- 영화에 마우스 올리면 나오는 관람정보 -->
                       <div class="hvr-inner">
                         <h6>
-                          <router-link to="/archive"
+                          <router-link to="/movieDetail"
                             >아바타 <span>(2022)</span></router-link
                           >
                         </h6>
@@ -219,7 +220,6 @@
                         <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
                         <p class="time sm-text">
                           나의 별점
-                          <!--  -->
                           <!-- 별점 v-for -->
                           <i class="ion-android-star"></i><span>4.0</span>
                         </p>
@@ -230,7 +230,7 @@
                       </div>
                       <!-- 영화 라벨 -->
                       <div class="mv-item-infor">
-                        <h6><a href="#">아바타</a></h6>
+                        <h6><a href="/movieDetail">아바타</a></h6>
                         <p class="rate">
                           <i class="ion-android-star"></i><span>4.3</span> /5
                           <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
@@ -244,7 +244,7 @@
                       <!-- 영화에 마우스 올리면 나오는 관람정보 -->
                       <div class="hvr-inner">
                         <h6>
-                          <router-link to="/archive"
+                          <router-link to="/movieDetail"
                             >아바타 <span>(2022)</span></router-link
                           >
                         </h6>
@@ -266,7 +266,7 @@
                       </div>
                       <!-- 영화 라벨 -->
                       <div class="mv-item-infor">
-                        <h6><a href="#">아바타</a></h6>
+                        <h6><a href="/movieDetail">아바타</a></h6>
                         <p class="rate">
                           <i class="ion-android-star"></i><span>4.3</span> /5
                           <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
@@ -280,7 +280,7 @@
                       <!-- 영화에 마우스 올리면 나오는 관람정보 -->
                       <div class="hvr-inner">
                         <h6>
-                          <router-link to="/archive"
+                          <router-link to="/movieDetail"
                             >아바타 <span>(2022)</span></router-link
                           >
                         </h6>
@@ -302,7 +302,7 @@
                       </div>
                       <!-- 영화 라벨 -->
                       <div class="mv-item-infor">
-                        <h6><a href="#">아바타</a></h6>
+                        <h6><a href="/movieDetail">아바타</a></h6>
                         <p class="rate">
                           <i class="ion-android-star"></i><span>4.3</span> /5
                           <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
@@ -434,7 +434,6 @@
               </li>
             </ul> -->
             </div>
-           
           </div>
         </div>
       </div>
