@@ -124,29 +124,20 @@ const routes = [
     component: () => import("../components/myPage/ProfileCom.vue"),
   },
   {
-
     path: "/mywish",
     name: "mywish",
     component: () => import("../components/myPage/WishCom"),
-
+  },
+  {
     path: '/archive',
     name: 'archive',
     component: () => import('../components/myPage/ArchiveCom.vue')
-  },
-  {
-    path: '/mywish',
-    name: 'mywish',
-    component: () => import('../components/myPage/WishCom')
-
   },
   {
     path: "/myqna",
     name: "myqna",
     component: () => import("../components/myPage/MyqnaCom"),
   },
-
-
-
   {
     path: '/mytest',
     name: 'mytest',
@@ -197,7 +188,10 @@ const routes = [
   // },
 ];
 
+
+/* eslint-disable */ 
 const router = new VueRouter({
+  
   mode: "history",
   base: process.env.BASE_URL,
   routes,
