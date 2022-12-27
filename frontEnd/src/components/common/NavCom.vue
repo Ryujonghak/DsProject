@@ -357,8 +357,7 @@
                   <ul class="dropdown-menu level1">
                     <li><a href="/mypage">내정보</a></li>
                     <li><a href="/myticket">예매내역</a></li>
-                    <li><a href="/movieDetail">test</a></li>
-                    <li><a href="/archive">test2</a></li>
+                    <li><a href="/mytest">test</a></li>
                   </ul>
                 </li>
                 <!-- 회원 로그인시 마이페이지 끝  -->
