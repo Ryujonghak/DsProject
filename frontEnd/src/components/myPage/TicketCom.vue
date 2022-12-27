@@ -79,7 +79,7 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-<!--                  <li><a href="#">Log out</a></li>-->
+                  <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
                   <li><a href="#">탈퇴하기</a></li>
                 </ul>
@@ -89,14 +89,158 @@
           <!-- 공통 왼쪽 메뉴 끝 -->
 
           <!-- 오른쪽 본문 내용 -->
-          <!-- <div class="flex-wrap-movielist user-fav-list">
-            <div class="page-single">
-              <div class="container">
-                <div class="row ipad-width2"> -->
-          <!-- 1. 예매내역 : 간략보기 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
-              <p>예매내역 <span>1 movies</span> in total</p>
+              <p>예매 내역 <span>1 movies</span> in total</p>
+              <select>
+                <option value="range">-- 2022년 --</option>
+                <option value="saab">-- 2021년 --</option>
+              </select>
+            </div>
+
+            <!-- TODO: v-show 걸어야 함! -->
+            <div v-show="!booked">
+              <h3>예매내역이 없습니다.</h3>
+            </div>
+
+            <!-- 예매내역 -->
+            <!-- TODO: v-show 걸어야 함! -->
+            <div v-show="booked">
+              <!-- <div> -->
+              <div class="page-single userfav_list">
+                <div class="container">
+                  <div class="row ipad-width2">
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                      <div class="flex-wrap-movielist user-fav-list">
+                        <!-- 예매한 영화-->
+                        <div class="movie-item-style-2">
+                          <!-- todo) 이미지크기...  -->
+                          <img src="images/poster/영웅.jpg" alt="" />
+                          <div class="mv-item-infor">
+                            <h6>
+                              <!-- todo) 영화 상세보기 링크 변경 -->
+                              <a href="moviesingle.html"
+                                >영웅 <span>(2022)</span></a
+                              >
+                            </h6>
+                            <p class="rate">
+                              <i class="ion-android-star"></i
+                              ><span>8.1</span> /10
+                            </p>
+                            <p>Director: 윤제균</p>
+                            <p class="describe">
+                              Run Time: 120분 <a>12세 관람가</a>
+                            </p>
+
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                예매번호
+                              </p>
+                              <p class="col-xs-6">{{}}</p>
+                            </div>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                관람일시
+                              </p>
+                              <p class="col-xs-6">{{}}</p>
+                            </div>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                상영관
+                              </p>
+                              <p class="col-xs-6">{{}}</p>
+                            </div>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                좌석정보
+                              </p>
+                              <p class="col-xs-6">{{}}</p>
+                            </div>
+                            <p class="describe col-xs-12"></p>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                결제금액
+                              </p>
+                              <p class="col-xs-4">{{}}</p>
+                              <!-- 예매취소 버튼 -->
+                              <div class="col-xs-4">
+                                <a href="#" class="redbtn">예매취소</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 예매한 영화-->
+                        <div class="movie-item-style-2">
+                          <!-- todo) 이미지크기...  -->
+                          <img src="images/poster/영웅.jpg" alt="" />
+                          <div class="mv-item-infor">
+                            <h6>
+                              <!-- todo) 영화 상세보기 링크 변경 -->
+                              <a href="moviesingle.html"
+                                >영웅 <span>(2022)</span></a
+                              >
+                            </h6>
+                            <p class="rate">
+                              <i class="ion-android-star"></i
+                              ><span>8.1</span> /10
+                            </p>
+                            <p>Director: 윤제균</p>
+                            <p class="describe">
+                              Run Time: 120분 <a>12세 관람가</a>
+                            </p>
+
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                예매번호
+                              </p>
+                              <p class="col-xs-6">{{}}</p>
+                            </div>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                관람일시
+                              </p>
+                              <p class="col-xs-6">{{}}</p>
+                            </div>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                상영관
+                              </p>
+                              <p class="col-xs-6">{{}}</p>
+                            </div>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                좌석정보
+                              </p>
+                              <p class="col-xs-6">{{}}</p>
+                            </div>
+                            <p class="describe col-xs-12"></p>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                결제금액
+                              </p>
+                              <p class="col-xs-4">{{}}</p>
+                              <!-- 예매취소 버튼 -->
+                              <div class="col-xs-4">
+                                <a href="#" class="redbtn">예매취소</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 예매내역 없을 때에만 공백 띄우기 -->
+            <div v-show="!book">
+              <div class="blank"></div>
+            </div>
+
+            <!-- 본 영화 내역 -->
+            <div class="topbar-filter user">
+              <p>본 영화 <span>1 movies</span> in total</p>
               <select>
                 <option value="range">-- 2022년 --</option>
                 <option value="saab">-- 2021년 --</option>
@@ -115,7 +259,45 @@
                 <a href="#"><i class="ion-arrow-right-b"></i></a>
               </div>
             </div>
-            <!-- 예매한 영화 -->
+            <!-- 본 영화 -->
+            <div class="row">
+              <div class="col-xs-12 movie-item-style-2 userrate">
+                <!-- 포스터 -->
+                <div class="col-xs-2">
+                  <img src="images/uploads/mv1.jpg" alt="" />
+                </div>
+                <!-- 영화정보 -->
+                <div class="col-xs-8">
+                  <div class="mv-item-infor">
+                    <h6>
+                      <a href="#">영웅 <span>(2022)</span></a>
+                    </h6>
+                    <!-- 별점 -->
+                    <p class="rate">
+                      <i class="ion-android-star"></i>
+                      <span>8.1</span> /10
+                    </p>
+                    <p>Run Time: 120분 <a>12세 관람가</a></p>
+                    <span class="time sm">2022년 10월 12일</span>
+                    <br />
+                    <span class="time sm">DS CINEMA 서면</span>
+                    <br />
+                    <span class="time sm-text">18:00</span>
+                    <span class="time sm"> I5</span>
+                    <span class="time sm"> I6</span>
+                  </div>
+                </div>
+                <!-- 영화정보 끝 -->
+                <!-- 예매취소 버튼 -->
+                <div class="col-xs-2">
+                  <div class="movie-item-style-2">
+                    <a href="#" class="redbtn">리뷰 쓰기</a>
+                  </div>
+                </div>
+                <!-- 예매취소 버튼 끝 -->
+              </div>
+            </div>
+            <!-- 본 영화 -->
             <div class="row">
               <div class="col-xs-12 movie-item-style-2 userrate">
                 <!-- 포스터 -->
@@ -153,45 +335,7 @@
                 <!-- 예매취소 버튼 끝 -->
               </div>
             </div>
-            <!-- 예매한 영화 -->
-            <div class="row">
-              <div class="col-xs-12 movie-item-style-2 userrate">
-                <!-- 포스터 -->
-                <div class="col-xs-2">
-                  <img src="images/uploads/mv1.jpg" alt="" />
-                </div>
-                <!-- 영화정보 -->
-                <div class="col-xs-8">
-                  <div class="mv-item-infor">
-                    <h6>
-                      <a href="#">영웅 <span>(2022)</span></a>
-                    </h6>
-                    <!-- 별점 -->
-                    <p class="rate">
-                      <i class="ion-android-star"></i>
-                      <span>8.1</span> /10
-                    </p>
-                    <p>Run Time: 120분 <a>12세 관람가</a></p>
-                    <span class="time sm">2022년 10월 12일</span>
-                    <br />
-                    <span class="time sm">DS CINEMA 서면</span>
-                    <br />
-                    <span class="time sm-text">18:00</span>
-                    <span class="time sm"> I5</span>
-                    <span class="time sm"> I6</span>
-                  </div>
-                </div>
-                <!-- 영화정보 끝 -->
-                <!-- 예매취소 버튼 -->
-                <div class="col-xs-2">
-                  <div class="movie-item-style-2">
-                    <a href="#" class="redbtn">예매 취소</a>
-                  </div>
-                </div>
-                <!-- 예매취소 버튼 끝 -->
-              </div>
-            </div>
-            <!-- 예매한 영화 -->
+            <!-- 본 영화 -->
             <div class="row">
               <div class="col-xs-12 movie-item-style-2 userrate">
                 <!-- 포스터 -->
@@ -231,7 +375,7 @@
             </div>
 
             <!-- 2. 예매 내역 상세보기 -->
-            <div class="page-single userfav_list">
+            <!-- <div class="page-single userfav_list">
               <div class="container">
                 <div class="row ipad-width2">
                   <div class="col-md-9 col-sm-12 col-xs-12">
@@ -244,15 +388,12 @@
                     </div>
 
                     <div class="flex-wrap-movielist user-fav-list">
-                      <!-- 예매한 영화-->
                       <div class="movie-item-style-2">
-                        <!-- todo) 이미지크기...  -->
                         <img src="images/poster/영웅.jpg" alt="" />
                         <div class="mv-item-infor">
                           <h6>
-                            <!-- todo) 영화 상세보기 링크 변경 -->
                             <a href="moviesingle.html"
-                            >영웅 <span>(2022)</span></a
+                              >영웅 <span>(2022)</span></a
                             >
                           </h6>
                           <p class="rate">
@@ -291,7 +432,6 @@
                               결제금액
                             </p>
                             <p class="col-xs-4">{{}}</p>
-                            <!-- 예매취소 버튼 -->
                             <div class="col-xs-4">
                               <a href="#" class="redbtn">예매취소</a>
                             </div>
@@ -299,15 +439,12 @@
                         </div>
                       </div>
 
-                      <!-- 예매한 영화-->
                       <div class="movie-item-style-2">
-                        <!-- todo) 이미지크기...  -->
                         <img src="images/poster/영웅.jpg" alt="" />
                         <div class="mv-item-infor">
                           <h6>
-                            <!-- todo) 영화 상세보기 링크 변경 -->
                             <a href="moviesingle.html"
-                            >영웅 <span>(2022)</span></a
+                              >영웅 <span>(2022)</span></a
                             >
                           </h6>
                           <p class="rate">
@@ -317,7 +454,6 @@
                           <p class="describe">
                             Run Time: 120분 <a>12세 관람가</a>
                           </p>
-
                           <div class="col-xs-12">
                             <p class="movie-detail-content col-xs-4">
                               예매번호
@@ -346,7 +482,6 @@
                               결제금액
                             </p>
                             <p class="col-xs-4">{{}}</p>
-                            <!-- 예매취소 버튼 -->
                             <div class="col-xs-4">
                               <a href="#" class="redbtn">예매취소</a>
                             </div>
@@ -357,7 +492,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <!-- 페이지 -->
             <ul class="pagination">
               <li class="icon-prev">
@@ -458,23 +593,23 @@ export default {
       username = "forbob";
       console.log(username);
       userService
-          .getUserUsername(username)
-          .then((response) => {
-            this.CurrentUser = {
-              email: response.data.email,
-              password: response.data.password,
-              username: response.data.username,
-              phone: response.data.phone,
-              year: response.data.year,
-              month: response.data.month,
-              day: response.data.day,
-              name: response.data.name,
-              answer: response.data.answer,
-            };
-            console.log(this.CurrentUser);
-            // console.log(response.data);
-          })
-          .catch((err) => console.log(err));
+        .getUserUsername(username)
+        .then((response) => {
+          this.CurrentUser = {
+            email: response.data.email,
+            password: response.data.password,
+            username: response.data.username,
+            phone: response.data.phone,
+            year: response.data.year,
+            month: response.data.month,
+            day: response.data.day,
+            name: response.data.name,
+            answer: response.data.answer,
+          };
+          console.log(this.CurrentUser);
+          // console.log(response.data);
+        })
+        .catch((err) => console.log(err));
     },
     // 로그아웃 함수 -> 공통함수 호출
     logout() {
@@ -490,7 +625,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .box-image {
   width: 55px;
   height: 70px;
@@ -498,5 +633,9 @@ export default {
 
 .movie-item-style-2 {
   padding-top: 20px;
+}
+
+.blank {
+  padding-top: 10%;
 }
 </style>
