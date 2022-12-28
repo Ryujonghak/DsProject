@@ -54,7 +54,7 @@
 
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div style="margin-bottom:2%;">
-              <h3 style="color: aliceblue">결제관리 관리</h3>
+              <h3 style="color: aliceblue">결제관리</h3>
             </div>
 
             <!-- 전체정렬 -->
@@ -70,6 +70,7 @@
                     <col style="width: 15%" />
                     <col style="width: 15%" />
                     <col style="width: 15%" />
+                    <col style="width: 15%" />
                   </colgroup>
                   <thead>
                     <tr>
@@ -77,8 +78,9 @@
                       <th scope="col">username</th>
                       <th scope="col">영화명</th>
                       <th scope="col">좌석번호</th>
-                      <th scope="col">인원수</th>
+                      <th scope="col">예매수량</th>
                       <th scope="col">결제가격</th>
+                      <th scope="col">결제시간</th>
                       <th scope="col">Delete Btn</th>
                     </tr>
                   </thead>
@@ -86,10 +88,11 @@
                     <tr v-for="(data, index) in Payment" v-bind:key="index">
                       <td>{{ data.No }}</td>
                       <td>{{ data.username }}</td>
-                      <td>{{ data.movieCode }}</td>
+                      <td>{{ data.movieNm }}</td>
                       <td>{{ data.seatNo }}</td>
-                      <td>{{ data.personnel }}</td>
+                      <td>{{ data.cnt }}</td>
                       <td>{{ data.price }}</td>
+                      <td>{{ data.paidDate }}</td>
                       <td>
                         <button class="deletebtn">삭제</button>
                       </td>
@@ -127,10 +130,11 @@ export default {
             Payment:[{
                 No: 1,
                 username: "forbob",
-                movieCode: "아바타:물의길",
+                movieNm: "아바타:물의길",
                 seatNo: "20D",
-                personnel: "2",
-                price: "30,000"
+                cnt: "2",
+                price: "30,000",
+                paidDate:"2022-12-28"
             }]
         }
     },

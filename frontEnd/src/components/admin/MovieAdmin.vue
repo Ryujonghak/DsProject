@@ -37,11 +37,17 @@
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
-                      <li><router-link to="/review-admin">리뷰관리</router-link></li>
-                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
+                      <li>
+                        <router-link to="/review-admin">리뷰관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/qna-admin">QnA 답변관리</router-link>
+                      </li>
                     </ul>
                   </li>
-                  <li><router-link to="/payment-admin">결제 관리</router-link></li>
+                  <li>
+                    <router-link to="/payment-admin">결제 관리</router-link>
+                  </li>
                 </ul>
               </div>
               <div class="user-fav">
@@ -61,19 +67,22 @@
             <!-- <div style="width:215px; float:right;"> -->
             <div class="topbar-filter">
               <!-- <h5 style="justify-content:flex-start !important; color: aliceblue; margin-right: 1%;">sort by:</h5> -->
-              <h5 style="color:aliceblue;">sort by:</h5>
+              <h5 style="color: aliceblue">sort by:</h5>
               <select>
                 <option value="range">-- Choose option --</option>
                 <option value="saab">-- Choose option 2--</option>
               </select>
               <!-- <button class="regbtn" style="color:aliceblue; width: 50% !important; height: 15%; margin-top: 20%; float: right;"> -->
-              <button class="regbtn" style="width:15%;">
+
+              <button class="regbtn" style="width: 15%">
                 <router-link to="/addMovie-admin">새 영화 등록</router-link>
               </button>
             </div>
             <div class="flex-wrap-movielist user-fav-list">
               <div class="movie-item-style-2">
-                <img src=	https://img.megabox.co.kr/SharedImg/2022/12/16/9vUySe7DNMro6tdYRPEbjzF2ebr48MwE_420.jpg alt="아바타 물의길" />
+                <img src=
+                https://img.megabox.co.kr/SharedImg/2022/12/16/9vUySe7DNMro6tdYRPEbjzF2ebr48MwE_420.jpg
+                alt="아바타 물의길" />
                 <div class="mv-item-infor">
                   <h6 style="color: aliceblue">
                     영화이름:
@@ -100,7 +109,7 @@
                     <a href="#">Chris Evans,</a>
                     <a href="#"> Chris Hemsworth</a>
                   </p>
-                  <button class="redbtn" >삭제</button>
+                  <button class="redbtn">삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -130,7 +139,7 @@
                     <a href="#">Samuel L. Jackson,</a>
                     <a href="#"> Scarlett Johansson</a>
                   </p>
-                  <button class="redbtn" >삭제</button>
+                  <button class="redbtn">삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -156,7 +165,7 @@
                     Stars: <a href="#">Paul Rudd,</a>
                     <a href="#"> Michael Douglas</a>
                   </p>
-                  <button class="redbtn" >삭제</button>
+                  <button class="redbtn">삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -209,7 +218,7 @@
                     <a href="#"> Natalie Portman,</a
                     ><a href="#">Tom Hiddleston</a>
                   </p>
-                  <button class="redbtn" >삭제</button>
+                  <button class="redbtn">삭제</button>
                 </div>
               </div>
             </div>
@@ -247,16 +256,16 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch("auth/logout"); 
+      this.$store.dispatch("auth/logout");
       this.$router.push("/");
     },
 
-        //왼쪽 메뉴바 slide효과
+    //왼쪽 메뉴바 slide효과
     boardclick() {
       this.board = !this.board;
     },
 
-    // delete 버튼 클릭시 실행됨 
+    // delete 버튼 클릭시 실행됨
     // deleteMovie() {
     //     QnaDataService.delete(this.currentData.qno)
     //     .then((response) => {
@@ -280,35 +289,36 @@ h4 {
 .redbtn {
   height: 2% !important;
   float: right !important;
-  box-shadow:none !important;
+  box-shadow: none !important;
 }
-.regbtn{
+.regbtn {
   background: rgb(255, 255, 0);
   width: 10%;
   border-radius: 25px;
   padding: 1%;
 }
-button{
+button {
   border: none !important;
 }
 button:active {
-  outline: none !important; 
+  outline: none !important;
   box-shadow: none !important;
 }
 .topbar-filter select {
-    width: 215px;
-    // -webkit-appearance: none;
-    // -moz-appearance: none;
-    float: right !important;
-    // background: url(../images/uploads/drop-icon.png) no-repeat right 20px center;
-    border-left: 1px solid #405266;
-    border-right: 1px solid #405266;
-    border-top: none;
-    border-bottom: none;
-    color: #ffffff;
-    font-weight: 400;
+  width: 215px;
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  float: right !important;
+  // background: url(../images/uploads/drop-icon.png) no-repeat right 20px center;
+  border-left: none !important;
+  border-right: px solid #405266;
+  border-top: none;
+  border-bottom: none !important;
+  color: #ffffff;
+  font-weight: 400;
 }
-.topbar-filter{
+.topbar-filter {
   justify-content: flex-end !important;
+  border-top: none !important;
 }
 </style>
