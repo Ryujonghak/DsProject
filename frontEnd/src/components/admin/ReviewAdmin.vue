@@ -56,10 +56,14 @@
             <div class="topbar-filter">
               <h3 style="color: aliceblue">리뷰 관리</h3>
               <select id="selectBox" name="selectBox" v-model="searchMovieName">
-                <option value="" selected="selected" @click="retrieveMovie">영화 전체</option>
+                <!-- <option value="" selected="selected" @click="retrieveMovie">영화 전체</option>
                 <option value="아바타:물의길"  @click="retrieveMovie">아바타:물의길</option>
                 <option value="신비아파트"  @click="retrieveMovie">신비아파트</option>
-                <option value="영웅"  @click="retrieveMovie">영웅</option>
+                <option value="영웅"  @click="retrieveMovie">영웅</option> -->
+                <option value="" selected="selected">영화 전체</option>
+                <option value="아바타:물의길"  >아바타:물의길</option>
+                <option value="신비아파트" >신비아파트</option>
+                <option value="영웅" >영웅</option>
               </select>
             </div>
 

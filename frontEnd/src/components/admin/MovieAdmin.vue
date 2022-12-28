@@ -98,7 +98,7 @@
                     <a href="#">Chris Evans,</a>
                     <a href="#"> Chris Hemsworth</a>
                   </p>
-                  <button class="redbtn" @click="deleteMovie">삭제</button>
+                  <button class="redbtn" >삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -128,7 +128,7 @@
                     <a href="#">Samuel L. Jackson,</a>
                     <a href="#"> Scarlett Johansson</a>
                   </p>
-                  <button class="redbtn" @click="deleteMovie">삭제</button>
+                  <button class="redbtn" >삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -154,7 +154,7 @@
                     Stars: <a href="#">Paul Rudd,</a>
                     <a href="#"> Michael Douglas</a>
                   </p>
-                  <button class="redbtn" @click="deleteMovie">삭제</button>
+                  <button class="redbtn" >삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -180,7 +180,7 @@
                     Stars: <a href="#">Robert Downey Jr., </a>
                     <a href="#"> Guy Pearce,</a><a href="#">Don Cheadle</a>
                   </p>
-                  <button class="redbtn" @click="deleteMovie">삭제</button>
+                  <button class="redbtn">삭제</button>
                 </div>
               </div>
               <div class="movie-item-style-2">
@@ -207,7 +207,7 @@
                     <a href="#"> Natalie Portman,</a
                     ><a href="#">Tom Hiddleston</a>
                   </p>
-                  <button class="redbtn" @click="deleteMovie">삭제</button>
+                  <button class="redbtn" >삭제</button>
                 </div>
               </div>
             </div>

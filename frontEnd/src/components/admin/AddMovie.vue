@@ -139,7 +139,6 @@
               <td colspan="2">
                 <ul class="footer-button-plus">
                   <input
-                    @change="upload"
                     type="file"
                     id="file"
                     class="inputfile"
