@@ -81,33 +81,13 @@
             </th>
             <td>
               <input
-                type="number"
-                name="hpNum1"
-                id="hpNum1"
+                type="text"
+                name="hpNum"
+                id="hpNum"
                 class="boxing form-control"
-                maxlength="3"
-                title="휴대폰 첫자리 입력"
-                v-model="qna.phonenumber1"
-              />
-              <span>-</span>
-              <input
-                type="number"
-                name="hpNum2"
-                id="hpNum2"
-                class="boxing form-control"
-                maxlength="4"
-                title="휴대폰 중간자리 입력"
-                v-model="qna.phonenumber2"
-              />
-              <span>-</span>
-              <input
-                type="number"
-                name="hpNum3"
-                id="hpNum3"
-                class="boxing form-control"
-                maxlength="4"
-                title="휴대폰 뒷자리 입력"
-                v-model="qna.phonenumber3"
+                maxlength="12"
+                placeholder="휴대폰번호 -제외 입력"
+                v-model="qna.phonenumber"
               />
             </td>
           </tr>
@@ -174,9 +154,7 @@ export default {
       qna: {
         name: "",
         email: "",
-        phonenumber1: "",
-        phonenumber2: "",
-        phonenumber3: "",
+        phonenumber: "",
         title: "",
         content: "",
       },
@@ -189,9 +167,7 @@ export default {
       let data = {
         name: this.qna.name,
         email: this.qna.email,
-        phonenumber1: this.qna.phonenumber1,
-        phonenumber2: this.qna.phonenumber2,
-        phonenumber3: this.qna.phonenumber3,
+        phonenumber: this.qna.phonenumber,
         title: this.qna.title,
         content: this.qna.content,
       };
@@ -231,13 +207,7 @@ tbody {
   color: red;
 }
 #hpNum1 {
-  width: 60px;
-}
-#hpNum2 {
-  width: 60px;
-}
-#hpNum3 {
-  width: 60px;
+  width: 50%;
 }
 .boxing {
   display: inline !important ;

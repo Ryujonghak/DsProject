@@ -44,19 +44,19 @@
                       </li>
                     </ul>
                   </li>
-                  <li><a href="#">결제관리</a></li>
+                  <li><router-link to="/payment-admin">결제 관리</router-link></li>
                 </ul>
               </div>
               <div class="user-fav">
                 <ul>
-                  <li><a href="#">Log out</a></li>
+                  <li><a href="#" @click="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <!-- <!— 왼쪽 메뉴바 끝 —> -->
           <div class="col-md-9 col-sm-12 col-xs-12">
-            <div style="margin-bottom: 3%">
+            <div class="topbar-filter" style="margin-bottom: 3%">
               <h3 style="color: aliceblue">QnA 관리</h3>
             </div>
 
@@ -195,6 +195,10 @@ export default {
     };
   },
   methods: {
+    logout() {
+      this.$store.dispatch("auth/logout"); 
+      this.$router.push("/");
+    },
     //답변하기 버튼 클릭시
     writeQna() {
       this.registerQna = !this.registerQna;
@@ -253,4 +257,8 @@ button:active {
   border-radius: 20px;
   vertical-align: middle !important;
 }
+.topbar-filter{
+  border-top:none !important;
+}
+
 </style>

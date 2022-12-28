@@ -36,7 +36,7 @@
                     type="text"
                     id="name"
                     class="input-text boxing"
-                    value
+                    v-model="movie.movieNm"
                   />
                 </td>
                 <th scope="row" class="noticelabel">
@@ -50,6 +50,7 @@
                     id="qnaTitle"
                     class="boxing input-text"
                     maxlength="100"
+                    v-model="movie.rating"
                   />
                   /5.0
                 </td>
@@ -64,7 +65,7 @@
                     id="qnaTitle"
                     class="boxing input-text"
                     maxlength="100"
-                    placeholder="제목을 입력해주세요."
+                   v-model="movie.genreNm"
                   />
                 </td>
               </tr>
@@ -80,7 +81,7 @@
                   id="qnaTitle"
                   class="boxing input-text"
                   maxlength="100"
-                  placeholder="제목을 입력해주세요."
+                  v-model="movie.showTm"
                 />
               </td>
               <th scope="row" class="noticelabel">
@@ -94,7 +95,7 @@
                   id="qnaTitle"
                   class="boxing input-text"
                   maxlength="100"
-                  placeholder="제목을 입력해주세요."
+                 v-model="movie.directors"
                 />
               </td>
               <th scope="row" class="noticelabel">
@@ -108,7 +109,7 @@
                   id="qnaTitle"
                   class="boxing input-text"
                   maxlength="100"
-                  placeholder="제목을 입력해주세요."
+                  v-model="movie.actor"
                 />
               </td>
             </tr>
@@ -127,6 +128,7 @@
                       title="내용입력"
                       class="input-textarea boxing"
                       placeholder="내용을 입력해주세요."
+                      v-model="movie.description"
                     ></textarea>
                   </div>
                 </td>
@@ -139,7 +141,6 @@
               <td colspan="2">
                 <ul class="footer-button-plus">
                   <input
-                    @change="upload"
                     type="file"
                     id="file"
                     class="inputfile"
@@ -158,7 +159,7 @@
                   id="qnaTitle"
                   class="boxing input-text"
                   maxlength="100"
-                  placeholder="제목을 입력해주세요."
+                  v-model="movie.openDt"
                 />
                 
               </td>
@@ -167,7 +168,7 @@
                 <label for="noticeTitle">관람등급</label>
               </th>
               <td colspan="3">
-              <select name="관람등급" id="age">
+              <select name="관람등급" id="age" v-model="movie.watchGradeNm">
                 <option value="1">ALL</option>
                 <option value="2">12+</option>
                 <option value="3">15+</option>
@@ -192,22 +193,33 @@
 export default {
   data() {
     return {
-      imgURL: "",
+      // imgURL: "",
+      movie: {
+        openDt: "",
+        watchGradeNm: "",
+        movieNm:"",
+        rating: "",
+        description:"",
+        showTm: "",
+        genreNm:"",
+        directors:"",
+        actor:"",
+      },
     };
   },
   methods: {
-    upload(e) {
-      let imageFile = e.target.files; 
+    // upload(e) {
+    //   let imageFile = e.target.files; 
 
 
-      let url = URL.createObjectURL(imageFile[0]); // 파일의 필요한 데이터만을 url 변수에 넣음
+    //   let url = URL.createObjectURL(imageFile[0]); // 파일의 필요한 데이터만을 url 변수에 넣음
 
-      console.log(url);
+    //   console.log(url);
 
-      this.imageUrl = url; // 미리 작성해둔 imageUrl : ' ' 변수에 가지고있는 경로데이터 넣기
+    //   this.imageUrl = url; // 미리 작성해둔 imageUrl : ' ' 변수에 가지고있는 경로데이터 넣기
 
-      this.step++;
-    },
+    //   this.step++;
+    // },
   },
 };
 </script>

@@ -6,6 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
+              <h4>공지사항 관리 페이지</h4>
             </div>
           </div>
         </div>
@@ -36,16 +37,21 @@
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
-                      <li><router-link to="/review-admin">리뷰관리</router-link></li>
-                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
+                      <li>
+                        <router-link to="/review-admin">리뷰관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/qna-admin">QnA 답변관리</router-link>
+                      </li>
                     </ul>
                   </li>
-                  <li><a href="#">결제관리</a></li>
+                  <li><router-link to="/payment-admin">결제 관리</router-link></li>
                 </ul>
               </div>
               <div class="user-fav">
                 <ul>
-                  <li><a href="#">Log out</a></li>
+                  <!-- <a @click.prevent="logout">LOG OUT</a> -->
+                  <li><a href="#" @click="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
@@ -53,8 +59,8 @@
           <!-- <!— 왼쪽 메뉴바 끝 —> -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter">
-              <h3 style="color: aliceblue">공지사항 관리</h3>
-              <label>Sort by:</label>
+              <!-- <h5 style="justify-content:flex-start !important; color: aliceblue; margin-right: 1%;">sort by:</h5> -->
+              <h5 style="color: aliceblue">sort by:</h5>
               <select>
                 <option value="range">-- Choose option --</option>
                 <option value="saab">-- Choose option 2--</option>
@@ -86,13 +92,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="notice in notices" v-bind:key="notice">
+                    <tr v-for="(notice, index) in notices" v-bind:key="index">
                       <td>{{ notice.id }}</td>
                       <td>{{ notice.type }}</td>
                       <td>{{ notice.title }}</td>
                       <td>{{ notice.content }}</td>
                       <td>{{ notice.regdate }}</td>
-                      <td><button class="editbtn">Edit</button></td>
+                      <td>
+                        <button class="editbtn" @click="updateNotice">
+                          Edit
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -105,8 +115,78 @@
             </div>
             <!--공지사항 테이블 끝  -->
 
+            <!-- 공지사항 수정(edit) 폼 시작 -->
+            <div v-show="update">
+              <h5 style="color:aliceblue"> 공지사항 수정(EDIT)</h5>
+              <table class="noticeboxnoticebox">
+                <colgroup>
+                  <col style="width: 10%" />
+                  <col style="width: 15%" />
+                  <col style="width: 15%" />
+                  <col style="width: auto" />
+                  <col style="width: 15%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="noticelabel">
+                      |
+                      <label for="name">구분</label>
+                    </th>
+                    <td>
+                      <input
+                        type="text"
+                        id="name"
+                        class="input-text boxing"
+                        value
+                      />
+                    </td>
+                    <th scope="row" class="noticelabel">
+                      |
+                      <label for="noticeTitle">제목</label>
+                    </th>
+                    <td colspan="3">
+                      <input
+                        type="text"
+                        name="title"
+                        id="qnaTitle"
+                        class="boxing input-text"
+                        maxlength="100"
+                        placeholder="제목을 입력해주세요."
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="noticelabel">
+                      |
+                      <label for="textarea">내용</label>
+                    </th>
+                    <td colspan="5">
+                      <div class="textarea">
+                        <textarea
+                          id="textarea"
+                          name="custInqCn"
+                          rows="5"
+                          cols="30"
+                          title="내용입력"
+                          class="input-textarea boxing"
+                          placeholder="내용을 입력해주세요."
+                        ></textarea>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="search">
+                <button type="button" class="btn_col2">
+                  수정하기
+                </button>
+              </div>
+            </div>
+            <!-- 공지사항 수정 폼 끝 -->
+
             <!--공지사항 작성 폼 시작 (add)-->
             <div v-show="registerNotice">
+              <h5 style="color:aliceblue"> 공지사항 등록(REG)</h5>
               <table class="noticeboxnoticebox">
                 <colgroup>
                   <col style="width: 10%" />
@@ -195,7 +275,7 @@
 </template>
 
 <script>
-import NoticeDataService from "@/services/NoticeDataService.js";
+//import NoticeDataService from "@/services/NoticeDataService.js";
 export default {
   data() {
     return {
@@ -206,87 +286,112 @@ export default {
         title: "",
         content: "",
       },
-      notices:[
+      notices: [
         {
           id: 1,
           type: "영화예매",
           title: "예매시 주의사항",
-          content: " As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.Dagent, Black Widow, to battle a new threat...",
+          content:
+            " As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.Dagent, Black Widow, to battle a new threat...",
         },
       ],
-      registerNotice: false,
+      editNotice: null,
+      registerNotice: false, //공지사항 작성폼 vshow
+      update: false, // 공지사항 수정폼 vshow
 
       // 게시판관리 v-show
       board: false,
 
-      
       //페이징을 위한 변수 정의
       page: 1,
       count: 0, //전체 데이터 건수
       pageSize: 3,
 
-      pageSizes: [3, 6, 9], 
+      pageSizes: [3, 6, 9],
     };
   },
   methods: {
+    logout() {
+      this.$store.dispatch("auth/logout"); 
+      this.$router.push("/");
+    },
     retrieveNotice() {
-      NoticeDataService.getAll(this.title, this.page - 1, this.pageSize) 
-       
-        .then((response) => {
-          const { data, totalItems } = response.data;
-          this.data = data; 
-          this.count = totalItems; 
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      // NoticeDataService.getAll(this.title, this.page - 1, this.pageSize)
+
+      //   .then((response) => {
+      //     const { data, totalItems } = response.data;
+      //     this.data = data;
+      //     this.count = totalItems;
+      //     console.log(response.data);
+      //   })
+      //   .catch((e) => {
+      //     console.log(e);
+      //   });
     },
     // 목록을 클릭했을때 현재 객체, 인덱스번호를 저장하는 함수
-    setActiveNotice(data, index) {
-      this.currentNotice = data;
-      this.currentIndex = index;
-    },
+    // setActiveNotice(data, index) {
+    //   this.currentNotice = data;
+    //   this.currentIndex = index;
+    // },
 
     // 글쓰기 버튼 클릭시 글쓰기 테이블나옴
     writeNotice() {
       this.registerNotice = !this.registerNotice;
+      this.update = false;
     },
 
     // 등록하기 버튼 클릭시 생성
     createNotice() {
-      let data = {
-        type: this.type,
-        title: this.title,
-        content: this.content,
-      };
-      NoticeDataService.create(data)
-        .then((response) => {
-          this.notice.id = response.data.id;
-          console.log(response.data);
-          // 변수 submitted
-          this.submitted = true;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      // let data = {
+      //   type: this.type,
+      //   title: this.title,
+      //   content: this.content,
+      // };
+      // NoticeDataService.create(data)
+      //   .then((response) => {
+      //     this.notice.id = response.data.id;
+      //     console.log(response.data);
+      //     // 변수 submitted
+      //     this.submitted = true;
+      //   })
+      //   .catch((e) => {
+      //     console.log(e);
+      //   });
     },
-        //왼쪽 메뉴바 slide효과
+    //왼쪽 메뉴바 slide효과
     boardclick() {
       this.board = !this.board;
+    },
+
+    // Edit 버튼 클릭시 적용
+    updateNotice() {
+      this.update = !this.update; // update vshow
+      this.registerNotice = false;
+      //   NoticeDataService.update(this.editNotice.id, this.editNotice)
+      //    .then((response) => {
+      //     console.log(response.data);
+      // })
+      // .catch((e)=>{
+      //   console.log(e);
+      // })
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
+}
 .notice_table {
   margin-top: 3%;
   text-align: center;
   color: aliceblue;
   background: inherit;
 }
-th,td{
+th,
+td {
   border-bottom: 1px solid aliceblue;
   text-align: center;
 }
@@ -320,17 +425,17 @@ th,td{
 .noticelabel {
   color: #ffffff !important;
 }
-.editbtn{
-  color:black;
+.editbtn {
+  color: black;
   background: rgb(255, 255, 0);
   border-radius: 25px;
   width: 50%;
 }
-button{
+button {
   border: none !important;
 }
 button:active {
-  outline: none !important; 
+  outline: none !important;
   box-shadow: none !important;
 }
 textarea {
@@ -338,5 +443,22 @@ textarea {
   height: 6.25em;
   border: none;
   resize: none;
+}
+.topbar-filter select {
+  width: 215px;
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  float: right !important;
+  // background: url(../images/uploads/drop-icon.png) no-repeat right 20px center;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none;
+  border-bottom: none !important;
+  color: #ffffff;
+  font-weight: 400;
+}
+.topbar-filter {
+  justify-content: flex-end !important;
+  border-top: none !important;
 }
 </style>

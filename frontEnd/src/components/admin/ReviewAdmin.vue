@@ -40,12 +40,12 @@
                   <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                     </ul>
                   </li>
-                  <li><a href="#">결제관리</a></li>
+                  <li><router-link to="/payment-admin">결제 관리</router-link></li>
                 </ul>
               </div>
               <div class="user-fav">
                 <ul>
-                  <li><a href="#">Log out</a></li>
+                  <li><a href="#" @click="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
@@ -56,10 +56,14 @@
             <div class="topbar-filter">
               <h3 style="color: aliceblue">리뷰 관리</h3>
               <select id="selectBox" name="selectBox" v-model="searchMovieName">
-                <option value="" selected="selected" @click="retrieveMovie">영화 전체</option>
+                <!-- <option value="" selected="selected" @click="retrieveMovie">영화 전체</option>
                 <option value="아바타:물의길"  @click="retrieveMovie">아바타:물의길</option>
                 <option value="신비아파트"  @click="retrieveMovie">신비아파트</option>
-                <option value="영웅"  @click="retrieveMovie">영웅</option>
+                <option value="영웅"  @click="retrieveMovie">영웅</option> -->
+                <option value="" selected="selected">영화 전체</option>
+                <option value="아바타:물의길"  >아바타:물의길</option>
+                <option value="신비아파트" >신비아파트</option>
+                <option value="영웅" >영웅</option>
               </select>
             </div>
 
@@ -172,6 +176,10 @@ export default {
     };
   },
   methods: {
+    logout() {
+      this.$store.dispatch("auth/logout"); 
+      this.$router.push("/");
+    },
     //왼쪽 메뉴바 slide효과
     boardclick() {
       this.board = !this.board;

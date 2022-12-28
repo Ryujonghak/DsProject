@@ -180,7 +180,6 @@ export default {
   computed: {
     // loggedIn 상태 확인
     loggedIn() {
-      // this.$store.state.모듈명.state값
       return this.$store.state.auth.status.loggedIn;
     },
   },
@@ -188,31 +187,23 @@ export default {
   created() {
     if (this.loggedIn) {
       // 로그인이 되어 있는 상태
-      this.$router.push("/"); // 강제 /profile 로 이동
+      this.$router.push("/"); 
     }
   },
   methods: {
     // 회원가입 버튼 클릭시 실행되는 함수
     handleRegister() {
       this.message = "";
-      this.submitted = true; //  회원가입 버튼 클릭 = true
-      // vee-validate 함수 처리 방법
+      this.submitted = true; 
       this.$validator.validateAll().then((isValid) => {
-        // validateAll() 모두 통과하면 -> isValid = true  (유효함)
-        //                             -> isValid = false (유효하지 않음)
         if (!isValid) {
           return; // 함수 탈출(break)
         }
-
-        // 공통함수 register 호출 :
-        // this.$store.dispatch("모듈명/함수명", 매개변수)
         this.$store.dispatch("auth/register", this.user)
           .then((response) => {
             this.message = response.message;
             this.successful = true; // "회원가입이 성공했습니다." 화면 출력
           })
-          // 참고) if/else 문 대신에 -> or(||) and(&&) 연산자를 사용할때도 있음
-          // 로직체크 순서 : true || false, false && true
           .catch((error) => {
             this.successful = false; // 회원가입 실패 -> 회원가입폼 다시 화면에 나옴
             this.message =
