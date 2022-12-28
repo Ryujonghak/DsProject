@@ -100,6 +100,12 @@ const routes = [
     name: "qna-admin",
     component: () => import("@/components/admin/QnaAdmin.vue"),
   },
+    //결제관리 페이지 
+    {
+      path: "/payment-admin",
+      name: "payment-admin",
+      component: () => import("@/components/admin/PaymentAdmin.vue"),
+    },
 
   //TODO   정주희 Part_mypage
   {

@@ -41,7 +41,7 @@
                   <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                     </ul>
                   </li>
-                  <li><a href="#">결제관리</a></li>
+                  <li><router-link to="/payment-admin">결제 관리</router-link></li>
                 </ul>
               </div>
               <div class="user-fav">
