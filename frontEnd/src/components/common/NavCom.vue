@@ -356,7 +356,7 @@
                   </a>
                   <ul class="dropdown-menu level1">
                     <li><a href="/mypage">내정보</a></li>
-                    <li><a href="/myticket">예매내역</a></li>
+                    <li><a href="/myticket">나의예매내역</a></li>
                     <li><a href="/mytest">test</a></li>
                   </ul>
                 </li>

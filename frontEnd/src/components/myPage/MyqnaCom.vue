@@ -15,12 +15,12 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>{{ CurrentUser.name }}’s profile</h1>
+              <h1>{{ CurrentUser.name }}’s q&a</h1>
               <ul class="breadcumb">
                 <li class="active">
                   <router-link to="/">Home</router-link>
                 </li>
-                <li><span class="ion-ios-arrow-right"></span>Profile</li>
+                <li><span class="ion-ios-arrow-right"></span>MY Q&A</li>
               </ul>
             </div>
           </div>
@@ -36,7 +36,8 @@
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-img">
-                <img src="images/uploads/user-img.png" alt="" />
+                <!-- src="images/uploads/user-img.png" -->
+                <img class="profileImg" src="@/assets/images_choi/Views/choi/MovieDetail/user.png" alt="" />
                 <br />
               </div>
               <div class="user-fav">
@@ -318,4 +319,24 @@ tbody {
   margin-top: 3%;
   margin-left: 10%;
 } */
+
+/* 배경이미지 : 아리걸로 통일 */
+.user-hero {
+  background: url(@/assets/images_jung/movie-theater02.jpg)
+  no-repeat;
+  /* height: 598px; */
+  width: 100%;
+}
+
+/* 마이페이지-프로필 이미지크기 수정 */
+.profileImg {
+  -ms-interpolation-mode: bicubic;
+  border: 0;
+  /* height: auto; */
+  max-height: 120px;
+  /* max-width: 100%; */
+  max-width: 120px;
+  vertical-align: middle;
+}
+
 </style>

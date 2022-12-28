@@ -434,6 +434,30 @@ export default {
           content: "재밌지만 아쉬워요.",
         },
       ],
+
+      watchedMovie: {
+        username: "", // 아이디
+        paidDate: "", // 예매일자
+        reservNo: "", // 예매번호
+        openDt: "2022", // 개봉년도
+        movieNm: "눈의 여왕5: 스노우 프린세스와 미러랜드의 비밀", // 영화제목   -> title로 바꿔야하나?
+        posterURL:
+          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
+        directors: "제임스카메론", // 감독
+        rating: 4.3, // 평점(관람객)
+        starRating: 3.5, // 나중에 백엔드에서 평점 가져오기 (정수로 받아야 합니다,,)
+        showTm: "192", // 상영시간
+        watchGradeNm: "12세관람가", // 관람등급
+        scheNo: "2022/12/28", // 상영스케쥴
+        seatNo: "I3", // 좌석번호
+        cnt: "1", // 예매수량
+        price: "15000", // 금액
+      },
+      // TODO: 리뷰
+      reviewMovie: {
+        userStarRating: 2, // 사용자별점
+        userReview: "", // 리뷰내용
+      },
       starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
       userReview: "",
       userStarRaing: 3,

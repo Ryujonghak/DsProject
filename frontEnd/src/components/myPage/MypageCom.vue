@@ -15,12 +15,12 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>{{ CurrentUser.name }}’s profile</h1>
+              <h1>{{ CurrentUser.name }}’s page</h1>
               <ul class="breadcumb">
                 <li class="active">
                   <router-link to="/">Home</router-link>
                 </li>
-                <li><span class="ion-ios-arrow-right"></span>Profile</li>
+                <li><span class="ion-ios-arrow-right"></span>MY PAGE</li>
               </ul>
             </div>
           </div>
@@ -36,7 +36,12 @@
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-img">
-                <img src="images/uploads/user-img.png" alt="" />
+                <!-- src="images/uploads/user-img.png" -->
+                <img
+                  class="profileImg"
+                  src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                  alt=""
+                />
                 <br />
               </div>
               <div class="user-fav">
@@ -57,7 +62,6 @@
                 </ul>
               </div>
 
-              <!-- todo: active가 안됨 -->
               <div class="user-fav">
                 <p>Account Details</p>
                 <ul>
@@ -122,12 +126,12 @@
                       <tr>
                         <td>
                           <div class="mv-item-infor">
-                            <h6><a href="#">영화관1</a></h6>
+                            <h6><a href="#">DS 서면</a></h6>
                           </div>
                         </td>
                         <td>
                           <div class="mv-item-infor">
-                            <h6><a href="#">영화관2</a></h6>
+                            <h6><a href="#">DS 해운대</a></h6>
                           </div>
                         </td>
                         <td>
@@ -143,7 +147,7 @@
                 <div class="col-xs-2 mv-user-review-item">
                   <h6>나의 등급</h6>
                   <div>
-                    <img src="../myPage/welcome.png" alt="" />
+                    <img src="@/assets/images_jung/welcome.png" alt="" />
                   </div>
                 </div>
               </div>
@@ -164,148 +168,201 @@
                     ></a>
                   </div>
                   <!-- 나의 아카이브 내용 시작 -->
+                  <!-- TODO: 본 영화 정보 받아오기 :  -->
                   <div class="flex-wrap-movielist">
                     <!-- 상영작 1 -->
                     <div class="movie-item-style-2 movie-item-style-1">
-                      <!-- TODO: 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
-                      <img :src="movie.posterUrl" alt="poster" />
+                      <!-- todo) 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
+                      <img :src="watchedMovie.posterURL" alt="poster" />
                       <!-- 영화에 마우스 올리면 나오는 관람정보 -->
                       <div class="hvr-inner">
-                        <h6>
-                          <router-link to="/movieDetail"
-                            >아바타 <span>(2022)</span></router-link
-                          >
-                        </h6>
+                        <div class="movieTitle">
+                          <h6>
+                            <router-link to="/movieDetail">
+                              {{ watchedMovie.movieNm }}
+                              <span
+                                >({{ watchedMovie.openDt }})</span
+                              ></router-link
+                            >
+                          </h6>
+                        </div>
                         <p>
-                          Run Time: {{}} 2h 21’ <br />
-                          Director: {{}} dd <br />
-                          Watched: 2022/12/22
+                          {{ watchedMovie.scheNo }} <br />
+                          상영시간: {{ watchedMovie.showTm }}분 <br />
+                          감독: {{ watchedMovie.directors }}
                         </p>
                         <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
                         <p class="time sm-text">
                           나의 별점
                           <!-- 별점 v-for -->
-                          <i class="ion-android-star"></i><span>4.0</span>
+                          <i class="ion-android-star"></i
+                          ><span>{{ reviewMovie.userStarRating }}</span>
                         </p>
-                        <router-link to="/archive"
+                        <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
+                        <router-link to="/archive" @click="goReview"
                           >나의 리뷰 작성하기</router-link
                         >
                         <!-- <h6>Best Musical movie</h6> -->
                       </div>
                       <!-- 영화 라벨 -->
                       <div class="mv-item-infor">
-                        <h6><a href="/movieDetail">아바타</a></h6>
+                        <div class="movieTitle-2">
+                          <h6>
+                            <a href="/movieDetail">{{
+                              watchedMovie.movieNm
+                            }}</a>
+                          </h6>
+                        </div>
                         <p class="rate">
-                          <i class="ion-android-star"></i><span>4.3</span> /5
-                          <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                          <i class="ion-android-star"></i
+                          ><span>{{ watchedMovie.rating }}</span> /5
                         </p>
                       </div>
                     </div>
                     <!-- 상영작 2 -->
                     <div class="movie-item-style-2 movie-item-style-1">
-                      <!-- TODO: 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
-                      <img :src="movie.posterUrl" alt="poster" />
+                      <!-- todo) 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
+                      <img :src="watchedMovie.posterURL" alt="poster" />
                       <!-- 영화에 마우스 올리면 나오는 관람정보 -->
                       <div class="hvr-inner">
-                        <h6>
-                          <router-link to="/movieDetail"
-                            >아바타 <span>(2022)</span></router-link
-                          >
-                        </h6>
+                        <div class="movieTitle">
+                          <h6>
+                            <router-link to="/movieDetail">
+                              {{ watchedMovie.movieNm }}
+                              <span
+                                >({{ watchedMovie.openDt }})</span
+                              ></router-link
+                            >
+                          </h6>
+                        </div>
                         <p>
-                          Run Time: {{}} 2h 21’ <br />
-                          Director: {{}} dd <br />
-                          Watched: 2022/12/22
+                          {{ watchedMovie.scheNo }} <br />
+                          상영시간: {{ watchedMovie.showTm }}분 <br />
+                          감독: {{ watchedMovie.directors }}
                         </p>
                         <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
                         <p class="time sm-text">
                           나의 별점
                           <!-- 별점 v-for -->
-                          <i class="ion-android-star"></i><span>4.0</span>
+                          <i class="ion-android-star"></i
+                          ><span>{{ reviewMovie.userStarRating }}</span>
                         </p>
-                        <router-link to="/archive"
+                        <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
+                        <router-link to="/archive" @click="goReview"
                           >나의 리뷰 작성하기</router-link
                         >
                         <!-- <h6>Best Musical movie</h6> -->
                       </div>
                       <!-- 영화 라벨 -->
                       <div class="mv-item-infor">
-                        <h6><a href="/movieDetail">아바타</a></h6>
+                        <div class="movieTitle-2">
+                          <h6>
+                            <a href="/movieDetail">{{
+                              watchedMovie.movieNm
+                            }}</a>
+                          </h6>
+                        </div>
                         <p class="rate">
-                          <i class="ion-android-star"></i><span>4.3</span> /5
-                          <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                          <i class="ion-android-star"></i
+                          ><span>{{ watchedMovie.rating }}</span> /5
                         </p>
                       </div>
                     </div>
                     <!-- 상영작 3 -->
                     <div class="movie-item-style-2 movie-item-style-1">
-                      <!-- TODO: 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
-                      <img :src="movie.posterUrl" alt="poster" />
+                      <!-- todo) 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
+                      <img :src="watchedMovie.posterURL" alt="poster" />
                       <!-- 영화에 마우스 올리면 나오는 관람정보 -->
                       <div class="hvr-inner">
-                        <h6>
-                          <router-link to="/movieDetail"
-                            >아바타 <span>(2022)</span></router-link
-                          >
-                        </h6>
+                        <div class="movieTitle">
+                          <h6>
+                            <router-link to="/movieDetail">
+                              {{ watchedMovie.movieNm }}
+                              <span
+                                >({{ watchedMovie.openDt }})</span
+                              ></router-link
+                            >
+                          </h6>
+                        </div>
                         <p>
-                          Run Time: {{}} 2h 21’ <br />
-                          Director: {{}} dd <br />
-                          Watched: 2022/12/22
+                          {{ watchedMovie.scheNo }} <br />
+                          상영시간: {{ watchedMovie.showTm }}분 <br />
+                          감독: {{ watchedMovie.directors }}
                         </p>
                         <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
                         <p class="time sm-text">
                           나의 별점
                           <!-- 별점 v-for -->
-                          <i class="ion-android-star"></i><span>4.0</span>
+                          <i class="ion-android-star"></i
+                          ><span>{{ reviewMovie.userStarRating }}</span>
                         </p>
-                        <router-link to="/archive"
+                        <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
+                        <router-link to="/archive" @click="goReview"
                           >나의 리뷰 작성하기</router-link
                         >
                         <!-- <h6>Best Musical movie</h6> -->
                       </div>
                       <!-- 영화 라벨 -->
                       <div class="mv-item-infor">
-                        <h6><a href="/movieDetail">아바타</a></h6>
+                        <div class="movieTitle-2">
+                          <h6>
+                            <a href="/movieDetail">{{
+                              watchedMovie.movieNm
+                            }}</a>
+                          </h6>
+                        </div>
                         <p class="rate">
-                          <i class="ion-android-star"></i><span>4.3</span> /5
-                          <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                          <i class="ion-android-star"></i
+                          ><span>{{ watchedMovie.rating }}</span> /5
                         </p>
                       </div>
                     </div>
                     <!-- 상영작 4 -->
                     <div class="movie-item-style-2 movie-item-style-1">
-                      <!-- TODO: 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
-                      <img :src="movie.posterUrl" alt="poster" />
+                      <!-- todo) 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
+                      <img :src="watchedMovie.posterURL" alt="poster" />
                       <!-- 영화에 마우스 올리면 나오는 관람정보 -->
                       <div class="hvr-inner">
-                        <h6>
-                          <router-link to="/movieDetail"
-                            >아바타 <span>(2022)</span></router-link
-                          >
-                        </h6>
+                        <div class="movieTitle">
+                          <h6>
+                            <router-link to="/movieDetail">
+                              {{ watchedMovie.movieNm }}
+                              <span
+                                >({{ watchedMovie.openDt }})</span
+                              ></router-link
+                            >
+                          </h6>
+                        </div>
                         <p>
-                          Run Time: {{}} 2h 21’ <br />
-                          Director: {{}} dd <br />
-                          Watched: 2022/12/22
+                          {{ watchedMovie.scheNo }} <br />
+                          상영시간: {{ watchedMovie.showTm }}분 <br />
+                          감독: {{ watchedMovie.directors }}
                         </p>
                         <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
                         <p class="time sm-text">
                           나의 별점
                           <!-- 별점 v-for -->
-                          <i class="ion-android-star"></i><span>4.0</span>
+                          <i class="ion-android-star"></i
+                          ><span>{{ reviewMovie.userStarRating }}</span>
                         </p>
-                        <router-link to="/archive"
+                        <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
+                        <router-link to="/archive" @click="goReview"
                           >나의 리뷰 작성하기</router-link
                         >
                         <!-- <h6>Best Musical movie</h6> -->
                       </div>
                       <!-- 영화 라벨 -->
                       <div class="mv-item-infor">
-                        <h6><a href="/movieDetail">아바타</a></h6>
+                        <div class="movieTitle-2">
+                          <h6>
+                            <a href="/movieDetail">{{
+                              watchedMovie.movieNm
+                            }}</a>
+                          </h6>
+                        </div>
                         <p class="rate">
-                          <i class="ion-android-star"></i><span>4.3</span> /5
-                          <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
+                          <i class="ion-android-star"></i
+                          ><span>{{ watchedMovie.rating }}</span> /5
                         </p>
                       </div>
                     </div>
@@ -313,7 +370,6 @@
                     <div class="movie-item-style-2 movie-item-style-1">
                       <img src="images/uploads/mv1.jpg" alt="" />
                       <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                      <!-- TODO: style.css _ hvr-inner 수정함 -->
                       <div class="hvr-inner">
                         <h6>
                           <a href="#">영웅 <span>(2022)</span></a>
@@ -339,7 +395,6 @@
                     <div class="movie-item-style-2 movie-item-style-1">
                       <img src="images/uploads/mv1.jpg" alt="" />
                       <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                      <!-- TODO: style.css _ hvr-inner 수정함 -->
                       <div class="hvr-inner">
                         <h6>
                           <a href="#">영웅 <span>(2022)</span></a>
@@ -365,7 +420,6 @@
                     <div class="movie-item-style-2 movie-item-style-1">
                       <img src="images/uploads/mv1.jpg" alt="" />
                       <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                      <!-- TODO: style.css _ hvr-inner 수정함 -->
                       <div class="hvr-inner">
                         <h6>
                           <a href="#">영웅 <span>(2022)</span></a>
@@ -391,7 +445,6 @@
                     <div class="movie-item-style-2 movie-item-style-1">
                       <img src="images/uploads/mv1.jpg" alt="" />
                       <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                      <!-- TODO: style.css _ hvr-inner 수정함 -->
                       <div class="hvr-inner">
                         <h6>
                           <a href="#">영웅 <span>(2022)</span></a>
@@ -416,23 +469,6 @@
                   </div>
                 </div>
               </div>
-
-              <!-- 페이지 -->
-              <!-- <ul class="pagination">
-              <li class="icon-prev">
-                <a href="#"><i class="ion-ios-arrow-left"></i></a>
-              </li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">21</a></li>
-              <li><a href="#">22</a></li>
-              <li class="icon-next">
-                <a href="#"><i class="ion-ios-arrow-right"></i></a>
-              </li>
-            </ul> -->
             </div>
           </div>
         </div>
@@ -456,36 +492,40 @@ export default {
     return {
       CurrentUser: {
         email: "",
-        password: "",
+        password: "", // 영석이형 백엔, pass
         username: "",
         phone: null,
-        year: null,
+        year: null, // 영석이형 백엔, birthday로 퉁쳐짐
         month: null,
         day: null,
         name: "",
-        answer: "",
+        answer: "", // 비번확인용 정답
       },
       message: "",
-      movie: {
-        title: "아바타: 물의 길",
-        synopsis:
-          " 아바타: 물의 길 은 판도라 행성에서 '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로, 샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이출연하고 존 랜도가 프로듀싱을 맡았다.",
-        genre: "액션, 어드벤쳐, SF",
-        pubdate: "2022.12.14",
-        rating: 4.5,
-        starRating: 0, // 나중에 백엔드에서 평점 가져오기 (TODO: 정수로 받아야 합니다,,)
-        runTime: "192h",
-        genre: "액션, 어드벤쳐, SF",
-        director: "최아리",
-        actor: "최아리,강수빈,정주희",
-        role: "아바타1,아바타2,아바타3",
-        watchedPeople: "2,945,915",
-        review: "",
-        youtubeUrl: "https://www.youtube.com/watch?v=7Q70_m-59O8&t=7s",
-        posterUrl:
-          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
-        imageUrl:
-          "https://movie-phinf.pstatic.net/20221110_282/16680463363384H0hJ_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_147/1668046384890YVGlu_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_141/1668046432203AKL6P_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221123_280/1669180665184phjkW_JPEG/movie_image.jpg?type=m665_443_2", // 약 4~6개 정도 주소 백엔드에 넣어두는건 어떤지 고민입니다.
+
+      // FIXME: 예매한 영화.. 작성중
+      watchedMovie: {
+        username: "", // 아이디
+        paidDate: "", // 예매일자
+        reservNo: "", // 예매번호
+        openDt: "2022", // 개봉년도
+        movieNm: "눈의 여왕5: 스노우 프린세스와 미러랜드의 비밀", // 영화제목   -> title로 바꿔야하나?
+        posterURL:
+          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
+        directors: "제임스카메론", // 감독 (최대7자)
+        rating: 4.3, // 평점(관람객)
+        starRating: 3.5, // 나중에 백엔드에서 평점 가져오기 (정수로 받아야 합니다,,)
+        showTm: "192", // 상영시간
+        watchGradeNm: "12세관람가", // 관람등급
+        scheNo: "2022/12/28", // 상영스케쥴
+        seatNo: "I3", // 좌석번호
+        cnt: "1", // 예매수량
+        price: "15000", // 금액
+      },
+      // TODO: 리뷰
+      reviewMovie: {
+        userStarRating: 2, // 사용자별점
+        userReview: "", // 리뷰내용
       },
     };
   },
@@ -538,6 +578,11 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
+    // TODO: 클릭이벤트 - 리뷰작성하러가기 함수(영화제목 전달)
+    goReview() {
+      // 영화 제목 정보 보내야 함
+      movieNm = this.movieNm;
+    },
   },
   mounted() {
     custom();
@@ -546,7 +591,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .box-image {
   width: 55px;
   height: 70px;
@@ -558,5 +603,31 @@ export default {
 
 .movie-detail-content-bottom {
   padding-bottom: 10px;
+}
+
+/* 영화제목 div 크기지정 */
+.movieTitle {
+  height: 50px;
+}
+.movieTitle-2 {
+  height: 35px;
+}
+
+/* 배경이미지 : 아리걸로 통일 */
+.user-hero {
+  background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
+  /* height: 598px; */
+  width: 100%;
+}
+
+/* 마이페이지-프로필 이미지크기 수정 */
+.profileImg {
+  -ms-interpolation-mode: bicubic;
+  border: 0;
+  /* height: auto; */
+  max-height: 120px;
+  /* max-width: 100%; */
+  max-width: 120px;
+  vertical-align: middle;
 }
 </style>

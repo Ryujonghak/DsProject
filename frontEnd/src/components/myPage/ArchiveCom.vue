@@ -15,12 +15,12 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>{{ CurrentUser.name }}’s profile</h1>
+              <h1>{{ CurrentUser.name }}’s archive</h1>
               <ul class="breadcumb">
                 <li class="active">
                   <router-link to="/">Home</router-link>
                 </li>
-                <li><span class="ion-ios-arrow-right"></span>Profile</li>
+                <li><span class="ion-ios-arrow-right"></span>MY ARCHIVE</li>
               </ul>
             </div>
           </div>
@@ -37,7 +37,8 @@
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-img">
-                <img src="images/uploads/user-img.png" alt="" />
+                <!-- src="images/uploads/user-img.png" -->
+                <img class="profileImg" src="@/assets/images_choi/Views/choi/MovieDetail/user.png" alt="" />
                 <br />
               </div>
               <div class="user-fav">
@@ -58,7 +59,6 @@
                 </ul>
               </div>
 
-              <!-- todo: active가 안됨 -->
               <div class="user-fav">
                 <p>Account Details</p>
                 <ul>
@@ -95,7 +95,7 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <!-- 2) 리뷰 파트 시작 -->
             <div class="topbar-filter user">
-              <p>리뷰 작성하기<span>8 movies</span> in total</p>
+              <p>나의 리뷰: 영화 관람평가 </p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
@@ -107,7 +107,7 @@
                 <div class="rv-hd">
                   <div class="div">
                     <!-- 예매내역/내정보-나의아카이브 에서 리뷰쓰기 클릭시 정보 넘어가야함 -->
-                    <h2>아바타: 물의 길{{내가본영화.title}}</h2>
+                    <h2> {{ watchedMovie.movieNm }} </h2>
                   </div>
                 </div>
                 <div>
@@ -118,9 +118,10 @@
                       id="myform"
                       method="post"
                     >
+                    <!-- 리뷰 작성폼 시작 -->
                       <div>
                         <fieldset>
-                          <!-- <span class="review-form-style">별점을 선택해주세요</span> -->
+                          <span class="review-form-style">별점을 선택해주세요</span>
                           <input
                             type="radio"
                             name="reviewStar"
@@ -160,30 +161,32 @@
                           placeholder="평점 및 영화 관람평을 작성해주세요. 주제와 무관한 리뷰 또는 스포일러는 삭제될 수 있습니다."
                         ></textarea>
                       </div>
+                      <!-- 리뷰작성폼 끝 -->
                     </form>
 
-                    <!-- <div class="col-xs-9"></div>/// -->
+                    <!-- 리뷰등록 버튼 -->
                     <div class="col-xs-3">
-                          <!-- 리뷰 작성 버튼에 함수 걸어주기 -->
-                          <a href="#" class="redbtn" @click="saveReview"
-                            >관람평 작성</a
-                          >
-                        </div>
+                      <!-- TODO: 리뷰 등록 버튼에 함수 걸어주기 -->
+                      <a href="#" class="redbtn" @click="saveReview"
+                        >관람평 등록</a
+                      >
+                    </div>
+                    <!-- 등록버튼 끝 -->
                   </div>
                 </div>
               </div>
             </div>
             <!-- 리뷰작성 끝 -->
 
-            <!-- 나의 리뷰  -->
+            <!-- 나의 리뷰 메뉴바  -->
             <div class="topbar-filter user">
-              <p>나의 리뷰 <span>8 movies</span> in total</p>
+              <p>나의 리뷰 <span>8{{  }} 리뷰갯수 셀수있을까 movies</span> in total</p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
             </div>
 
-            <!-- 나의 리뷰 내용 시작 -->
+            <!-- 나의 리뷰 조회 시작 -->
             <div class="row">
               <!-- 리뷰 : 1 -->
               <div class="col-xs-12 movie-item-style-2 userrate">
@@ -193,10 +196,10 @@
                   <div class="mv-item-infor">
                     <br />
                     <h6>
-                      <a href="#">영웅 <span>(2022)</span></a>
+                      <a href="#">{{watchedMovie.movieNm}} <span> ({{ watchedMovie.openDt }}) </span></a>
                     </h6>
-                    <p>Run Time: 120분 <br /><a>12세 관람가</a></p>
-                    <span class="time sm">2022년 10월 12일</span>
+                    <p>Run Time: {{watchedMovie.showTm}}분 <br /><a>{{watchedMovie.watchGradeNm}} </a></p>
+                    <span class="time sm">{{ watchedMovie.scheNo }}</span>
                     <br />
                   </div>
                 </div>
@@ -212,33 +215,27 @@
                             나의 별점
                             <span
                               class="rate-star-result"
-                              v-for="(i, index) in movie.starRating"
+                              v-for="(i, index) in reviewMovie.userStarRating"
                               :key="index"
                               ><i class="ion-ios-star"></i
                             ></span>
-                            <!-- <span>{{ movie.userRating }}</span> -->
                           </h6>
                         </div>
                       </div>
                       <p style="margin-top: 2%">
-                        아바타 2는 아직 안 봤는데 넘 기대되구요,, 1도 재밌게
-                        봤었구요,, 저는 집에 가고 싶구요,, 리뷰쓰기는 또 어떻게
-                        작동시켜야 하는지 까마득 하구요,, 시간은 흐르는데 다
-                        끝난건 없는거 같구요,, 자신감 하락하구요,, ㅜㅜ,, 너무
-                        혼내지 말기,, 다시 리뷰로 돌아가서 아바타 언제 보려나
-                        싶지만 얼른 보고싶고 선리뷰 별 드립니다. 사실 이건
-                        영화를 봐야지 쓸 수 있는 리뷰랍니다.
+                        {{ reviewMovie.userReview }}
                       </p>
                     </div>
                   </div>
                 </div>
-                <!-- 예매취소 버튼 -->
+                <!-- 리뷰삭제 버튼 -->
                 <div class="col-xs-2 deletebtn">
                   <div class="movie-item-style-2">
-                    <a href="#" class="redbtn">삭제</a>
+                    <!-- FIXME: 클릭이벤트-리뷰삭제 -->
+                    <a href="#" class="redbtn" @click="deleteReview">삭제</a>
                   </div>
                 </div>
-                <!-- 예매취소 버튼 끝 -->
+                <!-- 리뷰삭제 버튼 끝 -->
               </div>
               <!-- 리뷰 : 2 -->
               <div class="col-xs-12 movie-item-style-2 userrate">
@@ -248,25 +245,26 @@
                   <div class="mv-item-infor">
                     <br />
                     <h6>
-                      <a href="#">영웅 <span>(2022)</span></a>
+                      <a href="#">{{watchedMovie.movieNm}} <span> ({{ watchedMovie.openDt }}) </span></a>
                     </h6>
-                    <p>Run Time: 120분 <br /><a>12세 관람가</a></p>
-                    <span class="time sm">2022년 10월 12일</span>
+                    <p>Run Time: {{watchedMovie.showTm}}분 <br /><a>{{watchedMovie.watchGradeNm}} </a></p>
+                    <span class="time sm">{{ watchedMovie.scheNo }}</span>
+                    <br />
                   </div>
                 </div>
                 <!-- 영화정보 -->
                 <div class="col-xs-8">
                   <div class="row" style="padding: 3%">
                     <!-- ㅇㅇ -->
-                    <div class="mv-user-review-item">
-                      <div class="user-infor">
+                    <div class="user-infor">
+                      <div class="mv-user-review-item">
                         <!-- 별점 v-for 반복문 -->
                         <div class="rate-star">
                           <h6>
                             나의 별점
                             <span
                               class="rate-star-result"
-                              v-for="(i, index) in movie.starRating"
+                              v-for="(i, index) in reviewMovie.userStarRating"
                               :key="index"
                               ><i class="ion-ios-star"></i
                             ></span>
@@ -285,15 +283,17 @@
                     </div>
                   </div>
                 </div>
-                <!-- 예매취소 버튼 -->
+                <!-- 리뷰삭제 버튼 -->
                 <div class="col-xs-2 deletebtn">
                   <div class="movie-item-style-2">
-                    <a href="#" class="redbtn">삭제</a>
+                    <!-- FIXME: 클릭이벤트-리뷰삭제 -->
+                    <a href="#" class="redbtn" @click="deleteReview">삭제</a>
                   </div>
                 </div>
-                <!-- 예매취소 버튼 끝 -->
+                <!-- 리뷰삭제 버튼 끝 -->
               </div>
             </div>
+            <!-- 나의 리뷰 조회 끝 -->
 
             <!-- 페이지 -->
             <ul class="pagination">
@@ -343,26 +343,32 @@ export default {
         answer: "",
       },
       message: "",
-      movie: {
-        title: "아바타: 물의 길",
-        synopsis:
-          " 아바타: 물의 길 은 판도라 행성에서 '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로, 샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이출연하고 존 랜도가 프로듀싱을 맡았다.",
-        genre: "액션, 어드벤쳐, SF",
-        pubdate: "2022.12.14",
-        rating: 4.5,
-        starRating: 1, // 나중에 백엔드에서 평점 가져오기 (TODO: 정수로 받아야 합니다,,)
-        runTime: "192h",
-        genre: "액션, 어드벤쳐, SF",
-        director: "최아리",
-        actor: "최아리,강수빈,정주희",
-        role: "아바타1,아바타2,아바타3",
-        watchedPeople: "2,945,915",
-        review: "",
-        youtubeUrl: "https://www.youtube.com/watch?v=7Q70_m-59O8&t=7s",
-        posterUrl:
-          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
-        imageUrl:
-          "https://movie-phinf.pstatic.net/20221110_282/16680463363384H0hJ_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_147/1668046384890YVGlu_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_141/1668046432203AKL6P_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221123_280/1669180665184phjkW_JPEG/movie_image.jpg?type=m665_443_2", // 약 4~6개 정도 주소 백엔드에 넣어두는건 어떤지 고민입니다.
+     
+      // FIXME: 예매한 영화.. 작성중
+      watchedMovie: {
+        username: "", // 아이디
+        paidDate: "", // 예매일자
+        reservNo: "", // 예매번호
+        openDt: "2022", // 개봉년도
+        movieNm: "눈의 여왕5: 스노우 프린세스와 미러랜드의 비밀", // 영화제목   -> title로 바꿔야하나?
+        posterURL:
+          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
+        directors: "제임스카메론", // 감독
+        rating: 4.3, // 평점(관람객)
+        starRating: 4, // 나중에 백엔드에서 평점 가져오기 (정수로 받아야 합니다,,)
+        showTm: "192", // 상영시간
+        watchGradeNm: "12세관람가", // 관람등급
+        scheNo: "2022/12/28", // 상영스케쥴
+        seatNo: "I3", // 좌석번호
+        cnt: "1", // 예매수량
+        price: "15000", // 금액
+      },
+      // TODO: 리뷰
+      reviewMovie: {
+
+        userStarRating: 2,  // 사용자별점
+        userReview: ["클릭버튼으로 생성된 영화번호? 예매번호를 넘겨주면 그안에 저장된 영화제목 등 정보를 불러서 출력하도록 만들어야 함...... 리뷰내용이 너무 길어지니까 오류가 나네... 그래서 []안에 넣으니까 되긴한데 쌍따옴표까지 같이 출력돼서 약간 곤란쓰............................................................................................일단 리뷰를 이만큼 길게 쓰는 사람도 있겠지 하지만 나는 아니고 여기에다가 아무말이나 쓰고 있을 뿐이고 집에가고싶을 뿐이고 잠온다... ", // 리뷰내용
+        ]
       },
     };
   },
@@ -411,12 +417,38 @@ export default {
     },
     // 아리 별점
     cutNames() {
-      this.movie.actor = this.movie.actor.split(",");
-      this.movie.role = this.movie.role.split(",");
-      this.movie.imageUrl = this.movie.imageUrl.split(",");
-      this.movie.starRating = Math.floor(this.movie.rating);
+      // this.watchedMovie.starRating = Math.floor(this.watchedMovie.rating);
+      this.watchedMovie.starRating = Math.floor(this.watchedMovie.rating);
       // alert(this.movie.starRating);
     },
+    // FIXME: 새로운 리뷰 저장 함수
+    saveReview() {
+      // 임시 객체 변수 -> springboot 전송
+      // 백데이터에 우리가 새로 받은 userStarRaing, 넣어주기
+      // BUT 그렇다면 username, movieCode 등은 자동으로 넘어갈 수 있는지
+      let data = {
+        rating: this.userStarRating,
+        content: this.userReview,
+      };
+      // insert 요청 함수 호출
+      ReviewDataService.create(data)
+        .then((response) => {
+          this.dept.dno = response.data.dno;
+          console.log(response.data);
+          this.submitted = true;
+        })
+        // 실패하면 .catch() 결과가 전송됨
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    // FIXME: 리뷰 작성버튼 눌러서 저장하기
+    // saveReview() {
+    // },
+    // FIXME: 리뷰 삭제
+    // deleteReview() {
+    // },
   },
   mounted() {
     custom();
@@ -480,4 +512,24 @@ export default {
 .deletebtn {
   margin-top: 10%;
 }
+
+/* 배경이미지 : 아리걸로 통일 */
+.user-hero {
+  background: url(@/assets/images_jung/movie-theater02.jpg)
+  no-repeat;
+  /* height: 598px; */
+  width: 100%;
+}
+
+/* 마이페이지-프로필 이미지크기 수정 */
+.profileImg {
+  -ms-interpolation-mode: bicubic;
+  border: 0;
+  /* height: auto; */
+  max-height: 120px;
+  /* max-width: 100%; */
+  max-width: 120px;
+  vertical-align: middle;
+}
+
 </style>
