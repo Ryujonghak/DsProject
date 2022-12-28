@@ -247,25 +247,26 @@ export default {
         {
           movieNm: "아바타:물의길",
           prdtYear: "2022",
-          openDt: "2022",
+          openDt: "2022-12-20",
           rating: "4.5/5.0",
           description:
             "아바타 후속작 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
           showTm: "2H20M",
           watchGradeNm: "15+",
+          genreNm:"SF/판타지",
           directors: "subin Kang",
           actor:
             "ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,",
-        },
-        {
+        },        {
           movieNm: "아바타:물의길",
           prdtYear: "2022",
-          openDt: "2022",
+          openDt: "2022-12-20",
           rating: "4.5/5.0",
           description:
             "아바타 후속작 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
           showTm: "2H20M",
           watchGradeNm: "15+",
+          genreNm:"SF/판타지",
           directors: "subin Kang",
           actor:
             "ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,",

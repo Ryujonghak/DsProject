@@ -65,7 +65,7 @@
                     id="qnaTitle"
                     class="boxing input-text"
                     maxlength="100"
-                    placeholder="제목을 입력해주세요."
+                   v-model="movie.genreNm"
                   />
                 </td>
               </tr>
@@ -81,7 +81,7 @@
                   id="qnaTitle"
                   class="boxing input-text"
                   maxlength="100"
-                  placeholder="제목을 입력해주세요."
+                  v-model="movie.showTm"
                 />
               </td>
               <th scope="row" class="noticelabel">
@@ -95,7 +95,7 @@
                   id="qnaTitle"
                   class="boxing input-text"
                   maxlength="100"
-                  placeholder="제목을 입력해주세요."
+                 v-model="movie.directors"
                 />
               </td>
               <th scope="row" class="noticelabel">
@@ -109,7 +109,7 @@
                   id="qnaTitle"
                   class="boxing input-text"
                   maxlength="100"
-                  placeholder="제목을 입력해주세요."
+                  v-model="movie.actor"
                 />
               </td>
             </tr>
@@ -128,6 +128,7 @@
                       title="내용입력"
                       class="input-textarea boxing"
                       placeholder="내용을 입력해주세요."
+                      v-model="movie.description"
                     ></textarea>
                   </div>
                 </td>
@@ -158,7 +159,7 @@
                   id="qnaTitle"
                   class="boxing input-text"
                   maxlength="100"
-                  placeholder="제목을 입력해주세요."
+                  v-model="movie.openDt"
                 />
                 
               </td>
@@ -167,7 +168,7 @@
                 <label for="noticeTitle">관람등급</label>
               </th>
               <td colspan="3">
-              <select name="관람등급" id="age">
+              <select name="관람등급" id="age" v-model="movie.watchGradeNm">
                 <option value="1">ALL</option>
                 <option value="2">12+</option>
                 <option value="3">15+</option>
@@ -193,6 +194,17 @@ export default {
   data() {
     return {
       // imgURL: "",
+      movie: {
+        openDt: "",
+        watchGradeNm: "",
+        movieNm:"",
+        rating: "",
+        description:"",
+        showTm: "",
+        genreNm:"",
+        directors:"",
+        actor:"",
+      },
     };
   },
   methods: {
