@@ -30,7 +30,9 @@
               <div class="user-fav">
                 <p>기타</p>
                 <ul>
-                  <li class="active"><a href="/reservInfoAdmin">관리자관리</a></li>
+                  <li class="active">
+                    <a href="/reservInfoAdmin">관리자관리</a>
+                  </li>
                   <li><a href="#">Log out</a></li>
                 </ul>
               </div>
@@ -237,7 +239,8 @@
 </template>
 
 <script>
-export default {};
+export default {
+};
 </script>
 
 <style></style>
