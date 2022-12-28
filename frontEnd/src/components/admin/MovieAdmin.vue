@@ -58,15 +58,17 @@
           <!-- 본문 시작 -->
           <!-- 영화관리 테이블 시작 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
-            <div class="topbar-filter user">
-              <p>Found <span>1,608 movies</span> in total</p>
-              <label>Sort by:</label>
+            <!-- <div style="width:215px; float:right;"> -->
+            <div class="topbar-filter">
+              <!-- <h5 style="justify-content:flex-start !important; color: aliceblue; margin-right: 1%;">sort by:</h5> -->
+              <h5 style="color:aliceblue;">sort by:</h5>
               <select>
                 <option value="range">-- Choose option --</option>
                 <option value="saab">-- Choose option 2--</option>
               </select>
-              <button class="regbtn" style="color:aliceblue">
-                <router-link to="/addMovie-admin">등록</router-link>
+              <!-- <button class="regbtn" style="color:aliceblue; width: 50% !important; height: 15%; margin-top: 20%; float: right;"> -->
+              <button class="regbtn" style="width:15%;">
+                <router-link to="/addMovie-admin">새 영화 등록</router-link>
               </button>
             </div>
             <div class="flex-wrap-movielist user-fav-list">
@@ -292,5 +294,21 @@ button{
 button:active {
   outline: none !important; 
   box-shadow: none !important;
+}
+.topbar-filter select {
+    width: 215px;
+    // -webkit-appearance: none;
+    // -moz-appearance: none;
+    float: right !important;
+    // background: url(../images/uploads/drop-icon.png) no-repeat right 20px center;
+    border-left: 1px solid #405266;
+    border-right: 1px solid #405266;
+    border-top: none;
+    border-bottom: none;
+    color: #ffffff;
+    font-weight: 400;
+}
+.topbar-filter{
+  justify-content: flex-end !important;
 }
 </style>

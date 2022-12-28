@@ -53,7 +53,7 @@
           <!-- <!— 왼쪽 메뉴바 끝 —> -->
 
           <div class="col-md-9 col-sm-12 col-xs-12">
-            <div class="topbar-filter">
+            <div style="margin-bottom:2%;">
               <h3 style="color: aliceblue">결제관리 관리</h3>
             </div>
 
