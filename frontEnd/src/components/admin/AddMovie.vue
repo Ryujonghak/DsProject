@@ -36,7 +36,7 @@
                     type="text"
                     id="name"
                     class="input-text boxing"
-                    value
+                    v-model="movie.movieNm"
                   />
                 </td>
                 <th scope="row" class="noticelabel">
@@ -50,6 +50,7 @@
                     id="qnaTitle"
                     class="boxing input-text"
                     maxlength="100"
+                    v-model="movie.rating"
                   />
                   /5.0
                 </td>

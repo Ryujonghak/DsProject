@@ -160,10 +160,6 @@
                   <div class="topbar-filter">
                     <label>Sort by:</label>
                     <select>
-                      <option value="popularity">Popularity Descending</option>
-                      <option value="popularity">Popularity Ascending</option>
-                      <option value="rating">Rating Descending</option>
-                      <option value="rating">Rating Ascending</option>
                       <option value="date">Release date Descending</option>
                       <option value="date">Release date Ascending</option>
                     </select>
@@ -173,7 +169,11 @@
                       >
                     </button>
                   </div>
-                  <div class="movie-item-style-2" v-for="movie, index in movies" v-bind:key="index">
+                  <div
+                    class="movie-item-style-2"
+                    v-for="(movie, index) in movies"
+                    v-bind:key="index"
+                  >
                     <img src=
                     https://img.megabox.co.kr/SharedImg/2022/12/16/9vUySe7DNMro6tdYRPEbjzF2ebr48MwE_420.jpg
                     alt="아바타 물의길" />
@@ -192,130 +192,21 @@
                         {{ movie.description }}
                       </p>
                       <p class="run-time">
-                        상영시간: {{ movie.showTm }} <span>관람등급 {{ movie.watchGradeNm }}</span> .
+                        상영시간: {{ movie.showTm }}
+                        <span>관람등급 {{ movie.watchGradeNm }}</span> 
                         <span>개봉일자: {{ movie.openDt }}</span>
+                        장르 : {{ movie.genreNm }}
                       </p>
-                      <p>감독: <a href="#">{{ movie.directors }}</a></p>
                       <p>
-                        출연진: 
+                        감독: <a href="#">{{ movie.directors }}</a>
+                      </p>
+                      <p>
+                        출연진:
                         <a href="#"> {{ movie.actor }}</a>
                       </p>
+                      <button class="redbtn">삭제</button>
                     </div>
                   </div>
-                  <!-- <div class="movie-item-style-2" >
-                    <img src="images/uploads/mv2.jpg" alt="" />
-                    <div class="mv-item-infor">
-                      <h6>
-                        <a href="moviesingle.html"
-                          >into the wild <span>(2014)</span></a
-                        >
-                      </h6>
-                      <p class="rate">
-                        <i class="ion-android-star"></i><span>7.8</span> /10
-                      </p>
-                      <p class="describe">
-                        As Steve Rogers struggles to embrace his role in the
-                        modern world, he teams up with a fellow Avenger and
-                        S.H.I.E.L.D agent, Black Widow, to battle a new
-                        threat...
-                      </p>
-                      <p class="run-time">
-                        Run Time: 2h21’ . <span>MMPA: PG-13 </span> .
-                        <span>Release: 1 May 2015</span>
-                      </p>
-                      <p>
-                        Director: <a href="#">Anthony Russo,</a
-                        ><a href="#">Joe Russo</a>
-                      </p>
-                      <p>
-                        Stars: <a href="#">Chris Evans,</a>
-                        <a href="#">Samuel L. Jackson,</a>
-                        <a href="#"> Scarlett Johansson</a>
-                      </p>
-                    </div>
-                  </div> -->
-                  <!-- <div class="movie-item-style-2">
-                    <img src="images/uploads/mv3.jpg" alt="" />
-                    <div class="mv-item-infor">
-                      <h6>
-                        <a href="moviesingle.html"
-                          >blade runner <span>(2015)</span></a
-                        >
-                      </h6>
-                      <p class="rate">
-                        <i class="ion-android-star"></i><span>7.3</span> /10
-                      </p>
-                      <p class="describe">
-                        Armed with a super-suit with the astonishing ability to
-                        shrink in scale but increase in strength, cat burglar
-                        Scott Lang must embrace his inner hero and help...
-                      </p>
-                      <p class="run-time">
-                        Run Time: 2h21’ . <span>MMPA: PG-13 </span> .
-                        <span>Release: 1 May 2015</span>
-                      </p>
-                      <p>Director: <a href="#">Peyton Reed</a></p>
-                      <p>
-                        Stars: <a href="#">Paul Rudd,</a>
-                        <a href="#"> Michael Douglas</a>
-                      </p>
-                    </div>
-                  </div> -->
-                  <!-- <div class="movie-item-style-2">
-                    <img src="images/uploads/mv4.jpg" alt="" />
-                    <div class="mv-item-infor">
-                      <h6>
-                        <a href="moviesingle.html"
-                          >Mulholland pride<span> (2013) </span></a
-                        >
-                      </h6>
-                      <p class="rate">
-                        <i class="ion-android-star"></i><span>7.2</span> /10
-                      </p>
-                      <p class="describe">
-                        When Tony Stark's world is torn apart by a formidable
-                        terrorist called the Mandarin, he starts an odyssey of
-                        rebuilding and retribution.
-                      </p>
-                      <p class="run-time">
-                        Run Time: 2h21’ . <span>MMPA: PG-13 </span> .
-                        <span>Release: 1 May 2015</span>
-                      </p>
-                      <p>Director: <a href="#">Shane Black</a></p>
-                      <p>
-                        Stars: <a href="#">Robert Downey Jr., </a>
-                        <a href="#"> Guy Pearce,</a><a href="#">Don Cheadle</a>
-                      </p>
-                    </div>
-                  </div> -->
-                  <!-- <div class="movie-item-style-2">
-                    <img src="images/uploads/mv5.jpg" alt="" />
-                    <div class="mv-item-infor">
-                      <h6>
-                        <a href="moviesingle.html"
-                          >skyfall: evil of boss<span> (2013) </span></a
-                        >
-                      </h6>
-                      <p class="rate">
-                        <i class="ion-android-star"></i><span>7.0</span> /10
-                      </p>
-                      <p class="describe">
-                        When Tony Stark's world is torn apart by a formidable
-                        terrorist called the Mandarin, he starts an odyssey of
-                        rebuilding and retribution.
-                      </p>
-                      <p class="run-time">
-                        Run Time: 2h21’ . <span>MMPA: PG-13 </span> .
-                        <span>Release: 1 May 2015</span>
-                      </p>
-                      <p>Director: <a href="#">Alan Taylor</a></p>
-                      <p>
-                        Stars: <a href="#">Chris Hemsworth, </a>
-                        <a href="#"> Natalie Portman,</a
-                        ><a href="#">Tom Hiddleston</a>
-                      </p>
-                    </div>
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -341,8 +232,22 @@ export default {
       movies: [
         {
           movieNm: "아바타:물의길",
-          prdtYear:"2022",
+          prdtYear: "2022",
           openDt: "2022-12-20",
+          rating: "4.5/5.0",
+          description:
+            "아바타 후속작 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
+          showTm: "2H20M",
+          watchGradeNm: "15+",
+          genreNm:"SF/판타지",
+          directors: "subin Kang",
+          actor:
+            "ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,",
+        },
+        {
+          movieNm: "아바타:물의길",
+          prdtYear: "2022",
+          openDt: "2022",
           rating: "4.5/5.0",
           description:
             "아바타 후속작 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
@@ -353,27 +258,18 @@ export default {
             "ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,",
         },
         {
-          movieNm:"아바타:물의길",
-          prdtYear:"2022",
-          openDt:"2022",
-          rating:"4.5/5.0",
-          description:"아바타 후속작 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
-          showTm:"2H20M",
-          watchGradeNm:"15+",
-          directors:"subin Kang",
-          actor:"ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,"
+          movieNm: "아바타:물의길",
+          prdtYear: "2022",
+          openDt: "2022",
+          rating: "4.5/5.0",
+          description:
+            "아바타 후속작 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
+          showTm: "2H20M",
+          watchGradeNm: "15+",
+          directors: "subin Kang",
+          actor:
+            "ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,",
         },
-        {
-          movieNm:"아바타:물의길",
-          prdtYear:"2022",
-          openDt:"2022",
-          rating:"4.5/5.0",
-          description:"아바타 후속작 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
-          showTm:"2H20M",
-          watchGradeNm:"15+",
-          directors:"subin Kang",
-          actor:"ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,"
-        }
       ],
     };
   },
@@ -408,6 +304,9 @@ export default {
 h4 {
   color: aliceblue;
   margin-right: 10%;
+}
+h6 {
+  color: aliceblue;
 }
 .redbtn {
   height: 1% !important;
