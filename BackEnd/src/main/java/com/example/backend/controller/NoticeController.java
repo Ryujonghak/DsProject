@@ -43,7 +43,7 @@ public class NoticeController {
                                           @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Notice> noticePage = noticeService.findByTitleContaining(title, pageable);
+            Page<Notice> noticePage = noticeService.findAllByTitleContaining(title, pageable);
 
             Map<String, Object> response = new HashMap<>();
             response.put("notice", noticePage.getContent());
@@ -67,7 +67,7 @@ public class NoticeController {
                                           @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Notice> noticePage = noticeService.findByTypeContaining(type, pageable);
+            Page<Notice> noticePage = noticeService.findAllByTypeContaining(type, pageable);
 
             Map<String, Object> response = new HashMap<>();
             response.put("notice", noticePage.getContent());

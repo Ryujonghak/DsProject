@@ -12,12 +12,12 @@ import javax.persistence.*;
 
 @Entity
 @SequenceGenerator(
-        name = "SQ_NOTICE_GENERATOR"
-        , sequenceName = "SQ_NOTICE"
+        name = "SQ_REVIEW_GENERATOR"
+        , sequenceName = "SQ_REVIEW"
         , initialValue = 1
         , allocationSize = 1
 )
-@Table(name = "TB_NOTICE")
+@Table(name = "TB_REVIEW")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,24 +25,24 @@ import javax.persistence.*;
 @DynamicUpdate
 // soft delete
 @Where(clause = "DELETE_YN = 'N'")
-@SQLDelete(sql = "UPDATE TB_NOTICE SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE QNO = ?")
-public class Notice extends BaseTimeEntity{
+@SQLDelete(sql = "UPDATE TB_REVIEW SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE RNO = ?")
+public class Review extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE
-            , generator = "SQ_NOTICE_GENERATOR"
+            , generator = "SQ_REVIEW_GENERATOR"
     )
     @Column
-    private Long qno;
+    private Long rno;
 
     @Column
-    private String type;
+    private Integer moviecd;
 
     @Column
-    private String title;
+    private String username;
 
     @Column
     private String content;
 
     @Column
-    private String regdate;
+    private Double rating;
 }

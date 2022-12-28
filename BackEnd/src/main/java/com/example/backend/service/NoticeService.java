@@ -21,14 +21,14 @@ public class NoticeService {
         return noticeList;
     }
 
-    public Page<Notice> findByTitleContaining(String title, Pageable pageable) {
-        Page<Notice> noticePage = noticeRepository.findByTitleContaining(title, pageable);
+    public Page<Notice> findAllByTitleContaining(String title, Pageable pageable) {
+        Page<Notice> noticePage = noticeRepository.findAllByTitleContaining(title, pageable);
 
         return noticePage;
     }
 
-    public Page<Notice> findByTypeContaining(String type, Pageable pageable) {
-        Page<Notice> noticePage = noticeRepository.findByTypeContaining(type, pageable);
+    public Page<Notice> findAllByTypeContaining(String type, Pageable pageable) {
+        Page<Notice> noticePage = noticeRepository.findAllByTypeContaining(type, pageable);
 
         return noticePage;
     }
