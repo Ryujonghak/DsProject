@@ -188,7 +188,7 @@
                           <i class="ion-android-star"></i><span>4.0</span>
                         </p>
                         <router-link to="/archive"
-                          >나의 리뷰 보러가기</router-link
+                          >나의 리뷰 작성하기</router-link
                         >
                         <!-- <h6>Best Musical movie</h6> -->
                       </div>
@@ -224,7 +224,7 @@
                           <i class="ion-android-star"></i><span>4.0</span>
                         </p>
                         <router-link to="/archive"
-                          >나의 리뷰 보러가기</router-link
+                          >나의 리뷰 작성하기</router-link
                         >
                         <!-- <h6>Best Musical movie</h6> -->
                       </div>
@@ -260,7 +260,7 @@
                           <i class="ion-android-star"></i><span>4.0</span>
                         </p>
                         <router-link to="/archive"
-                          >나의 리뷰 보러가기</router-link
+                          >나의 리뷰 작성하기</router-link
                         >
                         <!-- <h6>Best Musical movie</h6> -->
                       </div>
@@ -296,7 +296,7 @@
                           <i class="ion-android-star"></i><span>4.0</span>
                         </p>
                         <router-link to="/archive"
-                          >나의 리뷰 보러가기</router-link
+                          >나의 리뷰 작성하기</router-link
                         >
                         <!-- <h6>Best Musical movie</h6> -->
                       </div>
