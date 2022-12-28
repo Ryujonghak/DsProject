@@ -101,7 +101,7 @@
                   </div>
                 </div>
                 <div class="col-xs-3">
-                  <a href="#" class="editbtn col-xs-12" @click="saveReview"
+                  <a href="/userInfoEdit" class="editbtn col-xs-12"
                     >수정</a
                   >
                   <a href="#" class="delbtn col-xs-12" @click="saveReview"
