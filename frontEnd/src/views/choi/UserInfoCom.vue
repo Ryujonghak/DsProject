@@ -45,7 +45,7 @@
               :key="index"
             >
               <div class="movie-item-style-2 userrate">
-                <div class="mv-item-infor">
+                <div class="mv-item-infor col-xs-9">
                   <div>
                     <div>
                       <h6>
@@ -99,6 +99,14 @@
                       <p>{{ data.phone }}</p>
                     </div>
                   </div>
+                </div>
+                <div class="col-xs-3">
+                  <a href="#" class="editbtn col-xs-12" @click="saveReview"
+                    >수정</a
+                  >
+                  <a href="#" class="delbtn col-xs-12" @click="saveReview"
+                    >삭제</a
+                  >
                 </div>
               </div>
             </div>
@@ -160,4 +168,47 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+/* .editbtn {
+  display: inline-block;
+  width: 30%;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+} */
+
+.editbtn {
+  font-family: "Dosis", sans-serif;
+  font-size: 100%;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 70%;
+  height: 30%;
+  background-color: #dcf836;
+  margin-top: 45%;
+  margin-bottom: 7%;
+  padding: 10% 15%;
+  border-radius: 5px;
+}
+.editbtn:hover {
+  color: #fff;
+}
+.delbtn {
+  font-family: "Dosis", sans-serif;
+  font-size: 100%;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 70%;
+  height: 30%;
+  background-color: #dd003f;
+  padding: 10% 20%;
+  border-radius: 5px;
+}
+.delbtn:hover {
+  color: #fff;
+}
+</style>
