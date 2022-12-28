@@ -39,177 +39,74 @@
           <!-- 왼쪽 메뉴바 끝 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <!-- TODO: 바로 밑 div 데이터 받아서 v-for 예정입니다. -->
-            <div class="col-md-9 col-sm-12 col-xs-12">
+            <div
+              class="col-md-9 col-sm-12 col-xs-12"
+              v-for="(data, index) in users"
+              :key="index"
+            >
               <div class="movie-item-style-2 userrate">
-                <div class="mv-item-infor">
+                <div class="mv-item-infor col-xs-9">
                   <div>
                     <div>
                       <h6>
-                        <a href="#">user.name<span>(user.id)</span></a>
+                        {{ data.id }}
                       </h6>
                     </div>
                     <div class="col-xs-6">
                       <p>아이디 :</p>
                     </div>
                     <div class="col-xs-6">
-                      <p>user.username</p>
+                      <p>{{ data.username }}</p>
                     </div>
                     <div class="col-xs-6">
                       <p>비밀번호 :</p>
                     </div>
                     <div class="col-xs-6">
-                      <p>user.password</p>
+                      <p>{{ data.password }}</p>
                     </div>
                     <div class="col-xs-6">
                       <p>비밀번호 질문 :</p>
                     </div>
                     <div class="col-xs-6">
-                      <p>user.question</p>
+                      <p>{{ data.question }}</p>
                     </div>
                     <div class="col-xs-6">
                       <p>비밀번호 질문 확인 :</p>
                     </div>
                     <div class="col-xs-6">
-                      <p>user.answer</p>
+                      <p>{{ data.answer }}</p>
                     </div>
                     <div class="col-xs-6">
                       <p>생년월일 :</p>
                     </div>
                     <div class="col-xs-6">
                       <p>
-                        user.year &nbsp;/&nbsp; user.month &nbsp;/&nbsp;
-                        user.date
+                        {{ data.year }} &nbsp;/&nbsp;
+                        {{ data.month }} &nbsp;/&nbsp;
+                        {{ data.day }}
                       </p>
                     </div>
                     <div class="col-xs-6">
                       <p>이메일 :</p>
                     </div>
                     <div class="col-xs-6">
-                      <p>user.email</p>
+                      <p>{{ data.email }}</p>
                     </div>
                     <div class="col-xs-6">
                       <p>휴대전화 :</p>
                     </div>
                     <div class="col-xs-6">
-                      <p>user.phonenumber</p>
+                      <p>{{ data.phone }}</p>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-9 col-sm-12 col-xs-12">
-              <div class="movie-item-style-2 userrate">
-                <div class="mv-item-infor">
-                  <div>
-                    <div>
-                      <h6>
-                        <a href="#">user.name<span>(user.id)</span></a>
-                      </h6>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>아이디 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.username</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>비밀번호 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.password</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>비밀번호 질문 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.question</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>비밀번호 질문 확인 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.answer</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>생년월일 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>
-                        user.year &nbsp;/&nbsp; user.month &nbsp;/&nbsp;
-                        user.date
-                      </p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>이메일 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.email</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>휴대전화 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.phonenumber</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-9 col-sm-12 col-xs-12">
-              <div class="movie-item-style-2 userrate">
-                <div class="mv-item-infor">
-                  <div>
-                    <div>
-                      <h6>
-                        <a href="#">user.name<span>(user.id)</span></a>
-                      </h6>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>아이디 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.username</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>비밀번호 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.password</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>비밀번호 질문 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.question</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>비밀번호 질문 확인 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.answer</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>생년월일 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>
-                        user.year &nbsp;/&nbsp; user.month &nbsp;/&nbsp;
-                        user.date
-                      </p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>이메일 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.email</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>휴대전화 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>user.phonenumber</p>
-                    </div>
-                  </div>
+                <div class="col-xs-3">
+                  <a href="/userInfoEdit" class="editbtn col-xs-12"
+                    >수정</a
+                  >
+                  <a href="#" class="delbtn col-xs-12" @click="saveReview"
+                    >삭제</a
+                  >
                 </div>
               </div>
             </div>
@@ -237,7 +134,81 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      users: [
+        {
+          id: 97,
+          username: "choiari1002",
+          password: 12345678,
+          question: "좋아하는 색깔은? (대충)",
+          answer: "아이보리",
+          year: 1994,
+          month: 10,
+          day: 2,
+          email: "choiari1002@naver.com",
+          phone: "7787518479",
+        },
+        {
+          id: 98,
+          username: "areerang",
+          password: 12345678,
+          question: "좋아하는 색깔은? (대충)",
+          answer: "크림",
+          year: 1994,
+          month: 10,
+          day: 2,
+          email: "areerang@naver.com",
+          phone: "01047123456",
+        },
+      ],
+    };
+  },
+};
 </script>
 
-<style></style>
+<style scoped>
+/* .editbtn {
+  display: inline-block;
+  width: 30%;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+} */
+
+.editbtn {
+  font-family: "Dosis", sans-serif;
+  font-size: 100%;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 70%;
+  height: 30%;
+  background-color: #dcf836;
+  margin-top: 45%;
+  margin-bottom: 7%;
+  padding: 10% 15%;
+  border-radius: 5px;
+}
+.editbtn:hover {
+  color: #fff;
+}
+.delbtn {
+  font-family: "Dosis", sans-serif;
+  font-size: 100%;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 70%;
+  height: 30%;
+  background-color: #dd003f;
+  padding: 10% 20%;
+  border-radius: 5px;
+}
+.delbtn:hover {
+  color: #fff;
+}
+</style>
