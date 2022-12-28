@@ -6,6 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
+              <h4>공지사항 관리 페이지</h4>
             </div>
           </div>
         </div>
@@ -58,8 +59,8 @@
           <!-- <!— 왼쪽 메뉴바 끝 —> -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter">
-              <h3 style="color: aliceblue">공지사항 관리</h3>
-              <label>Sort by:</label>
+              <!-- <h5 style="justify-content:flex-start !important; color: aliceblue; margin-right: 1%;">sort by:</h5> -->
+              <h5 style="color: aliceblue">sort by:</h5>
               <select>
                 <option value="range">-- Choose option --</option>
                 <option value="saab">-- Choose option 2--</option>
@@ -379,6 +380,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
+}
 .notice_table {
   margin-top: 3%;
   text-align: center;
@@ -438,5 +443,22 @@ textarea {
   height: 6.25em;
   border: none;
   resize: none;
+}
+.topbar-filter select {
+  width: 215px;
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  float: right !important;
+  // background: url(../images/uploads/drop-icon.png) no-repeat right 20px center;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none;
+  border-bottom: none !important;
+  color: #ffffff;
+  font-weight: 400;
+}
+.topbar-filter {
+  justify-content: flex-end !important;
+  border-top: none !important;
 }
 </style>
