@@ -192,22 +192,22 @@
 export default {
   data() {
     return {
-      imgURL: "",
+      // imgURL: "",
     };
   },
   methods: {
-    upload(e) {
-      let imageFile = e.target.files; 
+    // upload(e) {
+    //   let imageFile = e.target.files; 
 
 
-      let url = URL.createObjectURL(imageFile[0]); // 파일의 필요한 데이터만을 url 변수에 넣음
+    //   let url = URL.createObjectURL(imageFile[0]); // 파일의 필요한 데이터만을 url 변수에 넣음
 
-      console.log(url);
+    //   console.log(url);
 
-      this.imageUrl = url; // 미리 작성해둔 imageUrl : ' ' 변수에 가지고있는 경로데이터 넣기
+    //   this.imageUrl = url; // 미리 작성해둔 imageUrl : ' ' 변수에 가지고있는 경로데이터 넣기
 
-      this.step++;
-    },
+    //   this.step++;
+    // },
   },
 };
 </script>
