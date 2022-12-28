@@ -175,7 +175,7 @@
                 </tbody>
               </table>
               <div class="search">
-                <button type="button" class="btn_col2" @click="editNoticeBtn">
+                <button type="button" class="btn_col2">
                   수정하기
                 </button>
               </div>
@@ -184,6 +184,7 @@
 
             <!--공지사항 작성 폼 시작 (add)-->
             <div v-show="registerNotice">
+              <h5 style="color:aliceblue"> 공지사항 등록(REG)</h5>
               <table class="noticeboxnoticebox">
                 <colgroup>
                   <col style="width: 10%" />
