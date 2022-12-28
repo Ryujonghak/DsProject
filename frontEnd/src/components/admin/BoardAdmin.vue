@@ -49,7 +49,8 @@
               </div>
               <div class="user-fav">
                 <ul>
-                  <li><a href="#">Log out</a></li>
+                  <!-- <a @click.prevent="logout">LOG OUT</a> -->
+                  <li><a href="#" @click="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
@@ -309,6 +310,10 @@ export default {
     };
   },
   methods: {
+    logout() {
+      this.$store.dispatch("auth/logout"); 
+      this.$router.push("/");
+    },
     retrieveNotice() {
       // NoticeDataService.getAll(this.title, this.page - 1, this.pageSize)
 

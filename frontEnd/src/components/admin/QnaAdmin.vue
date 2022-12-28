@@ -49,7 +49,7 @@
               </div>
               <div class="user-fav">
                 <ul>
-                  <li><a href="#">Log out</a></li>
+                  <li><a href="#" @click="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
@@ -195,6 +195,10 @@ export default {
     };
   },
   methods: {
+    logout() {
+      this.$store.dispatch("auth/logout"); 
+      this.$router.push("/");
+    },
     //답변하기 버튼 클릭시
     writeQna() {
       this.registerQna = !this.registerQna;

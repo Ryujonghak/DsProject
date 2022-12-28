@@ -46,7 +46,7 @@
               </div>
               <div class="user-fav">
                 <ul>
-                  <li><a href="#">Log out</a></li>
+                  <li><a href="#" @click="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
@@ -244,6 +244,10 @@ export default {
     };
   },
   methods: {
+    logout() {
+      this.$store.dispatch("auth/logout"); 
+      this.$router.push("/");
+    },
 
         //왼쪽 메뉴바 slide효과
     boardclick() {

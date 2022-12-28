@@ -45,7 +45,7 @@
               </div>
               <div class="user-fav">
                 <ul>
-                  <li><a href="#">Log out</a></li>
+                    <li><a href="#" @click="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
@@ -83,11 +83,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(data, index) in reviews" v-bind:key="index">
-                      <td>{{ data.id }}</td>
-                      <td>{{ data.movieCode }}</td>
+                    <tr v-for="(data, index) in Payment" v-bind:key="index">
+                      <td>{{ data.No }}</td>
                       <td>{{ data.username }}</td>
-                      <td>{{ data.content }}</td>
+                      <td>{{ data.movieCode }}</td>
+                      <td>{{ data.seatNo }}</td>
+                      <td>{{ data.personnel }}</td>
+                      <td>{{ data.price }}</td>
                       <td>
                         <button class="deletebtn">삭제</button>
                       </td>
@@ -122,9 +124,21 @@ export default {
     data() {
         return {
             board: false,
+            Payment:[{
+                No: 1,
+                username: "forbob",
+                movieCode: "아바타:물의길",
+                seatNo: "20D",
+                personnel: "2",
+                price: "30,000"
+            }]
         }
     },
     methods: {
+        logout() {
+      this.$store.dispatch("auth/logout"); 
+      this.$router.push("/");
+    },
           //왼쪽 메뉴바 slide효과
     boardclick() {
       this.board = !this.board;
