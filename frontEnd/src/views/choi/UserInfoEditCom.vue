@@ -160,6 +160,9 @@
 </template>
 
 <script>
+// FIXME: UserDataService.js 로 파일명 바꿔야 하는거 아닌지
+import UserDataService from "@/services/user.service.js";
+
 export default {
   data() {
     return {
@@ -176,49 +179,47 @@ export default {
         phone: "7787518479",
       },
       message: "",
-      users: [
-        {
-          id: 97,
-          username: "choiari1002",
-          password: 12345678,
-          question: "좋아하는 색깔은? (대충)",
-          answer: "아이보리",
-          year: 1994,
-          month: 10,
-          day: 2,
-          email: "choiari1002@naver.com",
-          phone: "7787518479",
-        },
-        {
-          id: 98,
-          username: "areerang",
-          password: 12345678,
-          question: "좋아하는 색깔은? (대충)",
-          answer: "크림",
-          year: 1994,
-          month: 10,
-          day: 2,
-          email: "areerang@naver.com",
-          phone: "01047123456",
-        },
-      ],
+      // users: [
+      //   {
+      //     id: 97,
+      //     username: "choiari1002",
+      //     password: 12345678,
+      //     question: "좋아하는 색깔은? (대충)",
+      //     answer: "아이보리",
+      //     year: 1994,
+      //     month: 10,
+      //     day: 2,
+      //     email: "choiari1002@naver.com",
+      //     phone: "7787518479",
+      //   },
+      //   {
+      //     id: 98,
+      //     username: "areerang",
+      //     password: 12345678,
+      //     question: "좋아하는 색깔은? (대충)",
+      //     answer: "크림",
+      //     year: 1994,
+      //     month: 10,
+      //     day: 2,
+      //     email: "areerang@naver.com",
+      //     phone: "01047123456",
+      //   },
+      // ],
     };
   },
   methods: {
-    // TODO: 유저정보를 수정 요청하는 함수
+    // FIXME: 유저정보를 수정 요청하는 함수
     updateUserInfo() {
-      alert("유저정보 수정 함수 요청 예정");
-      // location.href("/userInfoAdmin")
-      //   UserDataService.update(this.currentUser.id, this.currentUser)
-      //     .then((response) => {
-      //       console.log(response.data);
-      //       this.message = "유저 정보가 성공적으로 수정 되었습니다.";
-      //     })
-      //     .catch((e) => {
-      //       console.log(e);
-      //     });
+      UserDataService.update(this.currentUser.id, this.currentUser)
+        .then((response) => {
+          console.log(response.data);
+          this.message = "유저 정보가 성공적으로 수정되었습니다!";
+        })
+        .catch((e) => {
+          console.log(e);
+        });
       // 수정완료시 그 전 페이지로 강제 이동
-      history.go(-1);
+      this.$router.push("/userInfoAdmin");
     },
   },
 };
