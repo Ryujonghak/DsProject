@@ -100,12 +100,12 @@ const routes = [
     name: "qna-admin",
     component: () => import("@/components/admin/QnaAdmin.vue"),
   },
-    //결제관리 페이지 
-    {
-      path: "/payment-admin",
-      name: "payment-admin",
-      component: () => import("@/components/admin/PaymentAdmin.vue"),
-    },
+  //결제관리 페이지
+  {
+    path: "/payment-admin",
+    name: "payment-admin",
+    component: () => import("@/components/admin/PaymentAdmin.vue"),
+  },
 
   //TODO   정주희 Part_mypage
   {
@@ -129,9 +129,9 @@ const routes = [
     component: () => import("../components/myPage/WishCom"),
   },
   {
-    path: '/archive',
-    name: 'archive',
-    component: () => import('../components/myPage/ArchiveCom.vue')
+    path: "/archive",
+    name: "archive",
+    component: () => import("../components/myPage/ArchiveCom.vue"),
   },
   {
     path: "/myqna",
@@ -139,9 +139,9 @@ const routes = [
     component: () => import("../components/myPage/MyqnaCom"),
   },
   {
-    path: '/mytest',
-    name: 'mytest',
-    component: () => import('../components/myPage/testCom.vue')
+    path: "/mytest",
+    name: "mytest",
+    component: () => import("../components/myPage/testCom.vue"),
   },
   //   김철원 Part
   {
@@ -188,10 +188,8 @@ const routes = [
   // },
 ];
 
-
-/* eslint-disable */ 
+/* eslint-disable */
 const router = new VueRouter({
-  
   mode: "history",
   base: process.env.BASE_URL,
   routes,
