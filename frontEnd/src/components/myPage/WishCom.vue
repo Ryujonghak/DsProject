@@ -15,12 +15,12 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>{{ CurrentUser.name }}’s profile</h1>
+              <h1>{{ CurrentUser.name }}’s wish</h1>
               <ul class="breadcumb">
                 <li class="active">
                   <router-link to="/">Home</router-link>
                 </li>
-                <li><span class="ion-ios-arrow-right"></span>Profile</li>
+                <li><span class="ion-ios-arrow-right"></span>MY WISH</li>
               </ul>
             </div>
           </div>
@@ -36,7 +36,8 @@
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-img">
-                <img src="images/uploads/user-img.png" alt="" />
+                <!-- src="images/uploads/user-img.png" -->
+                <img class="profileImg" src="@/assets/images_choi/Views/choi/MovieDetail/user.png" alt="" />
                 <br />
               </div>
               <div class="user-fav">
@@ -87,20 +88,24 @@
             </div>
           </div>
           <!-- 공통 왼쪽 메뉴 끝 -->
-
-          <!-- 오른쪽 본문 내용 -->
-          <div class="col-md-9 col-sm-12 col-xs-12">
-            <div class="topbar-filter user">
-              <p>찜한 영화목록 <span>8 movies</span> in total</p>
-              <select>
-                <option value="range">-- 2022년 --</option>
-                <option value="saab">-- 2021년 --</option>
-              </select>
+    <!-- 오른쪽 본문 내용 -->
+    <div class="col-md-9 col-sm-12 col-xs-12">
+            <div class="topbar-filter user" id="portfolio-filters">
+              <p>나의 찜한 영화 <span>8 movies</span> in total</p>
+              <div>
+                <span class="mx-3 active" data-filter="*">ㅇAll Movie </span>
+                <span class="mx-3" data-filter=".2022">ㅇ2022 </span>
+                <span class="mx-3" data-filter=".2023">ㅇ2023</span>
+              </div>
+              <span class="grid" data-filter="*"><i class="ion-grid"></i></span>
             </div>
 
             <div class="flex-wrap-movielist">
               <!-- 상영작 1 -->
-              <div class="movie-item-style-2 movie-item-style-1">
+              <!-- todo: 필터명 2022 -->
+              <div
+                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
+              >
                 <img src="images/uploads/mv1.jpg" alt="" />
                 <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
                 <div class="hvr-inner">
@@ -119,7 +124,10 @@
               </div>
 
               <!-- 상영작 2 -->
-              <div class="movie-item-style-2 movie-item-style-1">
+              <!-- todo: 필터명 2023 -->
+              <div
+                class="movie-item-style-2 movie-item-style-1 portfolio-item 2023"
+              >
                 <img src="images/uploads/mv2.jpg" alt="" />
                 <div class="hvr-inner">
                   <router-link to="/ticket-detail-a">
@@ -135,7 +143,10 @@
                 </div>
               </div>
               <!-- 상영작 3 -->
-              <div class="movie-item-style-2 movie-item-style-1">
+              <!-- todo: 필터명 2022 -->
+              <div
+                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
+              >
                 <img src="images/uploads/mv-item3.jpg" alt="" />
                 <div class="hvr-inner">
                   <router-link to="/ticket-detail-a">
@@ -151,7 +162,10 @@
                 </div>
               </div>
               <!-- 상영작 4 -->
-              <div class="movie-item-style-2 movie-item-style-1">
+              <!-- todo: 필터명 2023 -->
+              <div
+                class="movie-item-style-2 movie-item-style-1 portfolio-item 2023"
+              >
                 <img src="images/uploads/mv-item4.jpg" alt="" />
                 <div class="hvr-inner">
                   <router-link to="/ticket-detail-a">
@@ -167,7 +181,10 @@
                 </div>
               </div>
               <!-- 상영작 5 -->
-              <div class="movie-item-style-2 movie-item-style-1">
+              <!-- todo: 필터명 2022 -->
+              <div
+                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
+              >
                 <img src="images/uploads/mv3.jpg" alt="" />
                 <div class="hvr-inner">
                   <router-link to="/ticket-detail-a">
@@ -183,7 +200,10 @@
                 </div>
               </div>
               <!-- 상영작 6 -->
-              <div class="movie-item-style-2 movie-item-style-1">
+              <!-- todo: 필터명 2022 -->
+              <div
+                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
+              >
                 <img src="images/uploads/mv4.jpg" alt="" />
                 <div class="hvr-inner">
                   <router-link to="/ticket-detail-a">
@@ -199,7 +219,10 @@
                 </div>
               </div>
               <!-- 상영작 7 -->
-              <div class="movie-item-style-2 movie-item-style-1">
+              <!-- todo: 필터명 2023 -->
+              <div
+                class="movie-item-style-2 movie-item-style-1 portfolio-item 2023"
+              >
                 <img src="images/uploads/mv5.jpg" alt="" />
                 <div class="hvr-inner">
                   <router-link to="/ticket-detail-a">
@@ -214,8 +237,12 @@
                   </p>
                 </div>
               </div>
+
               <!-- 상영작 8 -->
-              <div class="movie-item-style-2 movie-item-style-1">
+              <!-- todo: 필터명 2022 -->
+              <div
+                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
+              >
                 <img src="images/uploads/mv-item1.jpg" alt="" />
                 <div class="hvr-inner">
                   <router-link to="/ticket-detail-a">
@@ -233,7 +260,7 @@
             </div>
 
             <!-- 페이지 -->
-            <ul class="pagination">
+            <!-- <ul class="pagination">
               <li class="icon-prev">
                 <a href="#"><i class="ion-ios-arrow-left"></i></a>
               </li>
@@ -247,7 +274,7 @@
               <li class="icon-next">
                 <a href="#"><i class="ion-ios-arrow-right"></i></a>
               </li>
-            </ul>
+            </ul> -->
           </div>
         </div>
       </div>
@@ -356,8 +383,48 @@ export default {
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
+
+    // TODO:  isotope
+    $(".flex-wrap-movielist").imagesLoaded(function () {
+      // Isotope 초기화 실행
+      let portfolioIsotope = $(".flex-wrap-movielist").isotope({
+        itemSelector: ".portfolio-item", // Isotope 대상 아이템 선택
+        layoutMode: "fitRows", // 여러가지 배치형태 옵션
+      });
+      // Isotope 메뉴 클릭 시 배치를 다시 정렬
+      // id는 #으로 접근
+      // div의 id="portfolio-filters" 의 span태그 클릭이벤트
+      $("#portfolio-filters span").on("click", function () {
+        $("#portfolio-filters span").removeClass("active"); // 기존 클래스에 active  삭제
+        $(this).addClass("active"); // 현재 클릭한 클래스에 active 추가
+
+        // Isotope 필터 적용시키기
+        portfolioIsotope.isotope({
+          filter: $(this).data("filter"), // 현재 클릭한 얘(this)의 li태그(리트스목록태그)의 data filter 속성 값을 filter에 저장
+        });
+      });
+    });
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+/* 배경이미지 : 아리걸로 통일 */
+.user-hero {
+  background: url(@/assets/images_jung/movie-theater02.jpg)
+  no-repeat;
+  /* height: 598px; */
+  width: 100%;
+}
+
+/* 마이페이지-프로필 이미지크기 수정 */
+.profileImg {
+  -ms-interpolation-mode: bicubic;
+  border: 0;
+  /* height: auto; */
+  max-height: 120px;
+  /* max-width: 100%; */
+  max-width: 120px;
+  vertical-align: middle;
+}
+</style>

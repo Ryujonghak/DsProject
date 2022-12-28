@@ -20,7 +20,7 @@
                 <li class="active">
                   <router-link to="/">Home</router-link>
                 </li>
-                <li><span class="ion-ios-arrow-right"></span>Profile</li>
+                <li><span class="ion-ios-arrow-right"></span>MY PROFILE</li>
               </ul>
             </div>
           </div>
@@ -36,9 +36,9 @@
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <!-- 프로필 이미지 업로드 추가 v-if -->
-              <!-- <div v-if="images" class="user-img"> -->
               <div class="user-img">
-                <img src="images/uploads/user-img.png" alt="" />
+                <img class="profileImg" src="@/assets/images_choi/Views/choi/MovieDetail/user.png" alt="" />
+                <!-- <img src="images/uploads/user-img.png" alt="" /> -->
                 <br />
                 <a href="#" class="redbtn">Change avatar</a>
               </div>
@@ -382,4 +382,23 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+/* 배경이미지 : 아리걸로 통일 */
+.user-hero {
+  background: url(@/assets/images_jung/movie-theater02.jpg)
+  no-repeat;
+  /* height: 598px; */
+  width: 100%;
+}
+
+/* 마이페이지-프로필 이미지크기 수정 */
+.profileImg {
+  -ms-interpolation-mode: bicubic;
+  border: 0;
+  /* height: auto; */
+  max-height: 120px;
+  /* max-width: 100%; */
+  max-width: 120px;
+  vertical-align: middle;
+}
+</style>
