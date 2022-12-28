@@ -33,15 +33,15 @@ public class Qna extends BaseTimeEntity {
     )
     @Column(columnDefinition = "NUMBER")
     private Integer qno;
-    @Column(columnDefinition = "VARCHAR2(255)")
+    @Column(columnDefinition = "VARCHAR2")
     private String name;
-    @Column(columnDefinition = "VARCHAR2(255)")
+    @Column(columnDefinition = "VARCHAR2")
     private String email;
     @Column(columnDefinition = "NUMBER")
     private String phone;
-    @Column(columnDefinition = "VARCHAR2(255)")
+    @Column(columnDefinition = "VARCHAR2")
     private String title;
-    @Column(columnDefinition = "VARCHAR2(3000)")
+    @Column(columnDefinition = "VARCHAR2")
     private String content;
 
 }
