@@ -161,7 +161,7 @@
 
 <script>
 // FIXME: UserDataService.js 로 파일명 바꿔야 하는거 아닌지
-import UserDataService from "@/services/user.service.js";
+// import UserDataService from "@/services/user.service.js";
 
 export default {
   data() {
@@ -210,14 +210,15 @@ export default {
   methods: {
     // FIXME: 유저정보를 수정 요청하는 함수
     updateUserInfo() {
-      UserDataService.update(this.currentUser.id, this.currentUser)
-        .then((response) => {
-          console.log(response.data);
-          this.message = "유저 정보가 성공적으로 수정되었습니다!";
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      alert("수정클릭")
+      // UserDataService.update(this.currentUser.id, this.currentUser)
+      //   .then((response) => {
+      //     console.log(response.data);
+      //     this.message = "유저 정보가 성공적으로 수정되었습니다!";
+      //   })
+      //   .catch((e) => {
+      //     console.log(e);
+      //   });
       // 수정완료시 그 전 페이지로 강제 이동
       this.$router.push("/userInfoAdmin");
     },

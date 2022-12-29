@@ -177,11 +177,6 @@ const routes = [
     component: () => import("@/views/choi/UserInfoEditCom.vue"),
   },
   {
-    path: "/adminInfoAdmin",
-    name: "adminInfoAdmin",
-    component: () => import("@/views/choi/AdminInfoCom.vue"),
-  },
-  {
     path: "/reservInfoAdmin",
     name: "reservInfoAdmin",
     component: () => import("@/views/choi/ReservInfoCom.vue"),
