@@ -22,10 +22,10 @@
                 <p>관리자 목록</p>
                 <ul>
                   <li><a href="#">회원관리</a></li>
-                  <li class="active">
+                  <li>
                     <a href="#"></a>
                     <a
-                      class="btn btn-default dropdown-toggle"
+                      class="active"
                       data-toggle="dropdown"
                       @click="boardclick"
                     >
