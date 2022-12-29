@@ -45,9 +45,7 @@
                       </li>
                     </ul>
                   </li>
-                  <li>
-                    <router-link to="/payment-admin">결제 관리</router-link>
-                  </li>
+                  <li><router-link to="/payment-admin">예매 내역</router-link></li>
                 </ul>
               </div>
               <div class="user-fav">

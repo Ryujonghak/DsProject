@@ -40,7 +40,7 @@
                   <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                     </ul>
                   </li>
-                  <li><router-link to="/payment-admin">결제 관리</router-link></li>
+                  <li><router-link to="/payment-admin">예매 내역</router-link></li>
                 </ul>
               </div>
               <div class="user-fav">
@@ -104,18 +104,6 @@
             </div>
             <!--리뷰 테이블 관리 테이블 끝  -->
 
-            <div class="topbar-filter">
-              <label>Movies per page:</label>
-              <select>
-                <option value="range">20 Movies</option>
-                <option value="saab">10 Movies</option>
-              </select>
-              <div class="pagination2">
-                <span>Page 1 of 1:</span>
-                <a class="active" href="#">1</a>
-                <a href="#"><i class="ion-arrow-right-b"></i></a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
