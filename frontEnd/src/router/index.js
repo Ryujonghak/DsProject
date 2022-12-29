@@ -169,12 +169,12 @@ const routes = [
   {
     path: "/userInfoAdmin",
     name: "userInfoAdmin",
-    component: () => import("@/views/choi/UserInfoCom.vue"),
+    component: () => import("@/components/admin/UserInfoCom.vue"),
   },
   {
     path: "/userInfoEdit",
     name: "userInfoEditAdmin",
-    component: () => import("@/views/choi/UserInfoEditCom.vue"),
+    component: () => import("@/components/admin/UserInfoEditCom.vue"),
   },
   {
     path: "/reservInfoAdmin",
