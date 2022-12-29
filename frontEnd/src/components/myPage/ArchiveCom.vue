@@ -38,7 +38,11 @@
             <div class="user-information">
               <div class="user-img">
                 <!-- src="images/uploads/user-img.png" -->
-                <img class="profileImg" src="@/assets/images_choi/Views/choi/MovieDetail/user.png" alt="" />
+                <img
+                  class="profileImg"
+                  src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                  alt=""
+                />
                 <br />
               </div>
               <div class="user-fav">
@@ -95,7 +99,7 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <!-- 2) 리뷰 파트 시작 -->
             <div class="topbar-filter user">
-              <p>나의 리뷰: 영화 관람평가 </p>
+              <p>나의 리뷰: 영화 관람평가</p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
@@ -107,7 +111,7 @@
                 <div class="rv-hd">
                   <div class="div">
                     <!-- 예매내역/내정보-나의아카이브 에서 리뷰쓰기 클릭시 정보 넘어가야함 -->
-                    <h2> {{ watchedMovie.movieNm }} </h2>
+                    <h2>{{ watchedMovie.movieNm }}</h2>
                   </div>
                 </div>
                 <div>
@@ -118,10 +122,12 @@
                       id="myform"
                       method="post"
                     >
-                    <!-- 리뷰 작성폼 시작 -->
+                      <!-- 리뷰 작성폼 시작 -->
                       <div>
                         <fieldset>
-                          <span class="review-form-style">별점을 선택해주세요</span>
+                          <span class="review-form-style"
+                            >별점을 선택해주세요</span
+                          >
                           <input
                             type="radio"
                             name="reviewStar"
@@ -158,20 +164,40 @@
                           style="fontsize: 91%"
                           type="text"
                           id="reviewContents"
+                          required
                           placeholder="평점 및 영화 관람평을 작성해주세요. 주제와 무관한 리뷰 또는 스포일러는 삭제될 수 있습니다."
                         ></textarea>
+                        <!-- <textarea
+                          class="col-auto form-control"
+                          style="fontsize: 91%"
+                          type="text"
+                          id="reviewContents"
+                          required
+                          v-model="review.content"
+                          placeholder="평점 및 영화 관람평을 작성해주세요. 주제와 무관한 리뷰 또는 스포일러는 삭제될 수 있습니다."
+                        ></textarea> -->
                       </div>
                       <!-- 리뷰작성폼 끝 -->
                     </form>
 
                     <!-- 리뷰등록 버튼 -->
-                    <div class="col-xs-3">
-                      <!-- TODO: 리뷰 등록 버튼에 함수 걸어주기 -->
-                      <a href="#" class="redbtn" @click="saveReview"
-                        >관람평 등록</a
-                      >
+                    <div v-if="!submitted">
+                      <div class="col-xs-3">
+                        <!-- TODO: 리뷰 등록 버튼에 함수 걸어주기 -->
+                        <a href="#" class="redbtn" @click="saveReview"
+                          >관람평 등록</a
+                        >
+                      </div>
+                      <!-- 등록버튼 끝 -->
                     </div>
-                    <!-- 등록버튼 끝 -->
+
+                    <div v-else>
+                      <div class="alert alert-success" role="alert">
+                        관람평이 등록되었습니다.!
+                      </div>
+                      <router-link to="/archive" class="alert alert-success">뒤로</router-link>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -180,7 +206,9 @@
 
             <!-- 나의 리뷰 메뉴바  -->
             <div class="topbar-filter user">
-              <p>나의 리뷰 <span>8{{  }} 리뷰갯수 셀수있을까 movies</span> in total</p>
+              <p>
+                나의 리뷰 <span>8{{}} 리뷰갯수 셀수있을까 movies</span> in total
+              </p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
@@ -196,9 +224,16 @@
                   <div class="mv-item-infor">
                     <br />
                     <h6>
-                      <a href="#">{{watchedMovie.movieNm}} <span> ({{ watchedMovie.openDt }}) </span></a>
+                      <a href="#"
+                        >{{ watchedMovie.movieNm }}
+                        <span> ({{ watchedMovie.openDt }}) </span></a
+                      >
                     </h6>
-                    <p>Run Time: {{watchedMovie.showTm}}분 <br /><a>{{watchedMovie.watchGradeNm}} </a></p>
+                    <p>
+                      Run Time: {{ watchedMovie.showTm }}분 <br /><a
+                        >{{ watchedMovie.watchGradeNm }}
+                      </a>
+                    </p>
                     <span class="time sm">{{ watchedMovie.scheNo }}</span>
                     <br />
                   </div>
@@ -245,9 +280,16 @@
                   <div class="mv-item-infor">
                     <br />
                     <h6>
-                      <a href="#">{{watchedMovie.movieNm}} <span> ({{ watchedMovie.openDt }}) </span></a>
+                      <a href="#"
+                        >{{ watchedMovie.movieNm }}
+                        <span> ({{ watchedMovie.openDt }}) </span></a
+                      >
                     </h6>
-                    <p>Run Time: {{watchedMovie.showTm}}분 <br /><a>{{watchedMovie.watchGradeNm}} </a></p>
+                    <p>
+                      Run Time: {{ watchedMovie.showTm }}분 <br /><a
+                        >{{ watchedMovie.watchGradeNm }}
+                      </a>
+                    </p>
                     <span class="time sm">{{ watchedMovie.scheNo }}</span>
                     <br />
                   </div>
@@ -343,7 +385,7 @@ export default {
         answer: "",
       },
       message: "",
-     
+
       // FIXME: 예매한 영화.. 작성중
       watchedMovie: {
         username: "", // 아이디
@@ -365,11 +407,13 @@ export default {
       },
       // TODO: 리뷰
       reviewMovie: {
-
-        userStarRating: 2,  // 사용자별점
-        userReview: ["클릭버튼으로 생성된 영화번호? 예매번호를 넘겨주면 그안에 저장된 영화제목 등 정보를 불러서 출력하도록 만들어야 함...... 리뷰내용이 너무 길어지니까 오류가 나네... 그래서 []안에 넣으니까 되긴한데 쌍따옴표까지 같이 출력돼서 약간 곤란쓰............................................................................................일단 리뷰를 이만큼 길게 쓰는 사람도 있겠지 하지만 나는 아니고 여기에다가 아무말이나 쓰고 있을 뿐이고 집에가고싶을 뿐이고 잠온다... ", // 리뷰내용
-        ]
+        userStarRating: 2, // 사용자별점
+        userReview: [
+          "클릭버튼으로 생성된 영화번호? 예매번호를 넘겨주면 그안에 저장된 영화제목 등 정보를 불러서 출력하도록 만들어야 함...... 리뷰내용이 너무 길어지니까 오류가 나네... 그래서 []안에 넣으니까 되긴한데 쌍따옴표까지 같이 출력돼서 약간 곤란쓰............................................................................................일단 리뷰를 이만큼 길게 쓰는 사람도 있겠지 하지만 나는 아니고 여기에다가 아무말이나 쓰고 있을 뿐이고 집에가고싶을 뿐이고 잠온다... ", // 리뷰내용
+        ],
       },
+      // 리뷰작성후 버튼 클릭시 true로 변경
+      submitted: false,
     };
   },
   methods: {
@@ -392,8 +436,8 @@ export default {
     //   this.$refs["image"].click();
     // },
 
-    // 종학이 백엔드 데이터 받는 함수
     getUser(username) {
+    // 종학이 백엔드 데이터 받는 함수
       username = "forbob";
       console.log(username);
       userService
@@ -433,7 +477,7 @@ export default {
       // insert 요청 함수 호출
       ReviewDataService.create(data)
         .then((response) => {
-          this.dept.dno = response.data.dno;
+          this.review.id = response.data.id;
           console.log(response.data);
           this.submitted = true;
         })
@@ -442,6 +486,11 @@ export default {
           console.log(e);
         });
     },
+    newReview() {
+      // 새양식 다시 보여주기, 변수 초기화
+      this.submitted = false;
+      this.review = {};
+    }
 
     // FIXME: 리뷰 작성버튼 눌러서 저장하기
     // saveReview() {
@@ -515,8 +564,7 @@ export default {
 
 /* 배경이미지 : 아리걸로 통일 */
 .user-hero {
-  background: url(@/assets/images_jung/movie-theater02.jpg)
-  no-repeat;
+  background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
   /* height: 598px; */
   width: 100%;
 }
@@ -531,5 +579,4 @@ export default {
   max-width: 120px;
   vertical-align: middle;
 }
-
 </style>
