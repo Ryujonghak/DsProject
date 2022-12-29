@@ -14,7 +14,7 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width2">
-          <!-- 왼쪽 메뉴바 시작 -->
+          <!-- <!— 왼쪽 메뉴바 시작 —> -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-fav">
@@ -22,21 +22,42 @@
                 <ul>
                   <li class="active"><a href="/userInfoAdmin">회원관리</a></li>
                   <li>
-                    <a href="#">게시판관리</a>
+                    <a href="#"></a>
+                    <a data-toggle="dropdown" @click="boardclick">
+                      게시판관리
+                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown" v-show="board">
+                      <li>
+                        <router-link to="/board-admin"
+                          >공지사항 관리</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link to="/movie-admin">영화 관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/review-admin">리뷰관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/qna-admin">QnA 답변관리</router-link>
+                      </li>
+                    </ul>
                   </li>
-                  <li><a href="/reservInfoAdmin">결제관리</a></li>
+                  <li>
+                    <router-link to="/payment-admin">예매 내역</router-link>
+                  </li>
                 </ul>
               </div>
               <div class="user-fav">
-                <p>기타</p>
                 <ul>
-                  <li><a href="/userInfoEdit">관리자관리</a></li>
-                  <li><a href="#">Log out</a></li>
+                  <!-- <a @click.prevent="logout">LOG OUT</a> -->
+                  <li><a href="#" @click="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
           </div>
-          <!-- 왼쪽 메뉴바 끝 -->
+          <!-- <!— 왼쪽 메뉴바 끝 —> -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <!-- TODO: 바로 밑 div 데이터 받아서 v-for 예정입니다. -->
             <div class="col-xs-12" v-for="(data, index) in user" :key="index">
@@ -166,7 +187,7 @@
               <h6>이 회원을 정말 삭제하시겠습니까?</h6>
             </div>
           </div>
-          <div class="content col-xs-12" style="text-align: center;">
+          <div class="content col-xs-12" style="text-align: center">
             <a href="#" id="btn-modal" class="closebtn col-xs-6">아니요</a>
             <a
               href="#"
@@ -228,6 +249,8 @@ export default {
   },
   data() {
     return {
+      // 게시판관리 v-show
+      board: false,
       user: [
         {
           id: 97,
@@ -266,6 +289,14 @@ export default {
     };
   },
   methods: {
+    //왼쪽 메뉴바 slide효과
+    boardclick() {
+      this.board = !this.board;
+    },
+    logout() {
+      this.$store.dispatch("auth/logout"); 
+      this.$router.push("/");
+    },
     retrieveUser() {
       alert("함수는 실행");
       UserDataService.getAll(this.searchUsername, this.page - 1, this.pageSize)

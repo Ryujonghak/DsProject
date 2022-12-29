@@ -316,7 +316,7 @@
                     </li>
                   </ul>
                 </li>
-                <li><router-link to="/test">test</router-link></li>
+                <li><router-link to="/board-admin">test</router-link></li>
               </ul>
             </div>
             <div class="col-xs-2">
@@ -387,7 +387,7 @@
                     ADMIN <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
-                    <li><a href="landing.html">회원관리</a></li>
+                    <li><a href="/userInfoAdmin">회원관리</a></li>
                     <li><a href="404.html">게시판관리</a></li>
                     <li><a href="404.html">결제관리</a></li>
                   </ul>

@@ -32,14 +32,14 @@
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown" v-show="board">
-                      <li><a>공지사항 관리</a></li>
+                      <li><router-link to="/board-admin">공지사항 관리</router-link></li>
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
                       <li>
                         <router-link to="/review-admin">리뷰관리</router-link>
                       </li>
-                      <li>
+                      <li class="active">
                         <router-link to="/qna-admin">QnA 답변관리</router-link>
                       </li>
                     </ul>

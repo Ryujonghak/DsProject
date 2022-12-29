@@ -72,7 +72,7 @@ const routes = [
   },
   //공지사항관리 페이지
   {
-    path: "/test",
+    path: "/board-admin",
     name: "board-admin",
     component: () => import("@/components/admin/BoardAdmin.vue"),
   },

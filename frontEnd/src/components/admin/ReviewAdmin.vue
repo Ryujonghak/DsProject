@@ -32,15 +32,21 @@
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown" v-show="board">
-                      <li><a>공지사항 관리</a></li>
+                      <li><router-link to="/board-admin">공지사항 관리</router-link></li>
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
-                      <li><router-link to="/review-admin">리뷰관리</router-link></li>
-                  <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
+                      <li class="active">
+                        <router-link to="/review-admin">리뷰관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/qna-admin">QnA 답변관리</router-link>
+                      </li>
                     </ul>
                   </li>
-                  <li><router-link to="/payment-admin">예매 내역</router-link></li>
+                  <li>
+                    <router-link to="/payment-admin">예매 내역</router-link>
+                  </li>
                 </ul>
               </div>
               <div class="user-fav">
@@ -61,9 +67,9 @@
                 <option value="신비아파트"  @click="retrieveMovie">신비아파트</option>
                 <option value="영웅"  @click="retrieveMovie">영웅</option> -->
                 <option value="" selected="selected">영화 전체</option>
-                <option value="아바타:물의길"  >아바타:물의길</option>
-                <option value="신비아파트" >신비아파트</option>
-                <option value="영웅" >영웅</option>
+                <option value="아바타:물의길">아바타:물의길</option>
+                <option value="신비아파트">신비아파트</option>
+                <option value="영웅">영웅</option>
               </select>
             </div>
 
@@ -103,7 +109,6 @@
               </div>
             </div>
             <!--리뷰 테이블 관리 테이블 끝  -->
-
           </div>
         </div>
       </div>
@@ -116,45 +121,45 @@ export default {
   data() {
     return {
       board: false,
-      selected: "" ,
+      selected: "",
       reviews: [
         {
-          id:"1",
+          id: "1",
           movieCode: "아바타:물의길",
           username: "forbob",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          id:"2",
+          id: "2",
           movieCode: "영웅",
           username: "forbob",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          id:"3",
+          id: "3",
           movieCode: "신비아파트",
           username: "forbob",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          id:"4",
+          id: "4",
           movieCode: "영웅",
           username: "subin",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          id:"5",
+          id: "5",
           movieCode: "아바타:물의길",
           username: "subin",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          id:"6",
+          id: "6",
           movieCode: "신비아파트",
           username: "subin",
           content:
@@ -165,7 +170,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch("auth/logout"); 
+      this.$store.dispatch("auth/logout");
       this.$router.push("/");
     },
     //왼쪽 메뉴바 slide효과
@@ -184,7 +189,7 @@ export default {
     //   })
     // },
 
-    //삭제버튼 클릭시 
+    //삭제버튼 클릭시
     // deletebtn(){
     //   ReviewDataService.delete(this.currentUser.id)
     //     .then((response) => {
@@ -195,7 +200,6 @@ export default {
     //       console.log(e);
     //     });
     // }
-
   },
 };
 </script>

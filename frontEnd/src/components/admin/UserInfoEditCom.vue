@@ -14,7 +14,7 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width2">
-          <!-- 왼쪽 메뉴바 시작 -->
+          <!-- <!— 왼쪽 메뉴바 시작 —> -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-fav">
@@ -22,21 +22,45 @@
                 <ul>
                   <li class="active"><a href="/userInfoAdmin">회원관리</a></li>
                   <li>
-                    <a href="#">게시판관리</a>
+                    <a href="#"></a>
+                    <a
+                      class="btn btn-default dropdown-toggle"
+                      data-toggle="dropdown"
+                      @click="boardclick"
+                    >
+                      게시판관리
+                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown" v-show="board">
+                      <li>
+                        <router-link to="/board-admin"
+                          >공지사항 관리</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link to="/movie-admin">영화 관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/review-admin">리뷰관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/qna-admin">QnA 답변관리</router-link>
+                      </li>
+                    </ul>
                   </li>
-                  <li><a href="/reservInfoAdmin">결제관리</a></li>
+                  <li>
+                    <router-link to="/payment-admin">예매 내역</router-link>
+                  </li>
                 </ul>
               </div>
               <div class="user-fav">
-                <p>기타</p>
                 <ul>
-                  <li><a href="/adminInfoAdmin">관리자관리</a></li>
-                  <li><a href="#">Log out</a></li>
+                  <li><a href="#" @click="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
           </div>
-          <!-- 왼쪽 메뉴바 끝 -->
+          <!-- <!— 왼쪽 메뉴바 끝 —> -->
           <!-- 수정 양식 폼 시작 -->
           <div class="edit-form col-md-9 col-sm-12 col-xs-12">
             <h4 style="color: white">ID: {{ currentUser.id }}</h4>
@@ -166,6 +190,7 @@
 export default {
   data() {
     return {
+      board: false,
       currentUser: {
         id: 97,
         username: "choiari1002",
@@ -208,9 +233,17 @@ export default {
     };
   },
   methods: {
+    //왼쪽 메뉴바 slide효과
+    boardclick() {
+      this.board = !this.board;
+    },
+    logout() {
+      this.$store.dispatch("auth/logout");
+      this.$router.push("/");
+    },
     // FIXME: 유저정보를 수정 요청하는 함수
     updateUserInfo() {
-      alert("수정클릭")
+      alert("수정클릭");
       // UserDataService.update(this.currentUser.id, this.currentUser)
       //   .then((response) => {
       //     console.log(response.data);
