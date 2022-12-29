@@ -65,11 +65,11 @@
                 <!-- <option value="" selected="selected" @click="retrieveMovie">영화 전체</option>
                 <option value="아바타:물의길"  @click="retrieveMovie">아바타:물의길</option>
                 <option value="신비아파트"  @click="retrieveMovie">신비아파트</option>
-                <option value="영웅"  @click="retrieveMovie">영웅</option> -->
+                <option value="영웅"  @click="retrieveMovie">영웅</option>  -->
                 <option value="" selected="selected">영화 전체</option>
-                <option value="아바타:물의길">아바타:물의길</option>
-                <option value="신비아파트">신비아파트</option>
-                <option value="영웅">영웅</option>
+                <option value="아바타:물의길"  >아바타:물의길</option>
+                <option value="신비아파트" >신비아파트</option>
+                <option value="영웅" >영웅</option>
               </select>
             </div>
 
@@ -96,8 +96,8 @@
                   </thead>
                   <tbody>
                     <tr v-for="(data, index) in reviews" v-bind:key="index">
-                      <td>{{ data.id }}</td>
-                      <td>{{ data.movieCode }}</td>
+                      <td>{{ data. rno}}</td>
+                      <td>{{ data.moviecd }}</td>
                       <td>{{ data.username }}</td>
                       <td>{{ data.content }}</td>
                       <td>
@@ -121,45 +121,45 @@ export default {
   data() {
     return {
       board: false,
-      selected: "",
+      selected: "" ,
       reviews: [
         {
-          id: "1",
+          id:"1",
           movieCode: "아바타:물의길",
           username: "forbob",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          id: "2",
+          id:"2",
           movieCode: "영웅",
           username: "forbob",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          id: "3",
+          id:"3",
           movieCode: "신비아파트",
           username: "forbob",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          id: "4",
+          id:"4",
           movieCode: "영웅",
           username: "subin",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          id: "5",
+          id:"5",
           movieCode: "아바타:물의길",
           username: "subin",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
         },
         {
-          id: "6",
+          id:"6",
           movieCode: "신비아파트",
           username: "subin",
           content:
@@ -189,7 +189,7 @@ export default {
     //   })
     // },
 
-    //삭제버튼 클릭시
+    //삭제버튼 클릭시 
     // deletebtn(){
     //   ReviewDataService.delete(this.currentUser.id)
     //     .then((response) => {
@@ -200,6 +200,7 @@ export default {
     //       console.log(e);
     //     });
     // }
+
   },
 };
 </script>
