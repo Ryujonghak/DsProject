@@ -22,10 +22,10 @@
                 <p>관리자 목록</p>
                 <ul>
                   <li><a href="#">회원관리</a></li>
-                  <li class="active">
+                  <li>
                     <a href="#"></a>
                     <a
-                      class="btn btn-default dropdown-toggle"
+                      class="active"
                       data-toggle="dropdown"
                       @click="boardclick"
                     >
@@ -45,7 +45,7 @@
                       </li>
                     </ul>
                   </li>
-                  <li><router-link to="/payment-admin">결제 관리</router-link></li>
+                  <li><router-link to="/payment-admin">예매 내역</router-link></li>
                 </ul>
               </div>
               <div class="user-fav">
@@ -255,18 +255,6 @@
               </div>
             </div>
             <!--공지사항 작성 폼 끝 -->
-            <div class="topbar-filter">
-              <label>Movies per page:</label>
-              <select>
-                <option value="range">20 Movies</option>
-                <option value="saab">10 Movies</option>
-              </select>
-              <div class="pagination2">
-                <span>Page 1 of 1:</span>
-                <a class="active" href="#">1</a>
-                <a href="#"><i class="ion-arrow-right-b"></i></a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
