@@ -61,7 +61,7 @@ public class SeatController {
         }
     }
 
-    @GetMapping("/thea/{moviecd}")
+    @GetMapping("/thea/{theaterid}")
     public ResponseEntity<Object> Optional_findByQno(@PathVariable String theaterid) {
         try {
             Optional<Seat> seatOptional = seatService.findByTHEATERID(theaterid);

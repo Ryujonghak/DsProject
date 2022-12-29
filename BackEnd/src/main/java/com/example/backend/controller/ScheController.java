@@ -24,20 +24,22 @@ public class ScheController {
     @Autowired
     ScheService scheService;
 
-    @GetMapping("/sche")
-    public ResponseEntity<Object> getAllList() {
-        try {
-            List<Sche> scheList = scheService.findAllList();
+    // TODO:  findAllList() 고쳐야됨
 
-            if (scheList.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            } else {
-                return new ResponseEntity<>(scheList, HttpStatus.OK);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @GetMapping("/sche")
+//    public ResponseEntity<Object> getAllList() {
+//        try {
+//            List<Sche> scheList = scheService.findAllList();
+//
+//            if (scheList.isEmpty()) {
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            } else {
+//                return new ResponseEntity<>(scheList, HttpStatus.OK);
+//            }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @GetMapping("/sche")
 //    @PreAuthorize("hasRole('ADMIN')")
@@ -51,7 +53,7 @@ public class ScheController {
 //            페이지 변수 저장
             Pageable pageable = PageRequest.of(page, size);
 
-            Page<ScheMovieDto> schePage;
+            Page<Sche> schePage;
 
             schePage = scheService.findAllByMoviecdContaining(moviecd, pageable);
 

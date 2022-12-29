@@ -27,8 +27,8 @@ public class ReservService {
         return reservPage;
     }
 
-    public Optional<Reserv> findbyReservno(Long reservno) {
-        Optional<Reserv> reservOptional = resrvRepository.findbyReservno(reservno);
+    public Optional<Reserv> findByReservno(Long reservno) {
+        Optional<Reserv> reservOptional = resrvRepository.findByReservno(reservno);
 
         return reservOptional;
     }

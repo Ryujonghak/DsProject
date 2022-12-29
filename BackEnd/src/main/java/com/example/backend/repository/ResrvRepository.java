@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface ResrvRepository extends JpaRepository<Reserv, Long> {
-    Optional<Reserv> findbyReservno(Long reservno);
+    Optional<Reserv> findByReservno(Long reservno);
     Page<Reserv> findByMoviecdContaining(Integer moviecd, Pageable pageable);
 
 }

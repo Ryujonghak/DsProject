@@ -55,17 +55,4 @@ public class Reserv extends BaseTimeEntity {
     @Column
     private String paiddate;
 
-
-//    RESERVNO        NUMBER NOT NULL PRIMARY KEY,
-//    ID              VARCHAR2(20),
-//    MOVIECD         NUMBER,
-//    SCHENO          NUMBER,
-//    CNT             NUMBER,
-//    SHEETNO         VARCHAR2(20),
-//    PRICE           NUMBER,
-//    PAIDDATE        VARCHAR2(50),
-//    DELETE_YN       VARCHAR2(1) DEFAULT 'N',
-//    INSERT_TIME     VARCHAR2(255),
-//    UPDATE_TIME     VARCHAR2(255),
-//    DELETE_TIME     VARCHAR2(255)
 }
