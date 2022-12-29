@@ -4,7 +4,7 @@ import http from "../http-common";
 
 class QnaDataService {
     // 모든 부서정보 조회 요청 함수
-    getAll(searchSelect, searchKeyword, page, size) {
+    getCustomerAll(searchSelect, searchKeyword, page, size) {
         // alert(searchSelect)
         // alert(searchKeyword)
         // get 방식 통신 요청 -> @GetMapping("/api/qna")

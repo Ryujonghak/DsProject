@@ -387,9 +387,9 @@
                     ADMIN <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
-                    <li><a href="/userInfoAdmin">회원관리</a></li>
-                    <li><a href="404.html">게시판관리</a></li>
-                    <li><a href="404.html">결제관리</a></li>
+                    <li><router-link to="/userInfoAdmin">회원관리</router-link></li>
+                    <li><router-link to="/board-admin">게시판관리</router-link></li>
+                    <li><router-link to="/payment-admin">예매관리</router-link></li>
                   </ul>
                 </li>
                 <!-- 어드민 로그인시 어드민 나브바 끝-->
