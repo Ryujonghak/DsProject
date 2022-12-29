@@ -20,7 +20,7 @@
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li class="active"><a href="/userInfoAdmin">회원관리</a></li>
+                  <li class="active"><router-link to="/userInfoAdmin">회원관리</router-link></li>
                   <li>
                     <a href="#"></a>
                     <a data-toggle="dropdown" @click="boardclick">
@@ -124,7 +124,6 @@
                     href="#"
                     id="btn-modal"
                     class="delbtn col-xs-12"
-                    @click="deleteUser"
                     >삭제</a
                   >
                 </div>
@@ -134,7 +133,7 @@
             <!-- Todo : page 바 시작 -->
             <div class="col-md-12">
               <!-- 3, 6, 9 옵션 선택 창 -->
-              <!-- <div class="mb-3">
+              <div class="mb-3">
                 Items per Page:
                 <select
                   v-model="pageSize"
@@ -144,7 +143,7 @@
                     {{ size }}
                   </option>
                 </select>
-              </div> -->
+              </div>
 
               <b-pagination
                 v-model="page"
@@ -206,7 +205,7 @@
 
 <script>
 // FIXME: UserDataService.js 로 파일명 바꿔야 하는거 아닌지
-import UserDataService from "@/services/user.service.js";
+// import UserService from "@/services/user.service.js";
 
 export default {
   mounted() {
@@ -251,33 +250,33 @@ export default {
     return {
       // 게시판관리 v-show
       board: false,
-      user: [
-        {
-          id: 97,
-          username: "choiari1002",
-          password: 12345678,
-          question: "좋아하는 색깔은? (대충)",
-          answer: "아이보리",
-          year: 1994,
-          month: 10,
-          day: 2,
-          email: "choiari1002@naver.com",
-          phone: "7787518479",
-        },
-        {
-          id: 98,
-          username: "areerang",
-          password: 12345678,
-          question: "좋아하는 색깔은? (대충)",
-          answer: "크림",
-          year: 1994,
-          month: 10,
-          day: 2,
-          email: "areerang@naver.com",
-          phone: "01047123456",
-        },
-      ],
+      user: [],
+      //         // {
+      //   id: 97,
+      //   username: "choiari1002",
+      //   password: 12345678,
+      //   question: "좋아하는 색깔은? (대충)",
+      //   answer: "아이보리",
+      //   year: 1994,
+      //   month: 10,
+      //   day: 2,
+      //   email: "choiari1002@naver.com",
+      //   phone: "7787518479",
+      // },
+      // {
+      //   id: 98,
+      //   username: "areerang",
+      //   password: 12345678,
+      //   question: "좋아하는 색깔은? (대충)",
+      //   answer: "크림",
+      //   year: 1994,
+      //   month: 10,
+      //   day: 2,
+      //   email: "areerang@naver.com",
+      //   phone: "01047123456",
+      // },
       currentUser: null,
+      searchUsername: "",
       message: "",
 
       // 페이징을 위한 변수 정의
@@ -294,37 +293,37 @@ export default {
       this.board = !this.board;
     },
     logout() {
-      this.$store.dispatch("auth/logout"); 
+      this.$store.dispatch("auth/logout");
       this.$router.push("/");
     },
     retrieveUser() {
-      alert("함수는 실행");
-      UserDataService.getAll(this.searchUsername, this.page - 1, this.pageSize)
-        .then((response) => {
-          alert("then까지");
-          const { user, totalItems } = response.data;
-          this.user = user;
-          this.count = totalItems; // 스프링부트에서 전송한 페이지정보(총 건수)
+      // alert("함수는 실행");
+      // UserService.getAll(this.searchUsername, this.page - 1, this.pageSize)
+      //   .then((response) => {
+      //     alert("then까지");
+      //     const { user, totalItems } = response.data;
+      //     this.user = user;
+      //     this.count = totalItems; 
 
-          console.log(response.data);
-        })
-        .catch((e) => {
-          alert("then 못 가고 실패");
-          console.log(e);
-        });
+      //     console.log(response.data);
+      //   })
+      //   .catch((e) => {
+      //     alert("then 못 가고 실패");
+      //     console.log(e);
+      //   });
     },
     // FIXME: 삭제 위한 currentUser에 값 넣는 함수, 유저정보를 삭제 요청하는 함수
     // id로 조회 함수
-    getUser(id) {
-      UserDataService.get(id)
-        .then((response) => {
-          this.currentUser = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
+    // getUser(id) {
+    //   UserService.get(id)
+    //     .then((response) => {
+    //       this.currentUser = response.data;
+    //       console.log(response.data);
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // },
     deleteUser() {
       // UserDataService.delete(this.currentUser.id)
       //   .then((response) => {

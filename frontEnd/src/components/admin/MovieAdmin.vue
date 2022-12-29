@@ -21,7 +21,7 @@
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li><a href="/userInfoAdmin">회원관리</a></li>
+                  <li><router-link to="/userInfoAdmin">회원관리</router-link></li>
                   <li>
                     <a href="#"></a>
                     <a
