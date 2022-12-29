@@ -123,48 +123,6 @@ export default {
       board: false,
       selected: "" ,
       reviews: [
-        {
-          id:"1",
-          movieCode: "아바타:물의길",
-          username: "forbob",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-        },
-        {
-          id:"2",
-          movieCode: "영웅",
-          username: "forbob",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-        },
-        {
-          id:"3",
-          movieCode: "신비아파트",
-          username: "forbob",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-        },
-        {
-          id:"4",
-          movieCode: "영웅",
-          username: "subin",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-        },
-        {
-          id:"5",
-          movieCode: "아바타:물의길",
-          username: "subin",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-        },
-        {
-          id:"6",
-          movieCode: "신비아파트",
-          username: "subin",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-        },
       ],
     };
   },
