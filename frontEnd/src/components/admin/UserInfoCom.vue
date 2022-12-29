@@ -20,7 +20,7 @@
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li class="active"><a href="#">회원관리</a></li>
+                  <li class="active"><a href="/userInfoAdmin">회원관리</a></li>
                   <li>
                     <a href="#">게시판관리</a>
                   </li>
