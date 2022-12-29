@@ -406,7 +406,7 @@ export default {
         actor: "최아리,강수빈,정주희",
         role: "아바타1,아바타2,아바타3",
         watchedPeople: "2,945,915",
-        review: "",
+        review: [],
         youtubeUrl: "https://youtu.be/d9MyW72ELq0",
         posterUrl:
           "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
