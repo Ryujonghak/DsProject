@@ -56,7 +56,7 @@
               />
             </td>
             <th scope="row">
-            |
+              |
               <label for="name">이메일</label>
               <em class="font-orange">*</em>
             </th>
@@ -151,19 +151,12 @@ export default {
   },
   data() {
     return {
-      qna: {
-        name: "",
-        email: "",
-        phonenumber: "",
-        title: "",
-        content: "",
-      },
-      // TODO: 정주희 추가
-      submitted: false,
+      qna: [],
     };
   },
   methods: {
     createQna() {
+      alert("클릭되냐");
       let data = {
         name: this.qna.name,
         email: this.qna.email,
@@ -176,7 +169,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           alert("등록이 완료되었습니다");
-          this.submitted = true;  // TODO: 정주희 추가
+          this.submitted = true; // TODO: 정주희 추가
           this.$router.push("/qna");
         })
         // 실패하면 .catch() 에러메세지가 전송됨
@@ -193,7 +186,6 @@ export default {
   border: 2px solid;
   color: aliceblue;
   padding: 5%;
-
 }
 .qna {
   background: black;
