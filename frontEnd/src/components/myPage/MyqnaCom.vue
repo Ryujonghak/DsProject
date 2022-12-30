@@ -234,7 +234,10 @@ export default {
         answer: "",
       },
       // 수빈이 AddQna 받아오기
-      currentQna: null, // QnaDetail - qna 수정
+      // currentQna: null, // QnaDetail - qna 수정
+      currentQna: {
+        name: "강태경"
+      }, // QnaDetail - qna 수정
       qna: [], // QnaList   - qna 조회
       message: "",
       // 하드코딩
