@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+    아무거나
   </div>
 </template>
 
