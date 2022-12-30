@@ -15,7 +15,7 @@
           <!-- 왼쪽 사이드 바 시작 -->
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="movie-img">
-              <img :src="movie.posterURL" alt="poster" />
+              <img :src="movie.posterurln" alt="poster" />
               <div class="movie-btn">
                 <div class="btn-transform transform-vertical red">
                   <div>
@@ -52,7 +52,7 @@
           <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="movie-single-ct main-content">
               <h1 class="bd-hd">
-                {{ movie.movieNm }}<span>{{ movie.openDt }}</span>
+                {{ movie.movienm }}<span>{{ movie.prdtyear }}</span>
               </h1>
               <div class="social-btn">
                 <!-- TODO: 찜하기 구현, 클릭하면 데이터를 저장..? 어떻게 구현하는거? 하하하 -->
@@ -69,8 +69,7 @@
                 <div class="rate">
                   <i class="ion-android-star"></i>
                   <p>
-                    <span>{{ movie.rating }}</span> /5<br />
-                    <!-- <span>{{ movie.userRating }}</span> /10<br /> -->
+                    <span>{{ movie.raiting }}</span> /10<br />
                   </p>
                 </div>
                 <div class="rate-star">
@@ -98,7 +97,7 @@
                         <div class="col-md-8 col-sm-12 col-xs-12">
                           <!-- {{ currentMovie.synopsis }} -->
                           <p>
-                            {{ movie.synopsis }}
+                            {{ movie.plot }}
                           </p>
                           <div class="title-hd-sm">
                             <h4>포스터/스틸컷</h4>
@@ -110,11 +109,10 @@
                           </div>
                           <!-- 표지 이미지들 (최대 4개까지 가져오고싶음) -->
                           <!-- 이미지 가져오기 test 시작 -->
-                          <!-- FIXME: 이렇게는 안 되는거? 그럼 어떻게 구현하면 좋을까요? 게다가 URL이 한두개가 아님요 -->
                           <span class="mvsingle-item ov-item">
                             <a
                               :class="{ active: index == currentIndex }"
-                              v-for="(data, index) in movie.tempImgUrl"
+                              v-for="(data, index) in tempImgUrl"
                               :key="index"
                               class="img-lightbox"
                               data-fancybox-group="gallery"
@@ -188,15 +186,15 @@
                           </div>
                           <div class="sb-it">
                             <h6>장르:</h6>
-                            <p>{{ movie.genreNm }}</p>
+                            <p>{{ movie.genrenm }}</p>
                           </div>
                           <div class="sb-it">
                             <h6>개봉:</h6>
-                            <p>{{ movie.openDt }}</p>
+                            <p>{{ movie.opendt }}</p>
                           </div>
                           <div class="sb-it">
                             <h6>러닝타임:</h6>
-                            <p>{{ movie.showTm }}</p>
+                            <p>{{ movie.showtm }}분</p>
                           </div>
                         </div>
                         <!-- 오른쪽 사이드 바 끝 -->
@@ -349,7 +347,7 @@
                             <div class="mvsingle-item ov-item">
                               <a
                                 :class="{ active: index == currentIndex }"
-                                v-for="(data, index) in movie.imgURL"
+                                v-for="(data, index) in movie.imgurl"
                                 :key="index"
                                 class="img-lightbox"
                                 data-fancybox-group="gallery"
@@ -379,35 +377,26 @@
 <script>
 /* eslint-disable */
 import custom from "@/assets/js/custom.js";
+import MovieDataService from "@/services/MovieDataService";
+
 export default {
   mounted() {
     custom();
-    this.cutNames();
+    this.getMovie();
+    // this.cutNames();
   },
   data() {
     return {
-      movie: {
-        movieCd: "",
-        movieNm: "아바타: 물의 길",
-        synopsis:
-          " 아바타: 물의 길 은 판도라 행성에서 '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로, 샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이출연하고 존 랜도가 프로듀싱을 맡았다.",
-        openDt: "2022.12.14",
-        rating: 4.5, // 백엔드에서 가져온 평점
+      movie: null,
+      searchMname: "",
+      moviecd: "20196478",
 
-        showTm: "192",
-        genreNm: "액션, 어드벤쳐, SF",
-        directors: "최아리",
-        actor: "최아리,강수빈,정주희",
-        cast: "아바타1,아바타2,아바타3",
-        watchedPeople: "2,945,915",
-        review: [],
-        utubeURL: "https://youtu.be/d9MyW72ELq0",
-        posterURL:
-          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
-        imgURL:
-          "https://movie-phinf.pstatic.net/20221110_282/16680463363384H0hJ_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_147/1668046384890YVGlu_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_141/1668046432203AKL6P_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221123_280/1669180665184phjkW_JPEG/movie_image.jpg?type=m665_443_2", // 약 4~6개 정도 주소 백엔드에 넣어두는건 어떤지 고민입니다.
-        tempImgUrl: [],
-      },
+      // 페이징을 위한 변수 정의
+      page: 1, // 현재 페이지
+      count: 0, // 전체 데이터 건수
+      pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+
+      pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
       review: [
         {
           movieCode: 1,
@@ -437,6 +426,7 @@ export default {
       starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
       userReview: "",
       userStarRaing: 3,
+      tempImgUrl: [],
       imageUrlLength: 0,
     };
   },
@@ -444,34 +434,63 @@ export default {
     cutNames() {
       this.movie.actor = this.movie.actor.split(",");
       this.movie.cast = this.movie.cast.split(",");
-      this.movie.imgURL = this.movie.imgURL.split(",");
+      this.movie.imgurl = this.movie.imgurl.split(",");
       // 가져온 이미지 url 개수
-      this.imageUrlLength = this.movie.imgURL.length;
+      this.imageUrlLength = this.movie.imgurl.length;
       // 썸네일 이미지 2장만 보이게 설정
-      this.movie.tempImgUrl[0] = this.movie.imgURL[0];
-      this.movie.tempImgUrl[1] = this.movie.imgURL[1];
+      this.tempImgUrl[0] = this.movie.imgurl[0];
+      this.tempImgUrl[1] = this.movie.imgurl[1];
       // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
-      this.starRating = Math.floor(this.movie.rating);
-      // this.movie.starRating = Math.floor(this.movie.rating);
+      this.starRating = Math.floor(this.movie.raiting);
+      // alert(this.starRating);
     },
     likeSave() {
       alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
     },
     // axios, 모든 영화 정보 조회 요청 함수
     // TODO: but 문제는 우리는 앞에서 클릭하면 들어오는 영화의 정보만 가지고 들어와야 하기 때문에 다르게 구현해야한다. 일단 대충 가져옴
-    retrieveMovie() {
-      MovieDataService.getAll()
+    // retrieveMovie() {
+    //   alert("함수실행");
+    //   MovieDataService.getMovie(moviecd)
+    //     .then((response) => {
+    //       alert("성공");
+    //       this.movie = response.data.MovieDetail;
+    //       var test = this.movie;
+    //       alert(JSON.stringify(test));
+    //       console.log(response.data.MovieDetail);
+    //     })
+    //     .catch((e) => {
+    //       alert("실패");
+    //       console.log(e);
+    //     });
+    // },
+    // TODO: 영화코드(moviecd)로 조회 요청하는 함수
+    getMovie() {
+      MovieDataService.getMovieDetail(this.moviecd)
         .then((response) => {
-          this.movie = response.data;
-          console.log(response.data);
+          this.movie = response.data.MovieDetail[0];
+          console.log(response.data.MovieDetail[0]);
+          // alert(this.movie.movienm)
+          this.movie.actor = this.movie.actor.split(",");
+          this.movie.cast = this.movie.cast.split(",");
+          this.movie.imgurl = this.movie.imgurl.split(",");
+          // 가져온 이미지 url 개수
+          this.imageUrlLength = this.movie.imgurl.length;
+          // 썸네일 이미지 2장만 보이게 설정
+          this.tempImgUrl[0] = this.movie.imgurl[0];
+          this.tempImgUrl[1] = this.movie.imgurl[1];
+          // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
+          this.starRating = Math.floor(this.movie.raiting);
         })
         .catch((e) => {
           console.log(e);
         });
+      // var test = this.movie;
+      // alert(JSON.stringify(test));
     },
     // FIXME: 새로운 리뷰 저장 함수
     saveReview() {
-      // 임시 객체 변수 -> springboot 전송
+      // 임시 객체 변수 -> springboot 전송a
       // 백데이터에 우리가 새로 받은 userStarRaing, 넣어주기
       // BUT 그렇다면 username, movieCode 등은 자동으로 넘어갈 수 있는지
       let data = {
