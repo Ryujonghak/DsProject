@@ -56,7 +56,7 @@
               />
             </td>
             <th scope="row">
-            |
+              |
               <label for="name">이메일</label>
               <em class="font-orange">*</em>
             </th>
@@ -162,6 +162,7 @@ export default {
   },
   methods: {
     createQna() {
+      alert("클릭되냐");
       let data = {
         name: this.qna.name,
         email: this.qna.email,
@@ -190,7 +191,6 @@ export default {
   border: 2px solid;
   color: aliceblue;
   padding: 5%;
-
 }
 .qna {
   background: black;

@@ -15,5 +15,5 @@ public interface ScheRepository extends JpaRepository<Sche, Long> {
     Optional<Sche> findByScno(Long scno);
 
 //    TODO: Movie 모델과 N : 1 OR N : N 관계 시 Query문 추가 및 수정해주어야함.(DTO 또한 수정해야함.)
-    Page<ScheMovieDto> findAllByMoviecdContaining(@Param("moviecd") Integer moviecd, Pageable pageable);
+    Page<Sche> findAllByMoviecdContaining(@Param("moviecd") Integer moviecd, Pageable pageable);
 }

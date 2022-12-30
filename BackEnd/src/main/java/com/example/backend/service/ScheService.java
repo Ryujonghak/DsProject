@@ -1,6 +1,5 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.response.ScheMovieDto;
 import com.example.backend.model.Sche;
 import com.example.backend.repository.ScheRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +33,8 @@ public class ScheService {
         return scheOptional;
     }
 
-    public Page<ScheMovieDto> findAllByMoviecdContaining(Integer moviecd, Pageable pageable) {
-        Page<ScheMovieDto> scheMovieDtoPage = scheRepository.findAllByMoviecdContaining(moviecd, pageable);
+    public Page<Sche> findAllByMoviecdContaining(Integer moviecd, Pageable pageable) {
+        Page<Sche> scheMovieDtoPage = scheRepository.findAllByMoviecdContaining(moviecd, pageable);
 
         return scheMovieDtoPage;
     }

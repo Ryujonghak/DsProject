@@ -21,7 +21,7 @@
       <div class="container">
         <div class="row">
           <div class="title">
-				<h2 class="h1">현재상영작</h2>
+				<h6 class="h1">BOX OFFICE</h6>
 			</div>
           <div class="slick-multiItemSlider">
             <!-- 아바타 영화포스터 -->
@@ -267,7 +267,7 @@ export default {
   margin-bottom: 5%;
 }
 .h1{
-  font-size: 50px;
+  font-size: 20px;
 }
 .slider{
  padding-top:0;

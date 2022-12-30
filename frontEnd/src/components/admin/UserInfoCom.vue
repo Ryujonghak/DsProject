@@ -14,29 +14,52 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width2">
-          <!-- 왼쪽 메뉴바 시작 -->
+          <!-- <!— 왼쪽 메뉴바 시작 —> -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li class="active"><a href="#">회원관리</a></li>
-                  <li>
-                    <a href="#">게시판관리</a>
+                  <li class="active">
+                    <router-link to="/userInfoAdmin">회원관리</router-link>
                   </li>
-                  <li><a href="/reservInfoAdmin">결제관리</a></li>
+                  <li>
+                    <a href="#"></a>
+                    <a data-toggle="dropdown" @click="boardclick">
+                      게시판관리
+                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown" v-show="board">
+                      <li>
+                        <router-link to="/board-admin"
+                          >공지사항 관리</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link to="/movie-admin">영화 관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/review-admin">리뷰관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/qna-admin">QnA 답변관리</router-link>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <router-link to="/payment-admin">예매 내역</router-link>
+                  </li>
                 </ul>
               </div>
               <div class="user-fav">
-                <p>기타</p>
                 <ul>
-                  <li><a href="/userInfoEdit">관리자관리</a></li>
-                  <li><a href="#">Log out</a></li>
+                  <!-- <a @click.prevent="logout">LOG OUT</a> -->
+                  <li><a href="#" @click="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
           </div>
-          <!-- 왼쪽 메뉴바 끝 -->
+          <!-- <!— 왼쪽 메뉴바 끝 —> -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <!-- TODO: 바로 밑 div 데이터 받아서 v-for 예정입니다. -->
             <div class="col-xs-12" v-for="(data, index) in user" :key="index">
@@ -99,13 +122,7 @@
                 <div class="col-xs-3">
                   <a href="/userInfoEdit" class="editbtn col-xs-12">수정</a>
                   <div class="col-xs-12"></div>
-                  <a
-                    href="#"
-                    id="btn-modal"
-                    class="delbtn col-xs-12"
-                    @click="deleteUser"
-                    >삭제</a
-                  >
+                  <a href="#" id="btn-modal" class="delbtn col-xs-12">삭제</a>
                 </div>
               </div>
             </div>
@@ -113,7 +130,7 @@
             <!-- Todo : page 바 시작 -->
             <div class="col-md-12">
               <!-- 3, 6, 9 옵션 선택 창 -->
-              <!-- <div class="mb-3">
+              <div class="mb-3">
                 Items per Page:
                 <select
                   v-model="pageSize"
@@ -123,7 +140,7 @@
                     {{ size }}
                   </option>
                 </select>
-              </div> -->
+              </div>
 
               <b-pagination
                 v-model="page"
@@ -166,7 +183,7 @@
               <h6>이 회원을 정말 삭제하시겠습니까?</h6>
             </div>
           </div>
-          <div class="content col-xs-12" style="text-align: center;">
+          <div class="content col-xs-12" style="text-align: center">
             <a href="#" id="btn-modal" class="closebtn col-xs-6">아니요</a>
             <a
               href="#"
@@ -185,7 +202,7 @@
 
 <script>
 // FIXME: UserDataService.js 로 파일명 바꿔야 하는거 아닌지
-import UserDataService from "@/services/user.service.js";
+import UserService from "@/services/user.service.js";
 
 export default {
   mounted() {
@@ -228,6 +245,8 @@ export default {
   },
   data() {
     return {
+      // 게시판관리 v-show
+      board: false,
       user: [
         {
           id: 97,
@@ -254,7 +273,32 @@ export default {
           phone: "01047123456",
         },
       ],
+      // {
+      //   id: 97,
+      //   username: "choiari1002",
+      //   password: 12345678,
+      //   question: "좋아하는 색깔은? (대충)",
+      //   answer: "아이보리",
+      //   year: 1994,
+      //   month: 10,
+      //   day: 2,
+      //   email: "choiari1002@naver.com",
+      //   phone: "7787518479",
+      // },
+      // {
+      //   id: 98,
+      //   username: "areerang",
+      //   password: 12345678,
+      //   question: "좋아하는 색깔은? (대충)",
+      //   answer: "크림",
+      //   year: 1994,
+      //   month: 10,
+      //   day: 2,
+      //   email: "areerang@naver.com",
+      //   phone: "01047123456",
+      // },
       currentUser: null,
+      searchUsername: "",
       message: "",
 
       // 페이징을 위한 변수 정의
@@ -266,14 +310,22 @@ export default {
     };
   },
   methods: {
+    //왼쪽 메뉴바 slide효과
+    boardclick() {
+      this.board = !this.board;
+    },
+    logout() {
+      this.$store.dispatch("auth/logout");
+      this.$router.push("/");
+    },
     retrieveUser() {
       alert("함수는 실행");
-      UserDataService.getAll(this.searchUsername, this.page - 1, this.pageSize)
+      UserService.getAll(this.searchUsername, this.page - 1, this.pageSize)
         .then((response) => {
           alert("then까지");
           const { user, totalItems } = response.data;
           this.user = user;
-          this.count = totalItems; // 스프링부트에서 전송한 페이지정보(총 건수)
+          this.count = totalItems;
 
           console.log(response.data);
         })
@@ -284,16 +336,16 @@ export default {
     },
     // FIXME: 삭제 위한 currentUser에 값 넣는 함수, 유저정보를 삭제 요청하는 함수
     // id로 조회 함수
-    getUser(id) {
-      UserDataService.get(id)
-        .then((response) => {
-          this.currentUser = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
+    // getUser(id) {
+    //   UserService.get(id)
+    //     .then((response) => {
+    //       this.currentUser = response.data;
+    //       console.log(response.data);
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // },
     deleteUser() {
       // UserDataService.delete(this.currentUser.id)
       //   .then((response) => {

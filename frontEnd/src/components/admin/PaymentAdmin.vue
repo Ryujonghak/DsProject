@@ -20,8 +20,8 @@
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li><a href="#">회원관리</a></li>
-                  <li class="active">
+                  <li><router-link to="/userInfoAdmin">회원관리</router-link></li>
+                  <li >
                     <a href="#"></a>
                     <a
                       class="btn btn-default dropdown-toggle"
@@ -32,7 +32,7 @@
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown" v-show="board">
-                      <li><a>공지사항 관리</a></li>
+                      <li><router-link to="/board-admin">공지사항 관리</router-link></li>
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
@@ -40,7 +40,7 @@
                   <li><router-link to="/qna-admin">QnA 답변관리</router-link></li>
                     </ul>
                   </li>
-                  <li><router-link to="/payment-admin">결제 관리</router-link></li>
+                  <li class="active"><router-link to="/payment-admin">예매 내역</router-link></li>
                 </ul>
               </div>
               <div class="user-fav">
@@ -54,7 +54,7 @@
 
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div style="margin-bottom:2%;">
-              <h3 style="color: aliceblue">결제관리</h3>
+              <h3 style="color: aliceblue">예매 내역</h3>
             </div>
 
             <!-- 전체정렬 -->
@@ -64,57 +64,47 @@
                 <table class="notice_table">
                   <colgroup>
                     <col style="width: 5%" />
-                    <col style="width: 15%" />
-                    <col style="width: 20%" />
-                    <col style="width: 15%" />
-                    <col style="width: 15%" />
-                    <col style="width: 15%" />
-                    <col style="width: 15%" />
-                    <col style="width: 15%" />
+                    <col style="width: 10%" />
+                    <col style="width: 10%" />
+                    <col style="width: 10%" />
+                    <col style="width: 10%" />
+                    <col style="width: 10%" />
+                    <col style="width: 10%" />
+                    <col style="width: 5%" />
+                    <col style="width: 10%" />
                   </colgroup>
                   <thead>
                     <tr>
                       <th scope="col">No</th>
                       <th scope="col">username</th>
+                      <th scope="col">지점</th>
+                      <th scope="col">상영관</th>
+                      <th scope="col">영화시간</th>
                       <th scope="col">영화명</th>
                       <th scope="col">좌석번호</th>
-                      <th scope="col">예매수량</th>
+                      <th scope="col">수량</th>
                       <th scope="col">결제가격</th>
-                      <th scope="col">결제시간</th>
-                      <th scope="col">Delete Btn</th>
+                      <!-- <th scope="col">결제시간</th> -->
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="(data, index) in Payment" v-bind:key="index">
                       <td>{{ data.No }}</td>
                       <td>{{ data.username }}</td>
+                      <td>{{ data.THEATER_ID }}</td>
+                      <td>{{ data.SCREEN }}</td>
+                      <td>{{ data.START_TIME }}</td>
                       <td>{{ data.movieNm }}</td>
                       <td>{{ data.seatNo }}</td>
                       <td>{{ data.cnt }}</td>
                       <td>{{ data.price }}</td>
-                      <td>{{ data.paidDate }}</td>
-                      <td>
-                        <button class="deletebtn">삭제</button>
-                      </td>
+                      <!-- <td>{{ data.paidDate }}</td> -->
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
             <!--리뷰 테이블 관리 테이블 끝  -->
-
-            <div class="topbar-filter">
-              <label>Movies per page:</label>
-              <select>
-                <option value="range">20 Movies</option>
-                <option value="saab">10 Movies</option>
-              </select>
-              <div class="pagination2">
-                <span>Page 1 of 1:</span>
-                <a class="active" href="#">1</a>
-                <a href="#"><i class="ion-arrow-right-b"></i></a>
-              </div>
-            </div>
           </div>
         </div>
       </div>

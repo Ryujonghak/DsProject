@@ -20,8 +20,8 @@
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li><a href="#">회원관리</a></li>
-                  <li class="active">
+                  <li><router-link to="/userInfoAdmin">회원관리</router-link></li>
+                  <li >
                     <a href="#"></a>
                     <a
                       class="btn btn-default dropdown-toggle"
@@ -32,19 +32,19 @@
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown" v-show="board">
-                      <li><a>공지사항 관리</a></li>
+                      <li><router-link to="/board-admin">공지사항 관리</router-link></li>
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
                       <li>
                         <router-link to="/review-admin">리뷰관리</router-link>
                       </li>
-                      <li>
+                      <li class="active">
                         <router-link to="/qna-admin">QnA 답변관리</router-link>
                       </li>
                     </ul>
                   </li>
-                  <li><router-link to="/payment-admin">결제 관리</router-link></li>
+                  <li><router-link to="/payment-admin">예매 내역</router-link></li>
                 </ul>
               </div>
               <div class="user-fav">
@@ -151,18 +151,6 @@
               </div>
             </div>
             <!--공지사항 작성 폼 끝 -->
-            <div class="topbar-filter">
-              <label>Movies per page:</label>
-              <select>
-                <option value="range">20 Movies</option>
-                <option value="saab">10 Movies</option>
-              </select>
-              <div class="pagination2">
-                <span>Page 1 of 1:</span>
-                <a class="active" href="#">1</a>
-                <a href="#"><i class="ion-arrow-right-b"></i></a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -171,21 +159,11 @@
 </template>
 
 <script>
-//import QnaDataService from '@/services/QnaDataService';
+import QnaDataService from '@/services/QnaDataService';
 export default {
   data() {
     return {
-      questiones: [
-        {
-          qno: 1,
-          name: "강수빈",
-          email: "isug1004@daum.net",
-          phone: "010-6368-3193",
-          title: "안녕하세요 문의합니다.",
-          content:
-            "안녕하세요, 영화관문의드립니다. 영화관에서는 외부음식 반입이 금지인가요? 아니면 가능한가요? 어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸어쩌구저쩌구저쩌구어쩌구저쩌꾸 ",
-        },
-      ],
+      questiones: [],
       textarea: "",
       registerQna: false,
       successAnswer: false,
@@ -212,9 +190,18 @@ export default {
     //답변 등록하기 버튼 클릭시
      registerAnswer() {
        if (this.textarea) {
-           alert("답변이 완료되었습니다.");
           this.successAnswer = true;
           this.writeAnswer = false;
+          QnaDataService.update(this.currentQna.qno, this.currentQna)
+      // 성공하면 then() 결과가 전송됨
+      .then(response => {
+        console.log(response.data);
+        alert("답변이 완료되었습니다.");
+      })
+      // 실패하면 .catch() 에러메세지가 전송됨
+      .catch(e => {
+        console.log(e);
+      });
        }
     else{
         alert("실패");

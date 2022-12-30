@@ -202,10 +202,11 @@ export default {
         this.$store.dispatch("auth/register", this.user)
           .then((response) => {
             this.message = response.message;
-            this.successful = true; // "회원가입이 성공했습니다." 화면 출력
+            this.successful = true;
+            alert("회원가입이 완료되었습니다.")
           })
           .catch((error) => {
-            this.successful = false; // 회원가입 실패 -> 회원가입폼 다시 화면에 나옴
+            this.successful = false; 
             this.message =
               (error.response &&
                 error.response.data &&

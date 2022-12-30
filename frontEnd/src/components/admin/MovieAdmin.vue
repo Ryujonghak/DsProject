@@ -21,8 +21,8 @@
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li><a href="#">회원관리</a></li>
-                  <li class="active">
+                  <li><router-link to="/userInfoAdmin">회원관리</router-link></li>
+                  <li>
                     <a href="#"></a>
                     <a
                       class="btn btn-default dropdown-toggle"
@@ -33,8 +33,8 @@
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown" v-show="board">
-                      <li><a>공지사항 관리</a></li>
-                      <li>
+                      <li><router-link to="/board-admin">공지사항 관리</router-link></li>
+                      <li class="active">
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
                       <li>
@@ -45,9 +45,7 @@
                       </li>
                     </ul>
                   </li>
-                  <li>
-                    <router-link to="/payment-admin">결제 관리</router-link>
-                  </li>
+                  <li><router-link to="/payment-admin">예매 내역</router-link></li>
                 </ul>
               </div>
               <div class="user-fav">

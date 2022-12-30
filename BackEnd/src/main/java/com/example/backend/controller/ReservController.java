@@ -75,7 +75,7 @@ public class ReservController {
     @GetMapping("/reserv/{reservno}")
     public ResponseEntity<Object> find(@PathVariable Long reservno) {
         try {
-            Optional<Reserv> reservOptional = reservService.findbyReservno(reservno);
+            Optional<Reserv> reservOptional = reservService.findByReservno(reservno);
             if (reservOptional.isPresent()) {
                 return new ResponseEntity<>(reservOptional.get(), HttpStatus.OK);
             } else {
