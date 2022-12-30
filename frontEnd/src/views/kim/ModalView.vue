@@ -18,7 +18,7 @@
           <p class="choice">선택 좌석 : A열 2번, B열 2번</p>
           <div style="margin-top: 20px;margin-bottom: 20px;color: white;float: right;">
 
-            <span>러닝 타임 </span>
+            <span>러닝 타임###### </span>
             <img
               style="width: 30px; height: 30px"
               src="@/assets/images_kim/Views/ModalView/free-icon-time-6659457.png"
