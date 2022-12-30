@@ -56,16 +56,16 @@
                 <!-- 영화관 -->
                 <div v-show="상영">
                   <div
-                    style=" width: 250px; height: 480px; margin: 0 5px 0 50px; float: left; background-color: #F7EBEC; border-radius: 0 0 0 10px;">
+                    style=" width: 250px; height: 480px; margin-left:50px; margin-right: 0.2px; float: left; background-color: #F7EBEC; border-radius: 0 0 0 10px; ">
                     <p
                       style=" width: 250px; margin-bottom: 0px; color:white; text-align: center; background-color: #462456; padding: 15px 0; ">
                       지역
                     </p>
-                    <button @click="seoul" class="div2">서 울</button>
-                    <button @click="busan" class="div2">부 산</button>
+                    <button @click="seoul" class="div2">서울</button>
+                    <button @click="busan" class="div2">부산</button>
                   </div>
                   <div class="one"
-                    style="width: 250px;  height: 480px;  margin: 0 5px;  float: left;  background-color:  #F7EBEC;">
+                    style="width: 250px;  height: 480px;   float: left;  background-color:  #F7EBEC;  margin-right: 1px;">
                     <p
                       style="width: 250px; margin-bottom: 0px; color:white; text-align: center; padding: 15px 0;background-color: #462456; ">
                       영화관
@@ -91,54 +91,60 @@
                     </div>
                   </div>
                   <div
-                    style="width: 500px; height: 480px; margin: 0 5px; float: left; background-color:  #F7EBEC;  overflow: hidden; border-radius: 0 0 10px 0;">
+                    style="width: 500px; height: 480px; float: left; background-color:  #F7EBEC;  overflow: hidden; border-radius: 0 0 10px 0;">
                     <p
-                      style="width: 500px;  border-bottom: 1px solid gray; margin-bottom: 0; color: gray;  padding: 15px 0 15px 0;  background-color: #462456;  color: white;text-align: center;">
+                      style="width: 500px;  border-bottom: 1px solid gray; margin-bottom: 0; color: gray;  padding: 15px 0 14px 0;  background-color: #462456;  color: white;text-align: center;">
                       {{ yy }}-{{ mm }}-{{ dd }}(오늘)
                     </p>
                     <div style="width: 1000px; height: 100px;">
-                      <button
-                        style="width: 60px; border-radius: 20px; height: 80px; float: left; margin: 10px;border: 0;  background-color: #071829;">
+                        <!-- TODO: 그냥 이것도 v-show 로 하겠움-->
+                      <button v-show="오늘" @click="week()"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0; ">
                         <h4 style="color: white; padding: 10px 0 0 13px;">{{ dd }}</h4>
                         <p style="margin-top: 15px">오늘</p>
                       </button>
-                      <button
-                        style="width: 60px; border-radius: 20px; height: 80px; float: left; margin: 10px;border: 0; background-color: #48545E;">
+                      <button v-show="!오늘" @click="weekshow()"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0; background-color: #1D1E2C;">
+                        <h4 style="color: white; padding: 10px 0 0 13px;">{{ dd }}</h4>
+                        <p style="margin-top: 15px">오늘</p>
+                      </button>
+
+                      <button v-show="내일" @click="week2()"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0; ">
                         <h4 style="padding: 10px 0 0 13px;">{{ dd + 1 }}</h4>
                         <p style="margin-top: 15px;">내일</p>
                       </button>
-                      <button
-                        style="width: 60px; border-radius: 20px; height: 80px; float: left; margin: 10px;border: 0;  background-color: #48545E;">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 2 }}</h4>
-                        <p style="margin-top: 15px">{{ 요일[순서[2]] }}</p>
+                      <button v-show="!내일" @click="weekshow2()"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C ">
+                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 1 }}</h4>
+                        <p style="margin-top: 15px;">내일</p>
                       </button>
-                      <button
-                        style="width: 60px; border-radius: 20px; height: 80px; float: left; margin: 10px;border: 0;  background-color: #48545E;">
+                      
+                      <button v-show="요일3" @click="week3()"
+                        style="width: 60px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;">
+                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 2 }}</h4>
+                        <p style="margin-top: 15px;">{{ 요일[순서[2]] }}</p>
+                      </button>
+                      <button v-show="!요일3" @click="weekshow3()"
+                        style="width: 60px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C">
+                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 2 }}</h4>
+                        <p style="margin-top: 15px;">{{ 요일[순서[2]] }}</p>
+                      </button>
+                      <!-- 요일4를 클릭을 하면 배경색 변경이 되고, 티켓정보라는 배열에 정보를 넘김 -->
+                      <button v-show="요일4" @click="week4()"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0; ">
                         <h4 style="padding: 10px 0 0 13px;">{{ dd + 3 }}</h4>
                         <p style="margin-top: 15px">{{ 요일[순서[3]] }}</p>
                       </button>
-                      <button
-                        style="width: 60px; border-radius: 20px; height: 80px; float: left; margin: 10px;border: 0;  background-color: #48545E;">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 4 }}</h4>
-                        <p style="margin-top: 15px">{{ 요일[순서[4]] }}</p>
+                      <button v-show="!요일4" @click="weekshow4()"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C ">
+                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 3 }}</h4>
+                        <p style="margin-top: 15px">{{ 요일[순서[3]] }}</p>
                       </button>
-                      <button
-                        style="width: 60px; border-radius: 20px; height: 80px; float: left; margin: 10px;border: 0;  background-color: #48545E;">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 5 }}</h4>
-                        <p style="margin-top: 15px">{{ 요일[순서[5]] }}</p>
-                      </button>
-                      <button
-                        style="width: 60px;  border-radius: 20px;  height: 80px;  float: left;  margin: 10px; border: 0;background-color: #48545E; ">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 6 }}</h4>
-                        <p style="margin-top: 15px">{{ 요일[순서[6]] }}</p>
-                      </button>
-                      <button
-                        style="width: 60px;  border-radius: 20px;  height: 80px;  float: left;  margin: 10px; border: 0;background-color: #48545E;">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 7 }}</h4>
-                        <p style="margin-top: 15px">{{ 요일[순서[0]] }}</p>
-                      </button>
+                      
                     </div>
-                    <div style=" border-bottom: 1px solid; margin: 0 15px; float: left; width: 40px;">
+                    <div style="clear: both;"></div>
+                    <div style=" border-bottom: 1px solid; margin:  15px; float: left; width: 40px;">
                       2D
                     </div>
                     <div style="clear: both"></div>
@@ -593,14 +599,10 @@
                 <!-- 이건 좌석 -->
               </div>
             </div>
-  
           </div>
         </div>
-        <!-- footer section-->
-  
       </div>
     </div>
-    <!-- end of footer section-->
   </template>
   
   <script>
@@ -623,9 +625,9 @@
     },
     data() {
       return {
-        상영: false,  // 상영페이지 v-show
+        상영: true,  // 상영페이지 v-show
         좌석: false,  // 좌석페이지 v-show
-        결제: true,   // 결제페이지 v-show
+        결제: false,   // 결제페이지 v-show
   
         입력1 : true, // 상영페이지에서 지역, 영화관, 날짜, 시간 모두 클릭시 false에서 true로 바뀜 
         입력2 : false,  // 결제페이지에서 인원, 좌석인원에 맞게 선택시 false에서 true로 바뀜
@@ -656,6 +658,8 @@
         selectsC: [],
         selectsD: [],
         selectsE: [],
+
+        ticketinfor : [{local : '', cinema: '',}], // 티켓정보를 담는 배열
   
       };
     },
@@ -705,7 +709,6 @@
           }
         }
       },
-  
   
       addseat(value) {               // 클릭을 하면 selected 배열에 담음
         if (this.adultcount + this.teencount == 0) {
@@ -768,9 +771,8 @@
             this.selectsE[tempVal2 - 1] = 1;
           }
         }
-        this.입력2 = false;      
+        this.입력2 = false;
       },
-  
       adultmins() {
         if (this.adultcount + this.teencount == 0) {
           alert("인원선택은 최소 1명 입니다.")
@@ -816,14 +818,36 @@
         this.좌석 = true;
         this.상영 = false;
         this.결제 = false;
-  
       },
       pay() {
         this.좌석 = false;
         this.상영 = false;
         this.결제 = true;
       },
-     
+      week() {
+        
+      },
+      week2() {
+        
+      },
+      week3() {
+        
+      },
+      week4() {
+        
+      },
+      weekshow() {
+
+      },
+      weekshow2() {
+
+      },
+      weekshow3() {
+      
+      },
+      weekshow4() {
+      
+      },
   
       date() {
         var date = new Date();
@@ -840,33 +864,7 @@
         for (j; j < this.day; j++) {
           this.순서 += j;
         }
-        // console.log(this.순서);
       },
-      // color() {
-      //   if (this.요일[this.순서[0]] == this.요일[0]) {
-      //     console.log("빨강");
-      //   } else if (this.요일[this.순서[0]] == this.요일[6]) {
-      //     console.log("파랑");
-      //   } else {
-      //     console.log("검정");
-  
-  
-      //     if (this.요일[this.순서[1]] == this.요일[0]) {
-      //       console.log("빨강");
-      //     } else if (this.요일[this.순서[1]] == this.요일[6]) {
-      //       console.log("파랑");
-      //     } else {
-      //       console.log("검정");
-      //     }
-      //     if (this.요일[this.순서[2]] == this.요일[0]) {
-      //       console.log("빨강");
-      //     } else if (this.요일[this.순서[2]] == this.요일[6]) {
-      //       console.log("파랑");
-      //     } else {
-      //       console.log("검정");
-      //     }
-      //   }
-      // },
     },
   }
   </script>
@@ -931,7 +929,6 @@
     background-color: #F7EBEC;
   }
   
-  
   .btndiv2 {
     border: 0;
     width: 100%;
@@ -941,6 +938,7 @@
     background-color: #F7EBEC;
   
   }
+ 
   
   .clicked {
     color: white;
