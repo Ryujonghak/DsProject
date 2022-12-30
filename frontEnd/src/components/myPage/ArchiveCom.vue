@@ -406,6 +406,8 @@ export default {
         price: "15000", // 금액
       },
       // TODO: 리뷰
+      currentReview: null,
+      message: "",
       reviewMovie: {
         userStarRating: 2, // 사용자별점
         userReview: [
@@ -490,18 +492,29 @@ export default {
       // 새양식 다시 보여주기, 변수 초기화
       this.submitted = false;
       this.review = {};
-    }
+    },
 
     // FIXME: 리뷰 작성버튼 눌러서 저장하기
     // saveReview() {
     // },
     // FIXME: 리뷰 삭제
-    // deleteReview() {
-    // },
+    deleteReview() {
+      ReviewDataService.delete(this.currentReview.id)
+      .then(response => {
+        console.log(response.data);
+        this.$router.push("/archive")
+      })
+      .catch(e => {
+        console.log(e);
+      })
+    },
   },
   mounted() {
     custom();
+
+    this.message = "",
     this.getUser(); // 종학이 백엔드 데이터
+    this.getReview(this.$route.params.id);    // 리뷰 id로 가져오기
   },
 };
 </script>
