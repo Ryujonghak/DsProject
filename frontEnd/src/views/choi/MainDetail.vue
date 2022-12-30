@@ -95,9 +95,11 @@
         </div>
       </div>
     </div>
+    <!-- TODO: 예매페이지뷰 컴포넌트 추가 시작 -->
     <div v-show="seatPage">
       <SeatView />
     </div>
+    <!-- 예매페이지뷰 컴포넌트 추가 끝 -->
   </div>
 </template>
 

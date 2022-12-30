@@ -201,11 +201,11 @@
         </div>
       </div>
     </div>
-    <!-- 테스트 시작 -->
+    <!-- TODO: 메인디테일뷰 컴포넌트 추가 시작 -->
     <div v-show="detailPage">
       <DetailCom />
     </div>
-    <!-- 테스트 끝 -->
+    <!-- 메인디테일뷰 컴포넌트 추가 끝 -->
   </div>
 </template>
 
