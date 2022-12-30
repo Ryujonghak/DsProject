@@ -180,6 +180,13 @@ const routes = [
   //   name: 'mainDetail',
   //   component: () => import('../views/kim/MainDetail.vue')
   // },
+  // 김철원
+  {
+    path: "/SeatView",
+    name: "SeatView",
+    component: () => import("@/views/kim/SeatView.vue"),
+  },
+
 ];
 
 /* eslint-disable */

@@ -146,7 +146,7 @@
                               <li
                                 class="cast-it"
                                 style="color: #abb7c4"
-                                v-for="(data, index) in movie.role"
+                                v-for="(data, index) in movie.cast"
                                 :key="index"
                               >
                                 {{ data }}
