@@ -56,7 +56,7 @@
                 <!-- 영화관 -->
                 <div v-show="상영">
                   <div
-                    style=" width: 250px; height: 520px; margin: 0 5px 0 50px; float: left; background-color: #F7EBEC; border-radius: 0 0 0 10px;">
+                    style=" width: 250px; height: 480px; margin: 0 5px 0 50px; float: left; background-color: #F7EBEC; border-radius: 0 0 0 10px;">
                     <p
                       style=" width: 250px; margin-bottom: 0px; color:white; text-align: center; background-color: #462456; padding: 15px 0; ">
                       지역
@@ -65,7 +65,7 @@
                     <button @click="busan" class="div2">부 산</button>
                   </div>
                   <div class="one"
-                    style="width: 250px;  height: 520px;  margin: 0 5px;  float: left;  background-color:  #F7EBEC;">
+                    style="width: 250px;  height: 480px;  margin: 0 5px;  float: left;  background-color:  #F7EBEC;">
                     <p
                       style="width: 250px; margin-bottom: 0px; color:white; text-align: center; padding: 15px 0;background-color: #462456; ">
                       영화관
@@ -91,7 +91,7 @@
                     </div>
                   </div>
                   <div
-                    style="width: 500px; height: 520px; margin: 0 5px; float: left; background-color:  #F7EBEC;  overflow: hidden; border-radius: 0 0 10px 0;">
+                    style="width: 500px; height: 480px; margin: 0 5px; float: left; background-color:  #F7EBEC;  overflow: hidden; border-radius: 0 0 10px 0;">
                     <p
                       style="width: 500px;  border-bottom: 1px solid gray; margin-bottom: 0; color: gray;  padding: 15px 0 15px 0;  background-color: #462456;  color: white;text-align: center;">
                       {{ yy }}-{{ mm }}-{{ dd }}(오늘)
