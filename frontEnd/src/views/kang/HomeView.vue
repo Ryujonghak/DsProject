@@ -202,7 +202,7 @@
       </div>
     </div>
     <!-- 테스트 시작 -->
-    <div v-show="DetailPage">
+    <div v-show="detailPage">
       <DetailCom />
     </div>
     <!-- 테스트 끝 -->
@@ -222,12 +222,12 @@ export default {
   },
   data() {
     return {
-      DetailPage: false,
+      detailPage: false,
     }
   },
   methods: {
     showDetail() {
-      this.DetailPage = !this.DetailPage;
+      this.detailPage = !this.detailPage;
     }
   },
 };
