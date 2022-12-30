@@ -5,14 +5,23 @@ import http from "../http-common";
 class MovieDataService {
   // 모든 박스오피스 영화정보 조회 요청 함수
   getBoxofficeAll(movienm, page, size) {
-    return http.get(`/boxoffice?movienm=${movienm}&page=${page}&size=${size}`);
+    return http.get(`/boxoffice/?movienm=${movienm}&page=${page}&size=${size}`);
+  }
+
+  // 박스오피스 코드 조회 요청 함수
+  getBoxoffice(moviecd) {
+    return http.get(`/boxoffice/cd/?moviecd=${moviecd}`);
   }
 
   // 모든 영화디테일 조회 요청 함수
-  getMovieAll(movienm, page, size) {
-    return http.get(`/movie?movienm=${movienm}&page=${page}&size=${size}`);
+  getMovieDetailAll(movienm, page, size) {
+    return http.get(`/movie/?movienm=${movienm}&page=${page}&size=${size}`);
   }
 
+  // 영화디테일 코드 조회 요청 함수
+  getMovieDetail(moviecd) {
+    return http.get(`/movie/cd/?moviecd=${moviecd}`);
+  }
 }
 
 export default new MovieDataService();
