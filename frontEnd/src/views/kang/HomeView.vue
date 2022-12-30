@@ -1,28 +1,27 @@
 <template>
   <div>
-    <div class="mainMovie" style="background: black;">
+    <div class="mainMovie" style="background: black">
       <div class="container parent">
         <div class="cover01"></div>
-          <div class="cover02"></div>
-          <div class="cover03"></div>
+        <div class="cover02"></div>
+        <div class="cover03"></div>
         <iframe
-            class="video"
-            src="https://www.youtube.com/embed/OLLJYT-_BWw?rel=0&loop=1&playlist=OLLJYT-_BWw&autoplay=1&mute=1"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            style="width: 100%; height: 100%;"
-
-          ></iframe>
+          class="video"
+          src="https://www.youtube.com/embed/OLLJYT-_BWw?rel=0&loop=1&playlist=OLLJYT-_BWw&autoplay=1&mute=1"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="width: 100%; height: 100%"
+        ></iframe>
       </div>
     </div>
     <div class="slider movie-items">
       <div class="container">
         <div class="row">
           <div class="title">
-				<h6 class="h1">BOX OFFICE</h6>
-			</div>
+            <h6 class="h1">BOX OFFICE</h6>
+          </div>
           <div class="slick-multiItemSlider">
             <!-- 아바타 영화포스터 -->
             <div class="movie-item">
@@ -39,7 +38,7 @@
                 <div class="cate">
                   <span class="blue"><a href="#">SF/판타지</a></span>
                 </div>
-                <h6><a href="/mainDetail">아바타</a></h6>
+                <h6><a @click="showDetail">아바타</a></h6>
                 <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
               </div>
             </div>
@@ -195,18 +194,41 @@
               </div>
             </div>
           </div>
-          <a href="#" class="more">더보기 <i class="ion-ios-arrow-right"></i></a>
+
+          <a href="#" class="more"
+            >더보기 <i class="ion-ios-arrow-right"></i
+          ></a>
         </div>
       </div>
     </div>
+    <!-- TODO: 메인디테일뷰 컴포넌트 추가 시작 -->
+    <div v-show="detailPage">
+      <DetailCom />
+    </div>
+    <!-- 메인디테일뷰 컴포넌트 추가 끝 -->
   </div>
 </template>
 
 <script>
 import custom from "@/assets/js/custom.js";
+import DetailCom from "@/views/choi/MainDetail.vue";
+
 export default {
   mounted() {
     custom();
+  },
+  components: {
+    DetailCom,
+  },
+  data() {
+    return {
+      detailPage: false,
+    }
+  },
+  methods: {
+    showDetail() {
+      this.detailPage = !this.detailPage;
+    }
   },
 };
 </script>
@@ -261,24 +283,24 @@ export default {
   width: 100%;
   height: 300px;
 }
-.title{
+.title {
   color: aliceblue;
   text-align: center;
   margin-bottom: 5%;
 }
-.h1{
+.h1 {
   font-size: 20px;
 }
-.slider{
- padding-top:0;
- padding-bottom: 0;
+.slider {
+  padding-top: 0;
+  padding-bottom: 0;
 }
-.more{
+.more {
   color: aliceblue;
   font-size: 15px;
   float: right;
 }
-.movie-items{
+.movie-items {
   background: black;
 }
 </style>

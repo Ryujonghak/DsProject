@@ -54,6 +54,7 @@
                 maxlength="4"
                 v-model="qna.name"
               />
+              <!--v-model="CurrentUser.name"로 하면 백데이터 불러와짐. 등록/수정은 안됨-->
             </td>
             <th scope="row">
               |
@@ -87,7 +88,7 @@
                 class="boxing form-control"
                 maxlength="12"
                 placeholder="휴대폰번호 -제외 입력"
-                v-model="qna.phonenumber"
+                v-model="qna.phone"
               />
             </td>
           </tr>
@@ -143,18 +144,28 @@
 </template>
 
 <script>
+/* eslint-disable */ 
 import QnaDataService from "@/services/QnaDataService.js";
+import userService from "@/services/user.service";
+
 import email from "@/assets/js/email.js";
+
 export default {
   mounted() {
     email();
   },
   data() {
     return {
-      qna: {
-        name: "",
+      CurrentUser: {
         email: "",
-        phonenumber: "",
+        username: "",
+        phone: null,
+        name: "",
+      },
+      qna: {
+        name:"",
+        email: "",
+        phone: "",
         title: "",
         content: "",
       },
@@ -162,11 +173,12 @@ export default {
   },
   methods: {
     createQna() {
-      alert("클릭되냐");
+      // alert("클릭되냐");
+      // TODO: 폼에 로그인된 정보는 안 뜨지만, 작성된 qna 넘길때에는 로그인된 정보로 name, email, phone이 바뀌어서 qna테이블로 넘어감!!
       let data = {
-        name: this.qna.name,
-        email: this.qna.email,
-        phonenumber: this.qna.phonenumber,
+        name: this.CurrentUser.username,
+        email: this.CurrentUser.email,
+        phone: this.CurrentUser.phone,
         title: this.qna.title,
         content: this.qna.content,
       };
@@ -175,13 +187,35 @@ export default {
         .then((response) => {
           console.log(response.data);
           alert("등록이 완료되었습니다");
-          this.$router.push("/qna");
+          this.$router.push("/");
         })
         // 실패하면 .catch() 에러메세지가 전송됨
         .catch((e) => {
           console.log(e);
         });
     },
+
+    getUser(username) {
+      // 종학이 백엔드 데이터 받는 함수
+      username = "forbob";
+      console.log(username);
+      userService
+        .getUserUsername(username)
+        .then((response) => {
+          this.CurrentUser = {
+            email: response.data.email,
+            username: response.data.username,
+            phone: response.data.phone,
+            name: response.data.name,
+          };
+          console.log(this.CurrentUser);
+          // console.log(response.data);
+        })
+        .catch((err) => console.log(err));
+    },
+  },
+  mounted() {
+    this.getUser();
   },
 };
 </script>

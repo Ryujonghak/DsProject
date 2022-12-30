@@ -9,14 +9,7 @@
           <div class="cover01"></div>
           <div class="cover02"></div>
           <div class="cover03"></div>
-          <div class="close-button"></div>
-          <!-- 영화 줄거리 시작 -->
-          <div class="short-details">
-            <div class="col-xs-12 short-detail01">
-              {{ movie.synopsis }}
-            </div>
-          </div>
-          <!-- 영화 줄거리 끝 -->
+          <!-- <div class="close-button"></div> -->
           <!-- 동영상 위 글자 시작 -->
           <div class="slider sliderv2">
             <div class="container">
@@ -25,14 +18,17 @@
                   <div class="movie-item">
                     <div class="row">
                       <div class="col-xs-12 title-detail">
-                        <div class="title-in" style="padding-top: 7%">
-                          <h1>
+                        <div class="title-in col-xs-12" style="padding-top: 50px;width: 1000px;">
+                          <h1 class="col-xs-12" style="width:1000px">
                             <a href="#"
                               >{{ movie.title
                               }}<span>{{ movie.pubdate }}</span></a
                             >
                           </h1>
-                          <div class="social-btn" style="margin-top: 1%">
+                          <div
+                            class="social-btn col-xs-12"
+                            style="padding-top: 2%;width:1000px;height: 50px;"
+                          >
                             <a href="/movieDetail" class="parent-btn"
                               ><i class="ion-play"></i>상세보기 ></a
                             >
@@ -43,7 +39,7 @@
                               ><i class="ion-android-share-alt"></i>공유하기</a
                             >
                           </div>
-                          <div class="mv-details">
+                          <div class="mv-details col-xs-12" style="width:1000px;margin-bottom: 0px;">
                             <p>
                               <i class="ion-android-star"></i
                               ><span>{{ movie.rating }}</span> /5
@@ -53,14 +49,21 @@
                               <li>{{ movie.runTime }} 분</li>
                             </ul>
                           </div>
-                          <div class="btn-transform transform-vertical">
-                            <div>
-                              <a href="#" class="item item-1 redbtn"
+                          <div
+                            class="btn-transform transform-vertical col-xs-12"
+                            style="width:1000px;"
+                          >
+                            <div class="col-xs-12" style="margin-bottom:10px">
+                              <a
+                                @click="showSeatPage"
+                                class="item item-1 redbtn"
                                 >예매하기</a
                               >
                             </div>
-                            <div>
-                              <a href="#" class="item item-2 redbtn hvrbtn"
+                            <div class="col-xs-12" style="margin-bottom:0px">
+                              <a
+                                class="item item-2 redbtn hvrbtn"
+                                @click="showSeatPage"
                                 >예매하기</a
                               >
                             </div>
@@ -75,29 +78,46 @@
           </div>
           <!-- 동영상 위 글자 끝 -->
           <iframe
-            class="video"
+            class="video col-xs-12"
             :src="changedUrl"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
+          <!-- 영화 줄거리 시작 -->
+          <div class="short-details col-xs-12" style="width:1000px;">
+            <div class="short-detail01" style="padding-top:0px;margin-top: 0px;">
+              {{ movie.synopsis }}
+            </div>
+          </div>
+          <!-- 영화 줄거리 끝 -->
         </div>
       </div>
     </div>
+    <!-- TODO: 예매페이지뷰 컴포넌트 추가 시작 -->
+    <div v-show="seatPage">
+      <SeatView />
+    </div>
+    <!-- 예매페이지뷰 컴포넌트 추가 끝 -->
   </div>
 </template>
 
 <script>
 /* eslint-disable */
 import custom from "@/assets/js/custom.js";
+import SeatView from "@/views/kim/SeatView.vue";
 export default {
   mounted() {
     custom();
     this.changeUrl();
   },
+  components: {
+    SeatView,
+  },
   data() {
     return {
+      seatPage: false,
       movie: {
         title: "아바타: 물의 길",
         synopsis:
@@ -123,6 +143,9 @@ export default {
     };
   },
   methods: {
+    showSeatPage() {
+      this.seatPage = !this.seatPage;
+    },
     changeUrl() {
       // TODO: 배경에 유튜브 비디오를 넣기 위해서 주소에서 필요한 부분만 잘라와야 합니다.
       const cutYoutubeUrl = this.movie.youtubeUrl.substring(17); // ex.kihrFxwdMb4
@@ -149,6 +172,7 @@ export default {
   padding-bottom: 56.25%;
 }
 .cover01 {
+  /* 그라데이션 주는 css */
   position: absolute;
   width: 100%;
   height: 100%;
@@ -169,6 +193,7 @@ export default {
 }
 
 .cover02 {
+  /* 영상 윗 부분 잘라주는 css */
   position: absolute;
   width: 100%;
   height: 10%;
@@ -178,31 +203,23 @@ export default {
 
 .cover03 {
   position: absolute;
-  top: 90%;
+  top: 80%;
   width: 100%;
-  height: 10%;
+  height: 20%;
   z-index: 3;
   background-color: black;
 }
 
-.close-button {
-  position: absolute;
-  /* top: 90%; */
-  /* width: 100%;
-  height: 10%; */
-  z-index: 3;
-}
-
 .short-details {
   position: absolute;
-  top: 80%;
+  top: 77%;
   z-index: 3;
 }
 
 .short-detail01 {
+  position: absolute;
   text-align: left;
   color: white;
-  padding-top: 2%;
 }
 
 .video {

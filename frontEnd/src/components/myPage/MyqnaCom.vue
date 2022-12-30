@@ -104,12 +104,14 @@
             </div>
 
             <!-- TODO: v-show 걸기. 넘어오는 데이터 없으면 뜨도록 -->
-            <div v-show="!submitted">
+            <!-- <div v-show="!submitted"> -->
+            <div>
               <h3>문의내역이 없습니다.</h3>
             </div>
 
-            <div v-show="submitted">
-              <!-- TODO: qna 테이블시작 -->
+            <!-- <div v-show="submitted"> -->
+            <div>
+              <!-- TODO: 로그인한 사용자의 qna 테이블시작 -->
               <table class="qnabox">
                 <colgroup>
                   <col style="width: 120px" />
@@ -119,16 +121,17 @@
                 </colgroup>
                 <tbody>
                   <tr>
+                    <!-- v-model에 currentQna 해야 로그인한 사용자의 qna 정보만 가져올수있는데.. -->
                     <th scope="row">
                       |
                       <label for="name">이름</label>
                     </th>
-                    <td><input type="text" v-model="currentQna.name" /></td>
+                    <td><input type="text" v-model="qna.name" /></td>
                     <th scope="row">
                       |
                       <label for="name">이메일</label>
                     </th>
-                    <td><input type="text" v-model="currentQna.email" /></td>
+                    <td><input type="text" v-model="qna.email" /></td>
                   </tr>
                   <tr>
                     <th scope="row">
@@ -136,7 +139,7 @@
                       <label for="name">휴대전화</label>
                     </th>
                     <td>
-                      <input type="text" v-model="currentQna.phonenumber" />
+                      <input type="text" v-model="qna.phone" />
                     </td>
                   </tr>
                   <tr>
@@ -144,7 +147,7 @@
                       |
                       <label for="qnaTitle">제목</label>
                     </th>
-                    <td><input type="text" v-model="currentQna.title" /></td>
+                    <td><input type="text" v-model="qna.title" /></td>
                   </tr>
                   <tr>
                     <th scope="row">
@@ -152,15 +155,19 @@
                       <label for="textarea">내용</label>
                     </th>
                     <td colspan="3">
-                      <input type="text" v-model="currentQna.content" />
+                      <input type="text" v-model="qna.content" />
                     </td>
                   </tr>
                 </tbody>
               </table>
               <!-- qna 테이블 끝 -->
 
-              <!-- qna 테이블 v-for 버전 -->
-              <!-- <table class="qnabox">
+              <!-- 전체 qna 테이블 -->
+              <div>
+                <button @click="getQna()">전체 qna 보기</button>
+              </div>
+
+              <table class="qnabox">
                 <colgroup>
                   <col style="width: 120px" />
                   <col />
@@ -176,7 +183,7 @@
                     <th scope="row"><label for="name">내용</label></th>
                   </tr>
                 </thead>
-                <tbody v-for="(data, index) in qna" :key="index">
+                <tbody v-for="(data, index) in currentQna" :key="index">
                   <tr>
                     <td>{{ data.name }}</td>
                     <td>{{ data.email }}</td>
@@ -186,17 +193,44 @@
                     <td>{{ data.content }}</td>
                   </tr>
                 </tbody>
-              </table> -->
+              </table>
+
+              <!-- b-pagination : 부트스트랩 - 페이지 번호 컨트롤 -->
+              <!-- total-rows : 전체 데이터 개수 -->
+              <!-- per-page : 1페이지 당 개수 -->
+              <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
+              <b-pagination
+                v-model="page"
+                :total-rows="count"
+                :per-page="pageSize"
+                prev-text="Prev"
+                next-text="Next"
+                @change="handlePageChange"
+              ></b-pagination>
+
+              <!-- 페이지박스 -->
+              <div class="mb-3">
+                Items per Page:
+                <select
+                  v-model="pageSize"
+                  @change="handlePageSizeChange($event)"
+                >
+                  <option v-for="size in pageSizes" :key="size" :value="size">
+                    {{ size }}
+                  </option>
+                </select>
+              </div>
+              <!-- 페이징 양식 끝 -->
 
               <!-- 수정버튼 시작 -->
-              <div class="col-xs-4">
+              <!-- <div class="col-xs-4">
                 <a href="#" class="redbtn" @click="updateQna">수정하기</a>
-              </div>
+              </div> -->
 
+              <!-- 
               <div class="alert alert-success" role="alert" v-if="message">
                 {{ message }}
-              </div>
-              
+              </div> -->
             </div>
           </div>
         </div>
@@ -222,6 +256,7 @@ export default {
   // }),
   data() {
     return {
+      // 사용자 정보 받아오기
       CurrentUser: {
         email: "",
         password: "",
@@ -233,6 +268,7 @@ export default {
         name: "",
         answer: "",
       },
+<<<<<<< HEAD
       // 수빈이 AddQna 받아오기
       // currentQna: null, // QnaDetail - qna 수정
       currentQna: {
@@ -242,12 +278,25 @@ export default {
       message: "",
       // 하드코딩
       // qna: {
+=======
+      // AddQna 받아오기
+      qna: [],
+      currentQna: null,
+      // TODO: 하드코딩
+      // currentQna: {
+>>>>>>> main
       //   name: "dd",
       //   email: "dd",
-      //   phonenumber: "dd",
+      //   phone: "dd",
       //   title: "dd",
       //   content: "dd",
       // },
+
+      // 페이징을 위한 변수 정의
+      page: 1, // 현재 페이지
+      count: 0, // 전체 데이터 건수
+      pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
 
       // TODO: AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       // 조회한 데이터가 있으면 submitted true, 없으면 false
@@ -303,46 +352,72 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
-
-    // 조회
+    // 전체조회
     getQna(qno) {
-      QnaDataService.get(qno)
-        .then((response) => {
-          this.currentQna = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      qno = "qno";
+      console.log(qno);
+      QnaDataService
+      .get(qno)
+      .then((response) => {
+        this.currentQna = {
+          name: response.data.name,
+          email: response.data.email,
+          phone: response.data.phone,
+          title: response.data.title,
+          content: response.data.content,
+        };
+        console.log(this.currentQna);
+      })
+      .catch((e) => console.log(e))
     },
-    // 수정
-    updateQna() {
-      QnaDataService.update(this.currentQna.qno, this.currentQna)
-        .then((response) => {
-          console.log(response.data);
-          this.message = "문의사항이 수정되었습니다!";
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-    // 삭제
 
-    // retrieveQna() {
-    //   QnaDataService.getAll().catch((e) => {
-    //     console.log(e);
-    //   });
+    // 전체 조회
+    // getQna2() {
+    //   QnaDataService.getAll(this.searchTitle, this.page - 1, this.pageSize)
+    //     .then((response) => {
+    //       const { qna, totalItems } = response.data; // springboot 의 전송된 맵 정보
+    //       this.qna = qna; // 스프링부트에서 전송한 데이터
+    //       this.count = totalItems; // 스프링부트에서 전송한 페이지정보(총 건수)
+    //       // 디버깅 콘솔에 정보 출력
+    //       console.log(response.data);
+    //     })
+    //     // 실패하면 .catch() 에 에러가 전송됨
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
     // },
+////////////////////////////////////페이징/////////////////////
+    // select box 값 변경시 실행되는 함수(재조회)
+    handlePageSizeChange(event) {
+      this.pageSize = event.target.value; // 한페이지당 개수 저장(3, 6, 9)
+      this.page =1;
+      // 재조회 함수 호출
+      this.getQna();
+    },
+    // 페이지 번호 변경시 실행되는 함수(재조회)
+    handlePageChange(value) {
+      this.page = value; // 매개변수값으로 현재페이지 변경
+      // 재조회 함수 호출
+      this.getQna();
+    },
+
+    // // 수정
+    // updateQna() {
+    //   QnaDataService.update(this.currentQna.qno, this.currentQna)
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       this.message = "문의사항이 수정되었습니다!";
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // },
+    // 삭제
   },
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
-
-    this.message = "";
-    //  this.$route.params.qno : 이전페이지에서 전송한 매개변수는 $route.params 안에 있음
-    // $route 객체 : 주로 url 매개변수 정보들이 있음
-    // router/index.js 상세페이지 url의 매개변수명 : qno
-    this.getQna(this.$route.params.qno);
+    this.getQna();
   },
 };
 </script>

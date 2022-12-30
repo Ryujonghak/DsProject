@@ -143,12 +143,6 @@ const routes = [
     name: "mytest",
     component: () => import("../components/myPage/testCom.vue"),
   },
-  //   김철원 Part
-  {
-    path: "/ModalView",
-    name: "ModalView",
-    component: () => import("@/views/kim/ModalView.vue"),
-  },
 
   //TODO   최아리 Part
   {
@@ -186,6 +180,13 @@ const routes = [
   //   name: 'mainDetail',
   //   component: () => import('../views/kim/MainDetail.vue')
   // },
+  // 김철원
+  {
+    path: "/SeatView",
+    name: "SeatView",
+    component: () => import("@/views/kim/SeatView.vue"),
+  },
+
 ];
 
 /* eslint-disable */

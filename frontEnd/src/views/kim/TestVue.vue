@@ -23,39 +23,12 @@
 
 <script>
 import custom from "../assets/js/custom"
+
 export default {
     mounted() {
         custom()
     },
-    data() {
-        return {
-            values: [
-				{ label: 'Value 1', value: '1' },
-				{ label: 'Value 2', value: '2' },
-				{ label: 'Value 3', value: '3' },
-			],
-            values2: [
-				{ label: 'Value 1', value: '1' },
-				{ label: 'Value 2', value: '2' },
-				{ label: 'Value 3', value: '3' },
-			],
-			currentValue: '',
-            currentValue2: '',
-            testt : false
-        }
-    },
-    methods: {
-        test() {
-            if(this.currentValue == 1) {
-                this.testt = true;
-                console.log(this.currentValue);
-            }
-            
-            else{
-                console.log(22);
-            }
-        }
-    },
+    
 
 }
 </script>
