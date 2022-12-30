@@ -60,7 +60,7 @@
                               >
                             </div>
                             <div>
-                              <a href="#" class="item item-2 redbtn hvrbtn"
+                              <a href="/SeatView" class="item item-2 redbtn hvrbtn"
                                 >예매하기</a
                               >
                             </div>
