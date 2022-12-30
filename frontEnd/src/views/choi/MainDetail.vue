@@ -85,12 +85,16 @@
         </div>
       </div>
     </div>
+    <div>
+
+    </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
 import custom from "@/assets/js/custom.js";
+// import DetailCom from "@/views/choi/MainDetail.vue";
 export default {
   mounted() {
     custom();
