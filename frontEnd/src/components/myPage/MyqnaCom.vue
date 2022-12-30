@@ -268,23 +268,11 @@ export default {
         name: "",
         answer: "",
       },
-<<<<<<< HEAD
-      // 수빈이 AddQna 받아오기
-      // currentQna: null, // QnaDetail - qna 수정
-      currentQna: {
-        name: "강태경"
-      }, // QnaDetail - qna 수정
-      qna: [], // QnaList   - qna 조회
-      message: "",
-      // 하드코딩
-      // qna: {
-=======
       // AddQna 받아오기
       qna: [],
       currentQna: null,
       // TODO: 하드코딩
       // currentQna: {
->>>>>>> main
       //   name: "dd",
       //   email: "dd",
       //   phone: "dd",
