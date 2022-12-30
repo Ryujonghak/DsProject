@@ -15,8 +15,7 @@
           <!-- 왼쪽 사이드 바 시작 -->
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="movie-img">
-              <!-- {{ movie.posterUrl }} -->
-              <img :src="movie.posterUrl" alt="poster" />
+              <img :src="movie.posterURL" alt="poster" />
               <div class="movie-btn">
                 <div class="btn-transform transform-vertical red">
                   <div>
@@ -26,10 +25,8 @@
                   </div>
                   <div>
                     <!-- TODO: 유튜브 URL, 영화 이름, 예매 페이지 연결 등 백엔드 데이터 받아와야 하는 곳 -->
-                    <!-- {{ movie.youtubeUrl }} -->
-                    <!-- href={{ movie.youtubeUrl }} -->
                     <a
-                      :href="movie.youtubeUrl"
+                      :href="movie.utubeURL"
                       class="item item-2 redbtn fancybox-media hvr-grow"
                       ><i class="ion-play"></i
                     ></a>
@@ -55,7 +52,7 @@
           <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="movie-single-ct main-content">
               <h1 class="bd-hd">
-                {{ movie.title }}<span>{{ movie.pubdate }}</span>
+                {{ movie.movieNm }}<span>{{ movie.openDt }}</span>
               </h1>
               <div class="social-btn">
                 <!-- TODO: 찜하기 구현, 클릭하면 데이터를 저장..? 어떻게 구현하는거? 하하하 -->
@@ -187,22 +184,19 @@
                         <div class="col-md-4 col-xs-12 col-sm-12">
                           <div class="sb-it">
                             <h6>감독:</h6>
-                            <p>{{ movie.director }}</p>
+                            <p>{{ movie.directors }}</p>
                           </div>
                           <div class="sb-it">
                             <h6>장르:</h6>
-                            <!-- <p>{{ currentMovie.genre }}</p> -->
-                            <p>{{ movie.genre }}</p>
+                            <p>{{ movie.genreNm }}</p>
                           </div>
                           <div class="sb-it">
                             <h6>개봉:</h6>
-                            <p>{{ movie.pubdate }}</p>
-                            <!-- <p>2022.12.14</p> -->
+                            <p>{{ movie.openDt }}</p>
                           </div>
                           <div class="sb-it">
                             <h6>러닝타임:</h6>
-                            <!-- <p>{{ currentMovie.러닝타임 }}</p> -->
-                            <p>{{ movie.runTime }}</p>
+                            <p>{{ movie.showTm }}</p>
                           </div>
                         </div>
                         <!-- 오른쪽 사이드 바 끝 -->
@@ -355,7 +349,7 @@
                             <div class="mvsingle-item ov-item">
                               <a
                                 :class="{ active: index == currentIndex }"
-                                v-for="(data, index) in movie.imageUrl"
+                                v-for="(data, index) in movie.imgURL"
                                 :key="index"
                                 class="img-lightbox"
                                 data-fancybox-group="gallery"
@@ -393,24 +387,24 @@ export default {
   data() {
     return {
       movie: {
-        title: "아바타: 물의 길",
+        movieCd: "",
+        movieNm: "아바타: 물의 길",
         synopsis:
           " 아바타: 물의 길 은 판도라 행성에서 '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로, 샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이출연하고 존 랜도가 프로듀싱을 맡았다.",
-        genre: "액션, 어드벤쳐, SF",
-        pubdate: "2022.12.14",
+        openDt: "2022.12.14",
         rating: 4.5, // 백엔드에서 가져온 평점
 
-        runTime: "192",
-        genre: "액션, 어드벤쳐, SF",
-        director: "최아리",
+        showTm: "192",
+        genreNm: "액션, 어드벤쳐, SF",
+        directors: "최아리",
         actor: "최아리,강수빈,정주희",
-        role: "아바타1,아바타2,아바타3",
+        cast: "아바타1,아바타2,아바타3",
         watchedPeople: "2,945,915",
         review: [],
-        youtubeUrl: "https://youtu.be/d9MyW72ELq0",
-        posterUrl:
+        utubeURL: "https://youtu.be/d9MyW72ELq0",
+        posterURL:
           "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
-        imageUrl:
+        imgURL:
           "https://movie-phinf.pstatic.net/20221110_282/16680463363384H0hJ_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_147/1668046384890YVGlu_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_141/1668046432203AKL6P_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221123_280/1669180665184phjkW_JPEG/movie_image.jpg?type=m665_443_2", // 약 4~6개 정도 주소 백엔드에 넣어두는건 어떤지 고민입니다.
         tempImgUrl: [],
       },
@@ -435,24 +429,6 @@ export default {
         },
       ],
 
-      watchedMovie: {
-        username: "", // 아이디
-        paidDate: "", // 예매일자
-        reservNo: "", // 예매번호
-        openDt: "2022", // 개봉년도
-        movieNm: "눈의 여왕5: 스노우 프린세스와 미러랜드의 비밀", // 영화제목   -> title로 바꿔야하나?
-        posterURL:
-          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
-        directors: "제임스카메론", // 감독
-        rating: 4.3, // 평점(관람객)
-        starRating: 3.5, // 나중에 백엔드에서 평점 가져오기 (정수로 받아야 합니다,,)
-        showTm: "192", // 상영시간
-        watchGradeNm: "12세관람가", // 관람등급
-        scheNo: "2022/12/28", // 상영스케쥴
-        seatNo: "I3", // 좌석번호
-        cnt: "1", // 예매수량
-        price: "15000", // 금액
-      },
       // TODO: 리뷰
       reviewMovie: {
         userStarRating: 2, // 사용자별점
@@ -467,16 +443,16 @@ export default {
   methods: {
     cutNames() {
       this.movie.actor = this.movie.actor.split(",");
-      this.movie.role = this.movie.role.split(",");
-      this.movie.imageUrl = this.movie.imageUrl.split(",");
+      this.movie.cast = this.movie.cast.split(",");
+      this.movie.imgURL = this.movie.imgURL.split(",");
       // 가져온 이미지 url 개수
-      this.imageUrlLength = this.movie.imageUrl.length;
+      this.imageUrlLength = this.movie.imgURL.length;
       // 썸네일 이미지 2장만 보이게 설정
-      this.movie.tempImgUrl[0] = this.movie.imageUrl[0];
-      this.movie.tempImgUrl[1] = this.movie.imageUrl[1];
+      this.movie.tempImgUrl[0] = this.movie.imgURL[0];
+      this.movie.tempImgUrl[1] = this.movie.imgURL[1];
       // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
       this.starRating = Math.floor(this.movie.rating);
-      this.movie.starRating = Math.floor(this.movie.rating);
+      // this.movie.starRating = Math.floor(this.movie.rating);
     },
     likeSave() {
       alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
