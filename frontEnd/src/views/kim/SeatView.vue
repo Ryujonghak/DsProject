@@ -98,48 +98,48 @@
                     </p>
                     <div style="width: 1000px; height: 100px;">
                         <!-- TODO: 그냥 이것도 v-show 로 하겠움-->
-                      <button v-show="오늘" @click="week()"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0; ">
+                      <button v-show="오늘" @click="week('day1')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #8785A2; ">
                         <h4 style="color: white; padding: 10px 0 0 13px;">{{ dd }}</h4>
-                        <p style="margin-top: 15px">오늘</p>
+                        <p style="color: white;margin-top: 15px">오늘</p>
                       </button>
-                      <button v-show="!오늘" @click="weekshow()"
+                      <button v-show="!오늘" @click="weekshow('day1')"
                         style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0; background-color: #1D1E2C;">
                         <h4 style="color: white; padding: 10px 0 0 13px;">{{ dd }}</h4>
-                        <p style="margin-top: 15px">오늘</p>
+                        <p style="color: white;margin-top: 15px">오늘</p>
                       </button>
 
-                      <button v-show="내일" @click="week2()"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0; ">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 1 }}</h4>
-                        <p style="margin-top: 15px;">내일</p>
+                      <button v-show="내일" @click="week('day2')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #8785A2; ">
+                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 1 }}</h4>
+                        <p style="color: white;margin-top: 15px;">내일</p>
                       </button>
-                      <button v-show="!내일" @click="weekshow2()"
+                      <button v-show="!내일" @click="weekshow('day2')"
                         style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C ">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 1 }}</h4>
-                        <p style="margin-top: 15px;">내일</p>
+                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 1 }}</h4>
+                        <p style="color: white;margin-top: 15px;">내일</p>
                       </button>
                       
-                      <button v-show="요일3" @click="week3()"
-                        style="width: 60px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 2 }}</h4>
-                        <p style="margin-top: 15px;">{{ 요일[순서[2]] }}</p>
+                      <button v-show="요일3" @click="week('day3')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #8785A2;">
+                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 2 }}</h4>
+                        <p style="color: white;margin-top: 15px;">{{ 요일[순서[2]] }}</p>
                       </button>
-                      <button v-show="!요일3" @click="weekshow3()"
-                        style="width: 60px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 2 }}</h4>
-                        <p style="margin-top: 15px;">{{ 요일[순서[2]] }}</p>
+                      <button v-show="!요일3" @click="weekshow('day3')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C">
+                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 2 }}</h4>
+                        <p style="color: white;margin-top: 15px;">{{ 요일[순서[2]] }}</p>
                       </button>
                       <!-- 요일4를 클릭을 하면 배경색 변경이 되고, 티켓정보라는 배열에 정보를 넘김 -->
-                      <button v-show="요일4" @click="week4()"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0; ">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 3 }}</h4>
-                        <p style="margin-top: 15px">{{ 요일[순서[3]] }}</p>
+                      <button v-show="요일4" @click="week('day4')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #8785A2; ">
+                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 3 }}</h4>
+                        <p style="color: white;margin-top: 15px">{{ 요일[순서[3]] }}</p>
                       </button>
-                      <button v-show="!요일4" @click="weekshow4()"
+                      <button v-show="!요일4" @click="weekshow('day4')"
                         style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C ">
-                        <h4 style="padding: 10px 0 0 13px;">{{ dd + 3 }}</h4>
-                        <p style="margin-top: 15px">{{ 요일[순서[3]] }}</p>
+                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 3 }}</h4>
+                        <p style="color: white;margin-top: 15px">{{ 요일[순서[3]] }}</p>
                       </button>
                       
                     </div>
@@ -150,16 +150,15 @@
                     <div style="clear: both"></div>
                     <!-- TODO: 나중에 데이터 들어 오묜 반복문 걸어줘야함 -->
                     <div style="width: 400px; height: 200px; margin: 15px">
-                      <button
+                      <button @click="selectedtime(시간[0])"
                         style="  width: 90px;  height: 30px;  border-radius: 5px;  border: 1px solid #ddd;  background-color: #fafafa;  float: left;  margin: 5px;">
                         {{시간[0]}}
                       </button>
-                      <button
+                      <button @click="selectedtime(시간[1])"
                         style="  width: 90px;  height: 30px;  border-radius: 5px;  border: 1px solid #ddd;  background-color: #fafafa;  float: left;  margin: 5px;">
                         {{시간[1]}}
                       </button>
                     </div>
-                    <button v-show="입력1" @click="changeSeat()" style="float: right; width: 90px;height: 30px; border-radius: 30px; background-color: #810CA8; color: white;">다음</button>
                   </div>
                 </div>
                 <!-- 영화관 -->
@@ -618,7 +617,6 @@
       this.seattestC();
       this.seattestD();
       this.seattestE();
-  
     },
     mounted() {
         btnclick();
@@ -637,14 +635,20 @@
   
         서울: false,   // 
         부산: false, 
+        오늘 : true,
+        내일 : true,
+        요일3 : true,
+        요일4 : true,
+
         요일: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
         yy: "",
         mm: "",
         dd: "",
         day: 0,
         순서: [], // 요일을 순서대로 나오게 하는 거
-        시간: ["09:00", "13:30"], // 나중에 테스트 할 시간 데이터
-  
+        시간: ["16:00", "19:30"], // 나중에 테스트 할 시간 데이터
+        time : [], // 선택된 시간을 담는 배열
+        selectedday : [], // 선택된 날짜를 담는 배열
         selected: [], // 선택된 좌석 담는 배열
         a: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
         b: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
@@ -659,6 +663,7 @@
         selectsD: [],
         selectsE: [],
 
+        
         ticketinfor : [{local : '', cinema: '',}], // 티켓정보를 담는 배열
   
       };
@@ -709,6 +714,13 @@
           }
         }
       },
+      selectedtime(value) {
+        this.time[0] = value;
+        this.상영 = false;
+        this.좌석 = true;
+        this.결제 = false;
+        console.log(this.time);
+      },
   
       addseat(value) {               // 클릭을 하면 selected 배열에 담음
         if (this.adultcount + this.teencount == 0) {
@@ -735,7 +747,6 @@
             else if (tempVal == 'E') {
               this.selectsE[tempVal2 - 1] = 2;
             }
-    
           }
           if((this.adultcount + this.teencount == this.selected.length) && (this.adultcount + this.teencount != 0)){
           this.입력2 = true;
@@ -815,8 +826,8 @@
         this.결제 = false;
       },
       changeSeat () {
-        this.좌석 = true;
         this.상영 = false;
+        this.좌석 = true;
         this.결제 = false;
       },
       pay() {
@@ -824,29 +835,52 @@
         this.상영 = false;
         this.결제 = true;
       },
-      week() {
-        
+      week(value) {
+        if(this.selectedday != null){
+            this.selectedday.splice(0, 1); 
+        }
+        if( value == 'day1'){
+            this.오늘 = false;
+            this.내일 = true;
+            this.요일3 = true;
+            this.요일4 = true;
+            this.selectedday.push(value);
+        }else if ( value == 'day2'){
+            this.오늘 = true;
+            this.내일 = false;
+            this.요일3 = true;
+            this.요일4 = true;
+            this.selectedday.push(value);
+        }else if ( value == 'day3'){
+            this.오늘 = true;
+            this.내일 = true;
+            this.요일3 = false;
+            this.요일4 = true;
+            this.selectedday.push(value);
+        }
+        else if ( value == 'day4'){
+            this.오늘 = true;
+            this.내일 = true;
+            this.요일3 = true;
+            this.요일4 = false;
+            this.selectedday.push(value);
+        }
       },
-      week2() {
-        
-      },
-      week3() {
-        
-      },
-      week4() {
-        
-      },
-      weekshow() {
-
-      },
-      weekshow2() {
-
-      },
-      weekshow3() {
-      
-      },
-      weekshow4() {
-      
+      weekshow(value) {                // 클릭을 하면 selectedday 배열에서 삭제를 함
+        for (let i = 0; i < this.selectedday.length; i++) {
+          if (this.selectedday[i] == value) {
+            this.selectedday.splice(i, 1);   
+            break;
+          }
+        }if( value == 'day1'){
+            this.오늘 = true;
+        }else if ( value == 'day2'){
+            this.내일 = true;
+        }else if ( value == 'day3'){
+            this.요일3 = true;
+        }else if ( value == 'day4'){
+            this.요일4 = true;
+        }
       },
   
       date() {
@@ -871,6 +905,9 @@
   
   <style lang="scss" scoped>
   @import "@/assets/css/style.css";
+  *{
+    font-family: sans-serif;
+  }
     
   .one {
     background-color: #F7EBEC;
