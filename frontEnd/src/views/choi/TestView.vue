@@ -21,7 +21,9 @@
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li><router-link to="/userInfoAdmin">회원관리</router-link></li>
+                  <li>
+                    <router-link to="/userInfoAdmin">회원관리</router-link>
+                  </li>
                   <li>
                     <a href="#"></a>
                     <a
@@ -33,7 +35,11 @@
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown" v-show="board">
-                      <li><router-link to="/board-admin">공지사항 관리</router-link></li>
+                      <li>
+                        <router-link to="/board-admin"
+                          >공지사항 관리</router-link
+                        >
+                      </li>
                       <li class="active">
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
@@ -45,7 +51,9 @@
                       </li>
                     </ul>
                   </li>
-                  <li><router-link to="/payment-admin">예매 내역</router-link></li>
+                  <li>
+                    <router-link to="/payment-admin">예매 내역</router-link>
+                  </li>
                 </ul>
               </div>
               <div class="user-fav">
@@ -169,38 +177,36 @@
                   </div>
                   <div
                     class="movie-item-style-2"
-                    v-for="(movie, index) in movies"
+                    v-for="(data, index) in movie.MovieDetail"
                     v-bind:key="index"
                   >
-                    <img src=
-                    https://img.megabox.co.kr/SharedImg/2022/12/16/9vUySe7DNMro6tdYRPEbjzF2ebr48MwE_420.jpg
-                    alt="아바타 물의길" />
+                    <img :src="data.posterurln" alt="poster" />
                     <div class="mv-item-infor">
                       <h6>
                         영화이름:
-                        <a href="#">{{ movie.movieNm }}</a>
-                        <span>({{ movie.prdtYear }})</span>
+                        <a href="#">{{ data.movienm }}</a>
+                        <span>({{ data.prdtyear }})</span>
                       </h6>
                       <p class="rate">
                         평점:
-                        <a href="#">{{ movie.rating }}</a>
+                        <a href="#">{{ data.raiting }}</a>
                       </p>
                       <p class="describe">
                         줄거리:
-                        {{ movie.description }}
+                        {{ data.plot }}
                       </p>
                       <p class="run-time">
-                        상영시간: {{ movie.showTm }}
-                        <span>관람등급 {{ movie.watchGradeNm }}</span> 
-                        <span>개봉일자: {{ movie.openDt }}</span>
-                        장르 : {{ movie.genreNm }}
+                        상영시간: {{ data.showtm }}
+                        <span>관람등급 {{ data.watchGradeNm }}</span>
+                        <span>개봉일자: {{ data.openDt }}</span>
+                        장르 : {{ data.genreNm }}
                       </p>
                       <p>
-                        감독: <a href="#">{{ movie.directors }}</a>
+                        감독: <a href="#">{{ data.directors }}</a>
                       </p>
                       <p>
                         출연진:
-                        <a href="#"> {{ movie.actor }}</a>
+                        <a href="#"> {{ data.actor }}</a>
                       </p>
                       <button class="redbtn">삭제</button>
                     </div>
@@ -213,6 +219,19 @@
           <!-- 새 영화관리 테이블 끝  -->
           <!-- 본문 끝 -->
 
+          <!-- <!— 페이징 + 전체 목록 시작 —> -->
+          <!-- <!— 페이징 양식 시작 —> -->
+          <div class="col-md-12">
+            <b-pagination
+              v-model="page"
+              :total-rows="movie.totalItems"
+              :per-page="pageSize"
+              prev-text="Prev"
+              next-text="Next"
+              @change="handlePageChange"
+            ></b-pagination>
+          </div>
+          <!-- <!— 페이징 양식 끝 —> -->
           <!-- 필터 페이지네이션 -->
 
           <!-- 끝 -->
@@ -223,56 +242,45 @@
 </template>
 
 <script>
+import MovieDataService from "@/services/MovieDataService";
+
 export default {
+  mounted() {
+    this.retrieveMovie();
+  },
   data() {
     return {
       board: false,
-      movies: [
-        {
-          movieNm: "아바타:물의길",
-          prdtYear: "2022",
-          openDt: "2022-12-20",
-          rating: "4.5/5.0",
-          description:
-            "아바타 후속작 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
-          showTm: "2H20M",
-          watchGradeNm: "15+",
-          genreNm:"SF/판타지",
-          directors: "subin Kang",
-          actor:
-            "ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,",
-        },
-        {
-          movieNm: "아바타:물의길",
-          prdtYear: "2022",
-          openDt: "2022-12-20",
-          rating: "4.5/5.0",
-          description:
-            "아바타 후속작 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
-          showTm: "2H20M",
-          watchGradeNm: "15+",
-          genreNm:"SF/판타지",
-          directors: "subin Kang",
-          actor:
-            "ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,",
-        },        {
-          movieNm: "아바타:물의길",
-          prdtYear: "2022",
-          openDt: "2022-12-20",
-          rating: "4.5/5.0",
-          description:
-            "아바타 후속작 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
-          showTm: "2H20M",
-          watchGradeNm: "15+",
-          genreNm:"SF/판타지",
-          directors: "subin Kang",
-          actor:
-            "ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,ari Choi, subin Kang,juhee Jeong,",
-        },
-      ],
+      movie: [],
+      searchMname: "",
+
+      // 페이징을 위한 변수 정의
+      page: 1, // 현재 페이지
+      count: 0, // 전체 데이터 건수
+      pageSize: 5, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
     };
   },
   methods: {
+    retrieveMovie() {
+      MovieDataService.getMovieDetailAll(
+        this.searchMname,
+        this.page - 1,
+        this.pageSize
+      )
+        .then((response) => {
+          const movie = response.data;
+          this.movie = movie;
+          console.log(response.data);
+          // console.log(this.movie);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    handlePageChange(value) {
+      this.page = value; // 매개변수값으로 현재페이지 변경
+      this.retrieveMovie();
+    },
     logout() {
       this.$store.dispatch("auth/logout");
       this.$router.push("/");

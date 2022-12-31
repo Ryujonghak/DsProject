@@ -470,6 +470,7 @@ export default {
         .then((response) => {
           this.movie = response.data.MovieDetail[0];
           console.log(response.data.MovieDetail[0]);
+          
           // alert(this.movie.movienm)
           this.movie.actor = this.movie.actor.split(",");
           this.movie.cast = this.movie.cast.split(",");
