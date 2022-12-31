@@ -175,6 +175,11 @@ const routes = [
     name: "reservInfoAdmin",
     component: () => import("@/views/choi/ReservInfoCom.vue"),
   },
+  {
+    path: "/test01",
+    name: "test01",
+    component: () => import("@/views/choi/TestView.vue"),
+  },
   // {
   //   path: '/mainDetail',
   //   name: 'mainDetail',
