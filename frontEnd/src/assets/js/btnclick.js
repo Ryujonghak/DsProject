@@ -1,4 +1,5 @@
 export default function btnclick() {
+  // TODO: 철원이가 쓰는 버튼색 변경
     // 버튼
     var div2 = document.getElementsByClassName("div2");
   
@@ -55,5 +56,6 @@ export default function btnclick() {
       }
     }
     init2();
+
   }
   
