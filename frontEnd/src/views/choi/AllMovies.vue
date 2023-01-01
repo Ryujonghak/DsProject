@@ -18,7 +18,7 @@
         <div class="row ipad-width2">
           <div class="col-xs-12">
             <!-- 전체영화 메뉴 바 시작 -->
-            <div class="topbar-filter">
+            <div class="topbar-filter col-xs-12">
               <!-- 체크박스 스위치 시작 -->
               <!-- TODO: 상영작만 보기 눌리면 상영작들만 뜨고 다시 눌리면 전체보기 뜨게 만들기. v-show 로 나눠볼예정 -->
               <div>
@@ -44,7 +44,7 @@
                 <div class="col-xs-4">
                   <p class="search-numbers">
                     <!-- 검색된 항목 개수 데이터 넣어주기 -->
-                    <span>{{ movies.length }}</span
+                    <span>{{ movie.totalItems }}</span
                     >개의 영화가 검색되었습니다.
                   </p>
                 </div>
@@ -73,23 +73,30 @@
 
             <!-- 모든 영화 목록 시작 -->
             <!-- TODO: MOVIES 안의 MIVIE 데이터들 가져와서 포스터/타이틀 데이터 돌려주기 (전체 영화 데이터 가져오기) -->
-            <div class="celebrity-items" v-show="allMovies">
+            <div class="celebrity-items col-xs-12" v-show="allMovies">
               <div
-                class="ceb-item"
-                v-for="(data, index) in movies"
+                class="col-xs-4"
+                style="margin-bottom: 5%"
+                v-for="(data, index) in movie.MovieDetail"
                 :key="index"
               >
                 <a href="/movieDetail"
-                  ><img src="images/uploads/ceb9.jpg" alt=""
-                /></a>
-                <div class="ceb-infor">
-                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
-                  <h2>
-                    <a href="/movieDetail">{{ data.title }}</a>
-                  </h2>
-                  <span
+                  ><img
+                    :src="data.posterurln"
+                    alt="poster"
+                    class="col-xs-12"
+                    style="margin-bottom: 5%;"
+                  />
+                </a>
+                <div class="ceb-infor col-xs-12">
+                  <h6>
+                    <a href="/movieDetail" style="color: white">{{
+                      data.movienm
+                    }}</a>
+                  </h6>
+                  <span style="color: #abb7c4"
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
-                    {{ data.rating }}/5</span
+                    {{ data.raiting }}/10</span
                   >
                 </div>
               </div>
@@ -98,31 +105,49 @@
 
             <!-- 현재상영작만 시작 -->
             <!-- TODO: MOVIES 안의 MIVIE 데이터들 가져와서 포스터/타이틀 데이터 돌려주기 (현재 상영하고 있는 영화 데이터만 가져오기) -->
-            <div class="celebrity-items" v-show="nowPlaying">
+            <div class="celebrity-items col-xs-12" v-show="nowPlaying">
               <div
-                class="ceb-item"
+                class="col-xs-4"
+                style="margin-bottom: 5%"
                 v-for="(data, index) in nowPlayingMovies"
                 :key="index"
               >
                 <a href="/movieDetail"
-                  ><img src="images/uploads/ceb9.jpg" alt=""
+                  ><img
+                    :src="data.posterurln"
+                    alt="poster"
+                    style="margin-bottom: 5%"
                 /></a>
                 <div class="ceb-infor">
-                  <!-- <h2><a href="/movieDetail">{{movie.title}}</a></h2> -->
-                  <h2>
-                    <a href="/movieDetail">{{ data.title }}</a>
-                  </h2>
-                  <span
+                  <h6>
+                    <a href="/movieDetail" style="color: white">{{
+                      data.movienm
+                    }}</a>
+                  </h6>
+                  <span style="color: #abb7c4"
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
-                    {{ data.rating }}/10</span
+                    {{ data.raiting }}/10</span
                   >
                 </div>
               </div>
             </div>
             <!-- 현재상영작만 끝 -->
 
+            <!-- 페이징 테스트 시작 -->
+            <!-- <div class="col-md-12">
+              <b-pagination
+                v-model="page"
+                :total-rows="movie.totalItems"
+                :per-page="pageSize"
+                prev-text="Prev"
+                next-text="Next"
+                @change="handlePageChange"
+              ></b-pagination>
+            </div> -->
+            <!-- 페이징 테스트 끝 -->
+
             <!-- 아래 페이징 시작 -->
-            <div class="topbar-filter">
+            <!-- <div class="topbar-filter">
               <label>Reviews per page:</label>
               <select>
                 <option value="range">9 Reviews</option>
@@ -139,7 +164,7 @@
                 <a href="#">6</a>
                 <a href="#"><i class="ion-arrow-right-b"></i></a>
               </div>
-            </div>
+            </div> -->
             <!-- 아래 페이징 끝 -->
           </div>
         </div>
@@ -149,9 +174,10 @@
 </template>
 
 <script>
+import MovieDataService from "@/services/MovieDataService";
 export default {
   mounted() {
-    this.test01();
+    this.retrieveMovie();
   },
   data() {
     return {
@@ -159,27 +185,53 @@ export default {
       allMovies: true,
       nowPlaying: false,
       // 전체 movie 데이터
-      movies: [
-        { title: "아바타", rating: 4.5, status: "Y" },
-        { title: "영웅", rating: 3.7, status: "Y" },
-        { title: "신비아파트", rating: 4.8, status: "N" },
-        { title: "흑표범", rating: 4.3, status: "N" },
-      ],
+      movie: [],
+      searchMname: "",
+
+      // 페이징을 위한 변수 정의
+      page: 1, // 현재 페이지
+      count: 0, // 전체 데이터 건수
+      pageSize: 10, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
       // TODO: 검색 기능 추가
       searchStatue: "",
       nowPlayingMovies: [],
     };
   },
   methods: {
-    test01() {
-      let temp = new Array();
+    retrieveMovie() {
+      MovieDataService.getMovieDetailAll(
+        this.searchMname,
+        this.page - 1,
+        this.pageSize
+      )
+        .then((response) => {
+          const movie = response.data;
+          this.movie = movie;
+          console.log(response.data);
 
-      for (let i = 0; i < this.movies.length; i++) {
-        if (this.movies[i].status == "Y") {
-          temp.push(this.movies[i]);
-        }
-      }
-      this.nowPlayingMovies = temp;
+          let temp = new Array();
+
+          for (let i = 0; i < this.movie.totalItems; i++) {
+            if (this.movie.MovieDetail[i].prdtstatnm == "개봉") {
+              temp.push(this.movie.MovieDetail[i]);
+            }
+          }
+          this.nowPlayingMovies = temp;
+
+          var test = this.nowPlayingMovies;
+          alert(JSON.stringify(test));
+
+          this.movie.posterurlkm[0] = this.movie.posterurlkm;
+
+          // alert(this.nowPlayingMovies.length);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    handlePageChange(value) {
+      this.page = value; // 매개변수값으로 현재페이지 변경
+      this.retrieveMovie();
     },
     showNowPlaying() {
       // let temp = new Array();
