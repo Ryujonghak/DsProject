@@ -21,7 +21,7 @@
             <div class="topbar-filter col-xs-12">
               <!-- 체크박스 스위치 시작 -->
               <!-- TODO: 상영작만 보기 눌리면 상영작들만 뜨고 다시 눌리면 전체보기 뜨게 만들기. v-show 로 나눠볼예정 -->
-              <div>
+              <div class="col-xs-4">
                 <label class="switcher">
                   <input type="checkbox" @click="showNowPlaying" />
                   <div class="switcher__indicator"></div>
@@ -32,14 +32,23 @@
 
               <div class="col-xs-8" v-show="allMovies">
                 <div class="search-movie col-xs-8">
-                  <form>
-                    <input
-                      class="form-control"
-                      type="search"
-                      placeholder="Search"
-                      aria-label="Search"
-                    />
-                  </form>
+                  <input
+                    class="form-control"
+                    type="search"
+                    placeholder="영화명 검색"
+                    v-model="searchMname"
+                    @keyup.enter="retrieveMovie()"
+                  />
+                  <a
+                    class="btn-search"
+                    type="button"
+                    @click="
+                      page = 1;
+                      retrieveMovie();
+                    "
+                  >
+                    검색
+                  </a>
                 </div>
                 <div class="col-xs-4">
                   <p class="search-numbers">
@@ -51,14 +60,23 @@
               </div>
               <div class="col-xs-8" v-show="nowPlaying">
                 <div class="search-movie col-xs-8">
-                  <form>
-                    <input
-                      class="form-control"
-                      type="search"
-                      placeholder="Search"
-                      aria-label="Search"
-                    />
-                  </form>
+                  <input
+                    class="form-control"
+                    type="search"
+                    placeholder="영화명 검색"
+                    v-model="searchMname"
+                    @keyup.enter="retrieveMovie()"
+                  />
+                  <a
+                    class="btn-search"
+                    type="button"
+                    @click="
+                      page = 1;
+                      retrieveMovie();
+                    "
+                  >
+                    검색
+                  </a>
                 </div>
                 <div class="col-xs-4">
                   <p class="search-numbers">
@@ -84,11 +102,10 @@
                   ><img
                     :src="data.posterurln"
                     alt="poster"
-                    class="col-xs-12"
-                    style="margin-bottom: 5%;"
+                    style="margin-bottom: 5%"
                   />
                 </a>
-                <div class="ceb-infor col-xs-12">
+                <div class="ceb-infor">
                   <h6>
                     <a href="/movieDetail" style="color: white">{{
                       data.movienm
@@ -175,6 +192,8 @@
 
 <script>
 import MovieDataService from "@/services/MovieDataService";
+
+/* eslint-disable */
 export default {
   mounted() {
     this.retrieveMovie();
@@ -218,12 +237,12 @@ export default {
           }
           this.nowPlayingMovies = temp;
 
-          var test = this.nowPlayingMovies;
-          alert(JSON.stringify(test));
-
-          this.movie.posterurlkm[0] = this.movie.posterurlkm;
-
-          // alert(this.nowPlayingMovies.length);
+          for (let i = 0; i < this.movie.totalItems; i++) {
+            if (this.movie.MovieDetail[i].watchgradenm.contains(",")) {
+              this.movie.MovieDetail[i].watchgradenm =
+                this.movie.MovieDetail[i].watchgradenm.split(",")[0];
+            }
+          }
         })
         .catch((e) => {
           console.log(e);
@@ -234,24 +253,33 @@ export default {
       this.retrieveMovie();
     },
     showNowPlaying() {
-      // let temp = new Array();
-
-      // for (let i = 0; i < this.movies.length; i++) {
-      //   if (this.movies[i].status == "Y") {
-      //     temp.push(this.movies[i]);
-      //   }
-      // }
-      // this.nowPlayingMovies = temp;
-
       this.allMovies = !this.allMovies;
       this.nowPlaying = !this.nowPlaying;
     },
-    // FIXME: 처음 화면 로딩되면 전체 조회해서 화면에 출력하는 함수 + 현재 상영작만 보는 검색 함수 만들기
+    enterkey() {
+      if (window.event.keyCode == 13) {
+        this.retrieveMovie();
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
+.btn-search {
+  width: 30px;
+  height: 32px;
+  font-size: 0;
+  line-height: 0;
+  border: 0;
+  position: absolute;
+  top: 3%;
+  right: 2%;
+  z-index: 3;
+  background: white
+    url(https://img.megabox.co.kr/static/pc/images/common/btn/btn-search-input.png)
+    no-repeat center;
+}
 .common-hero {
   background: url("@/assets/images_choi/Views/choi/AllMovie/test_image.jpeg")
     no-repeat;
