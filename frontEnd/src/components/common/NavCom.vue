@@ -35,7 +35,7 @@
           </div>
 
           <div class="row">
-            <div class="remember">
+            <div class="remember" col-xs-12 >
               <button @click="toggleShow()" class="findbtn">
                 아이디찾기 &nbsp; &nbsp;|
               </button>
@@ -45,6 +45,7 @@
           <div class="row">
             <button type="submit" @click="handleLogin()">Login</button>
           </div>
+          
         </div>
         <div class="row">
           <p>Or social login</p>
@@ -345,22 +346,28 @@
             </div>
             <div class="col-xs-5 navbar-menu">
               <ul class="nav navbar-nav flex-child-menu menu-right col">
-                <!-- 회원 로그인시 마이페이지  -->
-                <li class="dropdown first" v-if="!currentUser">
-                  <a
-                    class="btn btn-default dropdown-toggle lv1"
-                    data-toggle="dropdown"
-                    data-hover="dropdown"
-                  >
-                    MY PAGE <i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </a>
-                  <ul class="dropdown-menu level1">
-                    <li><a href="/mypage">내정보</a></li>
-                    <li><a href="/myticket">나의예매내역</a></li>
-                    <li><a href="/mytest">test</a></li>
-                  </ul>
-                </li>
-                <!-- 회원 로그인시 마이페이지 끝  -->
+                <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
+                <div v-show="currentUser">
+                  <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
+                  <li class="dropdown first" v-if="!showAdminBoard">
+                    <a
+                      class="btn btn-default dropdown-toggle lv1"
+                      data-toggle="dropdown"
+                      data-hover="dropdown"
+                    >
+                      MY PAGE
+                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu level1">
+                      <li><router-link to="/mypage">내정보</router-link></li>
+                      <li>
+                        <router-link to="/myticket">나의예매내역</router-link>
+                      </li>
+                      <li><router-link to="/mytest">test</router-link></li>
+                    </ul>
+                  </li>
+                  <!-- 회원 로그인시 마이페이지 끝  -->
+                </div>
 
                 <li class="dropdown first">
                   <a
@@ -378,7 +385,7 @@
                 </li>
 
                 <!-- 어드민 로그인시 어드민 나브바 시작-->
-                <li class="dropdown first" v-if="currentUser">
+                <li class="dropdown first" v-if="showAdminBoard">
                   <a
                     class="btn btn-default dropdown-toggle lv1"
                     data-toggle="dropdown"
@@ -387,9 +394,15 @@
                     ADMIN <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
-                    <li><router-link to="/userInfoAdmin">회원관리</router-link></li>
-                    <li><router-link to="/board-admin">게시판관리</router-link></li>
-                    <li><router-link to="/payment-admin">예매관리</router-link></li>
+                    <li>
+                      <router-link to="/userInfoAdmin">회원관리</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/board-admin">게시판관리</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/payment-admin">예매관리</router-link>
+                    </li>
                   </ul>
                 </li>
                 <!-- 어드민 로그인시 어드민 나브바 끝-->
@@ -497,7 +510,7 @@ export default {
           this.$store
             .dispatch("auth/login", this.user)
             .then(() => {
-              alert("환영합니다");
+              alert("데이터를 백으로 보냄");
               this.popupClose = !this.popupClose;
               window.location.reload();
               this.currentUser();
@@ -505,8 +518,10 @@ export default {
             })
             // 참고) if/else 문 대신에 -> or(||) and(&&) 연산자를 사용할때도 있음
             // 로직체크 순서 : true || false, false && true
+            // TODO: 정주희 alert창 추가 -> 수정 필요 FIXME:
             .catch((error) => {
               this.loading = false; // 로그인 버튼 활성화
+              alert("데이터통신오류")
               this.message =
                 (error.response &&
                   error.response.data &&
@@ -723,8 +738,9 @@ header .navbar-default .navbar-nav li a {
   text-transform: uppercase;
   cursor: pointer;
 }
+// TODO: 정주희 width: 50% -> 60% 수정(윈도우에서는 두줄로 떠서 위치조정함)
 .remember {
-  width: 50%;
+  width: 60%;
   float: right !important;
 }
 .findbtn {

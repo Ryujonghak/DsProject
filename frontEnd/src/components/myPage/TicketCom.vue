@@ -86,7 +86,6 @@
                 <ul>
                   <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
-                  <li><a href="#">탈퇴하기</a></li>
                 </ul>
               </div>
             </div>
@@ -541,11 +540,11 @@ export default {
         password: "",
         username: "",
         phone: null,
-        year: null,
+        year: null, 
         month: null,
         day: null,
         name: "",
-        answer: "",
+        answer: "", // 비번확인용 정답
       },
       message: "",
       // FIXME: 예매한 영화.. 작성중
@@ -604,9 +603,10 @@ export default {
     //   this.$refs["image"].click();
     // },
 
-    // 종학이 백엔드 데이터 받는 함수
     getUser(username) {
-      username = "forbob";
+      // 종학이 백엔드 데이터 받는 함수
+      username = this.$store.state.auth.user.username;
+      // username = "forbob";
       console.log(username);
       userService
         .getUserUsername(username)

@@ -52,7 +52,7 @@
                 class="input-text boxing"
                 value
                 maxlength="4"
-                v-model="qna.name"
+                v-model="currentQna.name"
               />
               <!--v-model="CurrentUser.name"로 하면 백데이터 불러와짐. 등록/수정은 안됨-->
             </td>
@@ -69,7 +69,7 @@
                 value
                 maxlength="50"
                 placeholder="알맞은 이메일형식(@)을 입력해주세요."
-                v-model="qna.email"
+                v-model="currentQna.email"
               />
               <div id="error_mail" class="result-email result-check"></div>
             </td>
@@ -88,7 +88,7 @@
                 class="boxing form-control"
                 maxlength="12"
                 placeholder="휴대폰번호 -제외 입력"
-                v-model="qna.phone"
+                v-model="currentQna.phone"
               />
             </td>
           </tr>
@@ -169,6 +169,7 @@ export default {
         title: "",
         content: "",
       },
+      currentQna: {},
     };
   },
   methods: {
@@ -197,7 +198,8 @@ export default {
 
     getUser(username) {
       // 종학이 백엔드 데이터 받는 함수
-      username = "forbob";
+      username = this.$store.state.auth.user.username;
+      // username = "forbob";
       console.log(username);
       userService
         .getUserUsername(username)

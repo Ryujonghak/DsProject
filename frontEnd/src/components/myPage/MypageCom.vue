@@ -87,7 +87,6 @@
                 <ul>
                   <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
-                  <li><a href="#">탈퇴하기</a></li>
                 </ul>
               </div>
             </div>
@@ -492,10 +491,10 @@ export default {
     return {
       CurrentUser: {
         email: "",
-        password: "", // 영석이형 백엔, pass
+        password: "",
         username: "",
         phone: null,
-        year: null, // 영석이형 백엔, birthday로 퉁쳐짐
+        year: null, 
         month: null,
         day: null,
         name: "",
@@ -549,9 +548,10 @@ export default {
     //   this.$refs["image"].click();
     // },
 
-    // 종학이 백엔드 데이터 받는 함수
     getUser(username) {
-      username = "forbob";
+      // 종학이 백엔드 데이터 받는 함수
+      username = this.$store.state.auth.user.username;
+      // username = "forbob";
       console.log(username);
       userService
         .getUserUsername(username)
@@ -572,6 +572,7 @@ export default {
         })
         .catch((err) => console.log(err));
     },
+
     // 로그아웃 함수 -> 공통함수 호출
     logout() {
       // this.$store.dispatch("모듈명/함수명")
@@ -581,7 +582,7 @@ export default {
     // TODO: 클릭이벤트 - 리뷰작성하러가기 함수(영화제목 전달)
     goReview() {
       // 영화 제목 정보 보내야 함
-      movieNm = this.movieNm;
+      // movieNm = this.movieNm;
     },
   },
   mounted() {
@@ -631,3 +632,4 @@ export default {
   vertical-align: middle;
 }
 </style>
+
