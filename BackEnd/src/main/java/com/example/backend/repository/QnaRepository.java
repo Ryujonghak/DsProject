@@ -23,6 +23,6 @@ public interface QnaRepository extends JpaRepository<Qna, Integer> {
 
     Page<Qna> findAllByNameContaining(String name, Pageable pageable);
 
-    Optional<Qna> findByName(String name);
+    Optional<Qna>findByName(String name);
 }
 
