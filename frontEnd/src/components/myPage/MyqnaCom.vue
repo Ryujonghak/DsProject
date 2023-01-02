@@ -108,6 +108,65 @@
               <h3>문의내역이 없습니다.</h3>
             </div>
 
+            <!-- 모든 qna -->
+            <table class="qnabox">
+              <colgroup>
+                <col style="width: 120px" />
+                <col />
+                <col style="width: 120px" />
+                <col />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="row"><label for="name">이름</label></th>
+                  <th scope="row"><label for="name">이메일</label></th>
+                  <th scope="row"><label for="name">휴대전화</label></th>
+                  <th scope="row"><label for="name">제목</label></th>
+                  <th scope="row"><label for="name">내용</label></th>
+                </tr>
+              </thead>
+              <tbody v-for="(data, index) in qna" :key="index">
+                <tr>
+                  <td>{{ data.name }}</td>
+                  <td>{{ data.email }}</td>
+                  <td>{{ data.phone }}</td>
+                  <td>{{ data.title }}</td>
+                  <td>{{ data.content }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- 사용자 qna -->
+            <div>
+              <button @click="showMyQna()">나의 qna 보기</button>
+            </div>
+            <table class="qnabox" v-show="myQna">
+              <colgroup>
+                <col style="width: 120px" />
+                <col />
+                <col style="width: 120px" />
+                <col />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="row"><label for="name">이름</label></th>
+                  <th scope="row"><label for="name">이메일</label></th>
+                  <th scope="row"><label for="name">휴대전화</label></th>
+                  <th scope="row"><label for="name">제목</label></th>
+                  <th scope="row"><label for="name">내용</label></th>
+                </tr>
+              </thead>
+              <tbody v-for="(data, index) in qna" :key="index">
+                <tr>
+                  <td>{{ data.name }}</td>
+                  <td>{{ data.email }}</td>
+                  <td>{{ data.phone }}</td>
+                  <td>{{ data.title }}</td>
+                  <td>{{ data.content }}</td>
+                </tr>
+              </tbody>
+            </table>
+
             <!-- <div v-show="submitted"> -->
             <div>
               <!-- TODO: 로그인한 사용자의 qna 테이블시작 -->
@@ -120,17 +179,16 @@
                 </colgroup>
                 <tbody>
                   <tr>
-                    <!-- v-model에 currentQna 해야 로그인한 사용자의 qna 정보만 가져올수있는데.. -->
                     <th scope="row">
                       |
                       <label for="name">이름</label>
                     </th>
-                    <td><input type="text" v-model="qna.name" /></td>
+                    <td><input type="text" v-model="currentQna.name" /></td>
                     <th scope="row">
                       |
                       <label for="name">이메일</label>
                     </th>
-                    <td><input type="text" v-model="qna.email" /></td>
+                    <td><input type="text" v-model="currentQna.email" /></td>
                   </tr>
                   <tr>
                     <th scope="row">
@@ -138,7 +196,7 @@
                       <label for="name">휴대전화</label>
                     </th>
                     <td>
-                      <input type="text" v-model="qna.phone" />
+                      <input type="text" v-model="currentQna.phone" />
                     </td>
                   </tr>
                   <tr>
@@ -146,7 +204,7 @@
                       |
                       <label for="qnaTitle">제목</label>
                     </th>
-                    <td><input type="text" v-model="qna.title" /></td>
+                    <td><input type="text" v-model="currentQna.title" /></td>
                   </tr>
                   <tr>
                     <th scope="row">
@@ -154,45 +212,14 @@
                       <label for="textarea">내용</label>
                     </th>
                     <td colspan="3">
-                      <input type="text" v-model="qna.content" />
+                      <input type="text" v-model="currentQna.content" />
                     </td>
                   </tr>
                 </tbody>
               </table>
               <!-- qna 테이블 끝 -->
 
-              <!-- 전체 qna 테이블 -->
-              <!-- <div>
-                <button @click="getAllQna()">전체 qna 보기</button>
-              </div> -->
-
-              <table class="qnabox">
-                <colgroup>
-                  <col style="width: 120px" />
-                  <col />
-                  <col style="width: 120px" />
-                  <col />
-                </colgroup>
-                <thead>
-                  <tr>
-                    <th scope="row"><label for="name">이름</label></th>
-                    <th scope="row"><label for="name">이메일</label></th>
-                    <th scope="row"><label for="name">휴대전화</label></th>
-                    <th scope="row"><label for="name">제목</label></th>
-                    <th scope="row"><label for="name">내용</label></th>
-                  </tr>
-                </thead>
-                <tbody v-for="(data, index) in qna" :key="index">
-                  <tr>
-                    <td>{{ data.name }}</td>
-                    <td>{{ data.email }}</td>
-                  </tr>
-                  <tr>
-                    <td>{{ data.title }}</td>
-                    <td>{{ data.content }}</td>
-                  </tr>
-                </tbody>
-              </table>
+              <!-- FIXME: 이름검색으로 내 문의만 뜨도록!! -->
 
               <!-- b-pagination : 부트스트랩 - 페이지 번호 컨트롤 -->
               <!-- total-rows : 전체 데이터 개수 -->
@@ -265,19 +292,21 @@ export default {
         month: null,
         day: null,
         name: "",
-        answer: "",
+        answer: "", // 비번확인용 정답
       },
       // AddQna 받아오기
       qna: [],
       // currentQna: null,
       // TODO: 하드코딩
-      // currentQna: {
-      //   name: "dd",
-      //   email: "dd",
-      //   phone: "dd",
-      //   title: "dd",
-      //   content: "dd",
-      // },
+      // 현재 로그인된 사용자 이름으로 검색해서 나온 qna 결과만 출력되도록...
+      currentQna: {
+        name: "dd",
+        email: "dd",
+        phone: "dd",
+        title: "dd",
+        content: "dd",
+      },
+      myQna: false,   // 나의qa 보기 버튼 클릭하면 true
 
       // // 페이징을 위한 변수 정의
       // page: 1, // 현재 페이지
@@ -312,7 +341,8 @@ export default {
 
     getUser(username) {
       // 종학이 백엔드 데이터 받는 함수
-      username = "forbob";
+      username = this.$store.state.auth.user.username;
+      // username = "forbob";
       console.log(username);
       userService
         .getUserUsername(username)
@@ -339,24 +369,31 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
-    
+
     // 전체조회 TODO: 0102
     getAllQna() {
       console.log;
-      QnaDataService
-      .getAllQna()
-      .then((response) => {
-        this.qna = {
-          name: response.data.name,
-          email: response.data.email,
-          phone: response.data.phone,
-          title: response.data.title,
-          content: response.data.content,
-        };
-        console.log(this.qna);
-      })
-      .catch((e) => console.log(e))
+      QnaDataService.getAllQna()
+        .then((response) => {
+          console.log(response);
+          console.log(response.data);
+
+          this.qna = response.data; // qna 배열
+
+          console.log(this.qna);
+        })
+        .catch((e) => console.log(e));
     },
+
+    // 나의 qna 보기 버튼
+    showMyQna() {
+      this.myQna = !this.myQna;
+    },
+
+    // qna id 검색
+    getMyQna() {
+
+    }
 
     // 전체 조회_페이징
     // getQna() {
@@ -373,7 +410,7 @@ export default {
     //       console.log(e);
     //     });
     // },
-////////////////////////////////////페이징/////////////////////
+    ////////////////////////////////////페이징/////////////////////
     // select box 값 변경시 실행되는 함수(재조회)
     // handlePageSizeChange(event) {
     //   this.pageSize = event.target.value; // 한페이지당 개수 저장(3, 6, 9)

@@ -299,11 +299,11 @@ export default {
         password: "",
         username: "",
         phone: null,
-        year: null,
+        year: null, 
         month: null,
         day: null,
         name: "",
-        answer: "",
+        answer: "", // 비번확인용 정답
       },
       message: "",
       movie: {
@@ -349,28 +349,29 @@ export default {
     //   this.$refs["image"].click();
     // },
 
-    // 종학이 백엔드 데이터 받는 함수
     getUser(username) {
-      username = "forbob";
+      // 종학이 백엔드 데이터 받는 함수
+      username = this.$store.state.auth.user.username;
+      // username = "forbob";
       console.log(username);
       userService
-          .getUserUsername(username)
-          .then((response) => {
-            this.CurrentUser = {
-              email: response.data.email,
-              password: response.data.password,
-              username: response.data.username,
-              phone: response.data.phone,
-              year: response.data.year,
-              month: response.data.month,
-              day: response.data.day,
-              name: response.data.name,
-              answer: response.data.answer,
-            };
-            console.log(this.CurrentUser);
-            // console.log(response.data);
-          })
-          .catch((err) => console.log(err));
+        .getUserUsername(username)
+        .then((response) => {
+          this.CurrentUser = {
+            email: response.data.email,
+            password: response.data.password,
+            username: response.data.username,
+            phone: response.data.phone,
+            year: response.data.year,
+            month: response.data.month,
+            day: response.data.day,
+            name: response.data.name,
+            answer: response.data.answer,
+          };
+          console.log(this.CurrentUser);
+          // console.log(response.data);
+        })
+        .catch((err) => console.log(err));
     },
     // 로그아웃 함수 -> 공통함수 호출
     logout() {

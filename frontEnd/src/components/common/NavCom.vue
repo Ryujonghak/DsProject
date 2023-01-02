@@ -45,6 +45,7 @@
           <div class="row">
             <button type="submit" @click="handleLogin()">Login</button>
           </div>
+          
         </div>
         <div class="row">
           <p>Or social login</p>
@@ -345,7 +346,7 @@
             </div>
             <div class="col-xs-5 navbar-menu">
               <ul class="nav navbar-nav flex-child-menu menu-right col">
-                <!-- 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
+                <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
                 <div v-show="currentUser">
                   <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
                   <li class="dropdown first" v-if="!showAdminBoard">
@@ -509,7 +510,7 @@ export default {
           this.$store
             .dispatch("auth/login", this.user)
             .then(() => {
-              alert("환영합니다");
+              alert("데이터를 백으로 보냄");
               this.popupClose = !this.popupClose;
               window.location.reload();
               this.currentUser();
@@ -520,7 +521,7 @@ export default {
             // TODO: 정주희 alert창 추가 -> 수정 필요 FIXME:
             .catch((error) => {
               this.loading = false; // 로그인 버튼 활성화
-              alert("로그인 정보가 일치하지 않습니다")
+              alert("데이터통신오류")
               this.message =
                 (error.response &&
                   error.response.data &&

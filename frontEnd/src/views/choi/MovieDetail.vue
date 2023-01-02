@@ -85,24 +85,30 @@
 
               <div class="movie-tabs">
                 <div class="tabs">
-                  <ul class="tab-links tabs-mv">
-                    <li class="active"><a href="#overview">영화정보</a></li>
-                    <li><a href="#reviews">평점 및 관람평</a></li>
-                    <li><a href="#media">포스터/스틸컷</a></li>
-                  </ul>
+                  <!-- <ul class="tab-links tabs-mv">
+                    <li class="active" @click="toOverview"><a>영화정보</a></li>
+                    <li><a @click="toReview">평점 및 관람평</a></li>
+                    <li><a @click="toMedia">포스터/스틸컷</a></li>
+                  </ul> -->
                   <div class="tab-content">
-                    <!-- 영화 정보 시작 -->
-                    <div id="overview" class="tab active">
+                    <!-- 1) 영화 정보 시작 -->
+                    <div class="tab active" v-show="overview">
+                      <ul class="tabs-mv tab-bar">
+                        <li>
+                          <a class="selected" @click="toOverview">영화정보</a>
+                        </li>
+                        <li><a class="not-selected" @click="toReview">평점 및 관람평</a></li>
+                        <li><a class="not-selected" @click="toMedia">포스터/스틸컷</a></li>
+                      </ul>
                       <div class="row">
                         <div class="col-md-8 col-sm-12 col-xs-12">
-                          <!-- {{ currentMovie.synopsis }} -->
                           <p>
                             {{ movie.plot }}
                           </p>
                           <div class="title-hd-sm">
                             <h4>포스터/스틸컷</h4>
                             <div class="tab-links active">
-                              <a href="#media" class="time"
+                              <a href="#media" class="time" @click="toMedia"
                                 >더보기 <i class="ion-ios-arrow-right"></i
                               ></a>
                             </div>
@@ -111,7 +117,6 @@
                           <!-- 이미지 가져오기 test 시작 -->
                           <span class="mvsingle-item ov-item">
                             <a
-                              :class="{ active: index == currentIndex }"
                               v-for="(data, index) in tempImgUrl"
                               :key="index"
                               class="img-lightbox"
@@ -151,22 +156,6 @@
                               </li>
                             </ul>
                           </div>
-                          <!-- <div class="mvcast-item">
-
-                                {{ movie.actor }}
-                          </div> -->
-
-                          <!-- TODO: 밑의 식으로 반복 가능한지 데이터 들어오면 확인해보기 (ul 반복시키기) -->
-                          <!-- <div class="mvcast-item">
-                            <ul class="cast-it" style="color: #abb7c4">
-                              <li class="cast-left">data.actor</li>
-                              <li>data.major</li>
-                            </ul>
-                            <ul class="cast-it" style="color: #abb7c4">
-                              <li class="cast-left">data.actor</li>
-                              <li>data.major</li>
-                            </ul>
-                          </div> -->
                           <!-- 목록 불러오기 테스트 끝 -->
                           <div
                             class="title-hd-sm col-xs-12"
@@ -174,9 +163,9 @@
                           >
                             <h4>누적관객수</h4>
                           </div>
-                          <!-- <p>{{ movie.누적관객수 }}</p> -->
                           <div><h1 class="watched-people">2,945,915</h1></div>
                         </div>
+
                         <!-- 오른쪽 사이드 바 시작 -->
                         <!-- TODO: 감독, 장르, 개봉일, 러닝타임 등 데이터 가져오기 -->
                         <div class="col-md-4 col-xs-12 col-sm-12">
@@ -200,15 +189,22 @@
                         <!-- 오른쪽 사이드 바 끝 -->
                       </div>
                     </div>
-                    <!-- 영화 정보 끝 -->
+                    <!-- 1) 영화 정보 끝 -->
 
                     <!-- 2) 리뷰 파트 시작 -->
-                    <div id="reviews" class="tab review">
+                    <div class="tab active" v-show="reviews">
+                      <ul class="tabs-mv tab-bar">
+                        <li>
+                          <a class="not-selected" @click="toOverview">영화정보</a>
+                        </li>
+                        <li><a class="selected" @click="toReview">평점 및 관람평</a></li>
+                        <li><a class="not-selected" @click="toMedia">포스터/스틸컷</a></li>
+                      </ul>
                       <div class="row" style="padding: 3%">
                         <div class="rv-hd">
                           <div class="div">
                             <h3>DS CINEMA</h3>
-                            <h2>{{ movie.title }}</h2>
+                            <h2>{{ movie.movienm }}</h2>
                           </div>
                         </div>
                         <div class="rv-hd">
@@ -264,7 +260,11 @@
                           </form>
                           <div class="col-xs-3">
                             <!-- 리뷰 작성 버튼에 함수 걸어주기 -->
-                            <a href="#" class="redbtn" @click="saveReview"
+                            <a
+                              href="#"
+                              class="redbtn"
+                              style=""
+                              @click="saveReview"
                               >관람평 작성</a
                             >
                           </div>
@@ -278,6 +278,7 @@
                             <img
                               src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
                               alt="user"
+                              style="width: 5%"
                             />
                             <div>
                               <div class="rate-star">
@@ -323,12 +324,19 @@
                     <!-- 2) 리뷰 파트 끝 -->
 
                     <!-- 3) 스틸컷 시작 -->
-                    <div id="media" class="tab">
+                    <div class="tab active" v-show="media">
+                      <ul class="tabs-mv tab-bar">
+                        <li>
+                          <a class="not-selected" @click="toOverview">영화정보</a>
+                        </li>
+                        <li><a class="not-selected" @click="toReview">평점 및 관람평</a></li>
+                        <li><a class="selected" @click="toMedia">포스터/스틸컷</a></li>
+                      </ul>
                       <div class="row" style="padding: 3%">
                         <div class="rv-hd">
                           <div>
                             <h3>DS CINEMA</h3>
-                            <h2>{{ movie.title }}</h2>
+                            <h2>{{ movie.movienm }}</h2>
                           </div>
                         </div>
                         <div class="title-hd-sm">
@@ -346,7 +354,6 @@
                             ></span> -->
                             <div class="mvsingle-item ov-item">
                               <a
-                                :class="{ active: index == currentIndex }"
                                 v-for="(data, index) in movie.imgurl"
                                 :key="index"
                                 class="img-lightbox"
@@ -382,21 +389,25 @@ import MovieDataService from "@/services/MovieDataService";
 export default {
   mounted() {
     custom();
-    this.getMovie();
+    //  this.$route.params.moviecd : 이전페이지에서 전송한 매개변수는 $route.params 안에 있음
+    // $route 객체 : 주로 url 매개변수 정보들이 있음
+    // router/index.js 상세페이지 url의 매개변수명 : :moviecd
+    this.getMovie(this.$route.params.moviecd);
     // this.cutNames();
   },
   data() {
     return {
       movie: null,
-      searchMname: "",
-      moviecd: "20196478",
+
+      overview: true,
+      reviews: false,
+      media: false,
 
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
       count: 0, // 전체 데이터 건수
-      pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      pageSize: 10, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
 
-      pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
       review: [
         {
           movieCode: 1,
@@ -433,19 +444,43 @@ export default {
   methods: {
     // 영화코드(moviecd)로 조회 요청하는 함수
     getMovie(moviecd) {
-      // axios 공통함수 호출
-      DeptDataService.get(moviecd)
-        // 성공하면 .then() 결과가 리턴됨
+      MovieDataService.getMovieDetail(moviecd)
         .then((response) => {
-          // springboot 결과를 리턴함(부서 객체)
-          this.currentDept = response.data;
-          // 콘솔 로그 출력
+          this.movie = response.data.MovieDetail[0];
           console.log(response.data);
+
+          this.movie.actor = this.movie.actor.split(",");
+          this.movie.cast = this.movie.cast.split(",");
+          this.movie.imgurl = this.movie.imgurl.split(",");
+          // 가져온 이미지 url 개수
+          this.imageUrlLength = this.movie.imgurl.length;
+          // 썸네일 이미지 2장만 보이게 설정
+          this.tempImgUrl[0] = this.movie.imgurl[0];
+          this.tempImgUrl[1] = this.movie.imgurl[1];
+          // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
+          this.starRating = Math.floor(this.movie.raiting);
         })
-        // 실패하면 .catch() 에러메세지가 리턴됨
         .catch((e) => {
           console.log(e);
         });
+    },
+    toOverview() {
+      this.overview = true;
+      this.reviews = false;
+      this.media = false;
+    },
+    toReview() {
+      this.overview = false;
+      this.reviews = true;
+      this.media = false;
+      // alert(this.movie.plot)
+      // window.location.reload();
+      // console.log(this.movie)
+    },
+    toMedia() {
+      this.overview = false;
+      this.reviews = false;
+      this.media = true;
     },
     cutNames() {
       this.movie.actor = this.movie.actor.split(",");
@@ -462,48 +497,6 @@ export default {
     },
     likeSave() {
       alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
-    },
-    // axios, 모든 영화 정보 조회 요청 함수
-    // TODO: but 문제는 우리는 앞에서 클릭하면 들어오는 영화의 정보만 가지고 들어와야 하기 때문에 다르게 구현해야한다. 일단 대충 가져옴
-    // retrieveMovie() {
-    //   alert("함수실행");
-    //   MovieDataService.getMovie(moviecd)
-    //     .then((response) => {
-    //       alert("성공");
-    //       this.movie = response.data.MovieDetail;
-    //       var test = this.movie;
-    //       alert(JSON.stringify(test));
-    //       console.log(response.data.MovieDetail);
-    //     })
-    //     .catch((e) => {
-    //       alert("실패");
-    //       console.log(e);
-    //     });
-    // },
-    // TODO: 영화코드(moviecd)로 조회 요청하는 함수
-    getMovie() {
-      MovieDataService.getMovieDetail(this.moviecd)
-        .then((response) => {
-          this.movie = response.data.MovieDetail[0];
-          console.log(response.data.MovieDetail[0]);
-
-          // alert(this.movie.movienm)
-          this.movie.actor = this.movie.actor.split(",");
-          this.movie.cast = this.movie.cast.split(",");
-          this.movie.imgurl = this.movie.imgurl.split(",");
-          // 가져온 이미지 url 개수
-          this.imageUrlLength = this.movie.imgurl.length;
-          // 썸네일 이미지 2장만 보이게 설정
-          this.tempImgUrl[0] = this.movie.imgurl[0];
-          this.tempImgUrl[1] = this.movie.imgurl[1];
-          // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
-          this.starRating = Math.floor(this.movie.raiting);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-      // var test = this.movie;
-      // alert(JSON.stringify(test));
     },
     // FIXME: 새로운 리뷰 저장 함수
     saveReview() {
@@ -532,6 +525,38 @@ export default {
 </script>
 
 <style scoped>
+.tab-bar {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0;
+  font-family: "Dosis", sans-serif;
+  font-size: 14px;
+  color: #abb7c4;
+  font-weight: bold;
+  text-transform: uppercase;
+  /* margin-bottom: 15px; */
+  /* margin-right: 20px; */
+}
+.tab-bar li .not-selected {
+  font-family: "Dosis", sans-serif;
+  font-size: 18px;
+  color: #abb7c4;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.tab-bar li a:hover {
+  color: #dcf836;
+}
+.tab-bar li .selected {
+  color: #dcf836;
+  font-size: 18px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #dcf836;
+}
 .movie-img {
   position: fixed;
 }

@@ -12,7 +12,7 @@ class QnaDataService {
     }
 
 
-    // 페이징 처리 없이 모든 qna 정보 조회 : TODO: 0102 추가
+    // 페이징 처리 없이 모든 qna 정보 조회 : TODO: 0102 추가_정주희
     getAllQna() {
         return http.get(`/qna/list`)
     }
@@ -21,6 +21,11 @@ class QnaDataService {
     // get 방식 통신 요청 -> @GetMapping("/api/qna/{qno}"), @PathVariable
     get(qno) {
         return http.get(`/qna/${qno}`)
+    }
+
+    // 이름으로 조회 요청 함수 : TODO: 0102 추가_정주희
+    getMyQna(username){
+        return http.get(`/qna/${username}`)
     }
 
     // Qna정보 생성(insert) 요청 함수
