@@ -61,34 +61,61 @@
         </tbody>
       </table>
       <!-- table 끝 -->
+
+       <!-- <!— 페이징 + 전체 목록 시작 —> -->
+          <!-- <!— 페이징 양식 시작 —> -->
+          <div class="col-md-12">
+            <b-pagination
+              v-model="page"
+              :total-rows="notices.totalItems"
+              :per-page="pageSize"
+              prev-text="Prev"
+              next-text="Next"
+              @change="handlePageChange"
+            ></b-pagination>
+          </div>
+          <!-- <!— 페이징 양식 끝 —> -->
+          <!-- 필터 페이지네이션 -->
     </div>
   </div>
 </template>
 
 <script>
+import NoticeDataService from '@/services/NoticeDataService';
 export default {
   data() {
     return {
-      notices: [
-        {
-          id: 1,
-          type: "success",
-          title: "Success",
-          content: "This is a success message",
-          regdate: "2020-01-01",
-        },
-        {
-          id: 2,
-          type: "success",
-          title: "Success",
-          content: "This is a success message",
-          regdate: "2020-01-01",
-        },
-      ],
+      notices: [],
+      searchSelect:"",
+      searchKeyword:"",
+
+      page: 1,
+      count: 0,
+      pageSize: 3,
+      pageSizes: [3, 6, 9],
     };
   },
   methods: {
-    
+    retrieveNotice() {
+      NoticeDataService.getAll(this.searchSelect,this.searchKeyword, this.page - 1, this.pageSize)
+
+        .then((response) => {
+          const data  = response.data;
+          this.data = data;
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    handlePageChange(value) {
+      this.page = value;
+      this.retrieveNotice();
+    },
+  },
+  mounted() {
+    this.retrieveNotice();
   },
 };
 </script>

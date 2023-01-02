@@ -193,12 +193,10 @@ export default {
           this.successAnswer = true;
           this.writeAnswer = false;
           QnaDataService.update(this.currentQna.qno, this.currentQna)
-      // 성공하면 then() 결과가 전송됨
       .then(response => {
         console.log(response.data);
         alert("답변이 완료되었습니다.");
       })
-      // 실패하면 .catch() 에러메세지가 전송됨
       .catch(e => {
         console.log(e);
       });

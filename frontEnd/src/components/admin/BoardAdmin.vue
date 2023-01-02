@@ -101,6 +101,9 @@
                         <button class="editbtn" @click="updateNotice">
                           Edit
                         </button>
+                        <button class="delbtn" @click="deleteNotice">
+                          delete
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -136,7 +139,7 @@
                         type="text"
                         id="name"
                         class="input-text boxing"
-                        value
+                        v-model="editNotice.type"
                       />
                     </td>
                     <th scope="row" class="noticelabel">
@@ -151,6 +154,7 @@
                         class="boxing input-text"
                         maxlength="100"
                         placeholder="제목을 입력해주세요."
+                        v-model="editNotice.title"
                       />
                     </td>
                   </tr>
@@ -163,12 +167,13 @@
                       <div class="textarea">
                         <textarea
                           id="textarea"
-                          name="custInqCn"
+                          name="content"
                           rows="5"
                           cols="30"
                           title="내용입력"
                           class="input-textarea boxing"
                           placeholder="내용을 입력해주세요."
+                          v-model="editNotice.content"
                         ></textarea>
                       </div>
                     </td>
@@ -176,7 +181,7 @@
                 </tbody>
               </table>
               <div class="search">
-                <button type="button" class="btn_col2">
+                <button type="button" class="btn_col2" @click="updateNotice">
                   수정하기
                 </button>
               </div>
@@ -251,10 +256,26 @@
                 <button type="button" class="btn_col2" @click="createNotice">
                   등록하기
                 </button>
+                
               </div>
             </div>
             <!--공지사항 작성 폼 끝 -->
           </div>
+
+           <!-- <!— 페이징 + 전체 목록 시작 —> -->
+          <!-- <!— 페이징 양식 시작 —> -->
+          <div class="col-md-12">
+            <b-pagination
+              v-model="page"
+              :total-rows="movie.totalItems"
+              :per-page="pageSize"
+              prev-text="Prev"
+              next-text="Next"
+              @change="handlePageChange"
+            ></b-pagination>
+          </div>
+          <!-- <!— 페이징 양식 끝 —> -->
+          <!-- 필터 페이지네이션 -->
         </div>
       </div>
     </div>
@@ -262,26 +283,18 @@
 </template>
 
 <script>
+import NoticeDataService from '@/services/NoticeDataService';
 //import NoticeDataService from "@/services/NoticeDataService.js";
 export default {
   data() {
     return {
       data: [],
       addnotice: {
-        id: null,
+        no: null,
         type: "",
         title: "",
         content: "",
       },
-      notices: [
-        {
-          id: 1,
-          type: "영화예매",
-          title: "예매시 주의사항",
-          content:
-            " As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.Dagent, Black Widow, to battle a new threat...",
-        },
-      ],
       editNotice: null,
       registerNotice: false, //공지사항 작성폼 vshow
       update: false, // 공지사항 수정폼 vshow
@@ -302,24 +315,29 @@ export default {
       this.$store.dispatch("auth/logout"); 
       this.$router.push("/");
     },
-    retrieveNotice() {
-      // NoticeDataService.getAll(this.title, this.page - 1, this.pageSize)
 
-      //   .then((response) => {
-      //     const { data, totalItems } = response.data;
-      //     this.data = data;
-      //     this.count = totalItems;
-      //     console.log(response.data);
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
+    handlePageChange(value) {
+      this.page = value; 
+      this.retrieveNotice();
+    },
+
+    retrieveNotice() {
+      NoticeDataService.getAll(this.type, this.page - 1, this.pageSize)
+
+        .then((response) => {
+          const data  = response.data;
+          this.data = data;
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     // 목록을 클릭했을때 현재 객체, 인덱스번호를 저장하는 함수
-    // setActiveNotice(data, index) {
-    //   this.currentNotice = data;
-    //   this.currentIndex = index;
-    // },
+    setActiveNotice(data, index) {
+      this.currentNotice = data;
+      this.currentIndex = index;
+    },
 
     // 글쓰기 버튼 클릭시 글쓰기 테이블나옴
     writeNotice() {
@@ -329,21 +347,21 @@ export default {
 
     // 등록하기 버튼 클릭시 생성
     createNotice() {
-      // let data = {
-      //   type: this.type,
-      //   title: this.title,
-      //   content: this.content,
-      // };
-      // NoticeDataService.create(data)
-      //   .then((response) => {
-      //     this.notice.id = response.data.id;
-      //     console.log(response.data);
-      //     // 변수 submitted
-      //     this.submitted = true;
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
+      let data = {
+        type: this.type,
+        title: this.title,
+        content: this.content,
+      };
+      NoticeDataService.create(data)
+        .then((response) => {
+          this.notice.no = response.data.no;
+          console.log(response.data);
+          // 변수 submitted
+          this.submitted = true;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     //왼쪽 메뉴바 slide효과
     boardclick() {
@@ -354,14 +372,29 @@ export default {
     updateNotice() {
       this.update = !this.update; // update vshow
       this.registerNotice = false;
-      //   NoticeDataService.update(this.editNotice.id, this.editNotice)
-      //    .then((response) => {
-      //     console.log(response.data);
-      // })
-      // .catch((e)=>{
-      //   console.log(e);
-      // })
+        NoticeDataService.update(this.editNotice.no, this.editNotice)
+         .then((response) => {
+          console.log(response.data);
+      })
+      .catch((e)=>{
+        console.log(e);
+      })
     },
+
+    //delete버튼 클릭시 적용
+    deleteNotice(){
+      NoticeDataService.delete(this.notice.no)
+      .then(response => {
+        console.log(response.data);
+        this.$router.push("/notice-admin");
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    }
+  },
+  mounted() {
+    this.retrieveNotice();
   },
 };
 </script>
@@ -447,5 +480,13 @@ textarea {
 .topbar-filter {
   justify-content: flex-end !important;
   border-top: none !important;
+}
+.delbtn{
+  color: black;
+  background: rgb(255, 0, 0);
+  border-radius: 25px;
+  width: 50%;
+  margin-left: 1%;
+  margin-top: 6%;
 }
 </style>
