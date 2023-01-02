@@ -169,4 +169,19 @@ public class QnaController {
         }
     }
 
+    @GetMapping("/qna/{name}")
+    public ResponseEntity<Object> getQna(@PathVariable String name) {
+        try {
+            Optional<Qna> optionalQna = qnaService.findByName(name);
+
+            if (optionalQna.isPresent() == true) {
+                return new ResponseEntity<>(optionalQna.get(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

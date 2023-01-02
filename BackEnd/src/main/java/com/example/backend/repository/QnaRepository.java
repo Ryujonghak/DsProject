@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 /**
  * packageName : com.example.simpledms.repository
  * fileName : QnaRepository
@@ -20,5 +22,7 @@ public interface QnaRepository extends JpaRepository<Qna, Integer> {
     Page<Qna> findAllByTitleContaining(String title, Pageable pageable);
 
     Page<Qna> findAllByNameContaining(String name, Pageable pageable);
+
+    Optional<Qna> findByName(String name);
 }
 
