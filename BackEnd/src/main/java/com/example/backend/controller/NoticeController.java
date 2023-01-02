@@ -37,38 +37,19 @@ public class NoticeController {
         }
     }
 
-    @GetMapping("/notice/page1")
-    public ResponseEntity<Object> getPage1(@RequestParam(required = false) String title,
+    @GetMapping("/notice/search")
+    public ResponseEntity<Object> getPage1(@RequestParam(defaultValue = "title") String searchSelect,
+                                           @RequestParam(required = false) String searchKeyword,
                                            @RequestParam(defaultValue = "0") int page,
                                            @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Notice> noticePage = noticeService.findAllByTitleContaining(title, pageable);
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("notice", noticePage.getContent());
-            response.put("currentPage", noticePage.getNumber());
-            response.put("totalItems", noticePage.getTotalElements());
-            response.put("totalPages", noticePage.getTotalPages());
-
-            if (noticePage.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            Page<Notice> noticePage;
+            if (searchSelect.equals("content")) {
+                noticePage = noticeService.findAllByContentContaining(searchKeyword, pageable);
             } else {
-                return new ResponseEntity<>(response, HttpStatus.OK);
+                noticePage = noticeService.findAllByTitleContaining(searchKeyword, pageable);
             }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/notice/page2")
-    public ResponseEntity<Object> getPage2(@RequestParam(required = false) String type,
-                                           @RequestParam(defaultValue = "0") int page,
-                                           @RequestParam(defaultValue = "3") int size) {
-        try {
-            Pageable pageable = PageRequest.of(page, size);
-            Page<Notice> noticePage = noticeService.findAllByTypeContaining(type, pageable);
-
             Map<String, Object> response = new HashMap<>();
             response.put("notice", noticePage.getContent());
             response.put("currentPage", noticePage.getNumber());
