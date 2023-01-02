@@ -94,8 +94,8 @@
                     <!-- 1) 영화 정보 시작 -->
                     <div class="tab active" v-show="overview">
                       <ul class="tab-links tabs-mv">
-                        <li class="active" @click="toOverview">
-                          <a>&emsp;영화정보</a>
+                        <li>
+                          <a @click="toOverview">영화정보</a>
                         </li>
                         <li><a @click="toReview">평점 및 관람평</a></li>
                         <li><a @click="toMedia">포스터/스틸컷</a></li>
@@ -192,15 +192,22 @@
                     <!-- 1) 영화 정보 끝 -->
 
                     <!-- 2) 리뷰 파트 시작 -->
-                    <div v-show="reviews">
+                    <div class="tab active" v-show="reviews">
+                      <ul class="tab-links tabs-mv">
+                        <li>
+                          <a @click="toOverview">영화정보</a>
+                        </li>
+                        <li><a @click="toReview">평점 및 관람평</a></li>
+                        <li><a @click="toMedia">포스터/스틸컷</a></li>
+                      </ul>
                       <div class="row" style="padding: 3%">
-                        <div class="rv-hd col-xs-12">
+                        <div class="rv-hd">
                           <div class="div">
                             <h3>DS CINEMA</h3>
                             <h2>{{ movie.movienm }}</h2>
                           </div>
                         </div>
-                        <div class="rv-hd col-xs-12">
+                        <div class="rv-hd">
                           <form
                             class="review-form col-xs-9"
                             name="myform"
@@ -317,7 +324,14 @@
                     <!-- 2) 리뷰 파트 끝 -->
 
                     <!-- 3) 스틸컷 시작 -->
-                    <div v-show="media">
+                    <div class="tab active" v-show="media">
+                      <ul class="tab-links tabs-mv">
+                        <li>
+                          <a @click="toOverview">영화정보</a>
+                        </li>
+                        <li><a @click="toReview">평점 및 관람평</a></li>
+                        <li><a @click="toMedia">포스터/스틸컷</a></li>
+                      </ul>
                       <div class="row" style="padding: 3%">
                         <div class="rv-hd">
                           <div>
