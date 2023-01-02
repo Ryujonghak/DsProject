@@ -53,14 +53,14 @@
                             class="btn-transform transform-vertical col-xs-12"
                             style="width:1000px;"
                           >
-                            <div class="col-xs-12" style="margin-bottom:10px">
+                            <div class="col-xs-12">
                               <a
                                 @click="showSeatPage"
                                 class="item item-1 redbtn"
                                 >예매하기</a
                               >
                             </div>
-                            <div class="col-xs-12" style="margin-bottom:0px">
+                            <div class="col-xs-12">
                               <a
                                 class="item item-2 redbtn hvrbtn"
                                 @click="showSeatPage"

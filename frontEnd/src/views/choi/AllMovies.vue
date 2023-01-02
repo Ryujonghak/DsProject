@@ -98,13 +98,13 @@
                 v-for="(data, index) in movie.MovieDetail"
                 :key="index"
               >
-                <a href="/movieDetail"
+                <router-link :to="'/allMovie/' + data.moviecd"
                   ><img
                     :src="data.posterurln"
                     alt="poster"
                     style="margin-bottom: 5%"
                   />
-                </a>
+                </router-link>
                 <div class="ceb-infor">
                   <h6>
                     <a href="/movieDetail" style="color: white">{{
@@ -211,6 +211,7 @@ export default {
       page: 1, // 현재 페이지
       count: 0, // 전체 데이터 건수
       pageSize: 10, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      
       // TODO: 검색 기능 추가
       searchStatue: "",
       nowPlayingMovies: [],
