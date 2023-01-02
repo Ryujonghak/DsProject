@@ -8,12 +8,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService {
     @Autowired
     UserRepository userRepository; // JPA CRUD 함수가 있는 인터페이스
+
+    public List<User> findAllList() {
+        List<User> userList = userRepository.findAll();
+
+        return userList;
+    }
 
     //    전체 조회 함수 findAll() ->(변경) findAll(Pageable pageable)
     public Page<User> findAll(Pageable pageable) {
@@ -73,8 +80,15 @@ public class UserService {
     }
 
     //    usename like 검색 함수( 페이징 처리 추가 )
-    public Page<UserRoleDto> findAllByUsernameContaining(String usename, Pageable pageable) {
-        Page<UserRoleDto> page = userRepository.findAllByUsernameContaining(usename, pageable);
+//    public Page<UserRoleDto> findAllByUsernameContaining(String usename, Pageable pageable) {
+//        Page<UserRoleDto> page = userRepository.findAllByUsernameContaining(usename, pageable);
+//
+//        return page;
+//    }
+
+//    username 검색 및 전체 조회
+    public Page<User> findAllByUsernameContainingOrderByInsertTime(String usename, Pageable pageable) {
+        Page<User> page = userRepository.findAllByUsernameContainingOrderByInsertTime(usename, pageable);
 
         return page;
     }
