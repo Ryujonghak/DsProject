@@ -1,5 +1,5 @@
 // MovieDataService.js
-// 목적 : Movie 정보를 axios 로 CRUD 를 하는 공통 함수들 정의
+// 목적 : Movie 정보를 axios 로 CRUD 를 하는 공통 함수들 정의 추가
 import http from "../http-common";
 
 class MovieDataService {
