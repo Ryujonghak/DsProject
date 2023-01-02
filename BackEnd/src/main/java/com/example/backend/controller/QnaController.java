@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 /**
  * packageName : com.example.simpledms.controller
  * fileName : QnaController
@@ -37,7 +38,7 @@ public class QnaController {
     @Autowired
     QnaService qnaService;
 
-//    페이징처리 없이 전체검색_0102_류
+    //    페이징처리 없이 전체검색_0102_류
     @GetMapping("/qna/list")
     public ResponseEntity<Object> getFindAllList() {
         try {
@@ -53,7 +54,7 @@ public class QnaController {
     }
 
     @GetMapping("/qna")
-    public ResponseEntity<Object> getCustomerAll(@RequestParam String searchSelect,
+    public ResponseEntity<Object> getCustomerAll(@RequestParam(defaultValue = "title") String searchSelect,
                                                  @RequestParam(required = false) String searchKeyword,
                                                  @RequestParam(defaultValue = "0") int page,
                                                  @RequestParam(defaultValue = "3") int size) {
@@ -62,9 +63,19 @@ public class QnaController {
             Pageable pageable = PageRequest.of(page, size);
             Page<Qna> qnaPage;
             if (searchSelect.equals("name")) {
-                qnaPage = qnaService.findAllByNameContaining(searchKeyword, pageable); // 페이징 처리된 함수
+                if (searchKeyword == null) {
+                    searchKeyword = "";
+                    qnaPage = qnaService.findAllByNameContaining(searchKeyword, pageable); // 페이징 처리된 함수
+                } else {
+                    qnaPage = qnaService.findAllByNameContaining(searchKeyword, pageable); // 페이징 처리된 함수
+                }
             } else {
-                qnaPage = qnaService.findAllByTitleContaining(searchKeyword, pageable); // 페이징 처리된 함수
+                if (searchKeyword == null) {
+                    searchKeyword = "";
+                    qnaPage = qnaService.findAllByTitleContaining(searchKeyword, pageable); // 페이징 처리된 함수
+                } else {
+                    qnaPage = qnaService.findAllByTitleContaining(searchKeyword, pageable); // 페이징 처리된 함수
+                }
             }
 //            Map 자료구조에 넣어 전송함.
             Map<String, Object> response = new HashMap<String, Object>();

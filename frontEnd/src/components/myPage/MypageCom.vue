@@ -550,7 +550,8 @@ export default {
 
     // 종학이 백엔드 데이터 받는 함수
     getUser(username) {
-      username = "forbob";
+       username = this.$store.state.auth.user.username;
+
       console.log(username);
       userService
         .getUserUsername(username)
@@ -580,7 +581,7 @@ export default {
     // TODO: 클릭이벤트 - 리뷰작성하러가기 함수(영화제목 전달)
     goReview() {
       // 영화 제목 정보 보내야 함
-      movieNm = this.movieNm;
+      // movieNm = this.movieNm;
     },
   },
   mounted() {
