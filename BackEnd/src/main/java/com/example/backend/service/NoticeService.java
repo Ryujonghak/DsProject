@@ -52,7 +52,7 @@ public class NoticeService {
     }
     public boolean removeId(Long no) {
         if(noticeRepository.existsById(no) == true) {
-            noticeRepository.deleteAllById(no);
+            noticeRepository.deleteById(no);
             return true;
         }
         else  {
