@@ -194,9 +194,10 @@
                       <div class="alert alert-success" role="alert">
                         관람평이 등록되었습니다.!
                       </div>
-                      <router-link to="/archive" class="alert alert-success">뒤로</router-link>
+                      <router-link to="/archive" class="alert alert-success"
+                        >뒤로</router-link
+                      >
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -377,11 +378,11 @@ export default {
         password: "",
         username: "",
         phone: null,
-        year: null,
+        year: null, 
         month: null,
         day: null,
         name: "",
-        answer: "",
+        answer: "", // 비번확인용 정답
       },
       message: "",
 
@@ -436,10 +437,11 @@ export default {
     // clickInputTag: function () {
     //   this.$refs["image"].click();
     // },
-
+    
     getUser(username) {
-    // 종학이 백엔드 데이터 받는 함수
-      username = "forbob";
+      // 종학이 백엔드 데이터 받는 함수
+      username = this.$store.state.auth.user.username;
+      // username = "forbob";
       console.log(username);
       userService
         .getUserUsername(username)
@@ -499,21 +501,20 @@ export default {
     // FIXME: 리뷰 삭제
     deleteReview() {
       ReviewDataService.delete(this.currentReview.id)
-      .then(response => {
-        console.log(response.data);
-        this.$router.push("/archive")
-      })
-      .catch(e => {
-        console.log(e);
-      })
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push("/archive");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
   mounted() {
     custom();
 
-    this.message = "",
-    this.getUser(); // 종학이 백엔드 데이터
-    this.getReview(this.$route.params.id);    // 리뷰 id로 가져오기
+    (this.message = ""), this.getUser(); // 종학이 백엔드 데이터
+    this.getReview(this.$route.params.id); // 리뷰 id로 가져오기
   },
 };
 </script>

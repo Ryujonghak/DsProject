@@ -81,11 +81,11 @@
                   <!-- 프로필 로그인 정보 표시 시작-->
                   <li style="color: white">
                     <strong style="color: white">이름 </strong>
-                    <label>{{ User.name }}</label>
+                    <label>{{ CurrentUser.name }}</label>
                   </li>
                   <li style="color: white">
                     <strong style="color: white">아이디 </strong>
-                    <label>{{ User.username }}</label>
+                    <label>{{ CurrentUser.username }}</label>
                   </li>
                   <!-- 프로필 로그인 정보 표시 끝 -->
                 </ul>
@@ -135,7 +135,7 @@
                     <input
                       type="text"
                       placeholder="홍길동"
-                      v-model="User.name"
+                      v-model="CurrentUser.name"
                     />
                   </div>
                   <div class="col-md-6 form-it">
@@ -143,7 +143,7 @@
                     <input
                       type="text"
                       placeholder="영문자 6자 이상"
-                      v-model="User.username"
+                      v-model="CurrentUser.username"
                     />
                   </div>
                 </div>
@@ -153,7 +153,7 @@
                     <input
                       type="text"
                       placeholder="hong@gmail.com"
-                      v-model="User.email"
+                      v-model="CurrentUser.email"
                     />
                   </div>
                   <div class="col-md-6 form-it">
@@ -161,7 +161,7 @@
                     <input
                       type="text"
                       placeholder="010-1234-5678"
-                      v-model="User.phone"
+                      v-model="CurrentUser.phone"
                     />
                   </div>
                 </div>
@@ -214,8 +214,8 @@
                 <br />
                 <br />
                 <!-- TODO: 질문의 정답이 일치하면 아래 div 보이도록...ㅋ : v-show="changePwdForm"  class="pwcheck"-->
-                <div v-show="changePwdForm" class="pwcheck">
-                  <!--                <div>-->
+                <!-- <div v-show="changePwdForm" class="pwcheck"> -->
+                <div>
                   <div class="row">
                     <div class="col-md-6 form-it">
                       <!--                      label 에 for="password" 추가 -->
@@ -225,7 +225,7 @@
                       <input
                         type="text"
                         placeholder="영문자, 숫자, 특수문자 조합 8~12자리"
-                        v-model="User.password"
+                        v-model="CurrentUser.password"
                       />
                     </div>
 
@@ -262,7 +262,7 @@
 <script>
 // import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
-import UserService from "@/services/user.service.js";
+import userService from "@/services/user.service";
 import User from "@/model/user";
 
 export default {
@@ -271,13 +271,23 @@ export default {
   // }),
   data() {
     return {
-      // User: new User(),
       User: new User(),
-      message: "",
       checkanswer: "", // 비번찾기문제 폼에 입력된 값  TODO: 정주희 추가
       changePwdForm: false,
       // objanswer: "",
       // username: "",
+      CurrentUser: {
+        email: "",
+        password: "",
+        username: "",
+        phone: null,
+        year: null, 
+        month: null,
+        day: null,
+        name: "",
+        answer: "", // 비번확인용 정답
+      },
+      message: "",
     };
   },
   methods: {
@@ -301,12 +311,17 @@ export default {
     // },
 
     // 종학이 백엔드 데이터 받는 함수
-    getUser() {
-      alert("getUser start");
-      UserService.getUserUsername("forbob")
+    getUser(username) {
+      // 종학이 백엔드 데이터 받는 함수
+      username = this.$store.state.auth.user.username;
+      // username = "forbob";
+      console.log(username);
+      userService
+        .getUserUsername(username)
         .then((response) => {
-          this.User = {
+          this.CurrentUser = {
             email: response.data.email,
+            password: response.data.password,
             username: response.data.username,
             phone: response.data.phone,
             year: response.data.year,
@@ -315,7 +330,7 @@ export default {
             name: response.data.name,
             answer: response.data.answer,
           };
-          console.log(this.User);
+          console.log(this.CurrentUser);
           // console.log(response.data);
         })
         .catch((err) => console.log(err));
@@ -364,7 +379,7 @@ export default {
       // User 값 초기화
       // this.User = new User("", "", "", this.role);
       //  공유 저장소의 새사용자 등록 함수 실행
-      UserService.update(id, changePwd, User)
+      userService.update(id, changePwd, User)
         .then((response) => {
           console.log(response.data);
           this.message = "The password was updated successfully!";
@@ -376,7 +391,7 @@ export default {
 
     // 탈퇴하기
     deleteId() {
-      UserService.delete()
+      userService.delete()
       .then((response) => {
         console.log(response.data);
         alert("탈퇴가 완료되었습니다.")
