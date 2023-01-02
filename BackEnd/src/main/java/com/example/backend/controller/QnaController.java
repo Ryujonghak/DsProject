@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.model.Notice;
 import com.example.backend.model.Qna;
 import com.example.backend.service.QnaService;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 /**
@@ -34,6 +36,20 @@ import java.util.Optional;
 public class QnaController {
     @Autowired
     QnaService qnaService;
+
+    @GetMapping("/qna/list")
+    public ResponseEntity<Object> getFindAllList() {
+        try {
+            List<Qna> qnaList = qnaService.findAllList();
+            if (qnaList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(qnaList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/qna")
     public ResponseEntity<Object> getCustomerAll(@RequestParam String searchSelect,

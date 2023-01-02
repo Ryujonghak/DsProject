@@ -8,9 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface NoticeRepository extends JpaRepository<Notice, Long> {
-    Optional<Notice> findByQno(Long qno);
+    Optional<Notice> findByNo(Long no);
     Optional<Notice> findByTitle(String title);
 
     Page<Notice> findAllByTitleContaining(String title, Pageable pageable);
-    Page<Notice> findAllByTypeContaining(String type, Pageable pageable);
+    Page<Notice> findAllByContentContaining(String type, Pageable pageable);
+
 }

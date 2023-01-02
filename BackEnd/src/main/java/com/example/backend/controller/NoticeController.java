@@ -23,28 +23,33 @@ public class NoticeController {
     @Autowired
     NoticeService noticeService;
 
+//    @GetMapping("/notice")
+//    public ResponseEntity<Object> getAllList() {
+//        try {
+//            List<Notice> noticeList = noticeService.findAllList();
+//            if (noticeList.isEmpty()) {
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            } else {
+//                return new ResponseEntity<>(noticeList, HttpStatus.OK);
+//            }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
     @GetMapping("/notice")
-    public ResponseEntity<Object> getAllList() {
-        try {
-            List<Notice> noticeList = noticeService.findAllList();
-            if (noticeList.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            } else {
-                return new ResponseEntity<>(noticeList, HttpStatus.OK);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/notice/page1")
-    public ResponseEntity<Object> getPage1(@RequestParam(required = false) String title,
-                                          @RequestParam(defaultValue = "0") int page,
-                                          @RequestParam(defaultValue = "3") int size) {
+    public ResponseEntity<Object> getPage1(@RequestParam(defaultValue = "title") String searchSelect,
+                                           @RequestParam(required = false) String searchKeyword,
+                                           @RequestParam(defaultValue = "0") int page,
+                                           @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Notice> noticePage = noticeService.findAllByTitleContaining(title, pageable);
-
+            Page<Notice> noticePage;
+            if (searchSelect.equals("content")) {
+                noticePage = noticeService.findAllByContentContaining(searchKeyword, pageable);
+            } else {
+                noticePage = noticeService.findAllByTitleContaining(searchKeyword, pageable);
+            }
             Map<String, Object> response = new HashMap<>();
             response.put("notice", noticePage.getContent());
             response.put("currentPage", noticePage.getNumber());
@@ -61,41 +66,16 @@ public class NoticeController {
         }
     }
 
-    @GetMapping("/notice/page2")
-    public ResponseEntity<Object> getPage2(@RequestParam(required = false) String type,
-                                          @RequestParam(defaultValue = "0") int page,
-                                          @RequestParam(defaultValue = "3") int size) {
+    @GetMapping("/notice/{no}")
+    public ResponseEntity<Object> Optional_findByQno(@PathVariable Long no) {
         try {
-            Pageable pageable = PageRequest.of(page, size);
-            Page<Notice> noticePage = noticeService.findAllByTypeContaining(type, pageable);
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("notice", noticePage.getContent());
-            response.put("currentPage", noticePage.getNumber());
-            response.put("totalItems", noticePage.getTotalElements());
-            response.put("totalPages", noticePage.getTotalPages());
-
-            if (noticePage.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            } else {
-                return new ResponseEntity<>(response, HttpStatus.OK);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/notice/{qno}")
-    public ResponseEntity<Object> Optional_findByQno(@PathVariable Long qno) {
-        try {
-            Optional<Notice> noticeOptional = noticeService.findByQno(qno);
+            Optional<Notice> noticeOptional = noticeService.findByNo(no);
             if (noticeOptional.isPresent()) {
                 return new ResponseEntity<>(noticeOptional.get(), HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -109,8 +89,45 @@ public class NoticeController {
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        catch (Exception e) {
+    }
+
+    @PostMapping("/notice")
+    public ResponseEntity<Object> create(@RequestBody Notice notice) {
+        try {
+            Notice notice2 = noticeService.save(notice);
+
+            return new ResponseEntity<>(notice2, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/notice/{no}")
+    public ResponseEntity<Object> update(@PathVariable Long no, @RequestBody Notice notice) {
+        try {
+            Notice notice2 = noticeService.save(notice);
+
+            return new ResponseEntity<>(notice2, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/notice/deletion/{no}")
+    public ResponseEntity<Object> delete(@PathVariable Long no) {
+        try {
+            boolean success = noticeService.removeId(no);
+            if (success) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
