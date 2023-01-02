@@ -107,11 +107,8 @@ export default {
       )
 
         .then((response) => {
-          alert("성공");
           const notice = response.data;
           this.notice = notice;
-          var test = this.notice;
-          alert(JSON.stringify(test));
           console.log(response.data);
         })
         .catch((e) => {

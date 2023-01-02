@@ -12,7 +12,7 @@ class ReviewDataService {
         // alert(searchSelect)
         // alert(searchKeyword)
         // get 방식 통신 요청 -> @GetMapping("/api/qna")
-        return http.get(`/review?searchSelect=${searchSelect}&searchKeyword=${searchKeyword}&page=${page}&size=${size}`); 
+        return http.get(`/review?movienm=${movienm}&page=${page}&size=${size}`); 
     }
 
     // 리뷰번호로 조회 요청 함수
