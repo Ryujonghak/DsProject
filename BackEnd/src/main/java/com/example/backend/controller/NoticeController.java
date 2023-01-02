@@ -23,21 +23,21 @@ public class NoticeController {
     @Autowired
     NoticeService noticeService;
 
-    @GetMapping("/notice")
-    public ResponseEntity<Object> getAllList() {
-        try {
-            List<Notice> noticeList = noticeService.findAllList();
-            if (noticeList.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            } else {
-                return new ResponseEntity<>(noticeList, HttpStatus.OK);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @GetMapping("/notice")
+//    public ResponseEntity<Object> getAllList() {
+//        try {
+//            List<Notice> noticeList = noticeService.findAllList();
+//            if (noticeList.isEmpty()) {
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            } else {
+//                return new ResponseEntity<>(noticeList, HttpStatus.OK);
+//            }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
-    @GetMapping("/notice/search")
+    @GetMapping("/notice")
     public ResponseEntity<Object> getPage1(@RequestParam(defaultValue = "title") String searchSelect,
                                            @RequestParam(required = false) String searchKeyword,
                                            @RequestParam(defaultValue = "0") int page,
