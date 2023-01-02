@@ -188,6 +188,8 @@ VALUES (SQ_USER.NEXTVAL,
         TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
         NULL,
         NULL);
+INSERT INTO TB_USER_ROLE
+VALUES (2, 2);
 
 INSERT INTO TB_USER
 VALUES (SQ_USER.NEXTVAL,
@@ -198,12 +200,14 @@ VALUES (SQ_USER.NEXTVAL,
         1995,
         11,
         11,
-        '류종학',
+        '강수빈',
         '동성직업전문학교',
         'N',
         TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
         NULL,
         NULL);
+INSERT INTO TB_USER_ROLE
+VALUES (3, 1);
 
 -- 가라데이터 추가
 INSERT INTO TB_QNA

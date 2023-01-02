@@ -27,8 +27,8 @@ public class NoticeService {
         return noticePage;
     }
 
-    public Page<Notice> findAllByTypeContaining(String type, Pageable pageable) {
-        Page<Notice> noticePage = noticeRepository.findAllByTypeContaining(type, pageable);
+    public Page<Notice> findAllByContentContaining(String type, Pageable pageable) {
+        Page<Notice> noticePage = noticeRepository.findAllByContentContaining(type, pageable);
 
         return noticePage;
     }

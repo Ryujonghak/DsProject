@@ -61,6 +61,7 @@ public class UserController {
 
     ModelMapper modelMapper = new ModelMapper();
 
+
     @GetMapping("/user")
 //    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> getUserAll(@RequestParam(required = false) String username,
@@ -73,9 +74,14 @@ public class UserController {
 //            페이지 변수 저장
             Pageable pageable = PageRequest.of(page, size);
 
-            Page<UserRoleDto> userPage;
 
-            userPage = userService.findAllByUsernameContaining(username, pageable);
+            Page<User> userPage;
+            if (username == null) {
+                username = "";
+                userPage = userService.findAllByUsernameContainingOrderByInsertTime(username, pageable);
+            } else {
+                userPage = userService.findAllByUsernameContainingOrderByInsertTime(username, pageable);
+            }
 
             Map<String, Object> response = new HashMap<>();
             response.put("user", userPage.getContent());
