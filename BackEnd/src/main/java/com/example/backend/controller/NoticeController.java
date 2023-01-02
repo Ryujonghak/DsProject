@@ -85,10 +85,10 @@ public class NoticeController {
         }
     }
 
-    @GetMapping("/notice/{qno}")
-    public ResponseEntity<Object> Optional_findByQno(@PathVariable Long qno) {
+    @GetMapping("/notice/{no}")
+    public ResponseEntity<Object> Optional_findByQno(@PathVariable Long no) {
         try {
-            Optional<Notice> noticeOptional = noticeService.findByQno(qno);
+            Optional<Notice> noticeOptional = noticeService.findByNo(no);
             if (noticeOptional.isPresent()) {
                 return new ResponseEntity<>(noticeOptional.get(), HttpStatus.OK);
             } else {

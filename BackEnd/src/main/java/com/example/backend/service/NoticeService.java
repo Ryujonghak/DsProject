@@ -33,8 +33,8 @@ public class NoticeService {
         return noticePage;
     }
 
-    public Optional<Notice> findByQno(Long qno) {
-        Optional<Notice> noticeOptional = noticeRepository.findByQno(qno);
+    public Optional<Notice> findByNo(Long no) {
+        Optional<Notice> noticeOptional = noticeRepository.findByNo(no);
 
         return noticeOptional;
     }
@@ -43,5 +43,20 @@ public class NoticeService {
         Optional<Notice> noticeOptional = noticeRepository.findByTitle(title);
 
         return noticeOptional;
+    }
+
+    public Notice save(Notice notice) {
+        Notice notice2 = noticeRepository.save(notice);
+
+        return notice2;
+    }
+    public boolean removeId(Long no) {
+        if(noticeRepository.existsById(no) == true) {
+            noticeRepository.deleteAllById(no);
+            return true;
+        }
+        else  {
+            return false;
+        }
     }
 }
