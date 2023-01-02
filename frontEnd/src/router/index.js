@@ -151,7 +151,7 @@ const routes = [
     component: () => import("@/views/choi/MainDetail.vue"),
   },
   {
-    path: "/movieDetail",
+    path: "/movieDetail:moviecd",
     name: "movieDetail",
     component: () => import("@/views/choi/MovieDetail.vue"),
   },

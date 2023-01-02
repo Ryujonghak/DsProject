@@ -34,7 +34,7 @@
                 </div>
                 <div class="btn-transform transform-vertical">
                   <div>
-                    <a href="/test01" class="item item-1 yellowbtn"> 
+                    <a href="/test01" class="item item-1 yellowbtn">
                       <i class="ion-card"></i>예매하기</a
                     >
                   </div>
@@ -431,6 +431,22 @@ export default {
     };
   },
   methods: {
+    // 영화코드(moviecd)로 조회 요청하는 함수
+    getMovie(moviecd) {
+      // axios 공통함수 호출
+      DeptDataService.get(moviecd)
+        // 성공하면 .then() 결과가 리턴됨
+        .then((response) => {
+          // springboot 결과를 리턴함(부서 객체)
+          this.currentDept = response.data;
+          // 콘솔 로그 출력
+          console.log(response.data);
+        })
+        // 실패하면 .catch() 에러메세지가 리턴됨
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     cutNames() {
       this.movie.actor = this.movie.actor.split(",");
       this.movie.cast = this.movie.cast.split(",");
@@ -470,7 +486,7 @@ export default {
         .then((response) => {
           this.movie = response.data.MovieDetail[0];
           console.log(response.data.MovieDetail[0]);
-          
+
           // alert(this.movie.movienm)
           this.movie.actor = this.movie.actor.split(",");
           this.movie.cast = this.movie.cast.split(",");
