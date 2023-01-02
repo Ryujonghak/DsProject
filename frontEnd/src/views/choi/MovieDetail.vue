@@ -93,12 +93,12 @@
                   <div class="tab-content">
                     <!-- 1) 영화 정보 시작 -->
                     <div class="tab active" v-show="overview">
-                      <ul class="tab-links tabs-mv">
+                      <ul class="tabs-mv tab-bar">
                         <li>
-                          <a @click="toOverview">영화정보</a>
+                          <a class="selected" @click="toOverview">영화정보</a>
                         </li>
-                        <li><a @click="toReview">평점 및 관람평</a></li>
-                        <li><a @click="toMedia">포스터/스틸컷</a></li>
+                        <li><a class="not-selected" @click="toReview">평점 및 관람평</a></li>
+                        <li><a class="not-selected" @click="toMedia">포스터/스틸컷</a></li>
                       </ul>
                       <div class="row">
                         <div class="col-md-8 col-sm-12 col-xs-12">
@@ -108,7 +108,7 @@
                           <div class="title-hd-sm">
                             <h4>포스터/스틸컷</h4>
                             <div class="tab-links active">
-                              <a href="#media" class="time"
+                              <a href="#media" class="time" @click="toMedia"
                                 >더보기 <i class="ion-ios-arrow-right"></i
                               ></a>
                             </div>
@@ -193,12 +193,12 @@
 
                     <!-- 2) 리뷰 파트 시작 -->
                     <div class="tab active" v-show="reviews">
-                      <ul class="tab-links tabs-mv">
+                      <ul class="tabs-mv tab-bar">
                         <li>
-                          <a @click="toOverview">영화정보</a>
+                          <a class="not-selected" @click="toOverview">영화정보</a>
                         </li>
-                        <li><a @click="toReview">평점 및 관람평</a></li>
-                        <li><a @click="toMedia">포스터/스틸컷</a></li>
+                        <li><a class="selected" @click="toReview">평점 및 관람평</a></li>
+                        <li><a class="not-selected" @click="toMedia">포스터/스틸컷</a></li>
                       </ul>
                       <div class="row" style="padding: 3%">
                         <div class="rv-hd">
@@ -325,12 +325,12 @@
 
                     <!-- 3) 스틸컷 시작 -->
                     <div class="tab active" v-show="media">
-                      <ul class="tab-links tabs-mv">
+                      <ul class="tabs-mv tab-bar">
                         <li>
-                          <a @click="toOverview">영화정보</a>
+                          <a class="not-selected" @click="toOverview">영화정보</a>
                         </li>
-                        <li><a @click="toReview">평점 및 관람평</a></li>
-                        <li><a @click="toMedia">포스터/스틸컷</a></li>
+                        <li><a class="not-selected" @click="toReview">평점 및 관람평</a></li>
+                        <li><a class="selected" @click="toMedia">포스터/스틸컷</a></li>
                       </ul>
                       <div class="row" style="padding: 3%">
                         <div class="rv-hd">
@@ -465,13 +465,11 @@ export default {
         });
     },
     toOverview() {
-      alert("메인");
       this.overview = true;
       this.reviews = false;
       this.media = false;
     },
     toReview() {
-      alert("리뷰");
       this.overview = false;
       this.reviews = true;
       this.media = false;
@@ -480,7 +478,6 @@ export default {
       // console.log(this.movie)
     },
     toMedia() {
-      alert("사진");
       this.overview = false;
       this.reviews = false;
       this.media = true;
@@ -528,6 +525,38 @@ export default {
 </script>
 
 <style scoped>
+.tab-bar {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0;
+  font-family: "Dosis", sans-serif;
+  font-size: 14px;
+  color: #abb7c4;
+  font-weight: bold;
+  text-transform: uppercase;
+  /* margin-bottom: 15px; */
+  /* margin-right: 20px; */
+}
+.tab-bar li .not-selected {
+  font-family: "Dosis", sans-serif;
+  font-size: 18px;
+  color: #abb7c4;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.tab-bar li a:hover {
+  color: #dcf836;
+}
+.tab-bar li .selected {
+  color: #dcf836;
+  font-size: 18px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #dcf836;
+}
 .movie-img {
   position: fixed;
 }
