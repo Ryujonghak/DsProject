@@ -88,7 +88,6 @@
                 <ul>
                   <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
-                  <li><a href="#">탈퇴하기</a></li>
                 </ul>
               </div>
             </div>

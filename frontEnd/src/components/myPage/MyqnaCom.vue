@@ -86,7 +86,6 @@
                 <ul>
                   <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
-                  <li><a href="#">탈퇴하기</a></li>
                 </ul>
               </div>
             </div>
@@ -163,9 +162,9 @@
               <!-- qna 테이블 끝 -->
 
               <!-- 전체 qna 테이블 -->
-              <div>
-                <button @click="getQna()">전체 qna 보기</button>
-              </div>
+              <!-- <div>
+                <button @click="getAllQna()">전체 qna 보기</button>
+              </div> -->
 
               <table class="qnabox">
                 <colgroup>
@@ -183,7 +182,7 @@
                     <th scope="row"><label for="name">내용</label></th>
                   </tr>
                 </thead>
-                <tbody v-for="(data, index) in currentQna" :key="index">
+                <tbody v-for="(data, index) in qna" :key="index">
                   <tr>
                     <td>{{ data.name }}</td>
                     <td>{{ data.email }}</td>
@@ -199,17 +198,17 @@
               <!-- total-rows : 전체 데이터 개수 -->
               <!-- per-page : 1페이지 당 개수 -->
               <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
-              <b-pagination
+              <!-- <b-pagination
                 v-model="page"
                 :total-rows="count"
                 :per-page="pageSize"
                 prev-text="Prev"
                 next-text="Next"
                 @change="handlePageChange"
-              ></b-pagination>
+              ></b-pagination> -->
 
               <!-- 페이지박스 -->
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 Items per Page:
                 <select
                   v-model="pageSize"
@@ -219,7 +218,7 @@
                     {{ size }}
                   </option>
                 </select>
-              </div>
+              </div> -->
               <!-- 페이징 양식 끝 -->
 
               <!-- 수정버튼 시작 -->
@@ -270,7 +269,7 @@ export default {
       },
       // AddQna 받아오기
       qna: [],
-      currentQna: null,
+      // currentQna: null,
       // TODO: 하드코딩
       // currentQna: {
       //   name: "dd",
@@ -280,11 +279,11 @@ export default {
       //   content: "dd",
       // },
 
-      // 페이징을 위한 변수 정의
-      page: 1, // 현재 페이지
-      count: 0, // 전체 데이터 건수
-      pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
-      pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
+      // // 페이징을 위한 변수 정의
+      // page: 1, // 현재 페이지
+      // count: 0, // 전체 데이터 건수
+      // pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      // pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
 
       // TODO: AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       // 조회한 데이터가 있으면 submitted true, 없으면 false
@@ -340,27 +339,27 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
-    // 전체조회
-    getQna(qno) {
-      qno = "qno";
-      console.log(qno);
+    
+    // 전체조회 TODO: 0102
+    getAllQna() {
+      console.log;
       QnaDataService
-      .get(qno)
+      .getAllQna()
       .then((response) => {
-        this.currentQna = {
+        this.qna = {
           name: response.data.name,
           email: response.data.email,
           phone: response.data.phone,
           title: response.data.title,
           content: response.data.content,
         };
-        console.log(this.currentQna);
+        console.log(this.qna);
       })
       .catch((e) => console.log(e))
     },
 
-    // 전체 조회
-    // getQna2() {
+    // 전체 조회_페이징
+    // getQna() {
     //   QnaDataService.getAll(this.searchTitle, this.page - 1, this.pageSize)
     //     .then((response) => {
     //       const { qna, totalItems } = response.data; // springboot 의 전송된 맵 정보
@@ -376,18 +375,18 @@ export default {
     // },
 ////////////////////////////////////페이징/////////////////////
     // select box 값 변경시 실행되는 함수(재조회)
-    handlePageSizeChange(event) {
-      this.pageSize = event.target.value; // 한페이지당 개수 저장(3, 6, 9)
-      this.page =1;
-      // 재조회 함수 호출
-      this.getQna();
-    },
-    // 페이지 번호 변경시 실행되는 함수(재조회)
-    handlePageChange(value) {
-      this.page = value; // 매개변수값으로 현재페이지 변경
-      // 재조회 함수 호출
-      this.getQna();
-    },
+    // handlePageSizeChange(event) {
+    //   this.pageSize = event.target.value; // 한페이지당 개수 저장(3, 6, 9)
+    //   this.page =1;
+    //   // 재조회 함수 호출
+    //   this.getQna();
+    // },
+    // // 페이지 번호 변경시 실행되는 함수(재조회)
+    // handlePageChange(value) {
+    //   this.page = value; // 매개변수값으로 현재페이지 변경
+    //   // 재조회 함수 호출
+    //   this.getQna();
+    // },
 
     // // 수정
     // updateQna() {
@@ -405,7 +404,7 @@ export default {
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
-    this.getQna();
+    this.getAllQna(); // 전체 qna 조회
   },
 };
 </script>

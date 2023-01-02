@@ -117,7 +117,7 @@
                   <!--                  <li><a href="#">Log out</a></li>-->
                   <!--                  <li><a @click="logout">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
-                  <li><a href="#">탈퇴하기</a></li>
+                  <li><a href="#" @click.prevent="deleteId">탈퇴하기</a></li>
                 </ul>
               </div>
             </div>
@@ -321,11 +321,10 @@ export default {
         .catch((err) => console.log(err));
     },
 
-    // 로그아웃 함수 -> 공통함수 호출
+    // 로그아웃 함수 -> 공통함수 호출 : FIXME: 로그아웃 안 됨. 그리고 alert("로그아웃이 완료되었습니다") 추가해야함
     logout() {
       // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
-      alert("로그아웃 되었습니다");
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
     // 패스워드찾기 버튼 클릭시 실행됨 -> (유효성 검사) TODO: 비번질문 답 입력 후 제출버튼 클릭
@@ -374,6 +373,18 @@ export default {
           console.log(e);
         });
     },
+
+    // 탈퇴하기
+    deleteId() {
+      UserService.delete()
+      .then((response) => {
+        console.log(response.data);
+        alert("탈퇴가 완료되었습니다.")
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+    }
   },
   mounted() {
     custom();

@@ -37,6 +37,7 @@ public class QnaController {
     @Autowired
     QnaService qnaService;
 
+//    페이징처리 없이 전체검색_0102_류
     @GetMapping("/qna/list")
     public ResponseEntity<Object> getFindAllList() {
         try {
