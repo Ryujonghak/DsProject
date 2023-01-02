@@ -6,7 +6,7 @@
         <div class="flex-parent-ft">
           <div class="flex-child-ft item1">
             <router-link to="/">
-              ><img
+              <img
                 class="logo"
                 src="../../../public/images/logo8.png"
                 alt=""
