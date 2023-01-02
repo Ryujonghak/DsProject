@@ -14,12 +14,21 @@
                     <div style="background-color: white; position: absolute; top: 100px; left: 385px; width: 450px; height: 450px; z-index: 30;">
                       <div style="height: 70px; background-color: gray;">
                         <h3 style="width: 387px; float: left; height: 70px; text-align: center; padding-top: 23px;">아바타: 물의 길 2022</h3>
-                        <button @click="model()" style="width: 40px; height: 40px; float: right; margin-top: 13px; margin-right: 13px; border: 0; background-color: gray;">
-                          <img src="@/assets/images_kim/Views/ModalView/xx.png" alt="">
+                        <button @click="model()" style="width: 40px; height: 40px; float: right; margin-right: 13px; border: 0;  background-color: gray;">
+                          <img style="margin-top: 21px;" src="@/assets/images_kim/Views/ModalView/xx.png" alt="">
                         </button>
                       </div>
-                      <div>
-                        <p>잔여좌석수 97/97</p>
+                      <div style="clear: both;"></div>
+                      <div style="width: 100%; text-align: center;" >
+                        <!-- 데이터 받아야됨 -->
+                        <p style="font-size: 20px; color: black; margin-top: 20px;">잔여좌석수 97/97</p>
+                      </div>
+                      <div style="width: 350px;">
+                        <img style="margin-left: 50px;" src="" alt="스크린 이미지">
+                      </div>
+                      <div style="width: 100%; margin-top: 30px;"> 
+                        <button @click="model()" style="width: 175px; height: 55px;margin-left: 30px; background-color: #222; color: white;">취 소</button>
+                        <button @click="seatview()" style="width: 175px; height: 55px;margin-left: 40px; background-color: #222;color: white;">인원/좌석</button>
                       </div>
                     </div>
                   </div>
@@ -98,9 +107,19 @@
                         <button v-show="!강동"  class="C_btndiv2">강동</button>
 
                         <button v-show="건대입구"  @click="cinema('건대입구')" class="btndiv2">건대입구</button>
-                        <button v-show="!건대입구"  class="C_btndiv2">건대입구</button>
+                        <button v-show="!건대입구"  class="C_btndiv2">건대입구</button>                        
+                      </div>
+                    </div>
+                    <div class="two">
+                      <div v-show="부산">
+                        <button v-show="서면"   @click="cinema('서면')" class="btndiv2">서면</button>
+                        <button v-show="!서면"  class="C_btndiv2">서면</button>
 
-                        
+                        <button v-show="센텀시티"  @click="cinema('센텀시티')" class="btndiv2">센텀시티</button>
+                        <button v-show="!센텀시티"  class="C_btndiv2">센텀시티</button>
+
+                        <button v-show="부산대"  @click="cinema('부산대')" class="btndiv2">부산대</button>
+                        <button v-show="!부산대"  class="C_btndiv2">부산대</button>                        
                       </div>
                     </div>
                   </div>
@@ -108,7 +127,7 @@
                     style="width: 585px; height: 660px; float: left; background-color:  #F7EBEC;  overflow: hidden; border-radius: 0 0 10px 0;">
                     <p
                       style="width: 585px;  margin-bottom: 0; color: gray;  padding: 15px 0 15px 0;  background-color: #1E212D;  color: white;text-align: center;">
-                      {{ yy }}-{{ mm }}-{{ dd }}(오늘)
+                      {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘)
                     </p>
                     <div style="width: 1000px; height: 100px;">
                         <!-- TODO: 그냥 이것도 v-show 로 하겠움-->
@@ -182,11 +201,7 @@
                         style="width: 90px;  height: 40px;  border-radius: 5px;  border: 1px solid #ddd;  background-color: #fafafa;  float: left;  margin: 5px;">
                         <h5>{{시간[1]}}</h5>
                       </button>
-                    </div>
-                    <button @click="model()" style="width: 300px; height: 300px;">
-
-                    </button>
-                    
+                    </div>                    
                   </div>
                 </div>
                 <!-- 영화관 -->
@@ -208,11 +223,7 @@
                        <span style="font-size: 20px; margin-right: 10px; margin-left:25px; color: white;">청소년</span>
                        <button @click="teenmins()" style="margin-right: 10px;">-</button>
                        <span style="color: white;font-size:20px;margin-right: 10px;">{{ teencount }}</span>
-                       <button @click="teenplus()" style="margin-right: 10px;">+</button>
-  
-                       <button v-show="결제하기" @click="pay()" style="float: right; width: 100px;height: 40px; border-radius: 30px; background-color: #810CA8; color: white;">결제하기</button>
-                       <button v-show="!결제하기" @click="pay()" style="float: right; width: 100px;height: 40px; border-radius: 30px; background-color: black; color: white; " disabled>결제하기</button>
-                      
+                       <button @click="teenplus()" style="margin-right: 10px;">+</button>                     
                     </div>
   
                     <div style="color: white;float: right; margin-right: 110px;">
@@ -602,16 +613,21 @@
                         </div>
                       </div>
                     </div>
-                    <div style="margin-top: 20px">
-                      <span style="color: white; margin: 9px"><img style="width: 13px; height: 13px;"
+                    <div style="margin-top: 35px">
+                      <span style="color: white; margin: 9px"><img style="width: 13px; height: 13px; margin-top: 0px; margin-bottom: 0px;"
                           src="../../assets/images_kim/Views/ModalView/seat-img1.jpg" alt="" />
                         선택 가능</span>
-                      <span style="color: white; margin: 9px"><img style="width: 13px; height: 13px"
+                      <span style="color: white; margin: 9px"><img style="width: 13px; height: 13px;margin-top: 0px; margin-bottom: 0px;"
                           src="../../assets/images_kim/Views/ModalView/seat-img2.jpg" alt="" />
                         선택 좌석</span>
-                      <span style="color: white; margin-bottom: 19px"><img style="width: 13px; height: 13px"
+                      <span style="color: white; margin-bottom: 19px"><img style="width: 13px; height: 13px;margin-top: 0px; margin-bottom: 0px;"
                           src="../../assets/images_kim/Views/ModalView/seat-img3.jpg" alt="" />
                         예매 완료</span>
+                    </div>
+                    <div style="background-color: #333; height: 60px; line-height: 80px; margin-top: 35px;">
+                      <h4 style="float: left; top: 30px; margin: 21px 0 0 30px;">총 결제금액 {{ (adultcount * 14000) + (teencount * 11000) }} 원</h4>
+                      <button v-show="결제하기" @click="pay()" style="float: right; width: 100px;height: 60px; border-right: 1px solid #333; border-top: 1px solid #333; border-bottom: 1px solid #333;  background-color: #810CA8; color: white;">결제하기</button>
+                       <button v-show="!결제하기" @click="pay()" style="float: right; width: 100px;height: 60px; border: 0; background-color: black; color: white;border-right: 1px solid #333; border-top: 1px solid #333; border-bottom: 1px solid #333; " disabled>결제하기</button>
                     </div>
   
                   </div>
@@ -633,13 +649,13 @@
                       
                       <div style="width: 230px;">
                         <img style="margin-left: 80px; margin-top: 15px;" src="@/assets/images_kang/Views/HomeView/poster/ABATA.jpg" alt="">
-                        <h4 style="width: 390px; color: black; text-align: center; margin-bottom: 10px; ">아바타: 물의길</h4> 
+                        <h4 style="width: 390px; color: black; text-align: center; margin-bottom: 10px; margin-top: 10px; ">아바타: 물의길</h4> 
                       </div>
                       <div style="border-top: 1px solid gray; padding-top: 5px;padding-left: 80px; ">
-                        <h6 style="padding: 5px 0;"> 지역 :  <span style="font-size: 18px;">서울</span></h6> 
-                        <h6 style="padding: 5px 0;"> 영화관 : <span style="font-size: 18px;">강동</span></h6> 
-                        <h6 style="padding: 5px 0;"> 인원 : <span style="font-size: 18px;">청소년1</span></h6> 
-                        <h6 style="padding: 5px 0;"> 좌석 : <span style="font-size: 18px;">A10</span></h6> 
+                        <h6 style="padding: 5px 0;"> 지역 :  <span style="font-size: 18px;">{{ ticketinfor.local }}</span></h6> 
+                        <h6 style="padding: 5px 0;"> 영화관 : <span style="font-size: 18px;">{{ ticketinfor.cinema }}</span></h6> 
+                        <h6 style="padding: 5px 0;"> 날짜 : <span style="font-size: 18px;">{{ ticketinfor.selectedday }}</span></h6> 
+                        <h6 style="padding: 5px 0;"> 시간 : <span style="font-size: 18px;">{{ ticketinfor.selectedtime }}</span></h6> 
                       </div>
                     </div>
                     <div style="width: 390px;height: 620px; float: left; background-color: #F7EBEC; border: 1px solid gray;">
@@ -659,13 +675,13 @@
                     </div>
                     <div style="width: 390px;height: 620px; float: left; background-color: #F7EBEC; border-radius: 0 0 10px 0;  border: 1px solid gray;">
                       <div style="width: 100%; background-color: #252A34; height: 50px; border-bottom: 1px solid gray; color: white; line-height:50px; padding-left: 10px;">
-                        상품금액 <span style="float: right; margin-right: 10px;">11000 원</span>
+                        상품금액 <span style="float: right; margin-right: 10px;">{{ (adultcount * 14000)  + (teencount * 11000)}} 원</span>
                       </div>
                       <div style="width: 100%; background-color: #252A34; height: 50px; border-bottom: 1px solid gray; color: white; line-height:50px; padding-left: 10px;">
                         할인금액 <span style="float: right; margin-right: 10px;">0 원</span>
                       </div>
                       <div style="width: 100%; background-color: #252A34; height: 50px; border-bottom: 1px solid gray; color: white; line-height:50px; padding-left: 10px;">
-                        결제금액 <span style="float: right; margin-right: 10px;">11000 원</span>
+                        결제금액 <span style="float: right; margin-right: 10px;">{{ (adultcount * 14000)  + (teencount * 11000)}} 원</span>
                       </div>
                       
                       <button style="width: 100%;background-color: #845bcb; height: 70px; border: 0; color: black; font-size: 20px;">
@@ -701,16 +717,19 @@
     data() {
       return {
         모달창 : false,
-        상영: false,  // 상영페이지 v-show
+        상영: true,  // 상영페이지 v-show
         좌석: false,  // 좌석페이지 v-show
-        결제: true,   // 결제페이지 v-show
+        결제: false,   // 결제페이지 v-show
   
         selectedseoul : true,    // 클릭이벤트로 색변경
         selectedbusan : true,    // 클릭이벤트로 색변경
-
+        
         가산 : true,
         강동 : true,
         건대입구 : true,
+        서면 : true,
+        센텀시티 : true,
+        부산대 : true,
         신용카드: true,
 
 
@@ -808,16 +827,21 @@
       selectedtime(value) {
         if((this.ticketinfor.local != null && this.ticketinfor.cinema != null) && (this.ticketinfor.selectedday != '' && this.ticketinfor.selectedday != null)) {
           this.ticketinfor.selectedtime = value;
-          this.상영 = false;
-          this.좌석 = true;
-          this.결제 = false;
+          this.모달창 = !this.모달창;
           console.log(this.ticketinfor);
         }else{
           alert("지역, 영화관, 날짜를 선택해 주세요.")
+
         }
       },
       model(){
         this.모달창 = !this.모달창;
+      },
+      seatview() {
+          this.상영 = false;
+          this.좌석 = true;
+          this.결제 = false;
+          this.모달창 = !this.모달창;
       },
       addseat(value) {               // 클릭을 하면 selected 배열에 담음
         if (this.adultcount + this.teencount == 0) {
@@ -929,12 +953,21 @@
           this.가산 = true;
           this.강동 = true;
           this.건대입구 = true;
+          this.서면 = true;
+          this.센텀시티 = true;
+          this.부산대 = true;
         if(value == '가산디지털'){
           this.가산 = false;
         }else if(value == '강동') {
           this.강동 = false;
         }else if(value == '건대입구') {
           this.건대입구 = false;
+        }else if(value == '서면') {
+          this.서면 = false;
+        }else if(value == '센텀시티') {
+          this.센텀시티 = false;
+        }else if(value == '부산대') {
+          this.부산대 = false;
         }
 
         this.ticketinfor.cinema = value;
