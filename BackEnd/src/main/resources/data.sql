@@ -207,52 +207,54 @@ VALUES (SQ_USER.NEXTVAL,
 
 -- 가라데이터 추가
 INSERT INTO TB_QNA
-    VALUES (SQ_QNA.NEXTVAL,
-            '김동성',
-            'DS@gmail.com',
-            '01012341234',
-            '문의제목',
-            '문의내용입니다.',
-            'N',
-            TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
-            NULL,
-            NULL);
+VALUES (SQ_QNA.NEXTVAL,
+        '김동성',
+        'DS@gmail.com',
+        '01012341234',
+        '문의제목',
+        '문의내용입니다.',
+        null,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
 
 INSERT INTO TB_QNA
-    VALUES (SQ_QNA.NEXTVAL,
-            '김직업',
-            'DS@gmail.com',
-            '01012341234',
-            '문의제목2',
-            '문의내용입니다.2',
-            'N',
-            TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
-            NULL,
-            NULL);
+VALUES (SQ_QNA.NEXTVAL,
+        '김직업',
+        'DS@gmail.com',
+        '01012341234',
+        '문의제목2',
+        '문의내용입니다.2',
+        null,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
 
 INSERT INTO TB_QNA
-    VALUES (SQ_QNA.NEXTVAL,
-            '김전문',
-            'DS@gmail.com',
-            '01012341234',
-            '문의제목3',
-            '문의내용입니다.3',
-            'N',
-            TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
-            NULL,
-            NULL);
+VALUES (SQ_QNA.NEXTVAL,
+        '김전문',
+        'DS@gmail.com',
+        '01012341234',
+        '문의제목3',
+        '문의내용입니다.3',
+        null,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
 
 INSERT INTO TB_QNA
-    VALUES (SQ_QNA.NEXTVAL,
-            '김학교',
-            'DS@gmail.com',
-            '01012341234',
-            '문의제목4',
-            '문의내용입니다.4',
-            'N',
-            TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
-            NULL,
-            NULL);
-
-
+VALUES (SQ_QNA.NEXTVAL,
+        '김학교',
+        'DS@gmail.com',
+        '01012341234',
+        '문의제목4',
+        '문의내용입니다.4',
+        null,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
 COMMIT;

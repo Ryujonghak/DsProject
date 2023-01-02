@@ -321,7 +321,7 @@ export default {
 
       //페이징을 위한 변수 정의
       page: 1,
-      count: 0, //전체 데이터 건수
+      count: 0, 
       pageSize: 3,
 
       pageSizes: [3, 6, 9],

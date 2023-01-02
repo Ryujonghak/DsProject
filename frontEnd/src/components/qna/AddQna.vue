@@ -52,7 +52,7 @@
                 class="input-text boxing"
                 value
                 maxlength="4"
-                v-model="qna.name"
+                v-model="CurrentUser.name"
               />
               <!--v-model="CurrentUser.name"로 하면 백데이터 불러와짐. 등록/수정은 안됨-->
             </td>
@@ -69,7 +69,7 @@
                 value
                 maxlength="50"
                 placeholder="알맞은 이메일형식(@)을 입력해주세요."
-                v-model="qna.email"
+                v-model="CurrentUser.email"
               />
               <div id="error_mail" class="result-email result-check"></div>
             </td>
@@ -88,7 +88,7 @@
                 class="boxing form-control"
                 maxlength="12"
                 placeholder="휴대폰번호 -제외 입력"
-                v-model="qna.phone"
+                v-model="CurrentUser.phone"
               />
             </td>
           </tr>
@@ -140,6 +140,7 @@
       </div>
       <!-- 전송버튼 끝 -->
     </div>
+    
   </div>
 </template>
 
@@ -163,31 +164,39 @@ export default {
         name: "",
       },
       qna: {
-        name:"",
-        email: "",
-        phone: "",
+        qno:null,
         title: "",
         content: "",
       },
     };
   },
   methods: {
+
     createQna() {
       // alert("클릭되냐");
       // TODO: 폼에 로그인된 정보는 안 뜨지만, 작성된 qna 넘길때에는 로그인된 정보로 name, email, phone이 바뀌어서 qna테이블로 넘어감!!
       let data = {
-        name: this.CurrentUser.username,
+        name: this.CurrentUser.name,
         email: this.CurrentUser.email,
         phone: this.CurrentUser.phone,
         title: this.qna.title,
         content: this.qna.content,
       };
+
+      // let data = {
+      //   name: this.qna.name,
+      //   email: this.qna.email,
+      //   phone: this.qna.phone,
+      //   title: this.qna.title,
+      //   content: this.qna.content,
+      // }
       QnaDataService.create(data)
         // 성공하면 then() 결과가 전송됨
         .then((response) => {
+          this.qna.qno = response.data.qno;
           console.log(response.data);
           alert("등록이 완료되었습니다");
-          this.$router.push("/");
+          window.location.reload();
         })
         // 실패하면 .catch() 에러메세지가 전송됨
         .catch((e) => {
@@ -197,7 +206,8 @@ export default {
 
     getUser(username) {
       // 종학이 백엔드 데이터 받는 함수
-      username = "forbob";
+      username = this.$store.state.auth.user.username;
+      // username = "forbob";
       console.log(username);
       userService
         .getUserUsername(username)
@@ -217,6 +227,7 @@ export default {
   mounted() {
     this.getUser();
   },
+
 };
 </script>
 

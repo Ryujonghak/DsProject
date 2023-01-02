@@ -43,5 +43,7 @@ public class Qna extends BaseTimeEntity {
     private String title;
     @Column(columnDefinition = "VARCHAR2")
     private String content;
+    @Column(columnDefinition = "VARCHAR2")
+    private String answer;
 
 }
