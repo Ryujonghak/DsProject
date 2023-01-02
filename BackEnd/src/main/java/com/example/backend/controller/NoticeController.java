@@ -39,8 +39,8 @@ public class NoticeController {
 
     @GetMapping("/notice/page1")
     public ResponseEntity<Object> getPage1(@RequestParam(required = false) String title,
-                                          @RequestParam(defaultValue = "0") int page,
-                                          @RequestParam(defaultValue = "3") int size) {
+                                           @RequestParam(defaultValue = "0") int page,
+                                           @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
             Page<Notice> noticePage = noticeService.findAllByTitleContaining(title, pageable);
@@ -63,8 +63,8 @@ public class NoticeController {
 
     @GetMapping("/notice/page2")
     public ResponseEntity<Object> getPage2(@RequestParam(required = false) String type,
-                                          @RequestParam(defaultValue = "0") int page,
-                                          @RequestParam(defaultValue = "3") int size) {
+                                           @RequestParam(defaultValue = "0") int page,
+                                           @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
             Page<Notice> noticePage = noticeService.findAllByTypeContaining(type, pageable);
@@ -94,8 +94,7 @@ public class NoticeController {
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -109,8 +108,45 @@ public class NoticeController {
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        catch (Exception e) {
+    }
+
+    @PostMapping("/notice")
+    public ResponseEntity<Object> create(@RequestBody Notice notice) {
+        try {
+            Notice notice2 = noticeService.save(notice);
+
+            return new ResponseEntity<>(notice2, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/notice/{no}")
+    public ResponseEntity<Object> update(@PathVariable Long no, @RequestBody Notice notice) {
+        try {
+            Notice notice2 = noticeService.save(notice);
+
+            return new ResponseEntity<>(notice2, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/notice/deletion/{no}")
+    public ResponseEntity<Object> delete(@PathVariable Long no) {
+        try {
+            boolean success = noticeService.removeId(no);
+            if (success) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
