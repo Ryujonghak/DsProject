@@ -300,11 +300,11 @@ export default {
       // TODO: 하드코딩
       // 현재 로그인된 사용자 이름으로 검색해서 나온 qna 결과만 출력되도록...
       currentQna: {
-        name: "dd",
-        email: "dd",
-        phone: "dd",
-        title: "dd",
-        content: "dd",
+        name: "",
+        email: "",
+        phone: "",
+        title: "",
+        content: "",
       },
       myQna: false,   // 나의qa 보기 버튼 클릭하면 true
 

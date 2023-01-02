@@ -24,8 +24,8 @@ class QnaDataService {
     }
 
     // 이름으로 조회 요청 함수 : TODO: 0102 추가_정주희
-    getMyQna(username){
-        return http.get(`/qna/${username}`)
+    getMyQna(name){
+        return http.get(`/qna/search/${name}`)
     }
 
     // Qna정보 생성(insert) 요청 함수
