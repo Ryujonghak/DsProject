@@ -172,6 +172,7 @@ export default {
     };
   },
   methods: {
+
     retrieveMovie() {
       MovieDataService.getMovieDetailAll(
         this.searchMname,

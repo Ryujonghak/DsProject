@@ -21,18 +21,21 @@
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li><router-link to="/userInfoAdmin">회원관리</router-link></li>
+                  <li>
+                    <router-link to="/userInfoAdmin">회원관리</router-link>
+                  </li>
                   <li>
                     <a href="#"></a>
-                    <a
-                      data-toggle="dropdown"
-                      @click="boardclick"
-                    >
+                    <a data-toggle="dropdown" @click="boardclick">
                       게시판관리
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown" v-show="board">
-                      <li class="active"><router-link to="/board-admin">공지사항 관리</router-link></li>
+                      <li class="active">
+                        <router-link to="/board-admin"
+                          >공지사항 관리</router-link
+                        >
+                      </li>
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
@@ -44,7 +47,9 @@
                       </li>
                     </ul>
                   </li>
-                  <li><router-link to="/payment-admin">예매 내역</router-link></li>
+                  <li>
+                    <router-link to="/payment-admin">예매 내역</router-link>
+                  </li>
                 </ul>
               </div>
               <div class="user-fav">
@@ -91,17 +96,23 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(notice, index) in notices" v-bind:key="index">
-                      <td>{{ notice.id }}</td>
-                      <td>{{ notice.type }}</td>
-                      <td>{{ notice.title }}</td>
-                      <td>{{ notice.content }}</td>
-                      <td>{{ notice.regdate }}</td>
+                    <tr
+                      v-for="(data, index) in notice.notice"
+                      v-bind:key="index"
+                    >
+                      <td>{{ data.no }}</td>
+                      <td>{{ data.type }}</td>
+                      <td>{{ data.title }}</td>
+                      <td>{{ data.content }}</td>
+                      <td>{{ data.insertTime }}</td>
                       <td>
-                        <button class="editbtn" @click="updateNotice">
+                        <button
+                          class="editbtn"
+                          @click="setActiveNotice(data, index)"
+                        >
                           Edit
                         </button>
-                        <button class="delbtn" @click="deleteNotice">
+                        <button class="delbtn" @click="deleteNotice(data)">
                           delete
                         </button>
                       </td>
@@ -109,7 +120,7 @@
                   </tbody>
                 </table>
                 <div class="search">
-                  <button type="button" class="btn_col2" @click="writeNotice">
+                  <button type="button" class="btn_col2" @click="writeNotice()">
                     글쓰기
                   </button>
                 </div>
@@ -119,7 +130,7 @@
 
             <!-- 공지사항 수정(edit) 폼 시작 -->
             <div v-show="update">
-              <h5 style="color:aliceblue"> 공지사항 수정(EDIT)</h5>
+              <h5 style="color: aliceblue">공지사항 수정(EDIT)</h5>
               <table class="noticeboxnoticebox">
                 <colgroup>
                   <col style="width: 10%" />
@@ -139,7 +150,7 @@
                         type="text"
                         id="name"
                         class="input-text boxing"
-                        v-model="editNotice.type"
+                        v-model="currentNotice.type"
                       />
                     </td>
                     <th scope="row" class="noticelabel">
@@ -154,7 +165,7 @@
                         class="boxing input-text"
                         maxlength="100"
                         placeholder="제목을 입력해주세요."
-                        v-model="editNotice.title"
+                        v-model="currentNotice.title"
                       />
                     </td>
                   </tr>
@@ -173,7 +184,7 @@
                           title="내용입력"
                           class="input-textarea boxing"
                           placeholder="내용을 입력해주세요."
-                          v-model="editNotice.content"
+                          v-model="currentNotice.content"
                         ></textarea>
                       </div>
                     </td>
@@ -185,12 +196,13 @@
                   수정하기
                 </button>
               </div>
+              <p>{{ message }}</p>
             </div>
             <!-- 공지사항 수정 폼 끝 -->
 
             <!--공지사항 작성 폼 시작 (add)-->
             <div v-show="registerNotice">
-              <h5 style="color:aliceblue"> 공지사항 등록(REG)</h5>
+              <h5 style="color: aliceblue">공지사항 등록(REG)</h5>
               <table class="noticeboxnoticebox">
                 <colgroup>
                   <col style="width: 10%" />
@@ -256,18 +268,17 @@
                 <button type="button" class="btn_col2" @click="createNotice">
                   등록하기
                 </button>
-                
               </div>
             </div>
             <!--공지사항 작성 폼 끝 -->
           </div>
 
-           <!-- <!— 페이징 + 전체 목록 시작 —> -->
+          <!-- <!— 페이징 + 전체 목록 시작 —> -->
           <!-- <!— 페이징 양식 시작 —> -->
           <div class="col-md-12">
             <b-pagination
               v-model="page"
-              :total-rows="movie.totalItems"
+              :total-rows="notice.totalItems"
               :per-page="pageSize"
               prev-text="Prev"
               next-text="Next"
@@ -283,19 +294,25 @@
 </template>
 
 <script>
-import NoticeDataService from '@/services/NoticeDataService';
-//import NoticeDataService from "@/services/NoticeDataService.js";
+import NoticeDataService from "@/services/NoticeDataService";
 export default {
   data() {
     return {
-      data: [],
+      notice: [],
+      searchSelect: "",
+      searchKeyword: "",
+      message: "",
+      currentNotice: [],
+      currentIndex: -1,
+      editData: "",
+
       addnotice: {
         no: null,
-        type: "",
         title: "",
         content: "",
+        type: "",
       },
-      editNotice: null,
+      submitted: false,
       registerNotice: false, //공지사항 작성폼 vshow
       update: false, // 공지사항 수정폼 vshow
 
@@ -312,31 +329,39 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch("auth/logout"); 
+      this.$store.dispatch("auth/logout");
       this.$router.push("/");
     },
 
     handlePageChange(value) {
-      this.page = value; 
+      this.page = value;
       this.retrieveNotice();
     },
 
+    //전체조회함수
     retrieveNotice() {
-      NoticeDataService.getAll(this.type, this.page - 1, this.pageSize)
+      NoticeDataService.getAll(
+        this.searchSelect,
+        this.searchKeyword,
+        this.page - 1,
+        this.pageSize
+      )
 
         .then((response) => {
-          const data  = response.data;
-          this.data = data;
+          const notice = response.data;
+          this.notice = notice;
           console.log(response.data);
         })
         .catch((e) => {
           console.log(e);
         });
     },
+
     // 목록을 클릭했을때 현재 객체, 인덱스번호를 저장하는 함수
     setActiveNotice(data, index) {
       this.currentNotice = data;
       this.currentIndex = index;
+      this.update = !this.update; // update vshow
     },
 
     // 글쓰기 버튼 클릭시 글쓰기 테이블나옴
@@ -348,16 +373,16 @@ export default {
     // 등록하기 버튼 클릭시 생성
     createNotice() {
       let data = {
-        type: this.type,
-        title: this.title,
-        content: this.content,
+        type: this.addnotice.type,
+        title: this.addnotice.title,
+        content: this.addnotice.content,
       };
       NoticeDataService.create(data)
         .then((response) => {
-          this.notice.no = response.data.no;
+          this.addnotice.no = response.data.no;
           console.log(response.data);
-          // 변수 submitted
-          this.submitted = true;
+          alert("등록되었습니다.");
+          window.location.reload();
         })
         .catch((e) => {
           console.log(e);
@@ -370,31 +395,37 @@ export default {
 
     // Edit 버튼 클릭시 적용
     updateNotice() {
-      this.update = !this.update; // update vshow
       this.registerNotice = false;
-        NoticeDataService.update(this.editNotice.no, this.editNotice)
-         .then((response) => {
+      NoticeDataService.update(this.currentNotice.no, this.currentNotice)
+        .then((response) => {
           console.log(response.data);
-      })
-      .catch((e)=>{
-        console.log(e);
-      })
+          alert("업데이트 되었습니다.");
+          this.message = "업데이트 성공!";
+          window.location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
 
     //delete버튼 클릭시 적용
-    deleteNotice(){
-      NoticeDataService.delete(this.notice.no)
-      .then(response => {
-        console.log(response.data);
-        this.$router.push("/notice-admin");
-      })
-      .catch(e => {
-        console.log(e);
-      });
-    }
+    deleteNotice(data) {
+      this.currentNotice = data;
+      NoticeDataService.delete(this.currentNotice.no)
+        .then((response) => {
+          console.log(response.data);
+          alert("삭제되었습니다.");
+          window.location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
   mounted() {
     this.retrieveNotice();
+    this.message = "";
+    // this.getFindByNo(this.$route.params.no);
   },
 };
 </script>
@@ -481,7 +512,7 @@ textarea {
   justify-content: flex-end !important;
   border-top: none !important;
 }
-.delbtn{
+.delbtn {
   color: black;
   background: rgb(255, 0, 0);
   border-radius: 25px;

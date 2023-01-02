@@ -15,7 +15,7 @@
       </div>
     </div>
     <!-- search 관련 div 시작 -->
-    <div class="container" style="padding: 3%; background: white">
+    <div class="container" style="padding: 3%; background: inherit;">
       <fieldset class="search_wrap" id="search_wrap1">
         <select class="ty3" title="검색조건 제목 선택" id="selectCondition1">
           <option value="1" selected>제목</option>
@@ -26,9 +26,11 @@
           placeholder="검색어를 입력하세요"
           id="searchKeyword1"
           style="width: 580px"
+          v-model="searchKeyword"
         />
         <div class="search">
-          <button type="button" class="btn_col2">검색</button>
+          <button type="button" class="btn_col2" @click="page = 1;
+              retrieveNotice();">검색</button>
         </div>
       </fieldset>
       <!-- search 관련 div 끝 -->
@@ -51,43 +53,43 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="notice in notices" v-bind:key="notice">
-            <td>{{ notice.id }}</td>
-            <td>{{ notice.type }}</td>
-            <td>{{ notice.title }}</td>
-            <td>{{ notice.content }}</td>
-            <td>{{ notice.regdate }}</td>
+          <tr v-for="(data, index) in notice.notice" v-bind:key="index">
+            <td>{{ data.no }}</td>
+            <td>{{ data.type }}</td>
+            <td>{{ data.title }}</td>
+            <td>{{ data.content }}</td>
+            <td>{{ data.insertTime }}</td>
           </tr>
         </tbody>
       </table>
       <!-- table 끝 -->
 
-       <!-- <!— 페이징 + 전체 목록 시작 —> -->
-          <!-- <!— 페이징 양식 시작 —> -->
-          <div class="col-md-12">
-            <b-pagination
-              v-model="page"
-              :total-rows="notices.totalItems"
-              :per-page="pageSize"
-              prev-text="Prev"
-              next-text="Next"
-              @change="handlePageChange"
-            ></b-pagination>
-          </div>
-          <!-- <!— 페이징 양식 끝 —> -->
-          <!-- 필터 페이지네이션 -->
+      <!-- <!— 페이징 + 전체 목록 시작 —> -->
+      <!-- <!— 페이징 양식 시작 —> -->
+      <div class="col-md-12">
+        <b-pagination
+          v-model="page"
+          :total-rows="notice.totalItems"
+          :per-page="pageSize"
+          prev-text="Prev"
+          next-text="Next"
+          @change="handlePageChange"
+        ></b-pagination>
+      </div>
+      <!-- <!— 페이징 양식 끝 —> -->
+      <!-- 필터 페이지네이션 -->
     </div>
   </div>
 </template>
 
 <script>
-import NoticeDataService from '@/services/NoticeDataService';
+import NoticeDataService from "@/services/NoticeDataService";
 export default {
   data() {
     return {
-      notices: [],
-      searchSelect:"",
-      searchKeyword:"",
+      notice: [],
+      searchSelect: "",
+      searchKeyword: "",
 
       page: 1,
       count: 0,
@@ -97,11 +99,19 @@ export default {
   },
   methods: {
     retrieveNotice() {
-      NoticeDataService.getAll(this.searchSelect,this.searchKeyword, this.page - 1, this.pageSize)
+      NoticeDataService.getAll(
+        this.searchSelect,
+        this.searchKeyword,
+        this.page - 1,
+        this.pageSize
+      )
 
         .then((response) => {
-          const data  = response.data;
-          this.data = data;
+          alert("성공");
+          const notice = response.data;
+          this.notice = notice;
+          var test = this.notice;
+          alert(JSON.stringify(test));
           console.log(response.data);
         })
         .catch((e) => {
@@ -113,6 +123,10 @@ export default {
       this.page = value;
       this.retrieveNotice();
     },
+
+    searchTitle(){
+
+    }
   },
   mounted() {
     this.retrieveNotice();
