@@ -53,7 +53,6 @@
                 value
                 maxlength="4"
                 v-model="CurrentUser.name"
-
               />
               <!--v-model="CurrentUser.name"로 하면 백데이터 불러와짐. 등록/수정은 안됨-->
             </td>
@@ -71,8 +70,6 @@
                 maxlength="50"
                 placeholder="알맞은 이메일형식(@)을 입력해주세요."
                 v-model="CurrentUser.email"
-
-
               />
               <div id="error_mail" class="result-email result-check"></div>
             </td>
@@ -171,7 +168,6 @@ export default {
         title: "",
         content: "",
       },
-      currentQna: {},
     };
   },
   methods: {

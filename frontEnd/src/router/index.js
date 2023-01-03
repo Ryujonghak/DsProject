@@ -143,6 +143,22 @@ const routes = [
     name: "mytest",
     component: () => import("../components/myPage/testCom.vue"),
   },
+  {
+    path: "/mytestprofile",
+    name: "mytest",
+    component: () => import("../components/myPage/testProfileCom.vue"),
+  },
+  // 영화관 페이지
+  {
+    path: "/theaterSeoul",
+    name: "theaterSeoul",
+    component: () => import("../views/jung/TheaterSeoul.vue"),
+  },
+  {
+    path: "/theaterBusan",
+    name: "theaterBusan",
+    component: () => import("../views/jung/TheaterBusan.vue"),
+  },
 
   //TODO   최아리 Part
   {
