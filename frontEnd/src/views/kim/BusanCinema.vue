@@ -54,8 +54,55 @@
               <div v-show="극장정보" class="col-md-12" style="padding: 100px 0 0 0; background-color: #020d18; color: white; position: relative;"> 
                 <!-- <span style="font-size:28px; padding-bottom: 10px; border-bottom: 1px solid #405266;">부산대</span> -->
                 <div v-show="map">
-                    <div style="position: absolute; width: 500px; height: 600px; background-color: red; z-index: 30; left: 300px; top: -30px; border-radius: 10px;">
-                        asdasdas
+                    <div style="position: absolute; width: 500px; height: 600px; background-color: white; z-index: 30; left: 300px; top: -30px; border-radius: 10px; border: 1px solid ;">
+                      <div style="width: 100%; height: 50px;border-radius: 10px 10px 0 0; padding-bottom: 5px; border-bottom: 1px solid #405266;">
+                        <span style="font-size: 24px;color: black; width: 400px; padding-top: 7px;padding-left: 20px; float: left;">지도</span>
+                        <button @click="mapopen()" style="width: 40px;background-color: white; height: 40px; float: right; margin-right: 10px; margin-top: 5px; border: 0;"><img style="width: 30px;margin: 0;" src="@/assets/images_kim/Views/ModalView/xx.png" alt=""></button>
+                      </div>
+                      <div style="margin: 25px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.1228860184788!2d129.08764711554218!3d35.22831086228438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356893eadd1d30fd%3A0xceae3aedbd055a80!2z67aA7IKw6rSR7Jet7IucIOq4iOygleq1rCDspJHslZnrjIDroZwgMTYwNw!5e0!3m2!1sko!2skr!4v1672760900700!5m2!1sko!2skr" 
+                        width="450" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                      </div>
+                    </div>
+                </div>
+                <div v-show="bus">
+                    <div style="position: absolute; width: 600px; height: 400px; background-color: white; z-index: 30; left: 300px; top: -30px; border-radius: 10px; border: 1px solid ;">
+                      <div style="width: 100%; height: 50px;border-radius: 10px 10px 0 0; padding-bottom: 5px; border-bottom: 1px solid #405266;">
+                        <span style="font-size: 24px;color: black; width: 400px; padding-top: 7px;padding-left: 20px; float: left;">대중교통</span>
+                        <button @click="busopen()" style="width: 40px;background-color: white; height: 40px; float: right; margin-right: 10px; margin-top: 5px; border: 0;"><img style="width: 30px;margin: 0;" src="@/assets/images_kim/Views/ModalView/xx.png" alt=""></button>
+                      </div>
+                      <div style="width: 50px; height: 50px; float: left;">
+                        <img style="margin: 50px 40px 0 30px;" src="@/assets/images_kim/Views/ModalView/free-icon-bus-4274245.png" alt="">
+                      </div>
+                      <div style="width: 480px; margin-left: 70px; float: right; ">
+                        <p style="margin-bottom:0;color: black;font-size: 18px; font-weight: bold;">버스로 오시는길</p>
+                        <p style="margin-bottom:0;color: black;"> · 시내버스</p>
+                        <p style="margin-bottom:0;color: black;">347, 144, 130, 130-1, 29, 29-1, 49-1, 51, 77, 80, 80-1, 100, 100-1, 121, 144, 178, 183, 202, 301</p>
+                      </div>
+                      <div style="width: 50px; height: 50px; float: left;">
+                        <img style="margin: 50px 40px 0 30px;" src="@/assets/images_kim/Views/ModalView/free-icon-subway-2385488.png" alt="">
+                      </div>
+                      <div style="width: 480px; margin-left: 70px; float: right; ">
+                        <p style="margin-bottom:0;color: black;font-size: 18px; font-weight: bold;">지하철로 오시는 길</p>
+                        <p style="margin-bottom:0;color: black;"> · 1호선 부산대역</p>
+                        <p style="margin-bottom:0;color: black;">2번 출구 (전방 횡단보도 이용 > 우측 횡단보도 이용 > <br> 도보 직진 100미터 > 좌측 건물 진입 1층)</p>
+                      </div>
+                    </div>
+                </div>
+                <div v-show="car">
+                    <div style="position: absolute; width: 600px; height: 200px; background-color: white; z-index: 30; left: 300px; top: 0ㅔㅌ; border-radius: 10px; border: 1px solid ;">
+                      <div style="width: 100%; height: 50px;border-radius: 10px 10px 0 0; padding-bottom: 5px; border-bottom: 1px solid #405266;">
+                        <span style="font-size: 24px;color: black; width: 400px; padding-top: 7px;padding-left: 20px; float: left;">자가용</span>
+                        <button @click="caropen()" style="width: 40px;background-color: white; height: 40px; float: right; margin-right: 10px; margin-top: 5px; border: 0;"><img style="width: 30px;margin: 0;" src="@/assets/images_kim/Views/ModalView/xx.png" alt=""></button>
+                      </div>
+                      <div style="width: 50px; height: 50px; float: left;">
+                        <img style="margin: 50px 40px 0 30px;" src="@/assets/images_kim/Views/ModalView/free-icon-car-635651.png" alt="">
+                      </div>
+                      <div style="width: 480px; margin-left: 70px; float: right; ">
+                        <p style="margin-bottom:0;color: black;font-size: 18px; font-weight: bold;">자가용으로 오시는길</p>
+                        <p style="margin-bottom:0;color: black;"> · 네비게이션 이용 시 부산 금정구 중앙대로 1607 or 오투시네마로 검색</p>
+                      </div>
                     </div>
                 </div>
                 <img style="width:100%; margin-bottom: 0;" src="@/assets/images_kim/Views/ModalView/CGVdongnae.jpg" alt="">
@@ -70,19 +117,19 @@
                         <div style="margin-top: 20px; margin-left: 20px; width: 80px; height: 80px; background-color: white; border-radius: 40px;">
                             <img style="width: 50px;  margin-top: 15px; margin-bottom: 20px;" src="@/assets/images_kim/Views/ModalView/free-icon-map-1321246.png" alt="">
                         </div>
-                        <span style="font-size: 18px; position: absolute; top: 50px; right: -180px;">지도보기</span>
+                        <span style="font-size: 18px; position: absolute; top: 50px; right: -140px;">지도</span>
                     </button>
-                    <button style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; left: 170px; height: 1px;">
+                    <button @click="busopen()" style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; left: 130px; height: 1px;">
                         <div style="margin-top: 20px; margin-left: 20px; width: 80px; height: 80px; background-color: white; border-radius: 40px;">
                             <img style="width: 50px;  margin-top: 15px; margin-bottom: 20px;" src="@/assets/images_kim/Views/ModalView/free-icon-bus-4274245.png" alt="">
                         </div>
                         <span style="font-size: 18px; position: absolute; top: 50px; right: -180px;">대중교통</span>
                     </button>
-                    <button style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; left: 340px; height: 1px;">
+                    <button @click="caropen()" style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; left: 300px; height: 1px;">
                         <div style="margin-top: 20px; margin-left: 20px; width: 80px; height: 80px; background-color: white; border-radius: 40px;">
                             <img style="width: 50px; margin-top: 15px; margin-bottom: 20px;" src="@/assets/images_kim/Views/ModalView/free-icon-car-635651.png" alt="">
                         </div>
-                        <span style="font-size: 18px; position: absolute; top: 50px; right: -180px;">자가용</span>
+                        <span style="font-size: 18px; position: absolute; top: 50px; right: -160px;">자가용</span>
                     </button>
                 </div>
               </div>
@@ -120,29 +167,42 @@ export default {
         극장정보: true,
         이벤트: false,
         입장료: false,
-        map: true,
+        map: false,
+        bus: false,
+        car: false,
     };
   },
   methods: {
     info() {
-        this.극장정보 = true;
-        this.이벤트 = false;
-        this.입장료 = false;
+      this.극장정보 = true;
+      this.이벤트 = false;
+      this.입장료 = false;
     },
     event() {
-        this.극장정보 = false;
-        this.이벤트 = true;
-        this.입장료 = false;
+      this.극장정보 = false;
+      this.이벤트 = true;
+      this.입장료 = false;
     },
     admissionfee() {
-        this.극장정보 = false;
-        this.이벤트 = false;
-        this.입장료 = true;
+      this.극장정보 = false;
+      this.이벤트 = false;
+      this.입장료 = true;
     },
     mapopen() {
-        this.map = !this.map;
-        console.log(this.map);
-    }
+      this.map = !this.map;
+      this.bus = false;
+      this.car = false;
+    },
+    busopen() {
+      this.bus = !this.bus;
+      this.map = false;
+      this.car = false;      
+    },
+    caropen() {
+      this.bus = false;
+      this.car = !this.car;
+      this.map = false;
+    },
   },
 };
 </script>
