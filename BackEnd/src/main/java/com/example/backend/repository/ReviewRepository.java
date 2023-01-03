@@ -15,4 +15,5 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     Page<Review> findAllByMoviecdContaining(Integer moviecd, Pageable pageable);
     Page<Review> findAllByUsernameContaining(String username, Pageable pageable);
+    Page<Review> findAllByMovienmContainingOrderByRno(String movienm, Pageable pageable);
 }

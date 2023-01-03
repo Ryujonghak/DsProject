@@ -19,8 +19,7 @@ import org.springframework.data.jpa.repository.Query;
  * 2022-12-28-028         Moon          최초 생성
  */
 public interface MovieDetailRepository extends JpaRepository<MovieDetail, Integer> {
-
-//    @Query(value = "select d.*     " +
+    //    @Query(value = "select d.*     " +
 //            "from DETAIL_MOVIE d     " +
 //            "where d.MOVIENM like %:title% "
 //            ,countQuery = "select count(*)    " +
@@ -29,9 +28,11 @@ public interface MovieDetailRepository extends JpaRepository<MovieDetail, Intege
 //            ,nativeQuery = true)
 //    Page<MovieDetail> findAllbyMovienmContaining(@Param("title") String title, Pageable pageable);
     Page<MovieDetail> findAllByMovienmContaining(String movienm, Pageable pageable);
+    Page<MovieDetail> findAllByMoviecdContaining(String moviecd, Pageable pageable);
+
+
 
     @Query(value = "select * from DETAIL_MOVIE", nativeQuery = true)
     Page<MovieDetail> findAll(Pageable pageable);
-
 
 }

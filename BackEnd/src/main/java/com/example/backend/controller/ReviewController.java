@@ -94,8 +94,7 @@ public class ReviewController {
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -109,8 +108,48 @@ public class ReviewController {
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        catch (Exception e) {
+    }
+
+    @PostMapping("/review")
+    public ResponseEntity<Object> addReview(@RequestBody Review review) {
+        try {
+            Review newReview = reviewService.save(review);
+
+            return new ResponseEntity<>(newReview, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/review{rno}")
+    public ResponseEntity<Object> updateReview(@PathVariable Long rno, @RequestBody Review review) {
+        try {
+            Review newReview = reviewService.save(review);
+
+            return new ResponseEntity<>(newReview, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/review/delete/{rno}")
+    public ResponseEntity<Object> delete(@PathVariable Long rno) {
+        try {
+            boolean delSuccess = reviewService.reviewDelete(rno);
+            if (delSuccess) { // 삭제 성공시
+                return new ResponseEntity<>(HttpStatus.OK); // 성공 메시지 전송
+            } else {
+//               삭제 실패 시 (삭제할 데이터가 없음.)
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage()); // 디버그 확인용
+//            서버 접속 에러
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

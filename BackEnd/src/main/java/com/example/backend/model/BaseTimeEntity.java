@@ -3,10 +3,7 @@ package com.example.backend.model;
 import lombok.Getter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -29,12 +26,16 @@ import java.time.format.DateTimeFormatter;
 public abstract class BaseTimeEntity {
 
 //    생성일자 속성
+    @Column(name = "INSERT_TIME")
     private String insertTime;
 //    수정일자 속성
+    @Column(name = "UPDATE_TIME")
     private String updateTime;
 
-//    soft delete 를 위한 속성 2개
+//    soft delete 를 위한 속성 2개'
+    @Column(name = "DELETE_YN")
     private String deleteYn;
+    @Column(name = "DELETE_TIME")
     private String deleteTime;
 
 //    감시 함수
