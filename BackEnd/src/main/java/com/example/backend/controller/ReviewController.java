@@ -125,7 +125,7 @@ public class ReviewController {
         }
     }
 
-    @PutMapping("/review{rno}")
+    @PutMapping("/review/{rno}")
     public ResponseEntity<Object> updateReview(@PathVariable Long rno, @RequestBody Review review) {
         try {
             Review newReview = reviewService.save(review);
