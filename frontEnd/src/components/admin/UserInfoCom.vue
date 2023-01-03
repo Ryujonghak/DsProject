@@ -61,6 +61,7 @@
           </div>
           <!-- <!— 왼쪽 메뉴바 끝 —> -->
           <div class="col-md-9 col-sm-12 col-xs-12">
+            <a id="btn-modal" class="delbtn col-xs-12">삭제</a>
             <!-- TODO: 바로 밑 div 데이터 받아서 v-for 예정입니다. -->
             <div class="col-xs-12" v-for="(data, index) in user" :key="index">
               <div class="movie-item-style-2 userrate">
@@ -108,7 +109,11 @@
                   </div>
                 </div>
                 <div class="col-xs-3">
-                  <router-link :to="'/userInfoAdmin/' + data.username" class="editbtn col-xs-12">수정</router-link>
+                  <router-link
+                    :to="'/userInfoAdmin/' + data.username"
+                    class="editbtn col-xs-12"
+                    >수정</router-link
+                  >
                   <div class="col-xs-12"></div>
                   <a id="btn-modal" class="delbtn col-xs-12">삭제</a>
                 </div>
@@ -177,8 +182,6 @@ import UserService from "@/services/user.service.js";
 
 export default {
   mounted() {
-    this.retrieveUser();
-
     // 모달 테스트
     const modal = document.getElementById("modal");
     function modalOn() {
@@ -213,6 +216,8 @@ export default {
         modalOff(e);
       }
     });
+
+    this.retrieveUser();
   },
   data() {
     return {
@@ -256,13 +261,13 @@ export default {
     },
     deleteUser() {
       UserService.delete(this.user.id)
-      .then(response => {
-        console.log(response.data);
-        this.$router.push("/reservInfoAdmin");
-      })
-      .catch(e => {
-        console.log(e);
-      });
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push("/reservInfoAdmin");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     // FIXME: 삭제 위한 currentUser에 값 넣는 함수, 유저정보를 삭제 요청하는 함수
     // id로 조회 함수
