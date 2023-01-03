@@ -444,6 +444,14 @@
   import custom from "@/assets/js/custom";
   
   export default {
+    data() {
+      return {
+        Movie: {
+          posterURL:
+          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
+        }
+      }
+    },
     mounted() {
       custom();
     },
