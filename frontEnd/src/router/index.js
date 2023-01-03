@@ -191,6 +191,36 @@ const routes = [
     name: "SeatView",
     component: () => import("@/views/kim/SeatView.vue"),
   },
+  {
+    path: "/BusanCinema",
+    name: "BusanCinema",
+    component: () => import("@/views/kim/BusanCinema.vue"),
+  },
+  {
+    path: "/CentumCinema",
+    name: "CentumCinema",
+    component: () => import("@/views/kim/CentumCinema.vue"),
+  },
+  {
+    path: "/GangdongCinema",
+    name: "GangdongCinema",
+    component: () => import("@/views/kim/GangdongCinema.vue"),
+  },
+  {
+    path: "/KasanCinema",
+    name: "KasanCinema",
+    component: () => import("@/views/kim/KasanCinema.vue"),
+  },
+  {
+    path: "/KonkukCinema",
+    name: "KonkukCinema",
+    component: () => import("@/views/kim/KonkukCinema.vue"),
+  },
+  {
+    path: "/SeomyeonCinema",
+    name: "SeomyeonCinema",
+    component: () => import("@/views/kim/SeomyeonCinema.vue"),
+  },
 
 ];
 
