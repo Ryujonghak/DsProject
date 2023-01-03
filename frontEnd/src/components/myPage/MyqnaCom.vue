@@ -169,8 +169,8 @@
 
             <!-- <div v-show="submitted"> -->
             <div>
-              <!-- TODO: 로그인한 사용자의 qna 테이블시작 -->
-              <table class="qnabox">
+              <!-- TODO: 로그인한 사용자의 qna 폼 테이블시작 -->
+              <!-- <table class="qnabox">
                 <colgroup>
                   <col style="width: 120px" />
                   <col />
@@ -216,10 +216,8 @@
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
               <!-- qna 테이블 끝 -->
-
-              <!-- FIXME: 이름검색으로 내 문의만 뜨도록!! -->
 
               <!-- b-pagination : 부트스트랩 - 페이지 번호 컨트롤 -->
               <!-- total-rows : 전체 데이터 개수 -->
@@ -258,6 +256,7 @@
                 {{ message }}
               </div> -->
             </div>
+
           </div>
         </div>
       </div>
@@ -307,12 +306,6 @@ export default {
         content: "",
       },
       myQna: false,   // 나의qa 보기 버튼 클릭하면 true
-
-      // // 페이징을 위한 변수 정의
-      // page: 1, // 현재 페이지
-      // count: 0, // 전체 데이터 건수
-      // pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
-      // pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
 
       // TODO: AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       // 조회한 데이터가 있으면 submitted true, 없으면 false
@@ -386,44 +379,22 @@ export default {
     },
 
     // 나의 qna 보기 버튼
-    showMyQna() {
-      this.myQna = !this.myQna;
-    },
+    // showMyQna() {
+    //   username = this.$store.state.auth.user.username;
+    //   this.myQna = !this.myQna;
+    // },
 
-    // qna id 검색
-    getMyQna() {
-
+    // qna name 검색 :FIXME:
+    getMyQna(name) {
+      console.log;
+      QnaDataService.getMyQna(name)
+      .then((response) => {
+        this.currentQna = response.data;
+        console.log(response);
+        console.log(response.data);
+      })
+      .catch((e) => console.log(e));
     }
-
-    // 전체 조회_페이징
-    // getQna() {
-    //   QnaDataService.getAll(this.searchTitle, this.page - 1, this.pageSize)
-    //     .then((response) => {
-    //       const { qna, totalItems } = response.data; // springboot 의 전송된 맵 정보
-    //       this.qna = qna; // 스프링부트에서 전송한 데이터
-    //       this.count = totalItems; // 스프링부트에서 전송한 페이지정보(총 건수)
-    //       // 디버깅 콘솔에 정보 출력
-    //       console.log(response.data);
-    //     })
-    //     // 실패하면 .catch() 에 에러가 전송됨
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
-    ////////////////////////////////////페이징/////////////////////
-    // select box 값 변경시 실행되는 함수(재조회)
-    // handlePageSizeChange(event) {
-    //   this.pageSize = event.target.value; // 한페이지당 개수 저장(3, 6, 9)
-    //   this.page =1;
-    //   // 재조회 함수 호출
-    //   this.getQna();
-    // },
-    // // 페이지 번호 변경시 실행되는 함수(재조회)
-    // handlePageChange(value) {
-    //   this.page = value; // 매개변수값으로 현재페이지 변경
-    //   // 재조회 함수 호출
-    //   this.getQna();
-    // },
 
     // // 수정
     // updateQna() {
@@ -442,6 +413,7 @@ export default {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
     this.getAllQna(); // 전체 qna 조회
+    this.getMyQna(this.$route.params.name); // 내 qna만 조회
   },
 };
 </script>
