@@ -23,7 +23,7 @@ public class ReviewController {
     @Autowired
     ReviewService reviewService;
 
-    @GetMapping("/review")
+    @GetMapping("/review/list")
     public ResponseEntity<Object> getAllList() {
         try {
             List<Review> reviewList = reviewService.findAllList();
@@ -37,13 +37,19 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/review/page1")
-    public ResponseEntity<Object> getPage1(@RequestParam(required = false) Integer moviecd,
+    @GetMapping("/review")
+    public ResponseEntity<Object> getPage1(@RequestParam(required = false) String movienm,
                                            @RequestParam(defaultValue = "0") int page,
                                            @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Review> reviewPage = reviewService.findAllByMoviecdContaining(moviecd, pageable);
+            Page<Review> reviewPage;
+            if (movienm == null) {
+                movienm = "";
+                reviewPage = reviewService.findAllByMovienmContainingOrderByRno(movienm, pageable);
+            } else {
+                reviewPage = reviewService.findAllByMovienmContainingOrderByRno(movienm, pageable);
+            }
 
             Map<String, Object> response = new HashMap<>();
             response.put("review", reviewPage.getContent());

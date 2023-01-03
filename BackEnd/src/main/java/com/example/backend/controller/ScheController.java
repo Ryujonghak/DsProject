@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.dto.response.ScheMovieDto;
-import com.example.backend.model.Sche;
+import com.example.backend.model.Schedule;
 import com.example.backend.service.ScheService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -53,7 +51,7 @@ public class ScheController {
 //            페이지 변수 저장
             Pageable pageable = PageRequest.of(page, size);
 
-            Page<Sche> schePage;
+            Page<Schedule> schePage;
 
             schePage = scheService.findAllByMoviecdContaining(moviecd, pageable);
 
@@ -79,7 +77,7 @@ public class ScheController {
     @GetMapping("/sche/findByScno/{scno}")
     public ResponseEntity<Object> findByScno(@PathVariable Long scno) {
         try {
-            Optional<Sche> scheOptional = scheService.findByScno(scno);
+            Optional<Schedule> scheOptional = scheService.findByScno(scno);
 
             if (scheOptional.isPresent()) {
                 return new ResponseEntity<>(scheOptional.get(), HttpStatus.OK);

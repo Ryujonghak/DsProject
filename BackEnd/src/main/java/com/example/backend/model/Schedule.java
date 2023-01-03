@@ -26,7 +26,7 @@ import javax.persistence.*;
 // soft delete
 @Where(clause = "DELETE_YN = 'N'")
 @SQLDelete(sql = "UPDATE TB_SCHE SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE SCNO = ?")
-public class Sche extends BaseTimeEntity {
+public class Schedule extends BaseTimeEntity {
         @Id
         @GeneratedValue(strategy = GenerationType.SEQUENCE
                 , generator = "SQ_SCHE_GENERATOR"

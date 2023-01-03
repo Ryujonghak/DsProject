@@ -261,5 +261,31 @@ INSERT INTO TB_QNA
             NULL,
             NULL);
 
+-- TB_REVIEW(리뷰) 가라 데이터
+
+INSERT INTO TB_REVIEW
+VALUES (SQ_REVIEW.NEXTVAL,
+        20225061,
+        '아바타: 물의 길',
+        'forbob',
+        '아직 안봐서 모름.',
+        null,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
+INSERT INTO TB_REVIEW
+VALUES (SQ_REVIEW.NEXTVAL,
+        20225061,
+        '아바타: 물의 길',
+        '류종학',
+        '아직 안봐서 모름.',
+        null,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
 
 COMMIT;

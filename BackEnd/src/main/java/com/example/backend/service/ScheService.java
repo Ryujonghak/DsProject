@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.model.Sche;
+import com.example.backend.model.Schedule;
 import com.example.backend.repository.ScheRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,26 +15,26 @@ public class ScheService {
     @Autowired
     ScheRepository scheRepository;
 
-    public List<Sche> findAllList() {
-        List<Sche> scheList = scheRepository.findAll();
+    public List<Schedule> findAllList() {
+        List<Schedule> scheduleList = scheRepository.findAll();
 
-        return scheList;
+        return scheduleList;
     }
 
-    public Page<Sche> findAllPage(Pageable pageable) {
-        Page<Sche> schePage = scheRepository.findAll(pageable);
+    public Page<Schedule> findAllPage(Pageable pageable) {
+        Page<Schedule> schePage = scheRepository.findAll(pageable);
 
         return schePage;
     }
 
-    public Optional<Sche> findByScno(Long id) {
-        Optional<Sche> scheOptional = scheRepository.findByScno(id);
+    public Optional<Schedule> findByScno(Long id) {
+        Optional<Schedule> scheOptional = scheRepository.findByScno(id);
 
         return scheOptional;
     }
 
-    public Page<Sche> findAllByMoviecdContaining(Integer moviecd, Pageable pageable) {
-        Page<Sche> scheMovieDtoPage = scheRepository.findAllByMoviecdContaining(moviecd, pageable);
+    public Page<Schedule> findAllByMoviecdContaining(Integer moviecd, Pageable pageable) {
+        Page<Schedule> scheMovieDtoPage = scheRepository.findAllByMoviecdContaining(moviecd, pageable);
 
         return scheMovieDtoPage;
     }

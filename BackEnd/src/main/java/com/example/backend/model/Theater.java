@@ -26,7 +26,7 @@ import javax.persistence.*;
 // soft delete
 @Where(clause = "DELETE_YN = 'N'")
 @SQLDelete(sql = "UPDATE TB_THEA SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE MOVIECD = ?")
-public class Thea extends BaseTimeEntity{
+public class Theater extends BaseTimeEntity{
     @Id
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_THEA_GENERATOR")
     @Column(columnDefinition = "NUMBER")

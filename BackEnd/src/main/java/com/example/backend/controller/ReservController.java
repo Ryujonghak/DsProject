@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.dto.response.ScheMovieDto;
-import com.example.backend.model.Reserv;
+import com.example.backend.model.Reservtion;
 import com.example.backend.service.ReservService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +26,12 @@ public class ReservController {
     @GetMapping("/reserv")
     public ResponseEntity<Object> getAllList() {
         try {
-            List<Reserv> reservList = reservService.findAllList();
+            List<Reservtion> reservtionList = reservService.findAllList();
 
-            if (reservList.isEmpty()) {
+            if (reservtionList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
-                return new ResponseEntity<>(reservList, HttpStatus.OK);
+                return new ResponseEntity<>(reservtionList, HttpStatus.OK);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -49,7 +48,7 @@ public class ReservController {
 //            페이지 변수 저장
             Pageable pageable = PageRequest.of(page, size);
 
-            Page<Reserv> reservPage;
+            Page<Reservtion> reservPage;
 
             reservPage = reservService.findByMoviecdContaining(moviecd, pageable);
 
@@ -75,7 +74,7 @@ public class ReservController {
     @GetMapping("/reserv/{reservno}")
     public ResponseEntity<Object> find(@PathVariable Long reservno) {
         try {
-            Optional<Reserv> reservOptional = reservService.findByReservno(reservno);
+            Optional<Reservtion> reservOptional = reservService.findByReservno(reservno);
             if (reservOptional.isPresent()) {
                 return new ResponseEntity<>(reservOptional.get(), HttpStatus.OK);
             } else {

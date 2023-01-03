@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.model.Reserv;
+import com.example.backend.model.Reservtion;
 import com.example.backend.repository.ResrvRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,20 +15,20 @@ public class ReservService {
     @Autowired
     ResrvRepository resrvRepository;
 
-    public List<Reserv> findAllList() {
-        List<Reserv> reservList = resrvRepository.findAll();
+    public List<Reservtion> findAllList() {
+        List<Reservtion> reservtionList = resrvRepository.findAll();
 
-        return reservList;
+        return reservtionList;
     }
 
-    public Page<Reserv> findByMoviecdContaining(Integer moviecd, Pageable pageable) {
-        Page<Reserv> reservPage = resrvRepository.findByMoviecdContaining(moviecd, pageable);
+    public Page<Reservtion> findByMoviecdContaining(Integer moviecd, Pageable pageable) {
+        Page<Reservtion> reservPage = resrvRepository.findByMoviecdContaining(moviecd, pageable);
 
         return reservPage;
     }
 
-    public Optional<Reserv> findByReservno(Long reservno) {
-        Optional<Reserv> reservOptional = resrvRepository.findByReservno(reservno);
+    public Optional<Reservtion> findByReservno(Long reservno) {
+        Optional<Reservtion> reservOptional = resrvRepository.findByReservno(reservno);
 
         return reservOptional;
     }

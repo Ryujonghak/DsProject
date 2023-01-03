@@ -1,24 +1,21 @@
 package com.example.backend.service;
 
-import com.example.backend.model.Thea;
+import com.example.backend.model.Theater;
 import com.example.backend.repository.TheaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TheaService {
     @Autowired
     TheaRepository theaRepository;
 
-    public List<Thea> findAllList() {
-        List<Thea> theaList = theaRepository.findAll();
+    public List<Theater> findAllList() {
+        List<Theater> theaterList = theaRepository.findAll();
 
-        return theaList;
+        return theaterList;
     }
 
 //    public Page<Thea> findAllByMoviecdContaining(Long moviecd, Pageable pageable) {

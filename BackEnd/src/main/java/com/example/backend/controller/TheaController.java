@@ -1,21 +1,14 @@
 package com.example.backend.controller;
 
-import com.example.backend.model.Notice;
-import com.example.backend.model.Thea;
+import com.example.backend.model.Theater;
 import com.example.backend.service.TheaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -27,11 +20,11 @@ public class TheaController {
     @GetMapping("/thea")
     public ResponseEntity<Object> getAllList() {
         try {
-            List<Thea> theaList = theaService.findAllList();
-            if (theaList.isEmpty()) {
+            List<Theater> theaterList = theaService.findAllList();
+            if (theaterList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
-                return new ResponseEntity<>(theaList, HttpStatus.OK);
+                return new ResponseEntity<>(theaterList, HttpStatus.OK);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

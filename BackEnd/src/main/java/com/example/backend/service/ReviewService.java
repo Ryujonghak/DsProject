@@ -33,8 +33,8 @@ public class ReviewService {
         return reviewPage;
     }
 
-    public Page<Review> findAllByMovienmContainingOrderByRno(String username, Pageable pageable) {
-        Page<Review> reviewPage = reviewRepository.findAllByMovienmContainingOrderByRno(username, pageable);
+    public Page<Review> findAllByMovienmContainingOrderByRno(String movienm, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByMovienmContainingOrderByRno(movienm, pageable);
 
         return reviewPage;
     }
