@@ -223,17 +223,18 @@
                       <!--                      TODO: v-model에 User.password하면 기존 패스워드 들어감...숨겨야해 -->
                       <label for="password">변경할 비밀번호</label>
                       <input
-                        type="text"
+                        type="password"
                         placeholder="영문자, 숫자, 특수문자 조합 8~12자리"
-                        v-model="CurrentUser.password"
+                        v-model="password"
                       />
                     </div>
 
                     <div class="col-md-6 form-it">
                       <label>비밀번호 확인</label>
                       <input
-                        type="text"
+                        type="password"
                         placeholder="비밀번호를 재입력해주세요"
+                        v-model="password"
                       />
                     </div>
                   </div>
@@ -245,7 +246,7 @@
                         class="submit"
                         type="submit"
                         value="change"
-                        @click="updatePwd(password)"
+                        @click="updatePwd(CurrentUser.username, changePwd, CurrentUser)"
                       />
                     </div>
                   </div>
@@ -272,7 +273,7 @@ export default {
   data() {
     return {
       User: new User(),
-      checkanswer: "", // 비번찾기문제 폼에 입력된 값  TODO: 정주희 추가
+      checkanswer: "", // 비번찾기문제 폼에 입력된 값
       changePwdForm: false,
       // objanswer: "",
       // username: "",

@@ -118,29 +118,63 @@
               </colgroup>
               <thead>
                 <tr>
-                  <th scope="row"><label for="name">이름</label></th>
-                  <th scope="row"><label for="name">이메일</label></th>
-                  <th scope="row"><label for="name">휴대전화</label></th>
-                  <th scope="row"><label for="name">제목</label></th>
-                  <th scope="row"><label for="name">내용</label></th>
+                  <th width="5%" scope="row"><label for="name">제목</label></th>
+                  <th width="40%" cope="row"><label for="name">내용</label></th>
+                  <th width="5%" scope="row"><label for="name">이름</label></th>
+                  <th width="30%" scope="row"><label for="name">이메일</label></th>
+                  <th width="20%" scope="row"><label for="name">휴대전화</label>              </th>
                 </tr>
               </thead>
               <tbody v-for="(data, index) in qna" :key="index">
                 <tr>
+                  <td>{{ data.title }}</td>
+                  <td>{{ data.content }}</td>
                   <td>{{ data.name }}</td>
                   <td>{{ data.email }}</td>
                   <td>{{ data.phone }}</td>
-                  <td>{{ data.title }}</td>
-                  <td>{{ data.content }}</td>
+                  <!-- <td>
+                    <router-link :to="'/qna/select/' + data.name"
+                      ><span class="badge bg-success">Edit</span></router-link
+                    >
+                  </td> -->
                 </tr>
               </tbody>
             </table>
 
+            <!-- <div class="col-lg-12 text-center mt-5">
+              <table class="table table-striped table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">제목</th>
+                    <th scope="col">내용</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">이메일</th>
+                    <th scope="col">전화번호</th>
+                    <th scope="col">Edit</th>
+                  </tr>
+                </thead>
+                <tbody v-for="(data, index) in qna" :key="index">
+                  <tr>
+                    <td>{{ data.title }}</td>
+                    <td>{{ data.content }}</td>
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ data.phone }}</td>
+                    <td>
+                      <router-link :to="'/qna/' + data.qno"
+                        ><span class="badge bg-success">Edit</span></router-link
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+
             <!-- 사용자 qna -->
             <div>
-              <button @click="showMyQna()">나의 qna 보기</button>
+              <button @click="getMyQna()">나의 qna 보기</button>
             </div>
-            <table class="qnabox" v-show="myQna">
+            <!-- <table class="qnabox" v-show="myQna">
               <colgroup>
                 <col style="width: 120px" />
                 <col />
@@ -165,12 +199,12 @@
                   <td>{{ data.content }}</td>
                 </tr>
               </tbody>
-            </table>
+            </table> -->
 
             <!-- <div v-show="submitted"> -->
             <div>
               <!-- TODO: 로그인한 사용자의 qna 폼 테이블시작 -->
-              <!-- <table class="qnabox">
+              <table class="qnabox" v-show="myQna">
                 <colgroup>
                   <col style="width: 120px" />
                   <col />
@@ -216,7 +250,7 @@
                     </td>
                   </tr>
                 </tbody>
-              </table> -->
+              </table>
               <!-- qna 테이블 끝 -->
 
               <!-- b-pagination : 부트스트랩 - 페이지 번호 컨트롤 -->
@@ -256,7 +290,6 @@
                 {{ message }}
               </div> -->
             </div>
-
           </div>
         </div>
       </div>
@@ -305,7 +338,7 @@ export default {
         title: "",
         content: "",
       },
-      myQna: false,   // 나의qa 보기 버튼 클릭하면 true
+      myQna: false, // 나의qa 보기 버튼 클릭하면 true
 
       // TODO: AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       // 조회한 데이터가 있으면 submitted true, 없으면 false
@@ -378,23 +411,19 @@ export default {
         .catch((e) => console.log(e));
     },
 
-    // 나의 qna 보기 버튼
-    // showMyQna() {
-    //   username = this.$store.state.auth.user.username;
-    //   this.myQna = !this.myQna;
-    // },
-
     // qna name 검색 :FIXME:
     getMyQna(name) {
+      this.myQna = !this.myQna;
+
       console.log;
       QnaDataService.getMyQna(name)
-      .then((response) => {
-        this.currentQna = response.data;
-        console.log(response);
-        console.log(response.data);
-      })
-      .catch((e) => console.log(e));
-    }
+        .then((response) => {
+          this.currentQna = response.data;
+          console.log(response);
+          console.log(response.data);
+        })
+        .catch((e) => console.log(e));
+    },
 
     // // 수정
     // updateQna() {
@@ -418,16 +447,23 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* 수빈이 AddQna 양식 */
 .qnabox {
   border: 2px solid;
   color: aliceblue;
   padding: 5%;
+
+  width: 820px;
+  table-layout: fixed;
+  word-break: break-all;
+  height: auto;
 }
+
 .qna {
   background: black;
 }
+
 tbody {
   display: table-row-group;
   vertical-align: middle;
