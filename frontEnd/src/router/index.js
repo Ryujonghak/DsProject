@@ -166,7 +166,7 @@ const routes = [
     component: () => import("@/components/admin/UserInfoCom.vue"),
   },
   {
-    path: "/userInfoEdit",
+    path: "/userInfoAdmin/:id",
     name: "userInfoEditAdmin",
     component: () => import("@/components/admin/UserInfoEditCom.vue"),
   },

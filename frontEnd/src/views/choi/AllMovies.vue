@@ -107,9 +107,9 @@
                 </router-link>
                 <div class="ceb-infor">
                   <h6>
-                    <a href="/movieDetail" style="color: white">{{
+                    <router-link :to="'/allMovie/' + data.moviecd" style="color: white">{{
                       data.movienm
-                    }}</a>
+                    }}</router-link>
                   </h6>
                   <span style="color: #abb7c4"
                     ><i class="ion-android-star" style="color: #f5b50a"></i>
@@ -129,12 +129,12 @@
                 v-for="(data, index) in nowPlayingMovies"
                 :key="index"
               >
-                <a href="/movieDetail"
+                <router-link :to="'/allMovie/' + data.moviecd"
                   ><img
                     :src="data.posterurln"
                     alt="poster"
                     style="margin-bottom: 5%"
-                /></a>
+                /></router-link>
                 <div class="ceb-infor">
                   <h6>
                     <a href="/movieDetail" style="color: white">{{
@@ -150,39 +150,6 @@
             </div>
             <!-- 현재상영작만 끝 -->
 
-            <!-- 페이징 테스트 시작 -->
-            <!-- <div class="col-md-12">
-              <b-pagination
-                v-model="page"
-                :total-rows="movie.totalItems"
-                :per-page="pageSize"
-                prev-text="Prev"
-                next-text="Next"
-                @change="handlePageChange"
-              ></b-pagination>
-            </div> -->
-            <!-- 페이징 테스트 끝 -->
-
-            <!-- 아래 페이징 시작 -->
-            <!-- <div class="topbar-filter">
-              <label>Reviews per page:</label>
-              <select>
-                <option value="range">9 Reviews</option>
-                <option value="saab">10 Reviews</option>
-              </select>
-
-              <div class="pagination2">
-                <span>Page 1 of 6:</span>
-                <a class="active" href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#"><i class="ion-arrow-right-b"></i></a>
-              </div>
-            </div> -->
-            <!-- 아래 페이징 끝 -->
           </div>
         </div>
       </div>
