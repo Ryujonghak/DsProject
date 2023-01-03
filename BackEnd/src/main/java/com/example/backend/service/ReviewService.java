@@ -44,4 +44,14 @@ public class ReviewService {
 
         return reviewOptional;
     }
+
+    public boolean reviewDelete(Long rno) {
+        if (reviewRepository.existsById(rno)) {
+            reviewRepository.deleteById(rno);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
