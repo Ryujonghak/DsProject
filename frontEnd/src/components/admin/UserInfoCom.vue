@@ -108,7 +108,7 @@
                   </div>
                 </div>
                 <div class="col-xs-3">
-                  <router-link :to="'/userInfoAdmin/' + data.id" class="editbtn col-xs-12">수정</router-link>
+                  <router-link :to="'/userInfoAdmin/' + data.username" class="editbtn col-xs-12">수정</router-link>
                   <div class="col-xs-12"></div>
                   <a href="#" id="btn-modal" class="delbtn col-xs-12">삭제</a>
                 </div>
@@ -271,6 +271,16 @@ export default {
           console.log(e);
         });
     },
+    // deleteUser() {
+    //   UserService.delete(this.user.id)
+    //   .then(response => {
+    //     console.log(response.data);
+    //     this.$router.push("/reservInfoAdmin");
+    //   })
+    //   .catch(e => {
+    //     console.log(e);
+    //   });
+    // },
     // FIXME: 삭제 위한 currentUser에 값 넣는 함수, 유저정보를 삭제 요청하는 함수
     // id로 조회 함수
     // getUser(id) {
@@ -283,17 +293,6 @@ export default {
     //       console.log(e);
     //     });
     // },
-    deleteUser() {
-      // UserDataService.delete(this.currentUser.id)
-      //   .then((response) => {
-      //     console.log(response.data);
-      //     this.message = "유저 정보가 성공적으로 삭제되었습니다!";
-      //     this.$router.push("/userInfoAdmin");
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
-    },
     // select box 값 변경시 실행되는 함수(재조회)
     handlePageSizeChange(event) {
       this.pageSize = event.target.value; // 한페이지당 개수 저장(3, 6, 9)
@@ -312,6 +311,13 @@ export default {
 </script>
 
 <style scoped>
+.user-hero {
+  /* background: url(@/assets/images_choi/Views/choi/MovieDetail/movie-theater02.jpg) */
+  background: url(@/assets/images_choi/Views/choi/admin/movie-theater03.png)
+    no-repeat;
+  /* height: 598px; */
+  width: 100%;
+}
 /* .editbtn {
   display: inline-block;
   width: 30%;
