@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <!-- TODO: movie.MovieDetail 있을경우 화면 보여주기 -->
+  <div v-if="movie.MovieDetail">
     <div class="mainMovie" style="background: black">
       <div class="container parent">
         <div class="cover01"></div>
@@ -28,11 +29,14 @@
               class="movie-item"
               v-for="(data, index) in movie.MovieDetail"
               v-bind:key="index"
-              style="width:285px !important; height:437px !important; display:inline-block !important;"
             >
               <div class="mv-img">
                 <a href="/mainDetail">
-                  <img :src="data.posterurln" alt="poster"
+                  <img
+                    :src="data.posterurln"
+                    alt="poster"
+                    width="285"
+                    height="437"
                 /></a>
               </div>
               <div class="title-in">
@@ -47,6 +51,37 @@
                 <p><i class="ion-android-star"></i>{{ data.raiting }}</p>
               </div>
             </div>
+            <div
+              class="movie-item"
+              v-for="(data, index) in movie.MovieDetail"
+              v-bind:key="index"
+            >
+              <div class="mv-img">
+                <a href="#"
+                  ><img
+                    :src="data.posterurln"
+                    alt="poster"
+                    width="285"
+                    height="437"
+                /></a>
+              </div>
+              <div class="title-in">
+                <div class="cate">
+                  <span class="yell"
+                    ><a href="#">{{ data.genrenm }}</a></span
+                  >
+                </div>
+                <h6>
+                  <a href="#" @click="showDetail">{{ data.movienm }}</a>
+                </h6>
+                <p>
+                  <i class="ion-android-star"></i
+                  ><span>{{ data.raiting }}</span>
+                </p>
+              </div>
+            </div>
+            <!-- TODO: 끝 -->
+
             <!-- 영웅 영화포스터 -->
             <!-- <div class="movie-item">
               <div class="mv-img">
@@ -236,7 +271,7 @@ export default {
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,
-      pageSize: 3,
+      pageSize: 10,
 
       pageSizes: [3, 6, 9],
     };
@@ -335,11 +370,11 @@ export default {
 .movie-items {
   background: black;
 }
-// .mv-img {
-//   width: 285px !important;
-//   height: 437px !important;
-// }
-// .movie-item {
-//   display: flex !important;
-// }
+.mv-img {
+  width: 285px !important;
+  height: 437px !important;
+}
+.movie-item {
+  display: flex !important;
+}
 </style>

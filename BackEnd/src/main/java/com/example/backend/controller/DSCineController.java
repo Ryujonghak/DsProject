@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -207,6 +208,20 @@ public class DSCineController {
         } catch (Exception e) {
             log.debug(e.getMessage());
             // 서버에러 발생 메세지 전송(클라이언트)
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/movie/list")
+    public ResponseEntity<Object> findAllMovieList() {
+        try {
+            List<MovieDetail> movieDetailList = dsCineService.findAll();
+            if(movieDetailList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(movieDetailList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
