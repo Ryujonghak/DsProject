@@ -89,8 +89,7 @@
                   <div
                     class="movie-item-style-2"
                     v-for="(data, index) in movie.MovieDetail"
-                    v-bind:key="index"
-                  >
+                    v-bind:key="index">
                     <img :src="data.posterurln" alt="poster" />
                     <div class="mv-item-infor">
                       <h6>

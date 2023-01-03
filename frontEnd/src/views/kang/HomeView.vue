@@ -23,27 +23,25 @@
             <h6 class="h1">BOX OFFICE</h6>
           </div>
           <div class="slick-multiItemSlider">
+             <!-- v-for="(data, index) in movie.MovieDetail" v-bind:key="index" -->
             <!-- 아바타 영화포스터 -->
             <div class="movie-item">
               <div class="mv-img">
                 <a href="/mainDetail"
-                  ><img
-                    src="@/assets/images_kang/Views/HomeView/poster/ABATA.jpg"
-                    alt=""
-                    width="285"
-                    height="437"
-                /></a>
+                  > <img :src="data.posterurln" alt="poster" 
+                       width="285"
+                    height="437"/></a>
               </div>
               <div class="title-in">
                 <div class="cate">
-                  <span class="blue"><a href="#">SF/판타지</a></span>
+                  <span class="blue"><a href="#">{{ data.genrenm }}</a></span>
                 </div>
-                <h6><a @click="showDetail">아바타</a></h6>
-                <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                <h6><a @click="showDetail">{{data.movienm}}</a></h6>
+                <p><i class="ion-android-star"></i>{{ data.raiting }}</p>
               </div>
             </div>
             <!-- 영웅 영화포스터 -->
-            <div class="movie-item">
+            <!-- <div class="movie-item">
               <div class="mv-img">
                 <a href="#"
                   ><img
@@ -60,9 +58,9 @@
                 <h6><a href="#">The revenant</a></h6>
                 <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
               </div>
-            </div>
+            </div> -->
             <!-- 더메뉴 영화포스터 -->
-            <div class="movie-item">
+            <!-- <div class="movie-item">
               <div class="mv-img">
                 <a href="#"
                   ><img
@@ -79,9 +77,9 @@
                 <h6><a href="#">Die hard</a></h6>
                 <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
               </div>
-            </div>
+            </div> -->
             <!-- 본즈앤올 영화포스터 -->
-            <div class="movie-item">
+            <!-- <div class="movie-item">
               <div class="mv-img">
                 <a href="#"
                   ><img
@@ -99,9 +97,9 @@
                 <h6><a href="#">The walk</a></h6>
                 <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
               </div>
-            </div>
+            </div> -->
             <!-- 신비아파트 영화포스터 -->
-            <div class="movie-item">
+            <!-- <div class="movie-item">
               <div class="mv-img">
                 <a href="#"
                   ><img
@@ -118,9 +116,9 @@
                 <h6><a href="#">Interstellar</a></h6>
                 <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
               </div>
-            </div>
+            </div> -->
             <!-- 오늘밤세계에서어쩌구 영화포스터 -->
-            <div class="movie-item">
+            <!-- <div class="movie-item">
               <div class="mv-img">
                 <a href="#"
                   ><img
@@ -137,9 +135,9 @@
                 <h6><a href="#">The revenant</a></h6>
                 <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
               </div>
-            </div>
+            </div> -->
             <!-- 올뺴미 영화포스터 -->
-            <div class="movie-item">
+            <!-- <div class="movie-item">
               <div class="mv-img">
                 <img
                   src="@/assets/images_kang/Views/HomeView/poster/올빼미.jpg"
@@ -155,9 +153,9 @@
                 <h6><a href="#">Die hard</a></h6>
                 <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
               </div>
-            </div>
+            </div> -->
             <!-- 코르사주 영화포스터 -->
-            <div class="movie-item">
+            <!-- <div class="movie-item">
               <div class="mv-img">
                 <img
                   src="@/assets/images_kang/Views/HomeView/poster/코르사주.jpg"
@@ -174,9 +172,9 @@
                 <h6><a href="#">The walk</a></h6>
                 <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
               </div>
-            </div>
+            </div> -->
             <!-- 탄생 영화포스터 -->
-            <div class="movie-item">
+            <!-- <div class="movie-item">
               <div class="mv-img">
                 <img
                   src="@/assets/images_kang/Views/HomeView/poster/탄생.jpg"
@@ -192,7 +190,7 @@
                 <h6><a href="#">Die hard</a></h6>
                 <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <a href="#" class="more"
@@ -212,10 +210,12 @@
 <script>
 import custom from "@/assets/js/custom.js";
 import DetailCom from "@/views/choi/MainDetail.vue";
+import MovieDataService from "@/services/MovieDataService";
 
 export default {
   mounted() {
     custom();
+    this.retrieveMovie();
   },
   components: {
     DetailCom,
@@ -223,12 +223,38 @@ export default {
   data() {
     return {
       detailPage: false,
+      movie: [],
+      searchMname: "",
+
+
+      //페이징을 위한 변수 정의
+      page: 1,
+      count: 0,
+      pageSize: 3,
+
+      pageSizes: [3, 6, 9],
     }
   },
   methods: {
     showDetail() {
       this.detailPage = !this.detailPage;
-    }
+    },
+    retrieveMovie() {
+      MovieDataService.getMovieDetailAll(
+        this.searchMname,
+        this.page - 1,
+        this.pageSize
+      )
+        .then((response) => {
+          const movie = response.data;
+          this.movie = movie;
+          console.log(response.data);
+          // console.log(this.movie);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
 };
 </script>

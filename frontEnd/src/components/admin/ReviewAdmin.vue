@@ -67,7 +67,7 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter">
               <h3 style="color: aliceblue">리뷰 관리</h3>
-              <select id="selectBox" name="selectBox" v-model="searchMovieName">
+              <select id="selectBox" name="selectBox" >
                 <!-- <option value="" selected="selected" @click="retrieveMovie">영화 전체</option>
                 <option value="아바타:물의길"  @click="retrieveMovie">아바타:물의길</option>
                 <option value="신비아파트"  @click="retrieveMovie">신비아파트</option>
@@ -118,16 +118,16 @@
           </div>
           <!-- <!— 페이징 + 전체 목록 시작 —> -->
           <!-- <!— 페이징 양식 시작 —> -->
-          <div class="col-md-12">
+          <!-- <div class="col-md-12">
             <b-pagination
               v-model="page"
-              :total-rows="question.totalItems"
+              :total-rows="review.totalItems"
               :per-page="pageSize"
               prev-text="Prev"
               next-text="Next"
               @change="handlePageChange"
             ></b-pagination>
-          </div>
+          </div> -->
           <!-- <!— 페이징 양식 끝 —> -->
           <!-- 필터 페이지네이션 -->
         </div>
@@ -162,6 +162,10 @@ export default {
       this.board = !this.board;
     },
 
+    // handlePageChange(value) {
+    //   this.page = value;
+    //   this.retrieveReview();
+    // },
     //select박스 선택시 함수실행
     // retrieveReview(){
     //   ReviewDataService.getAll(this.movienm, this.page -1, this.pageSize)
