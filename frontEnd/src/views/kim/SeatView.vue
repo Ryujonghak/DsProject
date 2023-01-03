@@ -19,12 +19,29 @@
                         </button>
                       </div>
                       <div style="clear: both;"></div>
-                      <div style="width: 100%; text-align: center;" >
-                        <!-- 데이터 받아야됨 -->
-                        <p style="font-size: 20px; color: black; margin-top: 20px;">잔여좌석수 97/97</p>
+                      <div v-show="전체이용가" style="width: 300px;  margin-left: 20px;">
+                        <img style="float: left;" src="@/assets/images_kim/Views/ModalView/ALL_56x56.png" alt="">
+                        <h6>전체관람가</h6>
+                        <h6>※극장 이용시 항상 마스크 착용을 부탁드립니다※</h6>
                       </div>
-                      <div style="width: 350px;">
-                        <img style="margin-left: 50px;" src="" alt="스크린 이미지">
+                      <div v-show="열두살" style="width: 300px;  margin-left: 20px;">
+                        <img style="float: left; width: 56px;" src="@/assets/images_kim/Views/ModalView/12_56x56.png" alt="">
+                        <div style="float: right">
+                        <h6>12세이상관람가</h6>
+                        <h6>만 12 세 미만의 고객님은(영,유아 포함)</h6>
+                        <h6>반드시 성인 보호자의 동반하에 관람이 가능합니다.</h6>
+                        <h6>(확인불가 시 입장제한)</h6>
+                        <h6>※극장 이용시 항상 마스크 착용을 부탁드립니다※</h6>
+                        </div>
+
+                      </div>
+                      <div v-show="열다섯살" style="width: 300px;  margin-left: 20px;">
+                        <img src="@/assets/images_kim/Views/ModalView/15_56x56.png" alt="">
+                        <h6>15세이상관람가</h6>
+                        <h6>만 15 세 미만의 고객님은(영,유아 포함)</h6>
+                        <h6>반드시 성인 보호자의 동반하에 관람이 가능합니다.</h6>
+                        <h6>(확인불가 시 입장제한)</h6>
+                        <h6>※극장 이용시 항상 마스크 착용을 부탁드립니다※</h6>
                       </div>
                       <div style="width: 100%; margin-top: 30px;"> 
                         <button @click="model()" style="width: 175px; height: 55px;margin-left: 30px; background-color: #222; color: white;">취 소</button>
@@ -130,7 +147,6 @@
                       {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘)
                     </p>
                     <div style="width: 1000px; height: 100px;">
-                        <!-- TODO: 그냥 이것도 v-show 로 하겠움-->
                       <button v-show="오늘" @click="week('day1')"
                         style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #8785A2; ">
                         <h4 style="color: white; padding: 10px 0 0 13px;">{{ dd }}</h4>
@@ -731,6 +747,9 @@
         센텀시티 : true,
         부산대 : true,
         신용카드: true,
+        열두살 : true,
+        열다섯살 : false,
+        전체이용가: false,
 
 
         결제하기 : false, // 좌석숫자랑 인원수랑 맞으면 true로 바뀜
@@ -1079,56 +1098,7 @@
   @import "@/assets/css/style.css";
   *{
     font-family: sans-serif;
-  }
-    
-  // .one {
-  //   background-color: #F7EBEC;
-  //   width: 175px;
-  //   margin: 0 auto;
-  //   /* 스크롤바가 absolute로 들어가기 때문에
-  //      여기다가 relative를 준다 */
-  //   position: relative;
-  // }
-  
-  // .two {
-  //   width: 100%;
-  //   height: 565px;
-  //   overflow-y: scroll; /* 여기다가 padding값 입력하면  스크롤바가 상자 밖으로 나감 */
-  // }
-  
-  // .two::-webkit-scrollbar {
-  //   /* 스크롤바 너비 조절하는 부분 */
-  //   width: 10px;
-  // }
-  
-  // .two::-webkit-scrollbar,
-  // .two::-webkit-scrollbar-thumb {
-  //   overflow: visible;
-  //   border-radius: 4px;
-  // }
-  
-  // .two::-webkit-scrollbar-thumb {
-  //   background: rgba(0, 0, 0, 0.2);
-  // }
-  
-  // .cover-bar {
-  //   width: 10px;
-  //   height: 100%;
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   transition: all 0.5s;
-  //   opacity: 1;
-  //   /* 배경색을 상자색과 똑같이 맞춰준다 */
-  //   // background-color: rgb(222, 245, 229);
-  // }
-  
-  // /* 중요한 부분 */
-  // .one:hover .cover-bar {
-  //   opacity: 0;
-  //   transition: all 0.5s;
-  // }
-  
+  }  
   .div2 {
     width: 100%;
     height: 50px;
