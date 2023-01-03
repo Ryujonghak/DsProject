@@ -86,4 +86,10 @@ public class QnaService {
 
         return qnaList;
     }
+
+    public Optional<Qna> findByName(String name) {
+        Optional<Qna> optionalQna = qnaRepository.findByName(name);
+
+        return optionalQna;
+    }
 }

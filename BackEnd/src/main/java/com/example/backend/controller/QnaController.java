@@ -38,6 +38,7 @@ public class QnaController {
     @Autowired
     QnaService qnaService;
 
+    //    페이징처리 없이 전체검색_0102_류
     @GetMapping("/qna/list")
     public ResponseEntity<Object> getFindAllList() {
         try {
@@ -111,26 +112,26 @@ public class QnaController {
     }
 
 
-    @GetMapping("/qna/{qno}")
-    public ResponseEntity<Object> getQnaId(@PathVariable int qno) {
-
-        try {
-            Optional<Qna> optionalQna = qnaService.findById(qno);
-
-            if (optionalQna.isPresent() == true) {
-//                데이터 + 성공 메세지 전송
-                return new ResponseEntity<>(optionalQna.get(), HttpStatus.OK);
-            } else {
-//                데이터 없음 메세지 전송(클라이언트)
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-        } catch (Exception e) {
-            log.debug(e.getMessage());
-            // 서버에러 발생 메세지 전송(클라이언트)
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @GetMapping("/qna/{qno}")
+//    public ResponseEntity<Object> getQnaId(@PathVariable int qno) {
+//
+//        try {
+//            Optional<Qna> optionalQna = qnaService.findById(qno);
+//
+//            if (optionalQna.isPresent() == true) {
+////                데이터 + 성공 메세지 전송
+//                return new ResponseEntity<>(optionalQna.get(), HttpStatus.OK);
+//            } else {
+////                데이터 없음 메세지 전송(클라이언트)
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            }
+//
+//        } catch (Exception e) {
+//            log.debug(e.getMessage());
+//            // 서버에러 발생 메세지 전송(클라이언트)
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @PutMapping("/qna/{qno}")
     public ResponseEntity<Object> updateQna(@PathVariable int qno,
@@ -164,6 +165,21 @@ public class QnaController {
         } catch (Exception e) {
             log.debug(e.getMessage());
             // 서버에러 발생 메세지 전송(클라이언트)
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/qna/search/{name}")
+    public ResponseEntity<Object> findByName(@PathVariable String name) {
+        try {
+            Optional<Qna> optionalQna = qnaService.findByName(name);
+
+            if (optionalQna.isPresent() == true) {
+                return new ResponseEntity<>(optionalQna.get(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

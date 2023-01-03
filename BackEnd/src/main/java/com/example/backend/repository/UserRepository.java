@@ -41,29 +41,29 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByName(String name);
 
+//    @Query(value="select u.*, r.rid, r.name " +
+//            "from tb_user u, " +
+//            "     tb_role r, " +
+//            "     tb_user_role ur " +
+//            "where u.id = ur.user_id " +
+//            "and   ur.role_id = r.rid " +
+//            "and   u.delete_yn = 'N' " +
+//            "and   r.delete_yn = 'N' " +
+//            "and   u.username like %:username%",
+//            countQuery = "select count(*) " +
+//                    "from tb_user u, " +
+//                    "     tb_role r, " +
+//                    "     tb_user_role ur " +
+//                    "where u.id = ur.user_id " +
+//                    "and   ur.role_id = r.rid " +
+//                    "and   u.delete_yn = 'N' " +
+//                    "and   r.delete_yn = 'N' " +
+//                    "and   u.username like %:username%",
+//            nativeQuery = true)
+//    Page<UserRoleDto> findAllByUsernameContaining(@Param("username") String username
+//                                                    , Pageable pageable);
 
-//    @Query,
-    @Query(value="select u.*, r.rid, r.name " +
-            "from tb_user u, " +
-            "     tb_role r, " +
-            "     tb_user_role ur " +
-            "where u.id = ur.user_id " +
-            "and   ur.role_id = r.rid " +
-            "and   u.delete_yn = 'N' " +
-            "and   r.delete_yn = 'N' " +
-            "and   u.username like %:username%",
-            countQuery = "select count(*) " +
-                    "from tb_user u, " +
-                    "     tb_role r, " +
-                    "     tb_user_role ur " +
-                    "where u.id = ur.user_id " +
-                    "and   ur.role_id = r.rid " +
-                    "and   u.delete_yn = 'N' " +
-                    "and   r.delete_yn = 'N' " +
-                    "and   u.username like %:username%",
-            nativeQuery = true)
-    Page<UserRoleDto> findAllByUsernameContaining(@Param("username") String username
-                                                    , Pageable pageable);
+    Page<User> findAllByUsernameContainingOrderByInsertTime(@Param("username")String username, Pageable pageable);
 }
 
 
