@@ -8,10 +8,7 @@ import http from "../http-common";
 
 class ReviewDataService {
     // 모든 리뷰정보 조회 요청 함수
-    getAll(searchSelect, searchKeyword, page, size) {
-        // alert(searchSelect)
-        // alert(searchKeyword)
-        // get 방식 통신 요청 -> @GetMapping("/api/qna")
+    getAll(movienm, page, size) {
         return http.get(`/review?movienm=${movienm}&page=${page}&size=${size}`); 
     }
 
@@ -37,8 +34,8 @@ class ReviewDataService {
     // 리뷰정보 삭제(delete) 요청 함수
     // delete 방식 통신 요청 -> @DeleteMapping("/api/qna/deletion/{qno}")
     //                        , @PathVariable  
-    delete(id) {
-        return http.delete(`/review/deletion/${id}`);
+    delete(rno) {
+        return http.delete(`/review/delete/${rno}`);
     }
 
     // 리뷰정보 전체 삭제 요청 함수
