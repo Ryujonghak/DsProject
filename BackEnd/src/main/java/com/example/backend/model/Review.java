@@ -38,6 +38,9 @@ public class Review extends BaseTimeEntity{
     private Integer moviecd;
 
     @Column
+    private String movienm;
+
+    @Column
     private String username;
 
     @Column

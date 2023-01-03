@@ -33,6 +33,12 @@ public class ReviewService {
         return reviewPage;
     }
 
+    public Page<Review> findAllByMovienmContainingOrderByRno(String username, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByMovienmContainingOrderByRno(username, pageable);
+
+        return reviewPage;
+    }
+
     public Optional<Review> findByMoviecd(Integer moviecd) {
         Optional<Review> reviewOptional = reviewRepository.findByMoviecd(moviecd);
 
@@ -53,5 +59,11 @@ public class ReviewService {
         } else {
             return false;
         }
+    }
+
+    public Review save(Review review) {
+        Review newReview = reviewRepository.save(review);
+
+        return newReview;
     }
 }

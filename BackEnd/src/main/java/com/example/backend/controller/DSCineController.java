@@ -83,11 +83,12 @@ public class DSCineController {
     }
 
 
+    //    `/movie/?movienm=${movienm}&page=${page}&size=${size}`
     // http://localhost:8000/api/movie/?movienm=
     @GetMapping("/movie")
     public ResponseEntity<Object> findbyMovieNm(@RequestParam(required = false) String movienm,
-                                                  @RequestParam(defaultValue = "0") int page,
-                                                  @RequestParam(defaultValue = "10") int size)
+                                                @RequestParam(defaultValue = "0") int page,
+                                                @RequestParam(defaultValue = "10") int size)
     {
 
         try {
@@ -125,6 +126,92 @@ public class DSCineController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @GetMapping("/movie/cd")
+    public ResponseEntity<Object> findbyMovieCd(@RequestParam(required = false) String moviecd,
+                                                @RequestParam(defaultValue = "0") int page,
+                                                @RequestParam(defaultValue = "10") int size)
+    {
+
+        try {
+//          Pageable객체 정의
+            Pageable pageable = PageRequest.of(page, size);
+
+//           PAGE 객체 정의
+            Page<MovieDetail> movieDetailpage;
+
+            if(moviecd == null) {
+                movieDetailpage = dsCineService.findallMovieDetail(pageable); // 페이징 처리되는 findAll()
+            } else {
+//            2) dname 에 값이 있을 경우 : 부서명 like 검색
+                movieDetailpage = dsCineService.findAllByMovieCdContaitning(moviecd, pageable);
+            }
+//            movieDetailpage = dsCineService.findAllByMovienmContaining(movienm, pageable);
+            // MAP에 넣어서 Client에 전송.
+            Map<String,Object> response = new HashMap<>();
+            response.put("MovieDetail", movieDetailpage.getContent());
+            response.put("currentPage", movieDetailpage.getNumber());
+            response.put("totalItems", movieDetailpage.getTotalElements());
+            response.put("totalPages", movieDetailpage.getTotalPages());
+
+            if (movieDetailpage.isEmpty() == false) {
+//                데이터 + 성공 메세지 전송
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+//                데이터 없음 메세지 전송(클라이언트)
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            // 서버에러 발생 메세지 전송(클라이언트)
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/boxoffice/cd")
+    public ResponseEntity<Object> findbyMovieCdBox(@RequestParam(required = false) String moviecd,
+                                                   @RequestParam(defaultValue = "0") int page,
+                                                   @RequestParam(defaultValue = "10") int size) {
+
+        try {
+//          Pageable객체 정의
+            Pageable pageable = PageRequest.of(page, size);
+
+//           PAGE 객체 정의
+            Page<BoxOffice> boxOfficePage;
+
+            if(moviecd == null) {
+                boxOfficePage = dsCineService.findallBoxOffice(pageable); // 페이징 처리되는 findAll()
+            } else {
+//            2) dname 에 값이 있을 경우 : 부서명 like 검색
+                boxOfficePage = dsCineService.findAllByMoviecdContainingBox(moviecd, pageable);
+            }
+
+            // MAP에 넣어서 Client에 전송.
+            Map<String, Object> response = new HashMap<>();
+            response.put("BoxOffice", boxOfficePage.getContent());
+            response.put("currentPage", boxOfficePage.getNumber());
+            response.put("totalItems", boxOfficePage.getTotalElements());
+            response.put("totalPages", boxOfficePage.getTotalPages());
+
+            if (boxOfficePage.isEmpty() == false) {
+//                데이터 + 성공 메세지 전송
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+//                데이터 없음 메세지 전송(클라이언트)
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            // 서버에러 발생 메세지 전송(클라이언트)
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
 //    @GetMapping("/movie/all")
 //    public ResponseEntity<Object> findbyAllMovie(@RequestParam(required = false) String movieNm,
@@ -167,8 +254,6 @@ public class DSCineController {
 //            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
 //    }
-
-
 
 }
 
