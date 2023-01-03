@@ -67,7 +67,7 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter">
               <h3 style="color: aliceblue">리뷰 관리</h3>
-              <select id="selectBox" name="selectBox" >
+              <select id="selectBox" name="selectBox">
                 <!-- <option value="" selected="selected" @click="retrieveMovie">영화 전체</option>
                 <option value="아바타:물의길"  @click="retrieveMovie">아바타:물의길</option>
                 <option value="신비아파트"  @click="retrieveMovie">신비아파트</option>
@@ -101,13 +101,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(data, index) in review" v-bind:key="index">
+                    <tr v-for="(data, index) in review.review" v-bind:key="index">
                       <td>{{ data.rno }}</td>
                       <td>{{ data.movienm }}</td>
                       <td>{{ data.username }}</td>
                       <td>{{ data.content }}</td>
                       <td>
-                        <button class="deletebtn">삭제</button>
+                        <button class="deletebtn" @click="deletebtn(data)">삭제</button>
                       </td>
                     </tr>
                   </tbody>
@@ -118,7 +118,7 @@
           </div>
           <!-- <!— 페이징 + 전체 목록 시작 —> -->
           <!-- <!— 페이징 양식 시작 —> -->
-          <!-- <div class="col-md-12">
+          <div class="col-md-12">
             <b-pagination
               v-model="page"
               :total-rows="review.totalItems"
@@ -127,7 +127,7 @@
               next-text="Next"
               @change="handlePageChange"
             ></b-pagination>
-          </div> -->
+          </div>
           <!-- <!— 페이징 양식 끝 —> -->
           <!-- 필터 페이지네이션 -->
         </div>
@@ -137,12 +137,15 @@
 </template>
 
 <script>
+import ReviewDataService from '@/services/ReviewDataService';
 export default {
   data() {
     return {
       board: false,
       selected: "",
       review: [],
+      movienm:"",
+  
 
       //페이징을 위한 변수 정의
       page: 1,
@@ -162,34 +165,41 @@ export default {
       this.board = !this.board;
     },
 
-    // handlePageChange(value) {
-    //   this.page = value;
-    //   this.retrieveReview();
-    // },
-    //select박스 선택시 함수실행
-    // retrieveReview(){
-    //   ReviewDataService.getAll(this.movienm, this.page -1, this.pageSize)
-    //   .then((response) => {
-    // const review = response.data;
-    // this. review = review;
-    //     console.log(response.data);
-    //   })
-    //   .catch((e)=>{
-    //     console.log(e);
-    //   })
-    // },
+    handlePageChange(value) {
+      this.page = value;
+      this.retrieveReview();
+    },
+    // select박스 선택시 함수실행
+    retrieveReview() {
+      ReviewDataService.getAll(this.movienm, this.page - 1, this.pageSize)
+        .then((response) => {
+          const review = response.data;
+          this.review = review;
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
 
     //삭제버튼 클릭시
-    // deletebtn(){
-    //   ReviewDataService.delete(this.currentUser.id)
-    //     .then((response) => {
-    //       console.log(response.data);
-    //       this.$router.push("/review-admin");
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // }
+    deletebtn(data) {
+      this.review = data;
+      // var test = this.review.rno;
+      //     alert(JSON.stringify(test));
+      ReviewDataService.delete(this.review.rno)
+        .then((response) => {
+          console.log(response.data);
+          alert("삭제가 완료되었습니다.");
+          window.location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
+  mounted() {
+    this.retrieveReview();
   },
 };
 </script>
