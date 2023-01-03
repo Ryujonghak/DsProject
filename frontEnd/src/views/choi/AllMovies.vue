@@ -223,7 +223,7 @@ export default {
         this.searchMname,
         this.page - 1,
         this.pageSize
-      )
+      ) 
         .then((response) => {
           const movie = response.data;
           this.movie = movie;
