@@ -21,16 +21,16 @@ public class TheaService {
         return theaList;
     }
 
-    public Page<Thea> findAllByMoviecdContaining(Long moviecd, Pageable pageable) {
-        Page<Thea> theaPage = theaRepository.findAllByMoviecdContaining(moviecd, pageable);
-
-        return theaPage;
-    }
-
-    public Optional<Thea> findByMoviecd(Long moviecd) {
-        Optional<Thea> theaOptional = theaRepository.findByMoviecd(moviecd);
-
-        return theaOptional;
-    }
+//    public Page<Thea> findAllByMoviecdContaining(Long moviecd, Pageable pageable) {
+//        Page<Thea> theaPage = theaRepository.findAllByMoviecdContaining(moviecd, pageable);
+//
+//        return theaPage;
+//    }
+//
+//    public Optional<Thea> findByMoviecd(Long moviecd) {
+//        Optional<Thea> theaOptional = theaRepository.findByMoviecd(moviecd);
+//
+//        return theaOptional;
+//    }
 
 }

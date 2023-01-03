@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 /**
@@ -67,6 +68,12 @@ public class DSCineService {
     {
         Page<BoxOffice> page = boxOfficeRepositoy.findAllByMovieCdContaining(moviecd, pageable);
         return page;
+    }
+
+    public List<MovieDetail> findAll() {
+        List<MovieDetail> movieDetailList = movieDetailRepository.findAll();
+
+        return movieDetailList;
     }
 
 }

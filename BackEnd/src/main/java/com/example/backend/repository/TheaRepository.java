@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface TheaRepository extends JpaRepository<Thea, Long> {
-    Optional<Thea> findByMoviecd(Long moviecd);
+//    Optional<Thea> findByMoviecd(Long moviecd);
 
-    Page<Thea> findAllByMoviecdContaining(Long moviecd, Pageable pageable);
+//    Page<Thea> findAllByMoviecdContaining(Long moviecd, Pageable pageable);
 }

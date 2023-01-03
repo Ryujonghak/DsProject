@@ -30,14 +30,8 @@ public class Thea extends BaseTimeEntity{
     @Id
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_THEA_GENERATOR")
     @Column(columnDefinition = "NUMBER")
-    private Long moviecd;
+    private Long tid;
 
     @Column(columnDefinition = "VARCHAR2(100)")
-    private String LOCATIONTITLE;
-
-    @Column(columnDefinition = "VARCHAR2(5)")
-    private String THEATERID;
-
-    @Column(columnDefinition = "NUMBER")
-    private Long SEATCNT;
+    private String location;
 }
