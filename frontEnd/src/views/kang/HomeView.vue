@@ -22,13 +22,14 @@
           <div class="title">
             <h6 class="h1">BOX OFFICE</h6>
           </div>
-          <div
-            class="slick-multiItemSlider"
-            v-for="(data, index) in movie.MovieDetail"
-            v-bind:key="index"
-          >
-            <!-- 아바타 영화포스터 -->
-            <div class="movie-item">
+          <div class="slick-multiItemSlider">
+            <!-- TODO: 영화 포스터 캐로셀 작업 -->
+            <div
+              class="movie-item"
+              v-for="(data, index) in movie.MovieDetail"
+              v-bind:key="index"
+              style="width:285px !important; height:437px !important; display:inline-block !important;"
+            >
               <div class="mv-img">
                 <a href="/mainDetail">
                   <img :src="data.posterurln" alt="poster"
@@ -334,11 +335,11 @@ export default {
 .movie-items {
   background: black;
 }
-.mv-img {
-  width: 285px !important;
-  height: 437px !important;
-}
-.movie-item {
-  display: flex !important;
-}
+// .mv-img {
+//   width: 285px !important;
+//   height: 437px !important;
+// }
+// .movie-item {
+//   display: flex !important;
+// }
 </style>
