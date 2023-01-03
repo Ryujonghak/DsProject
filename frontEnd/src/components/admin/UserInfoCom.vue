@@ -247,32 +247,7 @@ export default {
     return {
       // 게시판관리 v-show
       board: false,
-      user: [
-        {
-          id: 97,
-          username: "choiari1002",
-          password: 12345678,
-          question: "좋아하는 색깔은? (대충)",
-          answer: "아이보리",
-          year: 1994,
-          month: 10,
-          day: 2,
-          email: "choiari1002@naver.com",
-          phone: "7787518479",
-        },
-        {
-          id: 98,
-          username: "areerang",
-          password: 12345678,
-          question: "좋아하는 색깔은? (대충)",
-          answer: "크림",
-          year: 1994,
-          month: 10,
-          day: 2,
-          email: "areerang@naver.com",
-          phone: "01047123456",
-        },
-      ],
+      user: [],
       // {
       //   id: 97,
       //   username: "choiari1002",
