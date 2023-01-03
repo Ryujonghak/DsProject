@@ -110,7 +110,7 @@
                 <div class="col-xs-3">
                   <router-link :to="'/userInfoAdmin/' + data.username" class="editbtn col-xs-12">수정</router-link>
                   <div class="col-xs-12"></div>
-                  <a href="#" id="btn-modal" class="delbtn col-xs-12">삭제</a>
+                  <a id="btn-modal" class="delbtn col-xs-12">삭제</a>
                 </div>
               </div>
             </div>
@@ -140,23 +140,6 @@
               ></b-pagination>
             </div>
             <!-- Todo : page 바 끝 -->
-            <!-- 테스트 페이징 끝 -->
-            <!-- 아래 페이징 시작 -->
-            <!-- <div class="col-md-9 col-sm-12 col-xs-12">
-              <div class="topbar-filter">
-                <label>Movies per page:</label>
-                <select>
-                  <option value="range">20 Movies</option>
-                  <option value="saab">10 Movies</option>
-                </select>
-                <div class="pagination2">
-                  <span>Page 1 of 1:</span>
-                  <a class="active" href="#">1</a>
-                  <a href="#"><i class="ion-arrow-right-b"></i></a>
-                </div>
-              </div>
-            </div> -->
-            <!-- 아래 페이징 끝 -->
           </div>
         </div>
       </div>
@@ -271,16 +254,16 @@ export default {
           console.log(e);
         });
     },
-    // deleteUser() {
-    //   UserService.delete(this.user.id)
-    //   .then(response => {
-    //     console.log(response.data);
-    //     this.$router.push("/reservInfoAdmin");
-    //   })
-    //   .catch(e => {
-    //     console.log(e);
-    //   });
-    // },
+    deleteUser() {
+      UserService.delete(this.user.id)
+      .then(response => {
+        console.log(response.data);
+        this.$router.push("/reservInfoAdmin");
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    },
     // FIXME: 삭제 위한 currentUser에 값 넣는 함수, 유저정보를 삭제 요청하는 함수
     // id로 조회 함수
     // getUser(id) {
