@@ -268,29 +268,7 @@
 
                 <li><router-link to="/allMovie">전체보기</router-link></li>
 
-                <li class="dropdown first">
-                  <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
-                    영화<i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </a>
-                  <ul class="dropdown-menu level1">
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                        >Movie grid<i class="ion-ios-arrow-forward"></i
-                      ></a>
-                      <ul class="dropdown-menu level2">
-                        <li><a href="moviegrid.html">Movie grid</a></li>
-                        <li>
-                          <a href="moviegridfw.html">movie grid full width</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a href="movielist.html">Movie list</a></li>
-                    <li><a href="moviesingle.html">Movie single</a></li>
-                    <li class="it-last">
-                      <a href="seriessingle.html">Series single</a>
-                    </li>
-                  </ul>
-                </li>
+                <li><router-link to="/boxoffice">박스오피스</router-link></li>
                 <li class="dropdown first">
                   <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
                     영화관<i class="fa fa-angle-down" aria-hidden="true"></i>

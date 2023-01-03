@@ -180,6 +180,11 @@ const routes = [
     name: "test01",
     component: () => import("@/views/choi/TestView.vue"),
   },
+  {
+    path: "/boxoffice",
+    name: "boxoffice",
+    component: () => import("@/views/choi/BoxofficeView.vue"),
+  },
   // {
   //   path: '/mainDetail',
   //   name: 'mainDetail',
