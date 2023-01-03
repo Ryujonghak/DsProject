@@ -34,7 +34,7 @@ public class DSCineService {
 //    @Autowired
 //    MovieDetailRepository mvdetail;
 
-//    박스오피스 전체 출력
+    //    박스오피스 전체 출력
     public Page<BoxOffice> findallBoxOffice(Pageable pageable) {
         Page<BoxOffice> page = boxOfficeRepositoy.findAll(pageable);
         return page;
@@ -57,5 +57,16 @@ public class DSCineService {
         return page;
     }
 
+    public Page<MovieDetail> findAllByMovieCdContaitning(String moviecd, Pageable pageable)
+    {
+        Page<MovieDetail> page = movieDetailRepository.findAllByMoviecdContaining(moviecd, pageable);
+        return page;
+    }
+
+    public Page<BoxOffice> findAllByMoviecdContainingBox(String moviecd, Pageable pageable)
+    {
+        Page<BoxOffice> page = boxOfficeRepositoy.findAllByMovieCdContaining(moviecd, pageable);
+        return page;
+    }
 
 }

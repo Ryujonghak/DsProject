@@ -20,7 +20,9 @@
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li><router-link to="/userInfoAdmin">회원관리</router-link></li>
+                  <li>
+                    <router-link to="/userInfoAdmin">회원관리</router-link>
+                  </li>
                   <li>
                     <a href="#"></a>
                     <a
@@ -32,7 +34,11 @@
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown" v-show="board">
-                      <li><router-link to="/board-admin">공지사항 관리</router-link></li>
+                      <li>
+                        <router-link to="/board-admin"
+                          >공지사항 관리</router-link
+                        >
+                      </li>
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
@@ -61,15 +67,15 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter">
               <h3 style="color: aliceblue">리뷰 관리</h3>
-              <select id="selectBox" name="selectBox" v-model="searchMovieName">
+              <select id="selectBox" name="selectBox" >
                 <!-- <option value="" selected="selected" @click="retrieveMovie">영화 전체</option>
                 <option value="아바타:물의길"  @click="retrieveMovie">아바타:물의길</option>
                 <option value="신비아파트"  @click="retrieveMovie">신비아파트</option>
                 <option value="영웅"  @click="retrieveMovie">영웅</option>  -->
                 <option value="" selected="selected">영화 전체</option>
-                <option value="아바타:물의길"  >아바타:물의길</option>
-                <option value="신비아파트" >신비아파트</option>
-                <option value="영웅" >영웅</option>
+                <option value="아바타:물의길">아바타:물의길</option>
+                <option value="신비아파트">신비아파트</option>
+                <option value="영웅">영웅</option>
               </select>
             </div>
 
@@ -95,9 +101,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(data, index) in reviews" v-bind:key="index">
-                      <td>{{ data. rno}}</td>
-                      <td>{{ data.moviecd }}</td>
+                    <tr v-for="(data, index) in review" v-bind:key="index">
+                      <td>{{ data.rno }}</td>
+                      <td>{{ data.movienm }}</td>
                       <td>{{ data.username }}</td>
                       <td>{{ data.content }}</td>
                       <td>
@@ -110,6 +116,20 @@
             </div>
             <!--리뷰 테이블 관리 테이블 끝  -->
           </div>
+          <!-- <!— 페이징 + 전체 목록 시작 —> -->
+          <!-- <!— 페이징 양식 시작 —> -->
+          <!-- <div class="col-md-12">
+            <b-pagination
+              v-model="page"
+              :total-rows="review.totalItems"
+              :per-page="pageSize"
+              prev-text="Prev"
+              next-text="Next"
+              @change="handlePageChange"
+            ></b-pagination>
+          </div> -->
+          <!-- <!— 페이징 양식 끝 —> -->
+          <!-- 필터 페이지네이션 -->
         </div>
       </div>
     </div>
@@ -121,9 +141,15 @@ export default {
   data() {
     return {
       board: false,
-      selected: "" ,
-      reviews: [
-      ],
+      selected: "",
+      review: [],
+
+      //페이징을 위한 변수 정의
+      page: 1,
+      count: 0,
+      pageSize: 3,
+
+      pageSizes: [3, 6, 9],
     };
   },
   methods: {
@@ -136,10 +162,16 @@ export default {
       this.board = !this.board;
     },
 
+    // handlePageChange(value) {
+    //   this.page = value;
+    //   this.retrieveReview();
+    // },
     //select박스 선택시 함수실행
-    // retrieveMovie(){
-    //   ReviewDataService.getAll(this.searchMovieName)
+    // retrieveReview(){
+    //   ReviewDataService.getAll(this.movienm, this.page -1, this.pageSize)
     //   .then((response) => {
+    // const review = response.data;
+    // this. review = review;
     //     console.log(response.data);
     //   })
     //   .catch((e)=>{
@@ -147,7 +179,7 @@ export default {
     //   })
     // },
 
-    //삭제버튼 클릭시 
+    //삭제버튼 클릭시
     // deletebtn(){
     //   ReviewDataService.delete(this.currentUser.id)
     //     .then((response) => {
@@ -158,7 +190,6 @@ export default {
     //       console.log(e);
     //     });
     // }
-
   },
 };
 </script>

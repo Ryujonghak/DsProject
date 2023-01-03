@@ -36,7 +36,7 @@
                     type="text"
                     id="name"
                     class="input-text boxing"
-                    v-model="movie.movieNm"
+                    v-model="movie.movienm"
                   />
                 </td>
                 <th scope="row" class="noticelabel">
@@ -50,7 +50,7 @@
                     id="qnaTitle"
                     class="boxing input-text"
                     maxlength="100"
-                    v-model="movie.rating"
+                    v-model="movie.raiting"
                   />
                   /5.0
                 </td>
@@ -65,7 +65,7 @@
                     id="qnaTitle"
                     class="boxing input-text"
                     maxlength="100"
-                   v-model="movie.genreNm"
+                   v-model="movie.genrenm"
                   />
                 </td>
               </tr>
@@ -81,7 +81,7 @@
                   id="qnaTitle"
                   class="boxing input-text"
                   maxlength="100"
-                  v-model="movie.showTm"
+                  v-model="movie.showtm"
                 />
               </td>
               <th scope="row" class="noticelabel">
@@ -128,7 +128,7 @@
                       title="내용입력"
                       class="input-textarea boxing"
                       placeholder="내용을 입력해주세요."
-                      v-model="movie.description"
+                      v-model="movie.plot"
                     ></textarea>
                   </div>
                 </td>
@@ -141,10 +141,10 @@
               <td colspan="2">
                 <ul class="footer-button-plus">
                   <input
-                    type="file"
+                    type="text"
                     id="file"
                     class="inputfile"
-                    accept="image/* "
+                    v-model="movie.posterurln"
                   />
                 </ul>
               </td>
@@ -159,7 +159,7 @@
                   id="qnaTitle"
                   class="boxing input-text"
                   maxlength="100"
-                  v-model="movie.openDt"
+                  v-model="movie.opendt"
                 />
                 
               </td>
@@ -168,7 +168,7 @@
                 <label for="noticeTitle">관람등급</label>
               </th>
               <td colspan="3">
-              <select name="관람등급" id="age" v-model="movie.watchGradeNm">
+              <select name="관람등급" id="age" v-model="movie.watchgradenm">
                 <option value="1">ALL</option>
                 <option value="2">12+</option>
                 <option value="3">15+</option>
@@ -179,7 +179,7 @@
             </tbody>
           </table>
           <div class="search">
-            <button type="submit" class="regbtn" style="float: right">
+            <button type="submit" class="regbtn" style="float: right" @click="saveMovie()">
               등록하기
             </button>
           </div>
@@ -190,36 +190,51 @@
 </template>
 
 <script>
+import MovieDataService from '@/services/MovieDataService';
 export default {
   data() {
     return {
       // imgURL: "",
       movie: {
-        openDt: "",
-        watchGradeNm: "",
-        movieNm:"",
-        rating: "",
-        description:"",
-        showTm: "",
-        genreNm:"",
+        id:null,
+        opendt: "",
+        watchgradenm: "",
+        movienm:"",
+        raiting: "",
+        plot:"",
+        showtm: "",
+        genrenm:"",
         directors:"",
         actor:"",
+        posterurln:""
       },
     };
   },
   methods: {
-    // upload(e) {
-    //   let imageFile = e.target.files; 
-
-
-    //   let url = URL.createObjectURL(imageFile[0]); // 파일의 필요한 데이터만을 url 변수에 넣음
-
-    //   console.log(url);
-
-    //   this.imageUrl = url; // 미리 작성해둔 imageUrl : ' ' 변수에 가지고있는 경로데이터 넣기
-
-    //   this.step++;
-    // },
+    saveMovie(){
+      let data={
+        id: this.movie.id,
+        opendt: this.movie.opendt,
+        watchgradenm: this.movie.watchgradenm,
+        movienm:this.movie.movienm,
+        raiting: this.movie.raiting,
+        plot:this.movie.plot,
+        showtm: this.movie.showtm,
+        genrenm:this.movie.genrenm,
+        directors:this.movie.directors,
+        actor:this.movie.actor,
+        posterurln:this.movie.posterurln
+      }
+      MovieDataService.create(data)
+      .then(response => {
+        this.movie.id = response.data.id;
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      })
+    }
+  
   },
 };
 </script>

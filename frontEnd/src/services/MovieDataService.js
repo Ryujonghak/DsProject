@@ -22,6 +22,16 @@ class MovieDataService {
   getMovieDetail(moviecd) {
     return http.get(`/movie/cd/?moviecd=${moviecd}`);
   }
+
+  //영화 admin delete 요청 함수
+  delete(id) {
+    return http.delete(`/movie/deletion/${id}`);
+  }
+  //새 영화 추가 함수
+  create(data) {
+    console.log(data);
+    return http.post("/movie", data);
+  }
 }
 
 export default new MovieDataService();

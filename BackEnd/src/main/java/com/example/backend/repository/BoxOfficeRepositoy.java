@@ -27,4 +27,5 @@ public interface BoxOfficeRepositoy extends JpaRepository<BoxOffice, Integer> {
     Page<BoxOffice> findAll(Pageable pageable);
 
     Page<BoxOffice> findAllByMovieNmContaining(String movieNm, Pageable pageable);
+    Page<BoxOffice> findAllByMovieCdContaining(String movieCd, Pageable pageable);
 }
