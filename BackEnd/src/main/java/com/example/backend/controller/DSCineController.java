@@ -227,6 +227,20 @@ public class DSCineController {
         }
     }
 
+    @GetMapping("/movie/list")
+    public ResponseEntity<Object> findAllMovieList() {
+        try {
+            List<MovieDetail> movieDetailList = dsCineService.findAll();
+            if(movieDetailList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(movieDetailList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 
 //    @GetMapping("/movie/all")
