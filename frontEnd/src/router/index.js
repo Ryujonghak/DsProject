@@ -166,7 +166,7 @@ const routes = [
     component: () => import("@/components/admin/UserInfoCom.vue"),
   },
   {
-    path: "/userInfoAdmin/:id",
+    path: "/userInfoAdmin/:username",
     name: "userInfoEditAdmin",
     component: () => import("@/components/admin/UserInfoEditCom.vue"),
   },
@@ -179,6 +179,11 @@ const routes = [
     path: "/test01",
     name: "test01",
     component: () => import("@/views/choi/TestView.vue"),
+  },
+  {
+    path: "/boxoffice",
+    name: "boxoffice",
+    component: () => import("@/views/choi/BoxofficeView.vue"),
   },
   // {
   //   path: '/mainDetail',

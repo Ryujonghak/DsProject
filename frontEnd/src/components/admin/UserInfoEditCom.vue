@@ -65,7 +65,7 @@
           <!-- <!— 왼쪽 메뉴바 끝 —> -->
           <!-- 수정 양식 폼 시작 -->
           <div class="edit-form col-md-9 col-sm-12 col-xs-12">
-            <h4 style="color: white">ID: {{ currentUser.id }}</h4>
+            <h4 style="color: white">ID: {{ user.id }}</h4>
             <form>
               <!-- 사원명 -->
               <div class="form-group col-xs-12">
@@ -74,31 +74,10 @@
                   type="text"
                   class="form-control"
                   id="username"
-                  v-model="currentUser.username"
+                  v-model="user.username"
                 />
               </div>
 
-              <!-- 직위 -->
-              <div class="mt-3 form-group col-xs-12">
-                <label for="password">password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  v-model="currentUser.password"
-                />
-              </div>
-
-              <!-- manager -->
-              <div class="mt-3 form-group col-xs-12">
-                <label for="question">question</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="question"
-                  v-model="currentUser.question"
-                />
-              </div>
               <!-- 입사일 -->
               <div class="mt-3 form-group col-xs-12">
                 <label for="answer">answer</label>
@@ -106,7 +85,7 @@
                   type="text"
                   class="form-control"
                   id="answer"
-                  v-model="currentUser.answer"
+                  v-model="user.answer"
                 />
               </div>
               <!-- 월급여 -->
@@ -120,7 +99,7 @@
                     type="text"
                     class="form-control"
                     id="year"
-                    v-model="currentUser.year"
+                    v-model="user.year"
                   />
                 </div>
                 <div class="col-xs-4">
@@ -128,7 +107,7 @@
                     type="text"
                     class="form-control"
                     id="year"
-                    v-model="currentUser.month"
+                    v-model="user.month"
                   />
                 </div>
                 <div class="col-xs-4">
@@ -136,7 +115,7 @@
                     type="text"
                     class="form-control"
                     id="year"
-                    v-model="currentUser.day"
+                    v-model="user.day"
                   />
                 </div>
               </div>
@@ -147,7 +126,7 @@
                   type="text"
                   class="form-control"
                   id="email"
-                  v-model="currentUser.email"
+                  v-model="user.email"
                 />
               </div>
               <!-- 부서번호 -->
@@ -157,13 +136,13 @@
                   type="text"
                   class="form-control"
                   id="phone"
-                  v-model="currentUser.phone"
+                  v-model="user.phone"
                 />
               </div>
             </form>
 
             <div>
-              <a class="editbtn col-xs-12" @click="updateUserInfo">수정</a>
+              <a class="editbtn col-xs-12" @click="updateUser">수정</a>
               <!-- <button class="mt-3 btn btn-danger" @click="deleteEmp">
                 Delete
               </button>
@@ -190,11 +169,15 @@
 import UserDataService from "@/services/user.service.js";
 
 export default {
+  mounted() {
+    this.getUser(this.$route.params.username);
+  },
   data() {
     return {
       board: false,
       user: null,
       message: "",
+      changePwd: false
     };
   },
   methods: {
@@ -207,8 +190,8 @@ export default {
       this.$router.push("/");
     },
 
-    getUser(name) {
-      UserDataService.getFindByIdName(name)
+    getUser(username) {
+      UserDataService.getUserUsername(username)
         .then((response) => {
           this.user = response.data;
           console.log(response.data);
@@ -217,19 +200,18 @@ export default {
           console.log(e);
         });
     },
-    // FIXME: 유저정보를 수정 요청하는 함수
-    updateUserInfo() {
-      alert("수정클릭");
-      // UserDataService.update(this.currentUser.id, this.currentUser)
-      //   .then((response) => {
-      //     console.log(response.data);
-      //     this.message = "유저 정보가 성공적으로 수정되었습니다!";
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
-      // 수정완료시 그 전 페이지로 강제 이동
-      this.$router.push("/userInfoAdmin");
+    updateUser() {
+      UserDataService.update(this.user.id, this.changePwd, this.user)
+        .then((response) => {
+          console.log(response.data);
+          alert("수정되었습니다!");
+
+          // 수정완료시 그 전 페이지로 강제 이동
+          this.$router.push("/userInfoAdmin");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };
