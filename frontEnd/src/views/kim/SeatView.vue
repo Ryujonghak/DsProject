@@ -11,39 +11,52 @@
                 <div style="position: relative;">
                   
                   <div v-show="모달창">
-                    <div style="background-color: white; position: absolute; top: 100px; left: 385px; width: 450px; height: 450px; z-index: 30;">
-                      <div style="height: 70px; background-color: gray;">
-                        <h3 style="width: 387px; float: left; height: 70px; text-align: center; padding-top: 23px;">아바타: 물의 길 2022</h3>
-                        <button @click="model()" style="width: 40px; height: 40px; float: right; margin-right: 13px; border: 0;  background-color: gray;">
+                    <div style="background-color: white; position: absolute; top: 100px; left: 385px; width: 450px; height: 480px; z-index: 30;">
+                      <div style="height: 70px; background-color: #503396;">
+                        <span style="width: 387px; float: left; height: 70px; text-align: center;line-height: 70px; color: white; font-size: 24px;">아바타: 물의 길 2022</span>
+                        <button @click="model()" style="width: 40px; height: 40px; float: right; margin-right: 13px; border: 0;  background-color: #503396;">
                           <img style="margin-top: 21px;" src="@/assets/images_kim/Views/ModalView/xx.png" alt="">
                         </button>
                       </div>
                       <div style="clear: both;"></div>
-                      <div v-show="전체이용가" style="width: 300px;  margin-left: 20px;">
-                        <img style="float: left;" src="@/assets/images_kim/Views/ModalView/ALL_56x56.png" alt="">
-                        <h6>전체관람가</h6>
-                        <h6>※극장 이용시 항상 마스크 착용을 부탁드립니다※</h6>
-                      </div>
-                      <div v-show="열두살" style="width: 300px;  margin-left: 20px;">
-                        <img style="float: left; width: 56px;" src="@/assets/images_kim/Views/ModalView/12_56x56.png" alt="">
-                        <div style="float: right">
-                        <h6>12세이상관람가</h6>
-                        <h6>만 12 세 미만의 고객님은(영,유아 포함)</h6>
-                        <h6>반드시 성인 보호자의 동반하에 관람이 가능합니다.</h6>
-                        <h6>(확인불가 시 입장제한)</h6>
-                        <h6>※극장 이용시 항상 마스크 착용을 부탁드립니다※</h6>
+                      <div v-show="전체이용가"  style="width: 100%; ">
+                        <div style="margin-left: 20px; margin-top: 20px;">
+                          <img style="width: 80px;float: left;  margin-bottom: 0px; margin-top: 0;" src="@/assets/images_kim/Views/ModalView/ALL_56x56.png" alt=""> 
+                          <span style="font-size:20px; width: 350px; float: right; padding-left: 40px;">전체관람가</span>
                         </div>
-
+                        <div style="clear: both;"></div>  
+                        <div style="width: 450px; margin-top: 30px; padding-left: 20px">
+                          <p style="color: red;font-size: 14px;">※극장 이용시 항상 마스크 착용을 부탁드립니다※</p>
+                        </div>
                       </div>
-                      <div v-show="열다섯살" style="width: 300px;  margin-left: 20px;">
-                        <img src="@/assets/images_kim/Views/ModalView/15_56x56.png" alt="">
-                        <h6>15세이상관람가</h6>
-                        <h6>만 15 세 미만의 고객님은(영,유아 포함)</h6>
-                        <h6>반드시 성인 보호자의 동반하에 관람이 가능합니다.</h6>
-                        <h6>(확인불가 시 입장제한)</h6>
-                        <h6>※극장 이용시 항상 마스크 착용을 부탁드립니다※</h6>
+                      <div v-show="열두살" style="width: 100%; ">
+                        <div style="margin-left: 20px; margin-top: 20px;">
+                          <img style="width: 80px;float: left;  margin-bottom: 0px; margin-top: 0;" src="@/assets/images_kim/Views/ModalView/12_56x56.png" alt=""> 
+                          <span style="font-size:20px; width: 350px; float: right; padding-left: 40px;">12세이상관람가</span>
+                        </div>
+                        <div style="clear: both;"></div>  
+                        <div style="width: 450px; margin-top: 30px; padding-left: 20px">
+                          <p style="color: black;font-size: 14px;" >만 12 세 미만의 고객님은(영,유아 포함)</p>
+                          <p style="color: black;font-size: 14px;" >반드시 성인 보호자의 동반하에 관람이 가능합니다.</p>
+                          <p style="color: black;font-size: 14px;" >(확인불가 시 입장제한)</p>
+                          <p style="color: red;font-size: 14px;">※극장 이용시 항상 마스크 착용을 부탁드립니다※</p>
+                        </div>
                       </div>
-                      <div style="width: 100%; margin-top: 30px;"> 
+                      <div v-show="열다섯살"  style="width: 100%;">
+                        <div style="margin-left: 20px; margin-top: 20px;">
+                          <img style="width: 80px;float: left;  margin-bottom: 0px; margin-top: 0;" src="@/assets/images_kim/Views/ModalView/15_56x56.png" alt=""> 
+                          <span style="font-size:20px; width: 350px; float: right; padding-left: 40px;">15세이상관람가</span>
+                        </div>
+                        <div style="clear: both;"></div>  
+                        <div style="width: 450px; margin-top: 30px; padding-left: 20px">
+                          <p style="color: black;font-size: 14px;" >만 15 세 미만의 고객님은(영,유아 포함)</p>
+                          <p style="color: black;font-size: 14px;" >반드시 성인 보호자의 동반하에 관람이 가능합니다.</p>
+                          <p style="color: black;font-size: 14px;" >(확인불가 시 입장제한)</p>
+                          <p style="color: red;font-size: 14px;">※극장 이용시 항상 마스크 착용을 부탁드립니다※</p>
+                        </div>
+                      </div>
+                      <div style="clear: both;"></div>
+                      <div style="width: 100%; margin-top: 30px; position: absolute; top: 370px; left: 0;"> 
                         <button @click="model()" style="width: 175px; height: 55px;margin-left: 30px; background-color: #222; color: white;">취 소</button>
                         <button @click="seatview()" style="width: 175px; height: 55px;margin-left: 40px; background-color: #222;color: white;">인원/좌석</button>
                       </div>
@@ -97,9 +110,9 @@
                 <!-- 영화관 -->
                 <div v-show="상영">
                   <div
-                    style=" width: 291.5px; height: 660px; margin-right: 1px; float: left; background-color: #F7EBEC; border-radius: 0 0 0 10px; ">
+                    style=" width: 291.5px; height: 660px; margin-right: 1px; float: left; background-color: #EEEEEE; border-radius: 0 0 0 10px; ">
                     <p
-                      style=" width: 291.5px; margin-bottom: 0px; color:white; text-align: center; background-color: #1E212D; padding: 15px 0; ">
+                      style=" width: 291.5px; margin-bottom: 0px; color:white; text-align: center; background-color: #1E212D; padding: 15px 0;">
                       지역
                     </p> 
                     <button v-show="selectedseoul" @click="seoul('서울')"   class="div2">서울</button>
@@ -109,7 +122,7 @@
                     <button v-show="!selectedbusan"  class="C_div2">부산</button>
                   </div>
                   <div class="one"
-                    style="width: 291.5px;  height: 660px;   float: left;  background-color:  #F7EBEC;  margin-right: 1px;">
+                    style="width: 291.5px;  height: 660px;   float: left;  background-color:  #F6F6F6;  margin-right: 1px;">
                     <p
                       style="width: 291.5px; margin-bottom: 0px; color:white; text-align: center; padding: 15px 0;background-color: #1E212D; ">
                       영화관
@@ -141,7 +154,7 @@
                     </div>
                   </div>
                   <div
-                    style="width: 585px; height: 660px; float: left; background-color:  #F7EBEC;  overflow: hidden; border-radius: 0 0 10px 0;">
+                    style="width: 585px; height: 660px; float: left; background-color:  #EEEEEE;  overflow: hidden; border-radius: 0 0 10px 0;">
                     <p
                       style="width: 585px;  margin-bottom: 0; color: gray;  padding: 15px 0 15px 0;  background-color: #1E212D;  color: white;text-align: center;">
                       {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘)
@@ -641,7 +654,7 @@
                         예매 완료</span>
                     </div>
                     <div style="background-color: #333; height: 60px; line-height: 80px; margin-top: 35px;">
-                      <h4 style="float: left; top: 30px; margin: 21px 0 0 30px;">총 결제금액 {{ (adultcount * 14000) + (teencount * 11000) }} 원</h4>
+                      <h4 style="float: left; top: 30px; margin: 21px 0 0 30px;">총 결제금액 &ensp; {{ (adultcount * 14000) + (teencount * 11000) }} 원</h4>
                       <button v-show="결제하기" @click="pay()" style="float: right; width: 100px;height: 60px; border-right: 1px solid #333; border-top: 1px solid #333; border-bottom: 1px solid #333;  background-color: #810CA8; color: white;">결제하기</button>
                        <button v-show="!결제하기" @click="pay()" style="float: right; width: 100px;height: 60px; border: 0; background-color: black; color: white;border-right: 1px solid #333; border-top: 1px solid #333; border-bottom: 1px solid #333; " disabled>결제하기</button>
                     </div>
@@ -747,9 +760,9 @@
         센텀시티 : true,
         부산대 : true,
         신용카드: true,
-        열두살 : true,
+        열두살 : false,
         열다섯살 : false,
-        전체이용가: false,
+        전체이용가: true,
 
 
         결제하기 : false, // 좌석숫자랑 인원수랑 맞으면 true로 바뀜
@@ -927,6 +940,8 @@
       adultmins() {
         if (this.adultcount == 0) {
           alert("인원선택은 최소 1명 입니다.")
+        }else if((this.teencount + this.adultcount) == this.selected.length) {
+          alert("좌석을 취소해 주세요.")
         }
         else {
           this.adultcount--;
@@ -942,6 +957,8 @@
       teenmins() {
         if (this.teencount == 0) {
           alert("인원선택은 최소 1명 입니다.")
+        }else if((this.teencount + this.adultcount) == this.selected.length) {
+          alert("좌석을 취소해 주세요.")
         }
         else {
           this.teencount--;
@@ -1105,7 +1122,7 @@
     display: flex;
     align-items: center;
     border: 0;
-    background-color: #F7EBEC;
+    background-color: #EEEEEE;
   }
   .C_div2 {
     width: 100%;
@@ -1114,7 +1131,7 @@
     align-items: center;
     color: white;
     border: 0;
-    background-color: #1D1E2C;
+    background-color: #888888;
   }
   
   .btndiv2 {
@@ -1123,7 +1140,7 @@
     height: 50px;
     display: flex;
     align-items: center;
-    background-color: #F7EBEC;
+    background-color: #F6F6F6;
   
   } 
   .C_btndiv2 {
@@ -1133,7 +1150,7 @@
     display: flex;
     align-items: center;
     color: white;
-    background-color: #1D1E2C;
+    background-color: #888888;
   
   }
   .black-bg{
