@@ -269,11 +269,7 @@
                 <li><router-link to="/allMovie">전체보기</router-link></li>
 
                 <li class="dropdown first">
-                  <a
-                    class="btn btn-default dropdown-toggle lv1 happy"
-                    data-toggle="dropdown"
-                    data-hover="dropdown"
-                  >
+                  <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
                     영화<i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
@@ -296,27 +292,33 @@
                   </ul>
                 </li>
                 <li class="dropdown first">
-                  <a
-                    class="btn btn-default dropdown-toggle lv1 happy"
-                    data-toggle="dropdown"
-                    data-hover="dropdown"
-                  >
-                    영화관
-                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                  <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
+                    영화관<i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
-                    <li>
-                      <a href="celebritygrid01.html">celebrity grid 01</a>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        >서울<i class="ion-ios-arrow-forward"></i
+                      ></a>
+                      <ul class="dropdown-menu level2">
+                        <li><router-link to="/KasanCinema">가산 디지털</router-link></li>
+                        <li><router-link to="/GangdongCinema">강동</router-link></li>
+                        <li><router-link to="">건대 입구</router-link></li>
+                      </ul>
                     </li>
-                    <li>
-                      <a href="celebritygrid02.html">celebrity grid 02 </a>
-                    </li>
-                    <li><a href="celebritylist.html">celebrity list</a></li>
-                    <li class="it-last">
-                      <a href="celebritysingle.html">celebrity single</a>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        >부산<i class="ion-ios-arrow-forward"></i
+                      ></a>
+                      <ul class="dropdown-menu level2">
+                        <li><router-link to="/SeomyeonCinema">서면</router-link></li>
+                        <li><router-link to="/CentumCinema">센텀 시티</router-link></li>
+                        <li><router-link to="/BusanCinema">부산대</router-link></li>
+                      </ul>
                     </li>
                   </ul>
                 </li>
+
                 <li><router-link to="/board-admin">test</router-link></li>
               </ul>
             </div>
