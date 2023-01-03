@@ -22,21 +22,27 @@
           <div class="title">
             <h6 class="h1">BOX OFFICE</h6>
           </div>
-          <div class="slick-multiItemSlider">
-             <!-- v-for="(data, index) in movie.MovieDetail" v-bind:key="index" -->
+          <div
+            class="slick-multiItemSlider"
+            v-for="(data, index) in movie.MovieDetail"
+            v-bind:key="index"
+          >
             <!-- 아바타 영화포스터 -->
             <div class="movie-item">
               <div class="mv-img">
-                <a href="/mainDetail"
-                  > <img :src="data.posterurln" alt="poster" 
-                       width="285"
-                    height="437"/></a>
+                <a href="/mainDetail">
+                  <img :src="data.posterurln" alt="poster"
+                /></a>
               </div>
               <div class="title-in">
                 <div class="cate">
-                  <span class="blue"><a href="#">{{ data.genrenm }}</a></span>
+                  <span class="blue"
+                    ><a href="#">{{ data.genrenm }}</a></span
+                  >
                 </div>
-                <h6><a @click="showDetail">{{data.movienm}}</a></h6>
+                <h6>
+                  <a @click="showDetail">{{ data.movienm }}</a>
+                </h6>
                 <p><i class="ion-android-star"></i>{{ data.raiting }}</p>
               </div>
             </div>
@@ -226,14 +232,13 @@ export default {
       movie: [],
       searchMname: "",
 
-
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,
       pageSize: 3,
 
       pageSizes: [3, 6, 9],
-    }
+    };
   },
   methods: {
     showDetail() {
@@ -328,5 +333,12 @@ export default {
 }
 .movie-items {
   background: black;
+}
+.mv-img {
+  width: 285px !important;
+  height: 437px !important;
+}
+.movie-item {
+  display: flex !important;
 }
 </style>
