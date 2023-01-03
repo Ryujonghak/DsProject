@@ -20,8 +20,10 @@
               <div class="user-fav">
                 <p>관리자 목록</p>
                 <ul>
-                  <li><router-link to="/userInfoAdmin">회원관리</router-link></li>
-                  <li >
+                  <li>
+                    <router-link to="/userInfoAdmin">회원관리</router-link>
+                  </li>
+                  <li>
                     <a href="#"></a>
                     <a
                       class="btn btn-default dropdown-toggle"
@@ -32,7 +34,11 @@
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown" v-show="board">
-                      <li><router-link to="/board-admin">공지사항 관리</router-link></li>
+                      <li>
+                        <router-link to="/board-admin"
+                          >공지사항 관리</router-link
+                        >
+                      </li>
                       <li>
                         <router-link to="/movie-admin">영화 관리</router-link>
                       </li>
@@ -44,7 +50,9 @@
                       </li>
                     </ul>
                   </li>
-                  <li><router-link to="/payment-admin">예매 내역</router-link></li>
+                  <li>
+                    <router-link to="/payment-admin">예매 내역</router-link>
+                  </li>
                 </ul>
               </div>
               <div class="user-fav">
@@ -87,24 +95,26 @@
                   </thead>
                   <tbody>
                     <tr
-                      v-for="(question, index) in questiones"
+                      v-for="(currentQna, index) in question.qna"
                       v-bind:key="index"
                     >
-                      <td>{{ question.qno }}</td>
-                      <td>{{ question.name }}</td>
-                      <td>{{ question.email }}</td>
-                      <td>{{ question.phone }}</td>
-                      <td>{{ question.title }}</td>
-                      <td>{{ question.content }}</td>
+                      <td>{{ currentQna.qno }}</td>
+                      <td>{{ currentQna.name }}</td>
+                      <td>{{ currentQna.email }}</td>
+                      <td>{{ currentQna.phone }}</td>
+                      <td>{{ currentQna.title }}</td>
+                      <td>{{ currentQna.content }}</td>
                       <td>
                         <button
+                          v-if="currentQna.answer == null"
                           class="regbtn"
-                          @click="writeQna"
-                          v-show="writeAnswer"
+                          @click="setActiveNotice(currentQna, index)"
                         >
                           답변하기
                         </button>
-                        <button class="successbtn" v-show="successAnswer">
+                        <button
+                        v-if="currentQna.answer != null"
+                         class="successbtn" >
                           답변완료
                         </button>
                       </td>
@@ -137,7 +147,7 @@
                           title="내용입력"
                           class="input-textarea boxing"
                           placeholder="내용을 입력해주세요."
-                          v-model="textarea"
+                          v-model="editQna.answer"
                         ></textarea>
                       </div>
                     </td>
@@ -150,8 +160,22 @@
                 </button>
               </div>
             </div>
-            <!--공지사항 작성 폼 끝 -->
+            <!--qna 작성 폼 끝 -->
           </div>
+          <!-- <!— 페이징 + 전체 목록 시작 —> -->
+          <!-- <!— 페이징 양식 시작 —> -->
+          <div class="col-md-12">
+            <b-pagination
+              v-model="page"
+              :total-rows="question.totalItems"
+              :per-page="pageSize"
+              prev-text="Prev"
+              next-text="Next"
+              @change="handlePageChange"
+            ></b-pagination>
+          </div>
+          <!-- <!— 페이징 양식 끝 —> -->
+          <!-- 필터 페이지네이션 -->
         </div>
       </div>
     </div>
@@ -159,58 +183,93 @@
 </template>
 
 <script>
-import QnaDataService from '@/services/QnaDataService';
+import QnaDataService from "@/services/QnaDataService";
 export default {
   data() {
     return {
-      questiones: [],
+      question: [],
       textarea: "",
+      searchSelect: "",
+      searchKeyword: "",
       registerQna: false,
-      successAnswer: false,
-      writeAnswer: true,
       board: false,
-      currentQna:null,
+      editQna: [],
+      // currentQna: null,
+
+      //페이징을 위한 변수 정의
+      page: 1,
+      count: 0,
+      pageSize: 3,
+
+      pageSizes: [3, 6, 9],
     };
   },
   methods: {
     logout() {
-      this.$store.dispatch("auth/logout"); 
+      this.$store.dispatch("auth/logout");
       this.$router.push("/");
     },
-    //답변하기 버튼 클릭시
-    writeQna() {
-      this.registerQna = !this.registerQna;
-      this.successAnswer = false;
+    handlePageChange(value) {
+      this.page = value;
+      this.retrieveQna();
     },
+
+    //전체조회
+    retrieveQna() {
+      QnaDataService.getAll(
+        this.searchSelect,
+        this.searchKeyword,
+        this.page - 1,
+        this.pageSize
+      )
+        .then((response) => {
+          this.question = response.data;
+          console.log(response.data);
+          console.log(this.question);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
     //왼쪽 메뉴바 slide효과
     boardclick() {
       this.board = !this.board;
     },
 
     //답변 등록하기 버튼 클릭시
-     registerAnswer() {
-       if (this.textarea) {
-          this.successAnswer = true;
-          this.writeAnswer = false;
-          QnaDataService.update(this.currentQna.qno, this.currentQna)
-      // 성공하면 then() 결과가 전송됨
-      .then(response => {
-        console.log(response.data);
-        alert("답변이 완료되었습니다.");
-      })
-      // 실패하면 .catch() 에러메세지가 전송됨
-      .catch(e => {
-        console.log(e);
-      });
-       }
-    else{
+    registerAnswer() {
+      if (this.editQna.answer != null) {
+        QnaDataService.update(this.editQna.qno, this.editQna)
+          .then((response) => {
+            var test = this.editQna;
+            alert(JSON.stringify(test));
+            console.log(response.data);
+            alert("답변이 완료되었습니다.");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else {
         alert("실패");
-       this.successAnswer = false;
+        this.successAnswer = false;
       }
+    },
+
+    //답변하기 버튼 클릭시
+    setActiveNotice(data, index) {
+      this.editQna = data;
+      this.currentIndex = index;
+      this.registerQna = !this.registerQna;
+      this.successAnswer = false;
+      var test = this.editQna;
+      alert(JSON.stringify(test));
+    },
   },
-  //},
-},
-}
+  mounted() {
+    this.retrieveQna();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -244,8 +303,7 @@ button:active {
   border-radius: 20px;
   vertical-align: middle !important;
 }
-.topbar-filter{
-  border-top:none !important;
+.topbar-filter {
+  border-top: none !important;
 }
-
 </style>

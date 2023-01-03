@@ -210,7 +210,6 @@ INSERT INTO TB_USER_ROLE
 VALUES (3, 1);
 
 -- 가라데이터 추가
-INSERT INTO TB_QNA
     VALUES (SQ_QNA.NEXTVAL,
             '김동성',
             'DS@gmail.com',

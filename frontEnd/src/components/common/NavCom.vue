@@ -378,7 +378,7 @@
                     고객센터 <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
-                    <li><a href="/notice">공지사항</a></li>
+                    <li><router-link to="/notice">공지사항</router-link></li>
                     <li><router-link to="/faq">FAQ</router-link></li>
                     <li><router-link to="/addqna">QNA</router-link></li>
                   </ul>
