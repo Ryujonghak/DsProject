@@ -78,18 +78,6 @@
                       <p>{{ data.username }}</p>
                     </div>
                     <div class="col-xs-6">
-                      <p>비밀번호 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>{{ data.password }}</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>비밀번호 질문 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>{{ data.question }}</p>
-                    </div>
-                    <div class="col-xs-6">
                       <p>비밀번호 질문 확인 :</p>
                     </div>
                     <div class="col-xs-6">
@@ -120,7 +108,7 @@
                   </div>
                 </div>
                 <div class="col-xs-3">
-                  <a href="/userInfoEdit" class="editbtn col-xs-12">수정</a>
+                  <router-link :to="'/userInfoAdmin/' + data.id" class="editbtn col-xs-12">수정</router-link>
                   <div class="col-xs-12"></div>
                   <a href="#" id="btn-modal" class="delbtn col-xs-12">삭제</a>
                 </div>
@@ -248,30 +236,6 @@ export default {
       // 게시판관리 v-show
       board: false,
       user: [],
-      // {
-      //   id: 97,
-      //   username: "choiari1002",
-      //   password: 12345678,
-      //   question: "좋아하는 색깔은? (대충)",
-      //   answer: "아이보리",
-      //   year: 1994,
-      //   month: 10,
-      //   day: 2,
-      //   email: "choiari1002@naver.com",
-      //   phone: "7787518479",
-      // },
-      // {
-      //   id: 98,
-      //   username: "areerang",
-      //   password: 12345678,
-      //   question: "좋아하는 색깔은? (대충)",
-      //   answer: "크림",
-      //   year: 1994,
-      //   month: 10,
-      //   day: 2,
-      //   email: "areerang@naver.com",
-      //   phone: "01047123456",
-      // },
       currentUser: null,
       searchUsername: "",
       message: "",
@@ -294,10 +258,8 @@ export default {
       this.$router.push("/");
     },
     retrieveUser() {
-      alert("함수는 실행");
       UserService.getAll(this.searchUsername, this.page - 1, this.pageSize)
         .then((response) => {
-          alert("then까지");
           const { user, totalItems } = response.data;
           this.user = user;
           this.count = totalItems;
