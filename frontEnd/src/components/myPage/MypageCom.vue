@@ -159,8 +159,8 @@
                 <div class="col-md-8 col-sm-12 col-xs-12">
                   <!-- 아카이브 나브 -->
                   <div class="topbar-filter">
-                    <a href="/archive"
-                      ><p>나의 아카이브 <span>8</span> in total</p></a
+                    <router-link to ="/archive"
+                      ><p>나의 아카이브 <span>8</span> in total</p></router-link
                     >
                     <a href="userfavoritegrid.html" class="grid"
                       ><i class="ion-grid"></i
