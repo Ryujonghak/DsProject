@@ -75,7 +75,7 @@
                   </colgroup>
                   <thead>
                     <tr>
-                      <th scope="col">No</th>
+                      <th scope="col">NO</th>
                       <th scope="col">username</th>
                       <th scope="col">지점</th>
                       <th scope="col">상영관</th>
@@ -89,14 +89,14 @@
                   </thead>
                   <tbody>
                     <tr v-for="(data, index) in Payment" v-bind:key="index">
-                      <td>{{ data.No }}</td>
+                      <td>{{ data.reservno }}</td>
                       <td>{{ data.username }}</td>
-                      <td>{{ data.THEATER_ID }}</td>
+                      <td>{{ data.scheduleno }}</td>
                       <td>{{ data.SCREEN }}</td>
-                      <td>{{ data.START_TIME }}</td>
-                      <td>{{ data.movieNm }}</td>
+                      <td>{{ data.starttime }}</td>
+                      <td>{{ data.movienm }}</td>
                       <td>{{ data.seatNo }}</td>
-                      <td>{{ data.cnt }}</td>
+                      <td>{{ data.count }}</td>
                       <td>{{ data.price }}</td>
                       <!-- <td>{{ data.paidDate }}</td> -->
                     </tr>
@@ -117,15 +117,6 @@ export default {
     data() {
         return {
             board: false,
-            Payment:[{
-                No: 1,
-                username: "forbob",
-                movieNm: "아바타:물의길",
-                seatNo: "20D",
-                cnt: "2",
-                price: "30,000",
-                paidDate:"2022-12-28"
-            }]
         }
     },
     methods: {
@@ -168,5 +159,11 @@ button {
 button:active {
   outline: none !important;
   box-shadow: none !important;
+}
+
+.user-hero {
+  height: 385px;
+  // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat;
 }
 </style>

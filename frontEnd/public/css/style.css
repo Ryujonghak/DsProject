@@ -5786,6 +5786,7 @@ ul {
 .user-hero {
   height: 385px;
   background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
+  /* background: url("../../src/assets/images_kang/Components/common/Navcom/back-img.jpg") no-repeat; */
 }
 .user-hero .hero-ct {
   padding-top: 225px;
