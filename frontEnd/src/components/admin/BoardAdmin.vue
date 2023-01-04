@@ -62,14 +62,13 @@
           </div>
           <!-- <!— 왼쪽 메뉴바 끝 —> -->
           <div class="col-md-9 col-sm-12 col-xs-12">
-            <div class="topbar-filter">
-              <!-- <h5 style="justify-content:flex-start !important; color: aliceblue; margin-right: 1%;">sort by:</h5> -->
+            <!-- <div class="topbar-filter">
               <h5 style="color: aliceblue">sort by:</h5>
               <select>
                 <option value="range">-- Choose option --</option>
                 <option value="saab">-- Choose option 2--</option>
               </select>
-            </div>
+            </div> -->
 
             <!-- 전체정렬 -->
 
