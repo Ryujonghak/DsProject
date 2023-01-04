@@ -111,7 +111,7 @@ public class QnaController {
     }
 
     @DeleteMapping("/qna/deletion/{qid}")
-    public ResponseEntity<Object> deleteQna(@PathVariable int qid) {
+    public ResponseEntity<Object> delete(@PathVariable int qid) {
 
         try {
             boolean bSuccess = qnaService.removeById(qid);

@@ -41,7 +41,7 @@ public class DSCineController {
     DSCineService dsCineService;
 
 
-//    http://localhost:8000/api/boxoffice/?movienm=영웅
+    //    http://localhost:8000/api/boxoffice/?movienm=영웅
     @GetMapping("/boxoffice")
     public ResponseEntity<Object> getBoxOfficeAll(@RequestParam(required = false) String movienm,
                                                   @RequestParam(defaultValue = "0") int page,
@@ -54,7 +54,7 @@ public class DSCineController {
 //           PAGE 객체 정의
             Page<BoxOffice> boxOfficePage;
 
-            if(movienm == null) {
+            if (movienm == null) {
                 boxOfficePage = dsCineService.findallBoxOffice(pageable); // 페이징 처리되는 findAll()
             } else {
 //            2) dname 에 값이 있을 경우 : 부서명 like 검색
@@ -90,8 +90,7 @@ public class DSCineController {
     @GetMapping("/movie")
     public ResponseEntity<Object> findbyMovieNm(@RequestParam(required = false) String movienm,
                                                 @RequestParam(defaultValue = "0") int page,
-                                                @RequestParam(defaultValue = "10") int size)
-    {
+                                                @RequestParam(defaultValue = "10") int size) {
 
         try {
 //          Pageable객체 정의
@@ -100,7 +99,7 @@ public class DSCineController {
 //           PAGE 객체 정의
             Page<MovieDetail> movieDetailpage;
 
-            if(movienm == null) {
+            if (movienm == null) {
                 movieDetailpage = dsCineService.findallMovieDetail(pageable); // 페이징 처리되는 findAll()
             } else {
 //            2) dname 에 값이 있을 경우 : 부서명 like 검색
@@ -108,7 +107,7 @@ public class DSCineController {
             }
 //            movieDetailpage = dsCineService.findAllByMovienmContaining(movienm, pageable);
             // MAP에 넣어서 Client에 전송.
-            Map<String,Object> response = new HashMap<>();
+            Map<String, Object> response = new HashMap<>();
             response.put("MovieDetail", movieDetailpage.getContent());
             response.put("currentPage", movieDetailpage.getNumber());
             response.put("totalItems", movieDetailpage.getTotalElements());
@@ -133,8 +132,7 @@ public class DSCineController {
     @GetMapping("/movie/cd")
     public ResponseEntity<Object> findbyMovieCd(@RequestParam(required = false) String moviecd,
                                                 @RequestParam(defaultValue = "0") int page,
-                                                @RequestParam(defaultValue = "10") int size)
-    {
+                                                @RequestParam(defaultValue = "10") int size) {
 
         try {
 //          Pageable객체 정의
@@ -143,7 +141,7 @@ public class DSCineController {
 //           PAGE 객체 정의
             Page<MovieDetail> movieDetailpage;
 
-            if(moviecd == null) {
+            if (moviecd == null) {
                 movieDetailpage = dsCineService.findallMovieDetail(pageable); // 페이징 처리되는 findAll()
             } else {
 //            2) dname 에 값이 있을 경우 : 부서명 like 검색
@@ -151,7 +149,7 @@ public class DSCineController {
             }
 //            movieDetailpage = dsCineService.findAllByMovienmContaining(movienm, pageable);
             // MAP에 넣어서 Client에 전송.
-            Map<String,Object> response = new HashMap<>();
+            Map<String, Object> response = new HashMap<>();
             response.put("MovieDetail", movieDetailpage.getContent());
             response.put("currentPage", movieDetailpage.getNumber());
             response.put("totalItems", movieDetailpage.getTotalElements());
@@ -184,7 +182,7 @@ public class DSCineController {
 //           PAGE 객체 정의
             Page<BoxOffice> boxOfficePage;
 
-            if(moviecd == null) {
+            if (moviecd == null) {
                 boxOfficePage = dsCineService.findallBoxOffice(pageable); // 페이징 처리되는 findAll()
             } else {
 //            2) dname 에 값이 있을 경우 : 부서명 like 검색
@@ -217,7 +215,7 @@ public class DSCineController {
     public ResponseEntity<Object> findAllMovieList() {
         try {
             List<MovieDetail> movieDetailList = dsCineService.findAll();
-            if(movieDetailList.isEmpty()) {
+            if (movieDetailList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
                 return new ResponseEntity<>(movieDetailList, HttpStatus.OK);
@@ -226,7 +224,6 @@ public class DSCineController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
 
 //    @GetMapping("/movie/all")
@@ -271,6 +268,44 @@ public class DSCineController {
 //        }
 //    }
 
+    @PostMapping("/movie")
+    public ResponseEntity<Object> addMovie(@RequestBody MovieDetail movieDetail) {
+        try {
+            MovieDetail newMovieDetail = dsCineService.saveMoiveDetail(movieDetail);
+
+            return new ResponseEntity<>(newMovieDetail, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/movie/{id}")
+    public ResponseEntity<Object> updateMovie(@PathVariable Integer id, @RequestBody MovieDetail movieDetail) {
+        try {
+            MovieDetail newMovieDetail = dsCineService.saveMoiveDetail(movieDetail);
+
+            return new ResponseEntity<>(newMovieDetail, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/movie/deletion/{id}")
+    public ResponseEntity<Object> deleteMovie(@PathVariable Integer id) {
+        try {
+            boolean bSuccess = dsCineService.removeById(id);
+
+            if (bSuccess == true) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
-
-
