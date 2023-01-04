@@ -289,7 +289,7 @@
                         </div>
                         <div
                           class="mv-user-review-item"
-                          v-for="(data, index) in review"
+                          v-for="(data, index) in review.review"
                           :key="index"
                         >
                           <div class="user-infor">
@@ -311,12 +311,12 @@
                                 ></span>
                               </div>
                               <p class="time" style="fontsize: 100%">
-                                {{ data.username }}
+                                {{ data.rwuser }}
                               </p>
                             </div>
                           </div>
                           <p style="margin-top: 2%">
-                            {{ data.content }}
+                            {{ data.rucontent }}
                           </p>
                         </div>
                         <!-- FIXME: 페이징 처리 고민중 -->
@@ -411,6 +411,7 @@
 /* eslint-disable */
 import custom from "@/assets/js/custom.js";
 import MovieDataService from "@/services/MovieDataService";
+import ReviewDataService from "@/services/ReviewDataService";
 
 export default {
   mounted() {
@@ -419,6 +420,7 @@ export default {
     // $route 객체 : 주로 url 매개변수 정보들이 있음
     // router/index.js 상세페이지 url의 매개변수명 : :moviecd
     this.getMovie(this.$route.params.moviecd);
+    this.getReview(this.$route.params.moviecd);
     // this.cutNames();
   },
   data() {
@@ -466,15 +468,23 @@ export default {
       userStarRaing: 3,
       tempImgUrl: [],
       imageUrlLength: 0,
+
+      // 페이징을 위한 변수 정의
+      page: 1, // 현재 페이지
+      count: 0, // 전체 데이터 건수
+      pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+
+      pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
     };
   },
   methods: {
     // 영화코드(moviecd)로 조회 요청하는 함수
     getMovie(moviecd) {
-      MovieDataService.getMovieDetail(moviecd)
+      MovieDataService.getMovieDetail(moviecd, this.page - 1, this.pageSize)
         .then((response) => {
           this.movie = response.data.MovieDetail[0];
           console.log(response.data);
+          // alert(this.movie);
 
           this.movie.actor = this.movie.actor.split(",");
           this.movie.cast = this.movie.cast.split(",");
@@ -488,6 +498,42 @@ export default {
           this.starRating = Math.floor(this.movie.raiting);
         })
         .catch((e) => {
+          console.log(e);
+        });
+    },
+    getReview(moviecd) {
+      ReviewDataService.getBycode(moviecd, this.page - 1, this.pageSize)
+        .then((response) => {
+          this.review = response.data;
+          console.log(response.data);
+          // alert(response.data);
+
+          var test = this.review;
+          alert(JSON.stringify(test));
+        })
+        .catch((e) => {
+          alert("리뷰 실패");
+          console.log(e);
+        });
+    },
+    saveReview() {
+      let data = {
+        rating: this.rurating,
+        content: this.rucontent,
+      };
+
+      // insert 요청 함수 호출
+      ReviewDataService.create(data)
+        .then((response) => {
+          this.review.rid = response.data.rid;
+          console.log(response.data);
+          // this.submitted = true;
+          alert("ㄹㅣ뷰 저장")
+          getReview(this.$route.params.moviecd)
+;        })
+        // 실패하면 .catch() 결과가 전송됨
+        .catch((e) => {
+          alert("리뷰저장 실패")
           console.log(e);
         });
     },
@@ -524,28 +570,6 @@ export default {
     },
     likeSave() {
       alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
-    },
-    // FIXME: 새로운 리뷰 저장 함수
-    saveReview() {
-      // 임시 객체 변수 -> springboot 전송a
-      // 백데이터에 우리가 새로 받은 userStarRaing, 넣어주기
-      // BUT 그렇다면 username, movieCode 등은 자동으로 넘어갈 수 있는지
-      let data = {
-        rating: this.userStarRaing,
-        content: this.userReview,
-      };
-
-      // insert 요청 함수 호출
-      DeptDataService.create(data)
-        .then((response) => {
-          this.dept.dno = response.data.dno;
-          console.log(response.data);
-          this.submitted = true;
-        })
-        // 실패하면 .catch() 결과가 전송됨
-        .catch((e) => {
-          console.log(e);
-        });
     },
   },
 };
