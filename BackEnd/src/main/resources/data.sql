@@ -8,8 +8,8 @@ VALUES (SQ_ROLE.NEXTVAL, 'ROLE_ADMIN', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI
 -- User FakeData 추가
 INSERT INTO TB_USER
 VALUES (SQ_USER.NEXTVAL,
-        'forbob@naver.com',
         'forbob',
+        'forbob@naver.com',
         '$2a$10$TG1a5ywSrGNgf7/fFH.m0.EdTzHax8AGYNeAr8aIseF3DKyO0lDti',
         01012345678,
         1995,
@@ -26,8 +26,8 @@ VALUES (1, 2);
 
 INSERT INTO TB_USER
 VALUES (SQ_USER.NEXTVAL,
-        'ryu@naver.com',
         'ryu',
+        'ryu@naver.com',
         '$2a$10$TG1a5ywSrGNgf7/fFH.m0.EdTzHax8AGYNeAr8aIseF3DKyO0lDti',
         01012345678,
         1995,
@@ -44,8 +44,8 @@ VALUES (2, 2);
 
 INSERT INTO TB_USER
 VALUES (SQ_USER.NEXTVAL,
-        'kang@naver.com',
         'kang',
+        'kang@naver.com',
         '$2a$10$TG1a5ywSrGNgf7/fFH.m0.EdTzHax8AGYNeAr8aIseF3DKyO0lDti',
         01012345678,
         1995,
@@ -110,7 +110,7 @@ VALUES (SQ_QNA.NEXTVAL,
 INSERT INTO TB_REVIEW
 VALUES (SQ_REVIEW.NEXTVAL,
         'forbob',
-        202301040900,
+        230104,
         '20225061',
         '아바타: 물의 길',
         null,
@@ -123,7 +123,7 @@ VALUES (SQ_REVIEW.NEXTVAL,
 INSERT INTO TB_REVIEW
 VALUES (SQ_REVIEW.NEXTVAL,
         '류종학',
-        202301040914,
+        230104,
         '20225061',
         '아바타: 물의 길',
         null,
