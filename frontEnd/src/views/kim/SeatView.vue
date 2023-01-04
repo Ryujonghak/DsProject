@@ -610,10 +610,10 @@
                         할인금액 <span style="float: right; margin-right: 10px;">0 원</span>
                       </div>
                       <div style="width: 100%; background-color: #252A34; height: 50px; border-bottom: 1px solid gray; color: white; line-height:50px; padding-left: 10px;">
-                        결제금액 <span style="float: right; margin-right: 10px;">{{ (adultcount * 14000)  + (teencount * 11000)}} 원</span>
+                        결제금액 <span style="float: right; margin-right: 10px;" >{{ (adultcount * 100)  + (teencount * 100)}} 원</span>
                       </div>
                       
-                      <button style="width: 100%;background-color: #845bcb; height: 70px; border: 0; color: black; font-size: 20px;">
+                      <button v-on:click="requestPay" style="width: 100%;background-color: #845bcb; height: 70px; border: 0; color: black; font-size: 20px;">
                         결 제 하 기
                       </button>
                      </div>
@@ -664,6 +664,8 @@
         열다섯살 : false,
         전체이용가: true,
 
+        amount : 100, // 임시 결제 금액
+        
 
         결제하기 : false, // 좌석숫자랑 인원수랑 맞으면 true로 바뀜
         adultcount: 0, //  성인 인원수 카운트
@@ -1007,6 +1009,35 @@
           this.순서 += j;
         }
       },
+      requestPay: function () {
+      //1. 객체 초기화 (가맹점 식별코드 삽입)
+      var IMP = window.IMP;
+      IMP.init("imp03367585");
+      //3. 결제창 호출
+      IMP.request_pay(
+        {
+          pg: "html5_inicis",
+          pay_method: "card",
+          merchant_uid: "merchant_" + new Date().getTime(),
+          name: "영화티켓",
+          amount: this.amount,
+          buyer_tel: "01077532889",
+          buyer_name: "홍길동",
+          buyer_email: "gildong@gmail.com",
+
+        },
+        function (rsp) {
+          //콜백 함수
+          if (rsp.success) {
+            //결제 성공
+			alert("결제성공")
+          } else {
+            //결제 실패
+			alert("결제실패")
+          }
+        }
+      );
+    },
     },
   }
   </script>
@@ -1066,9 +1097,6 @@
     border-radius: 8px;
     padding: 20px;
   }
-  
- 
-  
   
   .seat {
     position: relative;
