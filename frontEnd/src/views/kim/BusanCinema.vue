@@ -113,19 +113,19 @@
                      <p style="margin: 0; margin-top: 10px; color: white; font-size: 18px; font-weight: bold;">부산 금정구 중앙대로 1607 (부곡동)</p>
                     </div>
 
-                    <button @click="mapopen()" style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; height: 1px">
+                    <button @click="mapopen()"   style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; height: 1px">
                         <div style="margin-top: 20px; margin-left: 20px; width: 80px; height: 80px; background-color: white; border-radius: 40px;">
                             <img style="width: 50px;  margin-top: 15px; margin-bottom: 20px;" src="@/assets/images_kim/Views/ModalView/free-icon-map-1321246.png" alt="">
                         </div>
                         <span style="font-size: 18px; position: absolute; top: 50px; right: -140px;">지도</span>
                     </button>
-                    <button @click="busopen()" style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; left: 130px; height: 1px;">
+                    <button @click="busopen()"   style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; left: 140px; height: 1px;">
                         <div style="margin-top: 20px; margin-left: 20px; width: 80px; height: 80px; background-color: white; border-radius: 40px;">
                             <img style="width: 50px;  margin-top: 15px; margin-bottom: 20px;" src="@/assets/images_kim/Views/ModalView/free-icon-bus-4274245.png" alt="">
                         </div>
                         <span style="font-size: 18px; position: absolute; top: 50px; right: -180px;">대중교통</span>
                     </button>
-                    <button @click="caropen()" style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; left: 300px; height: 1px;">
+                    <button @click="caropen()"  style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; left: 310px; height: 1px;">
                         <div style="margin-top: 20px; margin-left: 20px; width: 80px; height: 80px; background-color: white; border-radius: 40px;">
                             <img style="width: 50px; margin-top: 15px; margin-bottom: 20px;" src="@/assets/images_kim/Views/ModalView/free-icon-car-635651.png" alt="">
                         </div>
@@ -204,9 +204,10 @@ export default {
       this.map = false;
     },
   },
+
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
