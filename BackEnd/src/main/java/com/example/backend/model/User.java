@@ -104,6 +104,8 @@ public class User extends BaseTimeEntity {
         this.role = role;
     }
 
+
+
     public User update(String name) {
         this.username = username;
 

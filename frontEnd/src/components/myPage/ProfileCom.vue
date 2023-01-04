@@ -328,8 +328,9 @@ export default {
       userService
         .getUserUsername(username)
         .then((response) => {
+          this.User = response.data;
           this.CurrentUser = response.data;
-          console.log(this.CurrentUser);
+          console.log(this.user);
           // console.log(response.data);
         })
         .catch((err) => console.log(err));
@@ -364,10 +365,11 @@ export default {
     // 회원정보수정
     updateUserInfo(id, changePwd, user) {
       alert("클릭")
-      console.log(this.CurrentUser.username);
-      id = this.CurrentUser.username;
-      changePwd = true;
-      user = this.CurrentUser;
+      console.log(this.CurrentUser);
+      id = this.CurrentUser.id;
+      changePwd = false;
+      this.User = this.CurrentUser;
+      user = this.User;
       userService
         .update(id, changePwd, user)
         .then((response) => {

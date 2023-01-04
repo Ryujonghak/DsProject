@@ -33,6 +33,12 @@ class UserService {
       email: user.email,
       password: user.password,
       role: [user.role],
+      phone : user.phone,
+      year : user.year,
+      month : user.month,
+      day : user.day,
+      name: user.name,
+      answer: user.answer
     };
 
     console.log(userData);
@@ -47,12 +53,12 @@ class UserService {
       password: user.password,
       role: [user.role[0].name],
       changePwd: changePwd,
-    //   phone : user.phone,
-    //   year : user.year,
-    //   month : user.month,
-    //   day : user.day,
-    //   name: user.name,
-    //   answer: user.answer
+      phone : user.phone,
+      year : user.year,
+      month : user.month,
+      day : user.day,
+      name: user.name,
+      answer: user.answer
     };
 
     console.log(userData);

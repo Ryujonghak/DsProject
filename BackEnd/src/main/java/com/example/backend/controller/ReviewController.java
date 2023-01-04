@@ -23,8 +23,8 @@ public class ReviewController {
 
     @GetMapping("/review")
     public ResponseEntity<Object> getAll(@RequestParam(required = false) String movienm,
-                                           @RequestParam(defaultValue = "0") int page,
-                                           @RequestParam(defaultValue = "3") int size) {
+                                         @RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
             Page<Review> reviewPage;
@@ -53,12 +53,12 @@ public class ReviewController {
     }
 
     @GetMapping("/review/movienm")
-    public ResponseEntity<Object> findAllByMovienmOrderByRid(@RequestParam(required = false) String moviecd,
-                                         @RequestParam(defaultValue = "0") int page,
-                                         @RequestParam(defaultValue = "3") int size) {
+    public ResponseEntity<Object> findAllByMovienmOrderByRid(@RequestParam(required = false) String movienm,
+                                                             @RequestParam(defaultValue = "0") int page,
+                                                             @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Review> reviewPage = reviewService.findAllByMovienmOrderByRid(moviecd, pageable);
+            Page<Review> reviewPage = reviewService.findAllByMovienmOrderByRid(movienm, pageable);
 
 
             Map<String, Object> response = new HashMap<>();
@@ -77,6 +77,40 @@ public class ReviewController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/review/moviecd")
+    public ResponseEntity<Object> findAllByMoviecd(@RequestParam(required = false) String moviecd,
+                                                @RequestParam(defaultValue = "0") int page,
+                                                @RequestParam(defaultValue = "3") int size) {
+        try {
+            Pageable pageable = PageRequest.of(page, size);
+            Page<Review> reviewPage;
+            if (moviecd == null) {
+//                moivecd 변수 데이터가 없을 경우
+                reviewPage = reviewService.findAll(pageable);
+            } else {
+//                moivecd 변수 데이터가 있을 경우
+                reviewPage = reviewService.findAllByMoviecd(moviecd, pageable);
+            }
+
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("review", reviewPage.getContent());
+            response.put("currentPage", reviewPage.getNumber());
+            response.put("totalItems", reviewPage.getTotalElements());
+            response.put("totalPages", reviewPage.getTotalPages());
+
+            if (reviewPage.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @PostMapping("/review")
     public ResponseEntity<Object> create(@RequestBody Review review) {

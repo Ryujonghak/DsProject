@@ -12,6 +12,12 @@ public class ReviewService {
     @Autowired
     ReviewRepository reviewRepository;
 
+    public Page<Review> findAll(Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAll(pageable);
+
+        return reviewPage;
+    }
+
     public Page<Review> findAllByMovienmContainingOrderByRid(String movienm, Pageable pageable) {
         Page<Review> reviewPage = reviewRepository.findAllByMovienmContainingOrderByRid(movienm, pageable);
 
@@ -24,8 +30,8 @@ public class ReviewService {
         return reviewPage;
     }
 
-    public Page<Review> findByMoviecd(String moviecd, Pageable pageable) {
-        Page<Review> reviewPage = reviewRepository.findByMoviecd(moviecd, pageable);
+    public Page<Review> findAllByMoviecd(String moviecd, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByMoviecd(moviecd, pageable);
 
         return reviewPage;
     }

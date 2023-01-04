@@ -48,12 +48,12 @@ class AuthService {
       email: user.email,
       password: user.password,
       username: user.username,
-      phonenumber: user.phonenumber,
-      birthyy: user.birthyy,
-      birthmm: user.birthmm,
-      birthdd: user.birthdd,
+      phone : user.phone,
+      year : user.year,
+      month : user.month,
+      day : user.day,
       name: user.name,
-      pwdanswer: user.pwdanswer,
+      answer: user.answer
     };
 
     return http.post('/auth/signup', userData);
