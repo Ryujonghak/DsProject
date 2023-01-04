@@ -11,10 +11,10 @@
                 <div style="position: relative;">
                   
                   <div v-show="모달창">
-                    <div style="background-color: white; position: absolute; top: 100px; left: 385px; width: 450px; height: 480px; z-index: 30;">
-                      <div style="height: 70px; background-color: #503396;">
+                    <div style="background-color: white; position: absolute; top: 130px; left: 385px; width: 450px; height: 480px; z-index: 30; border-radius: 30px 30px 20px 20px;">
+                      <div style="height: 70px; background-color: #503396;border-radius: 20px 20px 0 0;">
                         <span style="width: 387px; float: left; height: 70px; text-align: center;line-height: 70px; color: white; font-size: 24px;">아바타: 물의 길 2022</span>
-                        <button @click="model()" style="width: 40px; height: 40px; float: right; margin-right: 13px; border: 0;  background-color: #503396;">
+                        <button @click="model()" style="width: 40px; height: 40px; float: right; margin-right: 13px; border: 0;  background-color: #503396;border-radius: 30px 40px 20px 20px;">
                           <img style="margin-top: 21px;" src="@/assets/images_kim/Views/ModalView/xx.png" alt="">
                         </button>
                       </div>

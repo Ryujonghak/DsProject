@@ -281,7 +281,7 @@
                       <ul class="dropdown-menu level2">
                         <li><router-link to="/KasanCinema">가산 디지털</router-link></li>
                         <li><router-link to="/GangdongCinema">강동</router-link></li>
-                        <li><router-link to="">건대 입구</router-link></li>
+                        <li><router-link to="/KonkukCinema">건대 입구</router-link></li>
                       </ul>
                     </li>
                     <li class="dropdown">
