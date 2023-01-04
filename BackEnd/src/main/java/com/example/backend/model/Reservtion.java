@@ -40,7 +40,7 @@ public class Reservtion {
     private String username;
 
     @Column(columnDefinition = "NUMBER")
-//    상영스케쥴ID (참조테이블: TB_SCHEDULE)
+//    상영스케쥴 ID (참조테이블: TB_SCHEDULE)
     private Integer scheduleno;
 
     @Column(columnDefinition = "VARCHAR2(255)")
