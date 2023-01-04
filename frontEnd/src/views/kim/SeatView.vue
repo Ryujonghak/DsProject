@@ -621,6 +621,11 @@
                   </div>
                 </div>
                 <!-- 이건 좌석 -->
+                <div v-show="결제후">
+                  <div style=" width: 1170px; height: 705px; position: relative;">
+                     
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -662,6 +667,8 @@
         열두살 : false,
         열다섯살 : false,
         전체이용가: true,
+
+        결제후: false,
 
         amount : 100, // 임시 결제 금액
         
@@ -836,7 +843,7 @@
             this.selectsE[tempVal2 - 1] = 1;
           }
         }
-        this.결제하기 = false;
+        this.결제하기 = true;
       },
       adultmins() {
         if (this.adultcount == 0) {
@@ -846,6 +853,9 @@
         }
         else {
           this.adultcount--;
+          if((this.teencount + this.adultcount) == this.selected.length) {
+            this.결제하기 = true;
+          }
         }
       },
       adultplus() {
@@ -863,6 +873,9 @@
         }
         else {
           this.teencount--;
+          if((this.teencount + this.adultcount) == this.selected.length) {
+            this.결제하기 = false;
+          }
         }
       },
       teenplus() {
