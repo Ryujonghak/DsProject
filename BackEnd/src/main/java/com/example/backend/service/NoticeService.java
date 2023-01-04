@@ -8,54 +8,44 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class NoticeService {
     @Autowired
     NoticeRepository noticeRepository;
 
-    public List<Notice> findAllList() {
+    public List<Notice> findAll() {
         List<Notice> noticeList = noticeRepository.findAll();
 
         return noticeList;
     }
 
-    public Page<Notice> findAllByTitleContaining(String title, Pageable pageable) {
-        Page<Notice> noticePage = noticeRepository.findAllByTitleContaining(title, pageable);
+    public Page<Notice> findAllByNtitleContainingOrderByInsertTime(String ntitle, Pageable pageable) {
+        Page<Notice> noticePage = noticeRepository.findAllByNtitleContainingOrderByInsertTime(ntitle, pageable);
 
         return noticePage;
     }
 
-    public Page<Notice> findAllByContentContaining(String type, Pageable pageable) {
-        Page<Notice> noticePage = noticeRepository.findAllByContentContaining(type, pageable);
+    public Page<Notice> findAllByNtypeContainingOrderByInsertTime(String ntype, Pageable pageable) {
+        Page<Notice> noticePage = noticeRepository.findAllByNtypeContainingOrderByInsertTime(ntype, pageable);
 
         return noticePage;
-    }
-
-    public Optional<Notice> findByNo(Long no) {
-        Optional<Notice> noticeOptional = noticeRepository.findByNo(no);
-
-        return noticeOptional;
-    }
-
-    public Optional<Notice> findByTitle(String title) {
-        Optional<Notice> noticeOptional = noticeRepository.findByTitle(title);
-
-        return noticeOptional;
     }
 
     public Notice save(Notice notice) {
-        Notice notice2 = noticeRepository.save(notice);
+        Notice newNotice = noticeRepository.save(notice);
 
-        return notice2;
+        return newNotice;
     }
-    public boolean removeId(Long no) {
-        if(noticeRepository.existsById(no) == true) {
-            noticeRepository.deleteById(no);
+
+    public boolean removeById(Integer nno) {
+//        nno가 존재한다면
+        if(noticeRepository.existsById(nno) == true) {
+//            삭제처리
+            noticeRepository.deleteById(nno);
             return true;
-        }
-        else  {
+//            nno가 존재하지 않는다면
+        } else {
             return false;
         }
     }

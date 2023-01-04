@@ -12,9 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -23,32 +21,18 @@ public class NoticeController {
     @Autowired
     NoticeService noticeService;
 
-//    @GetMapping("/notice")
-//    public ResponseEntity<Object> getAllList() {
-//        try {
-//            List<Notice> noticeList = noticeService.findAllList();
-//            if (noticeList.isEmpty()) {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            } else {
-//                return new ResponseEntity<>(noticeList, HttpStatus.OK);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
     @GetMapping("/notice")
-    public ResponseEntity<Object> getPage1(@RequestParam(defaultValue = "title") String searchSelect,
-                                           @RequestParam(required = false) String searchKeyword,
-                                           @RequestParam(defaultValue = "0") int page,
-                                           @RequestParam(defaultValue = "3") int size) {
+    public ResponseEntity<Object> pageGetAll(@RequestParam(defaultValue = "title") String searchSelect,
+                                              @RequestParam(required = false) String searchKeyword,
+                                              @RequestParam(defaultValue = "0") int page,
+                                              @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
             Page<Notice> noticePage;
-            if (searchSelect.equals("content")) {
-                noticePage = noticeService.findAllByContentContaining(searchKeyword, pageable);
+            if (searchSelect.equals("title")) {
+                noticePage = noticeService.findAllByNtitleContainingOrderByInsertTime(searchKeyword, pageable);
             } else {
-                noticePage = noticeService.findAllByTitleContaining(searchKeyword, pageable);
+                noticePage = noticeService.findAllByNtypeContainingOrderByInsertTime(searchKeyword, pageable);
             }
             Map<String, Object> response = new HashMap<>();
             response.put("notice", noticePage.getContent());
@@ -62,34 +46,7 @@ public class NoticeController {
                 return new ResponseEntity<>(response, HttpStatus.OK);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/notice/{no}")
-    public ResponseEntity<Object> Optional_findByQno(@PathVariable Long no) {
-        try {
-            Optional<Notice> noticeOptional = noticeService.findByNo(no);
-            if (noticeOptional.isPresent()) {
-                return new ResponseEntity<>(noticeOptional.get(), HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/notice/{title}")
-    public ResponseEntity<Object> getNotice(@PathVariable String title) {
-        try {
-            Optional<Notice> noticeOptional = noticeService.findByTitle(title);
-            if (noticeOptional.isPresent()) {
-                return new ResponseEntity<>(noticeOptional.get(), HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
+            log.debug(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -97,9 +54,9 @@ public class NoticeController {
     @PostMapping("/notice")
     public ResponseEntity<Object> create(@RequestBody Notice notice) {
         try {
-            Notice notice2 = noticeService.save(notice);
+            Notice newNotice = noticeService.save(notice);
 
-            return new ResponseEntity<>(notice2, HttpStatus.OK);
+            return new ResponseEntity<>(newNotice, HttpStatus.OK);
         } catch (Exception e) {
             log.debug(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -107,11 +64,11 @@ public class NoticeController {
     }
 
     @PutMapping("/notice/{no}")
-    public ResponseEntity<Object> update(@PathVariable Long no, @RequestBody Notice notice) {
+    public ResponseEntity<Object> update(@PathVariable Integer nno, @RequestBody Notice notice) {
         try {
-            Notice notice2 = noticeService.save(notice);
+            Notice newNotice = noticeService.save(notice);
 
-            return new ResponseEntity<>(notice2, HttpStatus.OK);
+            return new ResponseEntity<>(newNotice, HttpStatus.OK);
         } catch (Exception e) {
             log.debug(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -119,15 +76,16 @@ public class NoticeController {
     }
 
     @DeleteMapping("/notice/deletion/{no}")
-    public ResponseEntity<Object> delete(@PathVariable Long no) {
+    public ResponseEntity<Object> delete(@PathVariable Integer nno) {
         try {
-            boolean success = noticeService.removeId(no);
+            boolean success = noticeService.removeById(nno);
             if (success) {
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
         } catch (Exception e) {
+            log.debug(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

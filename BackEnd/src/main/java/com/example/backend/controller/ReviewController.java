@@ -12,9 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -23,22 +21,8 @@ public class ReviewController {
     @Autowired
     ReviewService reviewService;
 
-    @GetMapping("/review/list")
-    public ResponseEntity<Object> getAllList() {
-        try {
-            List<Review> reviewList = reviewService.findAllList();
-            if (reviewList.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            } else {
-                return new ResponseEntity<>(reviewList, HttpStatus.OK);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     @GetMapping("/review")
-    public ResponseEntity<Object> getPage1(@RequestParam(required = false) String movienm,
+    public ResponseEntity<Object> getAll(@RequestParam(required = false) String movienm,
                                            @RequestParam(defaultValue = "0") int page,
                                            @RequestParam(defaultValue = "3") int size) {
         try {
@@ -46,9 +30,9 @@ public class ReviewController {
             Page<Review> reviewPage;
             if (movienm == null) {
                 movienm = "";
-                reviewPage = reviewService.findAllByMovienmContainingOrderByRno(movienm, pageable);
+                reviewPage = reviewService.findAllByMovienmContainingOrderByInsertTime(movienm, pageable);
             } else {
-                reviewPage = reviewService.findAllByMovienmContainingOrderByRno(movienm, pageable);
+                reviewPage = reviewService.findAllByMovienmContainingOrderByInsertTime(movienm, pageable);
             }
 
             Map<String, Object> response = new HashMap<>();
@@ -63,64 +47,13 @@ public class ReviewController {
                 return new ResponseEntity<>(response, HttpStatus.OK);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/review/page2")
-    public ResponseEntity<Object> getPage2(@RequestParam(required = false) String username,
-                                           @RequestParam(defaultValue = "0") int page,
-                                           @RequestParam(defaultValue = "3") int size) {
-        try {
-            Pageable pageable = PageRequest.of(page, size);
-            Page<Review> reviewPage = reviewService.findAllByUsernameContaining(username, pageable);
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("review", reviewPage.getContent());
-            response.put("currentPage", reviewPage.getNumber());
-            response.put("totalItems", reviewPage.getTotalElements());
-            response.put("totalPages", reviewPage.getTotalPages());
-
-            if (reviewPage.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            } else {
-                return new ResponseEntity<>(response, HttpStatus.OK);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/review/{moviecd}")
-    public ResponseEntity<Object> Optional_findByQno(@PathVariable Integer moviecd) {
-        try {
-            Optional<Review> reviewOptional = reviewService.findByMoviecd(moviecd);
-            if (reviewOptional.isPresent()) {
-                return new ResponseEntity<>(reviewOptional.get(), HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/review/{username}")
-    public ResponseEntity<Object> getNotice(@PathVariable String username) {
-        try {
-            Optional<Review> reviewOptional = reviewService.findByUsername(username);
-            if (reviewOptional.isPresent()) {
-                return new ResponseEntity<>(reviewOptional.get(), HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
+            log.debug(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PostMapping("/review")
-    public ResponseEntity<Object> addReview(@RequestBody Review review) {
+    public ResponseEntity<Object> create(@RequestBody Review review) {
         try {
             Review newReview = reviewService.save(review);
 
@@ -131,8 +64,8 @@ public class ReviewController {
         }
     }
 
-    @PutMapping("/review/{rno}")
-    public ResponseEntity<Object> updateReview(@PathVariable Long rno, @RequestBody Review review) {
+    @PutMapping("/review/{rid}")
+    public ResponseEntity<Object> update(@PathVariable Integer rid, @RequestBody Review review) {
         try {
             Review newReview = reviewService.save(review);
 
@@ -143,10 +76,10 @@ public class ReviewController {
         }
     }
 
-    @DeleteMapping("/review/delete/{rno}")
-    public ResponseEntity<Object> delete(@PathVariable Long rno) {
+    @DeleteMapping("/review/deletion/{rid}")
+    public ResponseEntity<Object> delete(@PathVariable Integer rid) {
         try {
-            boolean delSuccess = reviewService.reviewDelete(rno);
+            boolean delSuccess = reviewService.removeById(rid);
             if (delSuccess) { // 삭제 성공시
                 return new ResponseEntity<>(HttpStatus.OK); // 성공 메시지 전송
             } else {

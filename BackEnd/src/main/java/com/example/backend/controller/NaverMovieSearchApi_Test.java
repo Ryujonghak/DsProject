@@ -8,7 +8,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NaverMovieSearchApi {
+public class NaverMovieSearchApi_Test {
     public static void main(String[] args) {
         String clientId = "ECUsOezRWjwiHsRw_c7y"; //애플리케이션 클라이언트 아이디
         String clientSecret = "F1j0Ppi1GU"; //애플리케이션 클라이언트 시크릿

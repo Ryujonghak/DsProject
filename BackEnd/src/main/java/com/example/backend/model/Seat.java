@@ -27,20 +27,16 @@ import javax.persistence.*;
 @Where(clause = "DELETE_YN = 'N'")
 @SQLDelete(sql = "UPDATE TB_SEAT SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE THEATERID = ?")
 public class Seat extends BaseTimeEntity{
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_SEAT_GENERATOR")
-//    @Column(columnDefinition = "NUMBER")
-//    private Integer sno;
     @Id
-    @Column(columnDefinition = "VARCHAR2(5)")
-    private String THEATERID;
+    @Column(columnDefinition = "NUMBER")
+//    극장고유번호 (참조테이블: TB_THEATER)
+    private Integer THEATERID;
 
     @Column(columnDefinition = "VARCHAR2(2)")
-    private String SEAT;
-
-    @Column(columnDefinition = "VARCHAR2(30)")
-    private String RESRVUID;
+//    좌석위치
+    private String SEATPOSITION;
 
     @Column(columnDefinition = "VARCHAR2(1)")
-    private String STATUSFLAG;
+//    좌석상태
+    private String SEATSTATUS;
 }

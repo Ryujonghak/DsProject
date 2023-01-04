@@ -25,27 +25,37 @@ import javax.persistence.*;
 @DynamicUpdate
 // soft delete
 @Where(clause = "DELETE_YN = 'N'")
-@SQLDelete(sql = "UPDATE TB_REVIEW SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE RNO = ?")
+@SQLDelete(sql = "UPDATE TB_REVIEW SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE RID = ?")
 public class Review extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE
             , generator = "SQ_REVIEW_GENERATOR"
     )
-    @Column
-    private Long rno;
+    @Column(columnDefinition = "NUMBER")
+//    리뷰순번 ID
+    private Integer rid;
 
-    @Column
-    private Integer moviecd;
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    리뷰작성자 ID
+    private String rwuser;
 
-    @Column
+    @Column(columnDefinition = "NUMBER")
+//    예매고유번호
+    private Integer reservno;
+
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    영화코드
+    private String moviecd;
+
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    영화제목
     private String movienm;
 
-    @Column
-    private String username;
+    @Column(columnDefinition = "NUMBER")
+//    유져평점
+    private Double rurating;
 
-    @Column
-    private String content;
-
-    @Column
-    private Double rating;
+    @Column(columnDefinition = "VARCHAR2(4000)")
+//    유저평
+    private Double rucontent;
 }

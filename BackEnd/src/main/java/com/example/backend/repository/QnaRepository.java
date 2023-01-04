@@ -5,24 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
-/**
- * packageName : com.example.simpledms.repository
- * fileName : QnaRepository
- * author : ryujonghak
- * date : 2022/11/09
- * description :
- * ===========================================================
- * DATE            AUTHOR             NOTE
- * —————————————————————————————
- * 2022/11/09         ryujonghak          최초 생성
- */
 public interface QnaRepository extends JpaRepository<Qna, Integer> {
-    Page<Qna> findAllByTitleContaining(String title, Pageable pageable);
+    //    qTitle(Qna 제목) LIKE 검색
+    Page<Qna> findAllByQtitleContainingOrderByInsertTime(String qtitle, Pageable pageable);
 
-    Page<Qna> findAllByNameContaining(String name, Pageable pageable);
-
-    Optional<Qna>findByName(String name);
+    //    qWriter(Qna 작성자) LIKE 검색
+    Page<Qna> findAllByQwriterContainingOrderByInsertTime(String qwriter, Pageable pageable);
 }
-

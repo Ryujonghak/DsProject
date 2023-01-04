@@ -12,12 +12,12 @@ import javax.persistence.*;
 
 @Entity
 @SequenceGenerator(
-        name = "SQ_RESERV_GENERATOR"
+        name = "SQ_RESERVTION_GENERATOR"
         , sequenceName = "SQ_RESERV"
         , initialValue = 1
         , allocationSize = 1
 )
-@Table(name = "TB_RESERV")
+@Table(name = "TB_RESERVTION")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,34 +25,42 @@ import javax.persistence.*;
 @DynamicUpdate
 // soft delete
 @Where(clause = "DELETE_YN = 'N'")
-@SQLDelete(sql = "UPDATE TB_RESERV SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE RESERVNO = ?")
-public class Reservtion extends BaseTimeEntity {
+@SQLDelete(sql = "UPDATE TB_RESERVTION SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE RESERVNO = ?")
+public class Reservtion {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE
             , generator = "SQ_RESERV_GENERATOR"
     )
-    @Column
-    private Long reservno;
+    @Column(columnDefinition = "NUMBER")
+//    예매고유번호
+    private Integer reservno;
 
-    @Column
-    private String id;
+    @Column(columnDefinition = "VARCHAR2(255)" )
+//    로그인ID (참조테이블: TB_USER)
+    private String username;
 
-    @Column
-    private Integer moviecd;
+    @Column(columnDefinition = "NUMBER")
+//    상영스케쥴ID (참조테이블: TB_SCHEDULE)
+    private Integer scheduleno;
 
-    @Column
-    private Integer scheno;
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    영화코드 (참조테이블: TB_SCHEDULE)
+    private String moviecd;
 
-    @Column
-    private Integer cnt;
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    영화제목 (참조테이블: TB_SCHEDULE)
+    private Integer movienm;
 
-    @Column
-    private String sheetno;
+    @Column(columnDefinition = "NUMBER")
+//    관람인원
+    private Integer count;
 
-    @Column
+    @Column(columnDefinition = "NUMBER")
+//    결제금액
     private Integer price;
 
-    @Column
+    @Column(columnDefinition = "DATE")
+//    결제일시
     private String paiddate;
 
 }

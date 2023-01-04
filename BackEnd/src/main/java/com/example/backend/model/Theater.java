@@ -17,7 +17,7 @@ import javax.persistence.*;
 //        , initialValue = 1
 //        , allocationSize = 1
 //)
-@Table(name = "TB_THEA")
+@Table(name = "TB_THEATER")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,13 +25,15 @@ import javax.persistence.*;
 @DynamicUpdate
 // soft delete
 @Where(clause = "DELETE_YN = 'N'")
-@SQLDelete(sql = "UPDATE TB_THEA SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE MOVIECD = ?")
-public class Theater extends BaseTimeEntity{
+@SQLDelete(sql = "UPDATE TB_THEATER SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE TID = ?")
+public class Theater{
     @Id
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_THEA_GENERATOR")
     @Column(columnDefinition = "NUMBER")
-    private Long tid;
+//    극장고유번호
+    private Integer tid;
 
-    @Column(columnDefinition = "VARCHAR2(100)")
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    극장/상영관명
     private String location;
 }

@@ -11,7 +11,7 @@ import java.util.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class OpenMovieApi {
+public class OpenMovieApi_Test {
     // 상수 설정
     //   - 요청(Request) 요청 변수
     private final String REQUEST_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
@@ -94,7 +94,7 @@ public class OpenMovieApi {
 
     public static void main(String[] args) {
         // API 객체 생성
-        OpenMovieApi api = new OpenMovieApi();
+        OpenMovieApi_Test api = new OpenMovieApi_Test();
         System.out.println(new Date());
         // API 요청
         api.requestAPI();

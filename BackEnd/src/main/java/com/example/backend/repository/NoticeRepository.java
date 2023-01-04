@@ -5,13 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+public interface NoticeRepository extends JpaRepository<Notice, Integer> {
+    //    nTitle(공지사항 제목) LIKE 검색
+    Page<Notice> findAllByNtitleContainingOrderByInsertTime(String ntitle, Pageable pageable);
 
-public interface NoticeRepository extends JpaRepository<Notice, Long> {
-    Optional<Notice> findByNo(Long no);
-    Optional<Notice> findByTitle(String title);
-
-    Page<Notice> findAllByTitleContaining(String title, Pageable pageable);
-    Page<Notice> findAllByContentContaining(String type, Pageable pageable);
-
+    //    nType(공지사항 제목) LIKE 검색
+    Page<Notice> findAllByNtypeContainingOrderByInsertTime(String ntype, Pageable pageable);
 }

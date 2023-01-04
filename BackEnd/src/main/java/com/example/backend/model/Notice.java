@@ -25,24 +25,25 @@ import javax.persistence.*;
 @DynamicUpdate
 // soft delete
 @Where(clause = "DELETE_YN = 'N'")
-@SQLDelete(sql = "UPDATE TB_NOTICE SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE NO = ?")
+@SQLDelete(sql = "UPDATE TB_NOTICE SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE NNO = ?")
 public class Notice extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE
             , generator = "SQ_NOTICE_GENERATOR"
     )
-    @Column
-    private Long no;
+    @Column(columnDefinition = "NUMBER")
+//    공지사항번호
+    private Integer nno;
 
-    @Column
-    private String type;
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    공지사항말머리
+    private String ntype;
 
-    @Column
-    private String title;
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    공지사항제목
+    private String ntitle;
 
-    @Column
-    private String content;
-
-    @Column
-    private String regdate;
+    @Column(columnDefinition = "VARCHAR2(4000)")
+//    공지사항내용
+    private String ncontent;
 }
