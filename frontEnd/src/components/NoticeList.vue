@@ -15,7 +15,7 @@
       </div>
     </div>
     <!-- search 관련 div 시작 -->
-    <div class="container" style="padding: 3%; background: inherit">
+    <div class="container" style="padding: 3%; background: inherit; margin-top: 5%;">
       <fieldset class="search_wrap" id="search_wrap1">
         <select class="ty3" title="검색조건 제목 선택" id="selectCondition1">
           <option value="1" selected>제목</option>
@@ -212,5 +212,10 @@ th {
 }
 td {
   text-align: center !important;
+}
+.common-hero {
+  height: 385px;
+  /* // background: url("../images/uploads/user-hero-bg.jpg") no-repeat; */
+  background: url("../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat !important;
 }
 </style>

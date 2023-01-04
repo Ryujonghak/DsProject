@@ -118,7 +118,7 @@
                         출연진:
                         <a href="#"> {{ data.actor }}</a>
                       </p>
-                      <button class="redbtn" @click="deleteMovie()">삭제</button>
+                      <button class="redbtn" @click="deleteMovie(data)">삭제</button>
                     </div>
                   </div>
                 </div>
@@ -203,17 +203,18 @@ export default {
     },
 
     // delete 버튼 클릭시 실행됨
-    // deleteMovie() {
-    //     MovieDataService.delete(this.data.id)
-    //     .then((response) => {
-    //       console.log(response.data);
-    //       alert("삭제되었습니다.")
-    //       this.$router.push("/movie-admin");
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
+    deleteMovie(data) {
+      this.data = data;
+        MovieDataService.delete(this.data.id)
+        .then((response) => {
+          console.log(response.data);
+          alert("삭제되었습니다.")
+          window.location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
 };
 </script>

@@ -67,15 +67,9 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter">
               <h3 style="color: aliceblue">리뷰 관리</h3>
-              <select id="selectBox" name="selectBox">
-                <!-- <option value="" selected="selected" @click="retrieveMovie">영화 전체</option>
-                <option value="아바타:물의길"  @click="retrieveMovie">아바타:물의길</option>
-                <option value="신비아파트"  @click="retrieveMovie">신비아파트</option>
-                <option value="영웅"  @click="retrieveMovie">영웅</option>  -->
-                <option value="" selected="selected">영화 전체</option>
-                <option value="아바타:물의길">아바타:물의길</option>
-                <option value="신비아파트">신비아파트</option>
-                <option value="영웅">영웅</option>
+              <select id="selectBox" name="selectBox"
+              >
+                <option v-for="(data, index) in movie" v-bind:key="index">{{data.movienm}}</option>
               </select>
             </div>
 
@@ -138,6 +132,7 @@
 
 <script>
 import ReviewDataService from '@/services/ReviewDataService';
+import MovieDataService from "@/services/MovieDataService";
 export default {
   data() {
     return {
@@ -145,6 +140,7 @@ export default {
       selected: "",
       review: [],
       movienm:"",
+      movie:[],
   
 
       //페이징을 위한 변수 정의
@@ -197,9 +193,23 @@ export default {
           console.log(e);
         });
     },
+
+    retrieveMovie() {
+      MovieDataService.getMovieDetailAll2()
+        .then((response) => {
+          const movie = response.data;
+          this.movie = movie;
+          console.log(response.data);
+          // console.log(this.movie);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
   mounted() {
     this.retrieveReview();
+    this.retrieveMovie();
   },
 };
 </script>

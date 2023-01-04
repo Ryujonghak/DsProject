@@ -149,11 +149,9 @@
 import QnaDataService from "@/services/QnaDataService.js";
 import userService from "@/services/user.service";
 
-import email from "@/assets/js/email.js";
 
 export default {
   mounted() {
-    email();
   },
   data() {
     return {
@@ -194,7 +192,7 @@ export default {
           this.qna.qid = response.data.qid;
           console.log(response.data);
           alert("등록이 완료되었습니다");
-          // window.location.reload();
+          window.location.reload();
         })
         // 실패하면 .catch() 에러메세지가 전송됨
         .catch((e) => {
@@ -233,6 +231,7 @@ export default {
   border: 2px solid;
   color: aliceblue;
   padding: 5%;
+  margin-top: 10%;
 }
 .qna {
   background: black;
@@ -269,4 +268,9 @@ tbody {
   margin-top: 3%;
   margin-left: 10%;
 } */
+.common-hero {
+  height: 385px;
+  /* // background: url("../images/uploads/user-hero-bg.jpg") no-repeat; */
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat !important;
+}
 </style>
