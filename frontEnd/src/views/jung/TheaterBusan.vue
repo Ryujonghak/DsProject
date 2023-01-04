@@ -40,147 +40,76 @@
                           <h4>DS CINEMA 부산</h4>
                           <br />
                           <p>
-                            시네마설명..? 서면, 센텀시티, 부산대 총 3개의 관
-                            Tony Stark creates the Ultron Program to protect the
-                            world, but when the peacekeeping program becomes
-                            Earth's mightiest heroes must come together once
-                            again to protect the world from global extinction.
+                            2023년 1월 둘째주 : 01/09(월) ~ 01/13(금)
                           </p>
 
-                          <!-- 상영관 정보 1 -->
-                          <div class="row">
+                          <!-- 전체 상영시간표 시작 -->
+                          <div class="row" v-for="(dataAll, indexAll) in movie" v-bind:key="indexAll">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                               <div class="title-hd-sm">
-                                <h4>서면</h4>
                                 <a href="#" class="time"
-                                  >자세한 영화관정보<i
+                                  >{{ dataAll.movienm }}<i
                                     class="ion-ios-arrow-right"
                                   ></i
                                 ></a>
+                                <h4>dd</h4>
                               </div>
-                              <div class="col-xs-12">
-                                <div class="mvsingle-item ov-item col-xs-4">
-                                  <a
-                                    class="img-lightbox"
-                                    data-fancybox-group="gallery"
-                                    href="images/uploads/image11.jpg"
-                                    ><img
-                                      src="images/uploads/image1.jpg"
-                                      alt=""
-                                  /></a>
-                                  <a
-                                    class="img-lightbox"
-                                    data-fancybox-group="gallery"
-                                    href="images/uploads/image21.jpg"
-                                    ><img
-                                      src="images/uploads/image2.jpg"
-                                      alt=""
-                                  /></a>
-                                  <a
-                                    class="img-lightbox"
-                                    data-fancybox-group="gallery"
-                                    href="images/uploads/image31.jpg"
-                                    ><img
-                                      src="images/uploads/image3.jpg"
-                                      alt=""
-                                  /></a>
-                                </div>
-                                <div class="col-xs-8">
-                                  <h1>약도사진</h1>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                              <!-- 시간표 시작 -->
+                              <div class="movieIng">
+                                <div class="col row">
+                                  <div class="col-ms-12">
+                                    <div class="user-infor col-ms-4">
+                                      <div class="col-xs-2">
+                                        <img
+                                          :src="dataAll.posterurlkm"
+                                          alt="poster"
+                                          class="poster_thumb"
+                                          :href="data"
+                                        />
+                                      </div>
+                                      <div class="col-xs-2 movieInfo">
+                                        <span>
+                                          {{ dataAll.genrenm}}
+                                        </span> 
+                                        <br>
+                                        <span>
+                                          {{ dataAll.showtm}}분,
+                                        </span><br>
+                                        <span>{{dataAll.opendt}}개봉</span>
+                                      </div>
+                                    </div>
 
-                          <!-- 상영관 정보 2 -->
-                          <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                              <div class="title-hd-sm">
-                                <h4>센텀시티</h4>
-                                <a href="#" class="time"
-                                  >자세한 영화관정보<i
-                                    class="ion-ios-arrow-right"
-                                  ></i
-                                ></a>
-                              </div>
-                              <div class="col-xs-12">
-                                <div class="mvsingle-item ov-item col-xs-4">
-                                  <a
-                                    class="img-lightbox"
-                                    data-fancybox-group="gallery"
-                                    href="images/uploads/image11.jpg"
-                                    ><img
-                                      src="images/uploads/image1.jpg"
-                                      alt=""
-                                  /></a>
-                                  <a
-                                    class="img-lightbox"
-                                    data-fancybox-group="gallery"
-                                    href="images/uploads/image21.jpg"
-                                    ><img
-                                      src="images/uploads/image2.jpg"
-                                      alt=""
-                                  /></a>
-                                  <a
-                                    class="img-lightbox"
-                                    data-fancybox-group="gallery"
-                                    href="images/uploads/image31.jpg"
-                                    ><img
-                                      src="images/uploads/image3.jpg"
-                                      alt=""
-                                  /></a>
+                                    <div class="user-infor col-ms-8">
+                                      <div
+                                        class="mv-user-review-item col-xs-2"
+                                      >
+                                      <a href="/">10:30<p>(서면)</p></a>
+                                      <a href="/">10:30<p>(센텀시티)</p></a>
+                                      <a href="/">10:30<p>(부산대)</p></a>
+                                      </div>
+                                      
+                                      <div
+                                        class="mv-user-review-item col-xs-2"
+                                      >
+                                      <a href="/">12:30<p>(서면)</p></a>
+                                      <a href="/">12:30<p>(센텀시티)</p></a>
+                                      <a href="/">12:30<p>(부산대)</p></a>
+                                      </div>
+                                      <div
+                                        class="mv-user-review-item col-xs-2"
+                                      >
+                                      <a href="/">14:30<p>(서면)</p></a>
+                                      <a href="/">14:30<p>(센텀시티)</p></a>
+                                      <a href="/">14:30<p>(부산대)</p></a>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
-                                <div class="col-xs-8">
-                                  <h1>약도사진</h1>
-                                </div>
-                              </div>
+                              </div>  
                             </div>
                           </div>
-
-                          <!-- 상영관 정보 3 -->
-                          <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                              <div class="title-hd-sm">
-                                <h4>부산대</h4>
-                                <a href="#" class="time"
-                                  >자세한 영화관정보<i
-                                    class="ion-ios-arrow-right"
-                                  ></i
-                                ></a>
-                              </div>
-                              <div class="col-xs-12">
-                                <div class="mvsingle-item ov-item col-xs-4">
-                                  <a
-                                    class="img-lightbox"
-                                    data-fancybox-group="gallery"
-                                    href="images/uploads/image11.jpg"
-                                    ><img
-                                      src="images/uploads/image1.jpg"
-                                      alt=""
-                                  /></a>
-                                  <a
-                                    class="img-lightbox"
-                                    data-fancybox-group="gallery"
-                                    href="images/uploads/image21.jpg"
-                                    ><img
-                                      src="images/uploads/image2.jpg"
-                                      alt=""
-                                  /></a>
-                                  <a
-                                    class="img-lightbox"
-                                    data-fancybox-group="gallery"
-                                    href="images/uploads/image31.jpg"
-                                    ><img
-                                      src="images/uploads/image3.jpg"
-                                      alt=""
-                                  /></a>
-                                </div>
-                                <div class="col-xs-8">
-                                  <h1>약도사진</h1>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          <!-- 전체 상영시간표 끝-->
+                       
                         </div>
                       </div>
                     </div>
@@ -189,13 +118,15 @@
                     <div id="aaaa" class="tab review">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
+                          <h4>2023년 1월 둘째주 : 01/09(월) ~ 01/13(금)</h4>
+                          <br />
                           <div class="rv-hd">
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
-
-                            <!-- <div class="topbar-filter">
+                            <div class="topbar-filter">
                               <p>DS CINEMA 서면</p>
-                              <h4>2023년 1월 9일 - 1월 13일</h4>
-                            </div> -->
+                              <h4>20230109 - 20230113</h4>
+                            </div>
+
 
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 서면 ---- 탭 시간표 선택-->
@@ -228,11 +159,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -577,7 +508,15 @@
                     <div id="bbbb" class="tab">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
+                          <h4>2023년 1월 둘째주 : 01/09(월) ~ 01/13(금)</h4>
+                          <br />
                           <div class="rv-hd">
+                            <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
+                            <div class="topbar-filter">
+                              <p>DS CINEMA 센텀시티</p>
+                              <h4>20230109 - 20230113</h4>
+                            </div>
+
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 센텀시티 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
@@ -956,7 +895,15 @@
                     <div id="cccc" class="tab">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
+                          <h4>2023년 1월 둘째주 : 01/09(월) ~ 01/13(금)</h4>
+                          <br />
                           <div class="rv-hd">
+                            <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
+                            <div class="topbar-filter">
+                              <p>DS CINEMA 부산대</p>
+                              <h4>20230109 - 20230113</h4>
+                            </div>
+
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
