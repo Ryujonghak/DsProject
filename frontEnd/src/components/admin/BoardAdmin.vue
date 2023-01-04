@@ -100,10 +100,10 @@
                       v-for="(data, index) in notice.notice"
                       v-bind:key="index"
                     >
-                      <td>{{ data.no }}</td>
-                      <td>{{ data.type }}</td>
-                      <td>{{ data.title }}</td>
-                      <td>{{ data.content }}</td>
+                      <td>{{ data.nno }}</td>
+                      <td>{{ data.ntype }}</td>
+                      <td>{{ data.ntitle }}</td>
+                      <td>{{ data.ncontent }}</td>
                       <td>{{ data.insertTime }}</td>
                       <td>
                         <button
@@ -519,5 +519,10 @@ textarea {
   width: 50%;
   margin-left: 1%;
   margin-top: 6%;
+}
+.user-hero {
+  height: 385px;
+  // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat;
 }
 </style>

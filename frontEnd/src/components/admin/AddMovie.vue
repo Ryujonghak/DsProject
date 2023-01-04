@@ -272,4 +272,9 @@ button:active {
   outline: none !important; 
   box-shadow: none !important;
 }
+.user-hero {
+  height: 385px;
+  // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat;
+}
 </style>

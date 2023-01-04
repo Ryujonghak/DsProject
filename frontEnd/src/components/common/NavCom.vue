@@ -512,7 +512,7 @@ export default {
           this.$store
             .dispatch("auth/login", this.user)
             .then(() => {
-              alert("데이터를 백으로 보냄");
+              alert("환영합니다");
               this.popupClose = !this.popupClose;
               window.location.reload();
               this.currentUser();
@@ -522,7 +522,7 @@ export default {
             // 로직체크 순서 : true || false, false && true
             // TODO: 정주희 alert창 추가 -> 수정 필요 FIXME:
             .catch((error) => {
-              this.loading = false; // 로그인 버튼 활성화
+              // this.loading = false; // 로그인 버튼 활성화
               alert("데이터통신오류")
               this.message =
                 (error.response &&
