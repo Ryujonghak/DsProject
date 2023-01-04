@@ -150,6 +150,10 @@
             </div>
             <!-- 현재상영작만 끝 -->
 
+            <!-- TODO: 탑버튼 추가_정주희 -->
+            <a class="topbutton" href="#">
+              <img src="@/assets/images_jung/iconUp_48.png"/>
+            </a>
           </div>
         </div>
       </div>
@@ -387,4 +391,9 @@ input:disabled + .switcher__indicator::before {
 }
 /* 계속 between 띄워져서 수정한 css 나중에 다시 수정 예정 */
 /* css 에서 .celebrity-items 부분 변경함 */
+
+/* TODO: 탑버튼 추가_정주희*/
+.topbutton{
+    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
+}
 </style>

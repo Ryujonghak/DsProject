@@ -88,6 +88,11 @@
       </div>
       <!-- <!— 페이징 양식 끝 —> -->
       <!-- 필터 페이지네이션 -->
+
+      <!-- TODO: 탑버튼 추가_정주희 -->
+      <a class="topbutton" href="#">
+        <img src="@/assets/images_jung/iconUp_48.png"/>
+      </a>
     </div>
   </div>
 </template>
@@ -217,5 +222,10 @@ td {
   height: 385px;
   /* // background: url("../images/uploads/user-hero-bg.jpg") no-repeat; */
   background: url("../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat !important;
+}
+
+/* TODO: 탑버튼 추가_정주희*/
+.topbutton{
+    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
 }
 </style>

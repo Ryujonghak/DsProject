@@ -630,7 +630,6 @@
   </template>
   
   <script>
-
   import custom from "@/assets/js/custom";
   export default {
     created() {

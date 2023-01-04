@@ -109,7 +109,11 @@
                             </div>
                           </div>
                           <!-- 전체 상영시간표 끝-->
-                       
+                          <!-- TODO: 탑버튼 추가_정주희 -->
+                          <a class="topbutton" href="#">
+                            <img src="@/assets/images_jung/iconUp_48.png"/>
+                          </a>
+                          <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                         </div>
                       </div>
                     </div>
@@ -126,7 +130,6 @@
                               <p>DS CINEMA 가산디지털</p>
                               <h4>20230109 - 20230113</h4>
                             </div>
-
 
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 가산디지털 ---- 탭 시간표 선택-->
@@ -498,6 +501,11 @@
                               <!-- 내용 끝 -->
                             </div>
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
+                            <!-- FIXME: 탑 버튼 추가 -->
+                            <a class="topbutton" href="#">
+                              <img src="@/assets/images_jung/iconUp_48.png"/>
+                            </a>
+                            <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                           </div>
                         </div>
                         <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
@@ -886,6 +894,11 @@
                               <!-- 내용 끝 -->
                             </div>
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
+                            <!-- FIXME: 탑 버튼 추가 -->
+                            <a class="topbutton" href="#">
+                              <img src="@/assets/images_jung/iconUp_48.png"/>
+                            </a>
+                            <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                           </div>
                         </div>
                       </div>
@@ -1273,7 +1286,11 @@
                               <!-- 내용 끝 -->
                             </div>
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
-
+                            <!-- FIXME: 탑 버튼 추가 -->
+                            <a class="topbutton" href="#">
+                              <img src="@/assets/images_jung/iconUp_48.png"/>
+                            </a>
+                            <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                           </div>
                         </div>
@@ -1424,5 +1441,10 @@ input[name="tab_item"] {
   background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
   /* height: 598px; */
   width: 100%;
+}
+
+/* 탑버튼 */
+.topbutton{
+    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
 }
 </style>

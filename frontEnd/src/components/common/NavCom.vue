@@ -29,6 +29,7 @@
                 type="password"
                 name="password"
                 id="password"
+                placeholder="비밀번호를 입력하세요"
                 v-model="user.password"
               />
             </label>

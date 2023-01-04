@@ -364,8 +364,8 @@ export default {
     // 회원정보수정
     updateUserInfo(id, changePwd, user) {
       alert("클릭")
-      console.log(this.CurrentUser.username);
-      id = this.CurrentUser.username;
+      console.log(this.CurrentUser.id);   // id : 생성된 고객번호
+      id = this.CurrentUser.id;           // user정보와 함께 id(고객번호) 있는지 체크
       changePwd = true;
       user = this.CurrentUser;
       userService
