@@ -53,7 +53,7 @@ public class Reservtion {
 
     @Column(columnDefinition = "NUMBER")
 //    관람인원
-    private Integer count;
+    private Integer rcount;
 
     @Column(columnDefinition = "NUMBER")
 //    결제금액
