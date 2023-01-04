@@ -200,4 +200,7 @@ th {
   text-align: center;
   color: #414141;
 }
+td{
+  text-align: center !important;
+}
 </style>

@@ -50,7 +50,7 @@
                     검색
                   </a>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-4" style="padding-left:3%">
                   <p class="search-numbers">
                     <!-- 검색된 항목 개수 데이터 넣어주기 -->
                     <span>{{ movie.totalItems }}</span
@@ -78,7 +78,7 @@
                     검색
                   </a>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-4" style="padding-left:3%">
                   <p class="search-numbers">
                     <!-- 검색된 항목 개수 데이터 넣어주기 -->
                     <span>{{ nowPlayingMovies.length }}</span
@@ -255,8 +255,8 @@ export default {
 .search-numbers {
   padding: 0;
   margin-top: 2.5%;
-  text-align: right;
-  font-size: 100%;
+  text-align: left;
+  font-size: 98%;
 }
 
 /* 검색창 */

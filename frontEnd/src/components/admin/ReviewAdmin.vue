@@ -93,19 +93,19 @@
                   </colgroup>
                   <thead>
                     <tr>
-                      <th scope="col">id</th>
+                      <th scope="col">NO</th>
                       <th scope="col">영화명</th>
-                      <th scope="col">작성자명</th>
+                      <th scope="col">작성자 ID</th>
                       <th scope="col">리뷰</th>
                       <th scope="col">Delete Btn</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="(data, index) in review.review" v-bind:key="index">
-                      <td>{{ data.rno }}</td>
+                      <td>{{ data.rid }}</td>
                       <td>{{ data.movienm }}</td>
-                      <td>{{ data.username }}</td>
-                      <td>{{ data.content }}</td>
+                      <td>{{ data.rwuser }}</td>
+                      <td>{{ data.rucontent }}</td>
                       <td>
                         <button class="deletebtn" @click="deletebtn(data)">삭제</button>
                       </td>
@@ -187,7 +187,7 @@ export default {
       this.review = data;
       // var test = this.review.rno;
       //     alert(JSON.stringify(test));
-      ReviewDataService.delete(this.review.rno)
+      ReviewDataService.delete(this.review.rid)
         .then((response) => {
           console.log(response.data);
           alert("삭제가 완료되었습니다.");
@@ -230,5 +230,10 @@ button {
 button:active {
   outline: none !important;
   box-shadow: none !important;
+}
+.user-hero {
+  height: 385px;
+  // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat;
 }
 </style>

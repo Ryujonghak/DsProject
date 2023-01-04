@@ -77,17 +77,14 @@
                   <colgroup>
                     <col style="width: 5%" />
                     <col style="width: 10%" />
-                    <col style="width: 15%" />
-                    <col style="width: 15%" />
-                    <col style="width: auto" />
-                    <col style="width: 30%" />
+                    <col style="width: 20%" />
+                    <col style="width: 40%" />
+                    <col style="width: 10%" />
                   </colgroup>
                   <thead>
                     <tr>
                       <th scope="col">번호</th>
                       <th scope="col">이름</th>
-                      <th scope="col">이메일</th>
-                      <th scope="col">휴대전화</th>
                       <th scope="col">제목</th>
                       <th scope="col">내용</th>
                       <th scope="col">답변하기</th>
@@ -98,12 +95,10 @@
                       v-for="(currentQna, index) in question.qna"
                       v-bind:key="index"
                     >
-                      <td>{{ currentQna.qno }}</td>
-                      <td>{{ currentQna.name }}</td>
-                      <td>{{ currentQna.email }}</td>
-                      <td>{{ currentQna.phone }}</td>
-                      <td>{{ currentQna.title }}</td>
-                      <td>{{ currentQna.content }}</td>
+                      <td>{{ currentQna.qid }}</td>
+                      <td>{{ currentQna.qwriter }}</td>
+                      <td>{{ currentQna.qtitle }}</td>
+                      <td>{{ currentQna.qcontent }}</td>
                       <td>
                         <button
                           v-if="currentQna.answer == null"
@@ -242,8 +237,8 @@ export default {
       if (this.editQna.answer != null) {
         QnaDataService.update(this.editQna.qno, this.editQna)
           .then((response) => {
-            var test = this.editQna;
-            alert(JSON.stringify(test));
+            // var test = this.editQna;
+            // alert(JSON.stringify(test));
             console.log(response.data);
             alert("답변이 완료되었습니다.");
           })
@@ -262,8 +257,8 @@ export default {
       this.currentIndex = index;
       this.registerQna = !this.registerQna;
       this.successAnswer = false;
-      var test = this.editQna;
-      alert(JSON.stringify(test));
+      // var test = this.editQna;
+      // alert(JSON.stringify(test));
     },
   },
   mounted() {
@@ -305,5 +300,10 @@ button:active {
 }
 .topbar-filter {
   border-top: none !important;
+}
+.user-hero {
+  height: 385px;
+  // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat;
 }
 </style>
