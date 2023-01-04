@@ -108,7 +108,7 @@
                 <img src="images/uploads/mv1.jpg" alt="" />
                 <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
                 <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
+                  <router-link to="/reserveTicket">
                     예매하기 <i class="ion-android-arrow-dropright"></i>
                   </router-link>
                 </div>

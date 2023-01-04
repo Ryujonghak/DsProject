@@ -5,10 +5,10 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>영화관 정보</h1>
+              <h1>DS CINEMA 상영시간표</h1>
               <ul class="breadcumb">
                 <li class="active"><router-link to="/">Home</router-link></li>
-                <li><span class="ion-ios-arrow-right"></span>Theater</li>
+                <li><span class="ion-ios-arrow-right"></span>TIME TABLE</li>
               </ul>
             </div>
           </div>
@@ -83,24 +83,24 @@
                                       <div
                                         class="mv-user-review-item col-xs-2"
                                       >
-                                      <a href="/">10:30<p>(가산디지털)</p></a>
-                                      <a href="/">10:30<p>(강동)</p></a>
-                                      <a href="/">10:30<p>(건대입구)</p></a>
+                                      <router-link to="/reserveTicket">10:30<p>(가산디지털)</p></router-link>
+                                      <router-link to="/reserveTicket">10:30<p>(강동)</p></router-link>
+                                      <router-link to="/reserveTicket">10:30<p>(건대입구)</p></router-link>
                                       </div>
                                       
                                       <div
                                         class="mv-user-review-item col-xs-2"
                                       >
-                                      <a href="/">12:30<p>(가산디지털)</p></a>
-                                      <a href="/">12:30<p>(강동)</p></a>
-                                      <a href="/">12:30<p>(건대입구)</p></a>
+                                      <router-link to="/reserveTicket">12:30<p>(가산디지털)</p></router-link>
+                                      <router-link to="/reserveTicket">12:30<p>(강동)</p></router-link>
+                                      <router-link to="/reserveTicket">12:30<p>(건대입구)</p></router-link>
                                       </div>
                                       <div
                                         class="mv-user-review-item col-xs-2"
                                       >
-                                      <a href="/">14:30<p>(가산디지털)</p></a>
-                                      <a href="/">14:30<p>(강동)</p></a>
-                                      <a href="/">14:30<p>(건대입구)</p></a>
+                                      <router-link to="/reserveTicket">14:30<p>(가산디지털)</p></router-link>
+                                      <router-link to="/reserveTicket">15:30<p>(강동)</p></router-link>
+                                      <router-link to="/reserveTicket">16:30<p>(건대입구)</p></router-link>
                                       </div>
                                     </div>
                                   </div>
@@ -108,7 +108,7 @@
                               </div>  
                             </div>
                           </div>
-                          <!-- 전체 상영시간표 끝 -->
+                          <!-- 전체 상영시간표 끝-->
                        
                         </div>
                       </div>
@@ -126,6 +126,7 @@
                               <p>DS CINEMA 가산디지털</p>
                               <h4>20230109 - 20230113</h4>
                             </div>
+
 
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 가산디지털 ---- 탭 시간표 선택-->
@@ -158,11 +159,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -184,7 +185,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -192,7 +193,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -200,7 +201,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -229,11 +230,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -255,7 +256,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -263,7 +264,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -271,7 +272,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -299,11 +300,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -325,7 +326,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -333,7 +334,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -341,7 +342,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -369,11 +370,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -395,7 +396,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -403,7 +404,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -411,7 +412,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -439,11 +440,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -465,7 +466,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -473,7 +474,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -481,7 +482,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -547,11 +548,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -573,7 +574,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -581,7 +582,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -589,7 +590,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -617,11 +618,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -643,7 +644,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -651,7 +652,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -659,7 +660,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -687,11 +688,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -713,7 +714,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -721,7 +722,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -729,7 +730,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -757,11 +758,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -783,7 +784,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -791,7 +792,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -799,7 +800,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -827,11 +828,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -853,7 +854,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -861,7 +862,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -869,7 +870,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -934,11 +935,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -960,7 +961,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -968,7 +969,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -976,7 +977,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -1004,11 +1005,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -1030,7 +1031,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -1038,7 +1039,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -1046,7 +1047,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -1074,11 +1075,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -1100,7 +1101,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -1108,7 +1109,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -1116,7 +1117,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -1144,11 +1145,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -1170,7 +1171,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -1178,7 +1179,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -1186,7 +1187,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -1214,11 +1215,11 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
+                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurlkm"
                                                   alt="poster"
                                                   class="poster_thumb"
-                                                  :href="data"
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
@@ -1240,7 +1241,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>10:30</p></a>
+                                                <router-link to="/reserveTicket">10:30</router-link>
                                                 <p>13:30</p>
                                               </div>
                                               <div
@@ -1248,7 +1249,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>12:30</p></a>
+                                                <router-link to="/reserveTicket">12:30</router-link>
                                                 <p>15:30</p>
                                               </div>
                                               <div
@@ -1256,7 +1257,7 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <a href="#"><p>14:30</p></a>
+                                                <router-link to="/reserveTicket">14:30</router-link>
                                                 <p>17:30</p>
                                               </div>
                                             </div>
@@ -1416,5 +1417,12 @@ input[name="tab_item"] {
 
 .movieIng {
   margin-top: 10px;
+}
+
+/* 배경이미지 : 아리걸로 통일 */
+.hero {
+  background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
+  /* height: 598px; */
+  width: 100%;
 }
 </style>

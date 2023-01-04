@@ -129,6 +129,11 @@ const routes = [
     component: () => import("../components/myPage/WishCom"),
   },
   {
+    path: "/reserveTicket",
+    name: "reserveTicket",
+    component: () => import("../views/jung/ReserveSeatView.vue"),
+  },
+  {
     path: "/archive",
     name: "archive",
     component: () => import("../components/myPage/ArchiveCom.vue"),
