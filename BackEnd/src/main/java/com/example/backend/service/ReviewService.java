@@ -24,6 +24,12 @@ public class ReviewService {
         return reviewPage;
     }
 
+    public Page<Review> findByMoviecd(String moviecd, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findByMoviecd(moviecd, pageable);
+
+        return reviewPage;
+    }
+
     public Review save(Review review) {
         Review newReview = reviewRepository.save(review);
 
