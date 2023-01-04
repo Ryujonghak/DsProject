@@ -51,10 +51,10 @@
                 <p><i class="ion-android-star"></i>{{ data.raiting }}</p>
               </div>
             </div>
-            <div
+            <!-- <div
               class="movie-item"
               v-for="(data, index) in movie.MovieDetail"
-              v-bind:key="index"
+              v-bind:key="index+1"
             >
               <div class="mv-img">
                 <a href="#"
@@ -79,7 +79,7 @@
                   ><span>{{ data.raiting }}</span>
                 </p>
               </div>
-            </div>
+            </div> -->
             <!-- TODO: 끝 -->
 
             <!-- 영웅 영화포스터 -->
@@ -271,7 +271,7 @@ export default {
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,
-      pageSize: 5,
+      pageSize: 8,
 
       pageSizes: [5, 10 , 15],
     };
