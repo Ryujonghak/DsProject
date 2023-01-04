@@ -151,6 +151,7 @@ export default {
   border: 2px solid;
   color: aliceblue;
   padding: 30px;
+  margin-top: 10%;
 }
 
 .faq-box__question {
@@ -180,6 +181,11 @@ export default {
 }
 .age {
   margin: 1%;
+}
+.common-hero {
+  height: 385px;
+  /* // background: url("../images/uploads/user-hero-bg.jpg") no-repeat; */
+  background: url("../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat !important;
 }
 
 

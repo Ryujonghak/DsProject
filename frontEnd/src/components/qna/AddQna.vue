@@ -54,9 +54,9 @@
                 maxlength="4"
                 v-model="CurrentUser.name"
               />
-              <!--v-model="CurrentUser.name"로 하면 백데이터 불러와짐. 등록/수정은 안됨-->
+         
             </td>
-            <th scope="row">
+            <!-- <th scope="row">
               |
               <label for="name">이메일</label>
               <em class="font-orange">*</em>
@@ -72,9 +72,9 @@
                 v-model="CurrentUser.email"
               />
               <div id="error_mail" class="result-email result-check"></div>
-            </td>
-          </tr>
-          <tr>
+            </td> -->
+          </tr> 
+          <!-- <tr>
             <th scope="row">
               |
               <label for="name">휴대전화</label>
@@ -91,7 +91,7 @@
                 v-model="CurrentUser.phone"
               />
             </td>
-          </tr>
+          </tr> -->
           <tr>
             <th scope="row">
               |
@@ -106,7 +106,7 @@
                 class="boxing input-text"
                 maxlength="100"
                 placeholder="제목을 입력해주세요."
-                v-model="qna.title"
+                v-model="qna.qtitle"
               />
             </td>
           </tr>
@@ -126,7 +126,7 @@
                   title="내용입력"
                   class="input-textarea boxing"
                   placeholder="내용을 입력해주세요."
-                  v-model="qna.content"
+                  v-model="qna.qcontent"
                 ></textarea>
               </div>
             </td>
@@ -149,24 +149,22 @@
 import QnaDataService from "@/services/QnaDataService.js";
 import userService from "@/services/user.service";
 
-import email from "@/assets/js/email.js";
 
 export default {
   mounted() {
-    email();
   },
   data() {
     return {
       CurrentUser: {
-        email: "",
+        // email: "",
         username: "",
-        phone: null,
+        // phone: null,
         name: "",
       },
       qna: {
-        qno:null,
-        title: "",
-        content: "",
+        qid:null,
+        qtitle: "",
+        qcontent: "",
       },
     };
   },
@@ -174,13 +172,11 @@ export default {
 
     createQna() {
       // alert("클릭되냐");
-      // TODO: 폼에 로그인된 정보는 안 뜨지만, 작성된 qna 넘길때에는 로그인된 정보로 name, email, phone이 바뀌어서 qna테이블로 넘어감!!
+
       let data = {
-        name: this.CurrentUser.name,
-        email: this.CurrentUser.email,
-        phone: this.CurrentUser.phone,
-        title: this.qna.title,
-        content: this.qna.content,
+        qwriter: this.CurrentUser.name,
+        qtitle: this.qna.qtitle,
+        qcontent:this.qna.qcontent
       };
 
       // let data = {
@@ -193,7 +189,7 @@ export default {
       QnaDataService.create(data)
         // 성공하면 then() 결과가 전송됨
         .then((response) => {
-          this.qna.qno = response.data.qno;
+          this.qna.qid = response.data.qid;
           console.log(response.data);
           alert("등록이 완료되었습니다");
           window.location.reload();
@@ -205,7 +201,6 @@ export default {
     },
 
     getUser(username) {
-      // 종학이 백엔드 데이터 받는 함수
       username = this.$store.state.auth.user.username;
       // username = "forbob";
       console.log(username);
@@ -213,9 +208,9 @@ export default {
         .getUserUsername(username)
         .then((response) => {
           this.CurrentUser = {
-            email: response.data.email,
+            // email: response.data.email,
             username: response.data.username,
-            phone: response.data.phone,
+            // phone: response.data.phone,
             name: response.data.name,
           };
           console.log(this.CurrentUser);
@@ -236,6 +231,7 @@ export default {
   border: 2px solid;
   color: aliceblue;
   padding: 5%;
+  margin-top: 10%;
 }
 .qna {
   background: black;
@@ -272,4 +268,9 @@ tbody {
   margin-top: 3%;
   margin-left: 10%;
 } */
+.common-hero {
+  height: 385px;
+  /* // background: url("../images/uploads/user-hero-bg.jpg") no-repeat; */
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat !important;
+}
 </style>

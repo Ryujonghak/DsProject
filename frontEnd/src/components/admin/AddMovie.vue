@@ -19,6 +19,7 @@
         <div class="container">
           <table class="AddMovieBox" style="margin-top: 5%">
             <colgroup>
+              <!-- <col style="width: 5%" /> -->
               <col style="width: 15%" />
               <col style="width: 10%" />
               <col style="width: 15%" />
@@ -41,7 +42,7 @@
                 </td>
                 <th scope="row" class="noticelabel">
                   |
-                  <label for="noticeTitle">별점</label>
+                  <label for="noticeTitle">ID</label>
                 </th>
                 <td colspan="1">
                   <input
@@ -50,15 +51,14 @@
                     id="qnaTitle"
                     class="boxing input-text"
                     maxlength="100"
-                    v-model="movie.raiting"
+                    v-model="movie.id"
                   />
-                  /5.0
                 </td>
                 <th scope="row" class="noticelabel">
                   |
                   <label for="noticeTitle">장르</label>
                 </th>
-                <td colspan="3">
+                <td colspan="1">
                   <input
                     type="text"
                     name="title"
@@ -66,6 +66,20 @@
                     class="boxing input-text"
                     maxlength="100"
                    v-model="movie.genrenm"
+                  />
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">개봉연도</label>
+                </th>
+                <td colspan="1">
+                  <input
+                    type="text"
+                    name="title"
+                    id="prdyear"
+                    class="boxing input-text"
+                    maxlength="100"
+                   v-model="movie.prdtyear"
                   />
                 </td>
               </tr>
@@ -169,10 +183,10 @@
               </th>
               <td colspan="3">
               <select name="관람등급" id="age" v-model="movie.watchgradenm">
-                <option value="1">ALL</option>
-                <option value="2">12+</option>
-                <option value="3">15+</option>
-                <option value="4">19+</option>
+                <option value="전체관람가">ALL</option>
+                <option value="12세이상관람가">12+</option>
+                <option value="15세이상관람가">15+</option>
+                <option value="청소년관람불가">19+</option>
               </select>
             </td>
           </tr>
@@ -200,13 +214,14 @@ export default {
         opendt: "",
         watchgradenm: "",
         movienm:"",
-        raiting: "",
+        // raiting: "",
         plot:"",
         showtm: "",
         genrenm:"",
         directors:"",
         actor:"",
-        posterurln:""
+        posterurln:"",
+        prdtyear:""
       },
     };
   },
@@ -217,18 +232,21 @@ export default {
         opendt: this.movie.opendt,
         watchgradenm: this.movie.watchgradenm,
         movienm:this.movie.movienm,
-        raiting: this.movie.raiting,
+        // raiting: this.movie.raiting,
         plot:this.movie.plot,
         showtm: this.movie.showtm,
         genrenm:this.movie.genrenm,
         directors:this.movie.directors,
         actor:this.movie.actor,
-        posterurln:this.movie.posterurln
+        posterurln:this.movie.posterurln,
+        prdtyear:this.movie.prdtyear
       }
       MovieDataService.create(data)
       .then(response => {
         this.movie.id = response.data.id;
         console.log(response.data);
+        alert("등록되었습니다.");
+        this.$router.push("/movie-admin");
       })
       .catch(e => {
         console.log(e);

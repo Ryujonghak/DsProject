@@ -1,10 +1,18 @@
 <template>
   <div>
-    <div class="hero common-hero">
+    <div class="hero user-hero">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="hero-ct"></div>
+            <div class="hero-ct">
+              <h1>DS CINEMA 부산대</h1>
+              <ul class="breadcumb">
+                <li class="active">
+                  <router-link to="/">Home</router-link>
+                </li>
+                <li><span class="ion-ios-arrow-right"></span>THEATER</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -209,5 +217,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+/* 배경이미지 : 아리걸로 통일 */
+.hero {
+  background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
+  /* height: 598px; */
+  width: 100%;
+}
 </style>
