@@ -19,8 +19,8 @@
         </div>
       </div>
     </div>
-
-      <div style="background-color: black; position:relative;" class="page-single movie_list">
+    
+    <div style="background-color: black; position:relative;" class="page-single movie_list">
         <div v-show="모달창" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 30px;">
 
         </div>
@@ -85,27 +85,27 @@
                   <!-- 상영시간도 클릭 못함 -->
                   <div style="width: 1170px;" v-show="상영">
                     <button
-                      style="height: 60px;width: 390px; border-radius: 10px 10px 0 0; border: 0; color: white; background-color: #FF243E;" disabled>
+                      style="height: 60px;width: 390px; border: 0; color: white; background-color: #FF243E;" disabled>
                       <span>01 . 상영시간</span>
                     </button>
-                    <button style="height: 60px;width: 390px; color: gray;border-radius: 10px 10px 0 0; background-color: #F0F0F0;" disabled>
+                    <button style="height: 60px;width: 390px; color: gray;background-color: #F0F0F0;" disabled>
                       <span>02 . 좌석선택</span>
                     </button>
-                    <button style="height: 60px;width: 390px;border-left: 0;  color: gray; border-radius: 10px 10px 0 0;background-color: #F0F0F0;" disabled>
+                    <button style="height: 60px;width: 390px;border-left: 0;  color: gray; background-color: #F0F0F0;" disabled>
                       <span>03 . 결제</span>
                     </button>
                   </div>
                   <!-- 상영시간,좌석선택 클릭가능, 상영시간을 클릭을 하면 위에 있는 상영시간만 클릭가능 -->
-                  <div style="width: 1170px;" v-show="좌석">
-                    <button @click="Screen()" style="height: 60px;width: 390px; background-color: #333;border-radius: 10px 10px 0 0; border: 0; color: white;">
+                  <div style="width: 1170px;" v-show="좌석">  
+                    <button @click="Screen()" style="height: 60px;width: 390px;border: 0; background-color: #333; color: white;">
                       <span>01 . 상영시간</span>
                     </button>
                     <button
-                      style="height: 60px;width: 390px; background-color: #FF243E;border-radius: 10px 10px 0 0; border: 0; color: white;"
+                      style="height: 60px;width: 390px; background-color: #FF243E; color: white;"
                       disabled>
                       <span>02 . 좌석선택</span>
                     </button>
-                    <button style="height: 60px;width: 390px; border: 0; color: gray;border-radius: 10px 10px 0 0; background-color: #F0F0F0;"
+                    <button style="height: 60px;width: 390px; color: gray;background-color: #F0F0F0;"
                       disabled>
                       <span>03 . 결제</span>
                     </button>
@@ -113,15 +113,15 @@
                   <!-- 결제페이지에서 상영,좌석,결제 갈 수 있음. 새로고침만 안하면 좌석선택에 있는게 남아 있을듯-->
                   <div style="width: 1170px;" v-show="결제">
                     <button @click="Screen()"
-                      style="height: 60px;width: 390px; background-color: #333;border-radius: 10px 10px 0 0; border: 0; color: white;">
+                      style="height: 60px;width: 390px; background-color: #333;border: 0; color: white;">
                       <span>01 . 상영시간</span>
                     </button>
                     <button @click="changeSeat()"
-                      style="height: 60px;width: 390px; background-color: #333;border-radius: 10px 10px 0 0; border: 0; color: white; border-left: 1px solid gray;">
+                      style="height: 60px;width: 390px; background-color: #333;border: 0; border-left: 1px solid black; color: white;">
                       <span>02 . 좌석선택</span>
                     </button>
                     <button
-                      style="height: 60px;width: 390px; background-color: #FF243E;border-radius: 10px 10px 0 0; border: 0; color: white;"
+                      style="height: 60px;width: 390px; background-color: #FF243E; color: white;"
                       disabled>
                       <span>03 . 결제</span>
                     </button>
@@ -130,7 +130,7 @@
                 <!-- 영화관 -->
                 <div v-show="상영">
                   <div
-                    style=" width: 291.5px; height: 660px; margin-right: 1px; float: left; background-color: #EEEEEE; border-radius: 0 0 0 10px; ">
+                    style=" width: 291.5px; height: 705px; margin-right: 1px; float: left; background-color: #EEEEEE;">
                     <p
                       style=" width: 291.5px; margin-bottom: 0px; color:white; text-align: center; background-color: #1E212D; padding: 15px 0;">
                       지역
@@ -142,7 +142,7 @@
                     <button v-show="!selectedbusan"  class="C_div2">부산</button>
                   </div>
                   <div class="one"
-                    style="width: 291.5px;  height: 660px;   float: left;  background-color:  #F6F6F6;  margin-right: 1px;">
+                    style="width: 291.5px;  height: 705px;   float: left;  background-color:  #F6F6F6;  margin-right: 1px;">
                     <p
                       style="width: 291.5px; margin-bottom: 0px; color:white; text-align: center; padding: 15px 0;background-color: #1E212D; ">
                       영화관
@@ -174,7 +174,7 @@
                     </div>
                   </div>
                   <div
-                    style="width: 585px; height: 660px; float: left; background-color:  #EEEEEE;  overflow: hidden; border-radius: 0 0 10px 0;">
+                    style="width: 585px; height: 705px; float: left; background-color:  #EEEEEE;  overflow: hidden;">
                     <p
                       style="width: 585px;  margin-bottom: 0; color: gray;  padding: 15px 0 15px 0;  background-color: #1E212D;  color: white;text-align: center;">
                       {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘)
@@ -259,9 +259,9 @@
                 <div v-show="좌석">
                   <div style="">
                     
-                    <div style="margin-bottom: 10px;padding: 7px 0; background-color: #F7EBEC;width: 1170px;">
-                      <span style="font-size: 20px; margin: 0 10px; color: black;">관람인원 선택</span>
-                      <span style="color: black;float: right; margin: 0 10px; padding-top: 5px;">· 인원은 최대 5명까지 선택 가능합니다.</span>
+                    <div style="margin-bottom: 10px;padding: 7px 0; background-color: #1E212D;width: 1170px;">
+                      <span style="font-size: 16px; margin: 0 10px; color: white;">관람인원 선택</span>
+                      <span style="color: white;float: right; margin: 0 10px; padding-top: 5px;font-size: 14px;">· 인원은 최대 5명까지 선택 가능합니다.</span>
                     </div>
                     <div style="text-align: center; justify-content: center; width: 1170px; height: 50px;">
                        <span style="font-size: 20px; margin-right: 10px; margin-left:25px; color: white;">성인</span>
@@ -275,7 +275,7 @@
                        <button @click="teenplus()" style="margin-right: 10px;">+</button>                     
                     </div>
   
-                    <div style="color: white;float: right; margin-right: 110px;">
+                    <div style="color: white;float: right; margin-right: 20px;">
                       <img style="width: 30px; height: 30px; background-color: white;" src="../../assets/images_kim/Views/ModalView/free-icon-time-6659457.png"
                         alt="" />
                       <span> 러닝 타임 </span>
@@ -287,378 +287,278 @@
                     </div>
                     <div style="width: 1170px; margin-bottom: 90px;">
                       <img style="margin: 10px 0; width: 1170px; height: 30px;" src="../../assets/images_kim/Views/ModalView/SCREEN.jpg" alt="" />
-                      <p style="text-align: center;">S &nbsp; C &nbsp; R &nbsp; E &nbsp; E &nbsp; N</p>
+                      <p style="text-align: center;">S &nbsp;&nbsp;&nbsp; C &nbsp;&nbsp;&nbsp; R &nbsp;&nbsp;&nbsp; E &nbsp;&nbsp;&nbsp; E &nbsp;&nbsp;&nbsp; N</p>
                     </div>
   
                     <div class="seat">
                       <!-- 좌석 A 시작 -->
                       <div class="seat-p">
                         <span class="font">A</span>
-                        <div style="position: absolute; left:255px; top: 0;">
+                        <div style="position: absolute; left:295px; top: 0px;">
                           <button @click="addseat('A01')" v-show="selectsA[0] == 1" class="seat-bg">1</button>
                           <button @click="deleteseat('A01')" v-show="selectsA[0] == 2" class="seat-bg2">1</button>
                           <button v-show="selectsA[0] == 0" class="seat-bg3" disabled>1</button>
                         </div>
-                        <div style="position: absolute; left:295px; top: 0;">
+                        <div style="position: absolute; left:335px; top: 0px;">
                           <button @click="addseat('A02')" v-show="selectsA[1] == 1" class="seat-bg">2</button>
                           <button @click="deleteseat('A02')" v-show="selectsA[1] == 2" class="seat-bg2">2</button>
-                          <button v-show="selectsA[1] == 0" class="seat-bg3" disabled>0 2</button>
+                          <button v-show="selectsA[1] == 0" class="seat-bg3" disabled>2</button>
                         </div>
-                        <div style="position: absolute; left:335px; top: 0;">
+                        <div style="position: absolute; left:375px; top: 0px;">
                           <button @click="addseat('A03')" v-show="selectsA[2] == 1" class="seat-bg">3</button>
                           <button @click="deleteseat('A03')" v-show="selectsA[2] == 2" class="seat-bg2">3</button>
                           <button v-show="selectsA[2] == 0" class="seat-bg3" disabled>3</button>
                         </div>
-                        <div style="position: absolute; left:375px; top: 0;">
+                        <div style="position: absolute; left:495px; top: 0px;">
                           <button @click="addseat('A04')" v-show="selectsA[3] == 1" class="seat-bg">4</button>
                           <button @click="deleteseat('A04')" v-show="selectsA[3] == 2" class="seat-bg2">4</button>
                           <button v-show="selectsA[3] == 0" class="seat-bg3" disabled>4</button>
                         </div>
-                        <div style="position: absolute; left:470px; top: 0;">
+                        <div style="position: absolute; left:545px; top: 0px;">
                           <button @click="addseat('A05')" v-show="selectsA[4] == 1" class="seat-bg">5</button>
                           <button @click="deleteseat('A05')" v-show="selectsA[4] == 2" class="seat-bg2">5</button>
-                          <button v-show="selectsA[5] == 0" class="seat-bg3" disabled>5</button>
+                          <button v-show="selectsA[4] == 0" class="seat-bg3" disabled>5</button>
                         </div>
-                        <div style="position: absolute; left:510px; top: 0;">
+                        <div style="position: absolute; left:595px; top: 0px;">
                           <button @click="addseat('A06')" v-show="selectsA[5] == 1" class="seat-bg">6</button>
                           <button @click="deleteseat('A06')" v-show="selectsA[5] == 2" class="seat-bg2">6</button>
                           <button v-show="selectsA[5] == 0" class="seat-bg3" disabled>6</button>
                         </div>
-                        <div style="position: absolute; left:550px; top: 0;">
+                        <div style="position: absolute; left:645px; top: 0px;">
                           <button @click="addseat('A07')" v-show="selectsA[6] == 1" class="seat-bg">7</button>
                           <button @click="deleteseat('A07')" v-show="selectsA[6] == 2" class="seat-bg2">7</button>
                           <button v-show="selectsA[6] == 0" class="seat-bg3" disabled>7</button>
                         </div>
-                        <div style="position: absolute; left:590px; top: 0;">
+                        <div style="position: absolute; left:755px; top: 0px;">
                           <button @click="addseat('A08')" v-show="selectsA[7] == 1" class="seat-bg">8</button>
                           <button @click="deleteseat('A08')" v-show="selectsA[7] == 2" class="seat-bg2">8</button>
                           <button v-show="selectsA[7] == 0" class="seat-bg3" disabled>8</button>
                         </div>
-                        <div style="position: absolute; left:630px;top: 0;">
+                        <div style="position: absolute; left:795px; top: 0px;">
                           <button @click="addseat('A09')" v-show="selectsA[8] == 1" class="seat-bg">9</button>
                           <button @click="deleteseat('A09')" v-show="selectsA[8] == 2" class="seat-bg2">9</button>
                           <button v-show="selectsA[8] == 0" class="seat-bg3" disabled>9</button>
                         </div>
-                        <div style="position: absolute; left:670px;top: 0;">
+                        <div style="position: absolute; left:835px; top: 0px;">
                           <button @click="addseat('A10')" v-show="selectsA[9] == 1" class="seat-bg">10</button>
                           <button @click="deleteseat('A10')" v-show="selectsA[9] == 2" class="seat-bg2">10</button>
                           <button v-show="selectsA[9] == 0" class="seat-bg3" disabled>10</button>
-                        </div>
-                        <div style="position: absolute; left: 765px; top: 0;">
-                          <button @click="addseat('A11')" v-show="selectsA[10] == 1" class="seat-bg">11</button>
-                          <button @click="deleteseat('A11')" v-show="selectsA[10] == 2" class="seat-bg2">11</button>
-                          <button v-show="selectsA[10] == 0" class="seat-bg3" disabled>11</button>
-                        </div>
-                        <div style="position: absolute; left: 805px; top: 0;">
-                          <button @click="addseat('A12')" v-show="selectsA[11] == 1" class="seat-bg">12</button>
-                          <button @click="deleteseat('A12')" v-show="selectsA[11] == 2" class="seat-bg2">12</button>
-                          <button v-show="selectsA[11] == 0" class="seat-bg3" disabled>12</button>
-                        </div>
-                        <div style="position: absolute; left: 845px; top: 0;">
-                          <button @click="addseat('A13')" v-show="selectsA[12] == 1" class="seat-bg">13</button>
-                          <button @click="deleteseat('A13')" v-show="selectsA[12] == 2" class="seat-bg2">13</button>
-                          <button v-show="selectsA[12] == 0" class="seat-bg3" disabled>13</button>
-                        </div>
-                        <div style="position: absolute; left:885px; top: 0;">
-                          <button @click="addseat('A14')" v-show="selectsA[13] == 1" class="seat-bg">14</button>
-                          <button @click="deleteseat('A14')" v-show="selectsA[13] == 2" class="seat-bg2">14</button>
-                          <button v-show="selectsA[13] == 0" class="seat-bg3" disabled>14</button>
                         </div>
                       </div>
                       <!-- 좌석 B 시작 -->
                       <div class="seat-p">
                         <span class="font">B</span>
-                        <div style="position: absolute; left:255px; top: 42.5px;">
+                        <div style="position: absolute; left:295px; top: 42.5px;">
                           <button @click="addseat('B01')" v-show="selectsB[0] == 1" class="seat-bg">1</button>
                           <button @click="deleteseat('B01')" v-show="selectsB[0] == 2" class="seat-bg2">1</button>
                           <button v-show="selectsB[0] == 0" class="seat-bg3" disabled>1</button>
                         </div>
-                        <div style="position: absolute; left:295px; top: 42.5px;">
+                        <div style="position: absolute; left:335px; top: 42.5px;">
                           <button @click="addseat('B02')" v-show="selectsB[1] == 1" class="seat-bg">2</button>
                           <button @click="deleteseat('B02')" v-show="selectsB[1] == 2" class="seat-bg2">2</button>
                           <button v-show="selectsB[1] == 0" class="seat-bg3" disabled>2</button>
                         </div>
-                        <div style="position: absolute; left:335px; top: 42.5px;">
+                        <div style="position: absolute; left:375px; top: 42.5px;">
                           <button @click="addseat('B03')" v-show="selectsB[2] == 1" class="seat-bg">3</button>
                           <button @click="deleteseat('B03')" v-show="selectsB[2] == 2" class="seat-bg2">3</button>
                           <button v-show="selectsB[2] == 0" class="seat-bg3" disabled>3</button>
                         </div>
-                        <div style="position: absolute; left:375px; top: 42.5px;">
+                        <div style="position: absolute; left:495px; top: 42.5px;">
                           <button @click="addseat('B04')" v-show="selectsB[3] == 1" class="seat-bg">4</button>
                           <button @click="deleteseat('B04')" v-show="selectsB[3] == 2" class="seat-bg2">4</button>
                           <button v-show="selectsB[3] == 0" class="seat-bg3" disabled>4</button>
                         </div>
-                        <div style="position: absolute; left:470px; top: 42.5px;">
+                        <div style="position: absolute; left:545px; top: 42.5px;">
                           <button @click="addseat('B05')" v-show="selectsB[4] == 1" class="seat-bg">5</button>
                           <button @click="deleteseat('B05')" v-show="selectsB[4] == 2" class="seat-bg2">5</button>
-                          <button v-show="selectsB[5] == 0" class="seat-bg3" disabled>5</button>
+                          <button v-show="selectsB[4] == 0" class="seat-bg3" disabled>5</button>
                         </div>
-                        <div style="position: absolute; left:510px; top: 42.5px;">
+                        <div style="position: absolute; left:595px; top: 42.5px;">
                           <button @click="addseat('B06')" v-show="selectsB[5] == 1" class="seat-bg">6</button>
                           <button @click="deleteseat('B06')" v-show="selectsB[5] == 2" class="seat-bg2">6</button>
                           <button v-show="selectsB[5] == 0" class="seat-bg3" disabled>6</button>
                         </div>
-                        <div style="position: absolute; left:550px; top: 42.5px;">
+                        <div style="position: absolute; left:645px; top: 42.5px;">
                           <button @click="addseat('B07')" v-show="selectsB[6] == 1" class="seat-bg">7</button>
                           <button @click="deleteseat('B07')" v-show="selectsB[6] == 2" class="seat-bg2">7</button>
                           <button v-show="selectsB[6] == 0" class="seat-bg3" disabled>7</button>
                         </div>
-                        <div style="position: absolute; left:590px; top: 42.5px;">
+                        <div style="position: absolute; left:755px; top: 42.5px;">
                           <button @click="addseat('B08')" v-show="selectsB[7] == 1" class="seat-bg">8</button>
                           <button @click="deleteseat('B08')" v-show="selectsB[7] == 2" class="seat-bg2">8</button>
                           <button v-show="selectsB[7] == 0" class="seat-bg3" disabled>8</button>
                         </div>
-                        <div style="position: absolute; left:630px;top: 42.5px;">
+                        <div style="position: absolute; left:795px; top: 42.5px;">
                           <button @click="addseat('B09')" v-show="selectsB[8] == 1" class="seat-bg">9</button>
                           <button @click="deleteseat('B09')" v-show="selectsB[8] == 2" class="seat-bg2">9</button>
                           <button v-show="selectsB[8] == 0" class="seat-bg3" disabled>9</button>
                         </div>
-                        <div style="position: absolute; left:670px;top: 42.5px;">
+                        <div style="position: absolute; left:835px; top: 42.5px;">
                           <button @click="addseat('B10')" v-show="selectsB[9] == 1" class="seat-bg">10</button>
                           <button @click="deleteseat('B10')" v-show="selectsB[9] == 2" class="seat-bg2">10</button>
                           <button v-show="selectsB[9] == 0" class="seat-bg3" disabled>10</button>
-                        </div>
-                        <div style="position: absolute; left:765px; top: 42.5px;">
-                          <button @click="addseat('B11')" v-show="selectsB[10] == 1" class="seat-bg">11</button>
-                          <button @click="deleteseat('B11')" v-show="selectsB[10] == 2" class="seat-bg2">11</button>
-                          <button v-show="selectsB[10] == 0" class="seat-bg3" disabled>11</button>
-                        </div>
-                        <div style="position: absolute; left:805px; top: 42.5px;">
-                          <button @click="addseat('B12')" v-show="selectsB[11] == 1" class="seat-bg">12</button>
-                          <button @click="deleteseat('B12')" v-show="selectsB[11] == 2" class="seat-bg2">12</button>
-                          <button v-show="selectsB[11] == 0" class="seat-bg3" disabled>12</button>
-                        </div>
-                        <div style="position: absolute; left:845px; top: 42.5px;">
-                          <button @click="addseat('B13')" v-show="selectsB[12] == 1" class="seat-bg">13</button>
-                          <button @click="deleteseat('B13')" v-show="selectsB[12] == 2" class="seat-bg2">13</button>
-                          <button v-show="selectsB[12] == 0" class="seat-bg3" disabled>13</button>
-                        </div>
-                        <div style="position: absolute; left:885px; top: 42.5px;">
-                          <button @click="addseat('B14')" v-show="selectsB[13] == 1" class="seat-bg">14</button>
-                          <button @click="deleteseat('B14')" v-show="selectsB[13] == 2" class="seat-bg2">14</button>
-                          <button v-show="selectsB[13] == 0" class="seat-bg3" disabled>14</button>
                         </div>
                       </div>
                       <!-- 좌석 C 시작 -->
                       <div class="seat-p">
                         <span class="font">C</span>
-                        <div style="position: absolute; left:255px; top: 85px;">
+                        <div style="position: absolute; left:295px; top: 85px;">
                           <button @click="addseat('C01')" v-show="selectsC[0] == 1" class="seat-bg">1</button>
                           <button @click="deleteseat('C01')" v-show="selectsC[0] == 2" class="seat-bg2">1</button>
                           <button v-show="selectsC[0] == 0" class="seat-bg3" disabled>1</button>
                         </div>
-                        <div style="position: absolute; left:295px; top: 85px;">
+                        <div style="position: absolute; left:335px; top: 85px;">
                           <button @click="addseat('C02')" v-show="selectsC[1] == 1" class="seat-bg">2</button>
                           <button @click="deleteseat('C02')" v-show="selectsC[1] == 2" class="seat-bg2">2</button>
                           <button v-show="selectsC[1] == 0" class="seat-bg3" disabled>2</button>
                         </div>
-                        <div style="position: absolute; left:335px; top: 85px;">
+                        <div style="position: absolute; left:375px; top: 85px;">
                           <button @click="addseat('C03')" v-show="selectsC[2] == 1" class="seat-bg">3</button>
                           <button @click="deleteseat('C03')" v-show="selectsC[2] == 2" class="seat-bg2">3</button>
                           <button v-show="selectsC[2] == 0" class="seat-bg3" disabled>3</button>
                         </div>
-                        <div style="position: absolute; left:375px; top: 85px;">
+                        <div style="position: absolute; left:495px; top: 85px;">
                           <button @click="addseat('C04')" v-show="selectsC[3] == 1" class="seat-bg">4</button>
                           <button @click="deleteseat('C04')" v-show="selectsC[3] == 2" class="seat-bg2">4</button>
                           <button v-show="selectsC[3] == 0" class="seat-bg3" disabled>4</button>
                         </div>
-                        <div style="position: absolute; left:470px; top: 85px;">
+                        <div style="position: absolute; left:545px; top: 85px;">
                           <button @click="addseat('C05')" v-show="selectsC[4] == 1" class="seat-bg">5</button>
                           <button @click="deleteseat('C05')" v-show="selectsC[4] == 2" class="seat-bg2">5</button>
-                          <button v-show="selectsC[5] == 0" class="seat-bg3" disabled>5</button>
+                          <button v-show="selectsC[4] == 0" class="seat-bg3" disabled>5</button>
                         </div>
-                        <div style="position: absolute; left:510px; top: 85px;">
+                        <div style="position: absolute; left:595px; top: 85px;">
                           <button @click="addseat('C06')" v-show="selectsC[5] == 1" class="seat-bg">6</button>
                           <button @click="deleteseat('C06')" v-show="selectsC[5] == 2" class="seat-bg2">6</button>
                           <button v-show="selectsC[5] == 0" class="seat-bg3" disabled>6</button>
                         </div>
-                        <div style="position: absolute; left:550px; top: 85px;">
+                        <div style="position: absolute; left:645px;top: 85px;">
                           <button @click="addseat('C07')" v-show="selectsC[6] == 1" class="seat-bg">7</button>
                           <button @click="deleteseat('C07')" v-show="selectsC[6] == 2" class="seat-bg2">7</button>
                           <button v-show="selectsC[6] == 0" class="seat-bg3" disabled>7</button>
                         </div>
-                        <div style="position: absolute; left:590px; top: 85px;">
+                        <div style="position: absolute; left:755px; top: 85px;">
                           <button @click="addseat('C08')" v-show="selectsC[7] == 1" class="seat-bg">8</button>
                           <button @click="deleteseat('C08')" v-show="selectsC[7] == 2" class="seat-bg2">8</button>
                           <button v-show="selectsC[7] == 0" class="seat-bg3" disabled>8</button>
                         </div>
-                        <div style="position: absolute; left:630px;top: 85px;">
+                        <div style="position: absolute; left:795px; top: 85px;">
                           <button @click="addseat('C09')" v-show="selectsC[8] == 1" class="seat-bg">9</button>
                           <button @click="deleteseat('C09')" v-show="selectsC[8] == 2" class="seat-bg2">9</button>
                           <button v-show="selectsC[8] == 0" class="seat-bg3" disabled>9</button>
                         </div>
-                        <div style="position: absolute; left:670px;top: 85px;">
+                        <div style="position: absolute; left:835px; top: 85px;">
                           <button @click="addseat('C10')" v-show="selectsC[9] == 1" class="seat-bg">10</button>
                           <button @click="deleteseat('C10')" v-show="selectsC[9] == 2" class="seat-bg2">10</button>
                           <button v-show="selectsC[9] == 0" class="seat-bg3" disabled>10</button>
-                        </div>
-                        <div style="position: absolute; left:765px; top: 85px;">
-                          <button @click="addseat('C11')" v-show="selectsC[10] == 1" class="seat-bg">11</button>
-                          <button @click="deleteseat('C11')" v-show="selectsC[10] == 2" class="seat-bg2">11</button>
-                          <button v-show="selectsC[10] == 0" class="seat-bg3" disabled>11</button>
-                        </div>
-                        <div style="position: absolute; left:805px; top: 85px;">
-                          <button @click="addseat('C12')" v-show="selectsC[11] == 1" class="seat-bg">12</button>
-                          <button @click="deleteseat('C12')" v-show="selectsC[11] == 2" class="seat-bg2">12</button>
-                          <button v-show="selectsC[11] == 0" class="seat-bg3" disabled>12</button>
-                        </div>
-                        <div style="position: absolute; left:845px; top: 85px;">
-                          <button @click="addseat('C13')" v-show="selectsC[12] == 1" class="seat-bg">13</button>
-                          <button @click="deleteseat('C13')" v-show="selectsC[12] == 2" class="seat-bg2">13</button>
-                          <button v-show="selectsC[12] == 0" class="seat-bg3" disabled>13</button>
-                        </div>
-                        <div style="position: absolute; left:885px; top: 85px;">
-                          <button @click="addseat('C14')" v-show="selectsC[13] == 1" class="seat-bg">14</button>
-                          <button @click="deleteseat('C14')" v-show="selectsC[13] == 2" class="seat-bg2">14</button>
-                          <button v-show="selectsC[13] == 0" class="seat-bg3" disabled>14</button>
                         </div>
                       </div>
                       <!-- 좌석 D 시작 -->
                       <div class="seat-p">
                         <span class="font">D</span>
-                        <div style="position: absolute; left:255px; top: 127px;">
+                        <div style="position: absolute; left:295px; top: 127px;">
                           <button @click="addseat('D01')" v-show="selectsD[0] == 1" class="seat-bg">1</button>
                           <button @click="deleteseat('D01')" v-show="selectsD[0] == 2" class="seat-bg2">1</button>
                           <button v-show="selectsD[0] == 0" class="seat-bg3" disabled>1</button>
                         </div>
-                        <div style="position: absolute; left:295px; top: 127px;">
+                        <div style="position: absolute; left:335px; top: 127px;">
                           <button @click="addseat('D02')" v-show="selectsD[1] == 1" class="seat-bg">2</button>
                           <button @click="deleteseat('D02')" v-show="selectsD[1] == 2" class="seat-bg2">2</button>
                           <button v-show="selectsD[1] == 0" class="seat-bg3" disabled>2</button>
                         </div>
-                        <div style="position: absolute; left:335px; top: 127px;">
+                        <div style="position: absolute; left:375px; top: 127px;">
                           <button @click="addseat('D03')" v-show="selectsD[2] == 1" class="seat-bg">3</button>
                           <button @click="deleteseat('D03')" v-show="selectsD[2] == 2" class="seat-bg2">3</button>
                           <button v-show="selectsD[2] == 0" class="seat-bg3" disabled>3</button>
                         </div>
-                        <div style="position: absolute; left:375px; top: 127px;">
+                        <div style="position: absolute; left:495px; top: 127px;">
                           <button @click="addseat('D04')" v-show="selectsD[3] == 1" class="seat-bg">4</button>
                           <button @click="deleteseat('D04')" v-show="selectsD[3] == 2" class="seat-bg2">4</button>
                           <button v-show="selectsD[3] == 0" class="seat-bg3" disabled>4</button>
                         </div>
-                        <div style="position: absolute; left:470px; top: 127px;">
+                        <div style="position: absolute; left:545px; top: 127px;">
                           <button @click="addseat('D05')" v-show="selectsD[4] == 1" class="seat-bg">5</button>
                           <button @click="deleteseat('D05')" v-show="selectsD[4] == 2" class="seat-bg2">5</button>
-                          <button v-show="selectsD[5] == 0" class="seat-bg3" disabled>5</button>
+                          <button v-show="selectsD[4] == 0" class="seat-bg3" disabled>5</button>
                         </div>
-                        <div style="position: absolute; left:510px; top: 127px;">
+                        <div style="position: absolute; left:595px; top: 127px;">
                           <button @click="addseat('D06')" v-show="selectsD[5] == 1" class="seat-bg">6</button>
                           <button @click="deleteseat('D06')" v-show="selectsD[5] == 2" class="seat-bg2">6</button>
                           <button v-show="selectsD[5] == 0" class="seat-bg3" disabled>6</button>
                         </div>
-                        <div style="position: absolute; left:550px; top: 127px;">
+                        <div style="position: absolute; left:645px;top: 127px;">
                           <button @click="addseat('D07')" v-show="selectsD[6] == 1" class="seat-bg">7</button>
                           <button @click="deleteseat('D07')" v-show="selectsD[6] == 2" class="seat-bg2">7</button>
                           <button v-show="selectsD[6] == 0" class="seat-bg3" disabled>7</button>
                         </div>
-                        <div style="position: absolute; left:590px; top: 127px;">
+                        <div style="position: absolute; left:755px; top: 127px;">
                           <button @click="addseat('D08')" v-show="selectsD[7] == 1" class="seat-bg">8</button>
                           <button @click="deleteseat('D08')" v-show="selectsD[7] == 2" class="seat-bg2">8</button>
                           <button v-show="selectsD[7] == 0" class="seat-bg3" disabled>8</button>
                         </div>
-                        <div style="position: absolute; left:630px;top: 127px;">
+                        <div style="position: absolute; left:795px; top: 127px;">
                           <button @click="addseat('D09')" v-show="selectsD[8] == 1" class="seat-bg">9</button>
                           <button @click="deleteseat('D09')" v-show="selectsD[8] == 2" class="seat-bg2">9</button>
                           <button v-show="selectsD[8] == 0" class="seat-bg3" disabled>9</button>
                         </div>
-                        <div style="position: absolute; left:670px;top: 127px;">
+                        <div style="position: absolute; left:835px; top: 127px;">
                           <button @click="addseat('D10')" v-show="selectsD[9] == 1" class="seat-bg">10</button>
                           <button @click="deleteseat('D10')" v-show="selectsD[9] == 2" class="seat-bg2">10</button>
                           <button v-show="selectsD[9] == 0" class="seat-bg3" disabled>10</button>
-                        </div>
-                        <div style="position: absolute; left:765px; top: 127px;">
-                          <button @click="addseat('D11')" v-show="selectsD[10] == 1" class="seat-bg">11</button>
-                          <button @click="deleteseat('D11')" v-show="selectsD[10] == 2" class="seat-bg2">11</button>
-                          <button v-show="selectsD[10] == 0" class="seat-bg3" disabled>11</button>
-                        </div>
-                        <div style="position: absolute; left:805px; top: 127px;">
-                          <button @click="addseat('D12')" v-show="selectsD[11] == 1" class="seat-bg">12</button>
-                          <button @click="deleteseat('D12')" v-show="selectsD[11] == 2" class="seat-bg2">12</button>
-                          <button v-show="selectsD[11] == 0" class="seat-bg3" disabled>12</button>
-                        </div>
-                        <div style="position: absolute; left:845px; top: 127px;">
-                          <button @click="addseat('D13')" v-show="selectsD[12] == 1" class="seat-bg">13</button>
-                          <button @click="deleteseat('D13')" v-show="selectsD[12] == 2" class="seat-bg2">13</button>
-                          <button v-show="selectsD[12] == 0" class="seat-bg3" disabled>13</button>
-                        </div>
-                        <div style="position: absolute; left:885px; top: 127px;">
-                          <button @click="addseat('D14')" v-show="selectsD[13] == 1" class="seat-bg">14</button>
-                          <button @click="deleteseat('D14')" v-show="selectsD[13] == 2" class="seat-bg2">14</button>
-                          <button v-show="selectsD[13] == 0" class="seat-bg3" disabled>14</button>
                         </div>
                       </div>
                       <!-- 좌석 E 시작 -->
                       <div class="seat-p">
                         <span class="font">E</span>
-                        <div style="position: absolute; left:255px; top: 169px;">
+                        <div style="position: absolute; left:295px; top: 169px;">
                           <button @click="addseat('E01')" v-show="selectsE[0] == 1" class="seat-bg">1</button>
                           <button @click="deleteseat('E01')" v-show="selectsE[0] == 2" class="seat-bg2">1</button>
                           <button v-show="selectsE[0] == 0" class="seat-bg3" disabled>1</button>
                         </div>
-                        <div style="position: absolute; left:295px; top: 169px;">
+                        <div style="position: absolute; left:335px; top: 169px;">
                           <button @click="addseat('E02')" v-show="selectsE[1] == 1" class="seat-bg">2</button>
                           <button @click="deleteseat('E02')" v-show="selectsE[1] == 2" class="seat-bg2">2</button>
                           <button v-show="selectsE[1] == 0" class="seat-bg3" disabled>2</button>
                         </div>
-                        <div style="position: absolute; left:335px; top: 169px;">
+                        <div style="position: absolute; left:375px; top: 169px;">
                           <button @click="addseat('E03')" v-show="selectsE[2] == 1" class="seat-bg">3</button>
                           <button @click="deleteseat('E03')" v-show="selectsE[2] == 2" class="seat-bg2">3</button>
                           <button v-show="selectsE[2] == 0" class="seat-bg3" disabled>3</button>
                         </div>
-                        <div style="position: absolute; left:375px; top: 169px;">
+                        <div style="position: absolute; left:495px; top: 169px;">
                           <button @click="addseat('E04')" v-show="selectsE[3] == 1" class="seat-bg">4</button>
                           <button @click="deleteseat('E04')" v-show="selectsE[3] == 2" class="seat-bg2">4</button>
                           <button v-show="selectsE[3] == 0" class="seat-bg3" disabled>4</button>
                         </div>
-                        <div style="position: absolute; left:470px; top: 169px;">
+                        <div style="position: absolute; left:545px; top: 169px;">
                           <button @click="addseat('E05')" v-show="selectsE[4] == 1" class="seat-bg">5</button>
                           <button @click="deleteseat('E05')" v-show="selectsE[4] == 2" class="seat-bg2">5</button>
-                          <button v-show="selectsE[5] == 0" class="seat-bg3" disabled>5</button>
+                          <button v-show="selectsE[4] == 0" class="seat-bg3" disabled>5</button>
                         </div>
-                        <div style="position: absolute; left:510px; top: 169px;">
+                        <div style="position: absolute; left:595px; top: 169px;">
                           <button @click="addseat('E06')" v-show="selectsE[5] == 1" class="seat-bg">6</button>
                           <button @click="deleteseat('E06')" v-show="selectsE[5] == 2" class="seat-bg2">6</button>
                           <button v-show="selectsE[5] == 0" class="seat-bg3" disabled>6</button>
                         </div>
-                        <div style="position: absolute; left:550px; top: 169px;">
+                        <div style="position: absolute; left:645px;top: 169px;">
                           <button @click="addseat('E07')" v-show="selectsE[6] == 1" class="seat-bg">7</button>
                           <button @click="deleteseat('E07')" v-show="selectsE[6] == 2" class="seat-bg2">7</button>
                           <button v-show="selectsE[6] == 0" class="seat-bg3" disabled>7</button>
                         </div>
-                        <div style="position: absolute; left:590px; top: 169px;">
+                        <div style="position: absolute; left:755px; top: 169px;">
                           <button @click="addseat('E08')" v-show="selectsE[7] == 1" class="seat-bg">8</button>
                           <button @click="deleteseat('E08')" v-show="selectsE[7] == 2" class="seat-bg2">8</button>
                           <button v-show="selectsE[7] == 0" class="seat-bg3" disabled>8</button>
                         </div>
-                        <div style="position: absolute; left:630px;top: 169px;">
+                        <div style="position: absolute; left:795px; top: 169px;">
                           <button @click="addseat('E09')" v-show="selectsE[8] == 1" class="seat-bg">9</button>
                           <button @click="deleteseat('E09')" v-show="selectsE[8] == 2" class="seat-bg2">9</button>
                           <button v-show="selectsE[8] == 0" class="seat-bg3" disabled>9</button>
                         </div>
-                        <div style="position: absolute; left:670px;top: 169px;">
+                        <div style="position: absolute; left:835px; top: 169px;">
                           <button @click="addseat('E10')" v-show="selectsE[9] == 1" class="seat-bg">10</button>
                           <button @click="deleteseat('E10')" v-show="selectsE[9] == 2" class="seat-bg2">10</button>
                           <button v-show="selectsE[9] == 0" class="seat-bg3" disabled>10</button>
-                        </div>
-                        <div style="position: absolute; left:765px; top: 169px;">
-                          <button @click="addseat('E11')" v-show="selectsE[10] == 1" class="seat-bg">11</button>
-                          <button @click="deleteseat('E11')" v-show="selectsE[10] == 2" class="seat-bg2">11</button>
-                          <button v-show="selectsE[10] == 0" class="seat-bg3" disabled>11</button>
-                        </div>
-                        <div style="position: absolute; left:805px; top: 169px;">
-                          <button @click="addseat('E12')" v-show="selectsE[11] == 1" class="seat-bg">12</button>
-                          <button @click="deleteseat('E12')" v-show="selectsE[11] == 2" class="seat-bg2">12</button>
-                          <button v-show="selectsE[11] == 0" class="seat-bg3" disabled>12</button>
-                        </div>
-                        <div style="position: absolute; left:845px; top: 169px;">
-                          <button @click="addseat('E13')" v-show="selectsE[12] == 1" class="seat-bg">13</button>
-                          <button @click="deleteseat('E13')" v-show="selectsE[12] == 2" class="seat-bg2">13</button>
-                          <button v-show="selectsE[12] == 0" class="seat-bg3" disabled>13</button>
-                        </div>
-                        <div style="position: absolute; left:885px; top: 169px;">
-                          <button @click="addseat('E14')" v-show="selectsE[13] == 1" class="seat-bg">14</button>
-                          <button @click="deleteseat('E14')" v-show="selectsE[13] == 2" class="seat-bg2">14</button>
-                          <button v-show="selectsE[13] == 0" class="seat-bg3" disabled>14</button>
                         </div>
                       </div>
                     </div>
@@ -684,7 +584,7 @@
                 <!-- 이건 좌석 -->
                 <!-- 이건 결제 -->
                 <div v-show="결제">
-                  <div style=" width: 1170px; height: 620px; position: relative;">
+                  <div style=" width: 1170px; height: 705px; position: relative;">
                     <div style="width: 390px; height: 40px; background-color: #1E212D; color: white; text-align: center;font-size: 20px; float: left;line-height: 40px; ">
                       예매정보
                     </div>
@@ -694,7 +594,7 @@
                     <div style="width: 390px; height: 40px; background-color: #1E212D; color: white; text-align: center;font-size: 20px; float: left;line-height: 40px;">
                       결제하기
                     </div>
-                    <div style="width: 390px; height: 620px; float: left; background-color: #F7EBEC;border: 1px solid gray; border-radius: 0 0 0 10px;">
+                    <div style="width: 390px; height: 665px; float: left; background-color: #F7EBEC;border: 1px solid gray; border-radius: 0 0 0 10px;">
                       
                       <div style="width: 230px;">
                         <img style="margin-left: 80px; margin-top: 15px;" src="@/assets/images_kang/Views/HomeView/poster/ABATA.jpg" alt="">
@@ -707,7 +607,7 @@
                         <h6 style="padding: 5px 0;"> 시간 : <span style="font-size: 18px;">{{ ticketinfor.selectedtime }}</span></h6> 
                       </div>
                     </div>
-                    <div style="width: 390px;height: 620px; float: left; background-color: #F7EBEC; border: 1px solid gray;">
+                    <div style="width: 390px;height: 665px; float: left; background-color: #F7EBEC; border: 1px solid gray;">
                       <p style="border-bottom: #1D1E2C 1px solid; padding-bottom: 10px; width: 90px; margin-left: 10px; margin-top: 10px; color: black;" >결제수단</p>
                       <button v-show="신용카드" @click="Paycard()" style="width: 105px; height: 50px; margin: 0 10px 10px 13px; border-radius: 15px; border: 1px solid #ddd;">
                         신용카드
@@ -722,7 +622,7 @@
                         휴대폰
                       </button>
                     </div>
-                    <div style="width: 390px;height: 620px; float: left; background-color: #F7EBEC; border-radius: 0 0 10px 0;  border: 1px solid gray;">
+                    <div style="width: 390px;height: 665px; float: left; background-color: #F7EBEC; border-radius: 0 0 10px 0;  border: 1px solid gray;">
                       <div style="width: 100%; background-color: #252A34; height: 50px; border-bottom: 1px solid gray; color: white; line-height:50px; padding-left: 10px;">
                         상품금액 <span style="float: right; margin-right: 10px;">{{ (adultcount * 14000)  + (teencount * 11000)}} 원</span>
                       </div>
@@ -730,10 +630,10 @@
                         할인금액 <span style="float: right; margin-right: 10px;">0 원</span>
                       </div>
                       <div style="width: 100%; background-color: #252A34; height: 50px; border-bottom: 1px solid gray; color: white; line-height:50px; padding-left: 10px;">
-                        결제금액 <span style="float: right; margin-right: 10px;">{{ (adultcount * 14000)  + (teencount * 11000)}} 원</span>
+                        결제금액 <span style="float: right; margin-right: 10px;" >{{ (adultcount * 100)  + (teencount * 100)}} 원</span>
                       </div>
                       
-                      <button style="width: 100%;background-color: #845bcb; height: 70px; border: 0; color: black; font-size: 20px;">
+                      <button v-on:click="requestPay" style="width: 100%;background-color: #845bcb; height: 70px; border: 0; color: black; font-size: 20px;">
                         결 제 하 기
                       </button>
                      </div>
@@ -749,8 +649,8 @@
     </div>
   </template>
   
+ 
   <script>
-
   import custom from "@/assets/js/custom";
   export default {
     created() {
@@ -784,6 +684,8 @@
         열다섯살 : false,
         전체이용가: true,
 
+        amount : 100, // 임시 결제 금액
+        
 
         결제하기 : false, // 좌석숫자랑 인원수랑 맞으면 true로 바뀜
         adultcount: 0, //  성인 인원수 카운트
@@ -808,11 +710,11 @@
 
         selectedday : [], // 선택된 날짜를 담는 배열
         selected: [], // 선택된 좌석 담는 배열
-        a: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
-        b: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
-        c: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
-        d: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
-        e: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
+        a: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
+        b: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
+        c: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
+        d: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
+        e: ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
   
         // selectedseata: [1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         selectsA: [],
@@ -832,7 +734,7 @@
     },
     methods: {
       seattestA() {            // 데이터 베이스에서 자리가 있는지 확인
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < 10; i++) {
           if (this.a[i] == 'Y') {      // 자리가 있으면 true를 줌
             this.selectsA[i] = 1;
           } else {                     // 자리가 없으면 false
@@ -841,7 +743,7 @@
         }
       },
       seattestB() {            // 데이터 베이스에서 자리가 있는지 확인
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < 10; i++) {
           if (this.b[i] == 'Y') {      // 자리가 있으면 true를 줌
             this.selectsB[i] = 1;
           } else {                     // 자리가 없으면 false
@@ -850,7 +752,7 @@
         }
       },
       seattestC() {            // 데이터 베이스에서 자리가 있는지 확인
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < 10; i++) {
           if (this.c[i] == 'Y') {      // 자리가 있으면 true를 줌
             this.selectsC[i] = 1;
           } else {                     // 자리가 없으면 false
@@ -859,7 +761,7 @@
         }
       },
       seattestD() {            // 데이터 베이스에서 자리가 있는지 확인
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < 10; i++) {
           if (this.d[i] == 'Y') {      // 자리가 있으면 true를 줌
             this.selectsD[i] = 1;
           } else {                     // 자리가 없으면 false
@@ -868,7 +770,7 @@
         }
       },
       seattestE() {            // 데이터 베이스에서 자리가 있는지 확인
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < 10; i++) {
           if (this.e[i] == 'Y') {      // 자리가 있으면 true를 줌
             this.selectsE[i] = 1;
           } else {                     // 자리가 없으면 false
@@ -927,7 +829,7 @@
         }
       },
       deleteseat(value) {            // 클릭을 하면 selected 배열에서 삭제를 함
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < 10; i++) {
           if (this.selected[i] == value) {
             this.selected.splice(i, 1);    // 클릭을 하면 selected 배열에서 삭제를 함
             this.Seat(value)            // SeatA() 함수 실행
@@ -1127,140 +1029,166 @@
           this.순서 += j;
         }
       },
+      requestPay: function () {
+      //1. 객체 초기화 (가맹점 식별코드 삽입)
+      var IMP = window.IMP;
+      IMP.init("imp03367585");
+      //3. 결제창 호출
+      IMP.request_pay(
+        {
+          pg: "html5_inicis",
+          pay_method: "card",
+          merchant_uid: "merchant_" + new Date().getTime(),
+          name: "영화티켓",
+          amount: this.amount,
+          buyer_tel: "01077532889",
+          buyer_name: "홍길동",
+          buyer_email: "gildong@gmail.com",
+
+        },
+        function (rsp) {
+          //콜백 함수
+          if (rsp.success) {
+            //결제 성공
+			alert("결제성공")
+          } else {
+            //결제 실패
+			alert("결제실패")
+          }
+        }
+      );
+    },
     },
   }
   </script>
-  
-  <style lang="scss" scoped>
-  @import "@/assets/css/style.css";
 
-  *{
-    font-family: sans-serif;
-  }  
+ 
+<style lang="scss" scoped>
+@import "@/assets/css/style.css";
+
+*{
+  font-family: sans-serif;
+}  
 
   /* 배경이미지 */
-.user-hero {
+   .user-hero {
   background: url(@/assets/images_kang/Components/common/Navcom/back-img-test11.png)
   no-repeat;
   /* height: 598px; */
   width: 100%;
 }
 
-  .div2 {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    border: 0;
-    background-color: #EEEEEE;
-  }
-  .C_div2 {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    color: white;
-    border: 0;
-    background-color: #888888;
-  }
-  
-  .btndiv2 {
-    border: 0;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    background-color: #F6F6F6;
-  
-  } 
-  .C_btndiv2 {
-    border: 0;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    color: white;
-    background-color: #888888;
-  
-  }
-  .black-bg{
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    position: fixed;
-    padding: 20px;
-  }
-  .white-bg {
-    width: 100%;
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-  }
-  
- 
-  
-  
-  .seat {
-    position: relative;
-  }
-  .seat-p {
-    width: 950px;
-  }
-  
-  .seat-bg {
-    background: #e8e8e8;
-    width: 31px;
-    height: 26px;
-    text-align: center;
-    overflow: hidden;
-    color: #000;
-    letter-spacing: -0.5px;
-    box-sizing: border-box;
-    border-radius: 7px 7px 2px 0px;
-    position: absolute;
-  
-  }
-  
-  .seat-bg2 {
-    background: #845bcb;
-    width: 31px;
-    height: 26px;
-    text-align: center;
-    overflow: hidden;
-    color: #000;
-    letter-spacing: -0.5px;
-    box-sizing: border-box;
-    border-radius: 7px 7px 2px 0px;
-    position: absolute;
-  
-  }
-  
-  .seat-bg3 {
-    background: #757575;
-    width: 31px;
-    height: 26px;
-    text-align: center;
-    overflow: hidden;
-  
-    color: #000;
-    letter-spacing: -0.5px;
-    box-sizing: border-box;
-    border-radius: 7px 7px 2px 0px;
-    position: absolute;
-  
-  }
-  
-  .seat-p {
-    margin-bottom: 20px;
-  }
-  
-  .font {
-    color: white;
-    position: relative;
-    // left: -20px;
-  }
+.div2 {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border: 0;
+  background-color: #EEEEEE;
+}
+.C_div2 {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: white;
+  border: 0;
+  background-color: #888888;
+}
 
-  
-  
-  </style>
-  
+.btndiv2 {
+  border: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  background-color: #F6F6F6;
+
+} 
+.C_btndiv2 {
+  border: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: #888888;
+
+}
+.black-bg{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  padding: 20px;
+}
+.white-bg {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.seat {
+  position: relative;
+}
+.seat-p {
+  width: 950px;
+}
+
+.seat-bg {
+  background: #e8e8e8;
+  width: 31px;
+  height: 26px;
+  text-align: center;
+  overflow: hidden;
+  color: #000;
+  letter-spacing: -0.5px;
+  box-sizing: border-box;
+  border-radius: 7px 7px 2px 0px;
+  position: absolute;
+
+}
+
+.seat-bg2 {
+  background: #845bcb;
+  width: 31px;
+  height: 26px;
+  text-align: center;
+  overflow: hidden;
+  color: #000;
+  letter-spacing: -0.5px;
+  box-sizing: border-box;
+  border-radius: 7px 7px 2px 0px;
+  position: absolute;
+
+}
+
+.seat-bg3 {
+  background: #757575;
+  width: 31px;
+  height: 26px;
+  text-align: center;
+  overflow: hidden;
+
+  color: #000;
+  letter-spacing: -0.5px;
+  box-sizing: border-box;
+  border-radius: 7px 7px 2px 0px;
+  position: absolute;
+
+}
+
+.seat-p {
+  margin-bottom: 20px;
+}
+
+.font {
+  color: white;
+  position: relative;
+  // left: -20px;
+}
+
+
+
+</style>
