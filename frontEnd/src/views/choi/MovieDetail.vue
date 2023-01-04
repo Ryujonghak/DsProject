@@ -239,35 +239,40 @@
                                 name="reviewStar"
                                 value="5"
                                 id="rate1"
+                                v-model="rurating"
                               /><label for="rate1">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="4"
                                 id="rate2"
+                                v-model="rurating"
                               /><label for="rate2">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="3"
                                 id="rate3"
+                                v-model="rurating"
                               /><label for="rate3">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="2"
                                 id="rate4"
+                                v-model="rurating"
                               /><label for="rate4">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="1"
                                 id="rate5"
+                                v-model="rurating"
                               /><label for="rate5">★</label>
                             </fieldset>
                             <div>
                               <textarea
-                                v-model="userReview"
+                                v-model="rucontent"
                                 class="col-auto form-control"
                                 style="fontsize: 91%"
                                 type="text"
@@ -302,7 +307,7 @@
                               <div class="rate-star">
                                 <span
                                   class="rate-star-result"
-                                  v-for="(i, index) in data.rating"
+                                  v-for="(i, index) in review.rurating"
                                   :key="index"
                                   ><i
                                     class="ion-ios-star"
@@ -458,6 +463,10 @@ export default {
       //   },
       // ],
 
+      rwuser: "최아리",
+      rucontent: "",
+      rurating: 0,
+
       // TODO: 리뷰
       reviewMovie: {
         userStarRating: 2, // 사용자별점
@@ -472,7 +481,7 @@ export default {
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
       count: 0, // 전체 데이터 건수
-      pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      pageSize: 20, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
 
       pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
     };
@@ -518,8 +527,11 @@ export default {
     },
     saveReview() {
       let data = {
+        rwuser: this.rwuser,
+        movienm: this.movie.movienm,
+        moviecd: this.movie.moviecd,
         rating: this.rurating,
-        content: this.rucontent,
+        rucontent: this.rucontent,
       };
 
       // insert 요청 함수 호출
@@ -529,7 +541,8 @@ export default {
           console.log(response.data);
           // this.submitted = true;
           alert("ㄹㅣ뷰 저장")
-          getReview(this.$route.params.moviecd)
+          alert(this.rurating)
+          getReview(this.movie.moviecd)
 ;        })
         // 실패하면 .catch() 결과가 전송됨
         .catch((e) => {
