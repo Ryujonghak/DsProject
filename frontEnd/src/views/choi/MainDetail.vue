@@ -32,8 +32,8 @@
                             class="social-btn col-xs-12"
                             style="padding-top: 2%; width: 1000px; height: 50px"
                           >
-                            <a href="/movieDetail" class="parent-btn"
-                              ><i class="ion-play"></i>상세보기 ></a
+                            <router-link :to="'/allMovie/' + currentMovie.moviecd" class="parent-btn"
+                              ><i class="ion-play"></i>상세보기 ></router-link
                             >
                             <a href="#" class="parent-btn" @click="likeSave"
                               ><i class="ion-heart"></i>찜하기</a
