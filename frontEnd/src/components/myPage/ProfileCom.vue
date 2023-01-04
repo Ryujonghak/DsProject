@@ -176,30 +176,97 @@
                       v-model="CurrentUser.phone"
                     />
                   </div>
-                  <div class="col-md-6 form-it">
-                    <label for="password">변경할 비밀번호</label>
-                    <input
-                      type="password"
-                      placeholder="영문자, 숫자, 특수문자 조합 8~12자리"
-                      class="form-control"
-                      v-model="CurrentUser.password"
-                    />
-                  </div>
                 </div>
-
+                
                 <!-- 저장 버튼 -->
                 <div class="row">
                   <div class="col-md-2">
                     <input
-                      @click="
-                        updateUserInfo(CurrentUser.id, changePwd, CurrentUser)
-                      "
+                      @click="updateUserInfo"
                       class="submit"
                       type="button"
                       value="저장하기"
                     />
                   </div>
-                  <p>{{ message }}</p>
+                </div>
+              </form>
+
+              <!-- 비밀번호 수정 -->
+              <form action="" class="password">
+                <h4>비밀번호 수정</h4>
+                <div class="row">
+                  <div class="col-md-6 form-it">
+                    <label>비밀번호 확인용 질문</label>
+                    <select>
+                      <option value="pwquestion">질문을 선택하세요</option>
+                      <option value="pwquestion">나의 고향은?</option>
+                      <option value="pwquestion">어머니의 성함은?</option>
+                      <option value="pwquestion">아버지의 성함은?</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 form-it">
+                    <!--                    TODO: label 에 for="answer" 추가 -->
+                    <!--                    TODO: v-model에 Current.answer하면 백엔연동시 답이 뜨므로 숨겨야 함...
+                                                  폼에 입력된 값이랑 회원데이터값 비교해서 맞으면 changePwdForm 떠야하는데... -->
+                    <label for="answer">비밀번호 확인용 정답</label>
+                    <input
+                      id="answer"
+                      type="text"
+                      placeholder="정답을 한글로 입력하세요"
+                      v-model="checkanswer"
+                    />
+                  </div>
+                </div>
+                <!--                 TODO: 비밀번호 질문 정답 제출버튼 -> 버튼 클릭시 변경폼 보이도록 (type = button) -->
+                <div class="row">
+                  <div class="col-md-2">
+                    <!--                      TODO: @click="findpwd"-->
+                    <input
+                      class="submit"
+                      type="button"
+                      value="정답확인"
+                      @click="findpwd"
+                    />
+                  </div>
+                </div>
+                <br />
+                <br />
+                <!-- TODO: 질문의 정답이 일치하면 아래 div 보이도록...ㅋ : v-show="changePwdForm"  class="pwcheck"-->
+                <!-- <div v-show="changePwdForm" class="pwcheck"> -->
+                <div>
+                  <div class="row">
+                    <div class="col-md-6 form-it">
+                      <label for="password">변경할 비밀번호</label>
+                      <input
+                        type="password"
+                        placeholder="영문자, 숫자, 특수문자 조합 8~12자리"
+                        class="form-control"
+                        v-model="CurrentUser.password"
+                      />
+                    </div>
+
+                    <div class="col-md-6 form-it">
+                      <label>비밀번호 확인</label>
+                      <input
+                        type="password"
+                        placeholder="비밀번호를 재입력해주세요"
+                        v-model="password"
+                      />
+                    </div>
+                  </div>
+                  <!-- 제출 버튼 -->
+                  <div class="row">
+                    <div class="col-md-2">
+                      <!--                      TODO: 비밀번호 변경 클릭 이벤트 : updatePwd -->
+                      <input
+                        class="submit"
+                        type="button"
+                        @click="updatePwd(CurrentUser.username, changePwd, CurrentUser)"
+                        value="변경하기"
+                        />
+                      <p>{ message }</p>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
@@ -211,7 +278,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 // import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
@@ -229,17 +295,7 @@ export default {
       changePwdForm: false,
       // objanswer: "",
       // username: "",
-      CurrentUser: {
-        email: "",
-        password: "",
-        username: "",
-        phone: null,
-        year: null,
-        month: null,
-        day: null,
-        name: "",
-        answer: "", // 비번확인용 정답
-      },
+      CurrentUser: [],
       message: "",
     };
   },
@@ -272,17 +328,7 @@ export default {
       userService
         .getUserUsername(username)
         .then((response) => {
-          this.CurrentUser = {
-            email: response.data.email,
-            password: response.data.password,
-            username: response.data.username,
-            phone: response.data.phone,
-            year: response.data.year,
-            month: response.data.month,
-            day: response.data.day,
-            name: response.data.name,
-            answer: response.data.answer,
-          };
+          this.CurrentUser = response.data;
           console.log(this.CurrentUser);
           // console.log(response.data);
         })
@@ -317,34 +363,20 @@ export default {
 
     // 회원정보수정
     updateUserInfo(id, changePwd, user) {
-      alert("수정시작");
-      this.message = "";
-      this.submitted = true;
-      this.$validator.validate().then((isValid) => {
-        if (isValid) {
-          userService
-            .update(id, changePwd, user)
-            .then((response) => {
-              console.log(response.data);
-              alert("ddd")
-              this.message = "The User was updated successfully!";
-            })
-            .catch((e) => {
-              console.log(e);
-            });
-        }
-      });
-
-      // alert("수정시작")
-      // userService
-      //   .update(this.CurrentUser.username, this.CurrentUser)
-      //   .then((response) => {
-      //     console.log(response.data);
-      //     this.message = "유저 정보가 성공적으로 수정되었습니다!";
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
+      alert("클릭")
+      console.log(this.CurrentUser.username);
+      id = this.CurrentUser.username;
+      changePwd = true;
+      user = this.CurrentUser;
+      userService
+        .update(id, changePwd, user)
+        .then((response) => {
+          console.log(response.data);
+          this.message = "유저 정보가 성공적으로 수정되었습니다!";
+        })
+        .catch((e) => {
+          console.log(e);
+        });
       // 수정완료시 그 전페이지로 강제이동
       // this.$router.push("/mypage");
     },
@@ -393,7 +425,6 @@ export default {
   },
   mounted() {
     custom();
-    // this.getUser(this.$route.params.id); // 종학이 백엔드 데이터
     this.getUser(); // 종학이 백엔드 데이터
   },
 };
