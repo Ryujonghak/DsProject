@@ -182,6 +182,8 @@ import UserService from "@/services/user.service.js";
 
 export default {
   mounted() {
+    this.retrieveUser();
+
     // 모달 테스트
     const modal = document.getElementById("modal");
     function modalOn() {
@@ -197,10 +199,6 @@ export default {
     btnModal.addEventListener("click", (e) => {
       modalOn(e);
     });
-    // const closeBtn = modal.querySelector(".close-area");
-    // closeBtn.addEventListener("click", (e) => {
-    //   modalOff(e);
-    // });
     const closeBtn2 = modal.querySelector(".closebtn");
     closeBtn2.addEventListener("click", (e) => {
       modalOff(e);
@@ -216,8 +214,6 @@ export default {
         modalOff(e);
       }
     });
-
-    this.retrieveUser();
   },
   data() {
     return {
@@ -253,6 +249,7 @@ export default {
           this.count = totalItems;
 
           console.log(response.data);
+
         })
         .catch((e) => {
           alert("then 못 가고 실패");

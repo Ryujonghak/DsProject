@@ -122,14 +122,14 @@
                   <th width="40%" cope="row"><label for="name">내용</label></th>
                   <th width="5%" scope="row"><label for="name">이름</label></th>
                   <th width="30%" scope="row"><label for="name">이메일</label></th>
-                  <th width="20%" scope="row"><label for="name">휴대전화</label>              </th>
+                  <th width="20%" scope="row"><label for="name">휴대전화</label></th>
                 </tr>
               </thead>
               <tbody v-for="(data, index) in qna" :key="index">
                 <tr>
-                  <td>{{ data.title }}</td>
-                  <td>{{ data.content }}</td>
-                  <td>{{ data.name }}</td>
+                  <td>{{ data.qtitle }}</td>
+                  <td>{{ data.qcontent }}</td>
+                  <td>{{ data.qwriter }}</td>
                   <td>{{ data.email }}</td>
                   <td>{{ data.phone }}</td>
                   <!-- <td>

@@ -160,8 +160,7 @@
                   <!-- 아카이브 나브 -->
                   <div class="topbar-filter">
                     <router-link to ="/archive"
-                      ><p>나의 아카이브 <span>8</span> in total</p></router-link
-                    >
+                      ><p>나의 아카이브 <span>8</span> in total</p></router-link>
                     <a href="userfavoritegrid.html" class="grid"
                       ><i class="ion-grid"></i
                     ></a>
@@ -169,7 +168,63 @@
                   <!-- 나의 아카이브 내용 시작 -->
                   <!-- TODO: 본 영화 정보 받아오기 :  -->
                   <div class="flex-wrap-movielist">
-                    <!-- 상영작 1 -->
+                    <!-- 아카이브 시작 -->
+                    <!-- 원래 여기에 걸어야되는데 v-for 두 개 걸꺼라서 일단 바로밑에 걸었음... -->
+                    <div class="movie-item-style-2 movie-item-style-1">
+                      <!-- TODO: v-for 1번 : 영화정보 -->
+                      <div v-for="(data, index) in watchedMovie" v-bind:key="index">
+                        <img :src="data.posterURL" alt="poster" />
+                        <!-- 영화 라벨 -->
+                        <div class="mv-item-infor">
+                          <div class="movieTitle-2">
+                            <h6>
+                              <a href="/movieDetail">{{
+                                data.movieNm
+                              }}</a>
+                            </h6>
+                          </div>
+                          <p class="rate">
+                            <i class="ion-android-star"></i
+                            ><span>{{ data.rating }}</span> /5
+                          </p>
+                        </div>
+                      </div>
+                      <!-- TODO: v-for 2번 : 영화에 마우스 올리면 나오는 관람정보: 리뷰를 위한 영화정보 -->
+                      <div class="hvr-inner" v-for="(data, index) in reviewMovie" v-bind:key="index">
+                        <div class="movieTitle">
+                          <h6>
+                            <router-link to="/movieDetail">
+                              {{ data.movieNm }}
+                              <span
+                                >({{ data.openDt }})</span
+                              ></router-link
+                            >
+                          </h6>
+                        </div>
+                        <p>
+                          {{ data.scheNo }} <br />
+                          상영시간: {{ data.showTm }}분 <br />
+                          감독: {{ data.directors }}
+                        </p>
+                        <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
+                        <p class="time sm-text">
+                          나의 별점
+                          <!-- 별점 v-for -->
+                          <i class="ion-android-star"></i
+                          ><span>{{ data.userStarRating }}</span>
+                        </p>
+                        <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
+                        <router-link to="/archive" @click="goReview"
+                          >나의 리뷰 작성하기</router-link
+                        >
+                        <!-- <h6>Best Musical movie</h6> -->
+                      </div>
+                      <!-- 영화에 마우스 올리면 나오는 관람정보: 리뷰를 위한 영화정보 끝 -->
+                    </div>
+                    <!-- 아카이브 끝 -->
+
+
+                    <!-- 아카이브 상영작 시작 -->
                     <div class="movie-item-style-2 movie-item-style-1">
                       <!-- todo) 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
                       <img :src="watchedMovie.posterURL" alt="poster" />
@@ -218,253 +273,8 @@
                         </p>
                       </div>
                     </div>
-                    <!-- 상영작 2 -->
-                    <div class="movie-item-style-2 movie-item-style-1">
-                      <!-- todo) 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
-                      <img :src="watchedMovie.posterURL" alt="poster" />
-                      <!-- 영화에 마우스 올리면 나오는 관람정보 -->
-                      <div class="hvr-inner">
-                        <div class="movieTitle">
-                          <h6>
-                            <router-link to="/movieDetail">
-                              {{ watchedMovie.movieNm }}
-                              <span
-                                >({{ watchedMovie.openDt }})</span
-                              ></router-link
-                            >
-                          </h6>
-                        </div>
-                        <p>
-                          {{ watchedMovie.scheNo }} <br />
-                          상영시간: {{ watchedMovie.showTm }}분 <br />
-                          감독: {{ watchedMovie.directors }}
-                        </p>
-                        <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
-                        <p class="time sm-text">
-                          나의 별점
-                          <!-- 별점 v-for -->
-                          <i class="ion-android-star"></i
-                          ><span>{{ reviewMovie.userStarRating }}</span>
-                        </p>
-                        <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
-                        <router-link to="/archive" @click="goReview"
-                          >나의 리뷰 작성하기</router-link
-                        >
-                        <!-- <h6>Best Musical movie</h6> -->
-                      </div>
-                      <!-- 영화 라벨 -->
-                      <div class="mv-item-infor">
-                        <div class="movieTitle-2">
-                          <h6>
-                            <a href="/movieDetail">{{
-                              watchedMovie.movieNm
-                            }}</a>
-                          </h6>
-                        </div>
-                        <p class="rate">
-                          <i class="ion-android-star"></i
-                          ><span>{{ watchedMovie.rating }}</span> /5
-                        </p>
-                      </div>
-                    </div>
-                    <!-- 상영작 3 -->
-                    <div class="movie-item-style-2 movie-item-style-1">
-                      <!-- todo) 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
-                      <img :src="watchedMovie.posterURL" alt="poster" />
-                      <!-- 영화에 마우스 올리면 나오는 관람정보 -->
-                      <div class="hvr-inner">
-                        <div class="movieTitle">
-                          <h6>
-                            <router-link to="/movieDetail">
-                              {{ watchedMovie.movieNm }}
-                              <span
-                                >({{ watchedMovie.openDt }})</span
-                              ></router-link
-                            >
-                          </h6>
-                        </div>
-                        <p>
-                          {{ watchedMovie.scheNo }} <br />
-                          상영시간: {{ watchedMovie.showTm }}분 <br />
-                          감독: {{ watchedMovie.directors }}
-                        </p>
-                        <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
-                        <p class="time sm-text">
-                          나의 별점
-                          <!-- 별점 v-for -->
-                          <i class="ion-android-star"></i
-                          ><span>{{ reviewMovie.userStarRating }}</span>
-                        </p>
-                        <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
-                        <router-link to="/archive" @click="goReview"
-                          >나의 리뷰 작성하기</router-link
-                        >
-                        <!-- <h6>Best Musical movie</h6> -->
-                      </div>
-                      <!-- 영화 라벨 -->
-                      <div class="mv-item-infor">
-                        <div class="movieTitle-2">
-                          <h6>
-                            <a href="/movieDetail">{{
-                              watchedMovie.movieNm
-                            }}</a>
-                          </h6>
-                        </div>
-                        <p class="rate">
-                          <i class="ion-android-star"></i
-                          ><span>{{ watchedMovie.rating }}</span> /5
-                        </p>
-                      </div>
-                    </div>
-                    <!-- 상영작 4 -->
-                    <div class="movie-item-style-2 movie-item-style-1">
-                      <!-- todo) 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
-                      <img :src="watchedMovie.posterURL" alt="poster" />
-                      <!-- 영화에 마우스 올리면 나오는 관람정보 -->
-                      <div class="hvr-inner">
-                        <div class="movieTitle">
-                          <h6>
-                            <router-link to="/movieDetail">
-                              {{ watchedMovie.movieNm }}
-                              <span
-                                >({{ watchedMovie.openDt }})</span
-                              ></router-link
-                            >
-                          </h6>
-                        </div>
-                        <p>
-                          {{ watchedMovie.scheNo }} <br />
-                          상영시간: {{ watchedMovie.showTm }}분 <br />
-                          감독: {{ watchedMovie.directors }}
-                        </p>
-                        <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
-                        <p class="time sm-text">
-                          나의 별점
-                          <!-- 별점 v-for -->
-                          <i class="ion-android-star"></i
-                          ><span>{{ reviewMovie.userStarRating }}</span>
-                        </p>
-                        <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
-                        <router-link to="/archive" @click="goReview"
-                          >나의 리뷰 작성하기</router-link
-                        >
-                        <!-- <h6>Best Musical movie</h6> -->
-                      </div>
-                      <!-- 영화 라벨 -->
-                      <div class="mv-item-infor">
-                        <div class="movieTitle-2">
-                          <h6>
-                            <a href="/movieDetail">{{
-                              watchedMovie.movieNm
-                            }}</a>
-                          </h6>
-                        </div>
-                        <p class="rate">
-                          <i class="ion-android-star"></i
-                          ><span>{{ watchedMovie.rating }}</span> /5
-                        </p>
-                      </div>
-                    </div>
-                    <!-- 상영작 5 -->
-                    <div class="movie-item-style-2 movie-item-style-1">
-                      <img src="images/uploads/mv1.jpg" alt="" />
-                      <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                      <div class="hvr-inner">
-                        <h6>
-                          <a href="#">영웅 <span>(2022)</span></a>
-                        </h6>
-                        <p>
-                          Run Time: {{}} 2h 21’ <br />
-                          Director: {{}} dd <br />
-                          Watched: 2022/12/22
-                        </p>
-                        <p class="time sm-text">your reviews:</p>
-                        <h6>Best Musical movie in my opinion</h6>
-                      </div>
-                      <!-- 제목 -->
-                      <div class="mv-item-infor">
-                        <h6><a href="#">영웅</a></h6>
-                        <p class="rate">
-                          <i class="ion-android-star"></i><span>8.1</span> /10
-                          <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                        </p>
-                      </div>
-                    </div>
-                    <!-- 상영작 6 -->
-                    <div class="movie-item-style-2 movie-item-style-1">
-                      <img src="images/uploads/mv1.jpg" alt="" />
-                      <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                      <div class="hvr-inner">
-                        <h6>
-                          <a href="#">영웅 <span>(2022)</span></a>
-                        </h6>
-                        <p>
-                          Run Time: {{}} 2h 21’ <br />
-                          Director: {{}} dd <br />
-                          Watched: 2022/12/22
-                        </p>
-                        <p class="time sm-text">your reviews:</p>
-                        <h6>Best Musical movie in my opinion</h6>
-                      </div>
-                      <!-- 제목 -->
-                      <div class="mv-item-infor">
-                        <h6><a href="#">영웅</a></h6>
-                        <p class="rate">
-                          <i class="ion-android-star"></i><span>8.1</span> /10
-                          <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                        </p>
-                      </div>
-                    </div>
-                    <!-- 상영작 7 -->
-                    <div class="movie-item-style-2 movie-item-style-1">
-                      <img src="images/uploads/mv1.jpg" alt="" />
-                      <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                      <div class="hvr-inner">
-                        <h6>
-                          <a href="#">영웅 <span>(2022)</span></a>
-                        </h6>
-                        <p>
-                          Run Time: {{}} 2h 21’ <br />
-                          Director: {{}} dd <br />
-                          Watched: 2022/12/22
-                        </p>
-                        <p class="time sm-text">your reviews:</p>
-                        <h6>Best Musical movie in my opinion</h6>
-                      </div>
-                      <!-- 제목 -->
-                      <div class="mv-item-infor">
-                        <h6><a href="#">영웅</a></h6>
-                        <p class="rate">
-                          <i class="ion-android-star"></i><span>8.1</span> /10
-                          <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                        </p>
-                      </div>
-                    </div>
-                    <!-- 상영작 8 -->
-                    <div class="movie-item-style-2 movie-item-style-1">
-                      <img src="images/uploads/mv1.jpg" alt="" />
-                      <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
-                      <div class="hvr-inner">
-                        <h6>
-                          <a href="#">영웅 <span>(2022)</span></a>
-                        </h6>
-                        <p>
-                          Run Time: {{}} 2h 21’ <br />
-                          Director: {{}} dd <br />
-                          Watched: 2022/12/22
-                        </p>
-                        <p class="time sm-text">your reviews:</p>
-                        <h6>Best Musical movie in my opinion</h6>
-                      </div>
-                      <!-- 제목 -->
-                      <div class="mv-item-infor">
-                        <h6><a href="#">영웅</a></h6>
-                        <p class="rate">
-                          <i class="ion-android-star"></i><span>8.1</span> /10
-                          <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                        </p>
-                      </div>
-                    </div>
+                    <!-- 아카이브 상영작 끝 -->
+
                   </div>
                 </div>
               </div>
@@ -494,7 +304,7 @@ export default {
         password: "",
         username: "",
         phone: null,
-        year: null, 
+        year: null,
         month: null,
         day: null,
         name: "",
@@ -503,6 +313,7 @@ export default {
       message: "",
 
       // FIXME: 예매한 영화.. 작성중
+      // watchedMovie: [],
       watchedMovie: {
         username: "", // 아이디
         paidDate: "", // 예매일자
@@ -522,6 +333,7 @@ export default {
         price: "15000", // 금액
       },
       // TODO: 리뷰
+      // reviewMovie: [],
       reviewMovie: {
         userStarRating: 2, // 사용자별점
         userReview: "", // 리뷰내용
@@ -632,4 +444,3 @@ export default {
   vertical-align: middle;
 }
 </style>
-

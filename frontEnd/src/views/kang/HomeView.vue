@@ -30,8 +30,8 @@
               v-for="(data, index) in movie.MovieDetail"
               v-bind:key="index"
             >
-              <div class="mv-img">
-                <a href="/mainDetail">
+              <div class="mv-img" @click="showDetail(data)">
+                <a>
                   <img
                     :src="data.posterurln"
                     alt="poster"
@@ -42,197 +42,16 @@
               <div class="title-in">
                 <div class="cate">
                   <span class="blue"
-                    ><a href="#">{{ data.genrenm }}</a></span
+                    ><a href="#detail">{{ data.genrenm }}</a></span
                   >
                 </div>
                 <h6>
-                  <a @click="showDetail">{{ data.movienm }}</a>
+                  <a @click="showDetail(data)">{{ data.movienm }}</a>
                 </h6>
                 <p><i class="ion-android-star"></i>{{ data.raiting }}</p>
               </div>
             </div>
-            <!-- <div
-              class="movie-item"
-              v-for="(data, index) in movie.MovieDetail"
-              v-bind:key="index+1"
-            >
-              <div class="mv-img">
-                <a href="#"
-                  ><img
-                    :src="data.posterurln"
-                    alt="poster"
-                    width="285"
-                    height="437"
-                /></a>
-              </div>
-              <div class="title-in">
-                <div class="cate">
-                  <span class="yell"
-                    ><a href="#">{{ data.genrenm }}</a></span
-                  >
-                </div>
-                <h6>
-                  <a href="#" @click="showDetail">{{ data.movienm }}</a>
-                </h6>
-                <p>
-                  <i class="ion-android-star"></i
-                  ><span>{{ data.raiting }}</span>
-                </p>
-              </div>
-            </div> -->
             <!-- TODO: 끝 -->
-
-            <!-- 영웅 영화포스터 -->
-            <!-- <div class="movie-item">
-              <div class="mv-img">
-                <a href="#"
-                  ><img
-                    src="@/assets/images_kang/Views/HomeView/poster/영웅.jpg"
-                    alt=""
-                    width="285"
-                    height="437"
-                /></a>
-              </div>
-              <div class="title-in">
-                <div class="cate">
-                  <span class="yell"><a href="#">action</a></span>
-                </div>
-                <h6><a href="#">The revenant</a></h6>
-                <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-              </div>
-            </div> -->
-            <!-- 더메뉴 영화포스터 -->
-            <!-- <div class="movie-item">
-              <div class="mv-img">
-                <a href="#"
-                  ><img
-                    src="@/assets/images_kang/Views/HomeView/poster/THEMENU.jpg"
-                    alt=""
-                    width="285"
-                    height="437"
-                /></a>
-              </div>
-              <div class="title-in">
-                <div class="cate">
-                  <span class="green"><a href="#">comedy</a></span>
-                </div>
-                <h6><a href="#">Die hard</a></h6>
-                <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-              </div>
-            </div> -->
-            <!-- 본즈앤올 영화포스터 -->
-            <!-- <div class="movie-item">
-              <div class="mv-img">
-                <a href="#"
-                  ><img
-                    src="@/assets/images_kang/Views/HomeView/poster/본즈앤올.jpg"
-                    alt=""
-                    width="285"
-                    height="437"
-                /></a>
-              </div>
-              <div class="title-in">
-                <div class="cate">
-                  <span class="blue"><a href="#">Sci-fi</a></span>
-                  <span class="orange"><a href="#">advanture</a></span>
-                </div>
-                <h6><a href="#">The walk</a></h6>
-                <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-              </div>
-            </div> -->
-            <!-- 신비아파트 영화포스터 -->
-            <!-- <div class="movie-item">
-              <div class="mv-img">
-                <a href="#"
-                  ><img
-                    src="@/assets/images_kang/Views/HomeView/poster/신비아파트.jpg"
-                    alt=""
-                    width="285"
-                    height="437"
-                /></a>
-              </div>
-              <div class="title-in">
-                <div class="cate">
-                  <span class="blue"><a href="#">Sci-fi</a></span>
-                </div>
-                <h6><a href="#">Interstellar</a></h6>
-                <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-              </div>
-            </div> -->
-            <!-- 오늘밤세계에서어쩌구 영화포스터 -->
-            <!-- <div class="movie-item">
-              <div class="mv-img">
-                <a href="#"
-                  ><img
-                    src="@/assets/images_kang/Views/HomeView/poster/오늘밤세계에서어쩌구.jpg"
-                    alt=""
-                    width="285"
-                    height="437"
-                /></a>
-              </div>
-              <div class="title-in">
-                <div class="cate">
-                  <span class="yell"><a href="#">action</a></span>
-                </div>
-                <h6><a href="#">The revenant</a></h6>
-                <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-              </div>
-            </div> -->
-            <!-- 올뺴미 영화포스터 -->
-            <!-- <div class="movie-item">
-              <div class="mv-img">
-                <img
-                  src="@/assets/images_kang/Views/HomeView/poster/올빼미.jpg"
-                  alt=""
-                  width="285"
-                  height="437"
-                />
-              </div>
-              <div class="title-in">
-                <div class="cate">
-                  <span class="green"><a href="#">comedy</a></span>
-                </div>
-                <h6><a href="#">Die hard</a></h6>
-                <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-              </div>
-            </div> -->
-            <!-- 코르사주 영화포스터 -->
-            <!-- <div class="movie-item">
-              <div class="mv-img">
-                <img
-                  src="@/assets/images_kang/Views/HomeView/poster/코르사주.jpg"
-                  alt=""
-                  width="285"
-                  height="437"
-                />
-              </div>
-              <div class="title-in">
-                <div class="cate">
-                  <span class="blue"><a href="#">Sci-fi</a></span>
-                  <span class="orange"><a href="#">advanture</a></span>
-                </div>
-                <h6><a href="#">The walk</a></h6>
-                <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-              </div>
-            </div> -->
-            <!-- 탄생 영화포스터 -->
-            <!-- <div class="movie-item">
-              <div class="mv-img">
-                <img
-                  src="@/assets/images_kang/Views/HomeView/poster/탄생.jpg"
-                  alt=""
-                  width="285"
-                  height="437"
-                />
-              </div>
-              <div class="title-in">
-                <div class="cate">
-                  <span class="green"><a href="#">comedy</a></span>
-                </div>
-                <h6><a href="#">Die hard</a></h6>
-                <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-              </div>
-            </div> -->
           </div>
 
           <a href="#" class="more"
@@ -241,9 +60,12 @@
         </div>
       </div>
     </div>
-    <!-- TODO: 메인디테일뷰 컴포넌트 추가 시작 -->
-    <div v-show="detailPage">
+    <!-- TODO: 메인디테일뷰 컴포넌트, 프롭스 데이터 전달 추가 (최아리 추가) -->
+    <div class="tab active">
       <DetailCom />
+    </div>
+    <div id="detail" v-if="detailPage" ref="stage1">
+      <DetailCom :movieProps="currentMovie" />
     </div>
     <!-- 메인디테일뷰 컴포넌트 추가 끝 -->
   </div>
@@ -267,17 +89,21 @@ export default {
       detailPage: false,
       movie: [],
       searchMname: "",
+      currentMovie: null,
 
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,
       pageSize: 8,
 
-      pageSizes: [5, 10 , 15],
+      pageSizes: [5, 10, 15],
     };
   },
   methods: {
-    showDetail() {
+    // TODO: currenIndex 안에 데이터 추가해서 다음 페이지로 보내기 (최아리 추가)
+    showDetail(data) {
+      this.currentMovie = data;
+
       this.detailPage = !this.detailPage;
     },
     retrieveMovie() {

@@ -76,4 +76,19 @@ public class DSCineService {
         return movieDetailList;
     }
 
+    public MovieDetail saveMoiveDetail(MovieDetail movieDetail) {
+        MovieDetail newMovieDetail = movieDetailRepository.save(movieDetail);
+
+        return newMovieDetail;
+    }
+
+    public boolean removeById(Integer id) {
+        if(movieDetailRepository.existsById(id) == true) {
+            movieDetailRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
