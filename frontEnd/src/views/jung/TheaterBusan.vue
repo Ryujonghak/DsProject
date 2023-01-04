@@ -109,6 +109,11 @@
                             </div>
                           </div>
                           <!-- 전체 상영시간표 끝-->
+                          <!-- FIXME: 탑 버튼 추가 -->
+                          <a class="topbutton" href="#">
+                             <img src="@/assets/images_jung/iconUp_48.png"/>
+                          </a>
+                          <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                        
                         </div>
                       </div>
@@ -498,6 +503,11 @@
                               <!-- 내용 끝 -->
                             </div>
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
+                            <!-- FIXME: 탑 버튼 추가 -->
+                            <a class="topbutton" href="#">
+                             <img src="@/assets/images_jung/iconUp_48.png"/>
+                            </a>
+                            <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                           </div>
                         </div>
                         <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
@@ -886,6 +896,11 @@
                               <!-- 내용 끝 -->
                             </div>
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
+                            <!-- FIXME: 탑 버튼 추가 -->
+                            <a class="topbutton" href="#">
+                             <img src="@/assets/images_jung/iconUp_48.png"/>
+                            </a>
+                            <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                           </div>
                         </div>
                       </div>
@@ -1275,6 +1290,11 @@
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
 
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
+                            <!-- FIXME: 탑 버튼 추가 -->
+                            <a class="topbutton" href="#">
+                             <img src="@/assets/images_jung/iconUp_48.png"/>
+                            </a>
+                            <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                           </div>
                         </div>
                       </div>
@@ -1425,4 +1445,10 @@ input[name="tab_item"] {
   /* height: 598px; */
   width: 100%;
 }
+
+/* 탑버튼 */
+.topbutton{
+    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
+}
+
 </style>
