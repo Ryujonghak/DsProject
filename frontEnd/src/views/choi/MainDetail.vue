@@ -93,7 +93,7 @@
             allowfullscreen
           ></iframe>
           <!-- 영화 줄거리 시작 -->
-          <div class="short-details col-xs-12" style="width: 1000px">
+          <div class="short-details col-xs-12" style="width: 1000px" >
             <div
               class="short-detail01"
               style="padding-top: 0px; margin-top: 0px"
@@ -121,6 +121,7 @@ export default {
   mounted() {
     custom();
     this.changeUrl();
+    window.scrollTo({ top: 1300, behavior: "smooth" });
   },
   components: {
     SeatView,

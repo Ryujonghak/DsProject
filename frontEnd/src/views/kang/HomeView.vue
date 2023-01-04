@@ -42,7 +42,7 @@
               <div class="title-in">
                 <div class="cate">
                   <span class="blue"
-                    ><a href="#">{{ data.genrenm }}</a></span
+                    ><a href="#detail">{{ data.genrenm }}</a></span
                   >
                 </div>
                 <h6>
@@ -61,10 +61,12 @@
       </div>
     </div>
     <!-- TODO: 메인디테일뷰 컴포넌트, 프롭스 데이터 전달 추가 (최아리 추가) -->
-    <div>
+    <div class="tab active">
       <DetailCom />
     </div>
-    <div v-if="detailPage"> <DetailCom :movieProps="currentMovie" /></div>
+    <div id="detail" v-if="detailPage" ref="stage1">
+      <DetailCom :movieProps="currentMovie" />
+    </div>
     <!-- 메인디테일뷰 컴포넌트 추가 끝 -->
   </div>
 </template>
@@ -101,9 +103,6 @@ export default {
     // TODO: currenIndex 안에 데이터 추가해서 다음 페이지로 보내기 (최아리 추가)
     showDetail(data) {
       this.currentMovie = data;
-      // this.currentIndex = index;
-      // var test = this.currentMovie;
-      // alert(JSON.stringify(test));
 
       this.detailPage = !this.detailPage;
     },
