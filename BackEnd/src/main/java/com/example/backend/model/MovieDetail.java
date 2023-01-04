@@ -27,7 +27,7 @@ import javax.persistence.Table;
 public class MovieDetail
 {
     @Id
-    private Long id;
+    private Integer id;
 
     private String moviecd;
 

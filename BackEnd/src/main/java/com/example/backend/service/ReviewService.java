@@ -12,20 +12,26 @@ public class ReviewService {
     @Autowired
     ReviewRepository reviewRepository;
 
-    public Page<Review> findAllByMovienmContainingOrderByInsertTime(String movienm, Pageable pageable) {
-        Page<Review> reviewPage = reviewRepository.findAllByMovienmContainingOrderByInsertTime(movienm, pageable);
+    public Page<Review> findAllByMovienmContainingOrderByRid(String movienm, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByMovienmContainingOrderByRid(movienm, pageable);
 
         return reviewPage;
     }
 
-    public Page<Review> findAllByRwuserContainingOrderByInsertTime(String rwuser, Pageable pageable) {
-        Page<Review> reviewPage = reviewRepository.findAllByRwuserContainingOrderByInsertTime(rwuser, pageable);
+    public Page<Review> findAllByRwuserContainingOrderByRid(String rwuser, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByRwuserContainingOrderByRid(rwuser, pageable);
 
         return reviewPage;
     }
 
     public Page<Review> findByMoviecd(String moviecd, Pageable pageable) {
         Page<Review> reviewPage = reviewRepository.findByMoviecd(moviecd, pageable);
+
+        return reviewPage;
+    }
+
+    public Page<Review> findAllByMovienmOrderByRid(String moviecd, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByMovienmOrderByRid(moviecd, pageable);
 
         return reviewPage;
     }

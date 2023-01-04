@@ -30,9 +30,9 @@ public class ReviewController {
             Page<Review> reviewPage;
             if (movienm == null) {
                 movienm = "";
-                reviewPage = reviewService.findAllByMovienmContainingOrderByInsertTime(movienm, pageable);
+                reviewPage = reviewService.findAllByMovienmContainingOrderByRid(movienm, pageable);
             } else {
-                reviewPage = reviewService.findAllByMovienmContainingOrderByInsertTime(movienm, pageable);
+                reviewPage = reviewService.findAllByMovienmContainingOrderByRid(movienm, pageable);
             }
 
             Map<String, Object> response = new HashMap<>();
@@ -52,13 +52,13 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/review/moviecd")
-    public ResponseEntity<Object> findMoviecd(@RequestParam(required = false) String moviecd,
+    @GetMapping("/review/movienm")
+    public ResponseEntity<Object> findAllByMovienmOrderByRid(@RequestParam(required = false) String moviecd,
                                          @RequestParam(defaultValue = "0") int page,
                                          @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Review> reviewPage = reviewService.findByMoviecd(moviecd, pageable);
+            Page<Review> reviewPage = reviewService.findAllByMovienmOrderByRid(moviecd, pageable);
 
 
             Map<String, Object> response = new HashMap<>();
