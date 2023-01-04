@@ -70,7 +70,7 @@ public class User extends BaseTimeEntity {
 
     @Column
     private Integer day;
-//
+
     @Column
     private String name;
 
