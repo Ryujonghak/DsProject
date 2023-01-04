@@ -65,27 +65,27 @@
                   <!-- 상영시간도 클릭 못함 -->
                   <div style="width: 1170px;" v-show="상영">
                     <button
-                      style="height: 60px;width: 390px; border-radius: 10px 10px 0 0; border: 0; color: white; background-color: #FF243E;" disabled>
+                      style="height: 60px;width: 390px; border: 0; color: white; background-color: #FF243E;" disabled>
                       <span>01 . 상영시간</span>
                     </button>
-                    <button style="height: 60px;width: 390px; color: gray;border-radius: 10px 10px 0 0; background-color: #F0F0F0;" disabled>
+                    <button style="height: 60px;width: 390px; color: gray;background-color: #F0F0F0;" disabled>
                       <span>02 . 좌석선택</span>
                     </button>
-                    <button style="height: 60px;width: 390px;border-left: 0;  color: gray; border-radius: 10px 10px 0 0;background-color: #F0F0F0;" disabled>
+                    <button style="height: 60px;width: 390px;border-left: 0;  color: gray; background-color: #F0F0F0;" disabled>
                       <span>03 . 결제</span>
                     </button>
                   </div>
                   <!-- 상영시간,좌석선택 클릭가능, 상영시간을 클릭을 하면 위에 있는 상영시간만 클릭가능 -->
-                  <div style="width: 1170px;" v-show="좌석">
-                    <button @click="Screen()" style="height: 60px;width: 390px; background-color: #333;border-radius: 10px 10px 0 0; border: 0; color: white;">
+                  <div style="width: 1170px;" v-show="좌석">  
+                    <button @click="Screen()" style="height: 60px;width: 390px;border: 0; background-color: #333; color: white;">
                       <span>01 . 상영시간</span>
                     </button>
                     <button
-                      style="height: 60px;width: 390px; background-color: #FF243E;border-radius: 10px 10px 0 0; border: 0; color: white;"
+                      style="height: 60px;width: 390px; background-color: #FF243E; color: white;"
                       disabled>
                       <span>02 . 좌석선택</span>
                     </button>
-                    <button style="height: 60px;width: 390px; border: 0; color: gray;border-radius: 10px 10px 0 0; background-color: #F0F0F0;"
+                    <button style="height: 60px;width: 390px; color: gray;background-color: #F0F0F0;"
                       disabled>
                       <span>03 . 결제</span>
                     </button>
@@ -93,15 +93,15 @@
                   <!-- 결제페이지에서 상영,좌석,결제 갈 수 있음. 새로고침만 안하면 좌석선택에 있는게 남아 있을듯-->
                   <div style="width: 1170px;" v-show="결제">
                     <button @click="Screen()"
-                      style="height: 60px;width: 390px; background-color: #333;border-radius: 10px 10px 0 0; border: 0; color: white;">
+                      style="height: 60px;width: 390px; background-color: #333;border: 0; color: white;">
                       <span>01 . 상영시간</span>
                     </button>
                     <button @click="changeSeat()"
-                      style="height: 60px;width: 390px; background-color: #333;border-radius: 10px 10px 0 0; border: 0; color: white; border-left: 1px solid gray;">
+                      style="height: 60px;width: 390px; background-color: #333;border: 0; border-left: 1px solid black; color: white;">
                       <span>02 . 좌석선택</span>
                     </button>
                     <button
-                      style="height: 60px;width: 390px; background-color: #FF243E;border-radius: 10px 10px 0 0; border: 0; color: white;"
+                      style="height: 60px;width: 390px; background-color: #FF243E; color: white;"
                       disabled>
                       <span>03 . 결제</span>
                     </button>
@@ -110,7 +110,7 @@
                 <!-- 영화관 -->
                 <div v-show="상영">
                   <div
-                    style=" width: 291.5px; height: 705px; margin-right: 1px; float: left; background-color: #EEEEEE; border-radius: 0 0 0 10px; ">
+                    style=" width: 291.5px; height: 705px; margin-right: 1px; float: left; background-color: #EEEEEE;">
                     <p
                       style=" width: 291.5px; margin-bottom: 0px; color:white; text-align: center; background-color: #1E212D; padding: 15px 0;">
                       지역
@@ -154,7 +154,7 @@
                     </div>
                   </div>
                   <div
-                    style="width: 585px; height: 705px; float: left; background-color:  #EEEEEE;  overflow: hidden; border-radius: 0 0 10px 0;">
+                    style="width: 585px; height: 705px; float: left; background-color:  #EEEEEE;  overflow: hidden;">
                     <p
                       style="width: 585px;  margin-bottom: 0; color: gray;  padding: 15px 0 15px 0;  background-color: #1E212D;  color: white;text-align: center;">
                       {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘)
@@ -239,9 +239,9 @@
                 <div v-show="좌석">
                   <div style="">
                     
-                    <div style="margin-bottom: 10px;padding: 7px 0; background-color: #F7EBEC;width: 1170px;">
-                      <span style="font-size: 20px; margin: 0 10px; color: black;">관람인원 선택</span>
-                      <span style="color: black;float: right; margin: 0 10px; padding-top: 5px;">· 인원은 최대 5명까지 선택 가능합니다.</span>
+                    <div style="margin-bottom: 10px;padding: 7px 0; background-color: #1E212D;width: 1170px;">
+                      <span style="font-size: 16px; margin: 0 10px; color: white;">관람인원 선택</span>
+                      <span style="color: white;float: right; margin: 0 10px; padding-top: 5px;font-size: 14px;">· 인원은 최대 5명까지 선택 가능합니다.</span>
                     </div>
                     <div style="text-align: center; justify-content: center; width: 1170px; height: 50px;">
                        <span style="font-size: 20px; margin-right: 10px; margin-left:25px; color: white;">성인</span>
@@ -255,7 +255,7 @@
                        <button @click="teenplus()" style="margin-right: 10px;">+</button>                     
                     </div>
   
-                    <div style="color: white;float: right; margin-right: 110px;">
+                    <div style="color: white;float: right; margin-right: 20px;">
                       <img style="width: 30px; height: 30px; background-color: white;" src="../../assets/images_kim/Views/ModalView/free-icon-time-6659457.png"
                         alt="" />
                       <span> 러닝 타임 </span>
@@ -267,7 +267,7 @@
                     </div>
                     <div style="width: 1170px; margin-bottom: 90px;">
                       <img style="margin: 10px 0; width: 1170px; height: 30px;" src="../../assets/images_kim/Views/ModalView/SCREEN.jpg" alt="" />
-                      <p style="text-align: center;">S &nbsp; C &nbsp; R &nbsp; E &nbsp; E &nbsp; N</p>
+                      <p style="text-align: center;">S &nbsp;&nbsp;&nbsp; C &nbsp;&nbsp;&nbsp; R &nbsp;&nbsp;&nbsp; E &nbsp;&nbsp;&nbsp; E &nbsp;&nbsp;&nbsp; N</p>
                     </div>
   
                     <div class="seat">
