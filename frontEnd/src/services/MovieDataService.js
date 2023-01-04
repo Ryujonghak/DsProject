@@ -3,7 +3,6 @@
 import http from "../http-common";
 
 class MovieDataService {
-    
   // 모든 영화정보 조회 요청 함수 TODO: 정주희
   getMovieAll() {
     return http.get(`/movie/list`);
@@ -24,10 +23,10 @@ class MovieDataService {
     return http.get(`/movie/?movienm=${movienm}&page=${page}&size=${size}`);
   }
 
-    // 홈뷰용  영화디테일 조회 요청 함수
-    getMovieDetailAll2() {
-      return http.get(`/movie/list`);
-    }
+  // 홈뷰용  영화디테일 조회 요청 함수
+  getMovieDetailAll2() {
+    return http.get(`/movie/list`);
+  }
 
   // 영화디테일 코드 조회 요청 함수
   getMovieDetail(moviecd) {

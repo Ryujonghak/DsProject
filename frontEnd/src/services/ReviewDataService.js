@@ -12,6 +12,11 @@ class ReviewDataService {
         return http.get(`/review?movienm=${movienm}&page=${page}&size=${size}`); 
     }
 
+    // 영화 코드로 조회 요청 함수
+    getBycode(moviecd, page, size) {
+        return http.get(`/review?moviecd=${moviecd}&page=${page}&size=${size}`)
+    }
+
     // 리뷰번호로 조회 요청 함수
     // get 방식 통신 요청 -> @GetMapping("/api/qna/{qno}"), @PathVariable
     get(id) {
