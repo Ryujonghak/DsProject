@@ -26,7 +26,7 @@
                   <div>
                     <!-- TODO: 유튜브 URL, 영화 이름, 예매 페이지 연결 등 백엔드 데이터 받아와야 하는 곳 -->
                     <a
-                      :href="movie.utubeURL"
+                      href="movie.utubeurl"
                       class="item item-2 redbtn fancybox-media hvr-grow"
                       ><i class="ion-play"></i
                     ></a>
@@ -97,8 +97,16 @@
                         <li>
                           <a class="selected" @click="toOverview">영화정보</a>
                         </li>
-                        <li><a class="not-selected" @click="toReview">평점 및 관람평</a></li>
-                        <li><a class="not-selected" @click="toMedia">포스터/스틸컷</a></li>
+                        <li>
+                          <a class="not-selected" @click="toReview"
+                            >평점 및 관람평</a
+                          >
+                        </li>
+                        <li>
+                          <a class="not-selected" @click="toMedia"
+                            >포스터/스틸컷</a
+                          >
+                        </li>
                       </ul>
                       <div class="row">
                         <div class="col-md-8 col-sm-12 col-xs-12">
@@ -195,10 +203,20 @@
                     <div class="tab active" v-show="reviews">
                       <ul class="tabs-mv tab-bar">
                         <li>
-                          <a class="not-selected" @click="toOverview">영화정보</a>
+                          <a class="not-selected" @click="toOverview"
+                            >영화정보</a
+                          >
                         </li>
-                        <li><a class="selected" @click="toReview">평점 및 관람평</a></li>
-                        <li><a class="not-selected" @click="toMedia">포스터/스틸컷</a></li>
+                        <li>
+                          <a class="selected" @click="toReview"
+                            >평점 및 관람평</a
+                          >
+                        </li>
+                        <li>
+                          <a class="not-selected" @click="toMedia"
+                            >포스터/스틸컷</a
+                          >
+                        </li>
                       </ul>
                       <div class="row" style="padding: 3%">
                         <div class="rv-hd">
@@ -271,7 +289,7 @@
                         </div>
                         <div
                           class="mv-user-review-item"
-                          v-for="(data, index) in review" 
+                          v-for="(data, index) in review"
                           :key="index"
                         >
                           <div class="user-infor">
@@ -327,10 +345,18 @@
                     <div class="tab active" v-show="media">
                       <ul class="tabs-mv tab-bar">
                         <li>
-                          <a class="not-selected" @click="toOverview">영화정보</a>
+                          <a class="not-selected" @click="toOverview"
+                            >영화정보</a
+                          >
                         </li>
-                        <li><a class="not-selected" @click="toReview">평점 및 관람평</a></li>
-                        <li><a class="selected" @click="toMedia">포스터/스틸컷</a></li>
+                        <li>
+                          <a class="not-selected" @click="toReview"
+                            >평점 및 관람평</a
+                          >
+                        </li>
+                        <li>
+                          <a class="selected" @click="toMedia">포스터/스틸컷</a>
+                        </li>
                       </ul>
                       <div class="row" style="padding: 3%">
                         <div class="rv-hd">

@@ -86,7 +86,7 @@
           <!-- :src="changedUrl" -->
           <iframe
             class="video col-xs-12"
-            src="https://www.youtube.com/embed/b9SRbgOzoXo?rel=0&loop=1&playlist=b9SRbgOzoXo&autoplay=1&mute=1"
+            :src="changedUrl"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -119,13 +119,8 @@ import custom from "@/assets/js/custom.js";
 import SeatView from "@/views/kim/SeatView.vue";
 export default {
   mounted() {
-    // alert(this.movieProps);
-    // var test = this.movieProps;
-    // alert(JSON.stringify(test));
     custom();
-    alert(this.currentMovie.utubeurl)
-    // this.changeUrl();
-    // alert(this.currentMovie)
+    this.changeUrl();
   },
   components: {
     SeatView,
@@ -134,28 +129,7 @@ export default {
   data() {
     return {
       seatPage: false,
-      // name: "MainDetail",
-      // props: {
-      //   movie: Array,
-      // },
       currentMovie: this.movieProps,
-      // movie: {
-      //   movienm: "아바타: 물의 길",
-      //   plot:
-      //     " 아바타: 물의 길 은 판도라 행성에서 '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로, 샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이출연하고 존 랜도가 프로듀싱을 맡았다.",
-      //   genre: "액션, 어드벤쳐, SF",
-      //   prdtyear: 2022,
-
-      //   opendt: "2022.12.14",
-      //   raiting: 4.5, // 백엔드에서 가져온 평점
-      //   showtm: "192",
-      //   genre: "액션, 어드벤쳐, SF",
-      //   director: "최아리",
-      //   actor: "최아리,강수빈,정주희",
-      //   utubeurl: "https://youtu.be/d9MyW72ELq0",
-      //   posterurln:
-      //     "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
-      // },
       changedUrl: "",
     };
   },
@@ -165,7 +139,7 @@ export default {
     },
     changeUrl() {
       // TODO: 배경에 유튜브 비디오를 넣기 위해서 주소에서 필요한 부분만 잘라와야 합니다.
-      const cutYoutubeUrl = this.movie.utubeurl.substring(17); // ex.kihrFxwdMb4
+      const cutYoutubeUrl = this.currentMovie.utubeurl.substring(17); // ex.kihrFxwdMb4
       // 다른 주소랑 붙여주기
       this.changedUrl =
         "https://www.youtube.com/embed/" +
@@ -229,7 +203,7 @@ export default {
 
 .short-details {
   position: absolute;
-  top: 77%;
+  top: 82%;
   z-index: 3;
 }
 
