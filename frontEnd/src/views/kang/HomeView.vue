@@ -60,9 +60,9 @@
         </div>
       </div>
     </div>
-    <!-- TODO: 메인디테일뷰 컴포넌트 추가 시작 -->
-    <div v-show="detailPage">
-      <DetailCom :movieProps="currentMovie" />
+    <!-- TODO: 메인디테일뷰 컴포넌트, 프롭스 데이터 전달 추가 (최아리 추가) -->
+    <div>
+      <DetailCom />
     </div>
     <div v-if="detailPage"> <DetailCom :movieProps="currentMovie" /></div>
     <!-- 메인디테일뷰 컴포넌트 추가 끝 -->
@@ -98,6 +98,7 @@ export default {
     };
   },
   methods: {
+    // TODO: currenIndex 안에 데이터 추가해서 다음 페이지로 보내기 (최아리 추가)
     showDetail(data) {
       this.currentMovie = data;
       // this.currentIndex = index;

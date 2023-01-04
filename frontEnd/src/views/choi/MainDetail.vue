@@ -83,9 +83,10 @@
             </div>
           </div>
           <!-- 동영상 위 글자 끝 -->
+          <!-- :src="changedUrl" -->
           <iframe
             class="video col-xs-12"
-            :src="changedUrl"
+            src="https://www.youtube.com/embed/b9SRbgOzoXo?rel=0&loop=1&playlist=b9SRbgOzoXo&autoplay=1&mute=1"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -122,7 +123,9 @@ export default {
     // var test = this.movieProps;
     // alert(JSON.stringify(test));
     custom();
-    this.changeUrl();
+    alert(this.currentMovie.utubeurl)
+    // this.changeUrl();
+    // alert(this.currentMovie)
   },
   components: {
     SeatView,
