@@ -256,7 +256,7 @@
                     </div>
   
                     <div style="color: white;float: right; margin-right: 110px;">
-                      <img style="width: 30px; height: 30px" src="../../assets/images_kim/Views/ModalView/free-icon-time-6659457.png"
+                      <img style="width: 30px; height: 30px; background-color: white;" src="../../assets/images_kim/Views/ModalView/free-icon-time-6659457.png"
                         alt="" />
                       <span> 러닝 타임 </span>
                       <span style="margin-left: 10px">192분</span>
