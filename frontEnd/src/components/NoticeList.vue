@@ -15,7 +15,7 @@
       </div>
     </div>
     <!-- search 관련 div 시작 -->
-    <div class="container" style="padding: 3%; background: inherit;">
+    <div class="container" style="padding: 3%; background: inherit">
       <fieldset class="search_wrap" id="search_wrap1">
         <select class="ty3" title="검색조건 제목 선택" id="selectCondition1">
           <option value="1" selected>제목</option>
@@ -29,8 +29,16 @@
           v-model="searchKeyword"
         />
         <div class="search">
-          <button type="button" class="btn_col2" @click="page = 1;
-              retrieveNotice();">검색</button>
+          <button
+            type="button"
+            class="btn_col2"
+            @click="
+              page = 1;
+              retrieveNotice();
+            "
+          >
+            검색
+          </button>
         </div>
       </fieldset>
       <!-- search 관련 div 끝 -->
@@ -53,13 +61,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(data, index) in notice.notice" v-bind:key="index">
-            <td>{{ data.no }}</td>
-            <td>{{ data.type }}</td>
-            <td>{{ data.title }}</td>
-            <td>{{ data.content }}</td>
+          <tr v-for="(data, index) in notice.notice" v-bind:key="index" class="item">
+            <td>{{ data.nno }}</td>
+            <td>{{ data.ntype }}</td>
+            <td>{{ data.ntitle }}</td>
+            <td>{{ data.ncontent }}</td>
             <td>{{ data.insertTime }}</td>
           </tr>
+          
+
         </tbody>
       </table>
       <!-- table 끝 -->
@@ -84,6 +94,7 @@
 
 <script>
 import NoticeDataService from "@/services/NoticeDataService";
+import notice from "@/assets/js/notice.js";
 export default {
   data() {
     return {
@@ -121,12 +132,11 @@ export default {
       this.retrieveNotice();
     },
 
-    searchTitle(){
-
-    }
+    searchTitle() {},
   },
   mounted() {
     this.retrieveNotice();
+    notice();
   },
 };
 </script>
@@ -200,7 +210,7 @@ th {
   text-align: center;
   color: #414141;
 }
-td{
+td {
   text-align: center !important;
 }
 </style>

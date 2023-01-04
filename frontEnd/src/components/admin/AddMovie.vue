@@ -229,6 +229,7 @@ export default {
       .then(response => {
         this.movie.id = response.data.id;
         console.log(response.data);
+        alert("등록되었습니다.")
       })
       .catch(e => {
         console.log(e);

@@ -235,7 +235,7 @@ export default {
     //답변 등록하기 버튼 클릭시
     registerAnswer() {
       if (this.editQna.answer != null) {
-        QnaDataService.update(this.editQna.qno, this.editQna)
+        QnaDataService.update(this.editQna.qid, this.editQna)
           .then((response) => {
             // var test = this.editQna;
             // alert(JSON.stringify(test));
