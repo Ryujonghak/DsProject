@@ -1,6 +1,5 @@
 <template>
   <div>
-    test
     <div class="hero user-hero">
       <div class="container">
         <div class="row">
@@ -20,7 +19,6 @@
       <div class="container">
         <div class="row ipad-width">
           <!-- 영화관 테스트 시작 -->
-          <!-- <div class="col-md-8 col-sm-12 col-xs-12"> -->
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="movie-single-ct main-content">
               <div class="movie-tabs">
@@ -210,28 +208,24 @@
                                 checked
                               />
                               <label class="tab_item" for="all">월</label>
-
                               <input
                                 id="tuesday"
                                 type="radio"
                                 name="tab_item"
                               />
                               <label class="tab_item" for="tuesday">화</label>
-
                               <input
                                 id="wednesday"
                                 type="radio"
                                 name="tab_item"
                               />
                               <label class="tab_item" for="wednesday">수</label>
-
                               <input
                                 id="thursday"
                                 type="radio"
                                 name="tab_item"
                               />
                               <label class="tab_item" for="thursday">목</label>
-
                               <input id="friday" type="radio" name="tab_item" />
                               <label class="tab_item" for="friday">금</label>
                               <!-- 선택창 끝 -->
@@ -4668,7 +4662,7 @@
                           <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="rv-hd">
 
- <!-- 안쪽탭 ---------------------------------------------------------------------------->
+                            <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
                               <!-- 선택창 시작 -->
@@ -6909,15 +6903,38 @@
 
 <script>
 import custom from "@/assets/js/custom";
+import MovieDataService from "@/services/MovieDataService";
+
 
 export default {
   data() {
     return {
-      Movie: {
-        posterURL:
-          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
-      },
+      movie: null,
+      
     };
+  },
+  methods: {
+    getMovie(moviecd) {
+      MovieDataService.getMovieDetail(moviecd)
+        .then((response) => {
+          this.movie = response.data.MovieDetail[0];
+          console.log(response.data);
+
+          this.movie.actor = this.movie.actor.split(",");
+          this.movie.cast = this.movie.cast.split(",");
+          this.movie.imgurl = this.movie.imgurl.split(",");
+          // 가져온 이미지 url 개수
+          this.imageUrlLength = this.movie.imgurl.length;
+          // 썸네일 이미지 2장만 보이게 설정
+          this.tempImgUrl[0] = this.movie.imgurl[0];
+          this.tempImgUrl[1] = this.movie.imgurl[1];
+          // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
+          this.starRating = Math.floor(this.movie.raiting);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
   mounted() {
     custom();
