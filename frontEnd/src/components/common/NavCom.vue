@@ -46,7 +46,7 @@
           <div class="row">
             <button type="submit" @click="handleLogin()">Login</button>
           </div>
-
+          
         </div>
         <div class="row">
           <p>Or social login</p>
@@ -275,7 +275,11 @@
                   <router-link to="/boxoffice">박스오피스</router-link>
                 </li>
                 <li class="dropdown first">
-                  <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
+                  <a
+                    class="btn btn-default dropdown-toggle lv1 happy"
+                    data-toggle="dropdown"
+                    data-hover="dropdown"
+                  >
                     영화관<i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
@@ -284,15 +288,9 @@
                       >서울<i class="ion-ios-arrow-forward"></i
                       ></router-link>
                       <ul class="dropdown-menu level2">
-                        <li>
-                          <router-link to="/KasanCinema">가산디지털</router-link>
-                        </li>
-                        <li>
-                          <router-link to="/GangdongCinema">강동</router-link>
-                        </li>
-                        <li>
-                          <router-link to="/KonkukCinema">건대입구</router-link>
-                        </li>
+                        <li><router-link to="/KasanCinema">가산 디지털</router-link></li>
+                        <li><router-link to="/GangdongCinema">강동</router-link></li>
+                        <li><router-link to="/KonkukCinema">건대 입구</router-link></li>
                       </ul>
                     </li>
                     <li class="dropdown">
@@ -300,17 +298,21 @@
                       >부산<i class="ion-ios-arrow-forward"></i
                       ></router-link>
                       <ul class="dropdown-menu level2">
-                        <li>
-                          <router-link to="/SeomyeonCinema">서면</router-link>
-                        </li>
-                        <li>
-                          <router-link to="/CentumCinema">센텀시티</router-link>
-                        </li>
-                        <li>
-                          <router-link to="/BusanCinema">부산대</router-link>
-                        </li>
+                        <li><router-link to="/SeomyeonCinema">서면</router-link></li>
+                        <li><router-link to="/CentumCinema">센텀 시티</router-link></li>
+                        <li><router-link to="/BusanCinema">부산대</router-link></li>
                       </ul>
                     </li>
+                  </ul>
+                </li>
+                
+                <li class="dropdown first">
+                  <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
+                    시간표<i class="fa fa-angle-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="dropdown-menu level1">
+                    <li><router-link to="/theaterSeoul">서울</router-link></li>
+                    <li><router-link to="/theaterBusan">부산</router-link></li>
                   </ul>
                 </li>
                 <li>
@@ -342,7 +344,7 @@
                   /></router-link>
               </div>
             </div>
-            <div class="col-xs-4 navbar-menu2">
+            <div class="col-xs-4 navbar-menu">
               <ul class="nav navbar-nav flex-child-menu menu-right col">
                 <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
                 <div v-show="currentUser">
@@ -363,16 +365,14 @@
                       <li>
                         <router-link to="/myticket">나의예매내역</router-link>
                       </li>
-                      <li>
-                        <router-link to="/mytest">test</router-link>
-                      </li>
-                      <li>
-                        <router-link to="/mytestprofile">test2</router-link>
-                      </li>
+                      <li><router-link to="/mytest">test</router-link></li>
+                      <li><router-link to="/mytestprofile">test2</router-link></li>
                     </ul>
                   </li>
                   <!-- 회원 로그인시 마이페이지 끝  -->
                 </div>
+
+                <!-- 고객센터 -->
 
                 <li class="dropdown first">
                   <a
@@ -380,7 +380,8 @@
                       data-toggle="dropdown"
                       data-hover="dropdown"
                   >
-                    고객센터 <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    고객센터
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
                     <li>
@@ -418,9 +419,12 @@
                 </li>
                 <!-- 어드민 로그인시 어드민 나브바 끝-->
 
+                <!-- 로그인 회원가입 창 -->
+
                 <li v-if="!currentUser" class="loginLink">
                   <a href="#">LOG In</a>
                 </li>
+
                 <li v-if="!currentUser" class="btn signupLink">
                   <router-link to="/signup">sign up</router-link>
                 </li>
@@ -520,27 +524,27 @@ export default {
           // 공통함수 login 호출 :
           // this.$store.dispatch("모듈명/함수명", 매개변수)
           this.$store
-              .dispatch("auth/login", this.user)
-              .then(() => {
-                // alert("환영합니다");
-                alert("Attempting login");
-                this.popupClose = !this.popupClose;
-                window.location.reload();
-                this.currentUser();
-                this.showAdminBoard();
-              })
-              // 참고) if/else 문 대신에 -> or(||) and(&&) 연산자를 사용할때도 있음
-              // 로직체크 순서 : true || false, false && true
-              .catch((error) => {
-                // this.loading = false; // 로그인 버튼 활성화
-                // alert("데이터통신오류")
-                this.message =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString();
-              });
+            .dispatch("auth/login", this.user)
+            .then(() => {
+              alert("환영합니다");
+              this.popupClose = !this.popupClose;
+              window.location.reload();
+              this.currentUser();
+              this.showAdminBoard();
+            })
+            // 참고) if/else 문 대신에 -> or(||) and(&&) 연산자를 사용할때도 있음
+            // 로직체크 순서 : true || false, false && true
+            // TODO: 정주희 alert창 추가 -> 수정 필요 FIXME:
+            .catch((error) => {
+              // this.loading = false; // 로그인 버튼 활성화
+              alert("데이터통신오류")
+              this.message =
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.message) ||
+                error.message ||
+                error.toString();
+            });
         }
       });
     },
@@ -786,5 +790,4 @@ input {
   background: none !important;
   color: black !important;
 }
-
 </style>

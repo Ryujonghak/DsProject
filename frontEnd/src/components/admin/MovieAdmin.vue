@@ -76,9 +76,10 @@
                 <div class="col-md-8 col-sm-12 col-xs-12">
                   <div class="topbar-filter">
                     <label>Sort by:</label>
-                    <select>
-                      <option value="date">Release date Descending</option>
-                      <option value="date">Release date Ascending</option>
+                    <select v-model="selectedValue" v-on:change="getMovieDesc()">
+                      <option value="" selected>전체보기</option>
+                      <option value="dateDesc" >Release date Descending</option>
+                      <option value="dateAsc" >Release date Ascending</option>
                     </select>
                     <button class="regbtn" style="width: 15%">
                       <router-link to="/addMovie-admin"
@@ -215,6 +216,52 @@ export default {
           console.log(e);
         });
     },
+
+    //무비목록 개봉일순
+    // getMovieAsc(){
+    //   MovieDataService.getMovieAsc(
+    //      this.page - 1,
+    //     this.pageSize
+    //   )
+    //   .then((response) => {
+    //       console.log(response.data);
+    //       window.location.reload();
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // },
+
+     //무비목록 개봉일역순
+     getMovieDesc(){
+      if(this.selectedValue =="dateDesc"){
+      MovieDataService.getMovieDesc(
+         this.page - 1,
+        this.pageSize
+      )
+      .then((response) => {
+        const movie= response.data;
+        this.movie = movie;
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      }else{
+        MovieDataService.getMovieAsc(
+         this.page - 1,
+        this.pageSize
+      )
+      .then((response) => {
+        const movie= response.data;
+        this.movie = movie;
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      }
+    }
   },
 };
 </script>

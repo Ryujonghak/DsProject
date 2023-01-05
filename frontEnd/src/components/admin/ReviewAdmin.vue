@@ -67,9 +67,16 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter">
               <h3 style="color: aliceblue">리뷰 관리</h3>
-              <select id="selectBox" name="selectBox"
+              <select
+                id="select_value"
+                name="selectBox"
+                v-model="movienm"
+                @change="retrieveReview"
               >
-                <option v-for="(data, index) in movie" v-bind:key="index">{{data.movienm}}</option>
+                <option selected value="">전체</option>
+                <option v-for="(data, index) in movie" v-bind:key="index">
+                  {{ data.movienm }}
+                </option>
               </select>
             </div>
 
@@ -95,13 +102,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(data, index) in review.review" v-bind:key="index">
+                    <tr
+                      v-for="(data, index) in review.review"
+                      v-bind:key="index"
+                    >
                       <td>{{ data.rid }}</td>
                       <td>{{ data.movienm }}</td>
                       <td>{{ data.rwuser }}</td>
                       <td>{{ data.rucontent }}</td>
                       <td>
-                        <button class="deletebtn" @click="deletebtn(data)">삭제</button>
+                        <button class="deletebtn" @click="deletebtn(data)">
+                          삭제
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -131,7 +143,7 @@
 </template>
 
 <script>
-import ReviewDataService from '@/services/ReviewDataService';
+import ReviewDataService from "@/services/ReviewDataService";
 import MovieDataService from "@/services/MovieDataService";
 export default {
   data() {
@@ -139,9 +151,9 @@ export default {
       board: false,
       selected: "",
       review: [],
-      movienm:"",
-      movie:[],
-  
+      movienm: "",
+      movie: [],
+      selectMovienm: "",
 
       //페이징을 위한 변수 정의
       page: 1,
@@ -171,6 +183,8 @@ export default {
         .then((response) => {
           const review = response.data;
           this.review = review;
+          //     var test = response.data;
+          // alert(JSON.stringify(test));
           console.log(response.data);
         })
         .catch((e) => {
@@ -181,8 +195,8 @@ export default {
     //삭제버튼 클릭시
     deletebtn(data) {
       this.review = data;
-      var test = this.review.rid;
-          alert(JSON.stringify(test));
+      // var test = this.review.rid;
+      //     alert(JSON.stringify(test));
       ReviewDataService.delete(this.review.rid)
         .then((response) => {
           console.log(response.data);
@@ -193,9 +207,9 @@ export default {
           console.log(e);
         });
     },
-
+    //셀렉트박스 영화이름 가져오는 함수
     retrieveMovie() {
-      MovieDataService.getMovieDetailAll2()
+      MovieDataService.getMovieAll()
         .then((response) => {
           const movie = response.data;
           this.movie = movie;
@@ -244,6 +258,7 @@ button:active {
 .user-hero {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
-  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png")
+    no-repeat;
 }
 </style>

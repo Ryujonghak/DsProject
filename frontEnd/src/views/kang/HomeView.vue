@@ -8,7 +8,7 @@
         <div class="cover03"></div>
         <iframe
           class="video"
-          src="https://www.youtube.com/embed/OLLJYT-_BWw?rel=0&loop=1&playlist=OLLJYT-_BWw&autoplay=1&mute=1"
+          src="https://www.youtube.com/embed/yIkZB1hAK4M?rel=0&loop=1&playlist=yIkZB1hAK4M&autoplay=1&mute=1"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -53,10 +53,9 @@
             </div>
             <!-- TODO: 끝 -->
           </div>
-
-          <a href="/allMovie" class="more"
+          <router-link to="/allMovie" class="more"
             >더보기 <i class="ion-ios-arrow-right"></i
-          ></a>
+          ></router-link>
         </div>
       </div>
     </div>
@@ -99,7 +98,7 @@ export default {
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,
-      pageSize: 8,
+      pageSize: 10,
 
       pageSizes: [5, 10, 15],
     };
@@ -161,9 +160,9 @@ export default {
 
 .cover03 {
   position: absolute;
-  top: 90%;
+  top: 93%;
   width: 100%;
-  height: 9%;
+  height: 8%;
   z-index: 3;
   background-color: black;
 }
@@ -185,9 +184,10 @@ export default {
   color: aliceblue;
   text-align: center;
   margin-bottom: 5%;
+  margin-top: 2%;
 }
 .h1 {
-  font-size: 20px;
+  font-size: 30px;
 }
 .slider {
   padding-top: 0;

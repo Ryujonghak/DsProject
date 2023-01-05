@@ -44,8 +44,8 @@ class QnaDataService {
     // Qna정보 삭제(delete) 요청 함수
     // delete 방식 통신 요청 -> @DeleteMapping("/api/qna/deletion/{qno}")
     //                        , @PathVariable  
-    delete(qno) {
-        return http.delete(`/qna/deletion/${qno}`);
+    delete(qid) {
+        return http.delete(`/qna/deletion/${qid}`);
     }
 
     // Qna정보 전체 삭제 요청 함수
