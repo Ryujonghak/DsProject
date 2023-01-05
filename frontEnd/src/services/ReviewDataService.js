@@ -12,10 +12,10 @@ class ReviewDataService {
         return http.get(`/review?movienm=${movienm}&page=${page}&size=${size}`); 
     }
 
-    // http://localhost:8000/api/review?moviecd=20225061
+    // http://localhost:8000/api/review/moviecd?moviecd=20227925
     // 영화 코드로 조회 요청 함수
     getBycode(moviecd, page, size) {
-        return http.get(`/review?moviecd=${moviecd}&page=${page}&size=${size}`)
+        return http.get(`/review/moviecd?moviecd=${moviecd}&page=${page}&size=${size}`)
     }
 
     // 리뷰번호로 조회 요청 함수

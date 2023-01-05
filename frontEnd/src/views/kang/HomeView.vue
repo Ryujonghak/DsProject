@@ -54,7 +54,7 @@
             <!-- TODO: 끝 -->
           </div>
 
-          <a href="#" class="more"
+          <a href="/allMovie" class="more"
             >더보기 <i class="ion-ios-arrow-right"></i
           ></a>
         </div>

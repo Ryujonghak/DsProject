@@ -28,19 +28,25 @@
                   <div class="ranking">No.{{ data.rank }}</div>
                 </div>
                 <div class="col-md-12">
-                  <div class="ceb-item-style-2">
-                    <img src="https://ssl.pstatic.net/imgmovie/mdi/mit500/2237/223799_P19_172600.jpeg" alt="" style="width:7%"/>
-                    <div class="ceb-infor">
-                      <h2>
-                        <a href="celebritysingle.html">{{ data.movieNm }}</a>
-                      </h2>
-                      <!-- <span>Avatar: The Way of Water</span> -->
-                      <p style="margin-top: 1%">
-                        개봉일: {{ data.openDt }}<br />
-                        오늘까지 총 누적관객수: {{ data.audiAcc }} 명
-                      </p>
+                  <router-link :to="'/allMovie/' + data.movieCd">
+                    <div class="ceb-item-style-2">
+                      <img
+                        src="https://ssl.pstatic.net/imgmovie/mdi/mit500/2237/223799_P19_172600.jpeg"
+                        alt=""
+                        style="width: 7%"
+                      />
+                      <div class="ceb-infor">
+                        <h2>
+                          <a href="celebritysingle.html">{{ data.movieNm }}</a>
+                        </h2>
+                        <!-- <span>Avatar: The Way of Water</span> -->
+                        <p style="margin-top: 1%">
+                          개봉일: {{ data.openDt }}<br />
+                          오늘까지 총 누적관객수: {{ data.audiAcc }} 명
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </router-link>
                 </div>
               </div>
 
@@ -86,7 +92,6 @@ export default {
         this.pageSize
       )
         .then((response) => {
-          alert("성공");
           const movie = response.data;
           this.movie = movie;
           console.log(response.data);
