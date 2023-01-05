@@ -29,6 +29,7 @@
                     추억의 만화 ‘더 퍼스트 슬램덩크’, 개봉 첫날 박스오피스 2위
                   </h1>
                   <span class="time col-xs-12">2023.01.05 11:44</span>
+                  <span class="time col-xs-12">이소연 기자</span>
                   <img
                     src="http://www.cctimes.kr/news/photo/202301/734849_283062_3024.jpg"
                     alt=""
