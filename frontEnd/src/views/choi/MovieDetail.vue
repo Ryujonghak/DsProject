@@ -15,7 +15,7 @@
           <!-- 왼쪽 사이드 바 시작 -->
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="movie-img">
-              <img :src="movie.posterurln" alt="poster" />
+              <img :src="movie.posterurln" alt="poster" style="width:314px;height:450px;"/>
               <div class="movie-btn">
                 <div class="btn-transform transform-vertical red">
                   <div>
@@ -165,13 +165,6 @@
                             </ul>
                           </div>
                           <!-- 목록 불러오기 테스트 끝 -->
-                          <div
-                            class="title-hd-sm col-xs-12"
-                            style="padding-left: 0"
-                          >
-                            <h4>누적관객수</h4>
-                          </div>
-                          <div><h1 class="watched-people">2,945,915</h1></div>
                         </div>
 
                         <!-- 오른쪽 사이드 바 시작 -->
@@ -239,40 +232,40 @@
                                 name="reviewStar"
                                 value="5"
                                 id="rate1"
-                                v-model="rurating"
+                                v-model="addReview.rurating"
                               /><label for="rate1">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="4"
                                 id="rate2"
-                                v-model="rurating"
+                                v-model="addReview.rurating"
                               /><label for="rate2">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="3"
                                 id="rate3"
-                                v-model="rurating"
+                                v-model="addReview.rurating"
                               /><label for="rate3">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="2"
                                 id="rate4"
-                                v-model="rurating"
+                                v-model="addReview.rurating"
                               /><label for="rate4">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="1"
                                 id="rate5"
-                                v-model="rurating"
+                                v-model="addReview.rurating"
                               /><label for="rate5">★</label>
                             </fieldset>
                             <div>
                               <textarea
-                                v-model="rucontent"
+                                v-model="addReview.rucontent"
                                 class="col-auto form-control"
                                 style="fontsize: 91%"
                                 type="text"
@@ -463,7 +456,13 @@ export default {
       //   },
       // ],
 
-      rwuser: "최아리",
+      addReview: {
+        rid: null,
+        rwuser: "디폴트값",
+        rucontent: "",
+        rurating: 0,
+      },
+
       rucontent: "",
       rurating: 0,
 
@@ -527,27 +526,27 @@ export default {
     },
     saveReview() {
       let data = {
-        rwuser: this.rwuser,
+        rwuser: this.addReview.rwuser,
         movienm: this.movie.movienm,
         moviecd: this.movie.moviecd,
-        rating: this.rurating,
-        rucontent: this.rucontent,
+        rating: this.addReview.rurating,
+        rucontent: this.addReview.rucontent,
       };
 
       ReviewDataService.create(data)
         .then((response) => {
-          this.review.rid = response.data.rid;
+          this.addReview.rid = response.data.rid;
           console.log(response.data);
           // this.submitted = true;
           alert("ㄹㅣ뷰 저장");
-
-          this.getReview(this.movie.moviecd)
-          this.rucontent="";
-
+          window.location.reload();
+          alert(this.review.rid);
         })
         .catch((e) => {
           alert("리뷰저장 실패");
           console.log(e);
+          window.location.reload();
+          alert(this.review.rid);
         });
     },
     toOverview() {
