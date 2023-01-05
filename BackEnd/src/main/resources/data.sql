@@ -60,6 +60,60 @@ VALUES (SQ_USER.NEXTVAL,
 INSERT INTO TB_USER_ROLE
 VALUES (3, 1);
 
+INSERT INTO TB_USER
+VALUES (SQ_USER.NEXTVAL,
+        'jung',
+        'jung@naver.com',
+        '$2a$10$TG1a5ywSrGNgf7/fFH.m0.EdTzHax8AGYNeAr8aIseF3DKyO0lDti',
+        01012345678,
+        1995,
+        11,
+        11,
+        '정주희',
+        '동성직업전문학교',
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+INSERT INTO TB_USER_ROLE
+VALUES (4, 1);
+
+INSERT INTO TB_USER
+VALUES (SQ_USER.NEXTVAL,
+        'kim',
+        'kim@naver.com',
+        '$2a$10$TG1a5ywSrGNgf7/fFH.m0.EdTzHax8AGYNeAr8aIseF3DKyO0lDti',
+        01012345678,
+        1995,
+        11,
+        11,
+        '김철원',
+        '동성직업전문학교',
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+INSERT INTO TB_USER_ROLE
+VALUES (5, 1);
+
+INSERT INTO TB_USER
+VALUES (SQ_USER.NEXTVAL,
+        'moon',
+        'moon@naver.com',
+        '$2a$10$TG1a5ywSrGNgf7/fFH.m0.EdTzHax8AGYNeAr8aIseF3DKyO0lDti',
+        01012345678,
+        1995,
+        11,
+        11,
+        '문영석',
+        '동성직업전문학교',
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+INSERT INTO TB_USER_ROLE
+VALUES (6, 1);
+
 -- QnA FakeData 추가
 INSERT INTO TB_QNA
 VALUES (SQ_QNA.NEXTVAL,
