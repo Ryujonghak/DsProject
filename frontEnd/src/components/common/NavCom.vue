@@ -272,7 +272,7 @@
                 </li>
 
                 <li>
-                  <router-link to="/boxoffice02">박스오피스</router-link>
+                  <router-link to="/boxoffice">박스오피스</router-link>
                 </li>
                 <li class="dropdown first">
                   <a
@@ -283,16 +283,6 @@
                     영화관<i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
-                    <li class="dropdown">
-                      <router-link to="/theaterBusan" class="dropdown-toggle" data-toggle="dropdown"
-                      >부산<i class="ion-ios-arrow-forward"></i
-                      ></router-link>
-                      <ul class="dropdown-menu level2">
-                        <li><router-link to="/SeomyeonCinema">서면</router-link></li>
-                        <li><router-link to="/CentumCinema">센텀 시티</router-link></li>
-                        <li><router-link to="/BusanCinema">부산대</router-link></li>
-                      </ul>
-                    </li>
                       <li>
                         <router-link to="/SeomyeonCinema">서면</router-link>
                       </li>
