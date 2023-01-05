@@ -257,17 +257,17 @@
               <!-- total-rows : 전체 데이터 개수 -->
               <!-- per-page : 1페이지 당 개수 -->
               <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
-              <!-- <b-pagination
+              <b-pagination
                 v-model="page"
                 :total-rows="count"
                 :per-page="pageSize"
                 prev-text="Prev"
                 next-text="Next"
                 @change="handlePageChange"
-              ></b-pagination> -->
+              ></b-pagination>
 
               <!-- 페이지박스 -->
-              <!-- <div class="mb-3">
+              <div class="mb-3">
                 Items per Page:
                 <select
                   v-model="pageSize"
@@ -277,7 +277,7 @@
                     {{ size }}
                   </option>
                 </select>
-              </div> -->
+              </div>
               <!-- 페이징 양식 끝 -->
 
               <!-- 수정버튼 시작 -->
@@ -330,7 +330,7 @@ export default {
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,
-      pageSize: 10,
+      pageSize: 5,
 
       pageSizes: [5, 10, 15],
     };
