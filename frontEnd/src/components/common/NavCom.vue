@@ -334,7 +334,7 @@
                 /></router-link>
               </div>
             </div>
-            <div class="col-xs-5 navbar-menu">
+            <div class="col-xs-4 navbar-menu2">
               <ul class="nav navbar-nav flex-child-menu menu-right col">
                 <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
                 <div v-show="currentUser">
@@ -757,4 +757,5 @@ input {
   background: none !important;
   color: black !important;
 }
+
 </style>
