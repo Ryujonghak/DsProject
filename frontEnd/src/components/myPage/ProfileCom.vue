@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>{{ User.name }}’s profile</h1>
+              <h1>{{ user.name }}’s profile</h1>
               <ul class="breadcumb">
                 <li class="active">
                   <router-link to="/">Home</router-link>
@@ -38,12 +38,12 @@
               <!-- 프로필 이미지 업로드 추가 v-if -->
               <div class="user-img">
                 <img
-                  class="profileImg"
-                  src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
-                  alt=""
+                    class="profileImg"
+                    src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                    alt=""
                 />
                 <!-- <img src="images/uploads/user-img.png" alt="" /> -->
-                <br />
+                <br/>
                 <a href="#" class="redbtn">Change avatar</a>
               </div>
               <!-- 프로필 이미지 업로드 추가 v-else -->
@@ -84,12 +84,12 @@
                   </li>
                   <!-- 프로필 로그인 정보 표시 시작-->
                   <li style="color: white">
-                    <strong style="color: white">이름 </strong>
-                    <label>{{ CurrentUser.name }}</label>
+                    <strong style="color: white">이름 : </strong>
+                    <label>{{ user.name }}</label>
                   </li>
                   <li style="color: white">
-                    <strong style="color: white">아이디 </strong>
-                    <label>{{ CurrentUser.username }}</label>
+                    <strong style="color: white">아이디 : </strong>
+                    <label>{{ user.username }}</label>
                   </li>
                   <!-- 프로필 로그인 정보 표시 끝 -->
                 </ul>
@@ -137,21 +137,21 @@
                   <div class="col-md-6 form-it">
                     <label>이름</label>
                     <input
-                      type="text"
-                      placeholder="홍길동"
-                      class="form-control"
-                      id="name"
-                      v-model="CurrentUser.name"
+                        type="text"
+                        placeholder="홍길동"
+                        class="form-control"
+                        id="name"
+                        v-model="user.name"
                     />
                   </div>
                   <div class="col-md-6 form-it">
                     <label>아이디</label>
                     <input
-                      type="text"
-                      placeholder="영문자 6자 이상"
-                      class="form-control"
-                      id="username"
-                      v-model="CurrentUser.username"
+                        type="text"
+                        placeholder="영문자 6자 이상"
+                        class="form-control"
+                        id="username"
+                        v-model="user.username"
                     />
                   </div>
                 </div>
@@ -159,33 +159,33 @@
                   <div class="col-md-6 form-it">
                     <label>이메일</label>
                     <input
-                      type="text"
-                      placeholder="hong@gmail.com"
-                      class="form-control"
-                      id="email"
-                      v-model="CurrentUser.email"
+                        type="text"
+                        placeholder="hong@gmail.com"
+                        class="form-control"
+                        id="email"
+                        v-model="user.email"
                     />
                   </div>
                   <div class="col-md-6 form-it">
                     <label>전화번호</label>
                     <input
-                      type="text"
-                      placeholder="010-1234-5678"
-                      class="form-control"
-                      id="phone"
-                      v-model="CurrentUser.phone"
+                        type="text"
+                        placeholder="010-1234-5678"
+                        class="form-control"
+                        id="phone"
+                        v-model="user.phone"
                     />
                   </div>
                 </div>
-                
+
                 <!-- 저장 버튼 -->
                 <div class="row">
                   <div class="col-md-2">
                     <input
-                      @click="updateUserInfo"
-                      class="submit"
-                      type="button"
-                      value="저장하기"
+                        @click="updateUser"
+                        class="submit"
+                        type="button"
+                        value="저장하기"
                     />
                   </div>
                 </div>
@@ -210,10 +210,11 @@
                                                   폼에 입력된 값이랑 회원데이터값 비교해서 맞으면 changePwdForm 떠야하는데... -->
                     <label for="answer">비밀번호 확인용 정답</label>
                     <input
-                      id="answer"
-                      type="text"
-                      placeholder="정답을 한글로 입력하세요"
-                      v-model="checkanswer"
+                        id="answer"
+                        type="text"
+                        placeholder="정답을 한글로 입력하세요"
+
+                        v-model="answer"
                     />
                   </div>
                 </div>
@@ -222,35 +223,35 @@
                   <div class="col-md-2">
                     <!--                      TODO: @click="findpwd"-->
                     <input
-                      class="submit"
-                      type="button"
-                      value="정답확인"
-                      @click="findpwd"
+                        class="submit"
+                        type="button"
+                        value="정답확인"
+                        @click="findPwd"
                     />
                   </div>
                 </div>
-                <br />
-                <br />
+                <br/>
+                <br/>
                 <!-- TODO: 질문의 정답이 일치하면 아래 div 보이도록...ㅋ : v-show="changePwdForm"  class="pwcheck"-->
-                <!-- <div v-show="changePwdForm" class="pwcheck"> -->
-                <div>
+                <div v-show="changePwdForm" class="pwcheck">
+                  <!--                <div>-->
                   <div class="row">
                     <div class="col-md-6 form-it">
                       <label for="password">변경할 비밀번호</label>
                       <input
-                        type="password"
-                        placeholder="영문자, 숫자, 특수문자 조합 8~12자리"
-                        class="form-control"
-                        v-model="CurrentUser.password"
+                          type="password"
+                          placeholder="영문자, 숫자, 특수문자 조합 8~12자리"
+                          class="form-control"
+                          v-model="password"
                       />
                     </div>
 
                     <div class="col-md-6 form-it">
                       <label>비밀번호 확인</label>
                       <input
-                        type="password"
-                        placeholder="비밀번호를 재입력해주세요"
-                        v-model="password"
+                          type="password"
+                          placeholder="비밀번호를 재입력해주세요"
+                          v-model="password2"
                       />
                     </div>
                   </div>
@@ -259,11 +260,11 @@
                     <div class="col-md-2">
                       <!--                      TODO: 비밀번호 변경 클릭 이벤트 : updatePwd -->
                       <input
-                        class="submit"
-                        type="button"
-                        @click="updatePwd(CurrentUser.username, changePwd, CurrentUser)"
-                        value="변경하기"
-                        />
+                          class="submit"
+                          type="button"
+                          @click="updatePwd"
+                          value="변경하기"
+                      />
                       <p>{ message }</p>
                     </div>
                   </div>
@@ -289,14 +290,17 @@ export default {
   // }),
   data() {
     return {
-      User: new User(),
+      user: new User(),
       checkanswer: "", // 비번찾기문제 폼에 입력된 값
       changePwd: false, // 버튼 클릭시 true, 변경폼 나타남
       changePwdForm: false,
-      // objanswer: "",
-      // username: "",
-      CurrentUser: [],
       message: "",
+      username: this.$store.state.auth.user.username,
+      password: "",
+      password2: "",
+      answer: "",
+      // name: this.user.name,
+
     };
   },
   methods: {
@@ -320,20 +324,17 @@ export default {
     // },
 
     // 종학이 백엔드 데이터 받는 함수
-    getUser(username) {
-      // 종학이 백엔드 데이터 받는 함수
-      username = this.$store.state.auth.user.username;
-      // username = "forbob";
-      console.log(username);
+    getUser() {
+      // username = this.$store.state.auth.user.username;
+      console.log("username: " + this.username);
       userService
-        .getUserUsername(username)
-        .then((response) => {
-          this.User = response.data;
-          this.CurrentUser = response.data;
-          console.log(this.user);
-          // console.log(response.data);
-        })
-        .catch((err) => console.log(err));
+          .getUserUsername(this.username)
+          .then((response) => {
+            this.user = response.data;
+            console.log("getUser this.user: ", this.user);
+            console.log("getUser response.data: ", response.data);
+          })
+          .catch((err) => console.log(err));
     },
 
     // 로그아웃 함수 -> 공통함수 호출 : FIXME: 로그아웃 안 됨. 그리고 alert("로그아웃이 완료되었습니다") 추가해야함
@@ -363,66 +364,80 @@ export default {
     // },
 
     // 회원정보수정
-    updateUserInfo(id, changePwd, user) {
-      alert("클릭")
-      console.log(this.CurrentUser);
-      id = this.CurrentUser.id;
-      changePwd = false;
-      this.User = this.CurrentUser;
-      user = this.User;
+    updateUser() {
+      alert("updateUser 실행")
+      // console.log(this.user);
+      console.log("update this.user: ", this.user);
+      // if()
+      this.changePwd = false; // 비번변경 여부
       userService
-        .update(id, changePwd, user)
-        .then((response) => {
-          console.log(response.data);
-          this.message = "유저 정보가 성공적으로 수정되었습니다!";
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+          .update(this.user.id, this.changePwd, this.user)
+          .then((response) => {
+            console.log(response.data);
+            this.message = "유저 정보가 성공적으로 수정되었습니다!";
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       // 수정완료시 그 전페이지로 강제이동
       // this.$router.push("/mypage");
     },
 
-    // 새비밀번호 변경하기
-    // TODO:1222수정
-    updatePwd(id, changePwd, User) {
-      // this.User.id;
-      // this.changePwd = true;
-      // this.User;
-      this.message = "";
-      this.submitted = true; //
-      User.password = this.password;
-      // var test = this.User;
-      // alert(JSON.stringify(test));
-      // form 유효성 체크 검사
-      // this.$validator.validate() : 유효하면 isValid = true , 아니면 isValid = false
-      // this.$validator.validate().then((isValid) => {
-      //   if (isValid) {
-      // User 값 초기화
-      // this.User = new User("", "", "", this.role);
-      //  공유 저장소의 새사용자 등록 함수 실행
-      userService
-        .update(id, changePwd, User)
-        .then((response) => {
-          console.log(response.data);
-          this.message = "The password was updated successfully!";
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+    findPwd() {
+      alert("findPwd 실행")
+      if (this.answer == this.user.answer) {
+        userService
+            .getFindByPassword(this.user.username, this.answer)
+            .then((response) => {
+              console.log("response.data", response.data);
+              this.user = response.data;
+              this.changePwdForm = true;
+              alert("비밀번호를 변경할 수 있습니다.")
+            })
+            .catch((e) => {
+              console.log(e);
+              alert("비밀번호 답변이 정확하지 않습니다.")
+            })
+      } else {
+        alert("비밀번호 답변이 정확하지 않습니다.")
+      }
+    },
+    updatePwd() {
+      alert("updatePwd 실행")
+      if(this.password == this.password2) {
+        // console.log(this.user);
+        console.log("update this.user: ", this.user);
+        this.user.password = this.password;
+        // if()
+        this.changePwd = true; // 비번변경 여부
+        userService
+            .update(this.user.id, this.changePwd, this.user)
+            .then((response) => {
+              console.log(response.data);
+              this.message = "유저 정보가 성공적으로 수정되었습니다!";
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+      } else {
+        alert("비밀번호 확인이 정확하지 않습니다.")
+      }
+
+      // 수정완료시 그 전페이지로 강제이동
+      // this.$router.push("/mypage");
     },
 
     // 탈퇴하기
     deleteId() {
       userService
-        .delete()
-        .then((response) => {
-          console.log(response.data);
-          alert("탈퇴가 완료되었습니다.");
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+          .delete()
+          .then((response) => {
+            console.log(response.data);
+            alert("탈퇴가 완료되었습니다.");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
   },
   mounted() {

@@ -78,7 +78,7 @@ public class User extends BaseTimeEntity {
     private String answer;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(  name = "TB_USER_ROLE",
+    @JoinTable(name = "TB_USER_ROLE",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private Set<Role> role = new HashSet<>();
@@ -95,6 +95,7 @@ public class User extends BaseTimeEntity {
         this.email = email;
         this.password = password;
     }
+
     //  TODO : 1) 추가
     @Builder
     public User(String username, String email, String password, Set<Role> role) {
@@ -104,7 +105,32 @@ public class User extends BaseTimeEntity {
         this.role = role;
     }
 
+    @Builder
+    public User(String username, String email, String password, Integer phone, Integer year, Integer month, Integer day, String name, String answer) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.name = name;
+        this.answer = answer;
+    }
 
+    @Builder
+    public User(Long id, String username, String email, String password, Integer phone, Integer year, Integer month, Integer day, String name, String answer) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.name = name;
+        this.answer = answer;
+    }
 
     public User update(String name) {
         this.username = username;

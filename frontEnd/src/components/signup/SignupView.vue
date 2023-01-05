@@ -48,14 +48,14 @@
         <!--이름,생년월일,이메일-->
         <h3>이름</h3>
         <span class="signup-input">
-          <input id="signup-name" type="text" />
+          <input id="signup-name" type="text" v-model="user.name"/>
         </span>
 
         <h3>생년월일</h3>
         <span style="display: flex">
           <span class="signup-input-birth">
             <input id="signup-birth-yy" type="text" placeholder="년(4자)" 
-            v-model="user.birthyy"/>
+            v-model="user.year"/>
           </span>
           <span class="signup-input-birth" style="margin-left: 10px">
             <select
@@ -63,7 +63,7 @@
               class="selectbox"
               name="month"
               onchange=""
-              v-model="user.birthmm"
+              v-model="user.month"
             >
               <option value="month" selected>월</option>
               <option value="1">1</option>
@@ -82,7 +82,7 @@
           </span>
           <span class="signup-input-birth" style="margin-left: 10px">
             <input id="signup-birth-dd" type="text" placeholder="일"
-            v-model="user.birthdd" />
+            v-model="user.day" />
           </span>
         </span>
 
@@ -109,7 +109,7 @@
             style="width: 100%; margin: 10px 0px 0px 0px"
           >
             <input id="signup-phone" type="text" placeholder="전화번호 입력" 
-            v-model="user.phonenumber"/>
+            v-model="user.phone"/>
           </span>
         </div>
       </div>
@@ -122,7 +122,6 @@
             class="selectbox"
             name="findpwd"
             style="width: 100%"
-            v-model="user.pwdquestion"
           >
             <option value="ko" selected>나의 고향은?</option>
             <option value="ko">어머니의 성함은?</option>
@@ -143,7 +142,7 @@
               id="signup-phone"
               type="text"
               placeholder="정답을 한글로 입력하세요."
-              v-model="user.pwdanswer"
+              v-model="user.answer"
             />
           </span>
         </div>
@@ -171,7 +170,7 @@ import User from "../../model/user.js";
 export default {
     data() {
     return {
-      user: new User("","","",null,null,null,null,"",""),
+      user: new User(),
       submitted: false,
       successful: false,
       message: "",
@@ -204,6 +203,7 @@ export default {
             this.message = response.message;
             this.successful = true;
             alert("회원가입이 완료되었습니다.")
+            this.user = new User();
           })
           .catch((error) => {
             this.successful = false; 

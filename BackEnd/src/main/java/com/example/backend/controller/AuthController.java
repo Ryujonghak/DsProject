@@ -11,6 +11,7 @@ import com.example.backend.repository.RoleRepository;
 import com.example.backend.repository.UserRepository;
 import com.example.backend.security.jwt.JwtUtils;
 import com.example.backend.security.services.UserDetailsImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth/")
+@Slf4j
 public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager; // 인증 / 권한 체크 처리를 위한 객체(SpringSecurity 에서 제공)
@@ -86,10 +88,18 @@ public class AuthController {
                     .body(new MessageResponse("Error: email is already in use!"));
         }
 
+        log.debug("signupRequest : " + signupRequest);
 //        신규 사용자 생성
         User user = new User(signupRequest.getUsername(),
                 signupRequest.getEmail(),
-                passwordEncoder.encode(signupRequest.getPassword()) // 암호화 적용
+                passwordEncoder.encode(signupRequest.getPassword()),
+                signupRequest.getPhone(),
+                signupRequest.getYear(),
+                signupRequest.getMonth(),
+                signupRequest.getDay(),
+                signupRequest.getName(),
+                signupRequest.getAnswer()
+                // 암호화 적용
         );
 
         Set<String> strRoles = signupRequest.getRole(); // Vue 전송한 권한(role) 적용

@@ -43,6 +43,7 @@ class AuthService {
 //   front : user 새회원정보를 db저장 요청
 //   back : user 저장하기전에 -> password 암호화 -> DB 저장함
   register(user) {
+    console.log(user);
     // user 매개변수를 임시 객체에 저장
     let userData = {
       email: user.email,

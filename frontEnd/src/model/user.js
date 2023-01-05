@@ -3,6 +3,7 @@
 export default class User {
   // js 생성자 : constructor(매개변수...) {}
   constructor(
+      id,
       email,
       password,
       username,
@@ -13,6 +14,13 @@ export default class User {
       name,
       answer
   ) {
+      this.id = id;
+      this.email = email;
+      this.password = password;
+      this.username = username;
+      this.phone = phone;
+      this.year = year;
+      this.month = month;
       this.email = email;
       this.password = password;
       this.username = username;

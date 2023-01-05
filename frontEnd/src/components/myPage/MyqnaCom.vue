@@ -306,6 +306,7 @@ import userService from "@/services/user.service";
 
 // 수빈이 addQna 에서 등록한거 불러오려고 함
 import QnaDataService from "@/services/QnaDataService.js";
+import User from "@/model/user";
 // import email from "@/assets/js/email.js";
 
 export default {
@@ -315,17 +316,7 @@ export default {
   data() {
     return {
       // 사용자 정보 받아오기
-      CurrentUser: {
-        email: "",
-        password: "",
-        username: "",
-        phone: null,
-        year: null,
-        month: null,
-        day: null,
-        name: "",
-        answer: "", // 비번확인용 정답
-      },
+     user: new User,
       // AddQna 받아오기
       qna: [],
       // currentQna: null,

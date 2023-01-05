@@ -61,8 +61,8 @@ class UserService {
       answer: user.answer
     };
 
-    console.log(userData);
-    console.log(changePwd);
+    console.log("userService.update:", userData);
+    console.log("userService.update.changePwd:",changePwd);
     return http.put(`/user/${id}`, userData, { headers: authHeader() });
   }
 

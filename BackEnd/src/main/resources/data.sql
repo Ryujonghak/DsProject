@@ -133,6 +133,19 @@ VALUES (SQ_REVIEW.NEXTVAL,
         NULL,
         NULL);
 
+INSERT INTO TB_REVIEW
+VALUES (SQ_REVIEW.NEXTVAL,
+        '정주희',
+        230104,
+        '20225062',
+        '정주희의 모험',
+        null,
+        '아직 안봐서 모름.',
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
 -- Notice FakeData 추가
 INSERT INTO TB_NOTICE
 VALUES (SQ_NOTICE.NEXTVAL,
