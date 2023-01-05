@@ -60,11 +60,11 @@
         </div>
       </div>
     </div>
-    <!-- TODO: 메인디테일뷰 컴포넌트, 프롭스 데이터 전달 추가 (최아리 추가) -->
-    <div class="tab active">
+    <!-- TODO: 메인디테일뷰 컴포넌트, 프롭스로 데이터 전달하는 부분 추가 (최아리 추가) -->
+    <div>
       <DetailCom />
     </div>
-    <div id="detail" v-if="detailPage" ref="stage1">
+    <div v-if="detailPage">
       <DetailCom :movieProps="currentMovie" />
     </div>
     <!-- 메인디테일뷰 컴포넌트 추가 끝 -->
