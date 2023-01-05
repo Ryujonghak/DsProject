@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>busan 상영시간표</h1>
+              <h1>전체 상영관</h1>
               <ul class="breadcumb">
                 <li class="active"><router-link to="/">Home</router-link></li>
                 <li><span class="ion-ios-arrow-right"></span>TIME TABLE</li>
@@ -37,19 +37,17 @@
                     <div id="overview" class="tab active">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4>DS CINEMA 부산</h4>
-                          <br />
-                          <p>{{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘) 상영시간표</p>
-
+                          <h4 class="titleDate">DS CINEMA {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘) 상영시간표</h4>
                           <!-- 전체 상영시간표 시작 -->
                           <div class="row" v-for="(dataAll, indexAll) in movie" v-bind:key="indexAll">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                               <div class="title-hd-sm">
-                                <a href="#" class="time"
-                                  >{{ dataAll.movienm }}<i
-                                    class="ion-ios-arrow-right"
-                                  ></i
-                                ></a>
+
+                                <router-link :to="'/allMovie/' + dataAll.moviecd">
+                                  <span class="time">{{ dataAll.movienm }}
+                                    <i class="ion-ios-arrow-right"></i>
+                                  </span>
+                                </router-link>
                                 <h4>dd</h4>
                               </div>
                               <!-- 시간표 시작 -->
@@ -119,13 +117,12 @@
                     <div id="aaaa" class="tab review">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4>{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
+                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                             <div class="topbar-filter">
-                              <p>DS CINEMA 서면</p>
-                              <p>오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 입니다.</p>
+                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}입니다.</p>
                             </div>
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 서면 ---- 탭 시간표 선택-->
@@ -151,9 +148,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -222,9 +221,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -291,9 +292,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -360,9 +363,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -429,9 +434,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -508,15 +515,13 @@
                     <div id="bbbb" class="tab">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4>{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
+                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                             <div class="topbar-filter">
-                              <p>DS CINEMA 센텀시티</p>
-                              <p>오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 입니다.</p>
+                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}입니다.</p>
                             </div>
-
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 센텀시티 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
@@ -541,9 +546,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -610,9 +617,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -679,9 +688,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -748,9 +759,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -817,9 +830,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -895,16 +910,13 @@
                     <div id="cccc" class="tab">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4>{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
+                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                             <div class="topbar-filter">
-                              <p>DS CINEMA 부산대</p>
-                              
-                              <p>{{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘) 상영시간표</p>
+                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}입니다.</p>
                             </div>
-
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
@@ -929,9 +941,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -998,9 +1012,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -1067,9 +1083,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -1136,9 +1154,11 @@
                                     <!-- 상영작 1 ~ 8 시작-->
                                     <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -1202,9 +1222,11 @@
                                 <!-- 금요일 시간표 시작 -->
                                 <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
-                                        <a href="#" class="movieTitle" 
-                                          >{{ data.movienm }} </a
-                                        >
+                                        <router-link :to="'/allMovie/' + data.moviecd">
+                                          <span class="movieTitle">{{ data.movienm }}
+                                            <i class="ion-ios-arrow-right"></i>
+                                          </span>
+                                        </router-link>
                                         <div class="col row">
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
@@ -1438,11 +1460,10 @@ input[name="tab_item"] {
 }
 
 /* 탭 컨텐츠 스타일 */
-/* height 1370 -> 시간표에 영화 10개 표시 */
+/* height 1370 -> 시간표에 영화 10개 표시 -> v-for로 항상 10개가 들어와서 의미없음 */
 .tab_content {
   display: none;
   padding: 40px 40px 0;
-  height: 1370px;
   clear: both;
   overflow: hidden;
 }
@@ -1478,10 +1499,14 @@ input[name="tab_item"] {
   color: #fff;
 }
 
+.titleDate{
+  text-align: center;
+}
+
 /* 상영시간표 영화포스터 */
 .poster_thumb {
-  width: 80px;
-  height: 100px;
+  width: 100px;
+  height: 130px;
 }
 .movieTitle {
   color: darkblue;
@@ -1496,6 +1521,13 @@ input[name="tab_item"] {
   margin-top: 10px;
 }
 
+/* FIXME: 영화 디테일로 가는 영화제목 */
+.time{
+  color: whitesmoke;
+  font-size: medium;
+}
+
+
 /* 배경이미지 : 아리걸로 통일 */
 .hero {
   background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
@@ -1506,6 +1538,10 @@ input[name="tab_item"] {
 /* 탑버튼 */
 .topbutton{
     position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
+}
+
+.movieIng{
+  margin-bottom: 5%;
 }
 
 </style>
