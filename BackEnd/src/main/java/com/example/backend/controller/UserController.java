@@ -313,7 +313,7 @@ public class UserController {
 
     @DeleteMapping("/user/deletion/{id}")
 //    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> deleteUser(@PathVariable int id) {
+    public ResponseEntity<Object> deleteUser(@PathVariable Long id) {
 
 //        프론트엔드 쪽으로 상태정보를 보내줌
         try {
