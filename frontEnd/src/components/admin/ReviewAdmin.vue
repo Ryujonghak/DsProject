@@ -181,8 +181,8 @@ export default {
     //삭제버튼 클릭시
     deletebtn(data) {
       this.review = data;
-      // var test = this.review.rno;
-      //     alert(JSON.stringify(test));
+      var test = this.review.rid;
+          alert(JSON.stringify(test));
       ReviewDataService.delete(this.review.rid)
         .then((response) => {
           console.log(response.data);
@@ -244,6 +244,6 @@ button:active {
 .user-hero {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
-  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test9.png") no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
 }
 </style>

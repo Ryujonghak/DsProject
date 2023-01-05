@@ -18,29 +18,24 @@ class ReviewDataService {
     }
 
     // 리뷰번호로 조회 요청 함수
-    // get 방식 통신 요청 -> @GetMapping("/api/qna/{qno}"), @PathVariable
     get(id) {
         return http.get(`/review/${id}`)
     }
 
     // 리뷰정보 생성(insert) 요청 함수
-    // post 방식 통신 요청 -> @PostMapping("/api/qna"), @RequestBody
     create(data) {
         console.log(data);
         return http.post("/review", data);
     }
 
     // 리뷰정보 수정(update) 요청 함수
-    // put 방식 통신 요청 -> @PutMapping("/api/qna/{qno}"), @RequestBody
     update(id, data) {
         return http.put(`/review/${id}`, data);
     }
 
     // 리뷰정보 삭제(delete) 요청 함수
-    // delete 방식 통신 요청 -> @DeleteMapping("/api/qna/deletion/{qno}")
-    //                        , @PathVariable  
-    delete(rno) {
-        return http.delete(`/review/delete/${rno}`);
+    delete(rid) {
+        return http.delete(`/review/deletion/${rid}`);
     }
 
     // 리뷰정보 전체 삭제 요청 함수
