@@ -169,17 +169,18 @@
                   <!-- TODO: 본 영화 정보 받아오기 :  -->
                   <div class="flex-wrap-movielist">
                     <!-- 아카이브 시작 -->
-                    <!-- 원래 여기에 걸어야되는데 v-for 두 개 걸꺼라서 일단 바로밑에 걸었음... -->
-                    <div class="movie-item-style-2 movie-item-style-1" v-for="(data, index) in watchedMovie" v-bind:key="index">
-                      <!-- TODO: v-for 1번 : 영화정보 -->
-                        <img :src="data.posterURL" alt="poster" />
+                    <!-- todo) watchedMovie.posterurln 인데 일단 movie로 찍음 -->
+                    <!-- <div class="movie-item-style-2 movie-item-style-1" v-for="(data, index) in watchedMovie" v-bind:key="index"> -->
+                    <div class="movie-item-style-2 movie-item-style-1" 
+                    v-for="(data, index) in movie" v-bind:key="index">
+                      <!-- todo) v-for 1번 : 영화정보 -->
+                        <img :src="data.posterurln" alt="poster" />
                         <!-- 영화 라벨 -->
                         <div class="mv-item-infor">
                           <div class="movieTitle-2">
                             <h6>
-                              <a href="/movieDetail">{{
-                                data.movieNm
-                              }}</a>
+                              <a href="/movieDetail">
+                                {{ data.movieNm }}</a>
                             </h6>
                           </div>
                           <p class="rate">
@@ -187,7 +188,7 @@
                             ><span>{{ data.rating }}</span> /5
                           </p>
                         </div>
-                      <!-- TODO: v-for 2번 : 영화에 마우스 올리면 나오는 관람정보: 리뷰하러가기 -->
+                      <!-- todo) v-for 2번 : 영화에 마우스 올리면 나오는 관람정보: 리뷰하러가기 -->
                       <div class="hvr-inner">
                         <div class="movieTitle">
                           <h6>
@@ -301,6 +302,7 @@ export default {
   // }),
   data() {
     return {
+      movie: [],    // 예매한 영화(watched) 가져와야되는데 일단 없어서 전체영화 가져옴
       CurrentUser: {
         email: "",
         password: "",
@@ -398,10 +400,26 @@ export default {
       // 영화 제목 정보 보내야 함
       // movieNm = this.movieNm;
     },
+    // 영화 전체 조회 요청하는 함수
+    getMovieInfo() {
+      MovieDataService.getMovieAll()
+        .then((response) => {
+          this.movie = response.data;
+          console.log(response.data);
+
+          // 가져온 이미지 url 개수
+          // this.imageUrlLength = this.movie.imgurl.length;
+          // 썸네일 이미지 2장만 보이게 설정
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
+    this.getMovieInfo();
   },
 };
 </script>
