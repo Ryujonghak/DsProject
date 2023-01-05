@@ -26,7 +26,7 @@
                   <div>
                     <!-- TODO: 유튜브 URL, 영화 이름, 예매 페이지 연결 등 백엔드 데이터 받아와야 하는 곳 -->
                     <a
-                      href="movie.utubeurl"
+                      :href="movie.utubeurl"
                       class="item item-2 redbtn fancybox-media hvr-grow"
                       ><i class="ion-play"></i
                     ></a>
@@ -200,7 +200,7 @@
                     <!-- 1) 영화 정보 끝 -->
 
                     <!-- 2) 리뷰 파트 시작 -->
-                    <div class="tab active" v-show="reviews">
+                    <div id="reviewPart" class="tab active" v-show="reviews">
                       <ul class="tabs-mv tab-bar">
                         <li>
                           <a class="not-selected" @click="toOverview"
@@ -239,35 +239,40 @@
                                 name="reviewStar"
                                 value="5"
                                 id="rate1"
+                                v-model="rurating"
                               /><label for="rate1">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="4"
                                 id="rate2"
+                                v-model="rurating"
                               /><label for="rate2">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="3"
                                 id="rate3"
+                                v-model="rurating"
                               /><label for="rate3">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="2"
                                 id="rate4"
+                                v-model="rurating"
                               /><label for="rate4">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="1"
                                 id="rate5"
+                                v-model="rurating"
                               /><label for="rate5">★</label>
                             </fieldset>
                             <div>
                               <textarea
-                                v-model="userReview"
+                                v-model="rucontent"
                                 class="col-auto form-control"
                                 style="fontsize: 91%"
                                 type="text"
@@ -302,7 +307,7 @@
                               <div class="rate-star">
                                 <span
                                   class="rate-star-result"
-                                  v-for="(i, index) in data.rating"
+                                  v-for="(i, index) in review.rurating"
                                   :key="index"
                                   ><i
                                     class="ion-ios-star"
@@ -458,6 +463,10 @@ export default {
       //   },
       // ],
 
+      rwuser: "최아리",
+      rucontent: "",
+      rurating: 0,
+
       // TODO: 리뷰
       reviewMovie: {
         userStarRating: 2, // 사용자별점
@@ -472,7 +481,7 @@ export default {
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
       count: 0, // 전체 데이터 건수
-      pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      pageSize: 20, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
 
       pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
     };
@@ -508,8 +517,8 @@ export default {
           console.log(response.data);
           // alert(response.data);
 
-          var test = this.review;
-          alert(JSON.stringify(test));
+          // var test = this.review;
+          // alert(JSON.stringify(test));
         })
         .catch((e) => {
           alert("리뷰 실패");
@@ -518,22 +527,26 @@ export default {
     },
     saveReview() {
       let data = {
+        rwuser: this.rwuser,
+        movienm: this.movie.movienm,
+        moviecd: this.movie.moviecd,
         rating: this.rurating,
-        content: this.rucontent,
+        rucontent: this.rucontent,
       };
 
-      // insert 요청 함수 호출
       ReviewDataService.create(data)
         .then((response) => {
           this.review.rid = response.data.rid;
           console.log(response.data);
           // this.submitted = true;
-          alert("ㄹㅣ뷰 저장")
-          getReview(this.$route.params.moviecd)
-;        })
-        // 실패하면 .catch() 결과가 전송됨
+          alert("ㄹㅣ뷰 저장");
+
+          this.getReview(this.movie.moviecd)
+          this.rucontent="";
+
+        })
         .catch((e) => {
-          alert("리뷰저장 실패")
+          alert("리뷰저장 실패");
           console.log(e);
         });
     },

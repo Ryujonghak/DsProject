@@ -165,7 +165,6 @@
 </template>
 
 <script>
-// FIXME: UserDataService.js 로 파일명 바꿔야 하는거 아닌지
 import UserDataService from "@/services/user.service.js";
 
 export default {

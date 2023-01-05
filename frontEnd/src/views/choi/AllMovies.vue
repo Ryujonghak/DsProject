@@ -253,7 +253,7 @@ export default {
     no-repeat center;
 }
 .common-hero {
-  background: url("@/assets/images_choi/Views/choi/AllMovie/test_image.jpeg")
+  background: url("@/assets/images_choi/Views/choi/admin/movie-theater03.png")
     no-repeat;
 }
 .search-numbers {

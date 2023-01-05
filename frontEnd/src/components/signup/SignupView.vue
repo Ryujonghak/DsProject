@@ -382,4 +382,9 @@ h3 {
   width: 28%;
   margin: 0 auto;
 }
+.common-hero {
+  height: 385px;
+  /* // background: url("../images/uploads/user-hero-bg.jpg") no-repeat; */
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat !important;
+}
 </style>
