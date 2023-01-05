@@ -1433,11 +1433,11 @@ input[name="tab_item"] {
 }
 
 /* 탭 컨텐츠 스타일 */
-/* height 1300 -> 시간표에 영화 10개 표시 */
+/* height 1370 -> 시간표에 영화 10개 표시 */
 .tab_content {
   display: none;
   padding: 40px 40px 0;
-  height: 1300px;
+  height: 1370px;
   clear: both;
   overflow: hidden;
 }
