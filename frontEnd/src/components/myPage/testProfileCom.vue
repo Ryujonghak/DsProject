@@ -1,11 +1,11 @@
 <template>
-  <div v-if="getMovieInfo">
+  <div>
     <div class="hero user-hero">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>DS CINEMA 가산 디지털</h1>
+              <h1>DS CINEMA 가산디지털</h1>
               <ul class="breadcumb">
                 <li class="active">
                   <router-link to="/">Home</router-link>
@@ -158,17 +158,16 @@
               <div v-show="상영시간표" class="col-md-12" style="padding: 50px 0 0 0; background-color: #020d18; color: white;"> 
                          
                   <!-- TODO) 탭2 : 가산 -->
-                  <div id="aaaa" class="tab review">
+                  <div id="overview" class="tab review">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <h4>{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
-                            <div class="topbar-filter">
-                              <p>DS CINEMA 가산</p>
-                              <p>{{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘) 상영시간표</p>
-                            </div>
+                            <!-- <div class="topbar-filter">
+                              <p>DS CINEMA 가산디지털</p>
+                            </div> -->
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 가산 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
@@ -200,7 +199,6 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurln"
                                                   alt="poster"
@@ -272,7 +270,6 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurln"
                                                   alt="poster"
@@ -342,7 +339,6 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurln"
                                                   alt="poster"
@@ -412,7 +408,6 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
                                                   :src="data.posterurln"
                                                   alt="poster"
@@ -482,9 +477,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkn"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -540,7 +534,7 @@
                               <!-- 내용 끝 -->
                             </div>
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
-                            <!-- FIXME: 탑 버튼 추가 -->
+                            <!-- 탑 버튼 추가 -->
                             <a class="topbutton" href="#">
                              <img src="@/assets/images_jung/iconUp_48.png"/>
                             </a>
@@ -604,7 +598,6 @@ export default {
   methods: {
     // 영화코드(moviecd)로 조회 요청하는 함수
     getMovieInfo() {
-      alert("getMovieInfo method");
       MovieDataService.getMovieAll()
           .then((response) => {
             this.movie = response.data;
@@ -759,11 +752,10 @@ input[name="tab_item"] {
 }
 
 /* 탭 컨텐츠 스타일 */
-/* height 1300 -> 시간표에 영화 10개 표시 */
 .tab_content {
   display: none;
   padding: 40px 40px 0;
-  height: 1300px;
+  height: 1370px;
   clear: both;
   overflow: hidden;
 }
@@ -799,6 +791,10 @@ input[name="tab_item"] {
 
 .movieIng {
   margin-top: 10px;
+}
+
+h4 {
+  text-align: center;
 }
 
 /* TODO: 탑버튼 추가_정주희*/
