@@ -74,6 +74,18 @@
       </table>
       <!-- table 끝 -->
 
+      <!-- TODO: 시작 -->
+      <!-- npm 설치 : npm install --save vue-simple-accordion -->
+      <!-- 참고사이트 : https://vuejsexamples.com/a-simple-and-easily-configurable-accordion-for-vue/ -->
+      <!-- <vsa-list class="vsa-list"> -->
+        <!-- Here you can use v-for to loop through items  -->
+        <!-- <vsa-item v-for="(data, index) in notice.notice" v-bind:key="index">
+          <vsa-heading> {{ data.ntitle }} </vsa-heading>
+          <vsa-content> {{ data.ncontent }} </vsa-content>
+        </vsa-item>
+      </vsa-list>  -->
+      <!-- TODO: 끝 -->
+
       <!-- <!— 페이징 + 전체 목록 시작 —> -->
       <!-- <!— 페이징 양식 시작 —> -->
       <div class="col-md-12">
@@ -100,6 +112,9 @@
 <script>
 import NoticeDataService from "@/services/NoticeDataService";
 import notice from "@/assets/js/notice.js";
+
+
+/* eslint-disable */
 export default {
   data() {
     return {
@@ -109,7 +124,7 @@ export default {
 
       page: 1,
       count: 0,
-      pageSize: 3,
+      pageSize: 10,
       pageSizes: [3, 6, 9],
     };
   },
@@ -147,6 +162,24 @@ export default {
 </script>
 
 <style scoped>
+
+/* TODO: 아코디언 css 디자인 */
+.vsa-list {
+  /* 사용자 지정 속성 변경 */
+  --vsa-max-width: 100%;
+  --vsa-min-width: 300px;
+  --vsa-text-color: rgba(55, 55, 55, 1);
+  --vsa-highlight-color: rgba(154, 157, 161);
+  --vsa-bg-color:#f8f8f8;
+  --vsa-border-color: rgba(0, 0, 0, 0.2);
+  --vsa-border-width: 0.5px;
+  --vsa-border-style: solid;
+  --vsa-heading-padding: 1rem 1rem;
+  --vsa-content-padding: 1rem 1rem;
+  --vsa-default-icon-size: 1;
+
+  margin-top: 2%;
+}
 .ty3 {
   width: 10%;
   display: inline !important;
@@ -159,10 +192,11 @@ export default {
   display: inline !important;
 }
 .notice_table {
-  margin-top: 3%;
+  margin-top: 4%;
   text-align: center;
   color: inherit;
   background: whitesmoke;
+  border-radius: 4px;
 }
 tbody {
   display: table-row-group;
@@ -188,6 +222,7 @@ tbody {
   background-color: #414141;
   display: inline !important;
 }
+
 .search_wrap [class^="btn_col"] {
   width: 86px;
   height: 38px;

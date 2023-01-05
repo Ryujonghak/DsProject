@@ -24,9 +24,9 @@ class MovieDataService {
   }
 
   // 홈뷰용  영화디테일 조회 요청 함수
-  getMovieDetailAll2() {
-    return http.get(`/movie/list`);
-  }
+  // getMovieDetailAll2() {
+  //   return http.get(`/movie/list`);
+  // }
 
   // 영화디테일 코드 조회 요청 함수
   getMovieDetail(moviecd) {

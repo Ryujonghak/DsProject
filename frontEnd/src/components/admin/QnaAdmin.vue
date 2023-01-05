@@ -99,17 +99,26 @@
                       <td>{{ currentQna.qwriter }}</td>
                       <td>{{ currentQna.qtitle }}</td>
                       <td>{{ currentQna.qcontent }}</td>
+                      <td>{{ currentQna.qanswer }}</td>
                       <td>
                         <button
-                          v-if="currentQna.answer == null"
+                          v-if="currentQna.qanswer == null"
                           class="regbtn"
                           @click="setActiveNotice(currentQna, index)"
                         >
                           답변하기
                         </button>
                         <button
-                        v-if="currentQna.answer != null"
-                         class="successbtn" >
+                          v-if="currentQna.qanswer == null"
+                          class="deletebtn"
+                          @click="deleteQna(currentQna.qid)"
+                        >
+                          삭제하기
+                        </button>
+                        <button
+                          v-if="currentQna.qanswer != null"
+                          class="successbtn"
+                        >
                           답변완료
                         </button>
                       </td>
@@ -119,44 +128,44 @@
               </div>
             </div>
             <!--qna 전체조회 테이블 끝  -->
-
-            <!--qna 답변작성 폼 시작 (add)-->
-            <div v-show="registerQna">
-              <table class="noticeboxnoticebox">
-                <colgroup>
-                  <col style="width: auto" />
-                </colgroup>
-                <tbody>
-                  <tr>
-                    <th scope="row" class="noticelabel">
-                      |
-                      <label for="textarea">답변내용</label>
-                    </th>
-                    <td colspan="5">
-                      <div class="textarea">
-                        <textarea
-                          id="textarea"
-                          name="custInqCn"
-                          rows="5"
-                          cols="30"
-                          title="내용입력"
-                          class="input-textarea boxing"
-                          placeholder="내용을 입력해주세요."
-                          v-model="editQna.answer"
-                        ></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="search">
-                <button type="button" class="regbtn" @click="registerAnswer">
-                  등록하기
-                </button>
-              </div>
-            </div>
-            <!--qna 작성 폼 끝 -->
           </div>
+          <!--qna 답변작성 폼 시작 (add)-->
+          <div v-show="registerQna">
+            <table class="noticeboxnoticebox">
+              <colgroup>
+                <col style="width: auto" />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th scope="row" class="noticelabel">
+                    |
+                    <label for="textarea">답변내용</label>
+                  </th>
+                  <td colspan="5">
+                    <div class="textarea">
+                      <textarea
+                        id="textarea"
+                        name="custInqCn"
+                        rows="5"
+                        cols="30"
+                        title="내용입력"
+                        class="input-textarea boxing"
+                        placeholder="내용을 입력해주세요."
+                        v-model="editQna.qanswer"
+                      ></textarea>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="search">
+              <button type="button" class="regbtn" @click="registerAnswer()">
+                등록하기
+              </button>
+            </div>
+          </div>
+          <!--qna 작성 폼 끝 -->
+
           <!-- <!— 페이징 + 전체 목록 시작 —> -->
           <!-- <!— 페이징 양식 시작 —> -->
           <div class="col-md-12">
@@ -189,12 +198,12 @@ export default {
       registerQna: false,
       board: false,
       editQna: [],
-      // currentQna: null,
+      currentQna: null,
 
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,
-      pageSize: 3,
+      pageSize: 5,
 
       pageSizes: [3, 6, 9],
     };
@@ -234,13 +243,14 @@ export default {
 
     //답변 등록하기 버튼 클릭시
     registerAnswer() {
-      if (this.editQna.answer != null) {
+      if (this.editQna.qanswer != null) {
         QnaDataService.update(this.editQna.qid, this.editQna)
           .then((response) => {
-            // var test = this.editQna;
-            // alert(JSON.stringify(test));
+            var test = this.editQna;
+            alert(JSON.stringify(test));
             console.log(response.data);
             alert("답변이 완료되었습니다.");
+            this.registerQna = false;
           })
           .catch((e) => {
             console.log(e);
@@ -259,6 +269,22 @@ export default {
       this.successAnswer = false;
       // var test = this.editQna;
       // alert(JSON.stringify(test));
+    },
+
+    //삭제하기 버튼 클릭시
+    deleteQna(qid) {
+      // this.currentQna = data;
+      // var test = this.currentQna.qid;
+      // alert(JSON.stringify(test));
+      QnaDataService.delete(qid)
+        .then((response) => {
+          console.log(response.data);
+          alert("삭제되었습니다.");
+          window.location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
   mounted() {
@@ -304,6 +330,13 @@ button:active {
 .user-hero {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
-  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png")
+    no-repeat;
+}
+.deletebtn {
+  background: red !important;
+  color: aliceblue !important;
+  border-radius: 20px;
+  margin-top: 6%;
 }
 </style>

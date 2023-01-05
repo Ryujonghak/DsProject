@@ -99,7 +99,7 @@ export default {
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,
-      pageSize: 8,
+      pageSize: 10,
 
       pageSizes: [5, 10, 15],
     };
