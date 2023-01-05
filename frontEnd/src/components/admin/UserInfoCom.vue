@@ -115,7 +115,10 @@
                     >수정</router-link
                   >
                   <div class="col-xs-12"></div>
-                  <a id="btn-modal" class="delbtn col-xs-12" @click="modal(data)"
+                  <a
+                    id="btn-modal"
+                    class="delbtn col-xs-12"
+                    @click="modal(data)"
                     >삭제</a
                   >
                 </div>
@@ -254,20 +257,18 @@ export default {
       modal.style.display = "flex";
     },
     deleteUser() {
-      // alert("삭제누름");
-      alert(this.currentUser.id);
-      // UserService.delete(this.currentUser.id)
-      //   .then((response) => {
-      //     alert("성공");
-      //     console.log(response.data);
-      //     window.location.reload();
-      //   })
-      //   .catch((e) => {
-      //     alert("실패");
-      //     console.log(e);
-      //     window.location.reload();
-      //   });
-      // window.location.reload();
+      UserService.delete(this.currentUser.id)
+        .then((response) => {
+          alert("성공");
+          console.log(response.data);
+          alert(this.currentUser.id)
+          // window.location.reload();
+        })
+        .catch((e) => {
+          alert("실패");
+          console.log(e);
+          window.location.reload();
+        });
     },
     handlePageSizeChange(event) {
       this.pageSize = event.target.value; // 한페이지당 개수 저장(3, 6, 9)
