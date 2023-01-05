@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>{{ CurrentUser.name }}’s q&a</h1>
+              <h1>{{ user.name }}’s q&a</h1>
               <ul class="breadcumb">
                 <li class="active">
                   <router-link to="/">Home</router-link>
@@ -38,11 +38,11 @@
               <div class="user-img">
                 <!-- src="images/uploads/user-img.png" -->
                 <img
-                  class="profileImg"
-                  src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
-                  alt=""
+                    class="profileImg"
+                    src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                    alt=""
                 />
-                <br />
+                <br/>
               </div>
               <div class="user-fav">
                 <ul>
@@ -52,11 +52,11 @@
                   <!-- 프로필 로그인 정보 표시 시작-->
                   <li style="color: white">
                     <strong style="color: white">이름 </strong>
-                    <label>{{ CurrentUser.name }}</label>
+                    <label>{{ user.name }}</label>
                   </li>
                   <li style="color: white">
                     <strong style="color: white">아이디 </strong>
-                    <label>{{ CurrentUser.username }}</label>
+                    <label>{{ user.username }}</label>
                   </li>
                   <!-- 프로필 로그인 정보 표시 끝 -->
                 </ul>
@@ -111,33 +111,33 @@
             <!-- 모든 qna -->
             <table class="qnabox">
               <colgroup>
-                <col style="width: 120px" />
-                <col />
-                <col style="width: 120px" />
-                <col />
+                <col style="width: 120px"/>
+                <col/>
+                <col style="width: 120px"/>
+                <col/>
               </colgroup>
               <thead>
-                <tr>
-                  <th width="5%" scope="row"><label for="name">제목</label></th>
-                  <th width="40%" cope="row"><label for="name">내용</label></th>
-                  <th width="5%" scope="row"><label for="name">이름</label></th>
-                  <th width="30%" scope="row"><label for="name">이메일</label></th>
-                  <th width="20%" scope="row"><label for="name">휴대전화</label></th>
-                </tr>
+              <tr>
+                <th width="5%" scope="row"><label for="name">제목</label></th>
+                <th width="40%" cope="row"><label for="name">내용</label></th>
+                <th width="5%" scope="row"><label for="name">이름</label></th>
+                <th width="30%" scope="row"><label for="name">이메일</label></th>
+                <th width="20%" scope="row"><label for="name">휴대전화</label></th>
+              </tr>
               </thead>
               <tbody v-for="(data, index) in qna" :key="index">
-                <tr>
-                  <td>{{ data.qtitle }}</td>
-                  <td>{{ data.qcontent }}</td>
-                  <td>{{ data.qwriter }}</td>
-                  <td>{{ data.email }}</td>
-                  <td>{{ data.phone }}</td>
-                  <!-- <td>
-                    <router-link :to="'/qna/select/' + data.name"
-                      ><span class="badge bg-success">Edit</span></router-link
-                    >
-                  </td> -->
-                </tr>
+              <tr>
+                <td>{{ data.qtitle }}</td>
+                <td>{{ data.qcontent }}</td>
+                <td>{{ data.qwriter }}</td>
+                <td>{{ data.email }}</td>
+                <td>{{ data.phone }}</td>
+                <!-- <td>
+                  <router-link :to="'/qna/select/' + data.name"
+                    ><span class="badge bg-success">Edit</span></router-link
+                  >
+                </td> -->
+              </tr>
               </tbody>
             </table>
 
@@ -171,9 +171,9 @@
             </div> -->
 
             <!-- 사용자 qna -->
-            <div>
-              <button @click="getMyQna()">나의 qna 보기</button>
-            </div>
+<!--            <div>-->
+<!--              <button @click="getMyQna()">나의 qna 보기</button>-->
+<!--            </div>-->
             <!-- <table class="qnabox" v-show="myQna">
               <colgroup>
                 <col style="width: 120px" />
@@ -202,55 +202,55 @@
             </table> -->
 
             <!-- <div v-show="submitted"> -->
-            <div>
-              <!-- TODO: 로그인한 사용자의 qna 폼 테이블시작 -->
-              <table class="qnabox" v-show="myQna">
-                <colgroup>
-                  <col style="width: 120px" />
-                  <col />
-                  <col style="width: 120px" />
-                  <col />
-                </colgroup>
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      |
-                      <label for="name">이름</label>
-                    </th>
-                    <td><input type="text" v-model="currentQna.name" /></td>
-                    <th scope="row">
-                      |
-                      <label for="name">이메일</label>
-                    </th>
-                    <td><input type="text" v-model="currentQna.email" /></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      |
-                      <label for="name">휴대전화</label>
-                    </th>
-                    <td>
-                      <input type="text" v-model="currentQna.phone" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      |
-                      <label for="qnaTitle">제목</label>
-                    </th>
-                    <td><input type="text" v-model="currentQna.title" /></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      |
-                      <label for="textarea">내용</label>
-                    </th>
-                    <td colspan="3">
-                      <input type="text" v-model="currentQna.content" />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+<!--            <div>-->
+<!--              &lt;!&ndash; TODO: 로그인한 사용자의 qna 폼 테이블시작 &ndash;&gt;-->
+<!--              <table class="qnabox" v-show="myQna">-->
+<!--                <colgroup>-->
+<!--                  <col style="width: 120px"/>-->
+<!--                  <col/>-->
+<!--                  <col style="width: 120px"/>-->
+<!--                  <col/>-->
+<!--                </colgroup>-->
+<!--                <tbody>-->
+<!--                <tr>-->
+<!--                  <th scope="row">-->
+<!--                    |-->
+<!--                    <label for="name">이름</label>-->
+<!--                  </th>-->
+<!--                  <td><input type="text" v-model="currentQna.name"/></td>-->
+<!--                  <th scope="row">-->
+<!--                    |-->
+<!--                    <label for="name">이메일</label>-->
+<!--                  </th>-->
+<!--                  <td><input type="text" v-model="currentQna.email"/></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <th scope="row">-->
+<!--                    |-->
+<!--                    <label for="name">휴대전화</label>-->
+<!--                  </th>-->
+<!--                  <td>-->
+<!--                    <input type="text" v-model="currentQna.phone"/>-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <th scope="row">-->
+<!--                    |-->
+<!--                    <label for="qnaTitle">제목</label>-->
+<!--                  </th>-->
+<!--                  <td><input type="text" v-model="currentQna.title"/></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <th scope="row">-->
+<!--                    |-->
+<!--                    <label for="textarea">내용</label>-->
+<!--                  </th>-->
+<!--                  <td colspan="3">-->
+<!--                    <input type="text" v-model="currentQna.content"/>-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--              </table>-->
               <!-- qna 테이블 끝 -->
 
               <!-- b-pagination : 부트스트랩 - 페이지 번호 컨트롤 -->
@@ -291,7 +291,7 @@
               </div> -->
             </div>
           </div>
-        </div>
+<!--        </div>-->
       </div>
     </div>
   </div>
@@ -305,35 +305,30 @@ import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
 
 // 수빈이 addQna 에서 등록한거 불러오려고 함
-import QnaDataService from "@/services/QnaDataService.js";
+import qnaDataService from "@/services/QnaDataService.js";
 import User from "@/model/user";
 // import email from "@/assets/js/email.js";
 
 export default {
-  // data: () => ({
-  //   images: "",
-  // }),
   data() {
     return {
+      username: this.$store.state.auth.user.username,
       // 사용자 정보 받아오기
-     user: new User,
+      user: new User,
       // AddQna 받아오기
       qna: [],
-      // currentQna: null,
-      // TODO: 하드코딩
-      // 현재 로그인된 사용자 이름으로 검색해서 나온 qna 결과만 출력되도록...
-      currentQna: {
-        name: "",
-        email: "",
-        phone: "",
-        title: "",
-        content: "",
-      },
-      myQna: false, // 나의qa 보기 버튼 클릭하면 true
 
       // TODO: AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
-      // 조회한 데이터가 있으면 submitted true, 없으면 false
       submitted: true,
+      searchSelect: "",
+      searchKeyword: "",
+
+      //페이징을 위한 변수 정의
+      page: 1,
+      count: 0,
+      pageSize: 10,
+
+      pageSizes: [5, 10, 15],
     };
   },
   methods: {
@@ -356,29 +351,17 @@ export default {
     //   this.$refs["image"].click();
     // },
 
-    getUser(username) {
-      // 종학이 백엔드 데이터 받는 함수
-      username = this.$store.state.auth.user.username;
-      // username = "forbob";
-      console.log(username);
+    getUser() {
+      // username = this.$store.state.auth.user.username;
+      console.log("username: " + this.username);
       userService
-        .getUserUsername(username)
-        .then((response) => {
-          this.CurrentUser = {
-            email: response.data.email,
-            password: response.data.password,
-            username: response.data.username,
-            phone: response.data.phone,
-            year: response.data.year,
-            month: response.data.month,
-            day: response.data.day,
-            name: response.data.name,
-            answer: response.data.answer,
-          };
-          console.log(this.CurrentUser);
-          // console.log(response.data);
-        })
-        .catch((err) => console.log(err));
+          .getUserUsername(this.username)
+          .then((response) => {
+            this.user = response.data;
+            console.log("getUser this.user: ", this.user);
+            console.log("getUser response.data: ", response.data);
+          })
+          .catch((err) => console.log(err));
     },
     // 로그아웃 함수 -> 공통함수 호출
     logout() {
@@ -386,35 +369,18 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
+    getQna() {
+      alert("getQna 실행");
+      qnaDataService
+          .getAll(this.searchSelect, this.searchKeyword, this.page - 1,
+              this.pageSize)
+          .then(response => {
+            console.log("getQna response.data: ", response.data);
+            this.qna = response.data;
+          })
+          .catch((err) => console.log(err));
+    }
 
-    // 전체조회 TODO: 0102
-    getAllQna() {
-      console.log;
-      QnaDataService.getAllQna()
-        .then((response) => {
-          console.log(response);
-          console.log(response.data);
-
-          this.qna = response.data; // qna 배열
-
-          console.log(this.qna);
-        })
-        .catch((e) => console.log(e));
-    },
-
-    // qna name 검색 :FIXME:
-    getMyQna(name) {
-      this.myQna = !this.myQna;
-
-      console.log;
-      QnaDataService.getMyQna(name)
-        .then((response) => {
-          this.currentQna = response.data;
-          console.log(response);
-          console.log(response.data);
-        })
-        .catch((e) => console.log(e));
-    },
 
     // // 수정
     // updateQna() {
@@ -432,8 +398,7 @@ export default {
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
-    this.getAllQna(); // 전체 qna 조회
-    this.getMyQna(this.$route.params.name); // 내 qna만 조회
+    this.getQna();
   },
 };
 </script>
@@ -460,20 +425,25 @@ tbody {
   vertical-align: middle;
   border-color: whitesmoke;
 }
+
 .font-orange {
   color: red;
 }
+
 #hpNum1 {
   width: 60px;
 }
+
 #hpNum2 {
   width: 60px;
 }
+
 #hpNum3 {
   width: 60px;
 }
+
 .boxing {
-  display: inline !important ;
+  display: inline !important;
   width: 100%;
   height: 70%;
   padding: 6px 12px;
@@ -484,11 +454,13 @@ tbody {
   background-image: none;
   /* border: 1px solid #aaa; */
 }
+
 .button {
   margin-top: 5%;
   text-align: center;
   box-shadow: none !important;
 }
+
 /* .information {
   margin-top: 3%;
   margin-left: 10%;
