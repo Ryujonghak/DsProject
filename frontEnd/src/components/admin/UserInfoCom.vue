@@ -259,13 +259,10 @@ export default {
     deleteUser() {
       UserService.delete(this.currentUser.id)
         .then((response) => {
-          alert("성공");
           console.log(response.data);
-          alert(this.currentUser.id)
-          // window.location.reload();
+          window.location.reload();
         })
         .catch((e) => {
-          alert("실패");
           console.log(e);
           window.location.reload();
         });
