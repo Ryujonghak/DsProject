@@ -11,10 +11,10 @@
                 <div style="position: relative;">
                   
                   <div v-show="모달창">
-                    <div style="background-color: white; position: absolute; top: 130px; left: 385px; width: 450px; height: 480px; z-index: 30; border-radius: 30px 30px 20px 20px;">
-                      <div style="height: 70px; background-color: #503396;border-radius: 20px 20px 0 0;">
-                        <span style="width: 387px; float: left; height: 70px; text-align: center;line-height: 70px; color: white; font-size: 24px;">아바타: 물의 길 2022</span>
-                        <button @click="model()" style="width: 40px; height: 40px; float: right; margin-right: 13px; border: 0;  background-color: #503396;border-radius: 30px 40px 20px 20px;">
+                    <div style="background-color: white; position: absolute; top: 125px; left: 385px; width: 450px; height: 480px; z-index: 30; ">
+                      <div style="height: 70px; border-bottom: 1px solid #666;">
+                        <span style="width: 387px; float: left; height: 70px;line-height: 70px; color: black; font-size: 24px; padding-left: 20px;  ">아바타: 물의 길 2022</span>
+                        <button @click="model()" style="width: 40px; height: 40px; float: right; margin-right: 13px; border: 0;  background-color: white;">
                           <img style="margin-top: 21px;" src="@/assets/images_kim/Views/ModalView/xx.png" alt="">
                         </button>
                       </div>
@@ -554,7 +554,7 @@
                         예매 완료</span>
                     </div>
                     <div style="background-color: #333; height: 60px; line-height: 80px; margin-top: 35px;">
-                      <h4 style="float: left; top: 30px; margin: 21px 0 0 30px;">총 결제금액 &ensp; {{ (adultcount * 14000) + (teencount * 11000) }} 원</h4>
+                      <h4 style="float: left; top: 30px; margin: 21px 0 0 30px;">총 결제금액 &ensp; {{ (adultcount * 100) + (teencount * 100) }} 원</h4>
                       <button v-show="결제하기" @click="pay()" style="float: right; width: 100px;height: 60px; border-right: 1px solid #333; border-top: 1px solid #333; border-bottom: 1px solid #333;  background-color: #810CA8; color: white;">결제하기</button>
                        <button v-show="!결제하기" @click="pay()" style="float: right; width: 100px;height: 60px; border: 0; background-color: black; color: white;border-right: 1px solid #333; border-top: 1px solid #333; border-bottom: 1px solid #333; " disabled>결제하기</button>
                     </div>
@@ -604,7 +604,7 @@
                     </div>
                     <div style="width: 390px;height: 665px; float: left; background-color: #F7EBEC; border-radius: 0 0 10px 0;  border: 1px solid gray;">
                       <div style="width: 100%; background-color: #252A34; height: 50px; border-bottom: 1px solid gray; color: white; line-height:50px; padding-left: 10px;">
-                        상품금액 <span style="float: right; margin-right: 10px;">{{ (adultcount * 14000)  + (teencount * 11000)}} 원</span>
+                        상품금액 <span style="float: right; margin-right: 10px;">{{ (adultcount * 100)  + (teencount * 100)}} 원</span>
                       </div>
                       <div style="width: 100%; background-color: #252A34; height: 50px; border-bottom: 1px solid gray; color: white; line-height:50px; padding-left: 10px;">
                         할인금액 <span style="float: right; margin-right: 10px;">0 원</span>
@@ -843,7 +843,7 @@
             this.selectsE[tempVal2 - 1] = 1;
           }
         }
-        this.결제하기 = true;
+        this.결제하기 = false;
       },
       adultmins() {
         if (this.adultcount == 0) {
@@ -861,8 +861,9 @@
       adultplus() {
         if (this.adultcount + this.teencount == 5) {
           alert("인원선택은 최대 5명까지 입니다.")
-        } else {
+        }else {
           this.adultcount++;
+          this.결제하기 = false;
         }
       },
       teenmins() {
@@ -874,7 +875,7 @@
         else {
           this.teencount--;
           if((this.teencount + this.adultcount) == this.selected.length) {
-            this.결제하기 = false;
+            this.결제하기 = true;
           }
         }
       },
@@ -883,6 +884,7 @@
           alert("인원선택은 최대 5명까지 입니다.")
         } else {
           this.teencount++;
+          this.결제하기 = false;
         }
       },
       seoul(value) {
