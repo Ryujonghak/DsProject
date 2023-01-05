@@ -196,6 +196,11 @@ const routes = [
     name: "boxoffice",
     component: () => import("@/views/choi/BoxofficeView.vue"),
   },
+  {
+    path: "/boxoffice02",
+    name: "boxoffice02",
+    component: () => import("@/views/choi/BoxofficeView02.vue"),
+  },
   // {
   //   path: '/mainDetail',
   //   name: 'mainDetail',

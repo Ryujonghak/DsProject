@@ -15,7 +15,11 @@
           <!-- 왼쪽 사이드 바 시작 -->
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="movie-img">
-              <img :src="movie.posterurln" alt="poster" style="width:314px;height:450px;"/>
+              <img
+                :src="movie.posterurln"
+                alt="poster"
+                style="width: 314px; height: 450px"
+              />
               <div class="movie-btn">
                 <div class="btn-transform transform-vertical red">
                   <div>
@@ -514,7 +518,6 @@ export default {
         .then((response) => {
           this.review = response.data;
           console.log(response.data);
-          // alert(response.data);
 
           // var test = this.review;
           // alert(JSON.stringify(test));
@@ -533,21 +536,25 @@ export default {
         rucontent: this.addReview.rucontent,
       };
 
-      ReviewDataService.create(data)
-        .then((response) => {
-          this.addReview.rid = response.data.rid;
-          console.log(response.data);
-          // this.submitted = true;
-          alert("ㄹㅣ뷰 저장");
-          window.location.reload();
-          alert(this.review.rid);
-        })
-        .catch((e) => {
-          alert("리뷰저장 실패");
-          console.log(e);
-          window.location.reload();
-          alert(this.review.rid);
-        });
+      // FIXME: 들어오는 rwuser 값이 없으면 로그인 필요 알림창 뜨기 (수정필요: 넣어논 데이터 값 말고 받아오는 로그인 된 유저 이름이 필요.)
+      if (this.addReview.rwuser != "") {
+        ReviewDataService.create(data)
+          .then((response) => {
+            this.addReview.rid = response.data.rid;
+            console.log(response.data);
+            alert("ㄹㅣ뷰 저장");
+            window.location.reload();
+            alert(this.review.rid);
+          })
+          .catch((e) => {
+            alert("리뷰저장 실패");
+            console.log(e);
+            window.location.reload();
+            alert(this.review.rid);
+          });
+      } else {
+        alert("로그인이 필요합니다.")
+      }
     },
     toOverview() {
       this.overview = true;
