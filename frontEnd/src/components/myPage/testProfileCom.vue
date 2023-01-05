@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="getMovieInfo">
     <div class="hero user-hero">
       <div class="container">
         <div class="row">
@@ -202,7 +202,7 @@
                                               <div class="col-xs-2">
                                                 <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -274,7 +274,7 @@
                                               <div class="col-xs-2">
                                                 <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -344,7 +344,7 @@
                                               <div class="col-xs-2">
                                                 <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -414,7 +414,7 @@
                                               <div class="col-xs-2">
                                                 <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -484,7 +484,7 @@
                                               <div class="col-xs-2">
                                                 <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurlkn"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -582,12 +582,12 @@ import custom from "@/assets/js/custom";
 export default {
   data() {
     return {
-        극장정보: true,
-        이벤트: false,
-        상영시간표: false,
-        map: false,
-        bus: false,
-        car: false,
+      극장정보: true,
+      이벤트: false,
+      상영시간표: false,
+      map: false,
+      bus: false,
+      car: false,
 
       // 상영시간표
       movie: [],
@@ -598,20 +598,22 @@ export default {
       day: 0,
       순서: [], // 요일을 순서대로 나오게 하는 거
       가산: ["10:30", "16:00", "19:30"], // 나중에 테스트 할 시간 데이터
-      selectedday : [], // 선택된 날짜를 담는 배열
+      selectedday: [], // 선택된 날짜를 담는 배열
     };
   },
   methods: {
     // 영화코드(moviecd)로 조회 요청하는 함수
     getMovieInfo() {
+      alert("getMovieInfo method");
       MovieDataService.getMovieAll()
-      .then((response) => {
-        this.movie = response.data;
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+          .then((response) => {
+            this.movie = response.data;
+            console.log("response.data: ", response.data)
+            console.log("MovieData: ", this.movie);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
     // 날짜에 맞는 요일 표시
     date() {
@@ -633,48 +635,46 @@ export default {
 
     // 클릭시 날짜 정보 넘기기 
     week(value) {
-        if(this.ticketinfor.selectedday != null){
-            this.ticketinfor.selectedday = '';
-        }
-        if( value == 'day1'){
-            this.오늘 = false;
-            this.내일 = true;
-            this.요일3 = true;
-            this.요일4 = true;
-            this.요일5 = true;
-            this.ticketinfor.selectedday = value;
-        }else if ( value == 'day2'){
-            this.오늘 = true;
-            this.내일 = false;
-            this.요일3 = true;
-            this.요일4 = true;
-            this.요일5 = true;
-            this.ticketinfor.selectedday = value;
-        }else if ( value == 'day3'){
-            this.오늘 = true;
-            this.내일 = true;
-            this.요일3 = false;
-            this.요일4 = true;
-            this.요일5 = true;
-            this.ticketinfor.selectedday = value;
-        }
-        else if ( value == 'day4'){
-            this.오늘 = true;
-            this.내일 = true;
-            this.요일3 = true;
-            this.요일4 = false;
-            this.요일5 = true;
-            this.ticketinfor.selectedday = value;
-        }
-        else if ( value == 'day5'){
-            this.오늘 = true;
-            this.내일 = true;
-            this.요일3 = true;
-            this.요일4 = true;
-            this.요일5 = false;
-            this.ticketinfor.selectedday = value;
-        }
-      },
+      if (this.ticketinfor.selectedday != null) {
+        this.ticketinfor.selectedday = '';
+      }
+      if (value == 'day1') {
+        this.오늘 = false;
+        this.내일 = true;
+        this.요일3 = true;
+        this.요일4 = true;
+        this.요일5 = true;
+        this.ticketinfor.selectedday = value;
+      } else if (value == 'day2') {
+        this.오늘 = true;
+        this.내일 = false;
+        this.요일3 = true;
+        this.요일4 = true;
+        this.요일5 = true;
+        this.ticketinfor.selectedday = value;
+      } else if (value == 'day3') {
+        this.오늘 = true;
+        this.내일 = true;
+        this.요일3 = false;
+        this.요일4 = true;
+        this.요일5 = true;
+        this.ticketinfor.selectedday = value;
+      } else if (value == 'day4') {
+        this.오늘 = true;
+        this.내일 = true;
+        this.요일3 = true;
+        this.요일4 = false;
+        this.요일5 = true;
+        this.ticketinfor.selectedday = value;
+      } else if (value == 'day5') {
+        this.오늘 = true;
+        this.내일 = true;
+        this.요일3 = true;
+        this.요일4 = true;
+        this.요일5 = false;
+        this.ticketinfor.selectedday = value;
+      }
+    },
 
     info() {
       this.극장정보 = true;
@@ -699,20 +699,21 @@ export default {
     busopen() {
       this.bus = !this.bus;
       this.map = false;
-      this.car = false;      
+      this.car = false;
     },
     caropen() {
       this.bus = false;
       this.car = !this.car;
       this.map = false;
     },
-    mounted() {
-      this.getMovieInfo();
-      this.date();
-      custom();
-    },
   },
-};
+  mounted() {
+    this.getMovieInfo();
+    this.date();
+    custom();
+  }
+
+}
 </script>
 
 <style scoped>

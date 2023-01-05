@@ -39,7 +39,7 @@ public class QnaController {
     }
 
     @GetMapping("/qna")
-    public ResponseEntity<Object> getAll(@RequestParam(defaultValue = "title") String searchSelect,
+    public ResponseEntity<Object> getAll(@RequestParam(defaultValue = "writer") String searchSelect,
                                                  @RequestParam(required = false) String searchKeyword,
                                                  @RequestParam(defaultValue = "0") int page,
                                                  @RequestParam(defaultValue = "3") int size) {
