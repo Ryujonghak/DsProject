@@ -140,9 +140,27 @@
               </tbody>
             </table>
             </div>
+              <!-- total-rows : 전체 데이터 개수 -->
+              <!-- per-page : 1페이지 당 개수 -->
+              <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
+              <b-pagination
+                v-model="page"
+                :total-rows="qna.totalItems"
+                :per-page="pageSize"
+                pills
+                size="sm"
+                prev-text="<"
+                next-text=">"
+                @change="handlePageChange"
+              ></b-pagination>
 
-            <a href="#" class="redbtn" @click="addQna">추가문의</a>
-            <div class="addqnaArea" v-show="add">
+            
+            <!-- TODO: 추가문의 시작 -->
+            <div class="buttonArea">
+            <a href="#" class="redbtn" @click="addQna()">추가문의</a>
+            </div>
+
+            <div class="addqnaArea" v-show="addform">
             <!-- qna 추가 -->
              <table class="qnabox2">
                <colgroup>
@@ -157,40 +175,38 @@
                    |
                    <label for="name">제목</label>
                  </th>
-                 <td><input type="text"/></td>
-                 <th scope="row">
-                   |
-                   <label for="name">이름</label>
-                 </th>
-                 <td><input type="text"/></td>
+                 <td><input  type="text"
+                  name="title"
+                  id="qnaTitle"
+                  class="boxing input-text"
+                  maxlength="100"
+                  placeholder="제목을 입력해주세요."
+                  v-model="qna.qtitle"/></td>
                </tr>
                <tr>
                  <th scope="row">
                    |
                    <label for="textarea">내용</label>
                  </th>
-                 <td colspan="3">
-                   <input type="text"/>
+                 <td colspan="3" class="textarea">
+                   <textarea id="textarea"
+                    name="content"
+                    title="내용입력"
+                    rows="5"
+                    class="input-textarea boxing"
+                    placeholder="내용을 입력해주세요."
+                    v-model="qna.qcontent">
+                    </textarea>
                  </td>
                </tr>
                </tbody>
              </table>
+             <div class="button">
+              <a type="submit" class="redbtn" @click="createQna()">전송하기</a>
+             </div>
             </div>
+             
 
-              <!-- qna 테이블 끝 -->
-
-              <!-- b-pagination : 부트스트랩 - 페이지 번호 컨트롤 -->
-              <!-- total-rows : 전체 데이터 개수 -->
-              <!-- per-page : 1페이지 당 개수 -->
-              <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
-              <b-pagination
-                v-model="page"
-                :total-rows="qna.totalItems"
-                :per-page="pageSize"
-                prev-text="Prev"
-                next-text="Next"
-                @change="handlePageChange"
-              ></b-pagination>
 
             </div>
           </div>
@@ -238,7 +254,7 @@ export default {
       searchStatue: "",
       nowPlayingMovies: [],
 
-      add: false,
+      addform: false,
     };
   },
   methods: {
@@ -293,7 +309,28 @@ export default {
       });
     },
     addQna() {
-      this.add = true
+      this.addform = !this.addform;
+    },
+    // qna 추가
+    createQna() {
+      let data = {
+        qwriter: this.user.name,
+        qtitle: this.qna.qtitle,
+        qcontent:this.qna.qcontent
+      };
+      QnaDataService.create(data)
+        // 성공하면 then() 결과가 전송됨
+        .then((response) => {
+          this.qna.qwriter = response.data.qwriter;
+          console.log(response.data);
+          alert("등록이 완료되었습니다");
+          this.$router.push("/mypage");
+          // window.location.reload();
+        })
+        // 실패하면 .catch() 에러메세지가 전송됨
+        .catch((e) => {
+          console.log(e);
+        });
     }
   },
   mounted() {
@@ -318,6 +355,11 @@ export default {
 
 .qna {
   background: black;
+}
+
+.buttonArea{
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
 
 tbody {
@@ -392,7 +434,7 @@ tbody {
 
 /* qna 보기 표 디자인 */
 .myqnaArea{
-  height: 400px;
+  height: 300px;
 }
 .myqna {
   color: aliceblue;
@@ -409,7 +451,12 @@ tbody {
   color: red;
   font-weight: bold;
 }
-
+textarea {
+  width: 100%;
+  height: 6.25em;
+  border: none;
+  resize: none;
+}
 /* 
 .form-style-1 {
     background-color:none;
