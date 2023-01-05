@@ -36,7 +36,7 @@
           </div>
 
           <div class="row">
-            <div class="remember" col-xs-12 >
+            <div class="remember" col-xs-12>
               <button @click="toggleShow()" class="findbtn">
                 아이디찾기 &nbsp; &nbsp;|
               </button>
@@ -46,7 +46,6 @@
           <div class="row">
             <button type="submit" @click="handleLogin()">Login</button>
           </div>
-          
         </div>
         <div class="row">
           <p>Or social login</p>
@@ -271,7 +270,11 @@
 
                 <li><router-link to="/boxoffice">박스오피스</router-link></li>
                 <li class="dropdown first">
-                  <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
+                  <a
+                    class="btn btn-default dropdown-toggle lv1 happy"
+                    data-toggle="dropdown"
+                    data-hover="dropdown"
+                  >
                     영화관<i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
@@ -280,9 +283,19 @@
                         >서울<i class="ion-ios-arrow-forward"></i
                       ></a>
                       <ul class="dropdown-menu level2">
-                        <li><router-link to="/KasanCinema">가산 디지털</router-link></li>
-                        <li><router-link to="/GangdongCinema">강동</router-link></li>
-                        <li><router-link to="/KonkukCinema">건대 입구</router-link></li>
+                        <li>
+                          <router-link to="/KasanCinema"
+                            >가산 디지털</router-link
+                          >
+                        </li>
+                        <li>
+                          <router-link to="/GangdongCinema">강동</router-link>
+                        </li>
+                        <li>
+                          <router-link to="/KonkukCinema"
+                            >건대 입구</router-link
+                          >
+                        </li>
                       </ul>
                     </li>
                     <li class="dropdown">
@@ -290,16 +303,28 @@
                         >부산<i class="ion-ios-arrow-forward"></i
                       ></a>
                       <ul class="dropdown-menu level2">
-                        <li><router-link to="/SeomyeonCinema">서면</router-link></li>
-                        <li><router-link to="/CentumCinema">센텀 시티</router-link></li>
-                        <li><router-link to="/BusanCinema">부산대</router-link></li>
+                        <li>
+                          <router-link to="/SeomyeonCinema">서면</router-link>
+                        </li>
+                        <li>
+                          <router-link to="/CentumCinema"
+                            >센텀 시티</router-link
+                          >
+                        </li>
+                        <li>
+                          <router-link to="/BusanCinema">부산대</router-link>
+                        </li>
                       </ul>
                     </li>
                   </ul>
                 </li>
-                
+
                 <li class="dropdown first">
-                  <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
+                  <a
+                    class="btn btn-default dropdown-toggle lv1 happy"
+                    data-toggle="dropdown"
+                    data-hover="dropdown"
+                  >
                     시간표<i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
@@ -334,7 +359,7 @@
                 /></router-link>
               </div>
             </div>
-            <div class="col-xs-4 navbar-menu2">
+            <div class="col-xs-4 navbar-menu">
               <ul class="nav navbar-nav flex-child-menu menu-right col">
                 <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
                 <div v-show="currentUser">
@@ -354,11 +379,15 @@
                         <router-link to="/myticket">나의예매내역</router-link>
                       </li>
                       <li><router-link to="/mytest">test</router-link></li>
-                      <li><router-link to="/mytestprofile">test2</router-link></li>
+                      <li>
+                        <router-link to="/mytestprofile">test2</router-link>
+                      </li>
                     </ul>
                   </li>
                   <!-- 회원 로그인시 마이페이지 끝  -->
                 </div>
+
+                <!-- 고객센터 -->
 
                 <li class="dropdown first">
                   <a
@@ -366,7 +395,8 @@
                     data-toggle="dropdown"
                     data-hover="dropdown"
                   >
-                    고객센터 <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    고객센터
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
                     <li><router-link to="/notice">공지사항</router-link></li>
@@ -398,9 +428,12 @@
                 </li>
                 <!-- 어드민 로그인시 어드민 나브바 끝-->
 
+                <!-- 로그인 회원가입 창 -->
+
                 <li v-if="!currentUser" class="loginLink">
                   <a href="#">LOG In</a>
                 </li>
+
                 <li v-if="!currentUser" class="btn signupLink">
                   <router-link to="/signup">sign up</router-link>
                 </li>
@@ -512,7 +545,7 @@ export default {
             // TODO: 정주희 alert창 추가 -> 수정 필요 FIXME:
             .catch((error) => {
               // this.loading = false; // 로그인 버튼 활성화
-              alert("데이터통신오류")
+              alert("데이터통신오류");
               this.message =
                 (error.response &&
                   error.response.data &&
@@ -757,5 +790,4 @@ input {
   background: none !important;
   color: black !important;
 }
-
 </style>

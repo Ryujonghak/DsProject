@@ -161,9 +161,9 @@ export default {
 
 .cover03 {
   position: absolute;
-  top: 90%;
+  top: 93%;
   width: 100%;
-  height: 9%;
+  height: 8%;
   z-index: 3;
   background-color: black;
 }
@@ -185,9 +185,10 @@ export default {
   color: aliceblue;
   text-align: center;
   margin-bottom: 5%;
+  margin-top: 2%;
 }
 .h1 {
-  font-size: 20px;
+  font-size: 30px;
 }
 .slider {
   padding-top: 0;
