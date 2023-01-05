@@ -11,13 +11,6 @@ import store from './store'
 import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-// TODO: Vue 아코디언 시작
-import VueSimpleAccordion from 'vue-simple-accordion';
-import 'vue-simple-accordion/dist/vue-simple-accordion.css';
-Vue.use(VueSimpleAccordion, {});
-// TODO: Vue 아코디언 끝
-
-
 // 유효성 체크 라이브러리 : vee-validate (Vue 전용)
 import VeeValidate from 'vee-validate';
 

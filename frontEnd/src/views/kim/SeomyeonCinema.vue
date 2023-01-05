@@ -431,7 +431,6 @@
                                 </div>
                                 <!-- 월요일 시간표 끝 -->
                               </div>
-
                               <!-- todo) 탭2 : 서면 ---- 탭 시간표 선택 >>> 화요일 -->
                               <div class="tab_content" id="tuesday_content">
                                 <!-- 화요일 시간표 시작 -->
@@ -456,10 +455,10 @@
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
+                                                <br>
                                                 <span>
                                                   {{ data.genrenm}}
                                                 </span> 
-                                                <br>
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
@@ -469,27 +468,33 @@
                                             </div>
 
                                             <div class="user-infor col-ms-6">
+                                              <!-- TODO: 시간표 추가하고 싶으면 col-xs-1로 변경 -->
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -527,10 +532,10 @@
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
+                                                <br>
                                                 <span>
                                                   {{ data.genrenm}}
                                                 </span> 
-                                                <br>
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
@@ -540,27 +545,33 @@
                                             </div>
 
                                             <div class="user-infor col-ms-6">
+                                              <!-- TODO: 시간표 추가하고 싶으면 col-xs-1로 변경 -->
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -598,10 +609,10 @@
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
+                                                <br>
                                                 <span>
                                                   {{ data.genrenm}}
                                                 </span> 
-                                                <br>
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
@@ -611,27 +622,33 @@
                                             </div>
 
                                             <div class="user-infor col-ms-6">
+                                              <!-- TODO: 시간표 추가하고 싶으면 col-xs-1로 변경 -->
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -669,10 +686,10 @@
                                                 />
                                               </div>
                                               <div class="col-xs-3 movieInfo">
+                                                <br>
                                                 <span>
                                                   {{ data.genrenm}}
                                                 </span> 
-                                                <br>
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
@@ -682,27 +699,33 @@
                                             </div>
 
                                             <div class="user-infor col-ms-6">
+                                              <!-- TODO: 시간표 추가하고 싶으면 col-xs-1로 변경 -->
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
-                                                <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
+                                                <br>
+                                                <br>
                                                 <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
