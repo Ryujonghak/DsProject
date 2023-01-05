@@ -128,6 +128,7 @@ const routes = [
     name: "mywish",
     component: () => import("../components/myPage/WishCom"),
   },
+  // 빠른예매
   {
     path: "/reserveTicket",
     name: "reserveTicket",
@@ -150,7 +151,7 @@ const routes = [
   },
   {
     path: "/mytestprofile",
-    name: "mytest",
+    name: "mytestprofile",
     component: () => import("../components/myPage/testProfileCom.vue"),
   },
   // 영화관 페이지

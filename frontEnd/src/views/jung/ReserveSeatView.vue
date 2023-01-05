@@ -250,6 +250,10 @@
                         style="width: 90px;  height: 40px;  border-radius: 5px;  border: 1px solid #ddd;  background-color: #fafafa;  float: left;  margin: 5px;">
                         <h5>{{시간[1]}}</h5>
                       </button>
+                      <button @click="selectedtime(시간[2])"
+                        style="width: 90px;  height: 40px;  border-radius: 5px;  border: 1px solid #ddd;  background-color: #fafafa;  float: left;  margin: 5px;">
+                        <h5>{{시간[1]}}</h5>
+                      </button>
                     </div>                    
                   </div>
                 </div>
@@ -646,6 +650,10 @@
           </div>
         </div>
       </div>
+      <!-- TODO: 탑버튼 추가 -->
+      <a class="topbutton" href="#">
+        <img src="@/assets/images_jung/iconUp_48.png"/>
+      </a>
     </div>
   </template>
   
@@ -706,7 +714,7 @@
         dd: "",
         day: 0,
         순서: [], // 요일을 순서대로 나오게 하는 거
-        시간: ["16:00", "19:30"], // 나중에 테스트 할 시간 데이터
+        시간: ["10:30", "16:00", "19:30"], // 나중에 테스트 할 시간 데이터
 
         selectedday : [], // 선택된 날짜를 담는 배열
         selected: [], // 선택된 좌석 담는 배열
@@ -1189,6 +1197,8 @@
   // left: -20px;
 }
 
-
-
+/* 탑버튼 추가 */
+.topbutton{
+    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
+}
 </style>

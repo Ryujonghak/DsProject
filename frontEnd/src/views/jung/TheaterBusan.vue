@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>DS CINEMA 상영시간표</h1>
+              <h1>busan 상영시간표</h1>
               <ul class="breadcumb">
                 <li class="active"><router-link to="/">Home</router-link></li>
                 <li><span class="ion-ios-arrow-right"></span>TIME TABLE</li>
@@ -39,9 +39,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <h4>DS CINEMA 부산</h4>
                           <br />
-                          <p>
-                            2023년 1월 둘째주 : 01/09(월) ~ 01/13(금)
-                          </p>
+                          <p>{{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘) 상영시간표</p>
 
                           <!-- 전체 상영시간표 시작 -->
                           <div class="row" v-for="(dataAll, indexAll) in movie" v-bind:key="indexAll">
@@ -61,7 +59,7 @@
                                     <div class="user-infor col-ms-4">
                                       <div class="col-xs-2">
                                         <img
-                                          :src="dataAll.posterurlkm"
+                                          :src="dataAll.posterurln"
                                           alt="poster"
                                           class="poster_thumb"
                                           :href="data"
@@ -83,24 +81,22 @@
                                       <div
                                         class="mv-user-review-item col-xs-2"
                                       >
-                                      <router-link to="/reserveTicket">10:30<p>(서면)</p></router-link>
-                                      <router-link to="/reserveTicket">10:30<p>(센텀시티)</p></router-link>
-                                      <router-link to="/reserveTicket">10:30<p>(부산대)</p></router-link>
+                                      <router-link to="/reserveTicket" @click="schInfo">{{ 서면[0] }}<p>(서면)</p></router-link>
+                                      <router-link to="/reserveTicket">{{ 센텀[0] }}<p>(센텀시티)</p></router-link>
+                                      <router-link to="/reserveTicket">{{ 부산대[0] }}<p>(부산대)</p></router-link>
                                       </div>
                                       
                                       <div
                                         class="mv-user-review-item col-xs-2"
                                       >
-                                      <router-link to="/reserveTicket">12:30<p>(서면)</p></router-link>
-                                      <router-link to="/reserveTicket">12:30<p>(센텀시티)</p></router-link>
-                                      <router-link to="/reserveTicket">12:30<p>(부산대)</p></router-link>
+                                      <router-link to="/reserveTicket">{{ 서면[1] }}<p>(서면)</p></router-link>
+                                      <router-link to="/reserveTicket">{{ 센텀[1] }}<p>(센텀시티)</p></router-link>
+                                      <router-link to="/reserveTicket">{{ 부산대[1] }}<p>(부산대)</p></router-link>
                                       </div>
                                       <div
                                         class="mv-user-review-item col-xs-2"
                                       >
-                                      <router-link to="/reserveTicket">14:30<p>(서면)</p></router-link>
-                                      <router-link to="/reserveTicket">15:30<p>(센텀시티)</p></router-link>
-                                      <router-link to="/reserveTicket">16:30<p>(부산대)</p></router-link>
+                                      <router-link to="/reserveTicket">{{ 서면[2] }}<p>(서면)</p></router-link>
                                       </div>
                                     </div>
                                   </div>
@@ -109,7 +105,7 @@
                             </div>
                           </div>
                           <!-- 전체 상영시간표 끝-->
-                          <!-- FIXME: 탑 버튼 추가 -->
+                          <!-- 탑 버튼 추가 -->
                           <a class="topbutton" href="#">
                              <img src="@/assets/images_jung/iconUp_48.png"/>
                           </a>
@@ -123,30 +119,28 @@
                     <div id="aaaa" class="tab review">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4>2023년 1월 둘째주 : 01/09(월) ~ 01/13(금)</h4>
+                          <h4>{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                             <div class="topbar-filter">
                               <p>DS CINEMA 서면</p>
-                              <h4>20230109 - 20230113</h4>
+                              <p>오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 입니다.</p>
                             </div>
-
-
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 서면 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
                               <!-- 선택창 시작 -->
                               <input id="all" type="radio" name="tab_item" checked/>
-                              <label class="tab_item" for="all">월</label>
+                              <label class="tab_item" for="all">{{ 요일[순서[0]] }}</label>
                               <input id="tuesday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="tuesday">화</label>
+                              <label class="tab_item" for="tuesday">{{ 요일[순서[1]] }}</label>
                               <input id="wednesday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="wednesday">수</label>
+                              <label class="tab_item" for="wednesday">{{ 요일[순서[2]] }}</label>
                               <input id="thursday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="thursday">목</label>
+                              <label class="tab_item" for="thursday">{{ 요일[순서[3]] }}</label>
                               <input id="friday" type="radio" name="tab_item" />
-                              <label class="tab_item" for="friday">금</label>
+                              <label class="tab_item" for="friday">{{ 요일[순서[4]] }}</label>
                               <!-- 선택창 끝 -->
 
                               <!-- todo) 탭2 : 서면 ---- 탭 시간표 선택 >>> 월요일 -->
@@ -164,9 +158,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -185,29 +178,30 @@
                                             </div>
 
                                             <div class="user-infor col-ms-6">
+                                              <!-- TODO: 시간표 추가하고 싶으면 col-xs-1로 변경 -->
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -235,9 +229,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -261,24 +254,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -305,9 +298,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -331,24 +323,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -375,9 +367,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -401,24 +392,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -445,9 +436,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -471,24 +461,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -503,7 +493,7 @@
                               <!-- 내용 끝 -->
                             </div>
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
-                            <!-- FIXME: 탑 버튼 추가 -->
+                            <!-- 탑 버튼 추가 -->
                             <a class="topbutton" href="#">
                              <img src="@/assets/images_jung/iconUp_48.png"/>
                             </a>
@@ -518,13 +508,13 @@
                     <div id="bbbb" class="tab">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4>2023년 1월 둘째주 : 01/09(월) ~ 01/13(금)</h4>
+                          <h4>{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                             <div class="topbar-filter">
                               <p>DS CINEMA 센텀시티</p>
-                              <h4>20230109 - 20230113</h4>
+                              <p>오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 입니다.</p>
                             </div>
 
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
@@ -532,15 +522,15 @@
                             <div class="InsideTab">
                               <!-- 선택창 시작 -->
                               <input id="all2" type="radio" name="tab_item" checked/>
-                              <label class="tab_item" for="all2">월</label>
+                              <label class="tab_item" for="all2">{{ 요일[순서[0]] }}</label>
                               <input id="tuesday2" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="tuesday2">화</label>
+                              <label class="tab_item" for="tuesday2">{{ 요일[순서[1]] }}</label>
                               <input id="wednesday2" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="wednesday2">수</label>
+                              <label class="tab_item" for="wednesday2">{{ 요일[순서[2]] }}</label>
                               <input id="thursday2" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="thursday2">목</label>
-                              <input id="friday2" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="friday2">금</label>
+                              <label class="tab_item" for="thursday2">{{ 요일[순서[3]] }}</label>
+                              <input id="friday2" type="radio" name="tab_item" />
+                              <label class="tab_item" for="friday2">{{ 요일[순서[4]] }}</label>
                               <!-- 선택창 끝 -->
 
                               <!-- todo) 탭2 : 센텀시티 ---- 탭 시간표 선택 >>> 월요일 -->
@@ -558,9 +548,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -584,24 +573,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -628,9 +617,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -654,24 +642,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -698,9 +686,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -724,24 +711,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -768,9 +755,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -794,24 +780,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -838,9 +824,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -864,24 +849,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -896,7 +881,7 @@
                               <!-- 내용 끝 -->
                             </div>
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
-                            <!-- FIXME: 탑 버튼 추가 -->
+                            <!-- 탑 버튼 추가 -->
                             <a class="topbutton" href="#">
                              <img src="@/assets/images_jung/iconUp_48.png"/>
                             </a>
@@ -910,29 +895,30 @@
                     <div id="cccc" class="tab">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4>2023년 1월 둘째주 : 01/09(월) ~ 01/13(금)</h4>
+                          <h4>{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                             <div class="topbar-filter">
                               <p>DS CINEMA 부산대</p>
-                              <h4>20230109 - 20230113</h4>
+                              
+                              <p>{{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘) 상영시간표</p>
                             </div>
 
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
-                              <!-- 선택창 시작 -->
-                              <input id="all3" type="radio" name="tab_item" checked/>
-                              <label class="tab_item" for="all3">월</label>
+                             <!-- 선택창 시작 -->
+                             <input id="all3" type="radio" name="tab_item" checked/>
+                              <label class="tab_item" for="all3">{{ 요일[순서[0]] }}</label>
                               <input id="tuesday3" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="tuesday3">화</label>
+                              <label class="tab_item" for="tuesday3">{{ 요일[순서[1]] }}</label>
                               <input id="wednesday3" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="wednesday3">수</label>
+                              <label class="tab_item" for="wednesday3">{{ 요일[순서[2]] }}</label>
                               <input id="thursday3" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="thursday3">목</label>
-                              <input id="friday3" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="friday3">금</label>
+                              <label class="tab_item" for="thursday3">{{ 요일[순서[3]] }}</label>
+                              <input id="friday3" type="radio" name="tab_item" />
+                              <label class="tab_item" for="friday3">{{ 요일[순서[4]] }}</label>
                               <!-- 선택창 끝 -->
 
                               <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 월요일 -->
@@ -950,9 +936,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -976,24 +961,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 부산대[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 부산대[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -1020,9 +1005,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -1046,24 +1030,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 부산대[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 부산대[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -1090,9 +1074,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -1116,24 +1099,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 부산대[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 부산대[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -1160,9 +1143,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -1186,24 +1168,24 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 부산대[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 부산대[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
@@ -1218,10 +1200,7 @@
                               <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 금요일 -->
                               <div class="tab_content" id="friday3_content">
                                 <!-- 금요일 시간표 시작 -->
-                                <div class="topbar-filter">
-                                  <div class="mv-user-review-item">
-                                    <!-- 상영작 1 ~ 8 시작-->
-                                    <div v-for="(data, index) in movie" v-bind:key="index">
+                                <div v-for="(data, index) in movie" v-bind:key="index">
                                       <div class="movieIng">
                                         <a href="#" class="movieTitle" 
                                           >{{ data.movienm }} </a
@@ -1230,9 +1209,8 @@
                                           <div class="col-ms-10">
                                             <div class="user-infor col-ms-6">
                                               <div class="col-xs-2">
-                                                <!-- TODO: 이미지 url 안 나옴 FIXME: -->
                                                 <img
-                                                  :src="data.posterurlkm"
+                                                  :src="data.posterurln"
                                                   alt="poster"
                                                   class="poster_thumb"
                                                 />
@@ -1256,33 +1234,30 @@
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">10:30</router-link>
-                                                <p>13:30</p>
+                                                <router-link to="/reserveTicket">{{ 부산대[0] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">12:30</router-link>
-                                                <p>15:30</p>
+                                                <router-link to="/reserveTicket">{{ 부산대[1] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
                                                 <!-- 시작시간, 끝나는 시간 -->
-                                                <router-link to="/reserveTicket">14:30</router-link>
-                                                <p>17:30</p>
+                                                <router-link to="/reserveTicket">{{ 센텀[2] }}</router-link>
+                                                <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <!-- 상영작 1 ~ 8 끝-->
-                                  </div>
-                                </div>
                                 <!-- 금요일 시간표 끝 -->
                               </div>
                               <!-- 내용 끝 -->
@@ -1290,7 +1265,7 @@
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
 
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
-                            <!-- FIXME: 탑 버튼 추가 -->
+                            <!-- 탑 버튼 추가 -->
                             <a class="topbutton" href="#">
                              <img src="@/assets/images_jung/iconUp_48.png"/>
                             </a>
@@ -1318,6 +1293,23 @@ export default {
   data() {
     return {
       movie: [],
+
+      요일: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
+      yy: "",
+      mm: "",
+      dd: "",
+      day: 0,
+      순서: [], // 요일을 순서대로 나오게 하는 거
+      서면: ["10:30", "16:00", "19:30"], // 나중에 테스트 할 시간 데이터
+      센텀: ["10:30", "16:00"], // 나중에 테스트 할 시간 데이터
+      부산대: ["10:30", "16:00"], // 나중에 테스트 할 시간 데이터
+      selectedday : [], // 선택된 날짜를 담는 
+      
+      // searchMname: "",
+      // // 페이징을 위한 변수 정의
+      // page: 1, // 현재 페이지
+      // count: 0, // 전체 데이터 건수
+      // pageSize: 5, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
     };
   },
   methods: {
@@ -1336,10 +1328,75 @@ export default {
           console.log(e);
         });
     },
+    // 날짜에 맞는 요일 표시
+    date() {
+        var date = new Date();
+        this.yy = date.getFullYear(); // 년도
+        this.mm = date.getMonth() + 1; // 월 , 달
+        this.dd = date.getDate(); // 일수
+        this.day = date.getDay(); // 요일
+  
+        let i = this.day;
+        for (i; i <= 6; i++) {
+          this.순서 += i;
+        }
+        let j = 0;
+        for (j; j < this.day; j++) {
+          this.순서 += j;
+        }
+      },
+    // 클릭시 날짜 정보 넘기기 
+    week(value) {
+        if(this.ticketinfor.selectedday != null){
+            this.ticketinfor.selectedday = '';
+        }
+        if( value == 'day1'){
+            this.오늘 = false;
+            this.내일 = true;
+            this.요일3 = true;
+            this.요일4 = true;
+            this.요일5 = true;
+            this.ticketinfor.selectedday = value;
+        }else if ( value == 'day2'){
+            this.오늘 = true;
+            this.내일 = false;
+            this.요일3 = true;
+            this.요일4 = true;
+            this.요일5 = true;
+            this.ticketinfor.selectedday = value;
+        }else if ( value == 'day3'){
+            this.오늘 = true;
+            this.내일 = true;
+            this.요일3 = false;
+            this.요일4 = true;
+            this.요일5 = true;
+            this.ticketinfor.selectedday = value;
+        }
+        else if ( value == 'day4'){
+            this.오늘 = true;
+            this.내일 = true;
+            this.요일3 = true;
+            this.요일4 = false;
+            this.요일5 = true;
+            this.ticketinfor.selectedday = value;
+        }
+        else if ( value == 'day5'){
+            this.오늘 = true;
+            this.내일 = true;
+            this.요일3 = true;
+            this.요일4 = true;
+            this.요일5 = false;
+            this.ticketinfor.selectedday = value;
+        }
+      },
+     // 클릭시 예매정보 전송하기
+     schInfo() {
+     },
   },
   mounted() {
     custom();
     this.getMovieInfo();
+    this.date();  // 날짜 요일
   },
 };
 </script>
@@ -1381,11 +1438,11 @@ input[name="tab_item"] {
 }
 
 /* 탭 컨텐츠 스타일 */
-/* height 1300 -> 시간표에 영화 10개 표시 */
+/* height 1370 -> 시간표에 영화 10개 표시 */
 .tab_content {
   display: none;
   padding: 40px 40px 0;
-  height: 1300px;
+  height: 1370px;
   clear: both;
   overflow: hidden;
 }

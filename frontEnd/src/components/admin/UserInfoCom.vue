@@ -61,7 +61,7 @@
           </div>
           <!-- <!— 왼쪽 메뉴바 끝 —> -->
           <div class="col-md-9 col-sm-12 col-xs-12">
-            <a id="btn-modal" class="delbtn col-xs-12">삭제</a>
+            <!-- <a id="btn-modal" class="delbtn col-xs-12">삭제</a> -->
             <!-- TODO: 바로 밑 div 데이터 받아서 v-for 예정입니다. -->
             <div class="col-xs-12" v-for="(data, index) in user" :key="index">
               <div class="movie-item-style-2 userrate">
@@ -115,26 +115,18 @@
                     >수정</router-link
                   >
                   <div class="col-xs-12"></div>
-                  <a id="btn-modal" class="delbtn col-xs-12">삭제</a>
+                  <a
+                    id="btn-modal"
+                    class="delbtn col-xs-12"
+                    @click="modal(data)"
+                    >삭제</a
+                  >
                 </div>
               </div>
             </div>
             <!-- 테스트 페이징 시작 -->
             <!-- Todo : page 바 시작 -->
             <div class="col-md-12">
-              <!-- 3, 6, 9 옵션 선택 창 -->
-              <div class="mb-3">
-                Items per Page:
-                <select
-                  v-model="pageSize"
-                  @change="handlePageSizeChange($event)"
-                >
-                  <option v-for="size in pageSizes" :key="size" :value="size">
-                    {{ size }}
-                  </option>
-                </select>
-              </div>
-
               <b-pagination
                 v-model="page"
                 :total-rows="count"
@@ -177,7 +169,6 @@
 </template>
 
 <script>
-// FIXME: UserDataService.js 로 파일명 바꿔야 하는거 아닌지
 import UserService from "@/services/user.service.js";
 
 export default {
@@ -186,12 +177,15 @@ export default {
 
     // 모달 테스트
     const modal = document.getElementById("modal");
+
     function modalOn() {
       modal.style.display = "flex";
     }
+
     function isModalOn() {
       return modal.style.display === "flex";
     }
+
     function modalOff() {
       modal.style.display = "none";
     }
@@ -249,36 +243,30 @@ export default {
           this.count = totalItems;
 
           console.log(response.data);
-
         })
         .catch((e) => {
           alert("then 못 가고 실패");
           console.log(e);
         });
     },
+    // currentUser 에 데이터 넣고 첫 모달창 열어주는 함수
+    modal(data) {
+      this.currentUser = data;
+
+      const modal = document.getElementById("modal");
+      modal.style.display = "flex";
+    },
     deleteUser() {
-      UserService.delete(this.user.id)
+      UserService.delete(this.currentUser.id)
         .then((response) => {
           console.log(response.data);
-          this.$router.push("/reservInfoAdmin");
+          window.location.reload();
         })
         .catch((e) => {
           console.log(e);
+          window.location.reload();
         });
     },
-    // FIXME: 삭제 위한 currentUser에 값 넣는 함수, 유저정보를 삭제 요청하는 함수
-    // id로 조회 함수
-    // getUser(id) {
-    //   UserService.get(id)
-    //     .then((response) => {
-    //       this.currentUser = response.data;
-    //       console.log(response.data);
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
-    // select box 값 변경시 실행되는 함수(재조회)
     handlePageSizeChange(event) {
       this.pageSize = event.target.value; // 한페이지당 개수 저장(3, 6, 9)
       this.page = 1;
@@ -297,20 +285,11 @@ export default {
 
 <style scoped>
 .user-hero {
-  /* background: url(@/assets/images_choi/Views/choi/MovieDetail/movie-theater02.jpg) */
   background: url(@/assets/images_choi/Views/choi/admin/movie-theater03.png)
     no-repeat;
   /* height: 598px; */
   width: 100%;
 }
-/* .editbtn {
-  display: inline-block;
-  width: 30%;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  border-radius: 25px;
-} */
-
 .editbtn {
   font-family: "Dosis", sans-serif;
   font-size: 100%;
@@ -347,8 +326,10 @@ export default {
 }
 /* 테스트 */
 #modal.modal-overlay {
+  /* width: 100%;
+  height: 100%; */
   width: 100%;
-  height: 100%;
+  height: 2000px;
   position: absolute;
   left: 0;
   top: 0;
@@ -357,10 +338,10 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.25);
+  /* background: rgba(255, 255, 255, 0.25); */
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
+  /* backdrop-filter: blur(1.5px); */
+  /* -webkit-backdrop-filter: blur(1.5px); */
   border-radius: 10px;
   /* border: 1px solid rgba(255, 255, 255, 0.18); */
 }
@@ -373,9 +354,9 @@ export default {
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   width: 20%;
-  height: 15%;
+  height: 7%;
   position: relative;
-  top: -100px;
+  top: -265px;
   padding: 10px;
 }
 #modal .title {

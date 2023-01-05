@@ -26,7 +26,7 @@
                   <div>
                     <!-- TODO: 유튜브 URL, 영화 이름, 예매 페이지 연결 등 백엔드 데이터 받아와야 하는 곳 -->
                     <a
-                      href="movie.utubeurl"
+                      :href="movie.utubeurl"
                       class="item item-2 redbtn fancybox-media hvr-grow"
                       ><i class="ion-play"></i
                     ></a>
@@ -200,7 +200,7 @@
                     <!-- 1) 영화 정보 끝 -->
 
                     <!-- 2) 리뷰 파트 시작 -->
-                    <div class="tab active" v-show="reviews">
+                    <div id="reviewPart" class="tab active" v-show="reviews">
                       <ul class="tabs-mv tab-bar">
                         <li>
                           <a class="not-selected" @click="toOverview"
@@ -517,8 +517,8 @@ export default {
           console.log(response.data);
           // alert(response.data);
 
-          var test = this.review;
-          alert(JSON.stringify(test));
+          // var test = this.review;
+          // alert(JSON.stringify(test));
         })
         .catch((e) => {
           alert("리뷰 실패");
@@ -534,19 +534,19 @@ export default {
         rucontent: this.rucontent,
       };
 
-      // insert 요청 함수 호출
       ReviewDataService.create(data)
         .then((response) => {
           this.review.rid = response.data.rid;
           console.log(response.data);
           // this.submitted = true;
-          alert("ㄹㅣ뷰 저장")
-          alert(this.rurating)
-          getReview(this.movie.moviecd)
-;        })
-        // 실패하면 .catch() 결과가 전송됨
+          alert("ㄹㅣ뷰 저장");
+
+          this.getReview(this.movie.moviecd)
+          this.rucontent="";
+
+        })
         .catch((e) => {
-          alert("리뷰저장 실패")
+          alert("리뷰저장 실패");
           console.log(e);
         });
     },

@@ -14,11 +14,11 @@
             <label for="username">
               Username:
               <input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="아이디를 입력하세요"
-                v-model="user.username"
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="아이디를 입력하세요"
+                  v-model="user.username"
               />
             </label>
           </div>
@@ -26,17 +26,17 @@
             <label for="password">
               Password:
               <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="비밀번호를 입력하세요"
-                v-model="user.password"
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="비밀번호를 입력하세요"
+                  v-model="user.password"
               />
             </label>
           </div>
 
           <div class="row">
-            <div class="remember" col-xs-12 >
+            <div class="remember" col-xs-12>
               <button @click="toggleShow()" class="findbtn">
                 아이디찾기 &nbsp; &nbsp;|
               </button>
@@ -46,32 +46,32 @@
           <div class="row">
             <button type="submit" @click="handleLogin()">Login</button>
           </div>
-          
+
         </div>
         <div class="row">
           <p>Or social login</p>
           <div class="social-btn-2">
             <a
-              class="img-fluid"
-              href="http://localhost:8000/oauth2/authorization/google"
-              role="button"
-              ><img
+                class="img-fluid"
+                href="http://localhost:8000/oauth2/authorization/google"
+                role="button"
+            ><img
                 src="@/assets/images_kang/Components/common/Navcom/btn_googleSignUp.png"
                 alt=""
             /></a>
             <a
-              class="img-fluid"
-              href="http://localhost:8000/oauth2/authorization/naver"
-              role="button"
-              ><img
+                class="img-fluid"
+                href="http://localhost:8000/oauth2/authorization/naver"
+                role="button"
+            ><img
                 src="@/assets/images_kang/Components/common/Navcom/btn_naverSignUp.png.png"
                 alt=""
             /></a>
             <a
-              class="img-fluid"
-              href="http://localhost:8000/oauth2/authorization/kakao"
-              role="button"
-              ><img
+                class="img-fluid"
+                href="http://localhost:8000/oauth2/authorization/kakao"
+                role="button"
+            ><img
                 src="@/assets/images_kang/Components/common/Navcom/btn_kakaoSignUp.png.png"
                 alt=""
             /></a>
@@ -89,16 +89,16 @@
             <label for="name">
               Name:
               <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="이름을 입력하세요"
-                v-model="name"
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="이름을 입력하세요"
+                  v-model="name"
               />
               <div
-                v-if="errors.has('name')"
-                class="alert alert-danger"
-                role="alert"
+                  v-if="errors.has('name')"
+                  class="alert alert-danger"
+                  role="alert"
               >
                 name is required!
               </div>
@@ -107,16 +107,16 @@
           <div class="row">
             <label for="email">
               Email:
-              <input type="email" name="email" id="email" v-model="email" />
+              <input type="email" name="email" id="email" v-model="email"/>
             </label>
           </div>
           <div class="row">
             <button
-              type="submit"
-              class="findid-btn"
-              id="submit"
-              name="enter"
-              @click="id_search()"
+                type="submit"
+                class="findid-btn"
+                id="submit"
+                name="enter"
+                @click="id_search()"
             >
               FIND ID
             </button>
@@ -135,13 +135,13 @@
             <label for="username">
               Username:
               <input
-                type="text"
-                name="username"
-                id="username2"
-                placeholder="아이디를 입력하세요"
-                required
-                value=""
-                v-model="username"
+                  type="text"
+                  name="username"
+                  id="username2"
+                  placeholder="아이디를 입력하세요"
+                  required
+                  value=""
+                  v-model="username"
               />
             </label>
           </div>
@@ -151,12 +151,12 @@
               pwd question:
               <span class="signup-input">
                 <select
-                  id="signup-birth-mm"
-                  class="selectbox"
-                  name="findpwd"
-                  style="width: 100%"
-                  required
-                  value=""
+                    id="signup-birth-mm"
+                    class="selectbox"
+                    name="findpwd"
+                    style="width: 100%"
+                    required
+                    value=""
                 >
                   <option value="ko" selected>나의 고향은?</option>
                   <option value="ko">어머니의 성함은?</option>
@@ -170,20 +170,20 @@
             <label for="answer">
               Pwd answer:
               <input
-                type="text"
-                name="answer"
-                id="answer"
-                required
-                v-model="answer"
+                  type="text"
+                  name="answer"
+                  id="answer"
+                  required
+                  v-model="answer"
               />
             </label>
           </div>
           <div class="row">
             <button
-              type="submit"
-              id="submit"
-              class="find-btn"
-              @click="findpwd2()"
+                type="submit"
+                id="submit"
+                class="find-btn"
+                @click="findpwd2()"
             >
               FIND PWD
             </button>
@@ -233,10 +233,10 @@
             <label for="password">
               새로운 Password:
               <input
-                type="password"
-                name="password"
-                id="password"
-                v-model="password"
+                  type="password"
+                  name="password"
+                  id="password"
+                  v-model="password"
               />
             </label>
           </div>
@@ -258,8 +258,8 @@
         <nav class="navbar navbar-default navbar-custom">
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div
-            class="collapse navbar-collapse flex-parent"
-            id="bs-example-navbar-collapse-1"
+              class="collapse navbar-collapse flex-parent"
+              id="bs-example-navbar-collapse-1"
           >
             <div class="col-xs-5 navbar-menu">
               <ul class="nav navbar-nav flex-child-menu menu-left">
@@ -267,56 +267,64 @@
                   <a href="#page-top"></a>
                 </li>
 
-                <li><router-link to="/allMovie">전체보기</router-link></li>
+                <li>
+                  <router-link to="/allMovie">전체보기</router-link>
+                </li>
 
-                <li><router-link to="/boxoffice">박스오피스</router-link></li>
+                <li>
+                  <router-link to="/boxoffice">박스오피스</router-link>
+                </li>
                 <li class="dropdown first">
                   <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
                     영화관<i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
                     <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown"
-                        >서울<i class="ion-ios-arrow-forward"></i
-                      ></a>
+                      <router-link to="/theaterSeoul" class="dropdown-toggle" data-toggle="dropdown"
+                      >서울<i class="ion-ios-arrow-forward"></i
+                      ></router-link>
                       <ul class="dropdown-menu level2">
-                        <li><router-link to="/KasanCinema">가산 디지털</router-link></li>
-                        <li><router-link to="/GangdongCinema">강동</router-link></li>
-                        <li><router-link to="/KonkukCinema">건대 입구</router-link></li>
+                        <li>
+                          <router-link to="/KasanCinema">가산디지털</router-link>
+                        </li>
+                        <li>
+                          <router-link to="/GangdongCinema">강동</router-link>
+                        </li>
+                        <li>
+                          <router-link to="/KonkukCinema">건대입구</router-link>
+                        </li>
                       </ul>
                     </li>
                     <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown"
-                        >부산<i class="ion-ios-arrow-forward"></i
-                      ></a>
+                      <router-link to="/theaterBusan" class="dropdown-toggle" data-toggle="dropdown"
+                      >부산<i class="ion-ios-arrow-forward"></i
+                      ></router-link>
                       <ul class="dropdown-menu level2">
-                        <li><router-link to="/SeomyeonCinema">서면</router-link></li>
-                        <li><router-link to="/CentumCinema">센텀 시티</router-link></li>
-                        <li><router-link to="/BusanCinema">부산대</router-link></li>
+                        <li>
+                          <router-link to="/SeomyeonCinema">서면</router-link>
+                        </li>
+                        <li>
+                          <router-link to="/CentumCinema">센텀시티</router-link>
+                        </li>
+                        <li>
+                          <router-link to="/BusanCinema">부산대</router-link>
+                        </li>
                       </ul>
                     </li>
                   </ul>
                 </li>
-                
-                <li class="dropdown first">
-                  <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
-                    시간표<i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </a>
-                  <ul class="dropdown-menu level1">
-                    <li><router-link to="/theaterSeoul">서울</router-link></li>
-                    <li><router-link to="/theaterBusan">부산</router-link></li>
-                  </ul>
+                <li>
+                  <router-link to="/board-admin">test</router-link>
                 </li>
-                <li><router-link to="/board-admin">test</router-link></li>
               </ul>
             </div>
             <div class="col-xs-2">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
                 <div
-                  class="navbar-toggle"
-                  data-toggle="collapse"
-                  data-target="#bs-example-navbar-collapse-1"
+                    class="navbar-toggle"
+                    data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"
                 >
                   <span class="sr-only">Toggle navigation</span>
                   <div id="nav-icon1">
@@ -327,11 +335,11 @@
                 </div>
                 <router-link to="/">
                   <img
-                    class="logo"
-                    src="@/assets/images_kang/Components/common/Navcom/logo.png"
-                    width="119"
-                    height="58"
-                /></router-link>
+                      class="logo"
+                      src="@/assets/images_kang/Components/common/Navcom/logo.png"
+                      width="119"
+                      height="58"
+                  /></router-link>
               </div>
             </div>
             <div class="col-xs-4 navbar-menu2">
@@ -341,20 +349,26 @@
                   <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
                   <li class="dropdown first" v-if="!showAdminBoard">
                     <a
-                      class="btn btn-default dropdown-toggle lv1"
-                      data-toggle="dropdown"
-                      data-hover="dropdown"
+                        class="btn btn-default dropdown-toggle lv1"
+                        data-toggle="dropdown"
+                        data-hover="dropdown"
                     >
                       MY PAGE
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown-menu level1">
-                      <li><router-link to="/mypage">내정보</router-link></li>
+                      <li>
+                        <router-link to="/mypage">내정보</router-link>
+                      </li>
                       <li>
                         <router-link to="/myticket">나의예매내역</router-link>
                       </li>
-                      <li><router-link to="/mytest">test</router-link></li>
-                      <li><router-link to="/mytestprofile">test2</router-link></li>
+                      <li>
+                        <router-link to="/mytest">test</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/mytestprofile">test2</router-link>
+                      </li>
                     </ul>
                   </li>
                   <!-- 회원 로그인시 마이페이지 끝  -->
@@ -362,25 +376,31 @@
 
                 <li class="dropdown first">
                   <a
-                    class="btn btn-default dropdown-toggle lv1"
-                    data-toggle="dropdown"
-                    data-hover="dropdown"
+                      class="btn btn-default dropdown-toggle lv1"
+                      data-toggle="dropdown"
+                      data-hover="dropdown"
                   >
                     고객센터 <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                   <ul class="dropdown-menu level1">
-                    <li><router-link to="/notice">공지사항</router-link></li>
-                    <li><router-link to="/faq">FAQ</router-link></li>
-                    <li><router-link to="/addqna">QNA</router-link></li>
+                    <li>
+                      <router-link to="/notice">공지사항</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/faq">FAQ</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/addqna">QNA</router-link>
+                    </li>
                   </ul>
                 </li>
 
                 <!-- 어드민 로그인시 어드민 나브바 시작-->
                 <li class="dropdown first" v-if="showAdminBoard">
                   <a
-                    class="btn btn-default dropdown-toggle lv1"
-                    data-toggle="dropdown"
-                    data-hover="dropdown"
+                      class="btn btn-default dropdown-toggle lv1"
+                      data-toggle="dropdown"
+                      data-hover="dropdown"
                   >
                     ADMIN <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
@@ -427,6 +447,7 @@
 // import FindIdVue from "../find/FindId.vue";
 import User from "@/model/user.js";
 import userService from "@/services/user.service";
+
 export default {
   data() {
     return {
@@ -499,27 +520,27 @@ export default {
           // 공통함수 login 호출 :
           // this.$store.dispatch("모듈명/함수명", 매개변수)
           this.$store
-            .dispatch("auth/login", this.user)
-            .then(() => {
-              alert("환영합니다");
-              this.popupClose = !this.popupClose;
-              window.location.reload();
-              this.currentUser();
-              this.showAdminBoard();
-            })
-            // 참고) if/else 문 대신에 -> or(||) and(&&) 연산자를 사용할때도 있음
-            // 로직체크 순서 : true || false, false && true
-            // TODO: 정주희 alert창 추가 -> 수정 필요 FIXME:
-            .catch((error) => {
-              // this.loading = false; // 로그인 버튼 활성화
-              alert("데이터통신오류")
-              this.message =
-                (error.response &&
-                  error.response.data &&
-                  error.response.data.message) ||
-                error.message ||
-                error.toString();
-            });
+              .dispatch("auth/login", this.user)
+              .then(() => {
+                // alert("환영합니다");
+                alert("Attempting login");
+                this.popupClose = !this.popupClose;
+                window.location.reload();
+                this.currentUser();
+                this.showAdminBoard();
+              })
+              // 참고) if/else 문 대신에 -> or(||) and(&&) 연산자를 사용할때도 있음
+              // 로직체크 순서 : true || false, false && true
+              .catch((error) => {
+                // this.loading = false; // 로그인 버튼 활성화
+                // alert("데이터통신오류")
+                this.message =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+              });
         }
       });
     },
@@ -615,15 +636,15 @@ export default {
       this.findName = this.name;
       this.findEmail = this.email;
       userService
-        .getFindByIdName(this.findName, this.findEmail)
-        .then((response) => {
-          this.username = response.data.username;
-          // alert(response.data.username);
-          console.log(response.data.username);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          .getFindByIdName(this.findName, this.findEmail)
+          .then((response) => {
+            this.username = response.data.username;
+            // alert(response.data.username);
+            console.log(response.data.username);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     },
 
     // 비밀번호 확인 back으로 보내기
@@ -632,31 +653,31 @@ export default {
       this.findUsername = this.username;
       this.findAnswer = this.answer;
       userService
-        .getFindByPassword(this.findUsername, this.findAnswer)
-        .then((response) => {
-          this.user = response.data;
-          console.log(this.user);
-          // var test = this.user;
-          // alert(JSON.stringify(test));
-          if (response.data.username == undefined) {
-            //비밀번호 실패시 팝업이 넘어가지 않음
-            this.loginid = false;
-            this.findid = false;
-            this.findpwd = true;
-            this.findsuccess = false;
-            this.findsuccessPwd = false;
-          } else {
-            //비밀번호 성공시 비밀번호 팝업이 뜸
-            this.loginid = false;
-            this.findid = false;
-            this.findpwd = false;
-            this.findsuccess = false;
-            this.findsuccessPwd = true;
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          .getFindByPassword(this.findUsername, this.findAnswer)
+          .then((response) => {
+            this.user = response.data;
+            console.log(this.user);
+            // var test = this.user;
+            // alert(JSON.stringify(test));
+            if (response.data.username == undefined) {
+              //비밀번호 실패시 팝업이 넘어가지 않음
+              this.loginid = false;
+              this.findid = false;
+              this.findpwd = true;
+              this.findsuccess = false;
+              this.findsuccessPwd = false;
+            } else {
+              //비밀번호 성공시 비밀번호 팝업이 뜸
+              this.loginid = false;
+              this.findid = false;
+              this.findpwd = false;
+              this.findsuccess = false;
+              this.findsuccessPwd = true;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     },
 
     // //새비밀번호 변경하기
@@ -678,15 +699,15 @@ export default {
       // this.user = new User("", "", "", this.role);
       //  공유 저장소의 새사용자 등록 함수 실행
       userService
-        .update(id, changePwd, user)
-        .then((response) => {
-          console.log(response.data);
-          alert("새로운 비밀번호로 변경되었습니다.");
-          this.message = "The password was updated successfully!";
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+          .update(id, changePwd, user)
+          .then((response) => {
+            console.log(response.data);
+            alert("새로운 비밀번호로 변경되었습니다.");
+            this.message = "The password was updated successfully!";
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       // }
       // });
     },
@@ -712,6 +733,7 @@ export default {
 .navbar-menu {
   margin-top: 2%;
 }
+
 // .hi{
 //   justify-content: space-between;
 //   margin-left: 3%;
@@ -729,27 +751,34 @@ header .navbar-default .navbar-nav li a {
   text-transform: uppercase;
   cursor: pointer;
 }
+
 // TODO: 정주희 width: 50% -> 60% 수정(윈도우에서는 두줄로 떠서 위치조정함)
 .remember {
   width: 60%;
   float: right !important;
 }
+
 .findbtn {
   margin-bottom: 2%;
 }
+
 .findbtn {
   background: none !important;
   color: black !important;
 }
+
 .findid-btn {
   margin-bottom: 2%;
 }
+
 .find-btn {
   margin-bottom: 2% !important;
 }
+
 input {
   text-transform: lowercase !important;
 }
+
 // #hidden{
 //   background: none !important;
 // }
