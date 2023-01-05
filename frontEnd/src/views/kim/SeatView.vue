@@ -13,7 +13,7 @@
                   <div v-show="모달창">
                     <div style="background-color: white; position: absolute; top: 125px; left: 385px; width: 450px; height: 480px; z-index: 30; ">
                       <div style="height: 70px; border-bottom: 1px solid #666;">
-                        <span style="width: 387px; float: left; height: 70px;line-height: 70px; color: black; font-size: 24px; padding-left: 20px;  ">아바타: 물의 길 2022</span>
+                        <span style="width: 387px; float: left; height: 70px;line-height: 70px; color: black; font-size: 16px; padding-left: 20px;  ">{{data1.movienm}}</span>
                         <button @click="model()" style="width: 40px; height: 40px; float: right; margin-right: 13px; border: 0;  background-color: white;">
                           <img style="margin-top: 21px;" src="@/assets/images_kim/Views/ModalView/xx.png" alt="">
                         </button>
@@ -62,50 +62,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- 상영시간도 클릭 못함 -->
-                  <div style="width: 1170px;" v-show="상영">
-                    <button
-                      style="height: 60px;width: 390px; border: 0; color: white; background-color: #FF243E;" disabled>
-                      <span>01 . 상영시간</span>
-                    </button>
-                    <button style="height: 60px;width: 390px; color: gray;background-color: #F0F0F0;" disabled>
-                      <span>02 . 좌석선택</span>
-                    </button>
-                    <button style="height: 60px;width: 390px;border-left: 0;  color: gray; background-color: #F0F0F0;" disabled>
-                      <span>03 . 결제</span>
-                    </button>
-                  </div>
-                  <!-- 상영시간,좌석선택 클릭가능, 상영시간을 클릭을 하면 위에 있는 상영시간만 클릭가능 -->
-                  <div style="width: 1170px;" v-show="좌석">  
-                    <button @click="Screen()" style="height: 60px;width: 390px;border: 0; background-color: #333; color: white;">
-                      <span>01 . 상영시간</span>
-                    </button>
-                    <button
-                      style="height: 60px;width: 390px; background-color: #FF243E; color: white;"
-                      disabled>
-                      <span>02 . 좌석선택</span>
-                    </button>
-                    <button style="height: 60px;width: 390px; color: gray;background-color: #F0F0F0;"
-                      disabled>
-                      <span>03 . 결제</span>
-                    </button>
-                  </div>
-                  <!-- 결제페이지에서 상영,좌석,결제 갈 수 있음. 새로고침만 안하면 좌석선택에 있는게 남아 있을듯-->
-                  <div style="width: 1170px;" v-show="결제">
-                    <button @click="Screen()"
-                      style="height: 60px;width: 390px; background-color: #333;border: 0; color: white;">
-                      <span>01 . 상영시간</span>
-                    </button>
-                    <button @click="changeSeat()"
-                      style="height: 60px;width: 390px; background-color: #333;border: 0; border-left: 1px solid black; color: white;">
-                      <span>02 . 좌석선택</span>
-                    </button>
-                    <button
-                      style="height: 60px;width: 390px; background-color: #FF243E; color: white;"
-                      disabled>
-                      <span>03 . 결제</span>
-                    </button>
-                  </div>
+
                 </div>
                 <!-- 영화관 -->
                 <div v-show="상영">
@@ -155,66 +112,8 @@
                   </div>
                   <div
                     style="width: 585px; height: 705px; float: left; background-color:  #EEEEEE;  overflow: hidden;">
-                    <p
-                      style="width: 585px;  margin-bottom: 0; color: gray;  padding: 15px 0 15px 0;  background-color: #1E212D;  color: white;text-align: center;">
-                      {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘)
-                    </p>
-                    <div style="width: 1000px; height: 100px;">
-                      <button v-show="오늘" @click="week('day1')"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #8785A2; ">
-                        <h4 style="color: white; padding: 10px 0 0 13px;">{{ dd }}</h4>
-                        <p style="color: white;margin-top: 15px">오늘</p>
-                      </button>
-                      <button v-show="!오늘" @click="weekshow('day1')"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0; background-color: #1D1E2C;">
-                        <h4 style="color: white; padding: 10px 0 0 13px;">{{ dd }}</h4>
-                        <p style="color: white;margin-top: 15px">오늘</p>
-                      </button>
-
-                      <button v-show="내일" @click="week('day2')"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #8785A2; ">
-                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 1 }}</h4>
-                        <p style="color: white;margin-top: 15px;">내일</p>
-                      </button>
-                      <button v-show="!내일" @click="weekshow('day2')"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C ">
-                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 1 }}</h4>
-                        <p style="color: white;margin-top: 15px;">내일</p>
-                      </button>
-                      
-                      <button v-show="요일3" @click="week('day3')"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #8785A2;">
-                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 2 }}</h4>
-                        <p style="color: white;margin-top: 15px;">{{ 요일[순서[2]] }}</p>
-                      </button>
-                      <button v-show="!요일3" @click="weekshow('day3')"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C">
-                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 2 }}</h4>
-                        <p style="color: white;margin-top: 15px;">{{ 요일[순서[2]] }}</p>
-                      </button>
-                      <!-- 요일4를 클릭을 하면 배경색 변경이 되고, 티켓정보라는 배열에 정보를 넘김 -->
-                      <button v-show="요일4" @click="week('day4')"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #8785A2; ">
-                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 3 }}</h4>
-                        <p style="color: white;margin-top: 15px">{{ 요일[순서[3]] }}</p>
-                      </button>
-                      <button v-show="!요일4" @click="weekshow('day4')"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C ">
-                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 3 }}</h4>
-                        <p style="color: white;margin-top: 15px">{{ 요일[순서[3]] }}</p>
-                      </button>
-                      <button v-show="요일5" @click="week('day5')"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #8785A2; ">
-                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 4 }}</h4>
-                        <p style="color: white;margin-top: 15px">{{ 요일[순서[4]] }}</p>
-                      </button>
-                      <button v-show="!요일5" @click="weekshow('day5')"
-                        style="width: 55px; border-radius: 20px; height: 80px; float: left; margin: 15px;border: 0;background-color: #1D1E2C ">
-                        <h4 style="color: white;padding: 10px 0 0 13px;">{{ dd + 4 }}</h4>
-                        <p style="color: white;margin-top: 15px">{{ 요일[순서[4]] }}</p>
-                      </button>
-                      
-                    </div>
+                    
+                    
                     <div style="clear: both;"></div>
                     <div style=" border-bottom: 1px solid; margin:  15px; float: left; width: 40px;">
                       2D
@@ -239,13 +138,71 @@
                 <div v-show="좌석">
                   <div style="">
                     
-                    <div style=";padding: 7px 0; background-color: #1E212D;width: 1170px;">
+                    <!-- <div style=";padding: 7px 0; background-color: #1E212D;width: 1170px;">
                       <span style="font-size: 16px; margin: 0 10px; color: white;">관람인원 선택</span>
                       <span style="color: white;float: right; margin: 0 10px; padding-top: 5px;font-size: 14px;">· 인원은 최대 5명까지 선택 가능합니다.</span>
-                    </div>
+                    </div> -->
                     <!-- 여기 -->
-                    <div style="width: 800px; float: left;">
-                    <div style="width:800px; color:white; margin-top: 25px; ">
+                    
+                    <div style="width: 370px; float: left;">
+                      <div style="width:310px; margin: 0 30px 0 30px;">
+                        <img :src="data1.posterurln" alt="">
+                      </div>
+                        <div style="text-align: center; justify-content: center; width: 100%; height: 50px;">
+                         <span style="font-size: 20px; margin-right: 10px; color: white;">성인</span>
+                         <button @click="adultmins()" style="margin-right: 10px;">-</button>
+                         <span style="color: white;font-size:20px;margin-right: 10px;">{{ adultcount }}</span>
+                         <button @click="adultplus()" style="margin-right: 10px;">+</button>
+                        
+                         <span style="font-size: 20px; margin-right: 10px; margin-left:25px; color: white;">청소년</span>
+                         <button @click="teenmins()" style="margin-right: 10px;">-</button>
+                         <span style="color: white;font-size:20px;margin-right: 10px;">{{ teencount }}</span>
+                         <button @click="teenplus()" style="margin-right: 10px;">+</button>                     
+                        </div>
+                        <!--  선택한 좌석 표시하는 곳 -->
+                        <div style="text-align: center; color: white; justify-content: center; width: 370px; margin-bottom: 10px;">
+                          <span style="font-size: 20px; margin-right: 20px;">선택한 좌석</span>
+                          <span style="font-size: 20px;" v-for="(seat,index) in selected" v-bind:key="index">{{ seat }}{{ (index+1 < selected.length) ? ', ' : '' }}</span>
+                        </div>
+                        <div v-show="성인" style="width:100%;font-size: 20px; font-size: 20px; color: white; margin-bottom: 10px;">
+                          <div style="width: 30%; display: inline-block;">
+                            성인
+                          </div>
+                          <div style="width: 30%; display: inline-block; text-align: center;">
+                            {{this.adultcount}}
+                          </div>
+                          <div style="display: inline-block; float: right;">
+                            {{this.adultcount * 100}} 원
+                          </div>
+                        </div>
+                        <div  v-show="청소년" style="width:100%;font-size: 20px; font-size: 20px; color: white; clear: both;margin-bottom: 10px;">
+                          <div style="width: 30%; display: inline-block;">
+                            청소년
+                          </div>
+                          <div style="width: 30%; display: inline-block;text-align: center;">
+                            {{this.teencount}}
+                          </div>
+                          <div style="display: inline-block; float: right;">
+                            {{this.teencount * 100}} 원
+                          </div>
+                        </div>
+
+                        <div style="width:100%;font-size: 20px; font-size: 20px; color: white;clear: both;margin-bottom: 10px; border-top: 1px solid #dd003f; padding-top: 5px;">
+                          <div style=" display: inline-block; float:left; color: #dd003f;">
+                             결제 금액
+                          </div>
+                          <div style=" display: inline-block; float: right;">
+                            {{this.teencount * 100 + this.adultcount * 100}} 원
+                          </div>
+                        </div>
+                        
+                        <div style="width:100%; clear: both;">
+                          <button v-show="결제하기" @click="pay()" style="width:100%; height: 60px; border: 1px solid #333; background-color: #dd003f; color: white; margin-top: 20px;">결제하기</button>
+                          <button v-show="!결제하기" @click="pay()" style="width:100%; height: 60px; border: 1px solid #333; background-color: black; color: white;margin-top: 20px;" disabled>결제하기</button>
+                        </div>
+                    </div>
+                    <div style="width: 780px; float: right; margin-left: 20px;">
+                    <div style="width:780px; color:white; margin-top: 25px; ">
                       <span style="font-size: 2em;">{{data1.movienm}}</span>
                       <br>
                       <span>{{data1.watchgradenm}}</span> 
@@ -253,7 +210,69 @@
                         alt="" /><span style="margin-left: 10px;">{{data1.showtm}}분</span>
                       
                     </div>
-                    <div style="width:100%; color: white;">
+
+                    <div style="width: 320px; height: 140px; border-bottom: 1px solid gray;">
+                      <p
+                      style="width: 320px;  margin-bottom: 0; color: gray;  padding: 15px 0 5px 0;  font-size: 16px; font-weight: bold; color: white; border-bottom: 1px solid gray;">
+                      {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘)
+                    </p>
+                      <button v-show="오늘" @click="week('day1')"
+                      style="width: 55px;  height: 80px; float: left; border: 0;background-color: black; margin-right: 5px; margin-top: 5px;">
+                        <p style="color: white;margin-bottom: 10px;">오늘</p>
+                        <h4 style="color: white;padding: 9px 24px 9px 13px; margin-left: 3px;">{{ dd }}</h4>
+                      </button>
+                      <button v-show="!오늘" @click="weekshow('day1')"
+                      style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: #1D1E2C;  margin-right: 5px;margin-top: 5px;">
+                      <p style="color: white;margin-bottom: 10px;">오늘</p>
+                      <h4 style="color: black;padding: 9px 22px 9px 13px; margin-left: 3px; background-color: white; border-radius: 18px;">{{ dd }}</h4>
+                      </button>
+
+                      <button v-show="내일" @click="week('day2')"
+                        style="width: 55px;  height: 80px; float: left; border: 0;background-color: black; margin-right: 5px;  margin-top: 5px;">
+                        <p style="color: white;margin-bottom: 15px;">내일</p>
+                        <h4 style="color: white;padding: 0 0 10px 13px;">{{ dd+1 }}</h4>
+                      </button>
+                      <button v-show="!내일" @click="weekshow('day2')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: #1D1E2C; margin-right: 5px;  margin-top: 5px;">
+                        <p style="color: white;margin-bottom: 15px;">내일</p>
+                        <h4 style="color: white;padding: 10px 13px 10px 13px; background-color: red;">{{ dd+1 }}</h4>
+                      </button>
+                      
+                      <button v-show="요일3" @click="week('day3')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: black; margin-right: 5px; margin-top: 5px;">
+                        <p style="color: white;margin-bottom: 15px;">{{ 요일[순서[2]] }}</p>
+                        <h4 style="color: white;padding: 0 0 10px 13px;">{{ dd+2 }}</h4>
+                      </button>
+                      <button v-show="!요일3" @click="weekshow('day3')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: #1D1E2C; margin-right: 5px; margin-top: 5px;">
+                        <p style="color: white;margin-bottom: 15px;">{{ 요일[순서[2]] }}</p>
+                        <h4 style="color: white;padding: 0 0 10px 13px;">{{ dd+2 }}</h4>
+                      </button>
+                      <!-- 요일4를 클릭을 하면 배경색 변경이 되고, 티켓정보라는 배열에 정보를 넘김 -->
+                      <button v-show="요일4" @click="week('day4')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: black; margin-right: 5px; margin-top: 5px; ">
+                        <p style="color: white;margin-bottom: 15px;">{{ 요일[순서[3]] }}</p>
+                        <h4 style="color: white;padding: 0 0 10px 13px;">{{ dd+3 }}</h4>
+                      </button>
+                      <button v-show="!요일4" @click="weekshow('day4')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: #1D1E2C; margin-right: 5px;  margin-top: 5px;">
+                        <p style="color: white;margin-bottom: 15px;">{{ 요일[순서[3]] }}</p>
+                        <h4 style="color: white;padding: 0 0 10px 13px;">{{ dd+3 }}</h4>
+                      </button>
+                      <button v-show="요일5" @click="week('day5')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: black;  margin-top: 5px; ">
+                        <p style="color: white;margin-bottom: 15px;">{{ 요일[순서[4]] }}</p>
+                        <h4 style="color: white;padding: 0 0 10px 13px;">{{ dd+4 }}</h4>
+                      </button>
+                      <button v-show="!요일5" @click="weekshow('day5')"
+                        style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: #1D1E2C;  margin-top: 5px; ">
+                        <p style="color: white;margin-bottom: 15px;">{{ 요일[순서[4]] }}</p>
+                        <h4 style="color: white;padding: 0 0 10px 13px;">{{ dd+4 }}</h4>
+                      </button>
+                      
+                    </div>
+                    
+                    <!-- <div style="width:100%; color: white;">
                       <div style="width:120px;display: inline-block;font-size: 20px;">
                         <span style="font-size: 14px; color: gray; ">지역</span>
                         <br>
@@ -269,21 +288,8 @@
                         <br>
                         <span style="font-weight: bold;">{{ticketinfor.selectedtime}}</span>
                       </div>
-                      <div style="display: inline-block; float: right; padding-top: 32px;">
-                        <span style="color: white; margin: 9px"><img style="width: 13px; height: 13px; margin-top: 0px; margin-bottom: 0px;"
-                          src="../../assets/images_kim/Views/ModalView/seat-img1.jpg" alt="" />
-                        선택 가능
-                      </span>
-                      <span style="color: white; margin: 9px"><img style="width: 13px; height: 13px;margin-top: 0px; margin-bottom: 0px;"
-                          src="../../assets/images_kim/Views/ModalView/seat-img2.jpg" alt="" />
-                        선택 좌석
-                      </span>
-                      <span style="color: white; margin-bottom: 19px"><img style="width: 13px; height: 13px;margin-top: 0px; margin-bottom: 0px;"
-                          src="../../assets/images_kim/Views/ModalView/seat-img3.jpg" alt="" />
-                        예매 완료
-                      </span>
-                      </div>
-                    </div>
+                      
+                    </div> -->
 
                     <!-- 이거는 오른쪽에 티켓 이미지 밑에 들어가는것 -->
                     
@@ -626,71 +632,23 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div style="background-color: #333; height: 60px; line-height: 80px; margin-top: 35px;">
-                      <h4 style="float: left; top: 30px; margin: 21px 0 0 30px;">총 결제금액 &ensp; {{ (adultcount * 100) + (teencount * 100) }} 원</h4>
-                      <button v-show="결제하기" @click="pay()" style="float: right; width: 100px;height: 60px; border-right: 1px solid #333; border-top: 1px solid #333; border-bottom: 1px solid #333;  background-color: #810CA8; color: white;">결제하기</button>
-                       <button v-show="!결제하기" @click="pay()" style="float: right; width: 100px;height: 60px; border: 0; background-color: black; color: white;border-right: 1px solid #333; border-top: 1px solid #333; border-bottom: 1px solid #333; " disabled>결제하기</button>
-                    </div> -->
-                     
-                      
-                    </div>
-                    <div style="width: 370px; float: right;">
-                      <div style="width:310px; margin: 0 30px 0 30px;">
-                        <img :src="data1.posterurln" alt="">
+                    <div style="display: inline-block; width: 100%; text-align: center; padding-top: 32px;">
+                        <span style="color: white; margin: 9px"><img style="width: 13px; height: 13px; margin-top: 0px; margin-bottom: 0px;"
+                          src="../../assets/images_kim/Views/ModalView/seat-img1.jpg" alt="" />
+                        선택 가능
+                      </span>
+                      <span style="color: white; margin: 9px"><img style="width: 13px; height: 13px;margin-top: 0px; margin-bottom: 0px;"
+                          src="../../assets/images_kim/Views/ModalView/seat-img2.jpg" alt="" />
+                        선택 좌석
+                      </span>
+                      <span style="color: white; margin-bottom: 19px"><img style="width: 13px; height: 13px;margin-top: 0px; margin-bottom: 0px;"
+                          src="../../assets/images_kim/Views/ModalView/seat-img3.jpg" alt="" />
+                        예매 완료
+                      </span>
                       </div>
-                        <div style="text-align: center; justify-content: center; width: 100%; height: 50px;">
-                         <span style="font-size: 20px; margin-right: 10px; color: white;">성인</span>
-                         <button @click="adultmins()" style="margin-right: 10px;">-</button>
-                         <span style="color: white;font-size:20px;margin-right: 10px;">{{ adultcount }}</span>
-                         <button @click="adultplus()" style="margin-right: 10px;">+</button>
-                        
-                         <span style="font-size: 20px; margin-right: 10px; margin-left:25px; color: white;">청소년</span>
-                         <button @click="teenmins()" style="margin-right: 10px;">-</button>
-                         <span style="color: white;font-size:20px;margin-right: 10px;">{{ teencount }}</span>
-                         <button @click="teenplus()" style="margin-right: 10px;">+</button>                     
-                        </div>
-                        <!--  선택한 좌석 표시하는 곳 -->
-                        <div style="text-align: center; color: white; justify-content: center; width: 370px; margin-bottom: 10px;">
-                          <span style="font-size: 20px; margin-right: 20px;">선택한 좌석</span>
-                          <span style="font-size: 20px;" v-for="(seat,index) in selected" v-bind:key="index">{{ seat }}{{ (index+1 < selected.length) ? ', ' : '' }}</span>
-                        </div>
-                        <div v-show="성인" style="width:100%;font-size: 20px; font-size: 20px; color: white; margin-bottom: 10px;">
-                          <div style="width: 30%; display: inline-block;">
-                            성인
-                          </div>
-                          <div style="width: 30%; display: inline-block; text-align: center;">
-                            {{this.adultcount}}
-                          </div>
-                          <div style="display: inline-block; float: right;">
-                            {{this.adultcount * 100}} 원
-                          </div>
-                        </div>
-                        <div  v-show="청소년" style="width:100%;font-size: 20px; font-size: 20px; color: white; clear: both;margin-bottom: 10px;">
-                          <div style="width: 30%; display: inline-block;">
-                            청소년
-                          </div>
-                          <div style="width: 30%; display: inline-block;text-align: center;">
-                            {{this.teencount}}
-                          </div>
-                          <div style="display: inline-block; float: right;">
-                            {{this.teencount * 100}} 원
-                          </div>
-                        </div>
 
-                        <div style="width:100%;font-size: 20px; font-size: 20px; color: white;clear: both;margin-bottom: 10px; border-top: 1px solid #dd003f; padding-top: 5px;">
-                          <div style=" display: inline-block; float:left; color: #dd003f;">
-                             결제 금액
-                          </div>
-                          <div style=" display: inline-block; float: right;">
-                            {{this.teencount * 100 + this.adultcount * 100}} 원
-                          </div>
-                        </div>
-                        
-                        <div style="width:100%; clear: both;">
-                          <button v-show="결제하기" @click="pay()" style="width:100%; height: 60px; border: 1px solid #333; background-color: #dd003f; color: white; margin-top: 20px;">결제하기</button>
-                          <button v-show="!결제하기" @click="pay()" style="width:100%; height: 60px; border: 1px solid #333; background-color: black; color: white;margin-top: 20px;" disabled>결제하기</button>
-                        </div>
                     </div>
+                    
                     
                     
                     </div>
@@ -787,14 +745,14 @@
     },
     mounted() {
       window.scrollTo({ top: 2350, behavior: "smooth" });
-      this.Split();
+      this.temp();
     },
     data() {
       return {
         data1: this.movieProps2,
         모달창 : false,
-        상영: true,  // 상영페이지 v-show
-        좌석: false,  // 좌석페이지 v-show
+        상영: false,  // 상영페이지 v-show
+        좌석: true,  // 좌석페이지 v-show
         결제: false,   // 결제페이지 v-show
   
         selectedseoul : true,    // 클릭이벤트로 색변경
@@ -810,7 +768,7 @@
         신용카드: true,
         열두살 : false,
         열다섯살 : false,
-        전체이용가: true,
+        전체이용가: false,
 
         결제후: false,
 
@@ -833,7 +791,6 @@
         요일4 : true,
         요일5 : true,
 
-        Splitplot : "",
 
 
         요일: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
@@ -1115,9 +1072,28 @@
         this.상영 = false;
         this.결제 = true;
       },
-      Split(){
-        let temp = this.data1.plot;
-        this.Splitplot = temp.substr(0, 50); // 이러면 제일 앞에 있는 알파벳만 짤려서 나옴
+      // 이용가 체크
+      temp(){
+        let temp = this.data1.watchgradenm;
+
+        if(temp == "전체이용가"){
+          this.전체이용가 = true;
+          this.열두살  = false;
+          this.열다섯살  = false;
+        }else if(temp == "15세이상관람가") {
+          this.열다섯살  = true;
+          this.전체이용가 = false;
+          this.열두살  = false
+
+        }else if(temp == "12세이상관람가"){
+          this.열다섯살  = false;
+          this.전체이용가 = false;
+          this.열두살  = true
+        }else{
+          this.열다섯살  = false;
+          this.전체이용가 = true;
+          this.열두살  = false;
+        }
       },
       week(value) {
         if(this.ticketinfor.selectedday != null){
@@ -1348,7 +1324,7 @@
   .font {
     color: white;
     position: relative;
-    left: -20px;
+    // left: -20px;
   }
 
   
