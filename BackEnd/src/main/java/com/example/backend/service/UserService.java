@@ -3,6 +3,7 @@ package com.example.backend.service;
 import com.example.backend.dto.response.UserRoleDto;
 import com.example.backend.model.User;
 import com.example.backend.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class UserService {
     @Autowired
     UserRepository userRepository; // JPA CRUD 함수가 있는 인터페이스
@@ -62,9 +64,10 @@ public class UserService {
     }
 
     // 부서번호(dno)로 삭제하는 함수
-    public boolean removeById(long id) {
+    public boolean removeById(Long id) {
         if(userRepository.existsById(id) == true) {
             userRepository.deleteById(id);
+            log.debug(String.valueOf(id));
             return true;
         }
 
