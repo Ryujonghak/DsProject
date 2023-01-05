@@ -8,7 +8,7 @@
         <div class="cover03"></div>
         <iframe
           class="video"
-          src="https://www.youtube.com/embed/OLLJYT-_BWw?rel=0&loop=1&playlist=OLLJYT-_BWw&autoplay=1&mute=1"
+          src="https://www.youtube.com/embed/yIkZB1hAK4M?rel=0&loop=1&playlist=yIkZB1hAK4M&autoplay=1&mute=1"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -54,9 +54,9 @@
             <!-- TODO: 끝 -->
           </div>
 
-          <a href="#" class="more"
+          <router-link to="/allMovie" class="more"
             >더보기 <i class="ion-ios-arrow-right"></i
-          ></a>
+          ></router-link>
         </div>
       </div>
     </div>
