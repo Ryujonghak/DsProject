@@ -304,7 +304,7 @@
                               <div class="rate-star">
                                 <span
                                   class="rate-star-result"
-                                  v-for="(i, index) in review.rurating"
+                                  v-for="(i, index) in review.review.rurating"
                                   :key="index"
                                   ><i
                                     class="ion-ios-star"
@@ -439,26 +439,9 @@ export default {
       count: 0, // 전체 데이터 건수
       pageSize: 10, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
 
-      // review: [
-      //   {
-      //     movieCode: 1,
-      //     rating: 4,
-      //     username: "choiari1002",
-      //     content: "그래픽이 너무 멋졌어요.",
-      //   },
-      //   {
-      //     movieCode: 1,
-      //     rating: 5,
-      //     username: "subin1234",
-      //     content: "가족들이랑 재밌게 봤습니다.",
-      //   },
-      //   {
-      //     movieCode: 1,
-      //     rating: 3,
-      //     username: "juhee5678",
-      //     content: "재밌지만 아쉬워요.",
-      //   },
-      // ],
+      test: {
+        rurating: 4
+      },
 
       addReview: {
         rid: null,
@@ -543,6 +526,7 @@ export default {
             this.addReview.rid = response.data.rid;
             console.log(response.data);
             alert("ㄹㅣ뷰 저장");
+            alert(this.addReview.rurating)
             window.location.reload();
             alert(this.review.rid);
           })
