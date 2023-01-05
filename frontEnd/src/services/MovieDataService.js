@@ -23,10 +23,15 @@ class MovieDataService {
     return http.get(`/movie/?movienm=${movienm}&page=${page}&size=${size}`);
   }
 
-  // 홈뷰용  영화디테일 조회 요청 함수
-  // getMovieDetailAll2() {
-  //   return http.get(`/movie/list`);
-  // }
+ // 무비목록 개봉일역순
+  getMovieDesc(page, size){
+    return http.get(`/movie/desc/?page=${page}&size=${size}`);
+  }
+
+  // 무비목록 개봉일순
+  getMovieAsc(page, size){
+    return http.get(`/movie/asc/?page=${page}&size=${size}`);
+  }
 
   // 영화디테일 코드 조회 요청 함수
   getMovieDetail(moviecd) {

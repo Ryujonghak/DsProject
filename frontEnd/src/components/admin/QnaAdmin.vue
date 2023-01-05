@@ -151,7 +151,7 @@
                         title="내용입력"
                         class="input-textarea boxing"
                         placeholder="내용을 입력해주세요."
-                        v-model="editQna.qanswer"
+                        v-model="editQna.qanswer2"
                       ></textarea>
                     </div>
                   </td>
@@ -243,13 +243,14 @@ export default {
 
     //답변 등록하기 버튼 클릭시
     registerAnswer() {
-      if (this.editQna.qanswer != null) {
+      if (this.editQna.qanswer2 != null) {
         QnaDataService.update(this.editQna.qid, this.editQna)
           .then((response) => {
             var test = this.editQna;
             alert(JSON.stringify(test));
             console.log(response.data);
             alert("답변이 완료되었습니다.");
+            this.editQna.qanswer = this.editQna.qanswer2;
             this.registerQna = false;
           })
           .catch((e) => {
