@@ -20,9 +20,9 @@
           <div class="flex-child-ft item2">
             <h4>영화예매</h4>
             <ul>
-              <li><a href="#">예매하기</a></li>
-              <li><a href="#">현재상영작</a></li>
-              <li><a href="#">상영시간표</a></li>
+              <li><router-link to="/reserveTicket">예매하기</router-link></li>
+              <li><router-link to="/allMovie">현재상영작</router-link></li>
+              <li><router-link to="/theaterBusan">상영시간표</router-link></li>
             </ul>
           </div>
           <div class="flex-child-ft item3">
@@ -36,9 +36,9 @@
           <div class="flex-child-ft item4">
             <h4>MY PAGE</h4>
             <ul>
-              <li><a href="#">내정보</a></li>
-              <li><a href="#">나의예매내역</a></li>
-              <li><a href="#">무비타임라인</a></li>
+              <li><router-link to="/mypage">내정보</router-link></li>
+              <li><router-link to="/myticket">나의예매내역</router-link></li>
+              <li><router-link to="/archive">무비타임라인</router-link></li>
             </ul>
           </div>
           <div class="flex-child-ft item5">

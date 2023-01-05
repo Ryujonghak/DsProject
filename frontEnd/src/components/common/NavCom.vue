@@ -276,35 +276,25 @@
                   </a>
                   <ul class="dropdown-menu level1">
                     <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown"
+                      <router-link to="/theaterSeoul" class="dropdown-toggle" data-toggle="dropdown"
                         >서울<i class="ion-ios-arrow-forward"></i
-                      ></a>
+                      ></router-link>
                       <ul class="dropdown-menu level2">
-                        <li><router-link to="/KasanCinema">가산 디지털</router-link></li>
+                        <li><router-link to="/KasanCinema">가산디지털</router-link></li>
                         <li><router-link to="/GangdongCinema">강동</router-link></li>
-                        <li><router-link to="/KonkukCinema">건대 입구</router-link></li>
+                        <li><router-link to="/KonkukCinema">건대입구</router-link></li>
                       </ul>
                     </li>
                     <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown"
+                      <router-link to="/theaterBusan" class="dropdown-toggle" data-toggle="dropdown"
                         >부산<i class="ion-ios-arrow-forward"></i
-                      ></a>
+                      ></router-link>
                       <ul class="dropdown-menu level2">
                         <li><router-link to="/SeomyeonCinema">서면</router-link></li>
-                        <li><router-link to="/CentumCinema">센텀 시티</router-link></li>
+                        <li><router-link to="/CentumCinema">센텀시티</router-link></li>
                         <li><router-link to="/BusanCinema">부산대</router-link></li>
                       </ul>
                     </li>
-                  </ul>
-                </li>
-                
-                <li class="dropdown first">
-                  <a class="btn btn-default dropdown-toggle lv1 happy" data-toggle="dropdown" data-hover="dropdown">
-                    시간표<i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </a>
-                  <ul class="dropdown-menu level1">
-                    <li><router-link to="/theaterSeoul">서울</router-link></li>
-                    <li><router-link to="/theaterBusan">부산</router-link></li>
                   </ul>
                 </li>
                 <li><router-link to="/board-admin">test</router-link></li>
