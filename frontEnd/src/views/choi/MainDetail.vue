@@ -137,9 +137,9 @@ import WishlistDataService from "@/services/WishlistDataService";
 export default {
   mounted() {
     custom();
-    this.getWishlist();
     this.changeUrl();
     window.scrollTo({ top: 1300, behavior: "smooth" });
+    this.getWishlist();
   },
   components: {
     SeatView,
