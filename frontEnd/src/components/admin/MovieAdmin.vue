@@ -166,6 +166,7 @@ export default {
       board: false,
       movie: [],
       searchMname: "",
+      selectedValue:[],
 
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지

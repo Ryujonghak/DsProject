@@ -279,8 +279,8 @@ export default {
         this.editQna.qanswer = this.qnaanswer;
         QnaDataService.update(this.editQna.qid, this.editQna)
           .then((response) => {
-            var test = this.editQna;
-            alert(JSON.stringify(test));
+            // var test = this.editQna;
+            // alert(JSON.stringify(test));
             console.log(response.data);
             alert("답변이 완료되었습니다.");
             this.registerQna = false;
