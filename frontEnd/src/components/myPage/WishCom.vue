@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="wishlist != null">
     <!--preloading-->
     <!-- <div id="preloader">
       <img class="logo" src="images/logo1.png" alt="" width="119" height="58" />
@@ -99,12 +99,11 @@
               <span class="grid" data-filter="*"><i class="ion-grid"></i></span>
             </div>
 
-            <div class="flex-wrap-movielist"
-                 v-for="(data, index) in movie" :key="index">
+            <div class="flex-wrap-movielist">
               <!-- 상영작 1 -->
-              <!-- todo: 필터명 2022 -->
               <div
                   class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
+                  v-for="(data, index) in wishlist" :key="index"
               >
                 <img :src="data.posterurln" alt="poster"/>
                 <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
@@ -168,7 +167,7 @@ export default {
   // }),
   data() {
     return {
-      wishlist: [],
+      wishlist: null,
       username: this.$store.state.auth.user.username,
       user: new User(),
       message: "",
@@ -224,6 +223,7 @@ export default {
           .getUsernameMovie(this.$store.state.auth.user.username)
           .then((res) => {
             this.wishlist = res.data;
+            this.totalMovie = this.wishlist.length;
 
             console.log(this.$store.state.auth.user.username);
             console.log(this.$route.params.moviecd);
