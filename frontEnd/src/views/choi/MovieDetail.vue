@@ -173,13 +173,6 @@
                             </ul>
                           </div>
                           <!-- 목록 불러오기 테스트 끝 -->
-                          <div
-                            class="title-hd-sm col-xs-12"
-                            style="padding-left: 0"
-                          >
-                            <h4>누적관객수</h4>
-                          </div>
-                          <div><h1 class="watched-people">2,945,915</h1></div>
                         </div>
 
                         <!-- 오른쪽 사이드 바 시작 -->
@@ -247,40 +240,40 @@
                                 name="reviewStar"
                                 value="5"
                                 id="rate1"
-                                v-model="rurating"
+                                v-model="addReview.rurating"
                               /><label for="rate1">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="4"
                                 id="rate2"
-                                v-model="rurating"
+                                v-model="addReview.rurating"
                               /><label for="rate2">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="3"
                                 id="rate3"
-                                v-model="rurating"
+                                v-model="addReview.rurating"
                               /><label for="rate3">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="2"
                                 id="rate4"
-                                v-model="rurating"
+                                v-model="addReview.rurating"
                               /><label for="rate4">★</label>
                               <input
                                 type="radio"
                                 name="reviewStar"
                                 value="1"
                                 id="rate5"
-                                v-model="rurating"
+                                v-model="addReview.rurating"
                               /><label for="rate5">★</label>
                             </fieldset>
                             <div>
                               <textarea
-                                v-model="rucontent"
+                                v-model="addReview.rucontent"
                                 class="col-auto form-control"
                                 style="fontsize: 91%"
                                 type="text"
@@ -315,7 +308,7 @@
                               <div class="rate-star">
                                 <span
                                   class="rate-star-result"
-                                  v-for="(i, index) in review.rurating"
+                                  v-for="(i, index) in data.rurating"
                                   :key="index"
                                   ><i
                                     class="ion-ios-star"
@@ -461,6 +454,14 @@ export default {
         userStarRating: 2, // 사용자별점
         userReview: "", // 리뷰내용
       },
+
+      addReview: {
+        rid: null,
+        rwuser: "디폴트값",
+        rucontent: "",
+        rurating: 0,
+      },
+      
       starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
       userReview: "",
       userStarRaing: 3,
@@ -519,7 +520,7 @@ export default {
         rwuser: this.addReview.rwuser,
         movienm: this.movie.movienm,
         moviecd: this.movie.moviecd,
-        rating: this.addReview.rurating,
+        rurating: this.addReview.rurating,
         rucontent: this.addReview.rucontent,
       };
 
@@ -532,7 +533,6 @@ export default {
             alert("ㄹㅣ뷰 저장");
             alert(this.addReview.rurating);
             window.location.reload();
-            alert(this.review.rid);
           })
           .catch((e) => {
             alert("리뷰저장 실패");
