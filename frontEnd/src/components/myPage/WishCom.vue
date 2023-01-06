@@ -109,12 +109,18 @@
                 <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
                 <div class="hvr-inner">
                   <router-link to="/reserveTicket">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
+                    예매하기 
                   </router-link>
                 </div>
+                <!-- <router-link :to="'/reserveTicket/' + data.moviecd">
+                    예매하기 <i class="ion-android-arrow-dropright"></i>
+                </router-link> -->
+
                 <!-- 제목 -->
                 <div class="mv-item-infor">
-                  <h6><a href="#">{{ data.movienm }}</a></h6>
+                  <router-link :to="'/allMovie/' + data.moviecd">
+                    <h6><a href="#">{{ data.movienm }}</a></h6>
+                  </router-link>
                   <p class="rate">
                     <i class="ion-android-star"></i><span>{{ data.raiting }}</span> /10
                     <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
@@ -123,22 +129,6 @@
               </div>
             </div>
 
-            <!-- 페이지 -->
-            <!-- <ul class="pagination">
-              <li class="icon-prev">
-                <a href="#"><i class="ion-ios-arrow-left"></i></a>
-              </li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">21</a></li>
-              <li><a href="#">22</a></li>
-              <li class="icon-next">
-                <a href="#"><i class="ion-ios-arrow-right"></i></a>
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -157,8 +147,6 @@ import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
 import User from "@/model/user";
 import WishlistDataService from "@/services/WishlistDataService";
-import MovieDetail from "@/views/choi/MovieDetail.vue";
-import MovieDataService from "@/services/MovieDataService";
 
 export default {
 
@@ -177,47 +165,6 @@ export default {
     };
   },
   methods: {
-    // uploadImage: function () {
-    //   let form = new FormData();
-    //   let image = this.$refs["image"].files[0];
-    //
-    //   form.append("image", image);
-    //
-    //   axios
-    //     .post("/upload", form, {
-    //       header: { "Content-Type": "multipart/form-data" },
-    //     })
-    //     .then(({ data }) => {
-    //       this.images = data;
-    //     })
-    //     .catch((err) => console.log(err));
-    // },
-    // clickInputTag: function () {
-    //   this.$refs["image"].click();
-    // },
-    // getMovie() {
-    //   if (this.wishlist) {
-    //     this.totalMovie = this.wishlist.length;
-    //     console.log("this.totalMovie", this.totalMovie);
-    //     for (let i = 0; i < this.wishlist.length; i++) {
-    //       MovieDataService.getMoviecd(this.wishlist[i].moviecd)
-    //       // MovieDataService.getMoviecd(this.wishlist[1].moviecd)
-    //           .then((response) => {
-    //             // this.movie[i] = response.data[0];
-    //             this.movie[i] = response.data[0];
-    //             console.log("response.data", response.data);
-    //             console.log("this.movie", this.movie);
-    //             // alert(this.movie);
-    //           })
-    //           .catch((e) => {
-    //             console.log(e);
-    //           });
-    //     }
-    //   } else {
-    //
-    //   }
-    //
-    // },
     getWishlist() {
       WishlistDataService
           .getUsernameMovie(this.$store.state.auth.user.username)
