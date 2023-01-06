@@ -437,7 +437,7 @@ export default {
   data() {
     return {
       // 찜하기 기능
-      wishlist: null,
+      wishlist: new Wishlist(),
 
       movie: null,
       review: null,
@@ -592,7 +592,7 @@ export default {
     },
     likeSave() {
       // alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
-      if(this.wishlist == null) {
+      if(this.wishlist.username == undefined) {
         this.wishlist.username = this.$store.state.auth.user.username;
         this.wishlist.moviecd = this.$route.params.moviecd;
         WishlistDataService.create(this.wishlist)
