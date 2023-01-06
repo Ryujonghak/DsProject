@@ -177,7 +177,7 @@ export default {
       this.page = value;
       this.retrieveReview();
     },
-    // select박스 선택시 함수실행
+    // select박스 선택시 함수실행 - 강쥬빈 바보 
     retrieveReview() {
       ReviewDataService.getAll(this.movienm, this.page - 1, this.pageSize)
         .then((response) => {
@@ -260,5 +260,10 @@ button:active {
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
   background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png")
     no-repeat;
+}
+//셀렉트박스 width
+.topbar-filter select{
+  width: 35% !important;
+
 }
 </style>
