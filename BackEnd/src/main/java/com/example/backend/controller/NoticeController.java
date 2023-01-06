@@ -30,6 +30,7 @@ public class NoticeController {
             Pageable pageable = PageRequest.of(page, size);
             Page<Notice> noticePage;
             if (searchSelect.equals("title")) {
+                searchKeyword = "";
                 noticePage = noticeService.findAllByNtitleContainingOrderByInsertTime(searchKeyword, pageable);
             } else {
                 noticePage = noticeService.findAllByNtypeContainingOrderByInsertTime(searchKeyword, pageable);
@@ -63,7 +64,7 @@ public class NoticeController {
         }
     }
 
-    @PutMapping("/notice/{no}")
+    @PutMapping("/notice/{nno}")
     public ResponseEntity<Object> update(@PathVariable Integer nno, @RequestBody Notice notice) {
         try {
             Notice newNotice = noticeService.save(notice);
@@ -75,7 +76,7 @@ public class NoticeController {
         }
     }
 
-    @DeleteMapping("/notice/deletion/{no}")
+    @DeleteMapping("/notice/deletion/{nno}")
     public ResponseEntity<Object> delete(@PathVariable Integer nno) {
         try {
             boolean success = noticeService.removeById(nno);

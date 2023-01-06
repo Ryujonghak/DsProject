@@ -142,7 +142,7 @@ VALUES (SQ_QNA.NEXTVAL,
         '강수빈',
         '문의제목3',
         '문의내용3입니다.',
-        '문의답변3입니다.',
+        null,
         'N',
         TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
         NULL,
@@ -153,7 +153,7 @@ VALUES (SQ_QNA.NEXTVAL,
         '정주희',
         '문의제목4',
         '문의내용4입니다.',
-        '문의답변4입니다.',
+        null,
         'N',
         TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
         NULL,
@@ -234,5 +234,9 @@ VALUES (SQ_RESERVATION.NEXTVAL,
         '20230104',
         'N');
 
+INSERT INTO TB_WISHLIST
+VALUES (SQ_WISHLIST.NEXTVAL,
+        'kang',
+        '20225061');
 
 COMMIT;

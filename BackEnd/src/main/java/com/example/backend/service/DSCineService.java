@@ -1,4 +1,5 @@
 package com.example.backend.service;
+
 import com.example.backend.model.BoxOffice;
 
 import com.example.backend.model.MovieDetail;
@@ -46,26 +47,32 @@ public class DSCineService {
         return page;
     }
 
-    public Page<MovieDetail> findAllByMovienmContaining(String movienm, Pageable pageable)
-    {
+    public Page<MovieDetail> findAllByMovienmContaining(String movienm, Pageable pageable) {
         Page<MovieDetail> page = movieDetailRepository.findAllByMovienmContaining(movienm, pageable);
         return page;
     }
 
-    public Page<BoxOffice> findAllByMovienmContainingBox(String movienm, Pageable pageable)
-    {
+    public Page<BoxOffice> findAllByMovienmContainingBox(String movienm, Pageable pageable) {
         Page<BoxOffice> page = boxOfficeRepositoy.findAllByMovieNmContaining(movienm, pageable);
         return page;
     }
 
-    public Page<MovieDetail> findAllByMovieCdContaitning(String moviecd, Pageable pageable)
-    {
+    public Page<MovieDetail> findAllByMovieCdContaitning(String moviecd, Pageable pageable) {
         Page<MovieDetail> page = movieDetailRepository.findAllByMoviecdContaining(moviecd, pageable);
         return page;
     }
 
-    public Page<BoxOffice> findAllByMoviecdContainingBox(String moviecd, Pageable pageable)
-    {
+    public Page<MovieDetail> findAllByOrderByOpendt(Pageable pageable) {
+        Page<MovieDetail> page = movieDetailRepository.findAllByOrderByOpendt(pageable);
+        return page;
+    }
+
+    public Page<MovieDetail> findAllByOrderByOpendtDesc(Pageable pageable) {
+        Page<MovieDetail> page = movieDetailRepository.findAllByOrderByOpendtDesc(pageable);
+        return page;
+    }
+
+    public Page<BoxOffice> findAllByMoviecdContainingBox(String moviecd, Pageable pageable) {
         Page<BoxOffice> page = boxOfficeRepositoy.findAllByMovieCdContaining(moviecd, pageable);
         return page;
     }
@@ -83,7 +90,7 @@ public class DSCineService {
     }
 
     public boolean removeById(Integer id) {
-        if(movieDetailRepository.existsById(id) == true) {
+        if (movieDetailRepository.existsById(id) == true) {
             movieDetailRepository.deleteById(id);
             return true;
         } else {
