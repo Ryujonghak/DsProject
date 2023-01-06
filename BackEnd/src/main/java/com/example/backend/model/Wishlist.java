@@ -44,6 +44,6 @@ public class Wishlist {
     private String posterurln;
 
     @Column(columnDefinition = "VARCHAR2")
-    private String raiting;
+    private Double raiting;
 
 }

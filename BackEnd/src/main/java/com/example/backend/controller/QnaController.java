@@ -62,7 +62,7 @@ public class QnaController {
             //페이지 객체 정의
             Pageable pageable = PageRequest.of(page, size);
             Page<Qna> qnaPage;
-            if (searchSelect.equals("title")) {
+            if (searchSelect.equals("writer")) {
                 if (searchKeyword == null) {
                     searchKeyword = "";
                     qnaPage = qnaService.findAllByQtitleContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
@@ -72,9 +72,9 @@ public class QnaController {
             } else {
                 if (searchKeyword == null) {
                     searchKeyword = "";
-                    qnaPage = qnaService.findAllByQwriterContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
+                    qnaPage = qnaService.findAllByQtitleContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
                 } else {
-                    qnaPage = qnaService.findAllByQwriterContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
+                    qnaPage = qnaService.findAllByQtitleContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
                 }
             }
 //            Map 자료구조에 넣어 전송함.
