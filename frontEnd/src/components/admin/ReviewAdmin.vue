@@ -261,4 +261,9 @@ button:active {
   background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png")
     no-repeat;
 }
+//셀렉트박스 width
+.topbar-filter select{
+  width: 35% !important;
+
+}
 </style>

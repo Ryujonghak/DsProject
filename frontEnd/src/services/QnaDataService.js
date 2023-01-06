@@ -17,10 +17,10 @@ class QnaDataService {
         return http.get(`/qna/list`)
     }
 
-    // qno 번호로 조회 요청 함수 ---**********
+    // qid 번호로 조회 요청 함수 ---**********
     // get 방식 통신 요청 -> @GetMapping("/api/qna/{qno}"), @PathVariable
-    get(qno) {
-        return http.get(`/qna/${qno}`)
+    get(qid) {
+        return http.get(`/qna/${qid}`)
     }
 
     // 이름으로 조회 요청 함수 : TODO: 0102 추가_정주희
