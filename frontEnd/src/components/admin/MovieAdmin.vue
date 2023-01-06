@@ -75,13 +75,15 @@
               <div class="row ipad-width2">
                 <div class="col-md-8 col-sm-12 col-xs-12">
                   <div class="topbar-filter">
+                    <div class="fiter" style="width:40% !important;">
                     <label>Sort by:</label>
                     <select v-model="selectedValue" v-on:change="getMovieDesc()">
                       <option value="" selected>전체보기</option>
                       <option value="dateDesc" >Release date Descending</option>
                       <option value="dateAsc" >Release date Ascending</option>
                     </select>
-                    <button class="regbtn" style="width: 15%">
+                  </div>
+                    <button class="regbtn" style="width: 15%;">
                       <router-link to="/addMovie-admin"
                         >새 영화 등록</router-link
                       >
@@ -280,11 +282,12 @@ h6 {
   box-shadow: none !important;
 }
 .regbtn {
-  margin-top: 2% !important;
+  // margin-top: 2% !important;
   background: rgb(255, 255, 0);
   width: 10%;
   border-radius: 25px;
   padding: 1%;
+  margin-bottom: 1%;
 }
 button {
   border: none !important;
@@ -307,7 +310,7 @@ button:active {
   font-weight: 400;
 }
 .topbar-filter {
-  justify-content: flex-end !important;
+  justify-content: space-between !important;
   border-top: none !important;
 }
 .user-hero {

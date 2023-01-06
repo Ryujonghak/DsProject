@@ -177,7 +177,7 @@ export default {
       this.page = value;
       this.retrieveReview();
     },
-    // select박스 선택시 함수실행
+    // select박스 선택시 함수실행 - 강쥬빈 바보 
     retrieveReview() {
       ReviewDataService.getAll(this.movienm, this.page - 1, this.pageSize)
         .then((response) => {
