@@ -149,7 +149,7 @@
                         type="text"
                         id="name"
                         class="input-text boxing"
-                        v-model="currentNotice.type"
+                        v-model="currentNotice.ntype"
                       />
                     </td>
                     <th scope="row" class="noticelabel">
@@ -164,7 +164,7 @@
                         class="boxing input-text"
                         maxlength="100"
                         placeholder="제목을 입력해주세요."
-                        v-model="currentNotice.title"
+                        v-model="currentNotice.ntitle"
                       />
                     </td>
                   </tr>
@@ -183,7 +183,7 @@
                           title="내용입력"
                           class="input-textarea boxing"
                           placeholder="내용을 입력해주세요."
-                          v-model="currentNotice.content"
+                          v-model="currentNotice.ncontent"
                         ></textarea>
                       </div>
                     </td>
@@ -222,7 +222,7 @@
                         id="name"
                         class="input-text boxing"
                         value
-                        v-model="addnotice.type"
+                        v-model="addnotice.ntype"
                       />
                     </td>
                     <th scope="row" class="noticelabel">
@@ -237,7 +237,7 @@
                         class="boxing input-text"
                         maxlength="100"
                         placeholder="제목을 입력해주세요."
-                        v-model="addnotice.title"
+                        v-model="addnotice.ntitle"
                       />
                     </td>
                   </tr>
@@ -256,7 +256,7 @@
                           title="내용입력"
                           class="input-textarea boxing"
                           placeholder="내용을 입력해주세요."
-                          v-model="addnotice.content"
+                          v-model="addnotice.ncontent"
                         ></textarea>
                       </div>
                     </td>
@@ -306,10 +306,10 @@ export default {
       editData: "",
 
       addnotice: {
-        no: null,
-        title: "",
-        content: "",
-        type: "",
+        nno: null,
+        ntitle: "",
+        ncontent: "",
+        ntype: "",
       },
       submitted: false,
       registerNotice: false, //공지사항 작성폼 vshow
@@ -321,7 +321,7 @@ export default {
       //페이징을 위한 변수 정의
       page: 1,
       count: 0, 
-      pageSize: 3,
+      pageSize: 8,
 
       pageSizes: [3, 6, 9],
     };
@@ -372,13 +372,13 @@ export default {
     // 등록하기 버튼 클릭시 생성
     createNotice() {
       let data = {
-        type: this.addnotice.type,
-        title: this.addnotice.title,
-        content: this.addnotice.content,
+        ntype: this.addnotice.ntype,
+        ntitle: this.addnotice.ntitle,
+        ncontent: this.addnotice.ncontent,
       };
       NoticeDataService.create(data)
         .then((response) => {
-          this.addnotice.no = response.data.no;
+          this.addnotice.nno = response.data.nno;
           console.log(response.data);
           alert("등록되었습니다.");
           window.location.reload();
@@ -395,7 +395,7 @@ export default {
     // Edit 버튼 클릭시 적용
     updateNotice() {
       this.registerNotice = false;
-      NoticeDataService.update(this.currentNotice.no, this.currentNotice)
+      NoticeDataService.update(this.currentNotice.nno, this.currentNotice)
         .then((response) => {
           console.log(response.data);
           alert("업데이트 되었습니다.");
@@ -410,7 +410,7 @@ export default {
     //delete버튼 클릭시 적용
     deleteNotice(data) {
       this.currentNotice = data;
-      NoticeDataService.delete(this.currentNotice.no)
+      NoticeDataService.delete(this.currentNotice.nno)
         .then((response) => {
           console.log(response.data);
           alert("삭제되었습니다.");

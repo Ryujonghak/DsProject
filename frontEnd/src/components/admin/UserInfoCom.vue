@@ -221,7 +221,7 @@ export default {
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
       count: 0, // 전체 데이터 건수
-      pageSize: 5, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
 
       pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
     };
@@ -259,13 +259,10 @@ export default {
     deleteUser() {
       UserService.delete(this.currentUser.id)
         .then((response) => {
-          alert("성공");
           console.log(response.data);
-          alert(this.currentUser.id)
-          // window.location.reload();
+          window.location.reload();
         })
         .catch((e) => {
-          alert("실패");
           console.log(e);
           window.location.reload();
         });
