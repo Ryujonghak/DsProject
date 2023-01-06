@@ -1,3 +1,4 @@
+<!--<script src="../../services/MovieDataService.js"></script>-->
 <template>
   <div>
     <!--preloading-->
@@ -15,7 +16,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>{{ CurrentUser.name }}’s wish</h1>
+              <h1>{{ user.name }}’s wish</h1>
               <ul class="breadcumb">
                 <li class="active">
                   <router-link to="/">Home</router-link>
@@ -37,8 +38,8 @@
             <div class="user-information">
               <div class="user-img">
                 <!-- src="images/uploads/user-img.png" -->
-                <img class="profileImg" src="@/assets/images_choi/Views/choi/MovieDetail/user.png" alt="" />
-                <br />
+                <img class="profileImg" src="@/assets/images_choi/Views/choi/MovieDetail/user.png" alt=""/>
+                <br/>
               </div>
               <div class="user-fav">
                 <ul>
@@ -48,11 +49,11 @@
                   <!-- 프로필 로그인 정보 표시 시작-->
                   <li style="color: white">
                     <strong style="color: white">이름 </strong>
-                    <label>{{ CurrentUser.name }}</label>
+                    <label>{{ user.name }}</label>
                   </li>
                   <li style="color: white">
                     <strong style="color: white">아이디 </strong>
-                    <label>{{ CurrentUser.username }}</label>
+                    <label>{{ user.username }}</label>
                   </li>
                   <!-- 프로필 로그인 정보 표시 끝 -->
                 </ul>
@@ -80,17 +81,17 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-<!--                  <li><a href="#">Log out</a></li>-->
+                  <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <!-- 공통 왼쪽 메뉴 끝 -->
-    <!-- 오른쪽 본문 내용 -->
-    <div class="col-md-9 col-sm-12 col-xs-12">
+          <!-- 오른쪽 본문 내용 -->
+          <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user" id="portfolio-filters">
-              <p>나의 찜한 영화 <span>8 movies</span> in total</p>
+              <p>나의 찜한 영화 <span>{{ totalMovie }}</span> in total</p>
               <div>
                 <span class="mx-3 active" data-filter="*">ㅇAll Movie </span>
                 <span class="mx-3" data-filter=".2022">ㅇ2022 </span>
@@ -99,13 +100,14 @@
               <span class="grid" data-filter="*"><i class="ion-grid"></i></span>
             </div>
 
-            <div class="flex-wrap-movielist">
+            <div class="flex-wrap-movielist"
+                 v-for="(data, index) in movie" :key="index">
               <!-- 상영작 1 -->
               <!-- todo: 필터명 2022 -->
               <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
+                  class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
               >
-                <img src="images/uploads/mv1.jpg" alt="" />
+                <img :src="data.posterurln" alt="poster"/>
                 <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
                 <div class="hvr-inner">
                   <router-link to="/reserveTicket">
@@ -114,144 +116,9 @@
                 </div>
                 <!-- 제목 -->
                 <div class="mv-item-infor">
-                  <h6><a href="#">oblivion</a></h6>
+                  <h6><a href="#">{{ data.movienm }}</a></h6>
                   <p class="rate">
-                    <i class="ion-android-star"></i><span>8.1</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-
-              <!-- 상영작 2 -->
-              <!-- todo: 필터명 2023 -->
-              <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2023"
-              >
-                <img src="images/uploads/mv2.jpg" alt="" />
-                <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
-                </div>
-                <div class="mv-item-infor">
-                  <h6><a href="#">into the wild</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>7.8</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 3 -->
-              <!-- todo: 필터명 2022 -->
-              <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
-              >
-                <img src="images/uploads/mv-item3.jpg" alt="" />
-                <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
-                </div>
-                <div class="mv-item-infor">
-                  <h6><a href="#">Die hard</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>7.4</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 4 -->
-              <!-- todo: 필터명 2023 -->
-              <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2023"
-              >
-                <img src="images/uploads/mv-item4.jpg" alt="" />
-                <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
-                </div>
-                <div class="mv-item-infor">
-                  <h6><a href="#">The walk</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>7.4</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 5 -->
-              <!-- todo: 필터명 2022 -->
-              <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
-              >
-                <img src="images/uploads/mv3.jpg" alt="" />
-                <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
-                </div>
-                <div class="mv-item-infor">
-                  <h6><a href="#">blade runner </a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>7.3</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 6 -->
-              <!-- todo: 필터명 2022 -->
-              <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
-              >
-                <img src="images/uploads/mv4.jpg" alt="" />
-                <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
-                </div>
-                <div class="mv-item-infor">
-                  <h6><a href="#">Mulholland pride</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>7.2</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 7 -->
-              <!-- todo: 필터명 2023 -->
-              <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2023"
-              >
-                <img src="images/uploads/mv5.jpg" alt="" />
-                <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
-                </div>
-                <div class="mv-item-infor">
-                  <h6><a href="#">skyfall: evil of boss</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>7.0</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-
-              <!-- 상영작 8 -->
-              <!-- todo: 필터명 2022 -->
-              <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
-              >
-                <img src="images/uploads/mv-item1.jpg" alt="" />
-                <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
-                </div>
-                <div class="mv-item-infor">
-                  <h6><a href="#">Interstellar</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>7.4</span> /10
+                    <i class="ion-android-star"></i><span>{{ data.raiting }}</span> /10
                     <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
                   </p>
                 </div>
@@ -291,18 +158,24 @@
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
 import User from "@/model/user";
+import WishlistDataService from "@/services/WishlistDataService";
+import MovieDetail from "@/views/choi/MovieDetail.vue";
+import MovieDataService from "@/services/MovieDataService";
 
 export default {
-  
+
   // data: () => ({
   //   images: "",
   // }),
   data() {
     return {
       wishlist: [],
-      username : this.$store.state.auth.user.username,
+      username: this.$store.state.auth.user.username,
       user: new User(),
       message: "",
+      movie: [],
+      totalMovie: 0,
+
     };
   },
   methods: {
@@ -324,20 +197,57 @@ export default {
     // clickInputTag: function () {
     //   this.$refs["image"].click();
     // },
+    // getMovie() {
+    //   if (this.wishlist) {
+    //     this.totalMovie = this.wishlist.length;
+    //     console.log("this.totalMovie", this.totalMovie);
+    //     for (let i = 0; i < this.wishlist.length; i++) {
+    //       MovieDataService.getMoviecd(this.wishlist[i].moviecd)
+    //       // MovieDataService.getMoviecd(this.wishlist[1].moviecd)
+    //           .then((response) => {
+    //             // this.movie[i] = response.data[0];
+    //             this.movie[i] = response.data[0];
+    //             console.log("response.data", response.data);
+    //             console.log("this.movie", this.movie);
+    //             // alert(this.movie);
+    //           })
+    //           .catch((e) => {
+    //             console.log(e);
+    //           });
+    //     }
+    //   } else {
+    //
+    //   }
+    //
+    // },
+    getWishlist() {
+      WishlistDataService
+          .getUsernameMovie(this.$store.state.auth.user.username)
+          .then((res) => {
+            this.wishlist = res.data;
 
+            console.log(this.$store.state.auth.user.username);
+            console.log(this.$route.params.moviecd);
+            // console.log(res.data);
+            console.log("wishlist: ", this.wishlist);
+            // alert("get");
+            // this.getMovie();
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    },
     getUser() {
-      // 종학이 백엔드 데이터 받는 함수
-      username = this.$store.state.auth.user.username;
-      // username = "forbob";
-      console.log(username);
+      // username = this.$store.state.auth.user.username;
+      console.log("username: " + this.username);
       userService
-        .getUserUsername(username)
-        .then((response) => {
-          this.user = response.data.user;
-          console.log(this.CurrentUser);
-          // console.log(response.data);
-        })
-        .catch((err) => console.log(err));
+          .getUserUsername(this.username)
+          .then((response) => {
+            this.user = response.data;
+            console.log("getUser this.user: ", this.user);
+            // console.log("getUser response.data: ", response.data);
+          })
+          .catch((err) => console.log(err));
     },
     // 로그아웃 함수 -> 공통함수 호출
     logout() {
@@ -349,6 +259,7 @@ export default {
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
+    this.getWishlist();
 
     // TODO:  isotope
     $(".flex-wrap-movielist").imagesLoaded(function () {
@@ -377,8 +288,7 @@ export default {
 <style scoped>
 /* 배경이미지 : 아리걸로 통일 */
 .user-hero {
-  background: url(@/assets/images_jung/movie-theater02.jpg)
-  no-repeat;
+  background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
   /* height: 598px; */
   width: 100%;
 }
@@ -395,7 +305,13 @@ export default {
 }
 
 /* TODO: 탑버튼 추가 */
-.topbutton{
-    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
 }
 </style>

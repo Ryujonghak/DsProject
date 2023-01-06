@@ -37,4 +37,13 @@ public class Wishlist {
     @Column(columnDefinition = "VARCHAR2")
     private String moviecd;
 
+    @Column(columnDefinition = "VARCHAR2")
+    private String movienm;
+
+    @Column(columnDefinition = "VARCHAR2")
+    private String posterurln;
+
+    @Column(columnDefinition = "VARCHAR2")
+    private String raiting;
+
 }

@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 
 /**
  * packageName : com.example.dscine.repository
@@ -33,6 +35,8 @@ public interface MovieDetailRepository extends JpaRepository<MovieDetail, Intege
     Page<MovieDetail> findAllByOrderByOpendt(Pageable pageable);
 
     Page<MovieDetail> findAllByOrderByOpendtDesc(Pageable pageable);
+
+    List<MovieDetail> findAllByMoviecd(String moviecd);
 
 
 
