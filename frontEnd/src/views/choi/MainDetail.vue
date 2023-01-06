@@ -35,9 +35,24 @@
                             <router-link :to="'/allMovie/' + currentMovie.moviecd" class="parent-btn"
                               ><i class="ion-play"></i>상세보기 ></router-link
                             >
-                            <a href="#" class="parent-btn" @click="likeSave"
-                              ><i class="ion-heart"></i>찜하기</a
+<!--                            <a href="#" class="parent-btn" @click="likeSave"-->
+<!--                              ><i class="ion-ios-heart-outline"></i>찜하기</a-->
+<!--                            >-->
+
+                            <a
+                                v-show="wishlist.username == null"
+                                class="parent-btn"
+                                @click="likeSave"
+                            ><i class="ion-ios-heart-outline"></i>찜하기</a
                             >
+                            <a
+                                v-show="wishlist.username != null"
+                                class="parent-btn"
+                                @click="likeSave"
+                            ><i class="ion-ios-heart"></i>찜하기 완료</a
+                            >
+
+
                             <a href="#" class="parent-btn" id="sh-link"
                               ><i class="ion-android-share-alt"></i>공유하기</a
                             >
@@ -117,9 +132,12 @@
 /* eslint-disable */
 import custom from "@/assets/js/custom.js";
 import SeatView from "@/views/kim/SeatView.vue";
+import Wishlist from "@/model/Wishlist";
+import WishlistDataService from "@/services/WishlistDataService";
 export default {
   mounted() {
     custom();
+    this.getWishlist();
     this.changeUrl();
     window.scrollTo({ top: 1300, behavior: "smooth" });
   },
@@ -129,6 +147,7 @@ export default {
   props: ["movieProps"],
   data() {
     return {
+      wishlist: [],
       seatPage: false,
       currentMovie: this.movieProps,
       changedUrl: "",
@@ -150,7 +169,62 @@ export default {
         "&autoplay=1&mute=1";
     },
     likeSave() {
-      alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
+      // alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
+      if (this.wishlist.username == null) {
+        alert("get")
+        this.wishlist = new Wishlist();
+        this.wishlist.username = this.$store.state.auth.user.username;
+        this.wishlist.moviecd = this.currentMovie.moviecd;
+        this.wishlist.movienm = this.currentMovie.movienm;
+        this.wishlist.posterurln = this.currentMovie.posterurln;
+        this.wishlist.raiting = this.currentMovie.raiting;
+        this.wishlist.prdtyear = this.currentMovie.prdtyear;
+
+
+        WishlistDataService.create(this.wishlist)
+            .then((res) => {
+              this.wishlist = res.data;
+              console.log("wishlist: ", this.wishlist);
+              alert("create");
+              // this.getWishlist();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+      } else {
+        WishlistDataService.delete(this.wishlist.wid)
+            .then((res) => {
+              console.log(res.data);
+              alert("Delete");
+              this.getWishlist();
+              // alert(this.wishlist);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+      }
+    },
+    getWishlist() {
+      WishlistDataService.get(
+          this.$store.state.auth.user.username,
+          this.currentMovie.moviecd
+      )
+          .then((res) => {
+            if (!res.data) {
+              this.wishlist = new Wishlist();
+            } else {
+              this.wishlist = res.data[0];
+            }
+
+            console.log(this.$store.state.auth.user.username);
+            console.log(this.$route.params.moviecd);
+            // console.log(res.data);
+            console.log("wishlist: ", this.wishlist);
+            // alert("get");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     },
   },
 };
