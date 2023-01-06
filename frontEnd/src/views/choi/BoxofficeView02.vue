@@ -5,12 +5,18 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>박스오피스 무비차트</h1>
-              <ul class="breadcumb">
+              <h1>BOXOFFICE MOVIE CHART</h1>
+              <!-- <ul class="breadcumb">
                 <li class="active"><a href="#">Home</a></li>
                 <li>
                   <span class="ion-ios-arrow-right"></span> celebrity listing
                 </li>
+              </ul> -->
+              <ul class="breadcumb">
+                <li class="active">
+                  <router-link to="/">Home</router-link>
+                </li>
+                <li><span class="ion-ios-arrow-right"></span>BOXOFFICE</li>
               </ul>
             </div>
           </div>
@@ -101,7 +107,7 @@
         </div>
         <!-- end of  blog detail section-->
         <!-- celebrity list section-->
-        <div class="col-xs-4" style="padding-right: 3%;">
+        <div class="col-xs-4" style="padding-right: 3%">
           <div>
             <div>
               <div>
@@ -111,13 +117,19 @@
                   </div>
                   <div>
                     <router-link :to="'/allMovie/' + data.movieCd">
-                      <div class="ceb-item-style-2" style="background-color:#020d18">
+                      <div
+                        class="ceb-item-style-2"
+                        style="background-color: #020d18"
+                      >
                         <img
                           src="https://ssl.pstatic.net/imgmovie/mdi/mit500/2154/215466_P01_135602.jpg"
                           alt=""
-                          style="width: 16.5%;"
+                          style="width: 16.5%"
                         />
-                        <div class="ceb-infor" style="background-color:#020d18">
+                        <div
+                          class="ceb-infor"
+                          style="background-color: #020d18"
+                        >
                           <h2>
                             <a href="celebritysingle.html">{{
                               data.movieNm
