@@ -38,11 +38,11 @@
               <div class="user-img">
                 <!-- src="images/uploads/user-img.png" -->
                 <img
-                    class="profileImg"
-                    src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
-                    alt=""
+                  class="profileImg"
+                  src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                  alt=""
                 />
-                <br/>
+                <br />
               </div>
               <div class="user-fav">
                 <ul>
@@ -108,40 +108,52 @@
             </div>
 
             <div class="myqnaArea">
-            <!-- 모든 qna -->
-            <table class="qnabox">
-              <colgroup>
-                <col style="width: 20px"/>
-                <col style="width: 40px"/>
-                <col style="width: 60px"/>
-                <col style="width: 15px"/>
-              </colgroup>
-              <thead>
-              <tr>
-                <th class="myqna" scope="row"><label for="name">제목</label></th>
-                <th class="myqna" scope="row"><label for="name">문의</label></th>
-                <th class="myqna" scope="row"><label for="name">답변</label></th>
-                <th class="myqna" scope="row"><label for="name">문의삭제</label></th>
-              </tr>
-              </thead>
-              <!-- data의 qna[] 배열 안의 qna에서 totalItems까지 다 담아옴 그래서 qna.qna -->
-              <tbody v-for="(data, index) in qna.qna" :key="index">
-              <!-- <tbody v-for="(data, index) in myqna" :key="index"> -->
-              <tr>
-                <td class="myqnaTd">{{ data.qtitle }}</td>
-                <td class="myqnaTd">{{ data.qcontent }}</td>
-                <td class="myqnaTd">{{ data.qanswer }}</td>
-                <td class="myqnaTd"><button class="deletebtn" @click="deletebtn(data.qid)">Delete</button></td>
+              <!-- 모든 qna -->
+              <table class="qnabox">
+                <colgroup>
+                  <col style="width: 20px" />
+                  <col style="width: 40px" />
+                  <col style="width: 60px" />
+                  <col style="width: 15px" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="myqna" scope="row">
+                      <label for="name">제목</label>
+                    </th>
+                    <th class="myqna" scope="row">
+                      <label for="name">문의</label>
+                    </th>
+                    <th class="myqna" scope="row">
+                      <label for="name">답변</label>
+                    </th>
+                    <th class="myqna" scope="row">
+                      <label for="name">문의삭제</label>
+                    </th>
+                  </tr>
+                </thead>
+                <!-- data의 qna[] 배열 안의 qna에서 totalItems까지 다 담아옴 그래서 qna.qna -->
+                <tbody v-for="(data, index) in qna.qna" :key="index">
+                  <!-- <tbody v-for="(data, index) in myqna" :key="index"> -->
+                  <tr>
+                    <td class="myqnaTd">{{ data.qtitle }}</td>
+                    <td class="myqnaTd">{{ data.qcontent }}</td>
+                    <td class="myqnaTd">{{ data.qanswer }}</td>
+                    <td class="myqnaTd">
+                      <button class="deletebtn" @click="deletebtn(data.qid)">
+                        Delete
+                      </button>
+                    </td>
 
-                <!-- <td class="myqnaTd">{{ data.qwriter }}</td> -->
-                <!-- <td>
+                    <!-- <td class="myqnaTd">{{ data.qwriter }}</td> -->
+                    <!-- <td>
                   <router-link :to="'/qna/select/' + data.name"
                     ><span class="badge bg-success">Edit</span></router-link
                   >
                 </td> -->
-              </tr>
-              </tbody>
-            </table>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
             <!-- 페이징처리-->
@@ -159,66 +171,72 @@
               @change="handlePageChange"
             ></b-pagination>
 
-
-                        <!-- TODO: 추가문의 시작 -->
-                        <div class="buttonArea">
-            <a href="#" class="redbtn" @click="addQna()">추가문의</a>
+            <!-- TODO: 추가문의 시작 -->
+            <div class="buttonArea">
+              <a href="#" class="redbtn" @click="addQna()">추가문의</a>
             </div>
 
             <div class="addqnaArea" v-show="addform">
-            <!-- qna 추가 -->
-             <table class="qnabox2">
-               <colgroup>
-                 <col style="width: 120px"/>
-                 <col/>
-                 <col style="width: 120px"/>
-                 <col/>
-               </colgroup>
-               <tbody>
-               <tr>
-                 <th scope="row">
-                   |
-                   <label for="name">제목</label>
-                 </th>
-                 <td><input  type="text"
-                  name="title"
-                  id="qnaTitle"
-                  class="boxing input-text"
-                  maxlength="100"
-                  placeholder="제목을 입력해주세요."
-                  v-model="qna.qtitle"/></td>
-               </tr>
-               <tr>
-                 <th scope="row">
-                   |
-                   <label for="textarea">내용</label>
-                 </th>
-                 <td colspan="3" class="textarea">
-                   <textarea id="textarea"
-                    name="content"
-                    title="내용입력"
-                    rows="5"
-                    class="input-textarea boxing"
-                    placeholder="내용을 입력해주세요."
-                    v-model="qna.qcontent">
-                    </textarea>
-                 </td>
-               </tr>
-               </tbody>
-             </table>
-             <div class="button">
-              <a type="submit" class="redbtn" @click="createQna()">전송하기</a>
-             </div>
+              <!-- qna 추가 -->
+              <table class="qnabox2">
+                <colgroup>
+                  <col style="width: 120px" />
+                  <col />
+                  <col style="width: 120px" />
+                  <col />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      |
+                      <label for="name">제목</label>
+                    </th>
+                    <td>
+                      <input
+                        type="text"
+                        name="title"
+                        id="qnaTitle"
+                        class="boxing input-text"
+                        maxlength="100"
+                        placeholder="제목을 입력해주세요."
+                        v-model="qna.qtitle"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      |
+                      <label for="textarea">내용</label>
+                    </th>
+                    <td colspan="3" class="textarea">
+                      <textarea
+                        id="textarea"
+                        name="content"
+                        title="내용입력"
+                        rows="5"
+                        class="input-textarea boxing"
+                        placeholder="내용을 입력해주세요."
+                        v-model="qna.qcontent"
+                      >
+                      </textarea>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="button">
+                <a type="submit" class="redbtn" @click="createQna()"
+                  >전송하기</a
+                >
+              </div>
             </div>
             <!-- TODO: 추가문의 끝 -->
-
           </div>
         </div>
       </div>
     </div>
     <!-- TODO: 탑버튼 추가 -->
     <a class="topbutton" href="#">
-      <img src="@/assets/images_jung/iconUp_48.png"/>
+      <img src="@/assets/images_jung/iconUp_48.png" />
     </a>
   </div>
 </template>
@@ -237,44 +255,47 @@ export default {
     return {
       username: this.$store.state.auth.user.username,
       // 사용자 정보 받아오기
-      user: new User,
+      user: new User(),
       // AddQna 받아오기
       qna: [],
       myqna: {
-        qwriter:"",
-        qtitle:"",
-        qcontent:"",
-      },  // TODO: qna 가져와서 searchkeyword에 유저 이름 넣어서 myqna에 넣고 싶음
+        qwriter: "",
+        qtitle: "",
+        qcontent: "",
+      },
 
       // AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       submitted: true,
-      searchSelect: "writer", // 기본값
-      // searchKeyword: "" ,       
-      searchKeyword: "" ,        // 검색어 TODO:
+      // 빈 값으로 넘겨도 기본 값 writer로 검색
+      searchSelect: "", // 기본값
+      // searchKeyword: "" ,
+      searchKeyword: "", // 검색어
 
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,
       pageSize: 5,
       pageSizes: [5, 10, 15],
-      // 검색 기능
-      // searchStatue: "",
 
       addform: false,
     };
   },
   methods: {
+    // 백엔드 데이터 받는 함수 + username으로 qna 조회
     getUser() {
       // username = this.$store.state.auth.user.username;
       console.log("username: " + this.username);
       userService
-          .getUserUsername(this.username)
-          .then((response) => {
-            this.user = response.data;
-            console.log("getUser this.user: ", this.user);
-            console.log("getUser response.data: ", response.data);
-          })
-          .catch((err) => console.log(err));
+        .getUserUsername(this.username)
+        .then((response) => {
+          this.user = response.data;
+          this.searchKeyword = this.user.name;  // 사용자이름으로 qna 검색
+          console.log("getUser this.user: ", this.user);
+          console.log("getUser response.data: ", response.data);
+          // FIXME: user 정보 가져오는걸 성공하면 this.searchKeyword = this.user.name; 이렇게 값 넣고 함수 실행!
+          this.getQna();
+        })
+        .catch((err) => console.log(err));
     },
     // 로그아웃 함수 -> 공통함수 호출
     logout() {
@@ -294,18 +315,21 @@ export default {
     //       })
     //       .catch((err) => console.log(err));
     // },
-    // 내꺼만 조회하기로 작성중 FIXME: 백엔드 업뎃하고 다시해보기
+    // 내꺼만 조회하기
     getQna() {
       qnaDataService
-          .getAll(this.searchSelect, this.searchKeyword, this.page - 1,
-              this.pageSize)
-          .then(response => {
-            console.log("getQna response.data: ", response.data);
-            this.searchKeyword = this.user.name;
-            this.qna = response.data; // data 안에서 qna만 표시
-            console.log("myqna: ", this.myqna);
-          })
-          .catch((err) => console.log(err));
+        .getAll(
+          this.searchSelect,
+          this.searchKeyword,     // 로그인하면 searchKeyword값에 이름 들어감
+          this.page - 1,
+          this.pageSize
+        )
+        .then((response) => {
+          console.log("getQna response.data: ", response.data);
+          this.qna = response.data; // data 안에서 qna만 표시
+          console.log("myqna: ", this.myqna);
+        })
+        .catch((err) => console.log(err));
     },
 
     // 페이지 출력 갯수 변경
@@ -316,15 +340,16 @@ export default {
 
     // 삭제
     deletebtn(qid) {
-      qnaDataService.delete(qid)
-      .then(response => {
-        console.log(response.data);
-        alert("문의사항이 삭제되었습니다.");
-        this.$router.push("/mypage");
-      })
-      .catch(e=> {
-        console.log(e);
-      });
+      qnaDataService
+        .delete(qid)
+        .then((response) => {
+          console.log(response.data);
+          alert("문의사항이 삭제되었습니다.");
+          this.$router.push("/mypage");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     addQna() {
       this.addform = !this.addform;
@@ -334,9 +359,10 @@ export default {
       let data = {
         qwriter: this.user.name,
         qtitle: this.qna.qtitle,
-        qcontent:this.qna.qcontent
+        qcontent: this.qna.qcontent,
       };
-      qnaDataService.create(data)
+      qnaDataService
+        .create(data)
         // 성공하면 then() 결과가 전송됨
         .then((response) => {
           this.qna.qwriter = response.data.qwriter;
@@ -349,12 +375,13 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-    }
+    },
   },
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
-    this.getQna();  
+    // FIXME: 언니 원래 여기서 QNA까지 실행했었는데 그렇게 하니까 searchKeyword이 유저함수에서 값을 늦게 받아오는 경우가 생겨서 그냥 유저 받아오는거 성공하면 바로 QNA함수 실행되도록 안에 넣어뒀어!
+    // this.getQna();
   },
 };
 </script>
@@ -367,16 +394,15 @@ export default {
   height: auto;
   border-block-color: none;
 }
-.qnabox2{
+.qnabox2 {
   color: #fff;
 }
-
 
 .qna {
   background: black;
 }
 
-.buttonArea{
+.buttonArea {
   padding-top: 30px;
   padding-bottom: 50px;
 }
@@ -447,13 +473,18 @@ tbody {
 }
 
 /* TODO: 탑버튼 추가 */
-.topbutton{
-    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
 }
 
-
 /* qna 보기 표 디자인 */
-.myqnaArea{
+.myqnaArea {
   height: 300px;
 }
 .myqna {
