@@ -30,6 +30,11 @@ public interface MovieDetailRepository extends JpaRepository<MovieDetail, Intege
     Page<MovieDetail> findAllByMovienmContaining(String movienm, Pageable pageable);
     Page<MovieDetail> findAllByMoviecdContaining(String moviecd, Pageable pageable);
 
+    Page<MovieDetail> findAllByOrderByOpendt(Pageable pageable);
+
+    Page<MovieDetail> findAllByOrderByOpendtDesc(Pageable pageable);
+
+
 
 
     @Query(value = "select * from DETAIL_MOVIE", nativeQuery = true)

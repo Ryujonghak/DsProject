@@ -128,6 +128,74 @@ public class DSCineController {
         }
     }
 
+    @GetMapping("/movie/asc") // 무비목록 개봉일순
+    public ResponseEntity<Object> findAllByOrderByOpendt(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        try {
+//          Pageable객체 정의
+            Pageable pageable = PageRequest.of(page, size);
+
+//           PAGE 객체 정의
+            Page<MovieDetail> movieDetailpage = dsCineService.findAllByOrderByOpendt(pageable);
+
+            // MAP에 넣어서 Client에 전송.
+            Map<String, Object> response = new HashMap<>();
+            response.put("MovieDetail", movieDetailpage.getContent());
+            response.put("currentPage", movieDetailpage.getNumber());
+            response.put("totalItems", movieDetailpage.getTotalElements());
+            response.put("totalPages", movieDetailpage.getTotalPages());
+
+            if (movieDetailpage.isEmpty() == false) {
+//                데이터 + 성공 메세지 전송
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+//                데이터 없음 메세지 전송(클라이언트)
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            // 서버에러 발생 메세지 전송(클라이언트)
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/movie/desc") // 무비목록 개봉일역순
+    public ResponseEntity<Object> findAllByOrderByOpendtDesc(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        try {
+//          Pageable객체 정의
+            Pageable pageable = PageRequest.of(page, size);
+
+//           PAGE 객체 정의
+            Page<MovieDetail> movieDetailpage = dsCineService.findAllByOrderByOpendtDesc(pageable);
+
+            // MAP에 넣어서 Client에 전송.
+            Map<String, Object> response = new HashMap<>();
+            response.put("MovieDetail", movieDetailpage.getContent());
+            response.put("currentPage", movieDetailpage.getNumber());
+            response.put("totalItems", movieDetailpage.getTotalElements());
+            response.put("totalPages", movieDetailpage.getTotalPages());
+
+            if (movieDetailpage.isEmpty() == false) {
+//                데이터 + 성공 메세지 전송
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+//                데이터 없음 메세지 전송(클라이언트)
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            // 서버에러 발생 메세지 전송(클라이언트)
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @GetMapping("/movie/cd")
     public ResponseEntity<Object> findbyMovieCd(@RequestParam(required = false) String moviecd,

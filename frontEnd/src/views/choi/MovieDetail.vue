@@ -15,7 +15,7 @@
           <!-- 왼쪽 사이드 바 시작 -->
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="movie-img">
-              <img :src="movie.posterurln" alt="poster" style="width:314px;height:450px;"/>
+              <img :src="movie.posterurln" alt="poster"/>
               <div class="movie-btn">
                 <div class="btn-transform transform-vertical red">
                   <div>
@@ -26,9 +26,9 @@
                   <div>
                     <!-- TODO: 유튜브 URL, 영화 이름, 예매 페이지 연결 등 백엔드 데이터 받아와야 하는 곳 -->
                     <a
-                      :href="movie.utubeurl"
-                      class="item item-2 redbtn fancybox-media hvr-grow"
-                      ><i class="ion-play"></i
+                        :href="movie.utubeurl"
+                        class="item item-2 redbtn fancybox-media hvr-grow"
+                    ><i class="ion-play"></i
                     ></a>
                   </div>
                 </div>
@@ -40,7 +40,7 @@
                   </div>
                   <div>
                     <a href="/test01" class="item item-2 yellowbtn"
-                      ><i class="ion-card"></i
+                    ><i class="ion-card"></i
                     ></a>
                   </div>
                 </div>
@@ -56,12 +56,15 @@
               </h1>
               <div class="social-btn">
                 <!-- TODO: 찜하기 구현, 클릭하면 데이터를 저장..? 어떻게 구현하는거? 하하하 -->
-                <a href="#" class="parent-btn" @click="likeSave"
-                  ><i class="ion-heart"></i>찜하기</a
+                <a  v-show="!wishlist" class="parent-btn" @click="likeSave"
+                ><i class="ion-heart"></i>찜하기</a
+                >
+                <a  v-show="wishlist" class="parent-btn" @click="likeSave"
+                ><i class="ion-heart"></i>찜하기 완료</a
                 >
                 <!-- <div class="hover-bnt"> -->
                 <a href="#" class="parent-btn" id="sh-link"
-                  ><i class="ion-android-share-alt"></i>공유하기</a
+                ><i class="ion-android-share-alt"></i>공유하기</a
                 >
                 <!-- </div> -->
               </div>
@@ -69,16 +72,16 @@
                 <div class="rate">
                   <i class="ion-android-star"></i>
                   <p>
-                    <span>{{ movie.raiting }}</span> /10<br />
+                    <span>{{ movie.raiting }}</span> /10<br/>
                   </p>
                 </div>
                 <div class="rate-star">
                   <p>별점:</p>
                   <span
-                    class="rate-star-result"
-                    v-for="(i, index) in starRating"
-                    :key="index"
-                    ><i class="ion-ios-star"></i
+                      class="rate-star-result"
+                      v-for="(i, index) in starRating"
+                      :key="index"
+                  ><i class="ion-ios-star"></i
                   ></span>
                 </div>
               </div>
@@ -99,12 +102,12 @@
                         </li>
                         <li>
                           <a class="not-selected" @click="toReview"
-                            >평점 및 관람평</a
+                          >평점 및 관람평</a
                           >
                         </li>
                         <li>
                           <a class="not-selected" @click="toMedia"
-                            >포스터/스틸컷</a
+                          >포스터/스틸컷</a
                           >
                         </li>
                       </ul>
@@ -117,7 +120,7 @@
                             <h4>포스터/스틸컷</h4>
                             <div class="tab-links active">
                               <a href="#media" class="time" @click="toMedia"
-                                >더보기 <i class="ion-ios-arrow-right"></i
+                              >더보기 <i class="ion-ios-arrow-right"></i
                               ></a>
                             </div>
                           </div>
@@ -125,12 +128,12 @@
                           <!-- 이미지 가져오기 test 시작 -->
                           <span class="mvsingle-item ov-item">
                             <a
-                              v-for="(data, index) in tempImgUrl"
-                              :key="index"
-                              class="img-lightbox"
-                              data-fancybox-group="gallery"
-                              :href="data"
-                              ><img
+                                v-for="(data, index) in tempImgUrl"
+                                :key="index"
+                                class="img-lightbox"
+                                data-fancybox-group="gallery"
+                                :href="data"
+                            ><img
                                 class="small-thumnail"
                                 :src="data"
                                 alt="썸네일"
@@ -145,26 +148,33 @@
                           <div class="mvcast-item">
                             <ul class="col-xs-6">
                               <li
-                                class="cast-it"
-                                style="color: #abb7c4"
-                                v-for="(data, index) in movie.actor"
-                                :key="index"
+                                  class="cast-it"
+                                  style="color: #abb7c4"
+                                  v-for="(data, index) in movie.actor"
+                                  :key="index"
                               >
                                 {{ data }}
                               </li>
                             </ul>
                             <ul class="col-xs-6">
                               <li
-                                class="cast-it"
-                                style="color: #abb7c4"
-                                v-for="(data, index) in movie.cast"
-                                :key="index"
+                                  class="cast-it"
+                                  style="color: #abb7c4"
+                                  v-for="(data, index) in movie.cast"
+                                  :key="index"
                               >
                                 {{ data }}
                               </li>
                             </ul>
                           </div>
                           <!-- 목록 불러오기 테스트 끝 -->
+                          <div
+                              class="title-hd-sm col-xs-12"
+                              style="padding-left: 0"
+                          >
+                            <h4>누적관객수</h4>
+                          </div>
+                          <div><h1 class="watched-people">2,945,915</h1></div>
                         </div>
 
                         <!-- 오른쪽 사이드 바 시작 -->
@@ -197,17 +207,17 @@
                       <ul class="tabs-mv tab-bar">
                         <li>
                           <a class="not-selected" @click="toOverview"
-                            >영화정보</a
+                          >영화정보</a
                           >
                         </li>
                         <li>
                           <a class="selected" @click="toReview"
-                            >평점 및 관람평</a
+                          >평점 및 관람평</a
                           >
                         </li>
                         <li>
                           <a class="not-selected" @click="toMedia"
-                            >포스터/스틸컷</a
+                          >포스터/스틸컷</a
                           >
                         </li>
                       </ul>
@@ -220,92 +230,92 @@
                         </div>
                         <div class="rv-hd">
                           <form
-                            class="review-form col-xs-9"
-                            name="myform"
-                            id="myform"
-                            method="post"
+                              class="review-form col-xs-9"
+                              name="myform"
+                              id="myform"
+                              method="post"
                           >
                             <fieldset>
                               <!-- <span class="review-form-style">별점을 선택해주세요</span> -->
                               <input
-                                type="radio"
-                                name="reviewStar"
-                                value="5"
-                                id="rate1"
-                                v-model="addReview.rurating"
+                                  type="radio"
+                                  name="reviewStar"
+                                  value="5"
+                                  id="rate1"
+                                  v-model="rurating"
                               /><label for="rate1">★</label>
                               <input
-                                type="radio"
-                                name="reviewStar"
-                                value="4"
-                                id="rate2"
-                                v-model="addReview.rurating"
+                                  type="radio"
+                                  name="reviewStar"
+                                  value="4"
+                                  id="rate2"
+                                  v-model="rurating"
                               /><label for="rate2">★</label>
                               <input
-                                type="radio"
-                                name="reviewStar"
-                                value="3"
-                                id="rate3"
-                                v-model="addReview.rurating"
+                                  type="radio"
+                                  name="reviewStar"
+                                  value="3"
+                                  id="rate3"
+                                  v-model="rurating"
                               /><label for="rate3">★</label>
                               <input
-                                type="radio"
-                                name="reviewStar"
-                                value="2"
-                                id="rate4"
-                                v-model="addReview.rurating"
+                                  type="radio"
+                                  name="reviewStar"
+                                  value="2"
+                                  id="rate4"
+                                  v-model="rurating"
                               /><label for="rate4">★</label>
                               <input
-                                type="radio"
-                                name="reviewStar"
-                                value="1"
-                                id="rate5"
-                                v-model="addReview.rurating"
+                                  type="radio"
+                                  name="reviewStar"
+                                  value="1"
+                                  id="rate5"
+                                  v-model="rurating"
                               /><label for="rate5">★</label>
                             </fieldset>
                             <div>
                               <textarea
-                                v-model="addReview.rucontent"
-                                class="col-auto form-control"
-                                style="fontsize: 91%"
-                                type="text"
-                                id="reviewContents"
-                                placeholder="평점 및 영화 관람평을 작성해주세요. 주제와 무관한 리뷰 또는 스포일러는 삭제될 수 있습니다."
+                                  v-model="rucontent"
+                                  class="col-auto form-control"
+                                  style="fontsize: 91%"
+                                  type="text"
+                                  id="reviewContents"
+                                  placeholder="평점 및 영화 관람평을 작성해주세요. 주제와 무관한 리뷰 또는 스포일러는 삭제될 수 있습니다."
                               ></textarea>
                             </div>
                           </form>
                           <div class="col-xs-3">
                             <!-- 리뷰 작성 버튼에 함수 걸어주기 -->
                             <a
-                              href="#"
-                              class="redbtn"
-                              style=""
-                              @click="saveReview"
-                              >관람평 작성</a
+                                href="#"
+                                class="redbtn"
+                                style=""
+                                @click="saveReview"
+                            >관람평 작성</a
                             >
                           </div>
                         </div>
                         <div
-                          class="mv-user-review-item"
-                          v-for="(data, index) in review.review"
-                          :key="index"
+                            class="mv-user-review-item"
+                            v-for="(data, index) in review.review"
+                            :key="index"
                         >
                           <div class="user-infor">
                             <img
-                              src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
-                              alt="user"
-                              style="width: 5%"
+                                src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                                alt="user"
+                                style="width: 5%"
                             />
                             <div>
                               <div class="rate-star">
                                 <span
-                                  class="rate-star-result"
-                                  v-for="(i, index) in review.rurating"
-                                  :key="index"
-                                  ><i
+                                    class="rate-star-result"
+                                    v-for="(i, index) in review.rurating"
+                                    :key="index"
+                                ><i
                                     class="ion-ios-star"
                                     style="color: #f5b50a"
-                                  ></i
+                                ></i
                                 ></span>
                               </div>
                               <p class="time" style="fontsize: 100%">
@@ -344,12 +354,12 @@
                       <ul class="tabs-mv tab-bar">
                         <li>
                           <a class="not-selected" @click="toOverview"
-                            >영화정보</a
+                          >영화정보</a
                           >
                         </li>
                         <li>
                           <a class="not-selected" @click="toReview"
-                            >평점 및 관람평</a
+                          >평점 및 관람평</a
                           >
                         </li>
                         <li>
@@ -378,12 +388,12 @@
                             ></span> -->
                             <div class="mvsingle-item ov-item">
                               <a
-                                v-for="(data, index) in movie.imgurl"
-                                :key="index"
-                                class="img-lightbox"
-                                data-fancybox-group="gallery"
-                                :href="data"
-                                ><img
+                                  v-for="(data, index) in movie.imgurl"
+                                  :key="index"
+                                  class="img-lightbox"
+                                  data-fancybox-group="gallery"
+                                  :href="data"
+                              ><img
                                   class="small-thumnail"
                                   :src="data"
                                   alt="썸네일"
@@ -410,6 +420,8 @@
 import custom from "@/assets/js/custom.js";
 import MovieDataService from "@/services/MovieDataService";
 import ReviewDataService from "@/services/ReviewDataService";
+import WishlistDataService from "@/services/WishlistDataService";
+import Wishlist from "@/model/Wishlist";
 
 export default {
   mounted() {
@@ -419,10 +431,14 @@ export default {
     // router/index.js 상세페이지 url의 매개변수명 : :moviecd
     this.getMovie(this.$route.params.moviecd);
     this.getReview(this.$route.params.moviecd);
+    this.getWishlist();
     // this.cutNames();
   },
   data() {
     return {
+      // 찜하기 기능
+      wishlist: null,
+
       movie: null,
       review: null,
 
@@ -456,13 +472,7 @@ export default {
       //   },
       // ],
 
-      addReview: {
-        rid: null,
-        rwuser: "디폴트값",
-        rucontent: "",
-        rurating: 0,
-      },
-
+      rwuser: "최아리",
       rucontent: "",
       rurating: 0,
 
@@ -489,65 +499,65 @@ export default {
     // 영화코드(moviecd)로 조회 요청하는 함수
     getMovie(moviecd) {
       MovieDataService.getMovieDetail(moviecd, this.page - 1, this.pageSize)
-        .then((response) => {
-          this.movie = response.data.MovieDetail[0];
-          console.log(response.data);
-          // alert(this.movie);
+          .then((response) => {
+            this.movie = response.data.MovieDetail[0];
+            console.log(response.data);
+            // alert(this.movie);
 
-          this.movie.actor = this.movie.actor.split(",");
-          this.movie.cast = this.movie.cast.split(",");
-          this.movie.imgurl = this.movie.imgurl.split(",");
-          // 가져온 이미지 url 개수
-          this.imageUrlLength = this.movie.imgurl.length;
-          // 썸네일 이미지 2장만 보이게 설정
-          this.tempImgUrl[0] = this.movie.imgurl[0];
-          this.tempImgUrl[1] = this.movie.imgurl[1];
-          // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
-          this.starRating = Math.floor(this.movie.raiting);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+            this.movie.actor = this.movie.actor.split(",");
+            this.movie.cast = this.movie.cast.split(",");
+            this.movie.imgurl = this.movie.imgurl.split(",");
+            // 가져온 이미지 url 개수
+            this.imageUrlLength = this.movie.imgurl.length;
+            // 썸네일 이미지 2장만 보이게 설정
+            this.tempImgUrl[0] = this.movie.imgurl[0];
+            this.tempImgUrl[1] = this.movie.imgurl[1];
+            // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
+            this.starRating = Math.floor(this.movie.raiting);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
     getReview(moviecd) {
       ReviewDataService.getBycode(moviecd, this.page - 1, this.pageSize)
-        .then((response) => {
-          this.review = response.data;
-          console.log(response.data);
-          // alert(response.data);
+          .then((response) => {
+            this.review = response.data;
+            console.log(response.data);
+            // alert(response.data);
 
-          // var test = this.review;
-          // alert(JSON.stringify(test));
-        })
-        .catch((e) => {
-          alert("리뷰 실패");
-          console.log(e);
-        });
+            // var test = this.review;
+            // alert(JSON.stringify(test));
+          })
+          .catch((e) => {
+            alert("리뷰 실패");
+            console.log(e);
+          });
     },
     saveReview() {
       let data = {
-        rwuser: this.addReview.rwuser,
+        rwuser: this.rwuser,
         movienm: this.movie.movienm,
         moviecd: this.movie.moviecd,
-        rating: this.addReview.rurating,
-        rucontent: this.addReview.rucontent,
+        rating: this.rurating,
+        rucontent: this.rucontent,
       };
 
       ReviewDataService.create(data)
-        .then((response) => {
-          this.addReview.rid = response.data.rid;
-          console.log(response.data);
-          // this.submitted = true;
-          alert("ㄹㅣ뷰 저장");
-          window.location.reload();
-          alert(this.review.rid);
-        })
-        .catch((e) => {
-          alert("리뷰저장 실패");
-          console.log(e);
-          window.location.reload();
-          alert(this.review.rid);
-        });
+          .then((response) => {
+            this.review.rid = response.data.rid;
+            console.log(response.data);
+            // this.submitted = true;
+            alert("ㄹㅣ뷰 저장");
+
+            this.getReview(this.movie.moviecd)
+            this.rucontent = "";
+
+          })
+          .catch((e) => {
+            alert("리뷰저장 실패");
+            console.log(e);
+          });
     },
     toOverview() {
       this.overview = true;
@@ -581,10 +591,50 @@ export default {
       // alert(this.starRating);
     },
     likeSave() {
-      alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
+      // alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
+      if(this.wishlist == null) {
+        this.wishlist.username = this.$store.state.auth.user.username;
+        this.wishlist.moviecd = this.$route.params.moviecd;
+        WishlistDataService.create(this.wishlist)
+            .then(res => {
+              this.wishlist = res.data;
+              console.log("wishlist: ", this.wishlist)
+              alert("create");
+            })
+            .catch(err => {
+              console.log(err);
+            });
+      } else {
+        WishlistDataService.delete(this.wishlist.wid)
+            .then(res => {
+              console.log(res.data);
+              alert("Delete");
+            })
+            .catch(err => {
+              console.log(err);
+            })
+      }
+
     },
-  },
-};
+    getWishlist() {
+      WishlistDataService
+          .get(this.$store.state.auth.user.username, this.$route.params.moviecd)
+          .then((res) => {
+            this.wishlist = res.data;
+
+            console.log(this.$store.state.auth.user.username);
+            console.log(this.$route.params.moviecd);
+            console.log(res.data);
+            console.log("wishlist: ", this.wishlist);
+            alert("get");
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    }
+  }
+}
+;
 </script>
 
 <style scoped>
@@ -604,6 +654,7 @@ export default {
   /* margin-bottom: 15px; */
   /* margin-right: 20px; */
 }
+
 .tab-bar li .not-selected {
   font-family: "Dosis", sans-serif;
   font-size: 18px;
@@ -611,36 +662,42 @@ export default {
   font-weight: bold;
   text-transform: uppercase;
 }
+
 .tab-bar li a:hover {
   color: #dcf836;
 }
+
 .tab-bar li .selected {
   color: #dcf836;
   font-size: 18px;
   padding-bottom: 15px;
   border-bottom: 3px solid #dcf836;
 }
+
 .movie-img {
   position: fixed;
 }
+
 /*movie single hero*/
 /* TODO: 이미지 이걸로 통일하는거 어떤지 물어보기 */
 .mv-single-hero {
-  background: url(@/assets/images_choi/Views/choi/MovieDetail/movie-theater02.jpg)
-    no-repeat;
+  background: url(@/assets/images_choi/Views/choi/MovieDetail/movie-theater02.jpg) no-repeat;
   /* height: 598px; */
   width: 100%;
 }
+
 .watched-people {
   font-size: 500%;
   /* text-align: center; */
   color: grey;
   margin-top: 15%;
 }
+
 .rate-star-result {
   padding: 0%;
   margin: 0%;
 }
+
 .movie-image-box {
   margin-right: 1%;
 }
@@ -653,26 +710,33 @@ export default {
   /* width: 500%; */
   /* height: 300%; */
 }
+
 #myform fieldset legend {
   text-align: right;
 }
+
 #myform input[type="radio"] {
   display: none;
 }
+
 #myform label {
   font-size: 3em;
   color: transparent;
   text-shadow: 0 0 0 #f0f0f0;
 }
+
 #myform label:hover {
   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
+
 #myform label:hover ~ label {
   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
+
 #myform input[type="radio"]:checked ~ label {
   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
+
 #reviewContents {
   width: 100%;
   height: 150px;
@@ -683,18 +747,22 @@ export default {
   font-size: 16px;
   resize: none;
 }
+
 .review-form {
   padding-left: 0%;
   margin-bottom: 5%;
 }
+
 .review-form-style {
   color: #999;
 }
+
 .list {
   text-align: left;
   max-width: 750px;
   margin: auto;
 }
+
 /* .small-thumnail {
   width: 20%;
   height: 50%;

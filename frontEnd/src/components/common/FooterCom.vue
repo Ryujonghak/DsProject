@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- footer section-->
-    <footer class="ht-footer" style="background: black">
+    <footer class="ht-footer col-xs-12" style="background: black">
       <div class="container">
         <div class="flex-parent-ft">
           <div class="flex-child-ft item1">

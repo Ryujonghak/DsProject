@@ -96,9 +96,9 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
               <p>나의 문의내역</p>
-              <select>
-                <option value="range">-- 2022년 --</option>
-                <option value="saab">-- 2021년 --</option>
+              <select class="form-select" v-model="searchSelect">
+                <option>-- name --</option>
+                <option>-- 답변완료 --</option>
               </select>
             </div>
 
@@ -107,54 +107,7 @@
               <h3>문의내역이 없습니다.</h3>
             </div>
 
-            <div class="myqnaArea">
-            <!-- 모든 qna -->
-            <table class="qnabox">
-              <colgroup>
-                <col style="width: 20px"/>
-                <col style="width: 40px"/>
-                <col style="width: 60px"/>
-                <col style="width: 15px"/>
-              </colgroup>
-              <thead>
-              <tr>
-                <th class="myqna" scope="row"><label for="name">이름</label></th>
-                <th class="myqna" scope="row"><label for="name">제목</label></th>
-                <th class="myqna" scope="row"><label for="name">내용</label></th>
-                <th class="myqna" scope="row"><label for="name">삭제</label></th>
-              </tr>
-              </thead>
-              <!-- data의 qna[] 배열 안의 qna에서 totalItems까지 다 담아옴 그래서 qna.qna -->
-              <tbody v-for="(data, index) in qna.qna" :key="index">
-              <tr>
-                <td class="myqnaTd">{{ data.qwriter }}</td>
-                <td class="myqnaTd">{{ data.qtitle }}</td>
-                <td class="myqnaTd">{{ data.qcontent }}</td>
-                <td class="myqnaTd"><button class="deletebtn" @click="deletebtn(data.qid)">Delete</button></td>
-                <!-- <td>
-                  <router-link :to="'/qna/select/' + data.name"
-                    ><span class="badge bg-success">Edit</span></router-link
-                  >
-                </td> -->
-              </tr>
-              </tbody>
-            </table>
-            </div>
-              <!-- total-rows : 전체 데이터 개수 -->
-              <!-- per-page : 1페이지 당 개수 -->
-              <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
-              <b-pagination
-                v-model="page"
-                :total-rows="qna.totalItems"
-                :per-page="pageSize"
-                pills
-                size="sm"
-                prev-text="<"
-                next-text=">"
-                @change="handlePageChange"
-              ></b-pagination>
 
-            
             <!-- TODO: 추가문의 시작 -->
             <div class="buttonArea">
             <a href="#" class="redbtn" @click="addQna()">추가문의</a>
@@ -205,6 +158,57 @@
               <a type="submit" class="redbtn" @click="createQna()">전송하기</a>
              </div>
             </div>
+
+            
+            <div class="myqnaArea">
+            <!-- 모든 qna -->
+            <table class="qnabox">
+              <colgroup>
+                <col style="width: 20px"/>
+                <col style="width: 40px"/>
+                <col style="width: 60px"/>
+                <col style="width: 15px"/>
+              </colgroup>
+              <thead>
+              <tr>
+                <th class="myqna" scope="row"><label for="name">이름</label></th>
+                <th class="myqna" scope="row"><label for="name">제목</label></th>
+                <th class="myqna" scope="row"><label for="name">내용</label></th>
+                <th class="myqna" scope="row"><label for="name">삭제</label></th>
+              </tr>
+              </thead>
+              <!-- data의 qna[] 배열 안의 qna에서 totalItems까지 다 담아옴 그래서 qna.qna -->
+              <tbody v-for="(data, index) in qna.qna" :key="index">
+              <tr>
+                <td class="myqnaTd">{{ data.qwriter }}</td>
+                <td class="myqnaTd">{{ data.qtitle }}</td>
+                <td class="myqnaTd">{{ data.qcontent }}</td>
+                <td class="myqnaTd"><button class="deletebtn" @click="deletebtn(data.qid)">Delete</button></td>
+                <!-- <td>
+                  <router-link :to="'/qna/select/' + data.name"
+                    ><span class="badge bg-success">Edit</span></router-link
+                  >
+                </td> -->
+              </tr>
+              </tbody>
+            </table>
+            </div>
+              <!-- total-rows : 전체 데이터 개수 -->
+              <!-- per-page : 1페이지 당 개수 -->
+              <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
+              <b-pagination
+                v-model="page"
+                :total-rows="qna.totalItems"
+                :per-page="pageSize"
+                pills
+                size="sm"
+                prev-text="<"
+                next-text=">"
+                @change="handlePageChange"
+              ></b-pagination>
+
+            
+      
              
 
 
@@ -242,8 +246,8 @@ export default {
 
       // TODO: AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       submitted: true,
-      searchSelect: "",
-      searchKeyword: "",
+      searchSelect: "name", // 기본값
+      searchKeyword: "",    // 검색어
 
       //페이징을 위한 변수 정의
       page: 1,
@@ -401,6 +405,7 @@ tbody {
   margin-top: 5%;
   text-align: center;
   box-shadow: none !important;
+  margin-bottom: 5%;
 }
 
 /* .information {
