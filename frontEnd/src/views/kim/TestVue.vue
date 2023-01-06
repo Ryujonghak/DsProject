@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div>
+                          <button @click="putseatAll()">
+                            좌석 리셋
+                          </button>
+                        </div>
 	
   </div>
 </template>

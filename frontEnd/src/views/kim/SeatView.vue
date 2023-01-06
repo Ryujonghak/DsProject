@@ -1,7 +1,7 @@
 <template>
     <div>  
       <div style="background-color: black; position:relative;" class="page-single movie_list">
-        <div v-show="모달창" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 30px;">
+        <div style="position: absolute; top:0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 30px;">
 
         </div>
         <div class="container">
@@ -10,7 +10,7 @@
               <div class="blog-detail-ct">
                 <div style="position: relative;">
                   
-                  <div v-show="모달창">
+                  <!-- <div v-show="모달창">
                     <div style="background-color: white; position: absolute; top: 125px; left: 385px; width: 450px; height: 480px; z-index: 30; ">
                       <div style="height: 70px; border-bottom: 1px solid #666;">
                         <span style="width: 387px; float: left; height: 70px;line-height: 70px; color: black; font-size: 16px; padding-left: 20px;  ">{{data1.movienm}}</span>
@@ -61,7 +61,7 @@
                         <button @click="seatview()" style="width: 175px; height: 55px;margin-left: 40px; background-color: #222;color: white;">인원/좌석</button>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                 </div>
                 <!-- 영화관 -->
@@ -99,14 +99,14 @@
                     </div>
                     <div class="two">
                       <div v-show="부산">
-                        <button v-show="서면"   @click="cinema('서면')" class="btndiv2">서면</button>
-                        <button v-show="!서면"  class="C_btndiv2">서면</button>
-
+                        <button v-show="서면"      @click="cinema('서면')" class="btndiv2">서면</button>
+                        <button v-show="!서면"     class="C_btndiv2">서면</button>
+   
                         <button v-show="센텀시티"  @click="cinema('센텀시티')" class="btndiv2">센텀시티</button>
                         <button v-show="!센텀시티"  class="C_btndiv2">센텀시티</button>
 
-                        <button v-show="부산대"  @click="cinema('부산대')" class="btndiv2">부산대</button>
-                        <button v-show="!부산대"  class="C_btndiv2">부산대</button>                        
+                        <button v-show="부산대"    @click="cinema('부산대')" class="btndiv2">부산대</button>
+                        <button v-show="!부산대"    class="C_btndiv2">부산대</button>                        
                       </div>
                     </div>
                   </div>
@@ -186,6 +186,11 @@
                             {{this.teencount * 100}} 원
                           </div>
                         </div>
+                        <div>
+                          <button @click="putseatAll()">
+                            좌석 리셋
+                          </button>
+                        </div>
 
                         <div style="width:100%;font-size: 20px; font-size: 20px; color: white;clear: both;margin-bottom: 10px; border-top: 1px solid #dd003f; padding-top: 5px;">
                           <div style=" display: inline-block; float:left; color: #dd003f;">
@@ -202,18 +207,50 @@
                         </div>
                     </div>
                     <div style="width: 780px; float: right; margin-left: 20px;">
-                    <div style="width:780px; color:white; margin-top: 25px; ">
-                      <span style="font-size: 2em;">{{data1.movienm}}</span>
+                    <div style="width:780px; color:white; margin-top: 25px; margin-bottom: 10px;">
+                      <span style="font-size: 2em; font-weight: bold;">{{data1.movienm}}</span>
                       <br>
                       <span>{{data1.watchgradenm}}</span> 
                       <img style="width: 30px; height: 30px; background-color: white; margin-left: 20px; margin-top: 20px;" src="../../assets/images_kim/Views/ModalView/free-icon-time-6659457.png"
                         alt="" /><span style="margin-left: 10px;">{{data1.showtm}}분</span>
+                      <div style="width: 330px; height: 85px; border-bottom: 1px solid gray; display: inline-block; float: right;">
+                      <p
+                      style="width: 330px;  margin-bottom: 0; color: gray;  padding: 5px 0 5px 0;  font-size: 16px; font-weight: bold; color: white; border-bottom: 1px solid gray;">
+                      영화관
+                       </p>
+                      <button v-show="센텀시티" @click="cinema('센텀시티')"
+                      style="width: 110px;  height: 24px; float: left; border: 0;background-color: black; margin-top: 5px;">
+                      <h5 style="color: white;padding: 9px 9px 9px 9px; margin-left: 3px;">센텀시티</h5>
+                      </button>
+                      <button v-show="!센텀시티"
+                      style="width: 110px; height: 24px; float: left; border: 0;background-color:black; margin-top: 5px;">
+                      <h5 style="color: black;padding: 9px 9px 9px 9px; margin-left: 3px; background-color: white;">센텀시티</h5>
+                      </button>
+
+                      <button v-show="서면" @click="cinema('서면')"
+                      style="width: 110px;  height: 24px; float: left; border: 0;background-color: black; margin-top: 5px;">
+                      <h5 style="color: white;padding: 9px 9px 9px 9px; margin-left: 3px;">서면</h5>
+                      </button>
+                      <button v-show="!서면" 
+                      style="width: 110px; height: 24px; float: left; border: 0;background-color:black;  margin-top: 5px;">
+                      <h5 style="color: black;padding: 9px 9px 9px 9px; margin-left: 3px; background-color: white;">서면</h5>
+                      </button>
                       
+                      <button v-show="부산대" @click="cinema('부산대')"
+                      style="width: 110px;  height: 24px; float: left; border: 0;background-color: black;  margin-top: 5px;">
+                      <h5 style="color: white;padding: 9px 9px 9px 9px; margin-left: 3px;">부산대</h5>
+                      </button>
+                      <button v-show="!부산대" 
+                      style="width: 110px; height: 24px; float: left; border: 0;background-color:black;  margin-top: 5px;">
+                      <h5 style="color: black;padding: 9px 9px 9px 9px; margin-left: 3px; background-color: white;">부산대</h5>
+                      </button>
+            
+                        </div>
                     </div>
 
-                    <div style="width: 320px; height: 140px; border-bottom: 1px solid gray; display: inline-block;float: left; ">
+                    <div style="width: 330px; height: 140px; border-bottom: 1px solid gray; display: inline-block;float: left; ">
                       <p
-                      style="width: 320px;  margin-bottom: 0; color: gray;  padding: 15px 0 5px 0;  font-size: 16px; font-weight: bold; color: white; border-bottom: 1px solid gray;">
+                      style="width: 330px;  margin-bottom: 0; color: gray;  padding: 15px 0 5px 0;  font-size: 16px; font-weight: bold; color: white; border-bottom: 1px solid gray;">
                       {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘)
                     </p>
                       <button v-show="오늘" @click="week('day1')"
@@ -221,7 +258,7 @@
                         <p style="color: white;margin-bottom: 10px;">오늘</p>
                         <h4 style="color: white;padding: 9px 25px 9px 13px; margin-left: 3px;">{{ dd }}</h4>
                       </button>
-                      <button v-show="!오늘" @click="weekshow('day1')"
+                      <button v-show="!오늘" 
                       style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: #1D1E2C;  margin-right: 5px;margin-top: 5px;">
                       <p style="color: white;margin-bottom: 10px;">오늘</p>
                       <h4 style="color: black;padding: 9px 25px 9px 13px; margin-left: 3px; background-color: white; border-radius: 18px;">{{ dd }}</h4>
@@ -232,7 +269,7 @@
                         <p style="color: white;margin-bottom: 10px;">내일</p>
                         <h4 style="color: white;padding: 9px 25px 9px 13px; margin-left: 3px;">{{ dd+1 }}</h4>
                       </button>
-                      <button v-show="!내일" @click="weekshow('day2')"
+                      <button v-show="!내일" 
                         style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: #1D1E2C; margin-right: 5px;  margin-top: 5px;">
                         <p style="color: white;margin-bottom: 10px;">내일</p>
                         <h4 style="color: black;padding: 9px 25px 9px 13px; margin-left: 3px; background-color: white; border-radius: 18px;">{{ dd+1 }}</h4>
@@ -243,7 +280,7 @@
                         <p style="color: white;margin-bottom: 10px;">{{ 요일[순서[2]] }}</p>
                         <h4 style="color: white;padding: 9px 25px 9px 13px; margin-left: 3px;">{{ dd+2 }}</h4>
                       </button>
-                      <button v-show="!요일3" @click="weekshow('day3')"
+                      <button v-show="!요일3" 
                         style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: #1D1E2C; margin-right: 5px; margin-top: 5px;">
                         <p style="color: white;margin-bottom: 10px;">{{ 요일[순서[2]] }}</p>
                         <h4 style="color: black;padding: 9px 25px 9px 13px; margin-left: 3px; background-color: white; border-radius: 18px;">{{ dd+2 }}</h4>
@@ -255,7 +292,7 @@
                         <p style="color: white;margin-bottom: 10px;">{{ 요일[순서[3]] }}</p>
                         <h4 style="color: white;padding: 9px 25px 9px 13px; margin-left: 3px;">{{ dd+3 }}</h4>
                       </button>
-                      <button v-show="!요일4" @click="weekshow('day4')"
+                      <button v-show="!요일4"
                         style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: #1D1E2C; margin-right: 5px;  margin-top: 5px;">
                         <p style="color: white;margin-bottom: 10px;">{{ 요일[순서[3]] }}</p>
                         <h4 style="color: black;padding: 9px 25px 9px 13px; margin-left: 3px; background-color: white; border-radius: 18px;">{{ dd+3 }}</h4>
@@ -266,7 +303,7 @@
                         <p style="color: white;margin-bottom: 10px;">{{ 요일[순서[4]] }}</p>
                         <h4 style="color: white;padding: 9px 25px 9px 13px; margin-left: 3px;">{{ dd+4 }}</h4>
                       </button>
-                      <button v-show="!요일5" @click="weekshow('day5')"
+                      <button v-show="!요일5" 
                         style="width: 55px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: #1D1E2C;  margin-top: 5px; ">
                         <p style="color: white;margin-bottom: 10px;">{{ 요일[순서[4]] }}</p>
                         <h4 style="color: black;padding: 9px 25px 9px 13px; margin-left: 3px; background-color: white; border-radius: 18px;">{{ dd+4 }}</h4>
@@ -274,17 +311,17 @@
                       
                     </div>
 
-                    <div style="width: 320px; height: 140px; border-bottom: 1px solid gray; display: inline-block; float: right; ">
+                    <div style="width: 330px; height: 140px; border-bottom: 1px solid gray; display: inline-block; float: right; ">
                       <p
-                      style="width: 320px;  margin-bottom: 0; color: gray;  padding: 15px 0 5px 0;  font-size: 16px; font-weight: bold; color: white; border-bottom: 1px solid gray;">
-                      2D
+                      style="width: 330px;  margin-bottom: 0; color: gray;  padding: 15px 0 5px 0;  font-size: 16px; font-weight: bold; color: white; border-bottom: 1px solid gray;">
+                      상영시간
                     </p>
                       <button v-show="시간1" @click="selectedtime(시간[0])"
                       style="width: 70px;  height: 80px; float: left; border: 0;background-color: black; margin-right: 5px; margin-top: 5px;">
                         <p style="color: white;margin-bottom: 10px;">2D</p>
                         <h4 style="color: white;padding: 9px 24px 9px 9px; margin-left: 3px;">{{ 시간[0] }}</h4>
                       </button>
-                      <button v-show="!시간1" @click="unselectedtime(시간[0])"
+                      <button v-show="!시간1" 
                       style="width: 70px; border-radius: 20px; height: 80px; float: left; border: 0;background-color:black;  margin-right: 5px;margin-top: 5px;">
                       <p style="color: white;margin-bottom: 10px;">2D</p>
                       <h4 style="color: black;padding: 9px 22px 9px 9px; margin-left: 3px; background-color: white; width: 55px; ">{{ 시간[0] }}</h4>
@@ -295,7 +332,7 @@
                         <p style="color: white;margin-bottom: 10px;">2D</p>
                         <h4 style="color: white;padding: 9px 24px 9px 9px; margin-left: 3px;">{{ 시간[1] }}</h4>
                       </button>
-                      <button v-show="!시간2" @click="unselectedtime(시간[1])"
+                      <button v-show="!시간2" 
                         style="width: 70px; border-radius: 20px; height: 80px; float: left; border: 0;background-color: black; margin-right: 5px;  margin-top: 5px;">
                         <p style="color: white;margin-bottom: 10px;">2D</p>
                         <h4 style="color: black;padding: 9px 22px 9px 9px; margin-left: 3px; background-color: white; width: 55px; ">{{ 시간[1] }}</h4>
@@ -331,9 +368,12 @@
                       <span> 러닝 타임 </span>
                       <span style="margin-left: 10px">192분</span>
                     </div> -->
-                    <div v-show="true" style="position: absolute; width: 820px;height: 400px; background-color: rgba(0,0,0,.6);  top:300px; right: -30px; z-index: 99; text-align: center;">
-                      
-                      <h3 style="margin-top: 80px; color: white;">관람인원을 선택해 주세요</h3>
+                    <div v-show="모달" style="position: absolute; width: 820px;height: 400px; background-color: rgba(0,0,0,.6);  top:300px; right: -30px; z-index: 99; text-align: center;">
+                      <div style="margin-bottom: 80px; width: 100%;"></div>
+                      <span style=" color: white; font-size: 24px;" v-if="영화관">영화관,</span>
+                      <span style=" color: white; font-size: 24px;" v-if="날짜">날짜,</span>
+                      <span style=" color: white; font-size: 24px;" v-if="모달시간">시간,</span>
+                      <span style=" color: white; font-size: 24px;">관람인원을 선택해 주세요</span>
                     </div>
                     <div style="width: 800px; margin-bottom: 60px;">
                       <img style="margin: 10px 0; width: 800px; height: 30px;" src="../../assets/images_kim/Views/ModalView/SCREEN.jpg" alt="" />
@@ -696,7 +736,7 @@
                 </div>
                 <!-- 이건 좌석 -->
                 <!-- 이건 결제 -->
-                <div v-show="결제">
+                <!-- <div v-show="결제">
                   <div style=" width: 1170px; height: 705px; position: relative;">
                     <div style="width: 390px; height: 40px; background-color: #1E212D; color: white; text-align: center;font-size: 20px; float: left;line-height: 40px; ">
                       예매정보
@@ -752,7 +792,7 @@
                      </div>
   
                   </div>
-                </div>
+                </div> -->
                 <!-- 이건 좌석 -->
                 <!-- <div v-show="결제후">
                   <div style=" width: 1170px; height: 705px; position: relative;">
@@ -768,12 +808,14 @@
   </template>
   
   <script>
+  // import BookingService from "@/services/BookingService";
   import custom from "@/assets/js/custom";
   export default {
     props: ["movieProps2"],
 
     created() {
       custom();
+      
       this.date();
       // this.color();
       this.seattestA();
@@ -789,8 +831,11 @@
     },
     data() {
       return {
-        data1: this.movieProps2,
-        모달창 : false,
+        data1: this.movieProps2, //영화데이터 받아오기
+
+        
+        
+        모달 : true,
         상영: false,  // 상영페이지 v-show
         좌석: true,  // 좌석페이지 v-show
         결제: false,   // 결제페이지 v-show
@@ -813,8 +858,6 @@
         결제후: false,
 
         amount : 100, // 임시 결제 금액
-    
-
 
         결제하기 : false, // 좌석숫자랑 인원수랑 맞으면 true로 바뀜
         adultcount: 0, //  성인 인원수 카운트
@@ -823,6 +866,9 @@
         성인: false,
         청소년: false,
 
+        날짜 : true,
+        영화관 : true,
+        모달시간 : true,
   
         서울: false,   // 
         부산: false, 
@@ -831,8 +877,6 @@
         요일3 : true,
         요일4 : true,
         요일5 : true,
-
-
 
         요일: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
         yy: "",
@@ -871,6 +915,7 @@
       };
     },
     methods: {
+      
       seattestA() {            // 데이터 베이스에서 자리가 있는지 확인
         for (let i = 0; i < 10; i++) {
           if (this.a[i] == 'Y') {      // 자리가 있으면 true를 줌
@@ -936,24 +981,14 @@
           this.시간2 = false;
           this.시간1 = true;
         }
+        this.모달시간 = false;
       },
-      unselectedtime(value) {
-        if(value == this.시간[0]){
-          this.ticketinfor.selectedtime = '';
-          this.시간1 = true;
-        }else{
-          this.ticketinfor.selectedtime = '';
-          this.시간2 = true;
-        }
-      },
-      model(){
-        this.모달창 = !this.모달창;
-      },
+      
       seatview() {
           this.상영 = false;
           this.좌석 = true;
           this.결제 = false;
-          this.모달창 = !this.모달창;
+          
       },
       addseat(value) {               // 클릭을 하면 selected 배열에 담음
         if (this.adultcount + this.teencount == 0) {
@@ -987,7 +1022,7 @@
           }
           if((this.adultcount + this.teencount == this.selected.length) && (this.adultcount + this.teencount != 0)){
           this.결제하기 = true;
-        }
+          }
         }
       },
       deleteseat(value) {            // 클릭을 하면 selected 배열에서 삭제를 함
@@ -1032,12 +1067,12 @@
         }
         else {
           this.adultcount--;
-          if((this.teencount + this.adultcount) == this.selected.length) {
-            this.결제하기 = true;
-            if(this.adultcount == 0){
+          if((this.teencount + this.adultcount) == this.selected.length && this.selected.length != 0) {
+            this.결제하기 = true; 
+          }
+          if(this.adultcount == 0){
             this.성인 = false;
             }
-          }
         }
       },
       adultplus() {
@@ -1047,6 +1082,7 @@
           this.adultcount++;
           this.결제하기 = false;
           this.성인 = true;
+          this.모달 = false;
         }
       },
       teenmins() {
@@ -1057,11 +1093,11 @@
         }
         else {
           this.teencount--;
-          if((this.teencount + this.adultcount) == this.selected.length) {
-            this.결제하기 = true;
-            if(this.teencount == 0) {
+          if(this.teencount == 0) {
               this.청소년 = false;
             }
+          if((this.teencount + this.adultcount) == this.selected.length && this.selected.length != 0) {
+            this.결제하기 = true;
           }
         }
       },
@@ -1072,6 +1108,7 @@
           this.teencount++;
           this.결제하기 = false;
           this.청소년 = true;
+          this.모달 = false;
         }
       },
       seoul(value) {
@@ -1089,19 +1126,10 @@
         console.log(this.ticketinfor);
       },
       cinema(value) {
-          this.가산 = true;
-          this.강동 = true;
-          this.건대입구 = true;
           this.서면 = true;
           this.센텀시티 = true;
           this.부산대 = true;
-        if(value == '가산디지털'){
-          this.가산 = false;
-        }else if(value == '강동') {
-          this.강동 = false;
-        }else if(value == '건대입구') {
-          this.건대입구 = false;
-        }else if(value == '서면') {
+        if(value == '서면'){
           this.서면 = false;
         }else if(value == '센텀시티') {
           this.센텀시티 = false;
@@ -1109,6 +1137,7 @@
           this.부산대 = false;
         }
 
+        this.영화관 = false;
         this.ticketinfor.cinema = value;
         console.log(this.ticketinfor);
       },
@@ -1192,25 +1221,9 @@
             this.요일5 = false;
             this.ticketinfor.selectedday = value;
         }
+        this.날짜 = false;
       },
-      weekshow(value) {                // 클릭을 하면 selectedday 배열에서 삭제를 함
-        for (let i = 0; i < 1; i++) {
-          if (this.ticketinfor.selectedday == value) {
-            this.ticketinfor.selectedday = '';   
-            break;
-          }
-        }if( value == 'day1'){
-            this.오늘 = true;
-        }else if ( value == 'day2'){
-            this.내일 = true;
-        }else if ( value == 'day3'){
-            this.요일3 = true;
-        }else if ( value == 'day4'){
-            this.요일4 = true;
-        }else if ( value == 'day5'){
-            this.요일5 = true;
-        }
-      },
+      
       No(){
         alert("현재 서비스는 점검중입니다.")
       },
@@ -1386,8 +1399,5 @@
     position: relative;
     left: 96%;
   }
-
-  
-  
-  </style>
+</style>
   
