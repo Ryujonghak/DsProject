@@ -1038,6 +1038,7 @@ input:checked + .tab_item {
 
 .movieInfo {
   margin-top: 10px;
+  color:cadetblue;
 }
 
 .movieIng {

@@ -198,64 +198,8 @@
                   </p>
                 </div>
               </div>
-              <!-- 상영작 6 -->
-              <!-- todo: 필터명 2022 -->
-              <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
-              >
-                <img src="images/uploads/mv4.jpg" alt="" />
-                <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
-                </div>
-                <div class="mv-item-infor">
-                  <h6><a href="#">Mulholland pride</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>7.2</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-              <!-- 상영작 7 -->
-              <!-- todo: 필터명 2023 -->
-              <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2023"
-              >
-                <img src="images/uploads/mv5.jpg" alt="" />
-                <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
-                </div>
-                <div class="mv-item-infor">
-                  <h6><a href="#">skyfall: evil of boss</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>7.0</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
-
-              <!-- 상영작 8 -->
-              <!-- todo: 필터명 2022 -->
-              <div
-                class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
-              >
-                <img src="images/uploads/mv-item1.jpg" alt="" />
-                <div class="hvr-inner">
-                  <router-link to="/ticket-detail-a">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
-                </div>
-                <div class="mv-item-infor">
-                  <h6><a href="#">Interstellar</a></h6>
-                  <p class="rate">
-                    <i class="ion-android-star"></i><span>7.4</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
-                  </p>
-                </div>
-              </div>
+        
+        
             </div>
 
             <!-- 페이지 -->

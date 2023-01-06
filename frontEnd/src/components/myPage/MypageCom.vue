@@ -159,7 +159,7 @@
                 <div class="col-md-8 col-sm-12 col-xs-12">
                   <!-- 아카이브 나브 -->
                   <div class="topbar-filter">
-                    <router-link to ="/archive"
+                    <router-link to ="/archive/:moviecd"
                       ><p>나의 아카이브 <span>8</span> in total</p></router-link>
                     <a href="userfavoritegrid.html" class="grid"
                       ><i class="ion-grid"></i
@@ -179,8 +179,10 @@
                         <div class="mv-item-infor">
                           <div class="movieTitle-2">
                             <h6>
-                              <a href="/movieDetail">
+                              <router-link :to="'/allMovie/' + data.moviecd">
+                                <a href="/movieDetail">
                                 {{ data.movieNm }}</a>
+                              </router-link>
                             </h6>
                           </div>
                           <p class="rate">
@@ -192,12 +194,10 @@
                       <div class="hvr-inner">
                         <div class="movieTitle">
                           <h6>
-                            <router-link to="/movieDetail">
+                            <router-link :to="'/allMovie/' + data.moviecd">
                               {{ data.movieNm }}
-                              <span
-                                >({{ data.openDt }})</span
-                              ></router-link
-                            >
+                              <span>({{ data.openDt }})</span>
+                            </router-link>
                           </h6>
                         </div>
                         <p>
@@ -212,9 +212,12 @@
                           ><span>{{ data.userStarRating }}</span>
                         </p> -->
                         <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
-                        <router-link to="/archive" @click="goReview"
+                        <!-- <router-link to="/archive" @click="goReview"
                           >나의 리뷰 작성하기</router-link
-                        >
+                        > -->
+                        <router-link :to="'/archive/' + data.moviecd">
+                          나의 리뷰 작성하기
+                        </router-link>
                         <!-- <h6>Best Musical movie</h6> -->
                       </div>
                       <!-- 영화에 마우스 올리면 나오는 관람정보: 리뷰를 위한 영화정보 끝 -->
@@ -222,11 +225,9 @@
                     <!-- 아카이브 끝 -->
 
 
-                    <!-- 아카이브 상영작 시작 -->
-                    <div class="movie-item-style-2 movie-item-style-1">
-                      <!-- todo) 포스터 사이즈를 통일해야.. 예쁘게 나올듯 -->
+                    <!-- 아카이브 상영작 하드코딩 -->
+                    <!-- <div class="movie-item-style-2 movie-item-style-1">
                       <img :src="watchedMovie.posterURL" alt="poster" />
-                      <!-- 영화에 마우스 올리면 나오는 관람정보 -->
                       <div class="hvr-inner">
                         <div class="movieTitle">
                           <h6>
@@ -243,20 +244,15 @@
                           상영시간: {{ watchedMovie.showTm }}분 <br />
                           감독: {{ watchedMovie.directors }}
                         </p>
-                        <!-- 리뷰테이블에서 사용자 평점 가져오기 -->
                         <p class="time sm-text">
                           나의 별점
-                          <!-- 별점 v-for -->
                           <i class="ion-android-star"></i
                           ><span>{{ reviewMovie.userStarRating }}</span>
                         </p>
-                        <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
                         <router-link to="/archive" @click="goReview"
                           >나의 리뷰 작성하기</router-link
                         >
-                        <!-- <h6>Best Musical movie</h6> -->
                       </div>
-                      <!-- 영화 라벨 -->
                       <div class="mv-item-infor">
                         <div class="movieTitle-2">
                           <h6>
@@ -270,9 +266,7 @@
                           ><span>{{ watchedMovie.rating }}</span> /5
                         </p>
                       </div>
-                    </div>
-                    <!-- 아카이브 상영작 끝 -->
-
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -295,6 +289,7 @@
 // import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
+import MovieDataService from "@/services/MovieDataService";
 
 export default {
   // data: () => ({
@@ -345,25 +340,6 @@ export default {
     };
   },
   methods: {
-    // uploadImage: function () {
-    //   let form = new FormData();
-    //   let image = this.$refs["image"].files[0];
-    //
-    //   form.append("image", image);
-    //
-    //   axios
-    //     .post("/upload", form, {
-    //       header: { "Content-Type": "multipart/form-data" },
-    //     })
-    //     .then(({ data }) => {
-    //       this.images = data;
-    //     })
-    //     .catch((err) => console.log(err));
-    // },
-    // clickInputTag: function () {
-    //   this.$refs["image"].click();
-    // },
-
     getUser(username) {
       // 종학이 백엔드 데이터 받는 함수
       username = this.$store.state.auth.user.username;
@@ -395,12 +371,7 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
-    // TODO: 클릭이벤트 - 리뷰작성하러가기 함수(영화제목 전달)
-    goReview() {
-      // 영화 제목 정보 보내야 함
-      // movieNm = this.movieNm;
-    },
-    // 영화 전체 조회 요청하는 함수
+    // 영화 전체 조회 요청하는 함수 -> 예매한 것만 가져오게 변경 필요 FIXME:
     getMovieInfo() {
       MovieDataService.getMovieAll()
         .then((response) => {

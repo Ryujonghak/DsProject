@@ -42,7 +42,7 @@
                           <div class="row" v-for="(dataAll, indexAll) in movie" v-bind:key="indexAll">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                               <div class="title-hd-sm">
-
+                                <!-- 제목클릭시 영화디테일로 이동하도록 라우터링크로 감싸줌 -->
                                 <router-link :to="'/allMovie/' + dataAll.moviecd">
                                   <span class="time">{{ dataAll.movienm }}
                                     <i class="ion-ios-arrow-right"></i>
@@ -71,7 +71,8 @@
                                         <span>
                                           {{ dataAll.showtm}}분,
                                         </span><br>
-                                        <span>{{dataAll.opendt}}개봉</span>
+                                        <span>{{dataAll.opendt}}개봉</span><br>
+                                        <span>{{dataAll.watchgradenm}}</span>
                                       </div>
                                     </div>
 
@@ -171,7 +172,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -244,7 +246,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -315,7 +318,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -386,7 +390,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -457,7 +462,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -569,7 +575,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -640,7 +647,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -711,7 +719,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -782,7 +791,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -853,7 +863,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -964,7 +975,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -1035,7 +1047,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -1106,7 +1119,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -1177,7 +1191,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -1245,7 +1260,8 @@
                                                 <span>
                                                   {{ data.showtm}}분,
                                                 </span>
-                                                <span>{{data.opendt}}개봉</span>
+                                                <span>{{data.opendt}}개봉</span><br>
+                                                <span>{{data.watchgradenm}}</span>
                                               </div>
                                               <div class="col-xs-1"></div>
                                             </div>
@@ -1342,9 +1358,6 @@ export default {
           this.movie = response.data;
           console.log(response.data);
 
-          // 가져온 이미지 url 개수
-          // this.imageUrlLength = this.movie.imgurl.length;
-          // 썸네일 이미지 2장만 보이게 설정
         })
         .catch((e) => {
           console.log(e);
@@ -1515,6 +1528,7 @@ input[name="tab_item"] {
 
 .movieInfo {
   margin-top: 10px;
+  color:cadetblue;
 }
 
 .movieIng {

@@ -107,9 +107,61 @@
               <h3>문의내역이 없습니다.</h3>
             </div>
 
+            <div class="myqnaArea">
+            <!-- 모든 qna -->
+            <table class="qnabox">
+              <colgroup>
+                <col style="width: 20px"/>
+                <col style="width: 40px"/>
+                <col style="width: 60px"/>
+                <col style="width: 15px"/>
+              </colgroup>
+              <thead>
+              <tr>
+                <th class="myqna" scope="row"><label for="name">제목</label></th>
+                <th class="myqna" scope="row"><label for="name">문의</label></th>
+                <th class="myqna" scope="row"><label for="name">답변</label></th>
+                <th class="myqna" scope="row"><label for="name">문의삭제</label></th>
+              </tr>
+              </thead>
+              <!-- data의 qna[] 배열 안의 qna에서 totalItems까지 다 담아옴 그래서 qna.qna -->
+              <tbody v-for="(data, index) in qna.qna" :key="index">
+              <!-- <tbody v-for="(data, index) in myqna" :key="index"> -->
+              <tr>
+                <td class="myqnaTd">{{ data.qtitle }}</td>
+                <td class="myqnaTd">{{ data.qcontent }}</td>
+                <td class="myqnaTd">{{ data.qanswer }}</td>
+                <td class="myqnaTd"><button class="deletebtn" @click="deletebtn(data.qid)">Delete</button></td>
 
-            <!-- TODO: 추가문의 시작 -->
-            <div class="buttonArea">
+                <!-- <td class="myqnaTd">{{ data.qwriter }}</td> -->
+                <!-- <td>
+                  <router-link :to="'/qna/select/' + data.name"
+                    ><span class="badge bg-success">Edit</span></router-link
+                  >
+                </td> -->
+              </tr>
+              </tbody>
+            </table>
+            </div>
+
+            <!-- 페이징처리-->
+            <!-- total-rows : 전체 데이터 개수 -->
+            <!-- per-page : 1페이지 당 개수 -->
+            <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
+            <b-pagination
+              v-model="page"
+              :total-rows="qna.totalItems"
+              :per-page="pageSize"
+              pills
+              size="sm"
+              prev-text="<"
+              next-text=">"
+              @change="handlePageChange"
+            ></b-pagination>
+
+
+                        <!-- TODO: 추가문의 시작 -->
+                        <div class="buttonArea">
             <a href="#" class="redbtn" @click="addQna()">추가문의</a>
             </div>
 
@@ -158,63 +210,10 @@
               <a type="submit" class="redbtn" @click="createQna()">전송하기</a>
              </div>
             </div>
+            <!-- TODO: 추가문의 끝 -->
 
-            
-            <div class="myqnaArea">
-            <!-- 모든 qna -->
-            <table class="qnabox">
-              <colgroup>
-                <col style="width: 20px"/>
-                <col style="width: 40px"/>
-                <col style="width: 60px"/>
-                <col style="width: 15px"/>
-              </colgroup>
-              <thead>
-              <tr>
-                <th class="myqna" scope="row"><label for="name">이름</label></th>
-                <th class="myqna" scope="row"><label for="name">제목</label></th>
-                <th class="myqna" scope="row"><label for="name">내용</label></th>
-                <th class="myqna" scope="row"><label for="name">삭제</label></th>
-              </tr>
-              </thead>
-              <!-- data의 qna[] 배열 안의 qna에서 totalItems까지 다 담아옴 그래서 qna.qna -->
-              <tbody v-for="(data, index) in qna.qna" :key="index">
-              <tr>
-                <td class="myqnaTd">{{ data.qwriter }}</td>
-                <td class="myqnaTd">{{ data.qtitle }}</td>
-                <td class="myqnaTd">{{ data.qcontent }}</td>
-                <td class="myqnaTd"><button class="deletebtn" @click="deletebtn(data.qid)">Delete</button></td>
-                <!-- <td>
-                  <router-link :to="'/qna/select/' + data.name"
-                    ><span class="badge bg-success">Edit</span></router-link
-                  >
-                </td> -->
-              </tr>
-              </tbody>
-            </table>
-            </div>
-              <!-- total-rows : 전체 데이터 개수 -->
-              <!-- per-page : 1페이지 당 개수 -->
-              <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
-              <b-pagination
-                v-model="page"
-                :total-rows="qna.totalItems"
-                :per-page="pageSize"
-                pills
-                size="sm"
-                prev-text="<"
-                next-text=">"
-                @change="handlePageChange"
-              ></b-pagination>
-
-            
-      
-             
-
-
-            </div>
           </div>
-<!--        </div>-->
+        </div>
       </div>
     </div>
     <!-- TODO: 탑버튼 추가 -->
@@ -226,13 +225,11 @@
 
 <script>
 /* eslint-disable */
-
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
 
 import qnaDataService from "@/services/QnaDataService.js";
 import User from "@/model/user";
-import QnaDataService from '@/services/QnaDataService.js';
 // import email from "@/assets/js/email.js";
 
 export default {
@@ -243,11 +240,17 @@ export default {
       user: new User,
       // AddQna 받아오기
       qna: [],
+      myqna: {
+        qwriter:"",
+        qtitle:"",
+        qcontent:"",
+      },  // TODO: qna 가져와서 searchkeyword에 유저 이름 넣어서 myqna에 넣고 싶음
 
-      // TODO: AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
+      // AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       submitted: true,
-      searchSelect: "name", // 기본값
-      searchKeyword: "",    // 검색어
+      searchSelect: "writer", // 기본값
+      // searchKeyword: "" ,       
+      searchKeyword: "" ,        // 검색어 TODO:
 
       //페이징을 위한 변수 정의
       page: 1,
@@ -255,8 +258,7 @@ export default {
       pageSize: 5,
       pageSizes: [5, 10, 15],
       // 검색 기능
-      searchStatue: "",
-      nowPlayingMovies: [],
+      // searchStatue: "",
 
       addform: false,
     };
@@ -281,19 +283,31 @@ export default {
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
     // 전체조회
+    // getQna() {
+    //   qnaDataService
+    //       .getAll(this.searchSelect, this.searchKeyword, this.page - 1,
+    //           this.pageSize)
+    //       .then(response => {
+    //         console.log("getQna response.data: ", response.data);
+    //         this.qna = response.data; // data 안에서 qna만 표시
+    //         console.log("qna: ", this.qna);
+    //       })
+    //       .catch((err) => console.log(err));
+    // },
+    // 내꺼만 조회하기로 작성중 FIXME: 백엔드 업뎃하고 다시해보기
     getQna() {
-      // 내 이름으로 검색한 결과만 뜨도록...
-      // this.searchKeyword = this.user.name;
       qnaDataService
           .getAll(this.searchSelect, this.searchKeyword, this.page - 1,
               this.pageSize)
           .then(response => {
             console.log("getQna response.data: ", response.data);
+            this.searchKeyword = this.user.name;
             this.qna = response.data; // data 안에서 qna만 표시
-            console.log("qna: ", this.qna);
+            console.log("myqna: ", this.myqna);
           })
           .catch((err) => console.log(err));
     },
+
     // 페이지 출력 갯수 변경
     handlePageChange(value) {
       this.page = value;
@@ -302,7 +316,7 @@ export default {
 
     // 삭제
     deletebtn(qid) {
-      QnaDataService.delete(qid)
+      qnaDataService.delete(qid)
       .then(response => {
         console.log(response.data);
         alert("문의사항이 삭제되었습니다.");
@@ -322,7 +336,7 @@ export default {
         qtitle: this.qna.qtitle,
         qcontent:this.qna.qcontent
       };
-      QnaDataService.create(data)
+      qnaDataService.create(data)
         // 성공하면 then() 결과가 전송됨
         .then((response) => {
           this.qna.qwriter = response.data.qwriter;
@@ -340,7 +354,7 @@ export default {
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
-    this.getQna();
+    this.getQna();  
   },
 };
 </script>
@@ -356,6 +370,7 @@ export default {
 .qnabox2{
   color: #fff;
 }
+
 
 .qna {
   background: black;
