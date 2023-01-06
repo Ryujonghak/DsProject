@@ -20,6 +20,12 @@ public class QnaService {
         return qnaList;
     }
 
+    public List<Qna> findByQid(Integer qid) {
+        List<Qna> qnaList = qnaRepository.findByQid(qid);
+
+        return qnaList;
+    }
+
     public Page<Qna> findAllByQtitleContainingOrderByInsertTime(String qtitle, Pageable pageable) {
         Page<Qna> qnaPage = qnaRepository.findAllByQtitleContainingOrderByInsertTime(qtitle, pageable);
 

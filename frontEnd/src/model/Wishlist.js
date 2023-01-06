@@ -6,6 +6,6 @@ export default class Wishlist {
     ) {
         this.id = id;
         this.username = username;
-        this.moviec = moviecd;
+        this.moviecd = moviecd;
     }
 }

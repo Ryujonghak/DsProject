@@ -38,6 +38,21 @@ public class QnaController {
         }
     }
 
+    @GetMapping("/qna/{qid}")
+    public ResponseEntity<Object> findQid(@PathVariable Integer qid) {
+        try {
+            List<Qna> qnaList = qnaService.findByQid(qid);
+            if (qnaList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(qnaList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/qna")
     public ResponseEntity<Object> getAll(@RequestParam(defaultValue = "writer") String searchSelect,
                                                  @RequestParam(required = false) String searchKeyword,

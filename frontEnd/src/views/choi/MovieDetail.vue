@@ -424,6 +424,9 @@ import WishlistDataService from "@/services/WishlistDataService";
 import Wishlist from "@/model/Wishlist";
 
 export default {
+  created() {
+
+  },
   mounted() {
     custom();
     //  this.$route.params.moviecd : 이전페이지에서 전송한 매개변수는 $route.params 안에 있음
@@ -447,9 +450,9 @@ export default {
       media: false,
 
       // 페이징을 위한 변수 정의
-      page: 1, // 현재 페이지
-      count: 0, // 전체 데이터 건수
-      pageSize: 10, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      // page: 1, // 현재 페이지
+      // count: 0, // 전체 데이터 건수
+      // pageSize: 10, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
 
       // review: [
       //   {
@@ -592,9 +595,14 @@ export default {
     },
     likeSave() {
       // alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
-      if(this.wishlist.username == undefined) {
+      if(!this.wishlist) {
+        alert("111")
+        this.wishlist = new Wishlist();
+        alert("222")
         this.wishlist.username = this.$store.state.auth.user.username;
+        alert("333")
         this.wishlist.moviecd = this.$route.params.moviecd;
+
         WishlistDataService.create(this.wishlist)
             .then(res => {
               this.wishlist = res.data;
@@ -609,6 +617,7 @@ export default {
             .then(res => {
               console.log(res.data);
               alert("Delete");
+              this.getWishlist();
             })
             .catch(err => {
               console.log(err);
@@ -620,7 +629,7 @@ export default {
       WishlistDataService
           .get(this.$store.state.auth.user.username, this.$route.params.moviecd)
           .then((res) => {
-            this.wishlist = res.data;
+            this.wishlist = res.data[0];
 
             console.log(this.$store.state.auth.user.username);
             console.log(this.$route.params.moviecd);
