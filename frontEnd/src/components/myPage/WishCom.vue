@@ -1,4 +1,3 @@
-<!--<script src="../../services/MovieDataService.js"></script>-->
 <template>
   <div>
     <!--preloading-->
