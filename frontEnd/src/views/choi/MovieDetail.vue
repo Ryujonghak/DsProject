@@ -55,12 +55,11 @@
                 {{ movie.movienm }}<span>{{ movie.prdtyear }}</span>
               </h1>
               <div class="social-btn">
-                <!-- TODO: 찜하기 구현, 클릭하면 데이터를 저장..? 어떻게 구현하는거? 하하하 -->
                 <a  v-show="wishlist.username == null" class="parent-btn" @click="likeSave"
-                ><i class="ion-heart"></i>찜하기</a
+                ><i class="ion-ios-heart-outline"></i>찜하기</a
                 >
                 <a  v-show="wishlist.username != null " class="parent-btn" @click="likeSave"
-                ><i class="ion-heart"></i>찜하기 완료</a
+                ><i class="ion-ios-heart"></i>찜하기 완료</a
                 >
                 <!-- <div class="hover-bnt"> -->
                 <a href="#" class="parent-btn" id="sh-link"
