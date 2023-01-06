@@ -56,10 +56,10 @@
               </h1>
               <div class="social-btn">
                 <!-- TODO: 찜하기 구현, 클릭하면 데이터를 저장..? 어떻게 구현하는거? 하하하 -->
-                <a  v-show="!wishlist" class="parent-btn" @click="likeSave"
+                <a  v-show="wishlist.username == null" class="parent-btn" @click="likeSave"
                 ><i class="ion-heart"></i>찜하기</a
                 >
-                <a  v-show="wishlist" class="parent-btn" @click="likeSave"
+                <a  v-show="wishlist.username != null " class="parent-btn" @click="likeSave"
                 ><i class="ion-heart"></i>찜하기 완료</a
                 >
                 <!-- <div class="hover-bnt"> -->
@@ -596,11 +596,8 @@ export default {
     likeSave() {
       // alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
       if(!this.wishlist) {
-        alert("111")
         this.wishlist = new Wishlist();
-        alert("222")
         this.wishlist.username = this.$store.state.auth.user.username;
-        alert("333")
         this.wishlist.moviecd = this.$route.params.moviecd;
 
         WishlistDataService.create(this.wishlist)
@@ -635,7 +632,7 @@ export default {
             console.log(this.$route.params.moviecd);
             console.log(res.data);
             console.log("wishlist: ", this.wishlist);
-            alert("get");
+            // alert("get");
           })
           .catch(err => {
             console.log(err);

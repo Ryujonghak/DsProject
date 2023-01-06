@@ -290,6 +290,7 @@
 // import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
+import User from "@/model/user";
 
 export default {
   
@@ -298,39 +299,10 @@ export default {
   // }),
   data() {
     return {
-      CurrentUser: {
-        email: "",
-        password: "",
-        username: "",
-        phone: null,
-        year: null, 
-        month: null,
-        day: null,
-        name: "",
-        answer: "", // 비번확인용 정답
-      },
+      wishlist: [],
+      username : this.$store.state.auth.user.username,
+      user: new User(),
       message: "",
-      movie: {
-        title: "아바타: 물의 길",
-        synopsis:
-          " 아바타: 물의 길 은 판도라 행성에서 '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로, 샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이출연하고 존 랜도가 프로듀싱을 맡았다.",
-        genre: "액션, 어드벤쳐, SF",
-        pubdate: "2022.12.14",
-        rating: 4.5,
-        starRating: 0, // 나중에 백엔드에서 평점 가져오기 (TODO: 정수로 받아야 합니다,,)
-        runTime: "192h",
-        genre: "액션, 어드벤쳐, SF",
-        director: "최아리",
-        actor: "최아리,강수빈,정주희",
-        role: "아바타1,아바타2,아바타3",
-        watchedPeople: "2,945,915",
-        review: "",
-        youtubeUrl: "https://www.youtube.com/watch?v=7Q70_m-59O8&t=7s",
-        posterUrl:
-          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.
-        imageUrl:
-          "https://movie-phinf.pstatic.net/20221110_282/16680463363384H0hJ_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_147/1668046384890YVGlu_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221110_141/1668046432203AKL6P_JPEG/movie_image.jpg?type=m665_443_2,https://movie-phinf.pstatic.net/20221123_280/1669180665184phjkW_JPEG/movie_image.jpg?type=m665_443_2", // 약 4~6개 정도 주소 백엔드에 넣어두는건 어떤지 고민입니다.
-      },
     };
   },
   methods: {
@@ -353,7 +325,7 @@ export default {
     //   this.$refs["image"].click();
     // },
 
-    getUser(username) {
+    getUser() {
       // 종학이 백엔드 데이터 받는 함수
       username = this.$store.state.auth.user.username;
       // username = "forbob";
@@ -361,17 +333,7 @@ export default {
       userService
         .getUserUsername(username)
         .then((response) => {
-          this.CurrentUser = {
-            email: response.data.email,
-            password: response.data.password,
-            username: response.data.username,
-            phone: response.data.phone,
-            year: response.data.year,
-            month: response.data.month,
-            day: response.data.day,
-            name: response.data.name,
-            answer: response.data.answer,
-          };
+          this.user = response.data.user;
           console.log(this.CurrentUser);
           // console.log(response.data);
         })
