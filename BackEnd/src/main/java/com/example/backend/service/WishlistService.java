@@ -18,6 +18,12 @@ public class WishlistService {
         return wishlistList;
     }
 
+    public List<Wishlist> findAllByUsername(String username) {
+        List<Wishlist> wishlistList = wishlistRepository.findAllByUsername(username);
+
+        return wishlistList;
+    }
+
     public List<Wishlist> findAllByUsernameAndAndMoviecd(String username, String moviecd) {
         List<Wishlist> wishlistList = wishlistRepository.findAllByUsernameAndAndMoviecd(username, moviecd);
 

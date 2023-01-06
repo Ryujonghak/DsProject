@@ -6959,7 +6959,8 @@ p.ceb-single {
   text-transform: uppercase;
 }
 .overlay {
-  background-color: rgba(0, 0, 0, 0.75);
+  /*TODO : 수빈 주석처리 - 로그인 배경화면 어두워지는것 */
+  /* background-color: rgba(0, 0, 0, 0.75); */
   bottom: 0;
   left: 0;
   position: fixed;

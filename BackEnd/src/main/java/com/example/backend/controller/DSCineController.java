@@ -293,6 +293,20 @@ public class DSCineController {
         }
     }
 
+    @GetMapping("/movie/{moviecd}")
+    public ResponseEntity<Object> findAllByMoviecd(@PathVariable String moviecd) {
+        try {
+            List<MovieDetail> movieDetailList = dsCineService.findAllByMoviecd(moviecd);
+            if (movieDetailList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(movieDetailList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 //    @GetMapping("/movie/all")
 //    public ResponseEntity<Object> findbyAllMovie(@RequestParam(required = false) String movieNm,

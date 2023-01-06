@@ -1,11 +1,11 @@
 export default class Wishlist {
     constructor(
-        id,
+        wid,
         username,
         moviecd
     ) {
-        this.id = id;
+        this.wid = wid;
         this.username = username;
-        this.moviec = moviecd;
+        this.moviecd = moviecd;
     }
 }

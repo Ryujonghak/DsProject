@@ -53,7 +53,7 @@ public class Review extends BaseTimeEntity{
 
     @Column(columnDefinition = "NUMBER")
 //    유져평점
-    private Double rurating;
+    private Integer rurating;
 
     @Column(columnDefinition = "VARCHAR2(4000)")
 //    유저평

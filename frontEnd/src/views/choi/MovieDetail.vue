@@ -55,12 +55,17 @@
                 {{ movie.movienm }}<span>{{ movie.prdtyear }}</span>
               </h1>
               <div class="social-btn">
-                <!-- TODO: 찜하기 구현, 클릭하면 데이터를 저장..? 어떻게 구현하는거? 하하하 -->
-                <a  v-show="!wishlist" class="parent-btn" @click="likeSave"
-                ><i class="ion-heart"></i>찜하기</a
+                <a
+                    v-show="wishlist.username == null"
+                    class="parent-btn"
+                    @click="likeSave"
+                ><i class="ion-ios-heart-outline"></i>찜하기</a
                 >
-                <a  v-show="wishlist" class="parent-btn" @click="likeSave"
-                ><i class="ion-heart"></i>찜하기 완료</a
+                <a
+                    v-show="wishlist.username != null"
+                    class="parent-btn"
+                    @click="likeSave"
+                ><i class="ion-ios-heart"></i>찜하기 완료</a
                 >
                 <!-- <div class="hover-bnt"> -->
                 <a href="#" class="parent-btn" id="sh-link"
@@ -168,13 +173,6 @@
                             </ul>
                           </div>
                           <!-- 목록 불러오기 테스트 끝 -->
-                          <div
-                              class="title-hd-sm col-xs-12"
-                              style="padding-left: 0"
-                          >
-                            <h4>누적관객수</h4>
-                          </div>
-                          <div><h1 class="watched-people">2,945,915</h1></div>
                         </div>
 
                         <!-- 오른쪽 사이드 바 시작 -->
@@ -242,40 +240,40 @@
                                   name="reviewStar"
                                   value="5"
                                   id="rate1"
-                                  v-model="rurating"
+                                  v-model="addReview.rurating"
                               /><label for="rate1">★</label>
                               <input
                                   type="radio"
                                   name="reviewStar"
                                   value="4"
                                   id="rate2"
-                                  v-model="rurating"
+                                  v-model="addReview.rurating"
                               /><label for="rate2">★</label>
                               <input
                                   type="radio"
                                   name="reviewStar"
                                   value="3"
                                   id="rate3"
-                                  v-model="rurating"
+                                  v-model="addReview.rurating"
                               /><label for="rate3">★</label>
                               <input
                                   type="radio"
                                   name="reviewStar"
                                   value="2"
                                   id="rate4"
-                                  v-model="rurating"
+                                  v-model="addReview.rurating"
                               /><label for="rate4">★</label>
                               <input
                                   type="radio"
                                   name="reviewStar"
                                   value="1"
                                   id="rate5"
-                                  v-model="rurating"
+                                  v-model="addReview.rurating"
                               /><label for="rate5">★</label>
                             </fieldset>
                             <div>
                               <textarea
-                                  v-model="rucontent"
+                                  v-model="addReview.rucontent"
                                   class="col-auto form-control"
                                   style="fontsize: 91%"
                                   type="text"
@@ -310,7 +308,7 @@
                               <div class="rate-star">
                                 <span
                                     class="rate-star-result"
-                                    v-for="(i, index) in review.rurating"
+                                    v-for="(i, index) in data.rurating"
                                     :key="index"
                                 ><i
                                     class="ion-ios-star"
@@ -424,6 +422,8 @@ import WishlistDataService from "@/services/WishlistDataService";
 import Wishlist from "@/model/Wishlist";
 
 export default {
+  created() {
+  },
   mounted() {
     custom();
     //  this.$route.params.moviecd : 이전페이지에서 전송한 매개변수는 $route.params 안에 있음
@@ -437,7 +437,7 @@ export default {
   data() {
     return {
       // 찜하기 기능
-      wishlist: null,
+      wishlist: new Wishlist(),
 
       movie: null,
       review: null,
@@ -445,32 +445,6 @@ export default {
       overview: true,
       reviews: false,
       media: false,
-
-      // 페이징을 위한 변수 정의
-      page: 1, // 현재 페이지
-      count: 0, // 전체 데이터 건수
-      pageSize: 10, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
-
-      // review: [
-      //   {
-      //     movieCode: 1,
-      //     rating: 4,
-      //     username: "choiari1002",
-      //     content: "그래픽이 너무 멋졌어요.",
-      //   },
-      //   {
-      //     movieCode: 1,
-      //     rating: 5,
-      //     username: "subin1234",
-      //     content: "가족들이랑 재밌게 봤습니다.",
-      //   },
-      //   {
-      //     movieCode: 1,
-      //     rating: 3,
-      //     username: "juhee5678",
-      //     content: "재밌지만 아쉬워요.",
-      //   },
-      // ],
 
       rwuser: "최아리",
       rucontent: "",
@@ -481,6 +455,14 @@ export default {
         userStarRating: 2, // 사용자별점
         userReview: "", // 리뷰내용
       },
+
+      addReview: {
+        rid: null,
+        rwuser: "디폴트값",
+        rucontent: "",
+        rurating: 0,
+      },
+
       starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
       userReview: "",
       userStarRaing: 3,
@@ -536,28 +518,32 @@ export default {
     },
     saveReview() {
       let data = {
-        rwuser: this.rwuser,
+        rwuser: this.addReview.rwuser,
         movienm: this.movie.movienm,
         moviecd: this.movie.moviecd,
-        rating: this.rurating,
-        rucontent: this.rucontent,
+        rurating: this.addReview.rurating,
+        rucontent: this.addReview.rucontent,
       };
 
-      ReviewDataService.create(data)
-          .then((response) => {
-            this.review.rid = response.data.rid;
-            console.log(response.data);
-            // this.submitted = true;
-            alert("ㄹㅣ뷰 저장");
-
-            this.getReview(this.movie.moviecd)
-            this.rucontent = "";
-
-          })
-          .catch((e) => {
-            alert("리뷰저장 실패");
-            console.log(e);
-          });
+      // FIXME: 들어오는 rwuser 값이 없으면 로그인 필요 알림창 뜨기 (수정필요: 넣어논 데이터 값 말고 받아오는 로그인 된 유저 이름이 필요.)
+      if (this.addReview.rwuser != "") {
+        ReviewDataService.create(data)
+            .then((response) => {
+              this.addReview.rid = response.data.rid;
+              console.log(response.data);
+              alert("ㄹㅣ뷰 저장");
+              alert(this.addReview.rurating);
+              window.location.reload();
+            })
+            .catch((e) => {
+              alert("리뷰저장 실패");
+              console.log(e);
+              window.location.reload();
+              alert(this.review.rid);
+            });
+      } else {
+        alert("로그인이 필요합니다.");
+      }
     },
     toOverview() {
       this.overview = true;
@@ -592,49 +578,58 @@ export default {
     },
     likeSave() {
       // alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
-      if(this.wishlist == null) {
+      if (this.wishlist.username == null) {
+        this.wishlist = new Wishlist();
         this.wishlist.username = this.$store.state.auth.user.username;
         this.wishlist.moviecd = this.$route.params.moviecd;
+
         WishlistDataService.create(this.wishlist)
-            .then(res => {
+            .then((res) => {
               this.wishlist = res.data;
-              console.log("wishlist: ", this.wishlist)
+              console.log("wishlist: ", this.wishlist);
               alert("create");
+              // this.getWishlist();
             })
-            .catch(err => {
+            .catch((err) => {
               console.log(err);
             });
       } else {
         WishlistDataService.delete(this.wishlist.wid)
-            .then(res => {
+            .then((res) => {
               console.log(res.data);
               alert("Delete");
+              this.getWishlist();
+              // alert(this.wishlist);
             })
-            .catch(err => {
+            .catch((err) => {
               console.log(err);
-            })
+            });
       }
-
     },
     getWishlist() {
-      WishlistDataService
-          .get(this.$store.state.auth.user.username, this.$route.params.moviecd)
+      WishlistDataService.get(
+          this.$store.state.auth.user.username,
+          this.$route.params.moviecd
+      )
           .then((res) => {
-            this.wishlist = res.data;
+            if (!res.data) {
+              this.wishlist = new Wishlist();
+            } else {
+              this.wishlist = res.data[0];
+            }
 
             console.log(this.$store.state.auth.user.username);
             console.log(this.$route.params.moviecd);
-            console.log(res.data);
+            // console.log(res.data);
             console.log("wishlist: ", this.wishlist);
-            alert("get");
+            // alert("get");
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
-    }
-  }
-}
-;
+    },
+  },
+};
 </script>
 
 <style scoped>

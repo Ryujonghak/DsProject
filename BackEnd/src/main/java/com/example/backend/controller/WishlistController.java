@@ -31,6 +31,20 @@ public class WishlistController {
         }
     }
 
+    @GetMapping("/wishlist/{username}")
+    public ResponseEntity<Object> findAll(@PathVariable String username) {
+        try {
+            List<Wishlist> wishlistList = wishlistService.findAllByUsername(username);
+            if (wishlistList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(wishlistList, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/wishlist/{username}/{moviecd}")
     public ResponseEntity<Object> find(@PathVariable String username, @PathVariable String moviecd) {
         try {

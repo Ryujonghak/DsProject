@@ -66,6 +66,9 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter" style="margin-bottom: 3%">
               <h3 style="color: aliceblue">QnA 관리</h3>
+              <p style="color: aliceblue; float: right">
+                답변완료버튼 클릭시 답변내용 확인가능
+              </p>
             </div>
 
             <!-- 전체정렬 -->
@@ -87,7 +90,7 @@
                       <th scope="col">이름</th>
                       <th scope="col">제목</th>
                       <th scope="col">내용</th>
-                      <th scope="col">답변하기</th>
+                      <th scope="col">답변상태</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -99,7 +102,7 @@
                       <td>{{ currentQna.qwriter }}</td>
                       <td>{{ currentQna.qtitle }}</td>
                       <td>{{ currentQna.qcontent }}</td>
-                      <td>{{ currentQna.qanswer }}</td>
+                      <!-- <td>{{ currentQna.qanswer }}</td> -->
                       <td>
                         <button
                           v-if="currentQna.qanswer == null"
@@ -118,6 +121,7 @@
                         <button
                           v-if="currentQna.qanswer != null"
                           class="successbtn"
+                          @click="checkingQna(currentQna.qid)"
                         >
                           답변완료
                         </button>
@@ -151,7 +155,7 @@
                         title="내용입력"
                         class="input-textarea boxing"
                         placeholder="내용을 입력해주세요."
-                        v-model="editQna.qanswer2"
+                        v-model="qnaanswer"
                       ></textarea>
                     </div>
                   </td>
@@ -166,21 +170,45 @@
           </div>
           <!--qna 작성 폼 끝 -->
 
-          <!-- <!— 페이징 + 전체 목록 시작 —> -->
-          <!-- <!— 페이징 양식 시작 —> -->
-          <div class="col-md-12">
-            <b-pagination
-              v-model="page"
-              :total-rows="question.totalItems"
-              :per-page="pageSize"
-              prev-text="Prev"
-              next-text="Next"
-              @change="handlePageChange"
-            ></b-pagination>
+          <!-- 답변 확인 창 시작 -->
+          <div v-show="checkQna">
+            <table class="noticeboxnoticebox">
+              <colgroup>
+                <col style="width: auto" />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th scope="row" class="noticelabel">
+                    |
+                    <label for="text">답변내용</label>
+                  </th>
+                  <td colspan="5">
+                    <div class="checkqna">
+                      <td>{{ replyQna.qanswer }}</td>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <!-- <!— 페이징 양식 끝 —> -->
-          <!-- 필터 페이지네이션 -->
         </div>
+
+        <!-- 답변 확인 창 끝 -->
+
+        <!-- <!— 페이징 + 전체 목록 시작 —> -->
+        <!-- <!— 페이징 양식 시작 —> -->
+        <div class="col-md-12">
+          <b-pagination
+            v-model="page"
+            :total-rows="question.totalItems"
+            :per-page="pageSize"
+            prev-text="Prev"
+            next-text="Next"
+            @change="handlePageChange"
+          ></b-pagination>
+        </div>
+        <!-- <!— 페이징 양식 끝 —> -->
+        <!-- 필터 페이지네이션 -->
       </div>
     </div>
   </div>
@@ -199,6 +227,10 @@ export default {
       board: false,
       editQna: [],
       currentQna: null,
+      checkQna: false,
+      qnaanswer: "",
+
+      replyQna: {},
 
       //페이징을 위한 변수 정의
       page: 1,
@@ -243,15 +275,16 @@ export default {
 
     //답변 등록하기 버튼 클릭시
     registerAnswer() {
-      if (this.editQna.qanswer2 != null) {
+      if (this.qnaanswer != null) {
+        this.editQna.qanswer = this.qnaanswer;
         QnaDataService.update(this.editQna.qid, this.editQna)
           .then((response) => {
-            var test = this.editQna;
-            alert(JSON.stringify(test));
+            // var test = this.editQna;
+            // alert(JSON.stringify(test));
             console.log(response.data);
             alert("답변이 완료되었습니다.");
-            this.editQna.qanswer = this.editQna.qanswer2;
             this.registerQna = false;
+            this.qnaanswer = "";
           })
           .catch((e) => {
             console.log(e);
@@ -282,6 +315,19 @@ export default {
           console.log(response.data);
           alert("삭제되었습니다.");
           window.location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    //qna 확인창
+    checkingQna(qid) {
+      this.checkQna = !this.checkQna;
+      QnaDataService.get(qid)
+        .then((response) => {
+          this.replyQna = response.data[0];
+          console.log(this.replyQna);
         })
         .catch((e) => {
           console.log(e);
@@ -339,5 +385,9 @@ button:active {
   color: aliceblue !important;
   border-radius: 20px;
   margin-top: 6%;
+}
+.topbar-filter p {
+    padding-right: 0 !important;
+    margin-bottom: 0;
 }
 </style>

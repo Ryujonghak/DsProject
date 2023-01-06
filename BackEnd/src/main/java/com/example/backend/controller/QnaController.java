@@ -38,6 +38,21 @@ public class QnaController {
         }
     }
 
+    @GetMapping("/qna/{qid}")
+    public ResponseEntity<Object> findQid(@PathVariable Integer qid) {
+        try {
+            List<Qna> qnaList = qnaService.findByQid(qid);
+            if (qnaList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(qnaList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/qna")
     public ResponseEntity<Object> getAll(@RequestParam(defaultValue = "writer") String searchSelect,
                                                  @RequestParam(required = false) String searchKeyword,
@@ -47,7 +62,7 @@ public class QnaController {
             //페이지 객체 정의
             Pageable pageable = PageRequest.of(page, size);
             Page<Qna> qnaPage;
-            if (searchSelect.equals("title")) {
+            if (searchSelect.equals("writer")) {
                 if (searchKeyword == null) {
                     searchKeyword = "";
                     qnaPage = qnaService.findAllByQtitleContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
@@ -57,9 +72,9 @@ public class QnaController {
             } else {
                 if (searchKeyword == null) {
                     searchKeyword = "";
-                    qnaPage = qnaService.findAllByQwriterContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
+                    qnaPage = qnaService.findAllByQtitleContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
                 } else {
-                    qnaPage = qnaService.findAllByQwriterContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
+                    qnaPage = qnaService.findAllByQtitleContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
                 }
             }
 //            Map 자료구조에 넣어 전송함.

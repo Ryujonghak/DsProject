@@ -83,6 +83,12 @@ public class DSCineService {
         return movieDetailList;
     }
 
+    public List<MovieDetail> findAllByMoviecd(String moviecd) {
+        List<MovieDetail> movieDetailList = movieDetailRepository.findAllByMoviecd(moviecd);
+
+        return movieDetailList;
+    }
+
     public MovieDetail saveMoiveDetail(MovieDetail movieDetail) {
         MovieDetail newMovieDetail = movieDetailRepository.save(movieDetail);
 
