@@ -9,7 +9,11 @@ import http from "../http-common";
 class ReviewDataService {
     // 모든 리뷰정보 조회 요청 함수
     getAll(movienm, page, size) {
-        return http.get(`/review?movienm=${movienm}&page=${page}&size=${size}`); 
+        return http.get(`/review?movienm=${movienm}&page=${page}&size=${size}`);
+    }
+
+    getRwuserAndMoviecd(rwuser, moviecd, page, size) {
+        return http.get(`/review/rwuser?rwuser=${rwuser}&moviecd=${moviecd}&page=${page}&size=${size}`);
     }
 
     // http://localhost:8000/api/review/moviecd?moviecd=20227925

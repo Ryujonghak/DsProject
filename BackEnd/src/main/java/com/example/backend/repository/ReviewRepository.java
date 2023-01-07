@@ -12,5 +12,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     Page<Review> findAllByMoviecd(String moviecd, Pageable pageable);
     Page<Review> findAll(Pageable pageable);
 
+    Page<Review> findAllByRwuserAndMoviecdOrderByInsertTime(String rwuser, String moviecd, Pageable pageable);
+
     Page<Review> findAllByMovienmOrderByRid(String movienm, Pageable pageable);
 }

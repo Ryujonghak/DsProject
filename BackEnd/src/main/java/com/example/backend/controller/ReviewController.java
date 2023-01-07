@@ -78,10 +78,37 @@ public class ReviewController {
         }
     }
 
+    @GetMapping("/review/rwuser")
+    public ResponseEntity<Object> findAllByMovienmOrderByRid(@RequestParam(required = false) String rwuser,
+                                                             @RequestParam(required = false) String moviecd,
+                                                             @RequestParam(defaultValue = "0") int page,
+                                                             @RequestParam(defaultValue = "3") int size) {
+        try {
+            Pageable pageable = PageRequest.of(page, size);
+            Page<Review> reviewPage = reviewService.findAllByRwuserAndMoviecdOrderByInsertTime(rwuser, moviecd, pageable);
+
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("review", reviewPage.getContent());
+            response.put("currentPage", reviewPage.getNumber());
+            response.put("totalItems", reviewPage.getTotalElements());
+            response.put("totalPages", reviewPage.getTotalPages());
+
+            if (reviewPage.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/review/moviecd")
     public ResponseEntity<Object> findAllByMoviecd(@RequestParam(required = false) String moviecd,
-                                                @RequestParam(defaultValue = "0") int page,
-                                                @RequestParam(defaultValue = "3") int size) {
+                                                   @RequestParam(defaultValue = "0") int page,
+                                                   @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
             Page<Review> reviewPage;

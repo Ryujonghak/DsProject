@@ -180,6 +180,40 @@ VALUES (SQ_REVIEW.NEXTVAL,
 
 INSERT INTO TB_REVIEW
 VALUES (SQ_REVIEW.NEXTVAL,
+        '정주희',
+        230104,
+        '20225061',
+        '아바타: 물의 길',
+        null,
+        '아직 안봐서 모름.',
+        '192',
+        '20221214',
+        '12세이상관람가',
+        '액션,어드벤처,SF,스릴러',
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
+INSERT INTO TB_REVIEW
+VALUES (SQ_REVIEW.NEXTVAL,
+        '강수빈',
+        230104,
+        '20225061',
+        '아바타: 물의 길',
+        null,
+        '아직 안봐서 모름.',
+        '192',
+        '20221214',
+        '12세이상관람가',
+        '액션,어드벤처,SF,스릴러',
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
+INSERT INTO TB_REVIEW
+VALUES (SQ_REVIEW.NEXTVAL,
         '류종학',
         230104,
         '20225061',
