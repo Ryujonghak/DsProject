@@ -15,7 +15,7 @@
           <!-- 왼쪽 사이드 바 시작 -->
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="movie-img">
-              <img :src="movie.posterurln" alt="poster" />
+              <img :src="movie.posterurln" alt="poster" style="width:310px"/>
               <div class="movie-btn">
                 <div class="btn-transform transform-vertical red">
                   <div>
