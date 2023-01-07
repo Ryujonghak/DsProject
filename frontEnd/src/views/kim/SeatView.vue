@@ -21,9 +21,6 @@
                          <span style="color: white;font-size:20px;margin-right: 10px;">{{ adultcount }}</span>
                          <button @click="adultplus()" style="margin-right: 10px;">+</button>
 
-
-                         <button @click="seattest97()" style="margin-right: 10px;">+++++</button> 
-
                          <span style="font-size: 20px; margin-right: 10px; margin-left:25px; color: white;">청소년</span>
                          <button @click="teenmins()" style="margin-right: 10px;">-</button>
                          <span style="color: white;font-size:20px;margin-right: 10px;">{{ teencount }}</span>
@@ -559,7 +556,7 @@
                     </div>
                   </div>
                   <div v-show="결제후페이지">
-                    <div class="col-md-8" style="background-color: blue; height: 500px;">
+                    <div class="col-md-9" style="background-color: blue; height: 500px;">
                       <div class="col-md-4" style="background-color: red; float: left;">
                         <img :src="data1.posterurln" alt="">
                         
@@ -595,8 +592,16 @@
                       </div>
                       <div style="position: absolute; top: 140px; left: 40px; color: black; font-weight: bold;">{{mm}}/선택한 날짜 selectedday</div>
                       <!-- <div style="position: absolute; top: 140px; left: 40px; color: black; font-weight: bold;">{{mm}}/{{ticketinfor.selectedday}}</div> -->
-                      <div style="position: absolute; top: 170px; left: 40px; color: black; font-weight: bold;">19:35 ~ 21:95</div>
-                      <div style="position: absolute; top: 170px; left: 40px; color: black; font-weight: bold;"><span>19:35</span> <h5></h5> </div>
+                      <div style="position: absolute; top: 170px; left: 30px; color: black;"><span style="font-size: 28px; font-weight: bold;">19:35</span> ~ <span>21:59</span></div>
+                      <div style="position: absolute; top: 170px; left: 60px; color: black;">큐알태그</div>
+                      <div style="position: absolute; top: 220px; left: 30px;"><span>성인 </span> <span style="font-size: 16px;"> 4</span></div>
+                      <div style="position: absolute; top: 250px; left: 30px; width: 130px; height: 30px; border-radius: 10px; background-color: skyblue; line-height: 30px;"><span>G1,G1,G1,G1</span></div>
+                      <div style="position: absolute; top: 290px; left: 30px;"><span>극장 이용 시 마스크 착용은 필수입니다.</span></div>
+                      <div style="position: absolute; top: 310px; left: 30px;"><span>(미사용 시 입장 제한)</span></div>
+                      <div style="position: absolute; top: 330px; left: 30px;"><span>입장 지현에 따른 관람 불편을 최소화하기 위해</span></div>
+                      <div style="position: absolute; top: 350px; left: 30px;"><span></span></div>
+
+
                     </div>
                     <div class="col-md-12">
                       버튼 이미지
@@ -631,9 +636,9 @@
         data1: this.movieProps2, //영화데이터 받아오기
         data2: [],     
         
-        모달 : true,
-        좌석: true,  // 좌석페이지 v-show
-        결제후페이지 : false,
+        모달 : false,
+        좌석: false,  // 좌석페이지 v-show
+        결제후페이지 : true,
   
         selectedseoul : true,    // 클릭이벤트로 색변경
         selectedbusan : true,    // 클릭이벤트로 색변경
