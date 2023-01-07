@@ -269,16 +269,16 @@ VALUES (SQ_NOTICE.NEXTVAL,
         NULL,
         NULL);
 
-INSERT INTO TB_RESERVATION
-VALUES (SQ_RESERVATION.NEXTVAL,
-        'forbob',
-        1,
-        '20225061',
-        '아바타: 물의 길',
-        1,
-        100,
-        '20230104',
-        'N');
+-- INSERT INTO TB_RESERVATION
+-- VALUES (SQ_RESERVATION.NEXTVAL,
+--         'forbob',
+--         1,
+--         '20225061',
+--         '아바타: 물의 길',
+--         1,
+--         100,
+--         '20230104',
+--         'N');
 
 INSERT INTO TB_WISHLIST
 VALUES (SQ_WISHLIST.NEXTVAL,
