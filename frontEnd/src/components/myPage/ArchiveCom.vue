@@ -99,7 +99,7 @@
             <div class="topbar-filter user">
               <p>나의 리뷰: 영화 관람평가</p>
               <a href="userfavoritegrid.html" class="grid"
-                ><i class="ion-grid"></i
+                  ><i class="ion-grid"></i
               ></a>
             </div>
 
@@ -218,76 +218,66 @@
 
             <!-- 나의 리뷰 조회 시작 -->
             <div class="row">
-              <!-- 리뷰 : 1 -->
-              <div class="col-xs-12 movie-item-style-2 userrate" 
-              v-for="(data, index) in review.review"
-                    :key="index">
-                <div class="mv-user-review-item">
-                  <!-- 영화정보 -->
-                  <!-- TODO: 예매한 영화 테이블에서 가져올 지, 리뷰에서 가져올 지.. 각주 다 풀어야함 -->
-                  <div class="col-xs-3">
-                    <div class="mv-item-infor">
-                      <br />
-                      <h6>
-                        <a href="#">{{ data.movienm }} </a>
-                        <!-- <a href="#"
+             
+              <!-- 리뷰 : 2 -->
+              <div class="col-xs-12 movie-item-style-2 userrate"
+                v-for="(data, index) in review.review"
+                :key="index">
+                <div class="mv-user-review-item"></div>
+                <!-- 영화정보 -->
+                <div class="col-xs-3">
+                  <div class="mv-item-infor">
+                    <br />
+                    <h6>
+                      <a href="#"
                         >{{ data.movienm }}
                         <span> ({{ data.opendt }}) </span></a
-                      > -->
-                      </h6>
-                      <!-- <p>
+                      >
+                    </h6>
+                    <p>
                       Run Time: {{ data.showtm }}분 <br /><a
                         >{{ data.watchgradenm }}
                       </a>
-                    </p> -->
-                      <!-- <span class="time sm">{{ data.schedule }}</span> -->
-                      <br />
-                    </div>
+                    </p>
+                    <span class="time sm">{{ data.scheNo }}</span>
+                    <br />
                   </div>
-                  <!-- 영화정보 -->
-                  <div class="col-xs-8">
-                    <div
-                      class="row"
-                      style="padding: 3%"
-                      v-for="(data, index) in review.review"
-                      :key="index"
-                    >
-                      <!-- 나의 리뷰 보기 -->
-                      <div class="user-infor">
-                        <div class="mv-user-review-item">
-                          <!-- 별점 v-for 반복문 -->
-                          <div class="rate-star">
-                            <h6>
-                              나의 별점
-                              <span
-                                class="rate-star-result"
-                                v-for="(i, index) in review.review.rurating"
-                                :key="index"
-                                ><i
-                                  class="ion-ios-star"
-                                  style="color: #f5b50a"
-                                ></i
-                              ></span>
-                            </h6>
-                          </div>
-                        </div>
-                        <p style="margin-top: 2%">
-                          {{ data.rucontent }}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- 리뷰삭제 버튼 -->
-                  <div class="col-xs-2 deletebtn">
-                    <div class="movie-item-style-2">
-                      <!-- <a href="#" class="redbtn" @click="deleteReview">삭제</a> -->
-                    </div>
-                  </div>
-                  <!-- 리뷰삭제 버튼 끝 -->
                 </div>
+
+                <!-- 영화정보 : 하드코딩이었음 (review에 )-->
+                <div class="col-xs-8">
+                  <div class="row" style="padding: 3%">
+                    <div class="user-infor">
+                      <div class="mv-user-review-item">
+                        <div class="rate-star">
+                          <h6>
+                            나의 별점
+                            <span
+                              class="rate-star-result"
+                              v-for="(i, index) in review.userStarRating"
+                              :key="index"
+                              ><i class="ion-ios-star"></i
+                            ></span>
+                          </h6>
+                        </div>
+                      </div>
+                      <!-- 리뷰 내용 -->
+                      <p style="margin-top: 2%">
+                       {{ data.rucontent }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- 리뷰삭제 버튼 -->
+                <div class="col-xs-2 deletebtn">
+                  <div class="movie-item-style-2">
+                    <a href="#" class="redbtn">삭제</a>
+                  </div>
+                </div>
+                <!-- 리뷰삭제 버튼 끝 -->
               </div>
 
-              <!-- 리뷰 : 2 -->
+              <!-- 리뷰 : 3 -->
               <div class="col-xs-12 movie-item-style-2 userrate">
                 <div class="mv-user-review-item"></div>
                 <!-- 영화정보 -->
@@ -311,7 +301,7 @@
                 </div>
 
                 <!-- 영화정보 : 하드코딩이었음 (review에 )-->
-                <!-- <div class="col-xs-8">
+                <div class="col-xs-8">
                   <div class="row" style="padding: 3%">
                     <div class="user-infor">
                       <div class="mv-user-review-item">
@@ -338,7 +328,7 @@
                       </p>
                     </div>
                   </div>
-                </div> -->
+                </div>
                 <!-- 리뷰삭제 버튼 -->
                 <div class="col-xs-2 deletebtn">
                   <div class="movie-item-style-2">
