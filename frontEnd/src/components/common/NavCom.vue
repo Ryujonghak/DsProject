@@ -515,8 +515,8 @@ export default {
               alert("환영합니다");
               this.popupClose = !this.popupClose;
               window.location.reload();
-              this.currentUser();
-              this.showAdminBoard();
+              this.currentUser;
+              this.showAdminBoard;
             })
             // 참고) if/else 문 대신에 -> or(||) and(&&) 연산자를 사용할때도 있음
             // 로직체크 순서 : true || false, false && true
