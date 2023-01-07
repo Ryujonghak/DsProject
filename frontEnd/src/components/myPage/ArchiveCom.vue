@@ -38,11 +38,11 @@
               <div class="user-img">
                 <!-- src="images/uploads/user-img.png" -->
                 <img
-                  class="profileImg"
-                  src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
-                  alt=""
+                    class="profileImg"
+                    src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                    alt=""
                 />
-                <br />
+                <br/>
               </div>
               <div class="user-fav">
                 <ul>
@@ -99,15 +99,15 @@
             <div class="topbar-filter user">
               <p>나의 리뷰: 영화 관람평가</p>
               <a href="userfavoritegrid.html" class="grid"
-                  ><i class="ion-grid"></i
+              ><i class="ion-grid"></i
               ></a>
             </div>
 
             <!-- 리뷰작성 -->
-            <!-- TODO: 예매내역/내정보-나의아카이브 에서 리뷰쓰기 클릭시 정보 넘어가야함 -->
             <div id="reviews" class="tab review">
               <div class="row" style="padding: 3%">
                 <div class="reviewForm">
+                  <h2>{{ movie.movienm }}</h2>
                   <div class="rv-hd">
                     <!-- <div
                       class="div"
@@ -120,61 +120,61 @@
                   <div>
                     <div class="rv-hd">
                       <form
-                        class="review-form col-xs-12"
-                        name="myform"
-                        id="myform"
-                        method="post"
+                          class="review-form col-xs-12"
+                          name="myform"
+                          id="myform"
+                          method="post"
                       >
                         <!-- 리뷰 작성폼 시작 -->
                         <div>
                           <fieldset>
                             <span class="review-form-style"
-                              >별점을 선택해주세요</span
+                            >별점을 선택해주세요</span
                             >
                             <input
-                              type="radio"
-                              name="reviewStar"
-                              value="5"
-                              id="rate1"
-                              v-model="addReview.rurating"
+                                type="radio"
+                                name="reviewStar"
+                                value="5"
+                                id="rate1"
+                                v-model="editReview.rurating"
                             /><label for="rate1">★</label>
                             <input
-                              type="radio"
-                              name="reviewStar"
-                              value="4"
-                              id="rate2"
-                              v-model="addReview.rurating"
+                                type="radio"
+                                name="reviewStar"
+                                value="4"
+                                id="rate2"
+                                v-model="editReview.rurating"
                             /><label for="rate2">★</label>
                             <input
-                              type="radio"
-                              name="reviewStar"
-                              value="3"
-                              id="rate3"
-                              v-model="addReview.rurating"
+                                type="radio"
+                                name="reviewStar"
+                                value="3"
+                                id="rate3"
+                                v-model="editReview.rurating"
                             /><label for="rate3">★</label>
                             <input
-                              type="radio"
-                              name="reviewStar"
-                              value="2"
-                              id="rate4"
-                              v-model="addReview.rurating"
+                                type="radio"
+                                name="reviewStar"
+                                value="2"
+                                id="rate4"
+                                v-model="editReview.rurating"
                             /><label for="rate4">★</label>
                             <input
-                              type="radio"
-                              name="reviewStar"
-                              value="1"
-                              id="rate5"
-                              v-model="addReview.rurating"
+                                type="radio"
+                                name="reviewStar"
+                                value="1"
+                                id="rate5"
+                                v-model="editReview.rurating"
                             /><label for="rate5">★</label>
                           </fieldset>
                           <textarea
-                            v-model="addReview.rucontent"
-                            class="col-auto form-control"
-                            style="fontsize: 91%"
-                            type="text"
-                            id="reviewContents"
-                            required
-                            placeholder="평점 및 영화 관람평을 작성해주세요. 주제와 무관한 리뷰 또는 스포일러는 삭제될 수 있습니다."
+                              v-model="editReview.rucontent"
+                              class="col-auto form-control"
+                              style="fontsize: 91%"
+                              type="text"
+                              id="reviewContents"
+                              required
+                              placeholder="평점 및 영화 관람평을 작성해주세요. 주제와 무관한 리뷰 또는 스포일러는 삭제될 수 있습니다."
                           ></textarea>
                         </div>
                         <!-- 리뷰작성폼 끝 -->
@@ -185,7 +185,7 @@
                       <div>
                         <div class="col-xs-3">
                           <a href="#" class="redbtn" @click="saveReview"
-                            >관람평 등록</a
+                          >관람평 등록</a
                           >
                         </div>
                         <!-- 등록버튼 끝 -->
@@ -209,38 +209,38 @@
             <!-- 나의 리뷰 메뉴바  -->
             <div class="topbar-filter user">
               <p>
-                나의 리뷰 <span> {{ reviewLength }} in movies</span> in total
+                나의 리뷰 <span> {{ reviewTotalCount }} </span> in total
               </p>
               <a href="userfavoritegrid.html" class="grid"
-                ><i class="ion-grid"></i
+              ><i class="ion-grid"></i
               ></a>
             </div>
 
             <!-- 나의 리뷰 조회 시작 -->
             <div class="row">
-             
+
               <!-- 리뷰 : 2 -->
               <div class="col-xs-12 movie-item-style-2 userrate"
-                v-for="(data, index) in review.review"
-                :key="index">
+                   v-for="(data, index) in review"
+                   :key="index">
                 <div class="mv-user-review-item"></div>
                 <!-- 영화정보 -->
                 <div class="col-xs-3">
                   <div class="mv-item-infor">
-                    <br />
+                    <br/>
                     <h6>
                       <a href="#"
-                        >{{ data.movienm }}
+                      >{{ data.movienm }}
                         <span> ({{ data.opendt }}) </span></a
                       >
                     </h6>
                     <p>
-                      Run Time: {{ data.showtm }}분 <br /><a
-                        >{{ data.watchgradenm }}
-                      </a>
+                      Run Time: {{ data.showtm }}분 <br/><a
+                    >{{ data.watchgradenm }}
+                    </a>
                     </p>
-                    <span class="time sm">{{ data.scheNo }}</span>
-                    <br />
+<!--                    <span class="time sm">{{ data.scheNo }}</span>-->
+                    <br/>
                   </div>
                 </div>
 
@@ -253,17 +253,17 @@
                           <h6>
                             나의 별점
                             <span
-                              class="rate-star-result"
-                              v-for="(i, index) in review.userStarRating"
-                              :key="index"
-                              ><i class="ion-ios-star"></i
+                                class="rate-star-result"
+                                v-for="(i, index) in review.userStarRating"
+                                :key="index"
+                            ><i class="ion-ios-star"></i
                             ></span>
                           </h6>
                         </div>
                       </div>
                       <!-- 리뷰 내용 -->
                       <p style="margin-top: 2%">
-                       {{ data.rucontent }}
+                        {{ data.rucontent }}
                       </p>
                     </div>
                   </div>
@@ -278,65 +278,6 @@
               </div>
 
               <!-- 리뷰 : 3 -->
-              <div class="col-xs-12 movie-item-style-2 userrate">
-                <div class="mv-user-review-item"></div>
-                <!-- 영화정보 -->
-                <div class="col-xs-3">
-                  <div class="mv-item-infor">
-                    <br />
-                    <h6>
-                      <a href="#"
-                        >{{ watchedMovie.movieNm }}
-                        <span> ({{ watchedMovie.openDt }}) </span></a
-                      >
-                    </h6>
-                    <p>
-                      Run Time: {{ watchedMovie.showTm }}분 <br /><a
-                        >{{ watchedMovie.watchGradeNm }}
-                      </a>
-                    </p>
-                    <span class="time sm">{{ watchedMovie.scheNo }}</span>
-                    <br />
-                  </div>
-                </div>
-
-                <!-- 영화정보 : 하드코딩이었음 (review에 )-->
-                <div class="col-xs-8">
-                  <div class="row" style="padding: 3%">
-                    <div class="user-infor">
-                      <div class="mv-user-review-item">
-                        <div class="rate-star">
-                          <h6>
-                            나의 별점
-                            <span
-                              class="rate-star-result"
-                              v-for="(i, index) in review.userStarRating"
-                              :key="index"
-                              ><i class="ion-ios-star"></i
-                            ></span>
-                          </h6>
-                        </div>
-                      </div>
-                      <p style="margin-top: 2%">
-                        아바타 2는 아직 안 봤는데 넘 기대되구요,, 1도 재밌게
-                        봤었구요,, 저는 집에 가고 싶구요,, 리뷰쓰기는 또 어떻게
-                        작동시켜야 하는지 까마득 하구요,, 시간은 흐르는데 다
-                        끝난건 없는거 같구요,, 자신감 하락하구요,, ㅜㅜ,, 너무
-                        혼내지 말기,, 다시 리뷰로 돌아가서 아바타 언제 보려나
-                        싶지만 얼른 보고싶고 선리뷰 별 드립니다. 사실 이건
-                        영화를 봐야지 쓸 수 있는 리뷰랍니다.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <!-- 리뷰삭제 버튼 -->
-                <div class="col-xs-2 deletebtn">
-                  <div class="movie-item-style-2">
-                    <a href="#" class="redbtn">삭제</a>
-                  </div>
-                </div>
-                <!-- 리뷰삭제 버튼 끝 -->
-              </div>
             </div>
             <!-- 나의 리뷰 조회 끝 -->
 
@@ -362,7 +303,7 @@
     </div>
     <!-- TODO: 탑버튼 추가 -->
     <a class="topbutton" href="#">
-      <img src="@/assets/images_jung/iconUp_48.png" />
+      <img src="@/assets/images_jung/iconUp_48.png"/>
     </a>
   </div>
 </template>
@@ -372,70 +313,39 @@
 
 // import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
-import userService from "@/services/user.service";
+// User
 import User from "@/model/user";
-
-// import MovieDataService from "@/services/MovieDataService";
+import userService from "@/services/user.service";
+// Review
 import ReviewDataService from "@/services/ReviewDataService";
+import Review from "@/model/review";
+// MovieDetail
+import MovieDataService from "@/services/MovieDataService";
+
 
 export default {
+  // 시작 시 실행
+  mounted() {
+    custom();
+    this.getUser();
+    this.getMovieData();
+  },
   data() {
     return {
+      // User Part
       user: new User(),
-      checkanswer: "", // 비번찾기문제 폼에 입력된 값
-      changePwd: false, // 버튼 클릭시 true, 변경폼 나타남
-      changePwdForm: false,
       message: "",
       username: this.$store.state.auth.user.username,
-      password: "",
-      password2: "",
-      answer: "", // 비번확인용
-      message: "",
 
-      // 리뷰
-      movie: [], // 임시로movie로 출력확인 - 나중에 예매한 영화 들어오면 지울거임
-      review: [], // 리뷰
-      rucontent: "",
-      ruration: 0,
-      reviewLength: 0, // 리뷰 등록 갯수
-      movienm: "",
-
-      addReview: {
-        rid: null,
-        rwuser: "디폴트값", // 하드코딩중
-        rucontent: "",
-        rurating: 0,
-      },
+      // Review Part
+      review: [new Review()], // 리뷰
+      reviewTotalCount: 0,
+      editReview: new Review(),
       submitted: false, // 리뷰작성후 버튼 클릭시 true로 변경
 
-      // FIXME: 예매한 영화.. 현재 하드코딩 //////////////////////////////
-      watchedMovie: {
-        username: "", // 아이디
-        paidDate: "", // 예매일자
-        reservNo: "", // 예매번호
-        openDt: "2022", // 개봉년도
-        movieNm: "눈의 여왕5: 스노우 프린세스와 미러랜드의 비밀", // 영화제목   -> title로 바꿔야하나?
-        posterURL:
-          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
-        directors: "제임스카메론", // 감독
-        rating: 4.3, // 평점(관람객)
-        starRating: 4, // 나중에 백엔드에서 평점 가져오기 (정수로 받아야 합니다,,)
-        showTm: "192", // 상영시간
-        watchGradeNm: "12세관람가", // 관람등급
-        scheNo: "2022/12/28", // 상영스케쥴
-        seatNo: "I3", // 좌석번호
-        cnt: "1", // 예매수량
-        price: "15000", // 금액
-      },
-      // currentReview: null,
-      // reviewMovie: {
-      //   userStarRating: 2, // 사용자별점
-      //   userReview: "",   // 리뷰 내용
-      //   // userReview: [
-      //   //   "클릭버튼으로 생성된 영화번호? 예매번호를 넘겨주면 그안에 저장된 영화제목 등 정보를 불러서 출력하도록 만들어야 함...... 리뷰내용이 너무 길어지니까 오류가 나네... 그래서 []안에 넣으니까 되긴한데 쌍따옴표까지 같이 출력돼서 약간 곤란쓰............................................................................................일단 리뷰를 이만큼 길게 쓰는 사람도 있겠지 하지만 나는 아니고 여기에다가 아무말이나 쓰고 있을 뿐이고 집에가고싶을 뿐이고 잠온다... ", // 리뷰내용
-      //   // ],
-      // },
-      ///////////////////////////////////////////////////////////////////////////////
+      // Movie Part
+      movie: [], // 임시로 movie로 출력확인 - 나중에 예매한 영화 들어오면 지울거임
+      moviecd: this.$route.params.moviecd,
       starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
       userReview: "",
       userStarRaing: 3,
@@ -447,24 +357,21 @@ export default {
       pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
     };
   },
-  mounted() {
-    custom();
-    this.getReview();
-    this.getUser();
-  },
   methods: {
     // 백엔드 데이터 받는 함수
     getUser() {
       // username = this.$store.state.auth.user.username;
       console.log("username: " + this.username);
       userService
-        .getUserUsername(this.username)
-        .then((response) => {
-          this.user = response.data;
-          console.log("getUser this.user: ", this.user);
-          console.log("getUser response.data: ", response.data);
-        })
-        .catch((err) => console.log(err));
+          .getUserUsername(this.username)
+          .then((response) => {
+            this.user = response.data;
+            console.log("getUser this.user: ", this.user);
+            console.log("getUser response.data: ", response.data);
+
+            this.getReview();
+          })
+          .catch((err) => console.log(err));
     },
     // 아리 별점
     cutNames() {
@@ -472,89 +379,83 @@ export default {
       this.watchedMovie.starRating = Math.floor(this.watchedMovie.rating);
       // alert(this.movie.starRating);
     },
-    // 새로운 리뷰 저장 함수
-    saveReview() {
-      // TODO: 추가로 상영시간showtm, 개봉일opendt, 장르genrenm, 관람등급watchgradenm, 관람일data..? 가져오기
-      let data = {
-        rwuser: this.addReview.rwuser,
-        movienm: this.movie.movienm,
-        moviecd: this.movie.moviecd,
-        rating: this.addReview.rurating,
-        rucontent: this.addReview.rucontent,
-      };
-      // 리뷰 생성
-      ReviewDataService.create(data)
-        .then((response) => {
-          this.addReview.rid = response.data.rid;
-          console.log(response.data);
-          alert("리뷰 저장");
-          alert(this.addReview.rurating);
-          window.location.reload();
-          alert(this.review.rid);
-        })
-        .catch((e) => {
-          alert("리뷰저장 실패");
-          console.log(e);
-          window.location.reload();
-          alert(this.review.rid);
-        });
-    },
     // 리뷰 출력 - 내가 예매한 테이블에서 가져와야함.. moviecd 수정필요
     getReview() {
-      ReviewDataService.getAll(this.movienm, this.page - 1, this.pageSize)
-        .then((response) => {
-          const review = response.data;
-          this.review = review;
-          var test = response.data;
-          alert(JSON.stringify(test));
-          console.log(response.data);
+      // alert("this.user.name: " + this.user.name);
+      // alert("this.moviecd: " + this.moviecd);
+      ReviewDataService.getRwuser(this.user.username, this.page - 1, this.pageSize)
+          .then((response) => {
+            this.review = response.data.review;
+            console.log("response.data: ", response.data);
+            console.log("this.review: ", this.review);
 
-          // 내가 쓴 리뷰 갯수
-          //   this.reviewLength = this.review.movienm.length;
-        })
-        .catch((e) => {
-          alert("리뷰 실패");
-          console.log(e);
-        });
+            // 내가 쓴 리뷰 갯수
+            this.reviewTotalCount = this.review.length;
+            console.log("this.reviewTotalCount", this.reviewTotalCount);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
-
+    // 새로운 리뷰 저장 함수
+    saveReview() {
+      // 리뷰 생성
+      this.editReview.rwuser = this.user.username;
+      this.editReview.movienm = this.movie.movienm;
+      this.editReview.moviecd = this.movie.moviecd;
+      this.editReview.showtm = this.movie.showtm;
+      this.editReview.opendt = this.movie.opendt;
+      this.editReview.watchgradenm = this.movie.watchgradenm;
+      ReviewDataService.create(this.editReview)
+          .then((response) => {
+            console.log(response.data);
+            alert("리뷰 저장");
+            // window.location.reload();
+            this.getReview();
+            // this.newReview()
+          })
+          .catch((e) => {
+            alert("리뷰저장 실패");
+            console.log(e);
+            // window.location.reload();
+            alert(this.review.rid);
+          });
+    },
     newReview() {
       // 새양식 다시 보여주기, 변수 초기화
       this.submitted = false;
-      this.review = {};
+      this.review = [new Review()];
     },
-
-    // FIXME: 리뷰 삭제
-    deleteReview(data) {
+    deleteReview() {
       alert("클릭");
       this.review = data;
       var test = this.review.rid;
       alert(JSON.stringify(test));
       // ReviewDataService.delete(this.review.moviecd)   // 영화코드로 삭제하기  FIXME:
       ReviewDataService.delete(this.review.rid) // 리뷰 사용자로 삭제하기  FIXME:
-        .then((response) => {
-          console.log(response.data);
-          alert("리뷰가 삭제되었습니다.");
-          // window.location.reload();    // 홈으로 새고
-          // this.$router.push("/archive");    // 홈으로 새고됨..
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+          .then((response) => {
+            console.log(response.data);
+            alert("리뷰가 삭제되었습니다.");
+            // window.location.reload();    // 홈으로 새고
+            // this.$router.push("/archive");    // 홈으로 새고됨..
+            this.getReview()
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
-
-    // 전체 영화 (movie배열)
-    // getMovieInfo() {
-    //   MovieDataService.getMovieAll()
-    //     .then((response) => {
-    //       this.movie = response.data;
-    //       console.log(response.data);
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
-
+    getMovieData() {
+      MovieDataService
+          .getMovieDetail(this.moviecd)
+          .then(response => {
+            this.movie = response.data.MovieDetail[0];
+            console.log("response.data: ", response.data);
+            console.log("this.movie: ", this.movie);
+          })
+          .catch(error => {
+            console.log("error: ", error);
+          })
+    },
     // 로그아웃
     logout() {
       // this.$store.dispatch("모듈명/함수명")
@@ -576,26 +477,33 @@ export default {
   direction: rtl;
   border: 0;
 }
+
 #myform fieldset legend {
   text-align: right;
 }
+
 #myform input[type="radio"] {
   display: none;
 }
+
 #myform label {
   font-size: 3em;
   color: transparent;
   text-shadow: 0 0 0 #f0f0f0;
 }
+
 #myform label:hover {
   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
+
 #myform label:hover ~ label {
   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
+
 #myform input[type="radio"]:checked ~ label {
   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
+
 #reviewContents {
   width: 100%;
   height: 150px;
@@ -606,13 +514,16 @@ export default {
   font-size: 16px;
   resize: none;
 }
+
 .review-form {
   padding-left: 0%;
   margin-bottom: 5%;
 }
+
 .review-form-style {
   color: #999;
 }
+
 .list {
   text-align: left;
   max-width: 750px;
