@@ -153,12 +153,7 @@
           </div>
           <div class="content col-xs-12" style="text-align: center">
             <a id="btn-modal" class="closebtn col-xs-6">아니요</a>
-            <a
-              id="btn-modal"
-              class="finbtn col-xs-6"
-              @click="deleteUser"
-              >예</a
-            >
+            <a id="btn-modal" class="finbtn col-xs-6" @click="deleteUser">예</a>
           </div>
         </div>
       </div>
@@ -260,6 +255,13 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.user.splice(this.user.indexOf(this.currentUser.id), 1);
+          console.log("*********8")
+          console.log(this.user)
+          console.log("********8")
+
+          // 모달 끄기
+          const modal = document.getElementById("modal");
+          modal.style.display = "none";
         })
         .catch((e) => {
           console.log(e);
