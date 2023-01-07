@@ -5,10 +5,7 @@ import http from "../http-common";
 class QnaDataService {
     // 모든 Qna정보 조회 요청 함수
     getAll(searchSelect, searchKeyword, page, size) {
-        // alert(searchSelect)
-        // alert(searchKeyword)
-        // get 방식 통신 요청 -> @GetMapping("/api/qna")
-        return http.get(`/qna?searchSelect=${searchSelect}&searchKeyword=${searchKeyword}&page=${page}&size=${size}`); 
+        return http.get(`/qna/search?searchSelect=${searchSelect}&searchKeyword=${searchKeyword}&page=${page}&size=${size}`); 
     }
 
     getQnaQwriter(qwriter, page, size) {

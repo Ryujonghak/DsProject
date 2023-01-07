@@ -142,7 +142,7 @@
     </div>
     
     <!-- TODO: 탑버튼 추가_정주희 -->
-    <a class="topbutton" href="#">
+    <a class="topbutton" id="back-to-top" href="#">
       <img src="@/assets/images_jung/iconUp_48.png"/>
     </a>
   </div>
@@ -195,8 +195,9 @@ export default {
         .then((response) => {
           this.qna.qid = response.data.qid;
           console.log(response.data);
-          alert("등록이 완료되었습니다");
-          window.location.reload();
+          alert("등록이 완료되었습니다. 홈으로이동합니다.");
+          this.$router.push("/")
+        
         })
         // 실패하면 .catch() 에러메세지가 전송됨
         .catch((e) => {
@@ -267,6 +268,7 @@ tbody {
   margin-top: 5%;
   text-align: center;
   box-shadow: none !important;
+  margin-bottom: 10%;
 }
 /* .information {
   margin-top: 3%;

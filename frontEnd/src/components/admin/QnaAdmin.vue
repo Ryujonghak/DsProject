@@ -135,7 +135,7 @@
           </div>
           <!--qna 답변작성 폼 시작 (add)-->
           <div v-show="registerQna">
-            <table class="noticeboxnoticebox">
+            <table class="answertable">
               <colgroup>
                 <col style="width: auto" />
               </colgroup>
@@ -163,7 +163,7 @@
               </tbody>
             </table>
             <div class="search">
-              <button type="button" class="regbtn" @click="registerAnswer()">
+              <button type="button" class="regbtn2" @click="registerAnswer()">
                 등록하기
               </button>
             </div>
@@ -172,7 +172,7 @@
 
           <!-- 답변 확인 창 시작 -->
           <div v-show="checkQna">
-            <table class="noticeboxnoticebox">
+            <table class="answertable">
               <colgroup>
                 <col style="width: auto" />
               </colgroup>
@@ -285,6 +285,7 @@ export default {
             alert("답변이 완료되었습니다.");
             this.registerQna = false;
             this.qnaanswer = "";
+            this.retrieveQna();
           })
           .catch((e) => {
             console.log(e);
@@ -314,7 +315,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           alert("삭제되었습니다.");
-          window.location.reload();
+          this.retrieveQna();
         })
         .catch((e) => {
           console.log(e);
@@ -351,6 +352,7 @@ textarea {
   height: 6.25em;
   border: none;
   resize: none;
+  // margin-left: 20%;
 }
 .regbtn {
   background: rgb(255, 255, 0);
@@ -389,5 +391,16 @@ button:active {
 .topbar-filter p {
     padding-right: 0 !important;
     margin-bottom: 0;
+}
+.answertable{
+  width: 80%;
+  margin-left:20%;
+}
+.regbtn2{
+  background: rgb(255, 255, 0);
+  color: black;
+  border-radius: 20px;
+  vertical-align: middle !important;
+  margin-left: 20% ;
 }
 </style>

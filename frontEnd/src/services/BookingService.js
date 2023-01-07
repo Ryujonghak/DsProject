@@ -4,9 +4,15 @@ import http from "../http-common";
 
 class BookingService {
   // 모든 영화정보 조회 요청 함수 TODO: 정주희
-  getMovieAll() {
-    return http.get(`/movie/list`);
+  getSeatAll() {
+    return http.get(`/theater/allSeat`);
   }
+
+  // http://localhost:8000/api/theater/setSeat/{{seatposition}}/{{seatyn}}
+  // 공지사항 수정 함수
+  SelectSeat(seatposition, seatyn) {
+    return http.put(`/theater/setSeat/${seatposition}/${seatyn}`);
+}
 
   // 모든 박스오피스 영화정보 조회 요청 함수
   getBoxofficeAll(movienm, page, size) {

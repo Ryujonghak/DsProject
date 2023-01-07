@@ -43,7 +43,7 @@
           <div class="row">
             <div class="remember" col-xs-12>
               <button @click="toggleShow()" class="findbtn">
-                아이디찾기 &nbsp; &nbsp;|
+                아이디찾기 &nbsp; &nbsp; &nbsp; &nbsp; |
               </button>
               <button @click="togglePwd()" class="findbtn">비밀번호찾기</button>
             </div>
@@ -302,11 +302,12 @@
                   </ul>
                 </li>
 
-                <li>
+                <!-- <li>
                   <router-link to="/board-admin">test</router-link>
-                </li>
+                </li> -->
               </ul>
             </div>
+            <!-- 로고 -->
             <div class="col-xs-2">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
@@ -331,32 +332,9 @@
                 /></router-link>
               </div>
             </div>
-            <div class="col-xs-4 navbar-menu">
+            <!-- 오른쪾메뉴 -->
+            <div class="col-xs-5 navbar-menu">
               <ul class="nav navbar-nav flex-child-menu menu-right col">
-                <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
-                <div v-show="currentUser">
-                  <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
-                  <li class="dropdown first" v-if="!showAdminBoard">
-                    <a
-                      class="btn btn-default dropdown-toggle lv1"
-                      data-toggle="dropdown"
-                      data-hover="dropdown"
-                    >
-                      MY PAGE
-                      <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu level1">
-                      <li>
-                        <router-link to="/mypage">내정보</router-link>
-                      </li>
-                      <li>
-                        <router-link to="/myticket">나의예매내역</router-link>
-                      </li>
-                      <li><router-link to="/mytest">test</router-link></li>
-                    </ul>
-                  </li>
-                  <!-- 회원 로그인시 마이페이지 끝  -->
-                </div>
 
                 <!-- 고객센터 -->
 
@@ -381,6 +359,31 @@
                     </li>
                   </ul>
                 </li>
+
+                <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
+                <div v-show="currentUser">
+                  <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
+                  <li class="dropdown first" v-if="!showAdminBoard">
+                    <a
+                      class="btn btn-default dropdown-toggle lv1"
+                      data-toggle="dropdown"
+                      data-hover="dropdown"
+                    >
+                      MY-PAGE
+                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu level1">
+                      <li>
+                        <router-link to="/mypage">내정보</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/myticket">나의예매내역</router-link>
+                      </li>
+                      <li><router-link to="/mytest">test</router-link></li>
+                    </ul>
+                  </li>
+                  <!-- 회원 로그인시 마이페이지 끝  -->
+                </div>
 
                 <!-- 어드민 로그인시 어드민 나브바 시작-->
                 <li class="dropdown first" v-if="showAdminBoard">
@@ -416,11 +419,14 @@
                 </li>
 
                 <!-- 로그인성공시 signup -> logout변경 -->
-                <div v-if="currentUser">
-                  <li class="logoutLink">
-                    <a href="#" @click.prevent="logout">LOG Out</a>
+                <!-- <div v-if="currentUser"> -->
+                  <li v-if="currentUser"
+                   class="dropdown first logoutLink" id="logoutlink">
+                    <a class="btn btn-default dropdown-toggle lv1"
+                    data-toggle="dropdown"
+                    data-hover="dropdown" href="#" @click.prevent="logout">LOG Out</a>
                   </li>
-                </div>
+                <!-- </div> -->
               </ul>
             </div>
           </div>
@@ -492,8 +498,8 @@ export default {
     }
   },
   methods: {
-    // 로그인 버튼 클릭시 실행되는 함수
-    handleLogin() {
+      // 로그인 버튼 클릭시 실행되는 함수
+      handleLogin() {
       // 로그인 로직 처리
       this.loading = true;
       // vee-validate 함수 findid처리 방법
@@ -515,15 +521,15 @@ export default {
               alert("환영합니다");
               this.popupClose = !this.popupClose;
               window.location.reload();
-              this.currentUser;
-              this.showAdminBoard;
+              // this.currentUser();
+              // this.showAdminBoard();
             })
             // 참고) if/else 문 대신에 -> or(||) and(&&) 연산자를 사용할때도 있음
             // 로직체크 순서 : true || false, false && true
             // TODO: 정주희 alert창 추가 -> 수정 필요 FIXME:
             .catch((error) => {
               // this.loading = false; // 로그인 버튼 활성화
-              alert("데이터통신오류");
+              alert("아이디,비밀번호를 확인하세요");
               this.message =
                 (error.response &&
                   error.response.data &&
@@ -781,4 +787,20 @@ input {
   background: none !important;
   color: black !important;
 }
+// .navbar-nav .navbar-menu{
+//   justify-content: space-between !important;
+//   float: right !important;
+// }
+.menu-left{
+  margin-left: 30% !important;
+}
+
+#logoutlink{
+  justify-content: end !important;
+}
+
+.nav .navbar-nav .flex-child-menu .menu-right .col{
+justify-content: space-between !important;
+}
+
 </style>
