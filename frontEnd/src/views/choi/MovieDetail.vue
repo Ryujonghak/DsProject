@@ -423,7 +423,6 @@ import Wishlist from "@/model/Wishlist";
 import WishlistDataService from "@/services/WishlistDataService";
 
 export default {
-  created() {},
   mounted() {
     custom();
     //  this.$route.params.moviecd : 이전페이지에서 전송한 매개변수는 $route.params 안에 있음
@@ -529,6 +528,7 @@ export default {
             // this.addReview.rucontent = "";
             // this.addReview.rurating = 0;
             alert("리뷰 저장");
+            this.addReview = new Review();
           })
           .catch((e) => {
             alert("리뷰저장 실패");
