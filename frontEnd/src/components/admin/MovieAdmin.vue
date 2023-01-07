@@ -79,8 +79,8 @@
                     <label>Sort by:</label>
                     <select v-model="selectedValue" v-on:change="getMovieDesc()">
                       <option value="" selected>전체보기</option>
-                      <option value="dateDesc" >Release date Descending</option>
-                      <option value="dateAsc" >Release date Ascending</option>
+                      <option value="dateDesc" >개봉일자 최신순</option>
+                      <option value="dateAsc" >개봉일자 오래된순</option>
                     </select>
                   </div>
                     <button class="regbtn" style="width: 15%;">
@@ -302,7 +302,7 @@ button:active {
   // -webkit-appearance: none;
   // -moz-appearance: none;
   float: right !important;
-  // background: url(../images/uploads/drop-icon.png) no-repeat right 20px center;
+  background: url(../../../public/images/uploads/drop-icon.png) no-repeat right 20px center;
   border-left: none !important;
   border-right: px solid #405266;
   border-top: none;

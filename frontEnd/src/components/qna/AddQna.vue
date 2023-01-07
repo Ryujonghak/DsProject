@@ -142,7 +142,7 @@
     </div>
     
     <!-- TODO: 탑버튼 추가_정주희 -->
-    <a class="topbutton" href="#">
+    <a class="topbutton" id="back-to-top" href="#">
       <img src="@/assets/images_jung/iconUp_48.png"/>
     </a>
   </div>
@@ -267,6 +267,7 @@ tbody {
   margin-top: 5%;
   text-align: center;
   box-shadow: none !important;
+  margin-bottom: 10%;
 }
 /* .information {
   margin-top: 3%;

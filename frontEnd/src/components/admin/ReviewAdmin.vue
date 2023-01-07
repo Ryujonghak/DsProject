@@ -264,6 +264,7 @@ button:active {
 //셀렉트박스 width
 .topbar-filter select{
   width: 35% !important;
+  background: url(../../../public/images/uploads/drop-icon.png) no-repeat right 20px center;
 
 }
 </style>
