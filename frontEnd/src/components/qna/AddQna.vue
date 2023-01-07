@@ -195,8 +195,9 @@ export default {
         .then((response) => {
           this.qna.qid = response.data.qid;
           console.log(response.data);
-          alert("등록이 완료되었습니다");
-          window.location.reload();
+          alert("등록이 완료되었습니다. 홈으로이동합니다.");
+          this.$router.push("/")
+        
         })
         // 실패하면 .catch() 에러메세지가 전송됨
         .catch((e) => {

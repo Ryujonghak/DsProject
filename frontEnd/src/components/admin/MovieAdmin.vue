@@ -213,7 +213,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           alert("삭제되었습니다.")
-          window.location.reload();
+          this.retrieveMovie();
         })
         .catch((e) => {
           console.log(e);

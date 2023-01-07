@@ -202,7 +202,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           alert("삭제가 완료되었습니다.");
-  this.$router.go(this.$router.currentRoute);
+          this.retrieveReview();
         })
         .catch((e) => {
           console.log(e);

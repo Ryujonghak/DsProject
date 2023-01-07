@@ -285,6 +285,7 @@ export default {
             alert("답변이 완료되었습니다.");
             this.registerQna = false;
             this.qnaanswer = "";
+            this.retrieveQna();
           })
           .catch((e) => {
             console.log(e);
@@ -314,6 +315,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           alert("삭제되었습니다.");
+          this.retrieveQna();
         })
         .catch((e) => {
           console.log(e);
