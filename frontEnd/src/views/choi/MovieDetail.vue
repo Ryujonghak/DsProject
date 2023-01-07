@@ -446,15 +446,6 @@ export default {
       reviews: false,
       media: false,
 
-      rwuser: "최아리",
-      rucontent: "",
-      rurating: 0,
-
-      // reviewMovie: {
-      //   userStarRating: 2, 
-      //   userReview: "", 
-      // },
-
       addReview: {
         rid: null,
         rwuser: null,
@@ -525,7 +516,6 @@ export default {
         rucontent: this.addReview.rucontent,
       };
 
-      // FIXME: 들어오는 rwuser 값이 없으면 로그인 필요 알림창 뜨기 (수정필요: 넣어논 데이터 값 말고 받아오는 로그인 된 유저 이름이 필요.)
       if (this.addReview.rwuser != "") {
         ReviewDataService.create(data)
             .then((response) => {
