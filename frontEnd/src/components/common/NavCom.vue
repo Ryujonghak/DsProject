@@ -529,7 +529,7 @@ export default {
             // TODO: 정주희 alert창 추가 -> 수정 필요 FIXME:
             .catch((error) => {
               // this.loading = false; // 로그인 버튼 활성화
-              alert("데이터통신오류");
+              alert("아이디,비밀번호를 확인하세요");
               this.message =
                 (error.response &&
                   error.response.data &&
