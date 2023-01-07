@@ -316,6 +316,7 @@
                           </div>
                           <span style="font-size: 18px; position: absolute; top: 50px; right: -160px;">자가용</span>
                       </button>
+
                   </div>
                
               </div>
@@ -814,6 +815,7 @@
 <script>
 import MovieDataService from "@/services/MovieDataService";
 import custom from "@/assets/js/custom";
+import BookingService from "@/services/BookingService";
 
 export default {
   data() {
@@ -824,7 +826,7 @@ export default {
       map: false,
       bus: false,
       car: false,
-
+      seat : [],
       // 상영시간표
       movie: [],
       요일: [
@@ -858,6 +860,18 @@ export default {
           console.log(e);
         });
     },
+    createseatAll(){
+        BookingService.resetseat()        
+        .then((response) => {
+          const seat = response.data;
+          this.seat = seat;
+          console.log(this.seat);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      },
+
     // 날짜에 맞는 요일 표시
     date() {
       var date = new Date();
@@ -1038,6 +1052,7 @@ input:checked + .tab_item {
 
 .movieInfo {
   margin-top: 10px;
+  color:cadetblue;
 }
 
 .movieIng {

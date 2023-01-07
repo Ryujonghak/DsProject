@@ -579,9 +579,15 @@ export default {
     likeSave() {
       // alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
       if (this.wishlist.username == null) {
+         alert("get")
         this.wishlist = new Wishlist();
         this.wishlist.username = this.$store.state.auth.user.username;
         this.wishlist.moviecd = this.$route.params.moviecd;
+        this.wishlist.movienm = this.movie.movienm;
+        this.wishlist.posterurln = this.movie.posterurln;
+        this.wishlist.raiting = this.movie.raiting;
+        this.wishlist.prdtyear = this.movie.prdtyear;
+
 
         WishlistDataService.create(this.wishlist)
             .then((res) => {
