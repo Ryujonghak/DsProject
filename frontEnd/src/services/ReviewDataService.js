@@ -16,6 +16,10 @@ class ReviewDataService {
         return http.get(`/review/rwuser?rwuser=${rwuser}&moviecd=${moviecd}&page=${page}&size=${size}`);
     }
 
+    getRwuser(rwuser, page, size) {
+        return http.get(`/review/user?rwuser=${rwuser}&page=${page}&size=${size}`);
+    }
+
     // http://localhost:8000/api/review/moviecd?moviecd=20227925
     // 영화 코드로 조회 요청 함수
     getBycode(moviecd, page, size) {

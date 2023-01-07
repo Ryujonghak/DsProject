@@ -417,9 +417,10 @@
 /* eslint-disable */
 import custom from "@/assets/js/custom.js";
 import MovieDataService from "@/services/MovieDataService";
+import Review from "@/model/review";
 import ReviewDataService from "@/services/ReviewDataService";
-import WishlistDataService from "@/services/WishlistDataService";
 import Wishlist from "@/model/Wishlist";
+import WishlistDataService from "@/services/WishlistDataService";
 
 export default {
   created() {},
@@ -438,6 +439,7 @@ export default {
       // 찜하기 기능
       wishlist: new Wishlist(),
 
+      username: this.$store.state.auth.user.username,
       movie: null,
       review: null,
 
@@ -445,12 +447,7 @@ export default {
       reviews: false,
       media: false,
 
-      addReview: {
-        rid: null,
-        rwuser: null,
-        rucontent: "",
-        rurating: 0,
-      },
+      addReview: new Review(),
 
       starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
       userReview: "",
@@ -517,26 +514,21 @@ export default {
         });
     },
     saveReview() {
-      let data = {
-        rwuser: this.addReview.rwuser,
-        movienm: this.movie.movienm,
-        moviecd: this.movie.moviecd,
-        rurating: this.addReview.rurating,
-        rucontent: this.addReview.rucontent,
-        // FIXME: 정주희 추가
-        opendt: this.movie.opendt,
-        showtm: this.movie.showtm,
-        watchgradenm: this.movie.watchgradenm,
-      };
+      this.addReview.rwuser = this.username;
+      this.addReview.movienm = this.movie.movienm;
+      this.addReview.moviecd = this.movie.moviecd;
+      this.addReview.opendt = this.movie.opendt;
+      this.addReview.showtm = this.movie.showtm;
+      this.addReview.watchgradenm = this.movie.watchgradenm;
 
       if (this.addReview.rwuser != "") {
-        ReviewDataService.create(data)
+        ReviewDataService.create(this.addReview)
           .then((response) => {
-            this.addReview.rid = response.data.rid;
+            // this.addReview.rid = response.data.rid;
             this.review.review.push(response.data)
-            this.addReview.rucontent = "";
-            this.addReview.rurating = 0;
-            alert("ㄹㅣ뷰 저장");
+            // this.addReview.rucontent = "";
+            // this.addReview.rurating = 0;
+            alert("리뷰 저장");
           })
           .catch((e) => {
             alert("리뷰저장 실패");

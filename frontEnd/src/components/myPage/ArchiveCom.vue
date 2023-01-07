@@ -383,7 +383,7 @@ export default {
     getReview() {
       // alert("this.user.name: " + this.user.name);
       // alert("this.moviecd: " + this.moviecd);
-      ReviewDataService.getRwuserAndMoviecd(this.user.name, this.moviecd, this.page - 1, this.pageSize)
+      ReviewDataService.getRwuser(this.user.username, this.page - 1, this.pageSize)
           .then((response) => {
             this.review = response.data.review;
             console.log("response.data: ", response.data);
@@ -400,7 +400,7 @@ export default {
     // 새로운 리뷰 저장 함수
     saveReview() {
       // 리뷰 생성
-      this.editReview.rwuser = this.user.name;
+      this.editReview.rwuser = this.user.username;
       this.editReview.movienm = this.movie.movienm;
       this.editReview.moviecd = this.movie.moviecd;
       this.editReview.showtm = this.movie.showtm;
