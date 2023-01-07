@@ -43,7 +43,7 @@
           <div class="row">
             <div class="remember" col-xs-12>
               <button @click="toggleShow()" class="findbtn">
-                아이디찾기 &nbsp; &nbsp;|
+                아이디찾기 &nbsp; &nbsp; &nbsp; &nbsp; |
               </button>
               <button @click="togglePwd()" class="findbtn">비밀번호찾기</button>
             </div>
@@ -302,9 +302,9 @@
                   </ul>
                 </li>
 
-                <li>
+                <!-- <li>
                   <router-link to="/board-admin">test</router-link>
-                </li>
+                </li> -->
               </ul>
             </div>
             <div class="col-xs-2">
@@ -492,8 +492,8 @@ export default {
     }
   },
   methods: {
-    // 로그인 버튼 클릭시 실행되는 함수
-    handleLogin() {
+      // 로그인 버튼 클릭시 실행되는 함수
+      handleLogin() {
       // 로그인 로직 처리
       this.loading = true;
       // vee-validate 함수 findid처리 방법
@@ -515,8 +515,6 @@ export default {
               alert("환영합니다");
               this.popupClose = !this.popupClose;
               window.location.reload();
-              this.currentUser();
-              this.showAdminBoard();
             })
             // 참고) if/else 문 대신에 -> or(||) and(&&) 연산자를 사용할때도 있음
             // 로직체크 순서 : true || false, false && true
@@ -780,5 +778,12 @@ input {
 .tohomelogin {
   background: none !important;
   color: black !important;
+}
+// .navbar-nav .navbar-menu{
+//   justify-content: space-between !important;
+//   float: right !important;
+// }
+.menu-left{
+  margin-left: 30% !important;
 }
 </style>
