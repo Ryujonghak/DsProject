@@ -152,9 +152,8 @@
             </div>
           </div>
           <div class="content col-xs-12" style="text-align: center">
-            <a href="#" id="btn-modal" class="closebtn col-xs-6">아니요</a>
+            <a id="btn-modal" class="closebtn col-xs-6">아니요</a>
             <a
-              href="#"
               id="btn-modal"
               class="finbtn col-xs-6"
               @click="deleteUser"
@@ -260,11 +259,11 @@ export default {
       UserService.delete(this.currentUser.id)
         .then((response) => {
           console.log(response.data);
-          window.location.reload();
+          this.user.splice(this.user.indexOf(this.currentUser.id), 1);
         })
         .catch((e) => {
           console.log(e);
-          window.location.reload();
+          // window.location.reload();
         });
     },
     handlePageSizeChange(event) {
