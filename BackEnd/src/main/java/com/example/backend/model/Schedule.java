@@ -9,11 +9,13 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @SequenceGenerator(
-        name = "SQ_SCHEDULE_GENERATOR"
-        , sequenceName = "SQ_SCHEDULE"
+        name = "SQ_SCHE_GENERATOR"
+        , sequenceName = "SQ_SCHE"
         , initialValue = 1
         , allocationSize = 1
 )
@@ -25,33 +27,48 @@ import javax.persistence.*;
 @DynamicUpdate
 // soft delete
 @Where(clause = "DELETE_YN = 'N'")
-@SQLDelete(sql = "UPDATE TB_SCHEDULE SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE SID = ?")
-public class Schedule {
+@SQLDelete(sql = "UPDATE TB_SCHEDULE SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE SCNO = ?")
+public class Schedule extends BaseTimeEntity {
         @Id
         @GeneratedValue(strategy = GenerationType.SEQUENCE
-                , generator = "SQ_SCHEDULE_GENERATOR"
+                , generator = "SQ_SCHE_GENERATOR"
         )
-        @Column(columnDefinition = "NUMBER")
-//        상영스케쥴 고유 ID
-        private Integer sid;
+        @Column
+        private Long scno;
 
-        @Column(columnDefinition = "NUMBER")
-//        상영관고유 ID (참조테이블: TB_THEATER)
-        private Integer theaterid;
+      @ManyToOne(fetch = FetchType.LAZY)
+      @JoinColumn(name = "moviecd", updatable = false)
+      private MovieDetail movieDetail;
 
-        @Column(columnDefinition = "VARCHAR(255)")
-//        영화코드 (참조테이블: TB_MOVIE)
-        private String moviecd;
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "tid", updatable = false)
+        private Theater theater;
 
-        @Column(columnDefinition = "VARCHAR(255)")
-//        영화제목 (참조테이블: TB_MOVIE)
-        private String movienm;
+        @Column
+        private Date starttime;
 
-        @Column(columnDefinition = "DATE")
-//        상영시작시간
-        private String starttime;
+        @Column
+        private Date endtime;
 
-        @Column(columnDefinition = "DATE")
-//        상영종료시간
-        private String endtime;
+       public String getMovieCd()
+       {
+               return this.movieDetail.getMoviecd();
+       }
+
+       public String getMovieNm()
+       {
+               return this.movieDetail.getMovienm();
+       }
+
+       public List<Seat> getSeats()
+       {
+               return this.theater.getSeatList();
+       }
+
+       public String getShowtm()
+       {
+               return this.movieDetail.getShowtm();
+       }
+
+
 }

@@ -32,6 +32,12 @@ public class QnaService {
         return qnaPage;
     }
 
+    public Page<Qna> findAllByQwriter(String username, Pageable pageable) {
+        Page<Qna> qnaPage = qnaRepository.findAllByQwriter(username, pageable);
+
+        return qnaPage;
+    }
+
     public Page<Qna> findAllByQwriterContainingOrderByInsertTime(String qwriter, Pageable pageable) {
         Page<Qna> qnaPage = qnaRepository.findAllByQwriterContainingOrderByInsertTime(qwriter, pageable);
 

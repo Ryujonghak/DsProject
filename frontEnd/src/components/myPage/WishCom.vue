@@ -114,7 +114,11 @@
                 </div>
                 <!-- 제목 -->
                 <div class="mv-item-infor">
-                  <h6><a href="#">{{ data.movienm }}</a></h6>
+
+                  <router-link :to="'/allMovie/' + data.moviecd">
+                    <h6><a>{{ data.movienm }}({{ data.prdtyear }})</a></h6>
+                            </router-link>
+
                   <p class="rate">
                     <i class="ion-android-star"></i><span>{{ data.raiting }}</span> /10
                     <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
@@ -177,24 +181,6 @@ export default {
     };
   },
   methods: {
-    // uploadImage: function () {
-    //   let form = new FormData();
-    //   let image = this.$refs["image"].files[0];
-    //
-    //   form.append("image", image);
-    //
-    //   axios
-    //     .post("/upload", form, {
-    //       header: { "Content-Type": "multipart/form-data" },
-    //     })
-    //     .then(({ data }) => {
-    //       this.images = data;
-    //     })
-    //     .catch((err) => console.log(err));
-    // },
-    // clickInputTag: function () {
-    //   this.$refs["image"].click();
-    // },
     // getMovie() {
     //   if (this.wishlist) {
     //     this.totalMovie = this.wishlist.length;

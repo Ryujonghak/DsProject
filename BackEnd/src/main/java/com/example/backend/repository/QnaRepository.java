@@ -15,4 +15,6 @@ public interface QnaRepository extends JpaRepository<Qna, Integer> {
     Page<Qna> findAllByQwriterContainingOrderByInsertTime(String qwriter, Pageable pageable);
 
     List<Qna> findByQid(Integer qid);
+
+    Page<Qna> findAllByQwriter(String username, Pageable pageable);
 }
