@@ -360,12 +360,12 @@ export default {
         qwriter: this.user.name,
         qtitle: this.qna.qtitle,
         qcontent: this.qna.qcontent,
+        qanswer: null
       };
       qnaDataService
           .create(data)
           // 성공하면 then() 결과가 전송됨
           .then((response) => {
-            this.qna.qwriter = response.data.qwriter;
             console.log(response.data);
             alert("등록이 완료되었습니다");
             this.$router.push("/mypage");
