@@ -226,7 +226,7 @@
                             <h2>{{ movie.movienm }}</h2>
                           </div>
                         </div>
-                        <div class="rv-hd">
+                        <div class="rv-hd" v-show="addReview.rwuser != null">
                           <form
                               class="review-form col-xs-9"
                               name="myform"
@@ -450,15 +450,14 @@ export default {
       rucontent: "",
       rurating: 0,
 
-      // TODO: 리뷰
-      reviewMovie: {
-        userStarRating: 2, // 사용자별점
-        userReview: "", // 리뷰내용
-      },
+      // reviewMovie: {
+      //   userStarRating: 2, 
+      //   userReview: "", 
+      // },
 
       addReview: {
         rid: null,
-        rwuser: "디폴트값",
+        rwuser: null,
         rucontent: "",
         rurating: 0,
       },
@@ -505,6 +504,7 @@ export default {
       ReviewDataService.getBycode(moviecd, this.page - 1, this.pageSize)
           .then((response) => {
             this.review = response.data;
+            this.addReview.rwuser = this.$store.state.auth.user.username;
             console.log(response.data);
             // alert(response.data);
 
@@ -577,7 +577,6 @@ export default {
       // alert(this.starRating);
     },
     likeSave() {
-      // alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
       if (this.wishlist.username == null) {
          alert("get")
         this.wishlist = new Wishlist();
@@ -597,6 +596,7 @@ export default {
               // this.getWishlist();
             })
             .catch((err) => {
+              alert("요기")
               console.log(err);
             });
       } else {
@@ -608,10 +608,11 @@ export default {
               // alert(this.wishlist);
             })
             .catch((err) => {
+              alert("조기")
               console.log(err);
             });
       }
-    },
+    }, 
     getWishlist() {
       WishlistDataService.get(
           this.$store.state.auth.user.username,
