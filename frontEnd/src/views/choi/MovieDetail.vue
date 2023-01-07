@@ -15,7 +15,7 @@
           <!-- 왼쪽 사이드 바 시작 -->
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="movie-img">
-              <img :src="movie.posterurln" alt="poster" style="width:310px"/>
+              <img :src="movie.posterurln" alt="poster" style="width: 310px" />
               <div class="movie-btn">
                 <div class="btn-transform transform-vertical red">
                   <div>
@@ -494,6 +494,16 @@ export default {
       ReviewDataService.getBycode(moviecd, this.page - 1, this.pageSize)
         .then((response) => {
           this.review = response.data;
+          console.log("**********")
+          console.log(response.data)
+          console.log("**********")
+
+          // TODO: 백엔드에게 빈배열 리턴하라고 요청하기... 
+          // 이 코드 지우면 첫번째 리뷰를 등록할 장소가 없어서 undefined 에러남...
+          if(!response.data){
+            this.review = { review: [] }
+          }
+
           this.addReview.rwuser = this.$store.state.auth.user.username;
           console.log(response.data);
           // alert(response.data);
@@ -523,15 +533,14 @@ export default {
         ReviewDataService.create(data)
           .then((response) => {
             this.addReview.rid = response.data.rid;
-            console.log(response.data);
+            this.review.review.push(response.data)
+            this.addReview.rucontent = "";
+            this.addReview.rurating = 0;
             alert("ㄹㅣ뷰 저장");
-            alert(this.addReview.rurating);
-            window.location.reload();
           })
           .catch((e) => {
             alert("리뷰저장 실패");
             console.log(e);
-            window.location.reload();
             alert(this.review.rid);
           });
       } else {
