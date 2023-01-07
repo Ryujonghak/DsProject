@@ -11,6 +11,9 @@ class QnaDataService {
         return http.get(`/qna?searchSelect=${searchSelect}&searchKeyword=${searchKeyword}&page=${page}&size=${size}`); 
     }
 
+    getQnaQwriter(qwriter, page, size) {
+        return http.get(`/qna?qwriter=${qwriter}&page=${page}&size=${size}`);
+    }
 
     // 페이징 처리 없이 모든 qna 정보 조회 : TODO: 0102 추가_정주희
     getAllQna() {

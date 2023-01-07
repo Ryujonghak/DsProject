@@ -53,7 +53,7 @@ public class QnaController {
         }
     }
 
-    @GetMapping("/qna")
+    @GetMapping("/qna/search")
     public ResponseEntity<Object> getAll(@RequestParam(defaultValue = "writer") String searchSelect,
                                                  @RequestParam(required = false) String searchKeyword,
                                                  @RequestParam(defaultValue = "0") int page,
@@ -65,7 +65,7 @@ public class QnaController {
             if (searchSelect.equals("writer")) {
                 if (searchKeyword == null) {
                     searchKeyword = "";
-                    qnaPage = qnaService.findAllByQtitleContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
+                    qnaPage = qnaService.findAllByQwriterContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
                 } else {
                     qnaPage = qnaService.findAllByQwriterContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
                 }
@@ -77,6 +77,35 @@ public class QnaController {
                     qnaPage = qnaService.findAllByQtitleContainingOrderByInsertTime(searchKeyword, pageable); // 페이징 처리된 함수
                 }
             }
+//            Map 자료구조에 넣어 전송함.
+            Map<String, Object> response = new HashMap<String, Object>();
+            response.put("qna", qnaPage.getContent());
+            response.put("currentPage", qnaPage.getNumber());
+            response.put("totalItems", qnaPage.getTotalElements());
+            response.put("totalPages", qnaPage.getTotalPages());
+
+            if (qnaPage.isEmpty() == false) {
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            // 서버에러 발생 메세지 전송(클라이언트)
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/qna")
+    public ResponseEntity<Object> findAllByQwriter(@RequestParam(required = false) String qwriter,
+                                         @RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "3") int size) {
+        try {
+            //페이지 객체 정의
+            Pageable pageable = PageRequest.of(page, size);
+            Page<Qna> qnaPage =qnaService.findAllByQwriter(qwriter, pageable); // 페이징 처리된 함수
+
 //            Map 자료구조에 넣어 전송함.
             Map<String, Object> response = new HashMap<String, Object>();
             response.put("qna", qnaPage.getContent());

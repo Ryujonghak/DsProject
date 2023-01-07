@@ -58,4 +58,23 @@ public class Review extends BaseTimeEntity{
     @Column(columnDefinition = "VARCHAR2(4000)")
 //    유저평
     private String rucontent;
+
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    상영시간
+    private String showtm;
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    개봉일
+    private String opendt;
+
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    관람등급
+    private String watchgradenm;
+
+    @Column(columnDefinition = "VARCHAR2(255)")
+//    장르
+    private String genrenm;
+
+//    @Column(columnDefinition = "VARCHAR2(255)")
+////     관람일(에매날짜)
+//    private String 스케쥴 조인 해야함.;
 }

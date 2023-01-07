@@ -135,6 +135,18 @@ CREATE TABLE TB_REVIEW
     RURATING    NUMBER,
 --     유저평
     RUCONTENT   VARCHAR2(4000),
+--     상영시간
+    SHOWTM   VARCHAR2(4000),
+--     개봉일
+    OPENDT   VARCHAR2(4000),
+--     관람등급
+    WATCHGRADENM   VARCHAR2(4000),
+--     장르
+    GENRENM   VARCHAR2(4000),
+
+--     관람일(에매날짜)
+--     RUCONTENT   VARCHAR2(4000),
+
 --     삭제플래그
     DELETE_YN   VARCHAR2(1) DEFAULT 'N',
 --     작성일시
