@@ -307,6 +307,7 @@
                 </li> -->
               </ul>
             </div>
+            <!-- 로고 -->
             <div class="col-xs-2">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
@@ -331,32 +332,9 @@
                 /></router-link>
               </div>
             </div>
-            <div class="col-xs-4 navbar-menu">
+            <!-- 오른쪾메뉴 -->
+            <div class="col-xs-5 navbar-menu">
               <ul class="nav navbar-nav flex-child-menu menu-right col">
-                <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
-                <div v-show="currentUser">
-                  <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
-                  <li class="dropdown first" v-if="!showAdminBoard">
-                    <a
-                      class="btn btn-default dropdown-toggle lv1"
-                      data-toggle="dropdown"
-                      data-hover="dropdown"
-                    >
-                      MY PAGE
-                      <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu level1">
-                      <li>
-                        <router-link to="/mypage">내정보</router-link>
-                      </li>
-                      <li>
-                        <router-link to="/myticket">나의예매내역</router-link>
-                      </li>
-                      <li><router-link to="/mytest">test</router-link></li>
-                    </ul>
-                  </li>
-                  <!-- 회원 로그인시 마이페이지 끝  -->
-                </div>
 
                 <!-- 고객센터 -->
 
@@ -381,6 +359,31 @@
                     </li>
                   </ul>
                 </li>
+
+                <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
+                <div v-show="currentUser">
+                  <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
+                  <li class="dropdown first" v-if="!showAdminBoard">
+                    <a
+                      class="btn btn-default dropdown-toggle lv1"
+                      data-toggle="dropdown"
+                      data-hover="dropdown"
+                    >
+                      MY-PAGE
+                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu level1">
+                      <li>
+                        <router-link to="/mypage">내정보</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/myticket">나의예매내역</router-link>
+                      </li>
+                      <li><router-link to="/mytest">test</router-link></li>
+                    </ul>
+                  </li>
+                  <!-- 회원 로그인시 마이페이지 끝  -->
+                </div>
 
                 <!-- 어드민 로그인시 어드민 나브바 시작-->
                 <li class="dropdown first" v-if="showAdminBoard">
@@ -416,11 +419,14 @@
                 </li>
 
                 <!-- 로그인성공시 signup -> logout변경 -->
-                <div v-if="currentUser">
-                  <li class="logoutLink">
-                    <a href="#" @click.prevent="logout">LOG Out</a>
+                <!-- <div v-if="currentUser"> -->
+                  <li v-if="currentUser"
+                   class="dropdown first logoutLink" id="logoutlink">
+                    <a class="btn btn-default dropdown-toggle lv1"
+                    data-toggle="dropdown"
+                    data-hover="dropdown" href="#" @click.prevent="logout">LOG Out</a>
                   </li>
-                </div>
+                <!-- </div> -->
               </ul>
             </div>
           </div>
@@ -786,4 +792,13 @@ input {
 .menu-left{
   margin-left: 30% !important;
 }
+
+#logoutlink{
+  justify-content: end !important;
+}
+
+.nav .navbar-nav .flex-child-menu .menu-right .col{
+justify-content: space-between !important;
+}
+
 </style>
