@@ -103,11 +103,11 @@
             </div>
 
             <!-- TODO: v-if 넘어오는 데이터 없으면 뜨도록 -->
-            <div v-if="qna.qwriter == null">
+            <div v-if="qna[0].qwriter == null">
               <h3>문의내역이 없습니다.</h3>
             </div>
 
-            <div class="myqnaArea" v-if="qna.qwriter != null">
+            <div class="myqnaArea" v-if="qna[0].qwriter != null">
               <!-- 모든 qna -->
               <table class="qnabox">
                 <colgroup>
@@ -133,7 +133,7 @@
                 </tr>
                 </thead>
                 <!-- data의 qna[] 배열 안의 qna에서 totalItems까지 다 담아옴 그래서 qna.qna -->
-                <tbody v-for="(data, index) in qna.qna" :key="index">
+                <tbody v-for="(data, index) in qna" :key="index">
                 <!-- <tbody v-for="(data, index) in myqna" :key="index"> -->
                 <tr>
                   <td class="myqnaTd">{{ data.qtitle }}</td>
@@ -257,7 +257,7 @@ export default {
       // 사용자 정보 받아오기
       user: new User(),
       // AddQna 받아오기
-      qna: new Qna(),
+      qna: [new Qna()],
       // AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       submitted: true,
       // 빈 값으로 넘겨도 기본 값 writer로 검색
@@ -320,7 +320,7 @@ export default {
           )
           .then((response) => {
             console.log("getQna response.data: ", response.data);
-            this.qna = response.data; // data 안에서 qna만 표시
+            this.qna = response.data.qna; // data 안에서 qna만 표시
             console.log("qna: ", this.qna);
           })
           .catch((err) => console.log(err));

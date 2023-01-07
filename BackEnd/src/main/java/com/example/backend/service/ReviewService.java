@@ -42,6 +42,18 @@ public class ReviewService {
         return reviewPage;
     }
 
+    public Page<Review> findAllByRwuserOrderByRidDesc(String rwuser, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByRwuserOrderByRidDesc(rwuser, pageable);
+
+        return reviewPage;
+    }
+
+    public Page<Review> findAllByRwuserAndMoviecdOrderByInsertTime(String rwuser, String moviecd, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByRwuserAndMoviecdOrderByInsertTime(rwuser, moviecd, pageable);
+
+        return reviewPage;
+    }
+
     public Review save(Review review) {
         Review newReview = reviewRepository.save(review);
 

@@ -1,11 +1,12 @@
 <template>
   <!-- TODO: movie.MovieDetail 있을경우 화면 보여주기 -->
-  <div v-if="movie.MovieDetail">
+  <div v-if="movie.MovieDetail" style="background: black">
     <div class="mainMovie" style="background: black">
-      <div class="container parent">
+      <div class="parent">
         <div class="cover01"></div>
         <div class="cover02"></div>
         <div class="cover03"></div>
+        <!-- TODO: 메인에서 영상의 크기만 전체화면으로 넓게 보여주고 나머지 아래 부분은 중앙 정렬해서 보기에 더 다채롭도록 css 변경, 밑 포스터는 가리지 않고 살짝 보이도록 함 (최아리 수정) -->
         <iframe
           class="video"
           src="https://www.youtube.com/embed/yIkZB1hAK4M?rel=0&loop=1&playlist=yIkZB1hAK4M&autoplay=1&mute=1"
@@ -20,9 +21,6 @@
     <div class="slider movie-items">
       <div class="container">
         <div class="row">
-          <div class="title">
-            <h6 class="h1">BOX OFFICE</h6>
-          </div>
           <div class="slick-multiItemSlider">
             <!-- TODO: 영화 포스터 캐로셀 작업 -->
             <div
@@ -39,7 +37,7 @@
                     height="437"
                 /></a>
               </div>
-              <div class="title-in">
+              <div class="title-in" style="margin-left: 2%; margin-bottom: 2%">
                 <div class="cate">
                   <span class="blue"
                     ><a href="#detail">{{ data.genrenm }}</a></span
@@ -59,7 +57,9 @@
         </div>
       </div>
     </div>
-    <!-- TODO: 메인디테일뷰 컴포넌트, 프롭스로 데이터 전달하는 부분 추가 (최아리 추가) -->
+    <div style="width: 100%; height: 350px"></div>
+
+    <!-- TODO: 메인디테일뷰 컴포넌트 v-if로 보여주는 부분, 프롭스로 다른 컴포넌트로 데이터 전달하는 부분 추가 (최아리 추가) -->
     <div>
       <DetailCom />
     </div>
@@ -70,7 +70,7 @@
 
     <!-- TODO: 탑버튼 추가_정주희 -->
     <a class="topbutton" href="#">
-      <img src="@/assets/images_jung/iconUp_48.png"/>
+      <img src="@/assets/images_jung/iconUp_48.png" />
     </a>
   </div>
 </template>
@@ -86,7 +86,7 @@ export default {
     this.retrieveMovie();
   },
   components: {
-    DetailCom,
+    DetailCom, // 다음 컴포넌트
   },
   data() {
     return {
@@ -104,7 +104,7 @@ export default {
     };
   },
   methods: {
-    // TODO: currenIndex 안에 데이터 추가해서 다음 페이지로 보내기 (최아리 추가)
+    // TODO: 클릭시 currenIndex 안에 데이터 추가해서 다음 페이지로 보내기 (최아리 추가)
     showDetail(data) {
       this.currentMovie = data;
 
@@ -139,7 +139,7 @@ export default {
   background-image: linear-gradient(
     to right,
     #000 0%,
-    rgba(0, 0, 0, 0.35) 25%,
+    rgba(0, 0, 0, 0.3) 25%,
     rgba(0, 0, 0, 0) 50%,
     rgba(0, 0, 0, 0.35) 75%,
     #000 100%
@@ -149,27 +149,28 @@ export default {
   right: 0;
   bottom: 0;
 }
-
 .cover02 {
   position: absolute;
   width: 100%;
-  height: 20%;
+  height: 13.5%;
   z-index: 3;
   background-color: black;
 }
-
 .cover03 {
   position: absolute;
-  top: 93%;
+  top: 85%;
   width: 100%;
-  height: 8%;
+  height: 15%;
   z-index: 3;
   background-color: black;
 }
 .parent {
-  position: relative;
-  padding-bottom: 40%;
   // padding-bottom: 56.25%;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
 }
 .video {
   position: absolute;
@@ -191,7 +192,12 @@ export default {
 }
 .slider {
   padding-top: 0;
-  padding-bottom: 0;
+  padding-bottom: 0%;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  z-index: 4;
 }
 .more {
   color: aliceblue;
@@ -201,16 +207,22 @@ export default {
 .movie-items {
   background: black;
 }
-.mv-img {
-  width: 285px !important;
-  height: 437px !important;
-}
+// .mv-img {
+//   width: 285px !important;
+//   height: 437px !important;
+// }
 .movie-item {
   display: flex !important;
 }
 
 /* TODO: 탑버튼 추가_정주희*/
-.topbutton{
-    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
 }
 </style>

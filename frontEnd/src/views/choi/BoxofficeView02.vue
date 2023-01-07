@@ -24,9 +24,9 @@
       </div>
     </div>
     <div class="page-single col-xs-12">
-      <div>
+      <div class="container">
         <!-- blog detail section-->
-        <div class="col-xs-8" style="padding-left: 5%">
+        <div class="col-xs-8">
           <div>
             <div>
               <div class="col-xs-12">
@@ -107,13 +107,13 @@
         </div>
         <!-- end of  blog detail section-->
         <!-- celebrity list section-->
-        <div class="col-xs-4" style="padding-right: 3%">
+        <div class="col-xs-4" >
           <div>
             <div>
               <div>
                 <div v-for="(data, index) in movie.BoxOffice" :key="index">
                   <div>
-                    <div class="ranking col-xs-2">No.{{ data.rank }}</div>
+                    <div class="ranking col-xs-3">No.{{ data.rank }}</div>
                   </div>
                   <div>
                     <router-link :to="'/allMovie/' + data.movieCd">
@@ -124,7 +124,7 @@
                         <img
                           src="https://ssl.pstatic.net/imgmovie/mdi/mit500/2154/215466_P01_135602.jpg"
                           alt=""
-                          style="width: 16.5%"
+                          style="width: 24.9%"
                         />
                         <div
                           class="ceb-infor"
