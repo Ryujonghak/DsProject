@@ -135,7 +135,7 @@ const routes = [
     component: () => import("../views/jung/ReserveSeatView.vue"),
   },
   {
-    path: "/archive",
+    path: "/archive/:moviecd",
     name: "archive",
     component: () => import("../components/myPage/ArchiveCom.vue"),
   },

@@ -237,6 +237,10 @@ VALUES (SQ_RESERVATION.NEXTVAL,
 INSERT INTO TB_WISHLIST
 VALUES (SQ_WISHLIST.NEXTVAL,
         'kang',
-        '20225061');
+        '20227762',
+        '올빼미',
+        'https://ssl.pstatic.net/imgmovie/mdi/mit500/2223/222301_P26_110028.jpg',
+        '9.35',
+        '2021');
 
 COMMIT;
