@@ -63,42 +63,43 @@
               <div class="mv-item-infor">
                 <table class="notice_table">
                   <colgroup>
-                    <col style="width: 5%" />
                     <col style="width: 10%" />
                     <col style="width: 10%" />
                     <col style="width: 10%" />
                     <col style="width: 10%" />
                     <col style="width: 10%" />
                     <col style="width: 10%" />
-                    <col style="width: 5%" />
                     <col style="width: 10%" />
+                    <!-- <col style="width: 5%" /> -->
+                    <!-- <col style="width: 10%" /> -->
                   </colgroup>
                   <thead>
                     <tr>
-                      <th scope="col">NO</th>
-                      <th scope="col">username</th>
-                      <th scope="col">지점</th>
-                      <th scope="col">상영관</th>
-                      <th scope="col">영화시간</th>
+                      <th scope="col">예매번호</th>
+                      <th scope="col">ID</th>
+                      <!-- <th scope="col">지점</th> -->
+                      <!-- <th scope="col">상영관</th> -->
+                      <!-- <th scope="col">영화시간</th> -->
                       <th scope="col">영화명</th>
-                      <th scope="col">좌석번호</th>
-                      <th scope="col">수량</th>
+                      <!-- <th scope="col">좌석번호</th> -->
+                      <th scope="col">인원</th>
                       <th scope="col">결제가격</th>
-                      <!-- <th scope="col">결제시간</th> -->
+                      <th scope="col">결제시간</th>
+                      <th scope="col">상세정보</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="(data, index) in Payment" v-bind:key="index">
-                      <td>{{ data.reservno }}</td>
+                      <td>{{ data.rno }}</td>
                       <td>{{ data.username }}</td>
-                      <td>{{ data.scheduleno }}</td>
-                      <td>{{ data.SCREEN }}</td>
-                      <td>{{ data.starttime }}</td>
+                      <!-- <td>{{ data.scheduleno }}</td> -->
+                      <!-- <td>{{ data.SCREEN }}</td> -->
+                      <!-- <td>{{ data.starttime }}</td> -->
                       <td>{{ data.movienm }}</td>
-                      <td>{{ data.seatNo }}</td>
-                      <td>{{ data.count }}</td>
+                      <!-- <td>{{ data.seatNo }}</td> -->
+                      <td>{{ data.rcount }}</td>
                       <td>{{ data.price }}</td>
-                      <!-- <td>{{ data.paidDate }}</td> -->
+                      <td>{{ data.paidDate }}</td>
                     </tr>
                   </tbody>
                 </table>

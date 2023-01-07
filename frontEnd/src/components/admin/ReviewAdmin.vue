@@ -154,11 +154,12 @@ export default {
       movienm: "",
       movie: [],
       selectMovienm: "",
+      currentIndex: -1,
 
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,
-      pageSize: 3,
+      pageSize: 10,
 
       pageSizes: [3, 6, 9],
     };
@@ -201,12 +202,13 @@ export default {
         .then((response) => {
           console.log(response.data);
           alert("삭제가 완료되었습니다.");
-          window.location.reload();
+  this.$router.go(this.$router.currentRoute);
         })
         .catch((e) => {
           console.log(e);
         });
     },
+
     //셀렉트박스 영화이름 가져오는 함수
     retrieveMovie() {
       MovieDataService.getMovieAll()
