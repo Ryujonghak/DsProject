@@ -317,11 +317,6 @@
                           <span style="font-size: 18px; position: absolute; top: 50px; right: -160px;">자가용</span>
                       </button>
 
-                      <div>
-                          <button @click="createseatAll()">
-                            좌석 리셋
-                          </button>
-                        </div>
                   </div>
                
               </div>
