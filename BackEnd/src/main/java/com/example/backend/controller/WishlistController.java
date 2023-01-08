@@ -31,10 +31,24 @@ public class WishlistController {
         }
     }
 
-    @GetMapping("/wishlist/{username}")
-    public ResponseEntity<Object> findAll(@PathVariable String username) {
+    @GetMapping("/wishlist/searchUsername/{username}")
+    public ResponseEntity<Object> findAllByUsername(@PathVariable String username) {
         try {
             List<Wishlist> wishlistList = wishlistService.findAllByUsername(username);
+            if (wishlistList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(wishlistList, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/wishlist/searchOpendt/{opendt}")
+    public ResponseEntity<Object> findAllByOpendtContaining(@PathVariable String opendt) {
+        try {
+            List<Wishlist> wishlistList = wishlistService.findAllByOpendtContaining(opendt);
             if (wishlistList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }

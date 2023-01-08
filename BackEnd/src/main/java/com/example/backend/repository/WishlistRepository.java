@@ -9,5 +9,6 @@ public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
     List<Wishlist> findAllByUsernameAndAndMoviecd(String username, String moviecd);
 
     List<Wishlist> findAllByUsername(String username);
+    List<Wishlist> findAllByOpendtContaining(String opendt);
 
 }

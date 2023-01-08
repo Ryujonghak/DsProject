@@ -24,6 +24,12 @@ public class WishlistService {
         return wishlistList;
     }
 
+    public List<Wishlist> findAllByOpendtContaining(String opendt) {
+        List<Wishlist> wishlistList = wishlistRepository.findAllByOpendtContaining(opendt);
+
+        return wishlistList;
+    }
+
     public List<Wishlist> findAllByUsernameAndAndMoviecd(String username, String moviecd) {
         List<Wishlist> wishlistList = wishlistRepository.findAllByUsernameAndAndMoviecd(username, moviecd);
 
