@@ -51,9 +51,11 @@
 
           <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="movie-single-ct main-content">
-<!--              movie.prdtyear 를 opendt로 변경 (의도는 개봉년도이나, prdtyear는 제작연도로, 올빼미 등의 경우 2021로 표기됨 FIXME: 정주희 수정-->
-              <h1 class="bd-hd">
-                {{ movie.movienm }}<span>{{ movie.opendt }}</span>
+              <h6 style="margin-bottom: 1%; color: #abb7c4">
+                현재 박스오피스 {{ boxoffice.rank }} 위
+              </h6>
+              <h1 class="bd-hd" style="margin-bottom: 40px">
+                {{ movie.movienm }}<span>{{ movie.prdtyear }}</span>
               </h1>
               <div class="social-btn">
                 <a
@@ -138,7 +140,6 @@
                               :key="index"
                               class="img-lightbox"
                               data-fancybox-group="gallery"
-                              :href="data"
                               ><img
                                 class="small-thumnail"
                                 :src="data"
@@ -373,25 +374,17 @@
                           </div>
                         </div>
                         <div class="title-hd-sm">
-                          <h4>
-                            포스터/스틸컷<span> ({{ imageUrlLength }})</span>
-                          </h4>
+                          <h3>
+                            {{ movie.movienm }}에 대한 <span style="color:#4280bf">{{ imageUrlLength }}</span>개의 스틸컷이 있어요!
+                          </h3>
                         </div>
                         <div class="mvsingle-item media-item">
                           <div>
-                            <!-- <span
-                              class="rate-star-result"
-                              v-for="(i, index) in userRating"
-                              :key="index"
-                              ><i class="ion-ios-star"></i
-                            ></span> -->
                             <div class="mvsingle-item ov-item">
                               <a
                                 v-for="(data, index) in movie.imgurl"
                                 :key="index"
-                                class="img-lightbox"
-                                data-fancybox-group="gallery"
-                                :href="data"
+                                class="portfolio-box splice"
                                 ><img
                                   class="small-thumnail"
                                   :src="data"
@@ -425,14 +418,17 @@ import WishlistDataService from "@/services/WishlistDataService";
 
 export default {
   mounted() {
-    custom();
+    // custom();
     //  this.$route.params.moviecd : 이전페이지에서 전송한 매개변수는 $route.params 안에 있음
     // $route 객체 : 주로 url 매개변수 정보들이 있음
     // router/index.js 상세페이지 url의 매개변수명 : :moviecd
     this.getMovie(this.$route.params.moviecd);
+    this.getBoxoffice(this.$route.params.moviecd);
     this.getReview(this.$route.params.moviecd);
     this.getWishlist();
+    custom();
     // this.cutNames();
+
   },
   data() {
     return {
@@ -466,16 +462,16 @@ export default {
     };
   },
   methods: {
-    // getBoxoffice(moviecd) {
-    //   MovieDataService.getBoxoffice(moviecd)
-    //   .then((response) => {
-    //       this.boxoffice = response.data.BoxOffice[0];
-    //       console.log(response.data);
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
+    getBoxoffice(moviecd) {
+      MovieDataService.getBoxoffice(moviecd)
+        .then((response) => {
+          this.boxoffice = response.data.BoxOffice[0];
+          console.log(response.data.BoxOffice);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     // 영화코드(moviecd)로 조회 요청하는 함수
     getMovie(moviecd) {
       MovieDataService.getMoviecd(moviecd)
@@ -500,19 +496,18 @@ export default {
       ReviewDataService.getBycode(moviecd, this.page - 1, this.pageSize)
         .then((response) => {
           this.review = response.data;
-          console.log("**********")
-          console.log(response.data)
-          console.log("**********")
+          console.log("**********");
+          console.log(response.data);
+          console.log("**********");
 
-          // TODO: 백엔드에게 빈배열 리턴하라고 요청하기... 
+          // TODO: 백엔드에게 빈배열 리턴하라고 요청하기...
           // 이 코드 지우면 첫번째 리뷰를 등록할 장소가 없어서 undefined 에러남...
-          if(!response.data){
-            this.review = { review: [] }
+          if (!response.data) {
+            this.review = { review: [] };
           }
 
           this.addReview.rwuser = this.$store.state.auth.user.username;
           console.log(response.data);
-          // alert(response.data);
 
           // var test = this.review;
           // alert(JSON.stringify(test));
@@ -534,7 +529,7 @@ export default {
         ReviewDataService.create(this.addReview)
           .then((response) => {
             // this.addReview.rid = response.data.rid;
-            this.review.review.push(response.data)
+            this.review.review.push(response.data);
             // this.addReview.rucontent = "";
             // this.addReview.rurating = 0;
 
@@ -644,6 +639,10 @@ export default {
 </script>
 
 <style scoped>
+.tabs ul.tabs-mv {
+    padding: 1%;
+    margin-bottom: 30px;
+}
 .tab-bar {
   display: -webkit-flex;
   display: -moz-box;
@@ -652,6 +651,7 @@ export default {
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 0;
+  padding: 0;
   font-family: "Dosis", sans-serif;
   font-size: 14px;
   color: #abb7c4;
@@ -774,4 +774,24 @@ export default {
   width: 20%;
   height: 50%;
 } */
+
+/* 테스트 추가 */
+.scale {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transition: all 0.3s ease-in-out; /* 부드러운 모션을 위해 추가*/
+}
+.scale:hover {
+  transform: scale(1z);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+.img {
+  overflow: hidden;
+} /* 부모를 벗어나지 않고 내부 이미지만 확대 */
 </style>
