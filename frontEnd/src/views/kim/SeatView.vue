@@ -59,8 +59,8 @@
                           <div style=" display: inline-block; float:left; color: #dd003f;">
                              결제 금액
                           </div>
-                          <div style=" display: inline-block; float: right;">
-                            {{this.teencount * 100 + this.adultcount * 100}} 원
+                          <div style="display: inline-block; float: right;">
+                            {{ totalpay }} 원
                           </div>
                         </div>
                         
@@ -446,9 +446,9 @@
                           <button v-show="Seat[42] == 0" class="seat-bg3" disabled>3</button>
                         </div>
                         <div style="position: absolute; left:325px; top: 169px;">
-                          <button @click="addseat('E04')" v-show="Seat[3] == 1" class="seat-bg">4</button>
-                          <button @click="deleteseat('E04')" v-show="Seat[3] == 2" class="seat-bg2">4</button>
-                          <button v-show="Seat[3] == 0" class="seat-bg3" disabled>4</button>
+                          <button @click="addseat('E04')" v-show="Seat[43] == 1" class="seat-bg">4</button>
+                          <button @click="deleteseat('E04')" v-show="Seat[43] == 2" class="seat-bg2">4</button>
+                          <button v-show="Seat[43] == 0" class="seat-bg3" disabled>4</button>
                         </div>
                         <div style="position: absolute; left:365px; top: 169px;">
                           <button @click="addseat('E05')" v-show="Seat[44] == 1" class="seat-bg">5</button>
@@ -512,7 +512,7 @@
                         </div>
                         <div style="position: absolute; left:405px; top: 211px;">
                           <button @click="addseat('F06')" v-show="Seat[55] == 1" class="seat-bg">6</button>
-                          <button @click="deleteseat('F06')" v-show="Seat[5] == 2" class="seat-bg2">6</button>
+                          <button @click="deleteseat('F06')" v-show="Seat[55] == 2" class="seat-bg2">6</button>
                           <button v-show="Seat[55] == 0" class="seat-bg3" disabled>6</button>
                         </div>
                         <div style="position: absolute; left:445px;top: 211px;">
@@ -551,60 +551,66 @@
                           src="../../assets/images_kim/Views/ModalView/seat-img3.jpg" alt="" />
                         예매 완료
                       </span>
+
+                      <button @click="test99()" style="width: 100px; height: 50px;">
+                        결제후 페이지 가기(임시)
+                      </button>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div v-show="결제후페이지">
-                    <div class="col-md-9" style="background-color: blue; height: 500px;">
-                      <div class="col-md-4" style="background-color: red; float: left;">
-                        <img :src="data1.posterurln" alt="">
+                    <div class="col-md-8" style="height: 600px;">
+                      <div class="col-md-5" style=" float: left; margin-top: 3%;">
+                        <img style="height: 500px;" :src="data1.posterurln" alt="">
                         
                       </div>
-                      <div class="col-md-8" style="float: right; background-color: black;">
-                        <h5> {{ data1.movienm }}</h5>
-                        <h5> {{ data1.opendt }} 스플릿으로 짤라앞에 4자리만 나오게 잘라주면 됨</h5>
-                        <h5>감독 : {{ data1.directors }} </h5>
-                        <h5>상영시간 : {{ data1.showtm }} </h5>
-                        <div> 언더라인</div>
+                      <div class="col-md-7" style="float: right;  margin-top: 13%; color: white;">
+                        <span style="font-size: 24px; font-weight: bold;"> {{ data1.movienm }}</span><span style="font-size: 24px; font-weight: bold;">({{ data1.prdtyear }})</span>
+                        <h5 style="margin-top: 10px;">감독 : {{ data1.directors }} </h5>
+                        <h5  style="margin-top: 10px;">상영시간 : {{ data1.showtm }} 분</h5>
+                        <div style="border-bottom: 1px solid #1D1E2C; margin-top: 10px; "></div>
 
-                        <h5>예매번호 : {{ data1.showtm }} </h5>
-                        <h5>상영날짜 : {{ data1.showtm }} 선택한 날짜 </h5>
-                        <h5>관람극장 : {{ data1.showtm }} 선택한 극장 </h5>
-                        <h5>관람좌석 : {{ data1.showtm }} 선택한 좌석 </h5>
+                        <h5  style="margin-top: 20px;">예매번호 : {{ data1.showtm }} 종학이형이 넘겨줘야됨</h5>
+                        <h5  style="margin-top: 10px;">상영날짜 : {{this.yy}}년 {{this.mm}}월 {{ ticketinfor.selectedday }}일</h5>
+                        <h5  style="margin-top: 10px; margin-bottom: 10px;">관람극장 : {{ ticketinfor.cinema }}</h5>
+                        <span style="margin-right: 5px; font-weight: bold;font-size: 20px;">선택한 좌석 :</span><span style="font-size: 20px;" v-for="(seat,index) in selected" v-bind:key="index">{{ seat }}{{ (index+1 < selected.length) ? ', ' : '' }}</span>
 
-                        <div> 언더라인</div>
-                        <h5>결제금액 : {{ data1.showtm }} 결제한 긍ㅁ액 </h5>
+                        <div style="border-bottom: 1px solid #1D1E2C; margin-top: 20px; "></div>
+                        <h5 style="margin-top:20px; margin-bottom: 20px;">결제금액 : {{ totalpay }} 원</h5>
 
-                        <div>
-                          <button>마이페이지</button>
-                          <button>홈페이지</button>
+                        <div style="margin-top: 80px;">
+                          <button style="width: 150px; height: 55px; background-color: #dd003f; color: white; border: 0; border-radius: 8px;margin-left: 20px;"><router-link to="/"></router-link>마이페이지</button>
+                          <button style="width: 150px; height: 55px; background-color: #dd003f; color: white; border: 0; border-radius: 8px; margin-left: 30px;"><router-link to="/"></router-link>홈페이지</button>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-3" style="background-color: red; height: 500px; text-align: center; position: relative;">
+                    <div class="col-md-4" style="height: 580px; text-align: center; position: relative;">
                       <img style="margin: 0; width:100%;" src="@/assets/images_kim/Views/ModalView/Ticket.png" alt="">
-                      <div style="position: absolute; top: 25px; left: 37px;"><h5>{{ data1.movienm }}</h5></div>
-                      <div style="position: absolute; top: 48px; left: 40px;"><p>2D</p></div>
-                      <div style="position: absolute; top: 80px; left: 40px; color: black;">
-                        <h6><span style="font-size:16px; color: blueviolet;">DS</span> CINEMA <span style="font-size:16px; color: red;">서면</span></h6>
-                        <!-- <h6><span style="font-size:16px; color: blueviolet;">DS</span> CINEMA <span style="font-size:16px; color: red;">{{ ticketinfor.cinema }}</span></h6> -->
+                      <div style="position: absolute; top: 15px; left: 40px; width: 70%; text-align: left;"><span style="font-size: 18px; font-weight: bold;">{{ data1.movienm }}</span><p style="margin-bottom: 0; margin-top: -5px; font-weight: bold;">2D</p>
                       </div>
-                      <div style="position: absolute; top: 140px; left: 40px; color: black; font-weight: bold;">{{mm}}/선택한 날짜 selectedday</div>
-                      <!-- <div style="position: absolute; top: 140px; left: 40px; color: black; font-weight: bold;">{{mm}}/{{ticketinfor.selectedday}}</div> -->
-                      <div style="position: absolute; top: 170px; left: 30px; color: black;"><span style="font-size: 28px; font-weight: bold;">19:35</span> ~ <span>21:59</span></div>
-                      <div style="position: absolute; top: 170px; left: 60px; color: black;">큐알태그</div>
-                      <div style="position: absolute; top: 220px; left: 30px;"><span>성인 </span> <span style="font-size: 16px;"> 4</span></div>
-                      <div style="position: absolute; top: 250px; left: 30px; width: 130px; height: 30px; border-radius: 10px; background-color: skyblue; line-height: 30px;"><span>G1,G1,G1,G1</span></div>
-                      <div style="position: absolute; top: 290px; left: 30px;"><span>극장 이용 시 마스크 착용은 필수입니다.</span></div>
-                      <div style="position: absolute; top: 310px; left: 30px;"><span>(미사용 시 입장 제한)</span></div>
-                      <div style="position: absolute; top: 330px; left: 30px;"><span>입장 지현에 따른 관람 불편을 최소화하기 위해</span></div>
-                      <div style="position: absolute; top: 350px; left: 30px;"><span></span></div>
-
-
+                      <div style="position: absolute; top: 95px; left: 40px; color: black;">
+                        <!-- <h6><span style="font-size:16px; color: blueviolet;">DS</span> CINEMA <span style="font-size:16px; color: red;">서면</span></h6> -->
+                        <h6><span style="font-size:16px; color: blueviolet;">DS</span> CINEMA <span style="font-size:16px; color: red;">{{ ticketinfor.cinema }}</span></h6>
+                      </div>
+                      <div style="position: absolute; top: 140px; left: 40px; color: black; font-weight: bold;">{{mm}}/{{ticketinfor.selectedday}}</div>
+                      <div style="position: absolute; top: 160px; left: 40px; color: black;"><span style="font-size: 30px; font-weight: bold;">19:35</span> ~ <span>21:59</span>    시작 시작 끝 시간 데이터 받야함</div>
+                      <div style="position: absolute; top: 170px; left: 200px; color: black;">큐알태그</div>
+                      <!-- TODO: 성인인지 청소년인지 확인하는 함수 만들어야 됨 -->
+                      <div style="position: absolute; top: 220px; left: 40px;"><span>성인 </span> <span style="font-size: 16px; font-weight: bold;"> 4</span></div>
+                      <div style="position: absolute; top: 250px; left: 40px; width: 170px; height: 30px; border-radius: 10px; background-color: skyblue; line-height: 30px;"><span style="" v-for="(seat,index) in selected" v-bind:key="index">{{ seat }}{{ (index+1 < selected.length) ? ', ' : '' }}</span></div>
+                      <div style="color: gray;position: absolute; top: 290px; left: 40px; font-size: 12px;"><span>· 극장 이용 시 마스크 착용은 필수입니다.</span></div>
+                      <div style="color: gray;position: absolute; top: 305px; left: 48px;font-size: 12px;"><span>(미착용 시 입장 제한)</span></div>
+                      <div style="color: gray;position: absolute; top: 320px; left: 48px;font-size: 12px;"><span>입장 지연에 따른 관람 불편을 최소화하기 위해</span></div>
+                      <div style="color: gray;position: absolute; top: 335px; left: 48px;font-size: 12px;"><span>본 영화는 10분 후 상영이 시작됩니다.</span></div>
+                      <div style="color: gray;position: absolute; top: 355px; left: 40px;font-size: 12px;"><span>· 영화 상영시작시간 15분 전까지 취소가 가능하며</span></div>
+                      <div style="color: gray;position: absolute; top: 370px; left: 48px;font-size: 12px;"><span>캡쳐화면은 입장이 제한될 수 있습니다.</span></div>
+                      <div style="position: absolute; top: 450px; left: 48px; font-weight: bold;height: 10px; z-index: 2;">역시, 영화에는 팝콘이지?!</div>
+                      <div style="position: absolute; top: 460px; left: 48px; font-weight: bold;height: 10px; background-color: yellow; width: 45%; z-index: 1;"></div>
+                      <div style=" position: absolute; top: 445px; left: 0px; font-weight: bold; width: 90%;"><img style="width:30%; margin:0; float: right;" src="@/assets/images_kim/Views/ModalView/free-icon-popcorn-864781.png" alt=""></div>
+                      <div style=" position: absolute; top: 500px; left: 40px; width:50%; height: 8%;">
+                      <button @click="popcorn()" style="width: 100%; height: 100%; background-color: #dd003f; border-radius: 5px; color: white; border: 0;">구매하기</button>
                     </div>
-                    <div class="col-md-12">
-                      버튼 이미지
                     </div>
                   </div>
                 </div>
@@ -636,12 +642,10 @@
         data1: this.movieProps2, //영화데이터 받아오기
         data2: [],     
         
-        모달 : false,
-        좌석: false,  // 좌석페이지 v-show
-        결제후페이지 : true,
-  
-        selectedseoul : true,    // 클릭이벤트로 색변경
-        selectedbusan : true,    // 클릭이벤트로 색변경
+        모달 : true,
+        좌석: true,  // 좌석페이지 v-show
+        결제후페이지 : false,
+
         
         영화이름 : "",
         서면 : true,
@@ -649,6 +653,7 @@
         부산대 : true,
         결제후: false,
         amount : 100, // 임시 결제 금액
+        totalpay : 0,
         결제하기 : false, // 좌석숫자랑 인원수랑 맞으면 true로 바뀜
         adultcount: 0, //  성인 인원수 카운트
         teencount : 0, //  청소년 인원수 카운트
@@ -669,6 +674,7 @@
         yy: "",
         mm: "",
         dd: "",
+        selectday: 0,
         day: 0,
         순서: [], // 요일을 순서대로 나오게 하는 거
         시간: ["16:00", "19:30"], // 나중에 테스트 할 시간 데이터
@@ -697,6 +703,11 @@
       };
     },
     methods: {
+      test99(){
+        this.결제후페이지 = true;
+        this.모달 = false;
+        this.좌석 = false;
+      },
     getSeatAll() {
     BookingService.getSeatAll()
       .then((response) => {
@@ -707,7 +718,6 @@
         console.log(e);
       });
     },
-
     seattest97() {
       for(let i = 0; i<this.selected.length; i++){
         BookingService.SelectSeat(this.selected[i],this.selects903[0])
@@ -831,6 +841,7 @@
             this.성인 = false;
             }
         }
+        this.totalpay = this.totalpay-100;
       },
       adultplus() {
         if (this.adultcount + this.teencount == 5) {
@@ -841,6 +852,7 @@
           this.성인 = true;
           this.모달 = false;
         }
+        this.totalpay = this.totalpay+100;
       },
       teenmins() {
         if (this.teencount == 0) {
@@ -857,6 +869,7 @@
             this.결제하기 = true;
           }
         }
+        this.totalpay = this.totalpay-100;
       },
       teenplus() {
         if (this.adultcount + this.teencount == 5) {
@@ -867,21 +880,35 @@
           this.청소년 = true;
           this.모달 = false;
         }
+        this.totalpay = this.totalpay+100;
       },
       cinema(value) {
           this.서면 = true;
           this.센텀시티 = true;
           this.부산대 = true;
+          // let temp;
         if(value == '서면'){
           this.서면 = false;
           this.SeomyeonCinema();
+          for(let i = 0; i<this.selected.length; i++) {
+            this.Seatupdate(this.selected[i]);
+          }
+          this.selected = [];
         }else if(value == '센텀시티') {
           this.센텀시티 = false;
           this.CentumSeatCinema();
+          for(let i = 0; i<this.selected.length; i++) {
+            this.Seatupdate(this.selected[i]);
+          }
+          this.selected = [];
           // this.
         }else if(value == '부산대') {
           this.부산대 = false;
           this.BusanCinema();
+          for(let i = 0; i<this.selected.length; i++) {
+            this.Seatupdate(this.selected[i]);
+          }
+          this.selected = [];
         }
         this.영화관 = false;
         this.ticketinfor.cinema = value;
@@ -920,12 +947,14 @@
           j++;
         }
       },
-
-
-
+      // 팝콘 구매
+      popcorn() {
+        alert("현재 스토어서비스는 준비중입니다.")
+      },
       week(value) {
+        let temp;
         if(this.ticketinfor.selectedday != null){
-            this.ticketinfor.selectedday = '';
+          this.ticketinfor.selectedday = '';
         }
         if( value == 'day1'){
             this.오늘 = false;
@@ -933,21 +962,24 @@
             this.요일3 = true;
             this.요일4 = true;
             this.요일5 = true;
-            this.ticketinfor.selectedday = value;
+              temp = Number(this.dd);
+            this.ticketinfor.selectedday = temp;
         }else if ( value == 'day2'){
             this.오늘 = true;
             this.내일 = false;
             this.요일3 = true;
             this.요일4 = true;
             this.요일5 = true;
-            this.ticketinfor.selectedday = value;
+            temp = Number(this.dd) + 1;
+            this.ticketinfor.selectedday = temp;
         }else if ( value == 'day3'){
             this.오늘 = true;
             this.내일 = true;
             this.요일3 = false;
             this.요일4 = true;
             this.요일5 = true;
-            this.ticketinfor.selectedday = value;
+            temp = Number(this.dd) + 2;
+            this.ticketinfor.selectedday = temp;
         }
         else if ( value == 'day4'){
             this.오늘 = true;
@@ -955,7 +987,8 @@
             this.요일3 = true;
             this.요일4 = false;
             this.요일5 = true;
-            this.ticketinfor.selectedday = value;
+            temp = Number(this.dd) + 3;
+            this.ticketinfor.selectedday = temp;
         }
         else if ( value == 'day5'){
             this.오늘 = true;
@@ -963,7 +996,8 @@
             this.요일3 = true;
             this.요일4 = true;
             this.요일5 = false;
-            this.ticketinfor.selectedday = value;
+            temp = Number(this.dd) + 4;
+            this.ticketinfor.selectedday = temp;
         }
         this.날짜 = false;
       },
@@ -994,7 +1028,7 @@
           pay_method: "card",
           merchant_uid: "merchant_" + new Date().getTime(),
           name: "영화티켓",
-          amount: this.amount,
+          amount: this.totalpay,
           buyer_tel: "01077532889",
           buyer_name: "홍길동",
           buyer_email: "gildong@gmail.com",
