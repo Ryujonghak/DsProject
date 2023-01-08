@@ -4,7 +4,7 @@ import store from '../store'
 
 Vue.use(VueRouter);
 
-// TODO: 어드민 유저만 어드민 페이지에 들어갈 수 있도록 기능 추가 (최아리 추가)
+// TODO: 어드민 유저만 어드민 페이지에 들어갈 수 있도록 기능 -> 나브바만 바꿔주는 것이 아니라 주소를 쳐서 들어가는 경우도 어드민이 아니면 막도록 (최아리 추가)
 function ifAdmin(to, from, next) {
   const role = store.state.auth.user.roles[0]
 
@@ -209,26 +209,7 @@ const routes = [
     component: () => import("@/views/choi/ReservInfoCom.vue"),
     beforeEnter: ifAdmin
   },
-  {
-    path: "/test01",
-    name: "test01",
-    component: () => import("@/views/choi/TestView.vue"),
-  },
-  {
-    path: "/boxoffice",
-    name: "boxoffice",
-    component: () => import("@/views/choi/BoxofficeView.vue"),
-  },
-  {
-    path: "/boxoffice02",
-    name: "boxoffice02",
-    component: () => import("@/views/choi/BoxofficeView02.vue"),
-  },
-  // {
-  //   path: '/mainDetail',
-  //   name: 'mainDetail',
-  //   component: () => import('../views/kim/MainDetail.vue')
-  // },
+
   // 김철원
   {
     path: "/SeatView",

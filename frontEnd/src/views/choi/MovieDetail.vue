@@ -564,8 +564,7 @@ export default {
       this.movie.cast = this.movie.cast.split(",");
       this.movie.imgurl = this.movie.imgurl.split(",");
       // 개봉일에서 연도만 잘라주기
-      this.mYear = this.movie.opendt.substr(0, 3)
-      alert(this.mYear);
+      this.mYear = this.movie.opendt.substr(0, 4);
       // 가져온 이미지 url 개수
       this.imageUrlLength = this.movie.imgurl.length;
       // 썸네일 이미지 2장만 보이게 설정
