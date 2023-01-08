@@ -197,7 +197,7 @@ VALUES (SQ_REVIEW.NEXTVAL,
 
 INSERT INTO TB_REVIEW
 VALUES (SQ_REVIEW.NEXTVAL,
-        '강수빈',
+        'kang',
         230104,
         '20225061',
         '아바타: 물의 길',
@@ -214,7 +214,7 @@ VALUES (SQ_REVIEW.NEXTVAL,
 
 INSERT INTO TB_REVIEW
 VALUES (SQ_REVIEW.NEXTVAL,
-        '류종학',
+        'ryu',
         230104,
         '20225061',
         '아바타: 물의 길',
@@ -224,23 +224,6 @@ VALUES (SQ_REVIEW.NEXTVAL,
         '20221214',
         '12세이상관람가',
         '액션,어드벤처,SF,스릴러',
-        'N',
-        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
-        NULL,
-        NULL);
-
-INSERT INTO TB_REVIEW
-VALUES (SQ_REVIEW.NEXTVAL,
-        '정주희',
-        230104,
-        '20225062',
-        '정주희의 모험',
-        null,
-        '아직 안봐서 모름.',
-        '정주희',
-        '정주희',
-        '정주희',
-        '정주희',
         'N',
         TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
         NULL,
@@ -287,6 +270,6 @@ VALUES (SQ_WISHLIST.NEXTVAL,
         '올빼미',
         'https://ssl.pstatic.net/imgmovie/mdi/mit500/2223/222301_P26_110028.jpg',
         '9.35',
-        '2021');
+        '20221123');
 
 COMMIT;

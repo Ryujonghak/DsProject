@@ -218,10 +218,8 @@
 
             <!-- 나의 리뷰 조회 시작 -->
             <div class="row">
-
-              <!-- 리뷰 : 2 -->
               <div class="col-xs-12 movie-item-style-2 userrate"
-                   v-for="(data, index) in review"
+                   v-for="(data, index) in review.review"
                    :key="index">
                 <div class="mv-user-review-item"></div>
                 <!-- 영화정보 -->
@@ -229,9 +227,9 @@
                   <div class="mv-item-infor">
                     <br/>
                     <h6>
-                      <a href="#"
-                      >{{ data.movienm }}
-                        <span> ({{ data.opendt }}) </span></a
+                      <router-link :to="'/allMovie/' + data.moviecd">
+                      {{ data.movienm }}
+                        <span> ({{ data.opendt }}) </span></router-link
                       >
                     </h6>
                     <p>
@@ -254,7 +252,7 @@
                             나의 별점
                             <span
                                 class="rate-star-result"
-                                v-for="(i, index) in review.userStarRating"
+                                v-for="(i, index) in data.rurating"
                                 :key="index"
                             ><i class="ion-ios-star"></i
                             ></span>
@@ -271,7 +269,7 @@
                 <!-- 리뷰삭제 버튼 -->
                 <div class="col-xs-2 deletebtn">
                   <div class="movie-item-style-2">
-                    <a href="#" class="redbtn">삭제</a>
+                    <a href="#" class="redbtn" @click="deleteReview(data)">삭제</a>
                   </div>
                 </div>
                 <!-- 리뷰삭제 버튼 끝 -->
@@ -297,6 +295,20 @@
                 <a href="#"><i class="ion-ios-arrow-right"></i></a>
               </li>
             </ul> -->
+              <!-- 페이징처리-->
+            <!-- total-rows : 전체 데이터 개수 -->
+            <!-- per-page : 1페이지 당 개수 -->
+            <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
+            <b-pagination
+                v-model="page"
+                :total-rows="review.totalItems"
+                :per-page="pageSize"
+                pills
+                size="sm"
+                prev-text="<"
+                next-text=">"
+                @change="handlePageChange"
+            ></b-pagination>
           </div>
         </div>
       </div>
@@ -346,15 +358,15 @@ export default {
       // Movie Part
       movie: [], // 임시로 movie로 출력확인 - 나중에 예매한 영화 들어오면 지울거임
       moviecd: this.$route.params.moviecd,
-      starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
-      userReview: "",
-      userStarRaing: 3,
+      // starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
+      // userReview: "",
+      // userStarRaing: 3,
 
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
       count: 0, // 전체 데이터 건수
-      pageSize: 20, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
-      pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
+      pageSize: 5, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      pageSizes: [5, 10, 15], // select box 에 넣을 기본 데이터
     };
   },
   methods: {
@@ -379,18 +391,18 @@ export default {
       this.watchedMovie.starRating = Math.floor(this.watchedMovie.rating);
       // alert(this.movie.starRating);
     },
-    // 리뷰 출력 - 내가 예매한 테이블에서 가져와야함.. moviecd 수정필요
+    // 리뷰 출력 : username으로 검색, 가져오기
     getReview() {
       // alert("this.user.name: " + this.user.name);
       // alert("this.moviecd: " + this.moviecd);
       ReviewDataService.getRwuser(this.user.username, this.page - 1, this.pageSize)
           .then((response) => {
-            this.review = response.data.review;
+            this.review = response.data;
             console.log("response.data: ", response.data);
             console.log("this.review: ", this.review);
 
             // 내가 쓴 리뷰 갯수
-            this.reviewTotalCount = this.review.length;
+            this.reviewTotalCount = this.review.totalItems;
             console.log("this.reviewTotalCount", this.reviewTotalCount);
           })
           .catch((e) => {
@@ -426,24 +438,27 @@ export default {
       this.submitted = false;
       this.review = [new Review()];
     },
-    deleteReview() {
+
+    // FIXME: 리뷰 삭제
+    deleteReview(data) {
       alert("클릭");
       this.review = data;
       var test = this.review.rid;
       alert(JSON.stringify(test));
       // ReviewDataService.delete(this.review.moviecd)   // 영화코드로 삭제하기  FIXME:
-      ReviewDataService.delete(this.review.rid) // 리뷰 사용자로 삭제하기  FIXME:
-          .then((response) => {
-            console.log(response.data);
-            alert("리뷰가 삭제되었습니다.");
-            // window.location.reload();    // 홈으로 새고
-            // this.$router.push("/archive");    // 홈으로 새고됨..
-            this.getReview()
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+      ReviewDataService.delete(this.review.rid) // 리뷰 사용자로 삭제하기 ? 리뷰번호로 삭제되는듯
+        .then((response) => {
+          console.log(response.data);
+          alert("리뷰가 삭제되었습니다.");
+          window.location.reload();    // 홈으로 새고
+          // this.$router.push("/archive/:moviecd");    // FIXME: 새고 어떻게하니..ㅋ
+          // this.getMovieData();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
+
     getMovieData() {
       MovieDataService
           .getMovieDetail(this.moviecd)
@@ -461,6 +476,10 @@ export default {
       // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
+    },
+    handlePageChange(value){
+      this.page = value;
+      this.getReview();
     },
   },
 };

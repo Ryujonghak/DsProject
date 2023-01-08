@@ -51,8 +51,11 @@
 
           <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="movie-single-ct main-content">
-              <h1 class="bd-hd">
-                {{ movie.movienm }}<span>{{ movie.prdtyear }}</span>
+              <h6 style="margin-bottom: 1%; color: #abb7c4">
+                현재 박스오피스 {{ boxoffice.rank }} 위
+              </h6>
+              <h1 class="bd-hd" style="margin-bottom: 40px">
+                {{ movie.movienm }}<span>{{ mYear }}</span>
               </h1>
               <div class="social-btn">
                 <a
@@ -137,7 +140,6 @@
                               :key="index"
                               class="img-lightbox"
                               data-fancybox-group="gallery"
-                              :href="data"
                               ><img
                                 class="small-thumnail"
                                 :src="data"
@@ -372,25 +374,21 @@
                           </div>
                         </div>
                         <div class="title-hd-sm">
-                          <h4>
-                            포스터/스틸컷<span> ({{ imageUrlLength }})</span>
-                          </h4>
+                          <h3>
+                            {{ movie.movienm }}에 대한
+                            <span style="color: #4280bf">{{
+                              imageUrlLength
+                            }}</span
+                            >개의 스틸컷이 있어요!
+                          </h3>
                         </div>
                         <div class="mvsingle-item media-item">
                           <div>
-                            <!-- <span
-                              class="rate-star-result"
-                              v-for="(i, index) in userRating"
-                              :key="index"
-                              ><i class="ion-ios-star"></i
-                            ></span> -->
                             <div class="mvsingle-item ov-item">
                               <a
                                 v-for="(data, index) in movie.imgurl"
                                 :key="index"
-                                class="img-lightbox"
-                                data-fancybox-group="gallery"
-                                :href="data"
+                                class="portfolio-box splice"
                                 ><img
                                   class="small-thumnail"
                                   :src="data"
@@ -423,24 +421,27 @@ import Wishlist from "@/model/Wishlist";
 import WishlistDataService from "@/services/WishlistDataService";
 
 export default {
-  created() {},
   mounted() {
-    custom();
+    // custom();
     //  this.$route.params.moviecd : 이전페이지에서 전송한 매개변수는 $route.params 안에 있음
     // $route 객체 : 주로 url 매개변수 정보들이 있음
     // router/index.js 상세페이지 url의 매개변수명 : :moviecd
     this.getMovie(this.$route.params.moviecd);
+    this.getBoxoffice(this.$route.params.moviecd);
     this.getReview(this.$route.params.moviecd);
     this.getWishlist();
+    custom();
     // this.cutNames();
   },
   data() {
     return {
+      // moviecd: this.$route.params.moviecd,
       // 찜하기 기능
       wishlist: new Wishlist(),
 
       username: this.$store.state.auth.user.username,
       movie: null,
+      boxoffice: null,
       review: null,
 
       overview: true,
@@ -454,6 +455,7 @@ export default {
       userStarRaing: 3,
       tempImgUrl: [],
       imageUrlLength: 0,
+      mYear: 0,
 
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
@@ -464,24 +466,22 @@ export default {
     };
   },
   methods: {
+    getBoxoffice(moviecd) {
+      MovieDataService.getBoxoffice(moviecd)
+        .then((response) => {
+          this.boxoffice = response.data.BoxOffice[0];
+          console.log(response.data.BoxOffice);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     // 영화코드(moviecd)로 조회 요청하는 함수
     getMovie(moviecd) {
-      MovieDataService.getMovieDetail(moviecd, this.page - 1, this.pageSize)
+      MovieDataService.getMoviecd(moviecd)
         .then((response) => {
-          this.movie = response.data.MovieDetail[0];
-          console.log(response.data);
-          // alert(this.movie);
-
-          this.movie.actor = this.movie.actor.split(",");
-          this.movie.cast = this.movie.cast.split(",");
-          this.movie.imgurl = this.movie.imgurl.split(",");
-          // 가져온 이미지 url 개수
-          this.imageUrlLength = this.movie.imgurl.length;
-          // 썸네일 이미지 2장만 보이게 설정
-          this.tempImgUrl[0] = this.movie.imgurl[0];
-          this.tempImgUrl[1] = this.movie.imgurl[1];
-          // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
-          this.starRating = Math.floor(this.movie.raiting);
+          this.movie = response.data[0];
+          this.cutNames();
         })
         .catch((e) => {
           console.log(e);
@@ -491,19 +491,18 @@ export default {
       ReviewDataService.getBycode(moviecd, this.page - 1, this.pageSize)
         .then((response) => {
           this.review = response.data;
-          console.log("**********")
-          console.log(response.data)
-          console.log("**********")
+          console.log("**********");
+          console.log(response.data);
+          console.log("**********");
 
-          // TODO: 백엔드에게 빈배열 리턴하라고 요청하기... 
+          // TODO: 백엔드에게 빈배열 리턴하라고 요청하기...
           // 이 코드 지우면 첫번째 리뷰를 등록할 장소가 없어서 undefined 에러남...
-          if(!response.data){
-            this.review = { review: [] }
+          if (!response.data) {
+            this.review = { review: [] };
           }
 
           this.addReview.rwuser = this.$store.state.auth.user.username;
           console.log(response.data);
-          // alert(response.data);
 
           // var test = this.review;
           // alert(JSON.stringify(test));
@@ -525,10 +524,12 @@ export default {
         ReviewDataService.create(this.addReview)
           .then((response) => {
             // this.addReview.rid = response.data.rid;
-            this.review.review.push(response.data)
+            this.review.review.push(response.data);
             // this.addReview.rucontent = "";
             // this.addReview.rurating = 0;
+
             alert("리뷰 저장");
+            this.addReview = new Review();
           })
           .catch((e) => {
             alert("리뷰저장 실패");
@@ -558,9 +559,13 @@ export default {
       this.media = true;
     },
     cutNames() {
+      // 배우, 배역, 이미지 잘라주기
       this.movie.actor = this.movie.actor.split(",");
       this.movie.cast = this.movie.cast.split(",");
       this.movie.imgurl = this.movie.imgurl.split(",");
+      // 개봉일에서 연도만 잘라주기
+      this.mYear = this.movie.opendt.substr(0, 3)
+      alert(this.mYear);
       // 가져온 이미지 url 개수
       this.imageUrlLength = this.movie.imgurl.length;
       // 썸네일 이미지 2장만 보이게 설정
@@ -568,7 +573,6 @@ export default {
       this.tempImgUrl[1] = this.movie.imgurl[1];
       // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
       this.starRating = Math.floor(this.movie.raiting);
-      // alert(this.starRating);
     },
     likeSave() {
       if (this.wishlist.username == null) {
@@ -579,7 +583,7 @@ export default {
         this.wishlist.movienm = this.movie.movienm;
         this.wishlist.posterurln = this.movie.posterurln;
         this.wishlist.raiting = this.movie.raiting;
-        this.wishlist.prdtyear = this.movie.prdtyear;
+        this.wishlist.opendt = this.movie.opendt;
 
         WishlistDataService.create(this.wishlist)
           .then((res) => {
@@ -589,7 +593,7 @@ export default {
             // this.getWishlist();
           })
           .catch((err) => {
-            alert("요기");
+            alert("찜 하기 에러");
             console.log(err);
           });
       } else {
@@ -601,7 +605,7 @@ export default {
             // alert(this.wishlist);
           })
           .catch((err) => {
-            alert("조기");
+            alert("찜 지우기 에러");
             console.log(err);
           });
       }
@@ -633,6 +637,10 @@ export default {
 </script>
 
 <style scoped>
+.tabs ul.tabs-mv {
+  padding: 1%;
+  margin-bottom: 30px;
+}
 .tab-bar {
   display: -webkit-flex;
   display: -moz-box;
@@ -641,6 +649,7 @@ export default {
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 0;
+  padding: 0;
   font-family: "Dosis", sans-serif;
   font-size: 14px;
   color: #abb7c4;
@@ -763,4 +772,24 @@ export default {
   width: 20%;
   height: 50%;
 } */
+
+/* 테스트 추가 */
+.scale {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transition: all 0.3s ease-in-out; /* 부드러운 모션을 위해 추가*/
+}
+.scale:hover {
+  transform: scale(1z);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+.img {
+  overflow: hidden;
+} /* 부모를 벗어나지 않고 내부 이미지만 확대 */
 </style>

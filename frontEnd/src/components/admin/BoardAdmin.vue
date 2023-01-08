@@ -381,7 +381,8 @@ export default {
           this.addnotice.nno = response.data.nno;
           console.log(response.data);
           alert("등록되었습니다.");
-          window.location.reload();
+          this.registerNotice = false;
+     this.retrieveNotice();
         })
         .catch((e) => {
           console.log(e);
@@ -400,7 +401,8 @@ export default {
           console.log(response.data);
           alert("업데이트 되었습니다.");
           this.message = "업데이트 성공!";
-          window.location.reload();
+          this.update=false;
+          this.retrieveNotice();
         })
         .catch((e) => {
           console.log(e);
@@ -414,7 +416,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           alert("삭제되었습니다.");
-          window.location.reload();
+        this.retrieveNotice();
         })
         .catch((e) => {
           console.log(e);

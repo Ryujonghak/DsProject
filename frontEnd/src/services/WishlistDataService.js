@@ -10,7 +10,11 @@ class WishlistDataService {
     }
 
     getUsernameMovie(username) {
-        return http.get(`/wishlist/${username}`);
+        return http.get(`/wishlist/searchUsername/${username}`);
+    }
+
+    getOpendtMovie(opendt) {
+        return http.get(`/wishlist/searchOpendt/${opendt}`);
     }
 
     create(data) {

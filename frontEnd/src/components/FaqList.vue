@@ -7,7 +7,17 @@
             <div class="hero-ct">
               <h1>FAQ 자주묻는질문</h1>
               <ul class="breadcumb">
-                <li class="active"><router-link to="/">Home</router-link></li>
+                <div class="information">
+                  <strong style="color: aliceblue"
+                    >- 다른 질문사항은 1:1 문의 게시판을 이용해주세요</strong
+                  ><br/>
+                  <p style="color: aliceblue"
+                    >- 아래 버튼을 누르면 문의페이지로 이동합니다.</p
+                  >
+                </div>
+                <button class="qnabtn">
+                  <router-link to="/addqna" style="color:aliceblue !important;"><strong>1:1문의하기</strong></router-link>
+                </button>
               </ul>
             </div>
           </div>
@@ -130,10 +140,10 @@
         </div>
       </section>
     </div>
-    
+
     <!-- TODO: 탑버튼 추가_정주희 -->
     <a class="topbutton" href="#">
-      <img src="@/assets/images_jung/iconUp_48.png"/>
+      <img src="@/assets/images_jung/iconUp_48.png" />
     </a>
   </div>
 </template>
@@ -162,7 +172,7 @@ export default {
 .faq-box__question {
   cursor: pointer;
   margin: 1%;
-  border-bottom:1px solid white;
+  border-bottom: 1px solid white;
 }
 
 .faq-box__question::after {
@@ -190,11 +200,32 @@ export default {
 .common-hero {
   height: 385px;
   /* // background: url("../images/uploads/user-hero-bg.jpg") no-repeat; */
-  background: url("../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat !important;
+  background: url("../assets/images_kang/Components/common/Navcom/back-img-test8.png")
+    no-repeat !important;
 }
 
 /* TODO: 탑버튼 추가_정주희*/
-.topbutton{
-    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.qnabtn {
+  border-radius: 25px;
+  margin-top: 2%;
+  /* color: black !important; */
+  background: #8c52ff;
+}
+button {
+  border: none !important;
+}
+button:active {
+  outline: none !important;
+  box-shadow: none !important;
 }
 </style>

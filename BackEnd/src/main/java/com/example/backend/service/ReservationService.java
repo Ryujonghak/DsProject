@@ -35,7 +35,12 @@ public class ReservationService {
         return reservationPage;
     }
 
-    public Reservation save(Reservation reservation) {
+    public Reservation save(String username, Reservation reservation) {
+//        현재 로그인중인 계정 정보를 상입
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        User user = optionalUser.get();
+        reservation.setUser(user);
+
         Reservation newReservation = reservationRepository.save(reservation);
 
         return newReservation;
