@@ -3,10 +3,6 @@ import VueRouter from "vue-router";
 import store from '../store'
 
 Vue.use(VueRouter);
-console.log(store.state.auth.user.roles[0]) // Role)
-
-// console.log(router.$store.state)
-
 
 // TODO: 어드민 유저만 어드민 페이지에 들어갈 수 있도록 기능 추가 (최아리 추가)
 function ifAdmin(to, from, next) {
