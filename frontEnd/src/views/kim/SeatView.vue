@@ -195,11 +195,13 @@
                         </div>
                         <div v-show="모달" style="position: absolute; width: 820px;height: 400px; background-color: rgba(0,0,0,.6);  top:300px; right: -30px; z-index: 99; text-align: center;">
                       <div style="margin-bottom: 80px; width: 100%;"></div>
-                      <span style=" color: white; font-size: 24px;" v-if="영화관">영화관,</span>
-                      <span style=" color: white; font-size: 24px;" v-if="날짜">날짜,</span>
-                      <span style=" color: white; font-size: 24px;" v-if="모달시간">시간,</span>
-                      <span style=" color: white; font-size: 24px;">관람인원을 선택해 주세요</span>
-                      {{ data2.seatposition }}
+                      <!-- TODO: 콤마 처리생각해야됨 01-09 -->
+                      <span style=" color: white; font-size: 24px;" v-if="modalcinema">영화관</span>
+                      <span style=" color: white; font-size: 24px;" v-if="modalday"> 날짜</span>
+                      <span style=" color: white; font-size: 24px;" v-if="modaltime"> 시간</span>
+                      <span style=" color: white; font-size: 24px;" v-if="modalpeople"> 관람인원</span>
+                      <span style=" color: white; font-size: 24px;">을 선택해 주세요</span>
+                      
                         </div>
                         <div style="width: 800px; margin-bottom: 60px;">
                       <img style="margin: 10px 0; width: 800px; height: 30px;" src="../../assets/images_kim/Views/ModalView/SCREEN.jpg" alt="" />
@@ -565,20 +567,18 @@
                         <img style="height: 500px;" :src="data1.posterurln" alt="">
                         
                       </div>
-                      <div class="col-md-7" style="float: right;  margin-top: 13%; color: white;">
+                      <div class="col-md-7" style="float: right;  margin-top: 8%; color: white;">
                         <span style="font-size: 24px; font-weight: bold;"> {{ data1.movienm }}</span><span style="font-size: 24px; font-weight: bold;">({{ data1.prdtyear }})</span>
-                        <h5 style="margin-top: 10px;">감독 : {{ data1.directors }} </h5>
-                        <h5  style="margin-top: 10px;">상영시간 : {{ data1.showtm }} 분</h5>
+                        <br>
+                        <p style="margin: 10px 0 0 0;">감독 : {{ data1.directors }} </p>
+                        <p  style="margin:0;">상영시간 : {{ data1.showtm }} 분</p>
                         <div style="border-bottom: 1px solid #1D1E2C; margin-top: 10px; "></div>
-
-                        <h5  style="margin-top: 20px;">예매번호 : {{ data1.showtm }} 종학이형이 넘겨줘야됨</h5>
-                        <h5  style="margin-top: 10px;">상영날짜 : {{this.yy}}년 {{this.mm}}월 {{ ticketinfor.selectedday }}일</h5>
-                        <h5  style="margin-top: 10px; margin-bottom: 10px;">관람극장 : {{ ticketinfor.cinema }}</h5>
-                        <span style="margin-right: 5px; font-weight: bold;font-size: 20px;">선택한 좌석 :</span><span style="font-size: 20px;" v-for="(seat,index) in selected" v-bind:key="index">{{ seat }}{{ (index+1 < selected.length) ? ', ' : '' }}</span>
-
+                        <p  style="margin: 20px 0 0 20px;">예매번호 : {{ data1.showtm }} 종학이형이 넘겨줘야됨</p>
+                        <p  style="margin: 0 0 0 20px;">상영날짜 : {{this.yy}}년 {{this.mm}}월 {{ ticketinfor.selectedday }}일</p>
+                        <p  style="margin: 0 0 0 20px;">관람극장 : {{ ticketinfor.cinema }}</p>
+                        <span style="margin-right: 5px; margin-left: 20px; color: #abb7c4;">관람좌석 :</span><span v-for="(seat,index) in selected" v-bind:key="index">{{ seat }}{{ (index+1 < selected.length) ? ', ' : '' }}</span>
                         <div style="border-bottom: 1px solid #1D1E2C; margin-top: 20px; "></div>
-                        <h5 style="margin-top:20px; margin-bottom: 20px;">결제금액 : {{ totalpay }} 원</h5>
-
+                        <p style="margin-top:20px; margin-bottom: 20px; margin-left: 20px;">결제금액 : {{ totalpay }} 원</p>
                         <div style="margin-top: 80px;">
                           <button style="width: 150px; height: 55px; background-color: #dd003f; color: white; border: 0; border-radius: 8px;margin-left: 20px;"><router-link to="/mypage"></router-link>마이페이지</button>
                           <button style="width: 150px; height: 55px; background-color: #dd003f; color: white; border: 0; border-radius: 8px; margin-left: 30px;"><router-link to="/"></router-link>홈페이지</button>
@@ -597,7 +597,9 @@
                       <div style="position: absolute; top: 160px; left: 40px; color: black;"><span style="font-size: 30px; font-weight: bold;">19:35</span> ~ <span>21:59</span>    시작 시작 끝 시간 데이터 받야함</div>
                       <div style="position: absolute; top: 170px; left: 200px; color: black;">큐알태그</div>
                       <!-- TODO: 성인인지 청소년인지 확인하는 함수 만들어야 됨 -->
-                      <div style="position: absolute; top: 220px; left: 40px;"><span>성인 </span> <span style="font-size: 16px; font-weight: bold;"> 4</span></div>
+                      <div v-show="adult" style="position: absolute; top: 220px; left: 40px;"><span>성인 </span> <span style="font-size: 16px; font-weight: bold;">{{ adultcount }}</span></div>
+                      <div v-show="teen" style="position: absolute; top: 220px; left: 40px;"><span>청소년 </span> <span style="font-size: 16px; font-weight: bold;">{{ teencount }}</span></div>
+                      <div v-show="adultteen" style="position: absolute; top: 220px; left: 40px;"><span>성인 </span> <span style="font-size: 16px; font-weight: bold;">{{ adultcount }}</span><span>,청소년 </span> <span style="font-size: 16px; font-weight: bold;">{{ teencount }}</span></div>
                       <div style="position: absolute; top: 250px; left: 40px; width: 170px; height: 30px; border-radius: 10px; background-color: skyblue; line-height: 30px;"><span style="" v-for="(seat,index) in selected" v-bind:key="index">{{ seat }}{{ (index+1 < selected.length) ? ', ' : '' }}</span></div>
                       <div style="color: gray;position: absolute; top: 290px; left: 40px; font-size: 12px;"><span>· 극장 이용 시 마스크 착용은 필수입니다.</span></div>
                       <div style="color: gray;position: absolute; top: 305px; left: 48px;font-size: 12px;"><span>(미착용 시 입장 제한)</span></div>
@@ -660,10 +662,16 @@
         성인: false,      // 성인 인원수가 올라가면 false가 true로 바뀜
         청소년: false, // 청소년 인원수가 올라가면 false가 true로 바뀜
 
-        날짜 : true,      // 날짜를 선택하면 모달창에 있는 글자가 사라짐
-        영화관 : true,    // 영화관를 선택하면 모달창에 있는 글자가 사라짐
-        모달시간 : true,   // 모달시간를 선택하면 모달창에 있는 글자가 사라짐
+        modalday : true,      // 날짜를 선택하면 모달창에 있는 글자가 사라짐
+        modalcinema : true,    // 영화관를 선택하면 모달창에 있는 글자가 사라짐
+        modaltime : true,   // 모달시간를 선택하면 모달창에 있는 글자가 사라짐
+        modalpeople : true, //  인원을 클릭을 하면 모달창에 있는 글자가 사라짐
   
+        adult : false,      // 성인만 예매한 경우
+        teen : false,       // 청소년만 예매한 경우
+        adultteen : false, // 성인,청소년 둘다 있을 경우
+
+
         오늘 : true,
         내일 : true,
         요일3 : true,
@@ -728,7 +736,20 @@
         console.log(e);
         });
       }
-      
+    },
+    seatcount(){                                          // 티켓이미지 안에 들어갈 함수   
+      if(this.adultcount != 0 && this.teencount != 0){    // 성인과 청소년을 함께 예매한경우
+        this.adultteen = true;                            // 성인과 청소년 글자가 true가 되고
+      }else if(this.teencount == 0){                      // 성인만 예매한경우 성인 글자만 true가 되고
+        this.adult = true; 
+      }else{                                              // 청소년만 예매한경우 청소년 글자만 true가 됨
+        this.teen = true;
+      }
+    },
+    modaloff(){
+      if((this.modalcinema == false && this.modalday == false) && (this.modaltime == false && this.modalpeople == false)){
+        this.모달 = false;
+      }
     },
     selectedtime(value) {
       if(value == this.시간[0]){
@@ -740,7 +761,8 @@
         this.시간2 = false;
         this.시간1 = true;
       }
-      this.모달시간 = false;
+      this.modaltime = false;
+      this.modaloff();
     },
     addseat(value) {               // 클릭을 하면 selected 배열에 담음
       if (this.adultcount + this.teencount == 0) {
@@ -850,8 +872,9 @@
           this.adultcount++;
           this.결제하기 = false;
           this.성인 = true;
-          this.모달 = false;
+          this.modaloff();
         }
+        this.modalpeople = false;
         this.totalpay = this.totalpay+100;
       },
       teenmins() {
@@ -878,8 +901,9 @@
           this.teencount++;
           this.결제하기 = false;
           this.청소년 = true;
-          this.모달 = false;
+          this.modaloff();
         }
+        this.modalpeople = false;
         this.totalpay = this.totalpay+100;
       },
       cinema(value) {
@@ -910,9 +934,9 @@
           }
           this.selected = [];
         }
-        this.영화관 = false;
+        this.modalcinema = false;
         this.ticketinfor.cinema = value;
-        console.log(this.ticketinfor);
+        this.modaloff();
       },
       CentumSeatCinema() {            // 데이터 베이스에서 자리가 있는지 확인
         let j = 0;
@@ -999,7 +1023,8 @@
             temp = Number(this.dd) + 4;
             this.ticketinfor.selectedday = temp;
         }
-        this.날짜 = false;
+        this.modalday = false;
+        this.modaloff();
       },
       date() {
         var date = new Date();
@@ -1029,7 +1054,7 @@
           merchant_uid: "merchant_" + new Date().getTime(),
           name: "영화티켓",
           amount: this.totalpay,
-          buyer_tel: "01077532889",
+          buyer_tel: "01000000000",
           buyer_name: "홍길동",
           buyer_email: "gildong@gmail.com",
 
@@ -1041,6 +1066,7 @@
 			alert("결제성공")
       this.seattest97();
       this.결제후페이지 = true;
+      this.seatcount();
           } else {
             //결제 실패
 			alert("결제실패")
