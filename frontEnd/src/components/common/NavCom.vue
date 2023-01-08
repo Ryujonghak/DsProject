@@ -274,10 +274,10 @@
                 <li>
                   <router-link to="/allMovie">전체보기</router-link>
                 </li>
-
+<!-- 
                 <li>
                   <router-link to="/boxoffice02">박스오피스</router-link>
-                </li>
+                </li> -->
                 <li class="dropdown first">
                   <a
                     class="btn btn-default dropdown-toggle lv1 happy"

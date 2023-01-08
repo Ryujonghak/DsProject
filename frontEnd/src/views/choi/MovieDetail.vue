@@ -440,6 +440,7 @@ export default {
 
       username: this.$store.state.auth.user.username,
       movie: null,
+      boxoffice: null,
       review: null,
 
       overview: true,
@@ -463,9 +464,19 @@ export default {
     };
   },
   methods: {
+    getBoxoffice(moviecd) {
+      MovieDataService.getBoxoffice(moviecd)
+      .then((response) => {
+          this.boxoffice = response.data.BoxOffice[0];
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     // 영화코드(moviecd)로 조회 요청하는 함수
     getMovie(moviecd) {
-      MovieDataService.getMovieDetail(moviecd, this.page - 1, this.pageSize)
+      MovieDataService.getMovieDetail(moviecd)
         .then((response) => {
           this.movie = response.data.MovieDetail[0];
           console.log(response.data);
