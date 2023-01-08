@@ -254,6 +254,7 @@ export default {
       UserService.delete(this.currentUser.id)
         .then((response) => {
           console.log(response.data);
+          // this.retrieveUser();
           this.user.splice(this.user.indexOf(this.currentUser.id), 1);
           console.log("*********8")
           console.log(this.user)

@@ -5,8 +5,13 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>전체영화</h1>
-              <!-- TODO: 전체 영화 목록 페이지입니다. 혹시 몰라서 나중에 사용할 수도 있는 부분은 지우지 않고 주석으로 막아두었습니다. 나중에 바꾸기 쉽도록 영화제목은 통일했습니다. -->
+              <h1 style="text-align:left">전체영화</h1>
+              <ul class="breadcumb" style="text-align:left">
+                <li class="active">
+                  <router-link to="/">Home</router-link>
+                </li>
+                <li><span class="ion-ios-arrow-right"></span>All Movies</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -18,20 +23,26 @@
         <div class="row ipad-width2">
           <div class="col-xs-12">
             <!-- 전체영화 메뉴 바 시작 -->
-            <div class="topbar-filter col-xs-12">
+            <div class="topbar-filter col-xs-12" style="padding-top:1%;padding-bottom:1%">
               <!-- 체크박스 스위치 시작 -->
               <!-- TODO: 상영작만 보기 눌리면 상영작들만 뜨고 다시 눌리면 전체보기 뜨게 만들기. v-show 로 나눠볼예정 -->
-              <div class="col-xs-4">
-                <label class="switcher">
+              <div class="col-xs-6">
+                <label class="switcher col-xs-5" style="margin:0%">
                   <input type="checkbox" @click="showNowPlaying" />
                   <div class="switcher__indicator"></div>
                   <span style="font-size: 100%">상영작만 보기</span>
                 </label>
+                <div style="padding-left:3%">
+                  <p class="search-numbers col-xs-7" style="margin-top:1.5%">
+                    <span>{{ movie.totalItems }}</span
+                    >개의 영화가 검색되었습니다.
+                  </p>
+                </div>
               </div>
               <!-- 체크박스 스위치 끝 -->
 
-              <div class="col-xs-8" v-show="allMovies">
-                <div class="search-movie col-xs-8">
+              <div class="col-xs-6" style="margin-right:2%" v-show="allMovies">
+                <div class="search-movie">
                   <input
                     class="form-control"
                     type="search"
@@ -49,13 +60,6 @@
                   >
                     검색
                   </a>
-                </div>
-                <div class="col-xs-4" style="padding-left:3%">
-                  <p class="search-numbers">
-                    <!-- 검색된 항목 개수 데이터 넣어주기 -->
-                    <span>{{ movie.totalItems }}</span
-                    >개의 영화가 검색되었습니다.
-                  </p>
                 </div>
               </div>
               <div class="col-xs-8" v-show="nowPlaying">
@@ -246,7 +250,7 @@ export default {
   border: 0;
   position: absolute;
   top: 3%;
-  right: 2%;
+  right: 4%;
   z-index: 3;
   background: white
     url(https://img.megabox.co.kr/static/pc/images/common/btn/btn-search-input.png)
