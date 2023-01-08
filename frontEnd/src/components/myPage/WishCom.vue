@@ -96,7 +96,7 @@
               v-model="opendt"
               @change="getOpendtWishlist"
               >
-                <option selected value=" ">-- 전체 --</option>
+                <option selected value="20">-- 전체 --</option>
                 <option value="2023">-- 2023 --</option>
                 <option value="2022">-- 2022 --</option>
               </select>
@@ -119,7 +119,7 @@
                 <div class="mv-item-infor">
 
                   <router-link :to="'/allMovie/' + data.moviecd">
-                    <h6><a>{{ data.movienm }}({{ data.prdtyear }})</a></h6>
+                    <h6><a>{{ data.movienm }}({{ data.opendt }})</a></h6>
                   </router-link>
 
                   <p class="rate">

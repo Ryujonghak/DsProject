@@ -265,7 +265,6 @@ export default {
       searchSelect: "", // 기본값
       // searchKeyword: "" ,
       searchKeyword: "", // 검색어
-      qwriter: "",
 
       //페이징을 위한 변수 정의
       page: 1,
@@ -315,7 +314,7 @@ export default {
     getQna() {
       qnaDataService
           .getQnaQwriter(
-              this.qwriter,
+              this.username,
               this.page - 1,
               this.pageSize
           )
@@ -351,13 +350,15 @@ export default {
     },
     // qna 추가
     createQna() {
+      this.addQna.qwriter = this.username;
       qnaDataService
-          .create(data)
+          .create(this.addQna)
           // 성공하면 then() 결과가 전송됨
           .then((response) => {
             console.log(response.data);
             alert("등록이 완료되었습니다");
-            this.$router.push("/mypage");
+            this.getQna();      // 확인하기 FIXME:
+            // this.$router.push("/mypage");
             // window.location.reload();
           })
           // 실패하면 .catch() 에러메세지가 전송됨
