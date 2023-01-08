@@ -271,7 +271,7 @@
                 <!-- 리뷰삭제 버튼 -->
                 <div class="col-xs-2 deletebtn">
                   <div class="movie-item-style-2">
-                    <a href="#" class="redbtn">삭제</a>
+                    <a href="#" class="redbtn" @click="deleteReview(data)">삭제</a>
                   </div>
                 </div>
                 <!-- 리뷰삭제 버튼 끝 -->
@@ -426,24 +426,29 @@ export default {
       this.submitted = false;
       this.review = [new Review()];
     },
-    deleteReview() {
+
+    // FIXME: 리뷰 삭제
+    deleteReview(data) {
       alert("클릭");
       this.review = data;
       var test = this.review.rid;
       alert(JSON.stringify(test));
       // ReviewDataService.delete(this.review.moviecd)   // 영화코드로 삭제하기  FIXME:
-      ReviewDataService.delete(this.review.rid) // 리뷰 사용자로 삭제하기  FIXME:
-          .then((response) => {
-            console.log(response.data);
-            alert("리뷰가 삭제되었습니다.");
-            // window.location.reload();    // 홈으로 새고
-            // this.$router.push("/archive");    // 홈으로 새고됨..
-            this.getReview()
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+      ReviewDataService.delete(this.review.rid) // 리뷰 사용자로 삭제하기 ? 리뷰번호로 삭제되는듯
+        .then((response) => {
+          console.log(response.data);
+          alert("리뷰가 삭제되었습니다.");
+          window.location.reload();    // 홈으로 새고
+          // this.$router.push("/archive/:moviecd");    // FIXME: 새고 어떻게하니..ㅋ
+          // this.getMovieData();
+
+
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
+
     getMovieData() {
       MovieDataService
           .getMovieDetail(this.moviecd)

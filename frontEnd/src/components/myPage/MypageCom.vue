@@ -159,8 +159,9 @@
                 <div class="col-md-8 col-sm-12 col-xs-12">
                   <!-- 아카이브 나브 -->
                   <div class="topbar-filter">
-                    <router-link to ="/archive/:moviecd"
-                      ><p>나의 아카이브 <span>8</span> in total</p></router-link>
+                    <!-- <router-link to ="/archive/:moviecd"
+                      ><p>나의 아카이브 <span>{{ reviewTotalCount }}</span> in total</p></router-link> -->
+                    <p>나의 아카이브 <span>{{ reviewTotalCount }}</span> in total</p>
                     <a href="userfavoritegrid.html" class="grid"
                       ><i class="ion-grid"></i
                     ></a>
@@ -298,6 +299,7 @@ export default {
   data() {
     return {
       movie: [],    // 예매한 영화(watched) 가져와야되는데 일단 없어서 전체영화 가져옴
+      
       CurrentUser: {
         email: "",
         password: "",
