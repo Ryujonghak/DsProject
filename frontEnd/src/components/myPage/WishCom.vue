@@ -194,7 +194,7 @@ export default {
     getWishlist() {
       WishlistDataService
           // .getUsernameMovie(this.$store.state.auth.user.username)
-          .getUsernameMovie(this.$store.state.auth.user.username, this.prdtyear)    // 내가 추가한거.. FIXME:
+          .getUsernameMovie(this.username)
           .then((res) => {
             this.wishlist = res.data;
             this.totalMovie = this.wishlist.length;

@@ -339,7 +339,8 @@ export default {
           .then((response) => {
             console.log(response.data);
             alert("문의사항이 삭제되었습니다.");
-            this.$router.push("/mypage");
+            this.getQna();      
+            // this.$router.push("/mypage");
           })
           .catch((e) => {
             console.log(e);
@@ -357,7 +358,7 @@ export default {
           .then((response) => {
             console.log(response.data);
             alert("등록이 완료되었습니다");
-            this.getQna();      // 확인하기 FIXME:
+            this.getQna();      
             // this.$router.push("/mypage");
             // window.location.reload();
           })
