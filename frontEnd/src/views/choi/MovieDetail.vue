@@ -228,7 +228,7 @@
                             <h2>{{ movie.movienm }}</h2>
                           </div>
                         </div>
-                        <div class="rv-hd" v-show="addReview.rwuser != null">
+                        <div class="rv-hd" v-show="emptyReview">
                           <form
                             class="review-form col-xs-9"
                             name="myform"
@@ -439,7 +439,7 @@ export default {
       // 찜하기 기능
       wishlist: new Wishlist(),
 
-      username: this.$store.state.auth.user.username,
+      // username: this.$store.state.auth.user.username,
       movie: null,
       boxoffice: null,
       review: null,
@@ -501,9 +501,8 @@ export default {
             this.review = { review: [] };
           }
 
-          this.addReview.rwuser = this.$store.state.auth.user.username;
+          // this.addReview.rwuser = this.$store.state.auth.user.username;
           console.log(response.data);
-
           // var test = this.review;
           // alert(JSON.stringify(test));
         })
@@ -513,7 +512,7 @@ export default {
         });
     },
     saveReview() {
-      this.addReview.rwuser = this.username;
+      this.addReview.rwuser = this.$store.state.auth.user.username;
       this.addReview.movienm = this.movie.movienm;
       this.addReview.moviecd = this.movie.moviecd;
       this.addReview.opendt = this.movie.opendt;
@@ -631,6 +630,14 @@ export default {
           console.log(err);
         });
     },
+    // TODO: 수정해야함.
+    emptyReview() {
+      if(this.$store.state.auth.user.username) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
 };
 </script>
