@@ -103,11 +103,13 @@
             </div>
 
             <!-- TODO: v-if 넘어오는 데이터 없으면 뜨도록 -->
-            <div v-if="qna.qna[0].qwriter == null">
+            <!-- <div> -->
+            <div v-if="emptyQna == true">
               <h3>문의내역이 없습니다.</h3>
             </div>
 
-            <div class="myqnaArea" v-if="qna.qna[0].qwriter != null">
+            <!-- <div class="myqnaArea"> -->
+            <div class="myqnaArea" v-if="emptyQna == false">
               <!-- 모든 qna -->
               <table class="qnabox">
                 <colgroup>
@@ -244,9 +246,11 @@
 <script>
 /* eslint-disable */
 import custom from "@/assets/js/custom";
-import userService from "@/services/user.service";
-import qnaDataService from "@/services/QnaDataService.js";
+// User Part
 import User from "@/model/user";
+import userService from "@/services/user.service";
+// Qna Part
+import qnaDataService from "@/services/QnaDataService.js";
 import Qna from "@/model/qna";
 
 
@@ -257,7 +261,7 @@ export default {
       // 사용자 정보 받아오기
       user: new User(),
       // AddQna 받아오기
-      qna: [new Qna()],
+      qna: [],
       // AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       addQna: new Qna(),
       submitted: true,
@@ -265,6 +269,8 @@ export default {
       searchSelect: "", // 기본값
       // searchKeyword: "" ,
       searchKeyword: "", // 검색어
+
+      emptyQna: true,
 
       //페이징을 위한 변수 정의
       page: 1,
@@ -322,6 +328,7 @@ export default {
             console.log("getQna response.data: ", response.data);
             this.qna = response.data; // data 안에서 qna만 표시
             console.log("qna: ", this.qna);
+            this.findQna();
           })
           .catch((err) => console.log(err));
     },
@@ -367,6 +374,14 @@ export default {
             console.log(e);
           });
     },
+    findQna() {
+      if(this.qna.length == 0) {
+        this.emptyQna = true;
+      } else {
+        this.emptyQna = false;
+      }
+      console.log("findQna", this.qna);
+    }
   },
   mounted() {
     custom();
