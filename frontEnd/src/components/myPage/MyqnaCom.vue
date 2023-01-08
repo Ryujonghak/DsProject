@@ -160,6 +160,7 @@
             <!-- total-rows : 전체 데이터 개수 -->
             <!-- per-page : 1페이지 당 개수 -->
             <!-- change : handlePageChange(), 페이지 번호 변경 시 실행되는 이벤트 -->
+            <div class="col-md-12">
             <b-pagination
                 v-model="page"
                 :total-rows="qna.totalItems"
@@ -170,6 +171,7 @@
                 next-text=">"
                 @change="handlePageChange"
             ></b-pagination>
+          </div>
 
             <!-- TODO: 추가문의 시작 -->
             <div class="buttonArea">
@@ -330,6 +332,7 @@ export default {
     handlePageChange(value) {
       this.page = value;
       this.getQna();
+
     },
 
     // 삭제
@@ -375,7 +378,7 @@ export default {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
     // FIXME: 언니 원래 여기서 QNA까지 실행했었는데 그렇게 하니까 searchKeyword이 유저함수에서 값을 늦게 받아오는 경우가 생겨서 그냥 유저 받아오는거 성공하면 바로 QNA함수 실행되도록 안에 넣어뒀어!
-    // this.getQna();
+    this.getQna();
   },
 };
 </script>

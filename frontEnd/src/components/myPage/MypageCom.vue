@@ -161,7 +161,7 @@
                   <div class="topbar-filter">
                     <!-- <router-link to ="/archive/:moviecd"
                       ><p>나의 아카이브 <span>{{ reviewTotalCount }}</span> in total</p></router-link> -->
-                    <p>나의 아카이브 <span>{{ reviewTotalCount }}</span> in total</p>
+                    <p>나의 아카이브 <span>{{ movie.totalItems }}</span> in total</p>
                     <a href="userfavoritegrid.html" class="grid"
                       ><i class="ion-grid"></i
                     ></a>
@@ -182,7 +182,7 @@
                             <h6>
                               <router-link :to="'/allMovie/' + data.moviecd">
                                 <a href="/movieDetail">
-                                {{ data.movieNm }}</a>
+                                {{ data.movienm }}</a>
                               </router-link>
                             </h6>
                           </div>
@@ -196,14 +196,14 @@
                         <div class="movieTitle">
                           <h6>
                             <router-link :to="'/allMovie/' + data.moviecd">
-                              {{ data.movieNm }}
-                              <span>({{ data.openDt }})</span>
+                              {{ data.movienm }}
+                              <span>({{ data.opendt }})</span>
                             </router-link>
                           </h6>
                         </div>
                         <p>
                           {{ data.scheNo }} <br />
-                          상영시간: {{ data.showTm }}분 <br />
+                          상영시간: {{ data.showtm }}분 <br />
                           감독: {{ data.directors }}
                         </p>
                         <!-- 리뷰테이블에서 사용자 평점 가져오기
@@ -334,11 +334,11 @@ export default {
         price: "15000", // 금액
       },
       // TODO: 리뷰
-      // reviewMovie: [],
-      reviewMovie: {
-        userStarRating: 2, // 사용자별점
-        userReview: "", // 리뷰내용
-      },
+      review: [],
+      // reviewMovie: {
+      //   userStarRating: 2, // 사용자별점
+      //   userReview: "", // 리뷰내용
+      // },
     };
   },
   methods: {
