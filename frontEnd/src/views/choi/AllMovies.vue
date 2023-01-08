@@ -41,6 +41,7 @@
               </div>
               <!-- 체크박스 스위치 끝 -->
 
+              <!-- 전체보기 -->
               <div class="col-xs-6" style="margin-right:2%" v-show="allMovies">
                 <div class="search-movie">
                   <input
@@ -62,8 +63,10 @@
                   </a>
                 </div>
               </div>
-              <div class="col-xs-8" v-show="nowPlaying">
-                <div class="search-movie col-xs-8">
+
+              <!-- 상영작만 보기 -->
+              <div class="col-xs-6" style="margin-right:2%" v-show="nowPlaying">
+                <div class="search-movie">
                   <input
                     class="form-control"
                     type="search"
@@ -81,13 +84,6 @@
                   >
                     검색
                   </a>
-                </div>
-                <div class="col-xs-4" style="padding-left:3%">
-                  <p class="search-numbers">
-                    <!-- 검색된 항목 개수 데이터 넣어주기 -->
-                    <span>{{ nowPlayingMovies.length }}</span
-                    >개의 영화가 검색되었습니다.
-                  </p>
                 </div>
               </div>
             </div>
