@@ -44,7 +44,7 @@ public class Reservation extends BaseTimeEntity {
 
     @Column
 //    예매번호
-    private String rno;
+    private String rno; // sysdate() + ?
 
     @Column
 //    영화제목
@@ -55,14 +55,18 @@ public class Reservation extends BaseTimeEntity {
     private String moviecd;
 
     @Column
+//    영화 감상 인원
     private Integer rcount;
     @Column
+//    영화 가격
     private Integer price;
 
     @Column
+//    영화 결제 타임
     private String paiddate;
 
     @Column
+//    스케쥴 넘버
     private Long scno;
 }
 

@@ -270,6 +270,6 @@ VALUES (SQ_WISHLIST.NEXTVAL,
         '올빼미',
         'https://ssl.pstatic.net/imgmovie/mdi/mit500/2223/222301_P26_110028.jpg',
         '9.35',
-        '2021');
+        '20221123');
 
 COMMIT;
