@@ -51,8 +51,9 @@
 
           <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="movie-single-ct main-content">
+<!--              movie.prdtyear 를 opendt로 변경 (의도는 개봉년도이나, prdtyear는 제작연도로, 올빼미 등의 경우 2021로 표기됨 FIXME: 정주희 수정-->
               <h1 class="bd-hd">
-                {{ movie.movienm }}<span>{{ movie.prdtyear }}</span>
+                {{ movie.movienm }}<span>{{ movie.opendt }}</span>
               </h1>
               <div class="social-btn">
                 <a
@@ -589,7 +590,7 @@ export default {
         this.wishlist.movienm = this.movie.movienm;
         this.wishlist.posterurln = this.movie.posterurln;
         this.wishlist.raiting = this.movie.raiting;
-        this.wishlist.prdtyear = this.movie.prdtyear;
+        this.wishlist.opendt = this.movie.opendt;
 
         WishlistDataService.create(this.wishlist)
           .then((res) => {

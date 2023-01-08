@@ -6,7 +6,7 @@ export default class Wishlist {
         movienm,
         posterurln,
         raiting,
-        prdtyear
+        opendt
     ) {
         this.wid = wid;
         this.username = username;
@@ -14,6 +14,6 @@ export default class Wishlist {
         this.movienm = movienm;
         this.posterurln = posterurln;
         this.raiting = raiting;
-        this.prdtyear = prdtyear;
+        this.opendt = opendt;
     }
 }

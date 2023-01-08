@@ -90,13 +90,16 @@
           <!-- 오른쪽 본문 내용 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user" id="portfolio-filters">
+              <!-- <p>나의 찜한 영화 <span>{{ totalMovie }}</span> in total</p> -->
               <p>나의 찜한 영화 <span>{{ totalMovie }}</span> in total</p>
-              <div>
-                <span class="mx-3 active" data-filter="*">ㅇAll Movie </span>
-                <span class="mx-3" data-filter=".2022">ㅇ2022 </span>
-                <span class="mx-3" data-filter=".2023">ㅇ2023</span>
-              </div>
-              <span class="grid" data-filter="*"><i class="ion-grid"></i></span>
+              <select class="form-select" 
+              v-model="opendt"
+              @change="getOpendtWishlist"
+              >
+                <option selected value=" ">-- 전체 --</option>
+                <option value="2023">-- 2023 --</option>
+                <option value="2022">-- 2022 --</option>
+              </select>
             </div>
 
             <div class="flex-wrap-movielist">
@@ -117,7 +120,7 @@
 
                   <router-link :to="'/allMovie/' + data.moviecd">
                     <h6><a>{{ data.movienm }}({{ data.prdtyear }})</a></h6>
-                            </router-link>
+                  </router-link>
 
                   <p class="rate">
                     <i class="ion-android-star"></i><span>{{ data.raiting }}</span> /10
@@ -128,21 +131,17 @@
             </div>
 
             <!-- 페이지 -->
-            <!-- <ul class="pagination">
-              <li class="icon-prev">
-                <a href="#"><i class="ion-ios-arrow-left"></i></a>
-              </li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">21</a></li>
-              <li><a href="#">22</a></li>
-              <li class="icon-next">
-                <a href="#"><i class="ion-ios-arrow-right"></i></a>
-              </li>
-            </ul> -->
+            <!-- <b-pagination
+                v-model="page"
+                :total-rows="qna.totalItems"
+                :per-page="pageSize"
+                pills
+                size="sm"
+                prev-text="<"
+                next-text=">"
+                @change="handlePageChange"
+            ></b-pagination> -->
+
           </div>
         </div>
       </div>
@@ -177,36 +176,25 @@ export default {
       message: "",
       movie: [],
       totalMovie: 0,
+      opendt: null,
 
+      //페이징을 위한 변수 정의
+      // page: 1,
+      // count: 0,
+      // pageSize: 5,
+      // pageSizes: [5, 10, 15],
+      // searchSelect: "", // 기본값
+      // searchKeyword: "" ,
+      selected: "",
+      prdtyear: "",
     };
   },
   methods: {
-    // getMovie() {
-    //   if (this.wishlist) {
-    //     this.totalMovie = this.wishlist.length;
-    //     console.log("this.totalMovie", this.totalMovie);
-    //     for (let i = 0; i < this.wishlist.length; i++) {
-    //       MovieDataService.getMoviecd(this.wishlist[i].moviecd)
-    //       // MovieDataService.getMoviecd(this.wishlist[1].moviecd)
-    //           .then((response) => {
-    //             // this.movie[i] = response.data[0];
-    //             this.movie[i] = response.data[0];
-    //             console.log("response.data", response.data);
-    //             console.log("this.movie", this.movie);
-    //             // alert(this.movie);
-    //           })
-    //           .catch((e) => {
-    //             console.log(e);
-    //           });
-    //     }
-    //   } else {
-    //
-    //   }
-    //
-    // },
+    // 찜한 결과 가져오기
     getWishlist() {
       WishlistDataService
-          .getUsernameMovie(this.$store.state.auth.user.username)
+          // .getUsernameMovie(this.$store.state.auth.user.username)
+          .getUsernameMovie(this.$store.state.auth.user.username, this.prdtyear)    // 내가 추가한거.. FIXME:
           .then((res) => {
             this.wishlist = res.data;
             this.totalMovie = this.wishlist.length;
@@ -222,6 +210,26 @@ export default {
             console.log(err);
           });
     },
+
+    getOpendtWishlist() {
+      WishlistDataService
+          .getOpendtMovie(this.opendt)
+          .then((res) => {
+            this.wishlist = res.data;
+            this.totalMovie = this.wishlist.length;
+
+            console.log(this.$store.state.auth.user.username);
+            console.log(this.$route.params.moviecd);
+            // console.log(res.data);
+            console.log("wishlist: ", this.wishlist);
+            // alert("get");
+            // this.getMovie();
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    },
+
     getUser() {
       // username = this.$store.state.auth.user.username;
       console.log("username: " + this.username);
@@ -240,32 +248,18 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
+
+    // 페이지 출력 갯수 변경
+    // handlePageChange(value) {
+    // this.page = value;
+    // this.getQna();
+    // },
+    
   },
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
     this.getWishlist();
-
-    // TODO:  isotope
-    $(".flex-wrap-movielist").imagesLoaded(function () {
-      // Isotope 초기화 실행
-      let portfolioIsotope = $(".flex-wrap-movielist").isotope({
-        itemSelector: ".portfolio-item", // Isotope 대상 아이템 선택
-        layoutMode: "fitRows", // 여러가지 배치형태 옵션
-      });
-      // Isotope 메뉴 클릭 시 배치를 다시 정렬
-      // id는 #으로 접근
-      // div의 id="portfolio-filters" 의 span태그 클릭이벤트
-      $("#portfolio-filters span").on("click", function () {
-        $("#portfolio-filters span").removeClass("active"); // 기존 클래스에 active  삭제
-        $(this).addClass("active"); // 현재 클릭한 클래스에 active 추가
-
-        // Isotope 필터 적용시키기
-        portfolioIsotope.isotope({
-          filter: $(this).data("filter"), // 현재 클릭한 얘(this)의 li태그(리트스목록태그)의 data filter 속성 값을 filter에 저장
-        });
-      });
-    });
   },
 };
 </script>
@@ -299,4 +293,5 @@ export default {
   z-index: 1;
   opacity: 0.8;
 }
+
 </style>
