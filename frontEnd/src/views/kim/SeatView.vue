@@ -580,7 +580,7 @@
                         <h5 style="margin-top:20px; margin-bottom: 20px;">결제금액 : {{ totalpay }} 원</h5>
 
                         <div style="margin-top: 80px;">
-                          <button style="width: 150px; height: 55px; background-color: #dd003f; color: white; border: 0; border-radius: 8px;margin-left: 20px;"><router-link to="/"></router-link>마이페이지</button>
+                          <button style="width: 150px; height: 55px; background-color: #dd003f; color: white; border: 0; border-radius: 8px;margin-left: 20px;"><router-link to="/mypage"></router-link>마이페이지</button>
                           <button style="width: 150px; height: 55px; background-color: #dd003f; color: white; border: 0; border-radius: 8px; margin-left: 30px;"><router-link to="/"></router-link>홈페이지</button>
                         </div>
                       </div>
