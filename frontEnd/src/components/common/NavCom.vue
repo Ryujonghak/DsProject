@@ -364,14 +364,14 @@
                 <div v-show="currentUser">
                   <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
                   <li class="dropdown first" v-if="!showAdminBoard">
-                    <a
+                    <router-link to="/mypage"
                       class="btn btn-default dropdown-toggle lv1"
                       data-toggle="dropdown"
                       data-hover="dropdown"
                     >
-                      MY-PAGE
+                      MY PAGE
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </a>
+                    </router-link>>
                     <ul class="dropdown-menu level1">
                       <li>
                         <router-link to="/mypage">내정보</router-link>

@@ -173,7 +173,7 @@
 
             <!-- TODO: 추가문의 시작 -->
             <div class="buttonArea">
-              <a href="#" class="redbtn" @click="addQna()">추가문의</a>
+              <a href="#" class="redbtn" @click="addQnaForm()">추가문의</a>
             </div>
 
             <div class="addqnaArea" v-show="addform">
@@ -346,12 +346,11 @@ export default {
             console.log(e);
           });
     },
-    addQna() {
+    addQnaForm() {
       this.addform = !this.addform;
     },
     // qna 추가
     createQna() {
-     
       qnaDataService
           .create(data)
           // 성공하면 then() 결과가 전송됨
