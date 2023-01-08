@@ -1,12 +1,12 @@
 <template>
   <div v-if="getMovieInfo">
-    <div class="hero user-hero">
+    <div class="hero common-hero">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>DS CINEMA 부산대</h1>
-              <ul class="breadcumb">
+              <h1 style="text-align:left">DS CINEMA 부산대</h1>
+              <ul class="breadcumb" style="text-align:left">
                 <li class="active">
                   <router-link to="/">Home</router-link>
                 </li>
