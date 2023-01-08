@@ -599,7 +599,7 @@ export default {
             // this.getWishlist();
           })
           .catch((err) => {
-            alert("요기");
+            alert("찜 하기 에러");
             console.log(err);
           });
       } else {
@@ -611,7 +611,7 @@ export default {
             // alert(this.wishlist);
           })
           .catch((err) => {
-            alert("조기");
+            alert("찜 지우기 에러");
             console.log(err);
           });
       }
