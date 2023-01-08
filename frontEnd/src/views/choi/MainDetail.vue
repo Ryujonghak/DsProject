@@ -26,33 +26,34 @@
                             <!--              movie.prdtyear 를 opendt로 변경 아직 안함(의도는 개봉년도이나, prdtyear는 제작연도로, 올빼미 등의 경우 2021로 표기됨 FIXME: 정주희 수정-->
                             <a href="#"
                               >{{ currentMovie.movienm
-                              }}<span>{{ currentMovie.prdtyear }}</span></a
+                              }}<span>{{ mYear }}</span></a
                             >
                           </h1>
                           <div
                             class="social-btn col-xs-12"
                             style="padding-top: 2%; width: 1000px; height: 50px"
                           >
-                            <router-link :to="'/allMovie/' + currentMovie.moviecd" class="parent-btn"
+                            <router-link
+                              :to="'/allMovie/' + currentMovie.moviecd"
+                              class="parent-btn"
                               ><i class="ion-play"></i>상세보기 ></router-link
                             >
-<!--                            <a href="#" class="parent-btn" @click="likeSave"-->
-<!--                              ><i class="ion-ios-heart-outline"></i>찜하기</a-->
-<!--                            >-->
+                            <!--                            <a href="#" class="parent-btn" @click="likeSave"-->
+                            <!--                              ><i class="ion-ios-heart-outline"></i>찜하기</a-->
+                            <!--                            >-->
 
                             <a
-                                v-show="wishlist.username == null"
-                                class="parent-btn"
-                                @click="likeSave"
-                            ><i class="ion-ios-heart-outline"></i>찜하기</a
+                              v-show="wishlist.username == null"
+                              class="parent-btn"
+                              @click="likeSave"
+                              ><i class="ion-ios-heart-outline"></i>찜하기</a
                             >
                             <a
-                                v-show="wishlist.username != null"
-                                class="parent-btn"
-                                @click="likeSave"
-                            ><i class="ion-ios-heart"></i>찜하기 완료</a
+                              v-show="wishlist.username != null"
+                              class="parent-btn"
+                              @click="likeSave"
+                              ><i class="ion-ios-heart"></i>찜하기 완료</a
                             >
-
 
                             <a href="#" class="parent-btn" id="sh-link"
                               ><i class="ion-android-share-alt"></i>공유하기</a
@@ -109,7 +110,7 @@
             allowfullscreen
           ></iframe>
           <!-- 영화 줄거리 시작 -->
-          <div class="short-details col-xs-12" style="width: 1000px" >
+          <div class="short-details col-xs-12" style="width: 1000px">
             <div
               class="short-detail01"
               style="padding-top: 0px; margin-top: 0px"
@@ -122,7 +123,7 @@
       </div>
     </div>
     <!-- TODO: 예매페이지뷰 컴포넌트 추가 시작 -->
-    <div  v-if="seatPage">
+    <div v-if="seatPage">
       <SeatView :movieProps2="currentMovie" />
     </div>
     <!-- 예매페이지뷰 컴포넌트 추가 끝 -->
@@ -152,6 +153,7 @@ export default {
       seatPage: false,
       currentMovie: this.movieProps,
       changedUrl: "",
+      mYear: 0,
     };
   },
   methods: {
@@ -168,11 +170,14 @@ export default {
         "?rel=0&loop=1&playlist=" +
         cutYoutubeUrl +
         "&autoplay=1&mute=1";
+
+      // 연도 짜르기 추가
+      this.mYear = this.currentMovie.opendt.substr(0, 4);
     },
     likeSave() {
       // alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
       if (this.wishlist.username == null) {
-        alert("get")
+        alert("get");
         this.wishlist = new Wishlist();
         this.wishlist.username = this.$store.state.auth.user.username;
         this.wishlist.moviecd = this.currentMovie.moviecd;
@@ -182,49 +187,49 @@ export default {
         this.wishlist.opendt = this.currentMovie.opendt;
 
         WishlistDataService.create(this.wishlist)
-            .then((res) => {
-              this.wishlist = res.data;
-              console.log("wishlist: ", this.wishlist);
-              alert("create");
-              // this.getWishlist();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-      } else {
-        WishlistDataService.delete(this.wishlist.wid)
-            .then((res) => {
-              console.log(res.data);
-              alert("Delete");
-              this.getWishlist();
-              // alert(this.wishlist);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-      }
-    },
-    getWishlist() {
-      WishlistDataService.get(
-          this.$store.state.auth.user.username,
-          this.currentMovie.moviecd
-      )
           .then((res) => {
-            if (!res.data) {
-              this.wishlist = new Wishlist();
-            } else {
-              this.wishlist = res.data[0];
-            }
-
-            console.log(this.$store.state.auth.user.username);
-            console.log(this.$route.params.moviecd);
-            // console.log(res.data);
+            this.wishlist = res.data;
             console.log("wishlist: ", this.wishlist);
-            // alert("get");
+            alert("create");
+            // this.getWishlist();
           })
           .catch((err) => {
             console.log(err);
           });
+      } else {
+        WishlistDataService.delete(this.wishlist.wid)
+          .then((res) => {
+            console.log(res.data);
+            alert("Delete");
+            this.getWishlist();
+            // alert(this.wishlist);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    getWishlist() {
+      WishlistDataService.get(
+        this.$store.state.auth.user.username,
+        this.currentMovie.moviecd
+      )
+        .then((res) => {
+          if (!res.data) {
+            this.wishlist = new Wishlist();
+          } else {
+            this.wishlist = res.data[0];
+          }
+
+          console.log(this.$store.state.auth.user.username);
+          console.log(this.$route.params.moviecd);
+          // console.log(res.data);
+          console.log("wishlist: ", this.wishlist);
+          // alert("get");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
