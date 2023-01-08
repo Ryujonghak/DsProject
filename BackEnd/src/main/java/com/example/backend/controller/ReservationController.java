@@ -9,10 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -73,6 +70,51 @@ public class ReservationController {
             }
         } catch (Exception e) {
             log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/reservation")
+    public ResponseEntity<Object> create(@RequestBody String username,
+                                         @RequestBody Reservation reservation) {
+        try {
+            Reservation newReservation = reservationService.save(username, reservation);
+
+            return new ResponseEntity<>(newReservation, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/reservation/{reservno}")
+    public ResponseEntity<Object> update(@PathVariable Long reservno,
+                                         @RequestBody String username,
+                                         @RequestBody Reservation reservation) {
+        try {
+            Reservation newReservation = reservationService.save(username, reservation);
+
+            return new ResponseEntity<>(newReservation, HttpStatus.OK);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/reservation/deletion/{reservno}")
+    public ResponseEntity<Object> delete(@PathVariable Long reservno) {
+        try {
+            boolean delSuccess = reservationService.removeById(reservno);
+            if(delSuccess) {
+//                삭제 성공시
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+//                삭제 실패시 (삭제할 데이터가 없음.)
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage()); // 디버그 확인용
+//            서버 접속 에러
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
