@@ -349,8 +349,8 @@
                       <router-link to="/mypage/">
                         <a href="#" class="redbtn">관람평</a>
                       </router-link> 
-<!--                       
-                      <router-link :to="'/archive/' + data.moviecd">
+                      
+                      <!-- <router-link :to="'/archive/' + data.moviecd">
                         <a href="#" class="redbtn">관람평</a>
                       </router-link> -->
 
