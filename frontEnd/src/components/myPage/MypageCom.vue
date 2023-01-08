@@ -174,14 +174,14 @@
                     <!-- <div class="movie-item-style-2 movie-item-style-1" v-for="(data, index) in watchedMovie" v-bind:key="index"> -->
                     <div class="movie-item-style-2 movie-item-style-1" 
                     v-for="(data, index) in movie" v-bind:key="index">
-                      <!-- todo) v-for 1번 : 영화정보 -->
+                      <!-- todo) 영화정보 -->
                         <img :src="data.posterurln" alt="poster" />
                         <!-- 영화 라벨 -->
                         <div class="mv-item-infor">
                           <div class="movieTitle-2">
                             <h6>
                               <router-link :to="'/allMovie/' + data.moviecd">
-                                <a href="/movieDetail">
+                                <a href="#">
                                 {{ data.movienm }}</a>
                               </router-link>
                             </h6>
@@ -191,7 +191,7 @@
                             ><span>{{ data.rating }}</span> /5
                           </p>
                         </div>
-                      <!-- todo) v-for 2번 : 영화에 마우스 올리면 나오는 관람정보: 리뷰하러가기 -->
+                      <!-- todo) 영화에 마우스 올리면 나오는 관람정보: 리뷰하러가기 -->
                       <div class="hvr-inner">
                         <div class="movieTitle">
                           <h6>
@@ -213,9 +213,6 @@
                           ><span>{{ data.userStarRating }}</span>
                         </p> -->
                         <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
-                        <!-- <router-link to="/archive" @click="goReview"
-                          >나의 리뷰 작성하기</router-link
-                        > -->
                         <router-link :to="'/archive/' + data.moviecd">
                           나의 리뷰 작성하기
                         </router-link>

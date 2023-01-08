@@ -269,7 +269,9 @@
                 </div>
               </div>
               <!-- 본 영화 -->
-              <div class="row">
+              <!-- TODO: review말고 본 영화 watched로 바꿔야... -->
+              <!-- <div class="row" v-for="(data, index) in watched" v-bind:Key="index"> -->
+              <div class="row" v-for="(data, index) in movie" v-bind:key="index">
                 <div class="col-xs-12 movie-item-style-2 userrate">
                   <!-- 포스터 -->
                   <div class="col-xs-2">
@@ -279,34 +281,41 @@
                   <div class="col-xs-8">
                     <div class="mv-item-infor">
                       <h6>
-                        <a href="#">{{ watchedMovie.movieNm }} <span>({{ watchedMovie.openDt }})</span></a>
+                        <a href="#">{{ data.movienm }} <span>({{ data.opendt }})</span></a>
                       </h6>
                       <!-- 별점 -->
                       <p class="rate">
                         <i class="ion-android-star"></i>
-                        <span>{{ watchedMovie.rating }}</span> /5
+                        <span>{{ data.rating }}</span> /5
                       </p>
-                      <p>상영시간: {{ watchedMovie.showTm }}분 <a>{{ watchedMovie.watchGradeNm }}</a></p>
-                      <span class="time sm">{{ watchedMovie.scheNo }}</span>
+                      <p>상영시간: {{ data.showtm }}분 <a>{{ data.watchgradenm }}</a></p>
+                      <span class="time sm">{{ data.scheNo }}</span>
                       <br />
-                      <span class="time sm">{{ watchedMovie.theaterId }} {{ watchedMovie.screen }} {{ watchedMovie.cnt }}명</span>
+                      <span class="time sm">{{ data.theaterId }} {{ data.screen }} {{ data.cnt }}명</span>
                       <br />
-                      <span class="time sm-text">{{ watchedMovie.startTime }} ~ {{ watchedMovie.endTime }}</span>
+                      <span class="time sm-text">{{ data.startTime }} ~ {{ data.endTime }}</span>
                     </div>
                   </div>
                   <!-- 영화정보 끝 -->
                   <!-- 버튼 -->
                   <div class="col-xs-2">
                     <div class="movie-item-style-2">
+                    
                       <!-- FIXME: 버튼 클릭시 클릭이벤트-영화정보.title 넘겨줘야함 -->
                       <a href="/archive" class="redbtn" @click="goReview"
                         >관람평</a
                       >
+                      <!-- <router-link :to="'/archive/' + data.moviecd">
+                        <a href="#" class="redbtn">관람평</a>
+                      </router-link> -->
+
                     </div>
                   </div>
                   <!-- 버튼 끝 -->
                 </div>
               </div>
+
+
               <!-- 본 영화 -->
               <div class="row">
                 <div class="col-xs-12 movie-item-style-2 userrate">
@@ -337,43 +346,14 @@
                   <!-- 버튼 -->
                   <div class="col-xs-2">
                     <div class="movie-item-style-2">
-                      <a href="#" class="redbtn" @click="goReview">관람평</a>
-                    </div>
-                  </div>
-                  <!-- 버튼 끝 -->
-                </div>
-              </div>
-              <!-- 본 영화 -->
-              <div class="row">
-                <div class="col-xs-12 movie-item-style-2 userrate">
-                  <!-- 포스터 -->
-                  <div class="col-xs-2">
-                    <img src="images/uploads/mv1.jpg" alt="" />
-                  </div>
-                  <!-- 영화정보 -->
-                  <div class="col-xs-8">
-                    <div class="mv-item-infor">
-                      <h6>
-                        <a href="#">{{ watchedMovie.movieNm }} <span>({{ watchedMovie.openDt }})</span></a>
-                      </h6>
-                      <!-- 별점 -->
-                      <p class="rate">
-                        <i class="ion-android-star"></i>
-                        <span>{{ watchedMovie.rating }}</span> /5
-                      </p>
-                      <p>상영시간: {{ watchedMovie.showTm }}분 <a>{{ watchedMovie.watchGradeNm }}</a></p>
-                      <span class="time sm">{{ watchedMovie.scheNo }}</span>
-                      <br />
-                      <span class="time sm">{{ watchedMovie.theaterId }} {{ watchedMovie.screen }} {{ watchedMovie.cnt }}명</span>
-                      <br />
-                      <span class="time sm-text">{{ watchedMovie.startTime }} ~ {{ watchedMovie.endTime }}</span>
-                    </div>
-                  </div>
-                  <!-- 영화정보 끝 -->
-                  <!-- 버튼 -->
-                  <div class="col-xs-2">
-                    <div class="movie-item-style-2">
-                      <a href="#" class="redbtn" @click="goReview">관람평</a>
+                      <router-link to="/mypage/">
+                        <a href="#" class="redbtn">관람평</a>
+                      </router-link> 
+<!--                       
+                      <router-link :to="'/archive/' + data.moviecd">
+                        <a href="#" class="redbtn">관람평</a>
+                      </router-link> -->
+
                     </div>
                   </div>
                   <!-- 버튼 끝 -->
@@ -532,6 +512,7 @@
 // import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
+import MovieDataService from "@/services/MovieDataService";
 
 export default {
   // data: () => ({
@@ -551,7 +532,11 @@ export default {
         answer: "", // 비번확인용 정답
       },
       message: "",
+
       // FIXME: 예매한 영화.. 작성중
+      movie: [],
+
+      // watched: [],
       watchedMovie: {
         username: "", // 아이디
         paidDate: "", // 예매일자
@@ -588,25 +573,6 @@ export default {
     };
   },
   methods: {
-    // uploadImage: function () {
-    //   let form = new FormData();
-    //   let image = this.$refs["image"].files[0];
-    //
-    //   form.append("image", image);
-    //
-    //   axios
-    //     .post("/upload", form, {
-    //       header: { "Content-Type": "multipart/form-data" },
-    //     })
-    //     .then(({ data }) => {
-    //       this.images = data;
-    //     })
-    //     .catch((err) => console.log(err));
-    // },
-    // clickInputTag: function () {
-    //   this.$refs["image"].click();
-    // },
-
     getUser(username) {
       // 종학이 백엔드 데이터 받는 함수
       username = this.$store.state.auth.user.username;
@@ -631,8 +597,17 @@ export default {
         })
         .catch((err) => console.log(err));
     },
-    // FIXME: 클릭이벤트 - 리뷰작성하러가기 함수(영화제목 전달)
-    goReview() {},
+    // 영화 전체 조회 요청하는 함수 -> 예매한 것만 가져오게 변경 필요 FIXME:
+    getMovieInfo() {
+      MovieDataService.getMovieAll()
+        .then((response) => {
+          this.movie = response.data;
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     // TODO: 클릭이벤트 - 티켓예매취소 함수
     deleteTicket() {},
 
@@ -647,9 +622,11 @@ export default {
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
+    this.getMovieInfo();  // 전체 영화
   },
 };
 </script>
+
 
 <style scoped>
 .box-image {
