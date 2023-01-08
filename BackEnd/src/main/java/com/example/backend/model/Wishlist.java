@@ -47,6 +47,6 @@ public class Wishlist {
     private Double raiting;
 
     @Column(columnDefinition = "VARCHAR2")
-    private String opendt;
+    private String prdtyear;
 
 }

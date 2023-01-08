@@ -26,9 +26,9 @@ import javax.persistence.Table;
 @Table(name = "DETAIL_MOVIE")
 public class MovieDetail
 {
-//    private Integer id;
-
     @Id
+    private Integer id;
+
     private String moviecd;
 
     private String movienm;

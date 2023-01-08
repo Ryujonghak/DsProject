@@ -64,13 +64,6 @@ public class Reservation extends BaseTimeEntity {
 
     @Column
     private Long scno;
-
-    @Column
-    private String seatname;
-
-    @Column
-    private String location;
-
 }
 
 //    RESERVNO    NUMBER PRIMARY KEY,
