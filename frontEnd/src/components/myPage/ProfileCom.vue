@@ -376,6 +376,7 @@ export default {
           .then((response) => {
             console.log(response.data);
             this.message = "유저 정보가 성공적으로 수정되었습니다!";
+            alert(this.message);
           })
           .catch((e) => {
             console.log(e);
@@ -417,6 +418,8 @@ export default {
               console.log(response.data);
               this.message = "유저 정보가 성공적으로 수정되었습니다!";
               alert(this.message);
+              this.logout();
+              this.$router.push("/");
             })
             .catch((e) => {
               console.log(e);
