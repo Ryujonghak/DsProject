@@ -274,10 +274,10 @@
                 <li>
                   <router-link to="/allMovie">전체보기</router-link>
                 </li>
-
+<!-- 
                 <li>
                   <router-link to="/boxoffice02">박스오피스</router-link>
-                </li>
+                </li> -->
                 <li class="dropdown first">
                   <a
                     class="btn btn-default dropdown-toggle lv1 happy"
@@ -489,13 +489,6 @@ export default {
       // currentUser 없으면 false (메뉴가 안보임)
       return false;
     },
-  },
-  // created() : Vue 생성되자 마자 실행되는 이벤트(화면은 생성되지 않은 상태)
-  created() {
-    if (this.loggedIn) {
-      // 로그인이 되어 있는 상태
-      this.$router.push("/"); // 강제 /profile 로 이동
-    }
   },
   methods: {
       // 로그인 버튼 클릭시 실행되는 함수
