@@ -55,7 +55,7 @@
                 현재 박스오피스 {{ boxoffice.rank }} 위
               </h6>
               <h1 class="bd-hd" style="margin-bottom: 40px">
-                {{ movie.movienm }}<span>{{ movie.prdtyear }}</span>
+                {{ movie.movienm }}<span>{{ mYear }}</span>
               </h1>
               <div class="social-btn">
                 <a
@@ -375,7 +375,11 @@
                         </div>
                         <div class="title-hd-sm">
                           <h3>
-                            {{ movie.movienm }}에 대한 <span style="color:#4280bf">{{ imageUrlLength }}</span>개의 스틸컷이 있어요!
+                            {{ movie.movienm }}에 대한
+                            <span style="color: #4280bf">{{
+                              imageUrlLength
+                            }}</span
+                            >개의 스틸컷이 있어요!
                           </h3>
                         </div>
                         <div class="mvsingle-item media-item">
@@ -428,7 +432,6 @@ export default {
     this.getWishlist();
     custom();
     // this.cutNames();
-
   },
   data() {
     return {
@@ -452,6 +455,7 @@ export default {
       userStarRaing: 3,
       tempImgUrl: [],
       imageUrlLength: 0,
+      mYear: 0,
 
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
@@ -477,16 +481,7 @@ export default {
       MovieDataService.getMoviecd(moviecd)
         .then((response) => {
           this.movie = response.data[0];
-          this.movie.actor = this.movie.actor.split(",");
-          this.movie.cast = this.movie.cast.split(",");
-          this.movie.imgurl = this.movie.imgurl.split(",");
-          // 가져온 이미지 url 개수
-          this.imageUrlLength = this.movie.imgurl.length;
-          // 썸네일 이미지 2장만 보이게 설정
-          this.tempImgUrl[0] = this.movie.imgurl[0];
-          this.tempImgUrl[1] = this.movie.imgurl[1];
-          // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
-          this.starRating = Math.floor(this.movie.raiting);
+          this.cutNames();
         })
         .catch((e) => {
           console.log(e);
@@ -564,9 +559,13 @@ export default {
       this.media = true;
     },
     cutNames() {
+      // 배우, 배역, 이미지 잘라주기
       this.movie.actor = this.movie.actor.split(",");
       this.movie.cast = this.movie.cast.split(",");
       this.movie.imgurl = this.movie.imgurl.split(",");
+      // 개봉일에서 연도만 잘라주기
+      this.mYear = this.movie.opendt.substr(0, 3)
+      alert(this.mYear);
       // 가져온 이미지 url 개수
       this.imageUrlLength = this.movie.imgurl.length;
       // 썸네일 이미지 2장만 보이게 설정
@@ -574,7 +573,6 @@ export default {
       this.tempImgUrl[1] = this.movie.imgurl[1];
       // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
       this.starRating = Math.floor(this.movie.raiting);
-      // alert(this.starRating);
     },
     likeSave() {
       if (this.wishlist.username == null) {
@@ -640,8 +638,8 @@ export default {
 
 <style scoped>
 .tabs ul.tabs-mv {
-    padding: 1%;
-    margin-bottom: 30px;
+  padding: 1%;
+  margin-bottom: 30px;
 }
 .tab-bar {
   display: -webkit-flex;
