@@ -265,7 +265,8 @@
                           @click="updatePwd"
                           value="변경하기"
                       />
-                      <p>{ message }</p>
+                      <!-- <p>{{ message }}</p> --> 
+                      <!-- 메세지 내용을 alert 사용할 예정(류종학_230108) -->
                     </div>
                   </div>
                 </div>
@@ -415,6 +416,7 @@ export default {
             .then((response) => {
               console.log(response.data);
               this.message = "유저 정보가 성공적으로 수정되었습니다!";
+              alert(this.message);
             })
             .catch((e) => {
               console.log(e);
