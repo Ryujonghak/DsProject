@@ -219,7 +219,7 @@
             <!-- 나의 리뷰 조회 시작 -->
             <div class="row">
               <div class="col-xs-12 movie-item-style-2 userrate"
-                   v-for="(data, index) in review"
+                   v-for="(data, index) in review.review"
                    :key="index">
                 <div class="mv-user-review-item"></div>
                 <!-- 영화정보 -->
@@ -397,12 +397,12 @@ export default {
       // alert("this.moviecd: " + this.moviecd);
       ReviewDataService.getRwuser(this.user.username, this.page - 1, this.pageSize)
           .then((response) => {
-            this.review = response.data.review;
+            this.review = response.data;
             console.log("response.data: ", response.data);
             console.log("this.review: ", this.review);
 
             // 내가 쓴 리뷰 갯수
-            this.reviewTotalCount = this.review.length;
+            this.reviewTotalCount = this.review.totalItems;
             console.log("this.reviewTotalCount", this.reviewTotalCount);
           })
           .catch((e) => {

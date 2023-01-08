@@ -133,7 +133,7 @@
                 </tr>
                 </thead>
                 <!-- data의 qna[] 배열 안의 qna에서 totalItems까지 다 담아옴 그래서 qna.qna -->
-                <tbody v-for="(data, index) in qna" :key="index">
+                <tbody v-for="(data, index) in qna.qna" :key="index">
                 <!-- <tbody v-for="(data, index) in myqna" :key="index"> -->
                 <tr>
                   <td class="myqnaTd">{{ data.qtitle }}</td>
@@ -201,7 +201,7 @@
                         class="boxing input-text"
                         maxlength="100"
                         placeholder="제목을 입력해주세요."
-                        v-model="qna.qtitle"
+                        v-model="addQna.qtitle"
                     />
                   </td>
                 </tr>
@@ -218,7 +218,7 @@
                           rows="5"
                           class="input-textarea boxing"
                           placeholder="내용을 입력해주세요."
-                          v-model="qna.qcontent"
+                          v-model="addQna.qcontent"
                       >
                       </textarea>
                   </td>
@@ -260,6 +260,7 @@ export default {
       user: new User(),
       // AddQna 받아오기
       qna: [new Qna()],
+      addQna: new Qna(),
       // AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       submitted: true,
       // 빈 값으로 넘겨도 기본 값 writer로 검색
@@ -322,7 +323,7 @@ export default {
           )
           .then((response) => {
             console.log("getQna response.data: ", response.data);
-            this.qna = response.data.qna; // data 안에서 qna만 표시
+            this.qna = response.data; // data 안에서 qna만 표시
             console.log("qna: ", this.qna);
           })
           .catch((err) => console.log(err));
