@@ -527,6 +527,7 @@ export default {
             this.review.review.push(response.data)
             // this.addReview.rucontent = "";
             // this.addReview.rurating = 0;
+
             alert("리뷰 저장");
             this.addReview = new Review();
           })
