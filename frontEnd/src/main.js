@@ -28,10 +28,12 @@ import VeeValidate from 'vee-validate';
 
 // bootstrap-vue 모듈 사용
 Vue.use(BootstrapVue)
-
 Vue.use(VeeValidate);
 
 Vue.config.productionTip = false
+
+router.$store = store
+Vue.use(router)
 
 new Vue({
   router,
