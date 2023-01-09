@@ -167,6 +167,10 @@
         </div>
       </div>
     </div>
+    <!-- TODO: 탑버튼 추가_정주희 -->
+    <a class="topbutton" href="#">
+      <img src="@/assets/images_jung/iconUp_48.png"/>
+    </a>
   </div>
 </template>
 
@@ -294,4 +298,14 @@ input{
 
 }
 
+/* 탑버튼 추가 _정주희 */
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
+}
 </style>
