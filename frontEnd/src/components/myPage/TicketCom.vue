@@ -169,7 +169,7 @@
                               <p class="movie-detail-content col-xs-4">
                                 결제금액
                               </p>
-                              <p class="col-xs-4">{{watchedMovie.cnt * watchedMovie.price}}원 ( {{ watchedMovie.cnt }}x{{ watchedMovie.price }} )</p>
+                              <p class="col-xs-4">{{watchedMovie.rcount * watchedMovie.price}}원 ( {{ watchedMovie.rcount }}x{{ watchedMovie.price }} )</p>
                               <!-- TODO: 예매취소 버튼 - 클릭이벤트 -->
                               <div class="col-xs-4">
                                 <a href="#" class="redbtn" @click="deleteTicket"
