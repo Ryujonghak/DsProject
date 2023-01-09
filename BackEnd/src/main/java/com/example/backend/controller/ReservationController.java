@@ -92,10 +92,10 @@ public class ReservationController {
         }
     }
 
-    @GetMapping("/reservation/mylist")
-    public ResponseEntity<Object> selectNativeJoin() {
+    @GetMapping("/reservation/mylist/{reservno}")
+    public ResponseEntity<Object> ResList(@PathVariable Long reservno) {
         try {
-            List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationService.selectNativeJoin();
+            List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationService.ResList(reservno);
 
             if(moviedetailReservationDtoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

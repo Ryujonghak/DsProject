@@ -201,6 +201,8 @@ CREATE TABLE TB_RESERVATION
     USERNAME    VARCHAR2(1000),
 --     예약자 이름
     NAME        VARCHAR2(1000),
+--     예약자 ID
+    RUSERNAME   VARCHAR2(1000),
 --     상영스케쥴ID (참조테이블: TB_SCHEDULE)
     RNO         VARCHAR2(1000),
 --     영화코드 (참조테이블: TB_SCHEDULE)

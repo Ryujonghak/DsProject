@@ -46,6 +46,9 @@ public class Reservation extends BaseTimeEntity {
     private String name;
 
     @Column
+    private String rusername;
+
+    @Column
 //    예매번호
     private String rno; // sysdate() + ?
 
@@ -88,15 +91,5 @@ public class Reservation extends BaseTimeEntity {
 //    스케쥴 넘버
     private Long scno;
 }
-
-//    RESERVNO    NUMBER PRIMARY KEY,
-//    USERNAME    VARCHAR2(255),
-//    SCHEDULENO  NUMBER,
-//    MOVIECD     VARCHAR2(255),
-//    MOVIENM     VARCHAR2(255),
-//    RCOUNT      NUMBER,
-//    PRICE       NUMBER,
-//    PAIDDATE    DATE
-
 
 

@@ -42,8 +42,8 @@ public class ReservationService {
         return reservationList;
     }
 
-    public List<MoviedetailReservationDto> selectNativeJoin(){
-        List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationRepository.selectNativeJoin();
+    public List<MoviedetailReservationDto> ResList(Long reservno){
+        List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationRepository.ResList(reservno);
 
         return moviedetailReservationDtoList;
     }
