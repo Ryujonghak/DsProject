@@ -30,9 +30,9 @@ public class ReviewController {
             Page<Review> reviewPage;
             if (movienm == null) {
                 movienm = "";
-                reviewPage = reviewService.findAllByMovienmContainingOrderByRid(movienm, pageable);
+                reviewPage = reviewService.findAllByMovienmContainingOrderByRidDesc(movienm, pageable);
             } else {
-                reviewPage = reviewService.findAllByMovienmContainingOrderByRid(movienm, pageable);
+                reviewPage = reviewService.findAllByMovienmContainingOrderByRidDesc(movienm, pageable);
             }
 
             Map<String, Object> response = new HashMap<>();
@@ -132,7 +132,7 @@ public class ReviewController {
     }
 
     @GetMapping("/review/moviecd")
-    public ResponseEntity<Object> findAllByMoviecd(@RequestParam(required = false) String moviecd,
+    public ResponseEntity<Object> findAllByMoviecdOrderByRidDesc(@RequestParam(required = false) String moviecd,
                                                    @RequestParam(defaultValue = "0") int page,
                                                    @RequestParam(defaultValue = "3") int size) {
         try {
@@ -143,7 +143,7 @@ public class ReviewController {
                 reviewPage = reviewService.findAll(pageable);
             } else {
 //                moivecd 변수 데이터가 있을 경우
-                reviewPage = reviewService.findAllByMoviecd(moviecd, pageable);
+                reviewPage = reviewService.findAllByMoviecdOrderByRidDesc(moviecd, pageable);
             }
 
 
