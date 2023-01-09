@@ -538,7 +538,8 @@ export default {
       // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.popupClose = !this.popupClose;
-      window.location.reload();
+      // window.location.reload();
+      this.$router.push("/"); // 강제 홈화면으로 이동 TODO: 정주희 수정
       this.adminlogin = false;
     },
     toggleShow() {
