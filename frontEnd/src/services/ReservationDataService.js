@@ -9,6 +9,10 @@ class ReservationDataService {
         return http.get(`/reservation/search?username=${username}&page=${page}&size=${size}`)
     }
 
+    getReservation(reservno) {
+        return http.get(`reservation/searchById/${reservno}`)
+    }
+
     create(username, data) {
         console.log(username);
         console.log(data);

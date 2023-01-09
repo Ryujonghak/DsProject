@@ -35,6 +35,12 @@ public class ReservationService {
         return reservationPage;
     }
 
+    public List<Reservation> findByReservno(Long reservno) {
+        List<Reservation> reservationList = reservationRepository.findByReservno(reservno);
+
+        return reservationList;
+    }
+
     public Reservation save(String username, Reservation reservation) {
 //        현재 로그인중인 계정 정보를 상입
         Optional<User> optionalUser = userRepository.findByUsername(username);

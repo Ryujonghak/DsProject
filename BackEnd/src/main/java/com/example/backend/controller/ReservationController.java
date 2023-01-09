@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -67,6 +68,22 @@ public class ReservationController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
                 return new ResponseEntity<>(response, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/reservation/searchById/{reservno}")
+    public ResponseEntity<Object> getById(@PathVariable Long reservno) {
+        try {
+            List<Reservation> reservationList = reservationService.findByReservno(reservno);
+
+            if(reservationList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(reservationList, HttpStatus.OK);
             }
         } catch (Exception e) {
             log.debug(e.getMessage());
