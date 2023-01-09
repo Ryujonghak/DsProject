@@ -66,6 +66,10 @@ public class Reservation extends BaseTimeEntity {
     private String paiddate;
 
     @Column
+//    영화 상영관
+    private String location;
+
+    @Column
 //    스케쥴 넘버
     private Long scno;
 }
