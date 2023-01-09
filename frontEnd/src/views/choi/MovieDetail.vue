@@ -39,9 +39,11 @@
                     >
                   </div>
                   <div>
-                    <router-link :to="'/SeatTest/' + movie.moviecd" class="item item-2 yellowbtn"
+                    <router-link
+                      :to="'/SeatTest/' + movie.moviecd"
+                      class="item item-2 yellowbtn"
                       ><i class="ion-card"></i
-                    ></router-link >
+                    ></router-link>
                   </div>
                 </div>
               </div>
@@ -492,10 +494,13 @@ export default {
     getReview(moviecd) {
       ReviewDataService.getBycode(moviecd, this.page - 1, 10000000) // 모든 리뷰를 가져오기 위하여 임의로 준 수.
         .then((response) => {
-          const currentUserName = this.$store.state.auth.user.username
-          const pastReviews = response.data.review.filter(r => r.rwuser == currentUserName )
-          this.alreadyReviewed =  pastReviews.length > 0
-        }).catch((e) => {
+          const currentUserName = this.$store.state.auth.user.username;
+          const pastReviews = response.data.review.filter(
+            (r) => r.rwuser == currentUserName
+          );
+          this.alreadyReviewed = pastReviews.length > 0;
+        })
+        .catch((e) => {
           console.log(e);
         });
       ReviewDataService.getBycode(moviecd, this.page - 1, this.pageSize)
@@ -523,10 +528,9 @@ export default {
         });
     },
     saveReview() {
-    
-      if( this.alreadyReviewed ) {
-        alert('이미 리뷰를 남기셨습니다.')
-        return
+      if (this.alreadyReviewed) {
+        alert("이미 리뷰를 남기셨습니다.");
+        return;
       }
 
       this.addReview.rwuser = this.$store.state.auth.user.username;
@@ -578,17 +582,25 @@ export default {
         this.movie.cast = this.movie.cast.split(",");
       }
 
-      this.movie.imgurl = this.movie.imgurl.split(",");
+      if (this.movie.imgurl != null) {
+        this.movie.imgurl = this.movie.imgurl.split(",");
+        // 가져온 이미지 url 개수
+        this.imageUrlLength = this.movie.imgurl.length;
+
+        // 썸네일 이미지 2장만 보이게 설정
+        this.tempImgUrl[0] = this.movie.imgurl[0];
+        this.tempImgUrl[1] = this.movie.imgurl[1];
+      }
+
       // 개봉일에서 연도만 잘라주기
       this.mYear = this.movie.opendt.substr(0, 4);
-      // 가져온 이미지 url 개수
-      this.imageUrlLength = this.movie.imgurl.length;
-      // 썸네일 이미지 2장만 보이게 설정
-      this.tempImgUrl[0] = this.movie.imgurl[0];
-      this.tempImgUrl[1] = this.movie.imgurl[1];
-      // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
-      this.starRating = Math.floor(this.movie.raiting);
 
+      if (this.movie.raiting != null) {
+        // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
+        this.starRating = Math.floor(this.movie.raiting);
+      }
+
+      // 관람등급 데이터가 2번 연달아 붙여서 오는 경우가 있어서 그 경우 잘라주기
       if (this.movie.watchgradenm.includes(",")) {
         this.movie.watchgradenm = this.movie.watchgradenm.split(",")[0];
       }
