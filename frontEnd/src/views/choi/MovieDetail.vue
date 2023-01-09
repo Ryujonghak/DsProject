@@ -431,7 +431,7 @@ export default {
     this.getBoxoffice(this.$route.params.moviecd);
     this.getReview(this.$route.params.moviecd);
     this.getWishlist();
-    custom();
+    // custom();
     // this.cutNames();
   },
   components: {
