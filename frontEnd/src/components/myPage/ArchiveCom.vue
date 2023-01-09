@@ -477,6 +477,8 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
+    
+    // 페이징
     handlePageChange(value){
       this.page = value;
       this.getReview();
