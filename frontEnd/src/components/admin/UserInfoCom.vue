@@ -6,6 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
+              <h4>회원 관리 페이지</h4>
             </div>
           </div>
         </div>
@@ -418,5 +419,9 @@ export default {
   margin-top: 7%;
   margin-right: 0%;
   border-radius: 5px;
+}
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
 }
 </style>

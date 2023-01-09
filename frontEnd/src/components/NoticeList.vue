@@ -17,9 +17,9 @@
     <!-- search 관련 div 시작 -->
     <div class="container" style="padding: 3%; background: inherit; margin-top: 5%;">
       <fieldset class="search_wrap" id="search_wrap1">
-        <select class="ty3" title="검색조건 제목 선택" id="selectCondition1">
-          <option value="1" selected>제목</option>
-          <option value="2">내용</option>
+        <select class="ty3" title="검색조건 제목 선택" id="selectCondition1" v-model="searchSelect">
+          <option value="title">제목</option>
+          <option value="content">내용</option>
         </select>
         <input
           type="text"
@@ -74,17 +74,6 @@
       </table>
       <!-- table 끝 -->
 
-      <!-- TODO: 시작 -->
-      <!-- npm 설치 : npm install --save vue-simple-accordion -->
-      <!-- 참고사이트 : https://vuejsexamples.com/a-simple-and-easily-configurable-accordion-for-vue/ -->
-      <!-- <vsa-list class="vsa-list"> -->
-        <!-- Here you can use v-for to loop through items  -->
-        <!-- <vsa-item v-for="(data, index) in notice.notice" v-bind:key="index">
-          <vsa-heading> {{ data.ntitle }} </vsa-heading>
-          <vsa-content> {{ data.ncontent }} </vsa-content>
-        </vsa-item>
-      </vsa-list>  -->
-      <!-- TODO: 끝 -->
 
       <!-- <!— 페이징 + 전체 목록 시작 —> -->
       <!-- <!— 페이징 양식 시작 —> -->
@@ -119,7 +108,7 @@ export default {
   data() {
     return {
       notice: [],
-      searchSelect: "",
+      searchSelect: "title",
       searchKeyword: "",
 
       page: 1,
@@ -136,10 +125,11 @@ export default {
         this.page - 1,
         this.pageSize
       )
-
         .then((response) => {
           const notice = response.data;
           this.notice = notice;
+      //        var test = this.notice;
+      // alert(JSON.stringify(test));
           console.log(response.data);
         })
         .catch((e) => {
@@ -147,12 +137,12 @@ export default {
         });
     },
 
+
+    //페이지 변경시 실행됨 
     handlePageChange(value) {
       this.page = value;
       this.retrieveNotice();
     },
-
-    searchTitle() {},
   },
   mounted() {
     this.retrieveNotice();
