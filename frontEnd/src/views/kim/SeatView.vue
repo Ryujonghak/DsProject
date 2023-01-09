@@ -998,6 +998,10 @@
         this.reservation.price = "100";
         this.reservation.paiddate = new Date();
         this.reservation.location = this.ticketinfor.cinema;
+        this.reservation.seat = "A1";
+        this.reservation.starttime =  new Date();
+        this.reservation.emdtime =  new Date();
+
         this.reservation.scno = null;
         
         ReservationDataService.create(this.$store.state.auth.user.username,this.reservation)

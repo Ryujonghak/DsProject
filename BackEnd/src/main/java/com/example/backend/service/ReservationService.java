@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.MoviedetailReservationDto;
 import com.example.backend.model.Reservation;
 import com.example.backend.model.User;
 import com.example.backend.repository.ReservationRepository;
@@ -39,6 +40,12 @@ public class ReservationService {
         List<Reservation> reservationList = reservationRepository.findByReservno(reservno);
 
         return reservationList;
+    }
+
+    public List<MoviedetailReservationDto> selectNativeJoin(){
+        List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationRepository.selectNativeJoin();
+
+        return moviedetailReservationDtoList;
     }
 
     public Reservation save(String username, Reservation reservation) {

@@ -21,6 +21,9 @@ price,
 paiddate,
 // --     상영관
 location,
+seat,
+starttime,
+emdtime,
 // --     스케쥴 id
 scno
     ) {
@@ -34,6 +37,9 @@ scno
         this.price = price;
         this.paiddate = paiddate;
         this.location = location;
+        this.seat = seat;
+        this.starttime = starttime;
+        this.emdtime = emdtime;
         this.scno = scno;
     }
 }
