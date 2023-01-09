@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div class="hero user-hero">
+    <div class="hero common-hero">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>전체 상영관</h1>
-              <ul class="breadcumb">
-                <li class="active"><router-link to="/">Home</router-link></li>
+              <h1 style="text-align:left">전체상영관</h1>
+              <ul class="breadcumb" style="text-align:left">
+                <li class="active">
+                  <router-link to="/">Home</router-link>
+                </li>
                 <li><span class="ion-ios-arrow-right"></span>TIME TABLE</li>
               </ul>
             </div>
