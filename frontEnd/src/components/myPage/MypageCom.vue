@@ -125,12 +125,12 @@
                       <tr>
                         <td>
                           <div class="mv-item-infor">
-                            <h6><a href="#">DS 서면</a></h6>
+                            <h6><router-link to="/SeomyeonCinema">DS 서면</router-link></h6>
                           </div>
                         </td>
                         <td>
                           <div class="mv-item-infor">
-                            <h6><a href="#">DS 해운대</a></h6>
+                            <h6><router-link to="/CentumCinema">DS 센텀시티</router-link></h6>
                           </div>
                         </td>
                         <td>
