@@ -221,20 +221,14 @@ export default {
           this.movie = movie;
           console.log(response.data);
 
-          // var test = this.movie.MovieDetail[2];
-          // alert(JSON.stringify(test));
-
           let temp = new Array();
 
           for (let i = 0; i < this.movie.totalItems; i++) {
             if (this.movie.MovieDetail[i].prdtstatnm == "개봉") {
               temp.push(this.movie.MovieDetail[i]);
-              // alert(temp)
             }
           }
 
-          // var test = temp;
-          alert(JSON.stringify(temp));
           this.nowPlayingMovies = temp;
         })
         .catch((e) => {
