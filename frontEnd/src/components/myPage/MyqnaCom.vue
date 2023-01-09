@@ -95,11 +95,14 @@
           <!-- 오른쪽 본문 내용 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
-              <p>나의 문의내역</p>
-              <select class="form-select" v-model="searchSelect">
+              <p>나의 문의내역 <span>{{ totalQna }}</span> in total</p>
+              <a href="userfavoritegrid.html" class="grid"
+                ><i class="ion-grid"></i
+              ></a>
+              <!-- <select class="form-select" v-model="searchSelect">
                 <option>-- name --</option>
                 <option>-- 답변완료 --</option>
-              </select>
+              </select> -->
             </div>
 
             <!-- TODO: v-if 넘어오는 데이터 없으면 뜨도록 -->
@@ -114,9 +117,9 @@
               <table class="qnabox">
                 <colgroup>
                   <col style="width: 20px"/>
-                  <col style="width: 40px"/>
-                  <col style="width: 60px"/>
-                  <col style="width: 15px"/>
+                  <col style="width: 35px"/>
+                  <col style="width: 35px"/>
+                  <col style="width: 10px"/>
                 </colgroup>
                 <thead>
                 <tr>
@@ -262,6 +265,7 @@ export default {
       user: new User(),
       // AddQna 받아오기
       qna: [],
+      totalQna: 0,  // 갯수 세기
       // AddQna.vue 에서 submit 버튼을 클릭하면(출력할 qna데이터가 생기면) true(백엔, insert)가 되고, You submitted successfully! 화면에 출력됨
       addQna: new Qna(),
       submitted: true,
@@ -316,6 +320,7 @@ export default {
     //       })
     //       .catch((err) => console.log(err));
     // },
+
     // 내꺼만 조회하기
     getQna() {
       qnaDataService
@@ -327,6 +332,7 @@ export default {
           .then((response) => {
             console.log("getQna response.data: ", response.data);
             this.qna = response.data; // data 안에서 qna만 표시
+            this.totalQna = this.qna.qna.length;  // 갯수세기 추가
             console.log("qna: ", this.qna);
             this.findQna();
           })
