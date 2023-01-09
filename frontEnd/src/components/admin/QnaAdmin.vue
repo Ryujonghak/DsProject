@@ -323,7 +323,7 @@ export default {
         });
     },
 
-    //qna 확인창
+    //qna 확인창da
     checkingQna(qid) {
       this.checkQna = !this.checkQna;
       QnaDataService.get(qid)

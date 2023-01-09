@@ -15,7 +15,7 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width2"></div>
-        <!-- 시작 -->
+        <!--  영화등록 테이블 시작 -->
         <div class="container">
           <table class="AddMovieBox" style="margin-top: 5%">
             <colgroup>
@@ -198,6 +198,7 @@
             </button>
           </div>
         </div>
+        <!-- 끝 -->
       </div>
     </div>
   </div>
@@ -226,6 +227,7 @@ export default {
     };
   },
   methods: {
+    //영화 등록함수 
     saveMovie(){
       let data={
         id: this.movie.id,

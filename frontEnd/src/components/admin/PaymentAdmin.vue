@@ -117,7 +117,7 @@
                       <td>{{ data.rcount }}</td>
                       <td>{{ data.price }}</td>
                       <td>{{ data.insertTime }}</td>
-                      <td><button class="detailbtn" @click="detail">상세정보</button></td>
+                      <td><button class="detailbtn" @click="checkingReservation(data.reservno)">상세정보</button></td>
                     </tr>
                   </tbody>
                 </table>
@@ -131,19 +131,17 @@
           v-show="detailReservation"
             class="detail"
             style="color: aliceblue"
-            v-for="(data, index) in reservation.reservation"
-            v-bind:key="index"
           >
             <h4 style="margin-left: 15%">상세보기</h4>
             <ul style="margin-left: 30%">
-              <li>이름 : {{ data.name }}</li>
-              <li>예매고유번호 : {{ data.reservno }}</li>
-              <li>영화제목 : {{ data.movienm }}</li>
-              <li>영화코드 : {{ data.moviecd }}</li>
-              <li>상영관 : {{ data.location }}</li>
-              <li>관람인원 : {{ data.rcount }} 명</li>
-              <li>결제가격 : {{ data.price }} 원</li>
-              <li>결제시간 : {{ data.insertTime }} </li>
+              <li>이름 : {{ detailRes.name }}</li>
+              <li>예매고유번호 : {{ detailRes.reservno }}</li>
+              <li>영화제목 : {{ detailRes.movienm }}</li>
+              <li>영화코드 : {{ detailRes.moviecd }}</li>
+              <li>상영관 : {{ detailRes.location }}</li>
+              <li>관람인원 : {{ detailRes.rcount }} 명</li>
+              <li>결제가격 : {{ detailRes.price }} 원</li>
+              <li>결제시간 : {{ detailRes.insertTime }} </li>
             </ul>
           </div>
 
@@ -180,6 +178,7 @@ export default {
       reservation: [],
       detailReservation: false,
       username:"",
+      detailRes: [],
 
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
@@ -210,14 +209,22 @@ export default {
         });
     },
 
+    //상세보기 조회함수
+    checkingReservation(reservno){ 
+      this.detailReservation = !this.detailReservation;
+      ReservationDataService.getReservation(reservno)
+      .then((response) => {
+          this.detailRes = response.data[0];
+          console.log(this.detailRes);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
     handlePageChange(value) {
       this.page = value; // 매개변수값으로 현재페이지 변경
       this.retreiveReservation();
-    },
-
-    //상세보기 버튼 클릭시
-    detail() {
-      this.detailReservation = !this.detailReservation;
     },
   },
   mounted() {
