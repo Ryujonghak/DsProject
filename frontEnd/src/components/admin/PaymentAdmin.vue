@@ -66,10 +66,21 @@
           <!-- <!— 왼쪽 메뉴바 끝 —> -->
 
           <div class="col-md-9 col-sm-12 col-xs-12">
-            <div style="margin-bottom: 2%">
-              <h3 style="color: aliceblue">예매 내역</h3>
+            <div class="topbar-filter" style="justify-content:flex-end;">
+              <input
+                id="select_value"
+                name="inputBox"
+                type="text"
+                placeholder="username을 입력하세요"
+                style="width: 20%"
+                v-model="username"
+              />
+              <button class="searchbtn"
+              @click="
+              page = 1;
+              retreiveReservation();
+            ">검색하기</button>
             </div>
-
             <!-- 전체정렬 -->
             <!--리뷰 테이블 관리 시작 (list)  -->
             <div class="movie-item-style-2 userrate">
@@ -78,7 +89,7 @@
                   <colgroup>
                     <col style="width: 10%" />
                     <col style="width: 10%" />
-                    <col style="width: 10%" />
+                    <col style="width: 20%" />
                     <col style="width: 10%" />
                     <col style="width: 10%" />
                     <col style="width: 10%" />
@@ -87,7 +98,7 @@
                   <thead>
                     <tr>
                       <th scope="col">예매번호</th>
-                      <th scope="col">ID</th>
+                      <th scope="col">이름</th>
                       <th scope="col">영화명</th>
                       <th scope="col">인원</th>
                       <th scope="col">결제가격</th>
@@ -101,12 +112,12 @@
                       v-bind:key="index"
                     >
                       <td>{{ data.reservno }}</td>
-                      <td>{{ data.username }}</td>
+                      <td>{{ data.name }}</td>
                       <td>{{ data.movienm }}</td>
                       <td>{{ data.rcount }}</td>
                       <td>{{ data.price }}</td>
                       <td>{{ data.insertTime }}</td>
-                      <td><button class="detailbtn" @click="detail()">상세정보</button></td>
+                      <td><button class="detailbtn" @click="detail">상세정보</button></td>
                     </tr>
                   </tbody>
                 </table>
@@ -116,48 +127,27 @@
           </div>
 
           <!-- 상세보기 페이지  시작-->
-          <div v-show="detailreserv">
-            <div
-              class="col-xs-12"
-              v-for="(data, index) in reservation.reservation"
-              :key="index"
-            >
-              <div class="movie-item-style-2 userrate">
-                <div class="mv-item-infor col-xs-9">
-                  <div>
-                    <div class="col-xs-6">
-                      <p>아이디 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>{{ data.username.username }}</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>영화코드 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>
-                        {{ data.moviecd }}
-                      </p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>scno :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>{{ data.scno }}</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>영화관 :</p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>{{ data.location }}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div
+          v-show="detailReservation"
+            class="detail"
+            style="color: aliceblue"
+            v-for="(data, index) in reservation.reservation"
+            v-bind:key="index"
+          >
+            <h4 style="margin-left: 15%">상세보기</h4>
+            <ul style="margin-left: 30%">
+              <li>이름 : {{ data.name }}</li>
+              <li>예매고유번호 : {{ data.reservno }}</li>
+              <li>영화제목 : {{ data.movienm }}</li>
+              <li>영화코드 : {{ data.moviecd }}</li>
+              <li>상영관 : {{ data.location }}</li>
+              <li>관람인원 : {{ data.rcount }} 명</li>
+              <li>결제가격 : {{ data.price }} 원</li>
+              <li>결제시간 : {{ data.insertTime }} </li>
+            </ul>
           </div>
-          <!-- 상세보기 페이지 끝  -->
 
+          <!-- 상세보기 페이지 끝  -->
           <!-- <!— 페이징 + 전체 목록 시작 —> -->
           <!-- <!— 페이징 양식 시작 —> -->
           <div class="col-md-12">
@@ -188,7 +178,8 @@ export default {
     return {
       board: false,
       reservation: [],
-      detailreserv:false,
+      detailReservation: false,
+      username:"",
 
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
@@ -225,9 +216,9 @@ export default {
     },
 
     //상세보기 버튼 클릭시
-    detail(){
-      this.detailreserv =! this.detailreserv;
-    }
+    detail() {
+      this.detailReservation = !this.detailReservation;
+    },
   },
   mounted() {
     this.retreiveReservation();
@@ -279,4 +270,28 @@ h4 {
   border-radius: 20px;
   vertical-align: middle !important;
 }
+
+.searchbtn{
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #414141;
+  color: #ffffff !important;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #414141;
+  display: inline !important;
+  padding: 6px 12px;
+}
+input{
+  border-radius: 4px;
+  margin-right: 2%;
+  background:inherit;
+  color: aliceblue;
+}
+
+.topbar-filter {
+  border-top: none !important;
+
+}
+
 </style>
