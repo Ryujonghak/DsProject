@@ -422,10 +422,6 @@ h4 {
   margin-right: 0%;
   border-radius: 5px;
 }
-h4 {
-  color: aliceblue;
-  margin-right: 10%;
-}
 
 /* 탑버튼 추가 _정주희 */
 .topbutton {
