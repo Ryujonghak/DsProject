@@ -43,7 +43,7 @@
           <div class="row">
             <div class="remember" col-xs-12>
               <button @click="toggleShow()" class="findbtn">
-                아이디찾기 &nbsp; &nbsp; &nbsp; &nbsp; |
+                아이디찾기 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
               </button>
               <button @click="togglePwd()" class="findbtn">비밀번호찾기</button>
             </div>

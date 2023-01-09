@@ -73,12 +73,12 @@
                 type="text"
                 placeholder="username을 입력하세요"
                 style="width: 20%"
-                v-model="username"
+                v-model="rusername"
               />
               <button class="searchbtn"
               @click="
               page = 1;
-              retreiveReservation();
+              findbyUsername();
             ">검색하기</button>
             </div>
             <!-- 전체정렬 -->
@@ -98,7 +98,7 @@
                   <thead>
                     <tr>
                       <th scope="col">예매번호</th>
-                      <th scope="col">이름</th>
+                      <th scope="col">ID</th>
                       <th scope="col">영화명</th>
                       <th scope="col">인원</th>
                       <th scope="col">결제가격</th>
@@ -112,7 +112,7 @@
                       v-bind:key="index"
                     >
                       <td>{{ data.reservno }}</td>
-                      <td>{{ data.name }}</td>
+                      <td>{{ data.rusername }}</td>
                       <td>{{ data.movienm }}</td>
                       <td>{{ data.rcount }}</td>
                       <td>{{ data.price }}</td>
@@ -134,7 +134,7 @@
           >
             <h4 style="margin-left: 15%">상세보기</h4>
             <ul style="margin-left: 30%">
-              <li>이름 : {{ detailRes.name }}</li>
+              <li>이름 : {{ detailRes.rusername }}</li>
               <li>예매고유번호 : {{ detailRes.reservno }}</li>
               <li>영화제목 : {{ detailRes.movienm }}</li>
               <li>영화코드 : {{ detailRes.moviecd }}</li>
@@ -181,8 +181,8 @@ export default {
       board: false,
       reservation: [],
       detailReservation: false,
-      username:"",
       detailRes: [],
+      rusername: "",
 
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
@@ -200,9 +200,22 @@ export default {
       this.board = !this.board;
     },
 
-    //전체조회 함수
+    //유저네임 검색 함수
     retreiveReservation() {
       ReservationDataService.getAll(this.page - 1, this.pageSize)
+        .then((response) => {
+          const reservation = response.data;
+          this.reservation = reservation;
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    //전체조회함수 
+    findbyUsername(){
+      ReservationDataService.getUsernameReservation(this.rusername,this.page - 1, this.pageSize)
         .then((response) => {
           const reservation = response.data;
           this.reservation = reservation;
