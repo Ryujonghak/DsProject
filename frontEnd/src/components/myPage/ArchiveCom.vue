@@ -544,8 +544,8 @@ export default {
 }
 
 .MovieName{
-  /* color: rgb(60,127,186); */
-  color: rgb(45,113,191);
+  color: rgb(60,127,186);
+  /* color: cadetblue; */
 }
 
 .list {
