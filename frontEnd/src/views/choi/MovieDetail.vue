@@ -483,7 +483,7 @@ export default {
         });
     },
     getReview(moviecd) {
-      ReviewDataService.getBycode(moviecd, this.page - 1, 10000000)
+      ReviewDataService.getBycode(moviecd, this.page - 1, 10000000) // 모든 리뷰를 가져기 위하여 임의로 준 수.
         .then((response) => {
           const currentUserName = this.$store.state.auth.user.username
           const pastReviews = response.data.review.filter(r => r.rwuser == currentUserName )
