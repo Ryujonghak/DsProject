@@ -628,6 +628,7 @@
   <script>
   import BookingService from "@/services/BookingService";
   import custom from "@/assets/js/custom";
+  import Reservation from "@/model/Reservation";
   export default {
     props: ["movieProps2"],
 
@@ -642,12 +643,12 @@
     data() {
       return {
         data1: this.movieProps2, //영화데이터 받아오기
-        data2: [],     
+        data2: [],
         
         모달 : true,
         좌석: true,  // 좌석페이지 v-show
         결제후페이지 : false,
-
+        reservation : new Reservation(),
         
         영화이름 : "",
         서면 : true,
@@ -700,8 +701,7 @@
         selects998: [ "1A1", "N"], // data2에 있는 좌석데이터를 담는곳 센텀시티
         selects903: ["N"], // 좌석 상태를 날리는 배열 좌석예매할때쓰임
         selects904: ["Y"], // 좌석 상태를 날리는 배열 좌석취소할때쓰임
-        
-        
+        i : 1,        
         ticketinfor : [
               { 
                 cinema: '',
@@ -975,6 +975,15 @@
       popcorn() {
         alert("현재 스토어서비스는 준비중입니다.")
       },
+      addReservation(){
+        this.reservation.username = this.$store.state.auth.user.username;
+        this.reservation.moviecd = this.data1.moviecd;
+        this.reservation.movienm = this.data1.movienm;
+        this.reservation.rcount = this.adultcount + this.teencount;
+        this.reservation.price = "100";
+        this.reservation.paiddate = new Date();
+        this.reservation.scno = null;
+      },
       week(value) {
         let temp;
         if(this.ticketinfor.selectedday != null){
@@ -1064,6 +1073,7 @@
           if (rsp.success) {
             //결제 성공
 			alert("결제성공")
+      this.addReservation();
       this.seattest97();
       this.결제후페이지 = true;
       this.seatcount();
