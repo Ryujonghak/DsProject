@@ -274,10 +274,6 @@
                 <li>
                   <router-link to="/allMovie">전체보기</router-link>
                 </li>
-<!-- 
-                <li>
-                  <router-link to="/boxoffice02">박스오피스</router-link>
-                </li> -->
                 <li class="dropdown first">
                   <a
                     class="btn btn-default dropdown-toggle lv1 happy"
@@ -301,10 +297,6 @@
                     </li>
                   </ul>
                 </li>
-
-                <!-- <li>
-                  <router-link to="/board-admin">test</router-link>
-                </li> -->
               </ul>
             </div>
             <!-- 로고 -->
@@ -538,7 +530,8 @@ export default {
       // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.popupClose = !this.popupClose;
-      window.location.reload();
+      // window.location.reload();
+      this.$router.push("/"); // 강제 홈화면으로 이동 TODO: 정주희 수정
       this.adminlogin = false;
     },
     toggleShow() {
@@ -785,7 +778,8 @@ input {
 //   float: right !important;
 // }
 .menu-left{
-  margin-left: 30% !important;
+  margin-left: 50% !important;
+  justify-content: end !important;
 }
 
 #logoutlink{

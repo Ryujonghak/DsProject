@@ -6,6 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
+              <h4>예약내역 관리 페이지</h4>
             </div>
           </div>
         </div>
@@ -70,18 +71,12 @@
                     <col style="width: 10%" />
                     <col style="width: 10%" />
                     <col style="width: 10%" />
-                    <!-- <col style="width: 5%" /> -->
-                    <!-- <col style="width: 10%" /> -->
                   </colgroup>
                   <thead>
                     <tr>
                       <th scope="col">예매번호</th>
                       <th scope="col">ID</th>
-                      <!-- <th scope="col">지점</th> -->
-                      <!-- <th scope="col">상영관</th> -->
-                      <!-- <th scope="col">영화시간</th> -->
                       <th scope="col">영화명</th>
-                      <!-- <th scope="col">좌석번호</th> -->
                       <th scope="col">인원</th>
                       <th scope="col">결제가격</th>
                       <th scope="col">결제시간</th>
@@ -92,11 +87,7 @@
                     <tr v-for="(data, index) in Payment" v-bind:key="index">
                       <td>{{ data.rno }}</td>
                       <td>{{ data.username }}</td>
-                      <!-- <td>{{ data.scheduleno }}</td> -->
-                      <!-- <td>{{ data.SCREEN }}</td> -->
-                      <!-- <td>{{ data.starttime }}</td> -->
                       <td>{{ data.movienm }}</td>
-                      <!-- <td>{{ data.seatNo }}</td> -->
                       <td>{{ data.rcount }}</td>
                       <td>{{ data.price }}</td>
                       <td>{{ data.paidDate }}</td>
@@ -166,5 +157,9 @@ button:active {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
   background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
+}
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
 }
 </style>

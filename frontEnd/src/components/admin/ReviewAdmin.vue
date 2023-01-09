@@ -6,6 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
+              <h4>리뷰관리 페이지</h4>
             </div>
           </div>
         </div>
@@ -268,5 +269,9 @@ button:active {
   width: 35% !important;
   background: url(../../../public/images/uploads/drop-icon.png) no-repeat right 20px center;
 
+}
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
 }
 </style>

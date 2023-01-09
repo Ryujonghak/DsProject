@@ -6,6 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
+              <h4>QnA 관리 페이지</h4>
             </div>
           </div>
         </div>
@@ -87,7 +88,7 @@
                   <thead>
                     <tr>
                       <th scope="col">번호</th>
-                      <th scope="col">이름</th>
+                      <th scope="col">ID</th>
                       <th scope="col">제목</th>
                       <th scope="col">내용</th>
                       <th scope="col">답변상태</th>
@@ -402,5 +403,9 @@ button:active {
   border-radius: 20px;
   vertical-align: middle !important;
   margin-left: 20% ;
+}
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
 }
 </style>

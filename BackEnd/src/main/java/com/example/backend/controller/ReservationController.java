@@ -74,10 +74,14 @@ public class ReservationController {
         }
     }
 
-    @PostMapping("/reservation")
-    public ResponseEntity<Object> create(@RequestBody String username,
+    @PostMapping("/reservation/{username}")
+    public ResponseEntity<Object> create(@PathVariable String username,
                                          @RequestBody Reservation reservation) {
         try {
+            log.debug("-------------- create 시작 ----------");
+            log.debug(username);
+            log.debug(String.valueOf(reservation));
+
             Reservation newReservation = reservationService.save(username, reservation);
 
             return new ResponseEntity<>(newReservation, HttpStatus.OK);

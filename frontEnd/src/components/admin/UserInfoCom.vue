@@ -6,6 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
+              <h4>회원 관리 페이지</h4>
             </div>
           </div>
         </div>
@@ -124,7 +125,6 @@
                 </div>
               </div>
             </div>
-            <!-- 테스트 페이징 시작 -->
             <!-- Todo : page 바 시작 -->
             <div class="col-md-12">
               <b-pagination
@@ -287,10 +287,8 @@ export default {
 
 <style scoped>
 .user-hero {
-  background: url(@/assets/images_choi/Views/choi/admin/movie-theater03.png)
-    no-repeat;
-  /* height: 598px; */
-  width: 100%;
+  height: 385px;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
 }
 .editbtn {
   font-family: "Dosis", sans-serif;
@@ -418,5 +416,9 @@ export default {
   margin-top: 7%;
   margin-right: 0%;
   border-radius: 5px;
+}
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
 }
 </style>

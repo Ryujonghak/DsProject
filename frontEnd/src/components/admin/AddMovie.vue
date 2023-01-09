@@ -6,7 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
-              <h4 style="color:aliceblue">영화등록 페이지 입니다.</h4>
+              <h4 style="color:aliceblue">영화등록 페이지</h4>
             </div>
           </div>
         </div>
@@ -294,5 +294,9 @@ button:active {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
   background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
+}
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
 }
 </style>

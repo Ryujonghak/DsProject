@@ -37,10 +37,12 @@ public class Reservation extends BaseTimeEntity {
     @Column
     private Long reservno;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "username")
-    @JsonBackReference
-    private User user;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "username")
+//    @JsonBackReference
+//    private User user;
+    @Column
+    private String username;
 
     @Column
 //    예매번호
@@ -56,10 +58,10 @@ public class Reservation extends BaseTimeEntity {
 
     @Column
 //    영화 감상 인원
-    private Integer rcount;
+    private String rcount;
     @Column
 //    영화 가격
-    private Integer price;
+    private String price;
 
     @Column
 //    영화 결제 타임
