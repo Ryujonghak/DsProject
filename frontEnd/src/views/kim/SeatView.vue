@@ -629,6 +629,7 @@
   import BookingService from "@/services/BookingService";
   import custom from "@/assets/js/custom";
   import Reservation from "@/model/Reservation";
+  import ReservationDataService from "@/services/ReservationDataService";
   export default {
     props: ["movieProps2"],
 
@@ -983,6 +984,14 @@
         this.reservation.price = "100";
         this.reservation.paiddate = new Date();
         this.reservation.scno = null;
+        
+        ReservationDataService.create(this.$store.state.auth.user.username,this.reservation)
+        .then((response) =>{
+          console.log(response.data);
+        })
+        .catch(error =>{
+          console.log(error);
+        })
       },
       week(value) {
         let temp;
