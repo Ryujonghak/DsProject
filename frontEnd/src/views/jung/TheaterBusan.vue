@@ -50,7 +50,7 @@
                                     <i class="ion-ios-arrow-right"></i>
                                   </span>
                                 </router-link>
-                                <h4>dd</h4>
+                                <h4>ds</h4>
                               </div>
                               <!-- 시간표 시작 -->
                               <div class="movieIng">

@@ -451,7 +451,7 @@ export default {
       ReviewDataService.create(this.editReview)
         .then((response) => {
           console.log(response.data);
-          alert("리뷰 저장");
+          alert("리뷰가 저장되었습니다.");
           this.editReview = new Review();
           // window.location.reload();
           this.getReview();
