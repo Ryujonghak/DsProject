@@ -142,7 +142,7 @@
             </form>
 
             <div>
-              <a class="editbtn col-xs-12" @click="updateUser">수정</a>
+              <a class="editbtn col-xs-12" @click="updateUser(user.id, changePwd, user)">수정</a>
               <!-- <button class="mt-3 btn btn-danger" @click="deleteEmp">
                 Delete
               </button>
@@ -199,8 +199,8 @@ export default {
           console.log(e);
         });
     },
-    updateUser() {
-      UserDataService.update(this.user.id, this.changePwd, this.user)
+    updateUser(id, changePwd, user) {
+      UserDataService.update(id, changePwd, user)
         .then((response) => {
           console.log(response.data);
           alert("수정되었습니다!");
@@ -210,6 +210,7 @@ export default {
         })
         .catch((e) => {
           console.log(e);
+          alert("수정실패")
         });
     },
   },
