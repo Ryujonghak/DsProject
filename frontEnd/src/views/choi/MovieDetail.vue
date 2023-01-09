@@ -482,6 +482,7 @@ export default {
         .then((response) => {
           this.movie = response.data[0];
           this.cutNames();
+          console.log(response.data[0]);
         })
         .catch((e) => {
           console.log(e);
@@ -559,8 +560,14 @@ export default {
     },
     cutNames() {
       // 배우, 배역, 이미지 잘라주기
-      this.movie.actor = this.movie.actor.split(",");
-      this.movie.cast = this.movie.cast.split(",");
+      if (this.movie.actor != null) {
+        this.movie.actor = this.movie.actor.split(",");
+      }
+
+      if (this.movie.cast != null) {
+        this.movie.cast = this.movie.cast.split(",");
+      }
+
       this.movie.imgurl = this.movie.imgurl.split(",");
       // 개봉일에서 연도만 잘라주기
       this.mYear = this.movie.opendt.substr(0, 4);
@@ -632,12 +639,12 @@ export default {
     },
     // TODO: 수정해야함.
     emptyReview() {
-      if(this.$store.state.auth.user.username) {
+      if (this.$store.state.auth.user.username) {
         return true;
       } else {
         return false;
       }
-    }
+    },
   },
 };
 </script>
