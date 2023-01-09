@@ -746,9 +746,9 @@ header .navbar-default .navbar-nav li a {
   cursor: pointer;
 }
 
-// TODO: 정주희 width: 50% -> 60% 수정(윈도우에서는 두줄로 떠서 위치조정함)
+// TODO: 정주희 width: 50% -> 60% 수정(윈도우에서는 두줄로 떠서 위치조정함) -> 70%으로 다시 수정
 .remember {
-  width: 60%;
+  width: 70%;
   float: right !important;
 }
 
