@@ -17,6 +17,8 @@ rcount,
 price,
 // --     결제일시
 paiddate,
+// --     상영관
+location,
 // --     스케쥴 id
 scno
     ) {
@@ -28,6 +30,7 @@ scno
         this.rcount = rcount;
         this.price = price;
         this.paiddate = paiddate;
+        this.location = location;
         this.scno = scno;
     }
 }
