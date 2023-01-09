@@ -78,7 +78,7 @@
                     <div class="fiter" style="width:40% !important;">
                     <label>Sort by:</label>
                     <select v-model="selectedValue" v-on:change="getMovieDesc()">
-                      <option value="" selected>전체보기</option>
+                      <!-- <option value="dateAll" >전체보기</option> -->
                       <option value="dateDesc" >개봉일자 최신순</option>
                       <option value="dateAsc" >개봉일자 오래된순</option>
                     </select>
