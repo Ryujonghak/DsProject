@@ -199,6 +199,8 @@ CREATE TABLE TB_RESERVATION
     RESERVNO  NUMBER NOT NULL PRIMARY KEY,
 --     로그인ID (참조테이블: TB_USER)
     USERNAME  VARCHAR2(1000),
+--     예약자 이름
+    NAME  VARCHAR2(1000),
 --     상영스케쥴ID (참조테이블: TB_SCHEDULE)
     RNO       VARCHAR2(1000),
 --     영화코드 (참조테이블: TB_SCHEDULE)

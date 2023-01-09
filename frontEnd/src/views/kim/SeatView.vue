@@ -991,6 +991,7 @@
       },
       addReservation(){
         this.reservation.username = this.$store.state.auth.user.username;
+        this.reservation.name = "강수빈";
         this.reservation.moviecd = this.data1.moviecd;
         this.reservation.movienm = this.data1.movienm;
         this.reservation.rcount = this.adultcount + this.teencount;

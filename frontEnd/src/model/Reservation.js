@@ -5,6 +5,8 @@ export default class Reservation {
 reservno,
 // --     로그인id (참조테이블: tb_user)
 username,
+// --     예약자 성함
+name,
 // --     상영스케쥴id (참조테이블: tb_schedule)
 rno,
 // --     영화코드 (참조테이블: tb_schedule)
@@ -24,6 +26,7 @@ scno
     ) {
         this.reservno = reservno;
         this.username = username;
+        this.name = name;
         this.rno = rno;
         this.moviecd = moviecd;
         this.movienm = movienm;
