@@ -27,10 +27,12 @@ public class NoticeController {
                                               @RequestParam(defaultValue = "0") int page,
                                               @RequestParam(defaultValue = "3") int size) {
         try {
+            log.debug("searchSelect : {}", searchSelect);
+            log.debug("searchKeyword : {}", searchKeyword);
             Pageable pageable = PageRequest.of(page, size);
             Page<Notice> noticePage;
             if (searchSelect.equals("title")) {
-                searchKeyword = "";
+//                searchKeyword = "";
                 noticePage = noticeService.findAllByNtitleContainingOrderByInsertTime(searchKeyword, pageable);
             } else {
                 noticePage = noticeService.findAllByNtypeContainingOrderByInsertTime(searchKeyword, pageable);
