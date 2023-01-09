@@ -158,7 +158,11 @@ export default {
   },
   methods: {
     showSeatPage() {
-      this.seatPage = !this.seatPage;
+      if (this.$store.state.auth.user == null) {
+        alert("로그인이 필요한 서비스 입니다.");
+      } else {
+        this.seatPage = !this.seatPage;
+      }
     },
     changeUrl() {
       // TODO: 배경에 유튜브 비디오를 넣기 위해서 주소에서 필요한 부분만 잘라와야 합니다.
