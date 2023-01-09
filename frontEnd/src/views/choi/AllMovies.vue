@@ -133,7 +133,7 @@
                   ><img
                     :src="data.posterurln"
                     alt="poster"
-                    style="margin-bottom: 5%"
+                    style="margin-bottom: 5%;width: 100%;"
                 /></router-link>
                 <div class="ceb-infor">
                   <h6>
