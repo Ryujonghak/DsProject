@@ -209,12 +209,6 @@ export default {
           }
           this.nowPlayingMovies = temp;
 
-          for (let i = 0; i < this.movie.totalItems; i++) {
-            if (this.movie.MovieDetail[i].watchgradenm.contains(",")) {
-              this.movie.MovieDetail[i].watchgradenm =
-                this.movie.MovieDetail[i].watchgradenm.split(",")[0];
-            }
-          }
         })
         .catch((e) => {
           console.log(e);
