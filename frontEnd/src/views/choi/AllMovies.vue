@@ -202,7 +202,7 @@ export default {
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
       count: 0, // 전체 데이터 건수
-      pageSize: 10, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      pageSize: 100, // 한페이지당 최대 몇개를 화면에 보여줄지 결정하는 변수 
 
       // TODO: 검색 기능 추가
       searchStatue: "",
@@ -221,8 +221,8 @@ export default {
           this.movie = movie;
           console.log(response.data);
 
-          var test = this.movie.MovieDetail[2];
-          alert(JSON.stringify(test));
+          // var test = this.movie.MovieDetail[2];
+          // alert(JSON.stringify(test));
 
           let temp = new Array();
 
