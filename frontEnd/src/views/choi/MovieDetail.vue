@@ -34,14 +34,14 @@
                 </div>
                 <div class="btn-transform transform-vertical">
                   <div>
-                    <a href="/test01" class="item item-1 yellowbtn">
+                    <a class="item item-1 yellowbtn">
                       <i class="ion-card"></i>예매하기</a
                     >
                   </div>
                   <div>
-                    <a href="/test01" class="item item-2 yellowbtn"
+                    <router-link :to="'/SeatTest/' + movie.moviecd" class="item item-2 yellowbtn"
                       ><i class="ion-card"></i
-                    ></a>
+                    ></router-link >
                   </div>
                 </div>
               </div>
@@ -406,6 +406,9 @@
         </div>
       </div>
     </div>
+    <!-- <div >
+      <SeatView :movieProps2="movie" />
+    </div> -->
   </div>
 </template>
 
@@ -416,6 +419,7 @@ import Review from "@/model/review";
 import ReviewDataService from "@/services/ReviewDataService";
 import Wishlist from "@/model/Wishlist";
 import WishlistDataService from "@/services/WishlistDataService";
+import SeatView from "@/views/kim/SeatView.vue";
 
 export default {
   mounted() {
@@ -429,6 +433,9 @@ export default {
     this.getWishlist();
     custom();
     // this.cutNames();
+  },
+  components: {
+    SeatView,
   },
   data() {
     return {

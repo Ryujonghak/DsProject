@@ -141,9 +141,6 @@
         </div>
       </div>
       <!-- 모달 테스트 시작 -->
-      <!-- <div id="container">
-        <div id="lorem-ipsum"></div>
-      </div> -->
       <div id="modal" class="modal-overlay">
         <div class="modal-window">
           <div class="col-xs-12" style="padding-top: 5%">
@@ -290,6 +287,10 @@ export default {
 </script>
 
 <style scoped>
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
+}
 .user-hero {
   height: 385px;
   background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
