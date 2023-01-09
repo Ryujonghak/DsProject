@@ -24,7 +24,7 @@
                         >
                           <h1 class="col-xs-12" style="width: 1000px">
                             <!--              movie.prdtyear 를 opendt로 변경 아직 안함(의도는 개봉년도이나, prdtyear는 제작연도로, 올빼미 등의 경우 2021로 표기됨 FIXME: 정주희 수정-->
-                            <a href="#"
+                            <a
                               >{{ currentMovie.movienm
                               }}<span>{{ mYear }}</span></a
                             >

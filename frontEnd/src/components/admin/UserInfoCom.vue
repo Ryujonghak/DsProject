@@ -141,9 +141,6 @@
         </div>
       </div>
       <!-- 모달 테스트 시작 -->
-      <!-- <div id="container">
-        <div id="lorem-ipsum"></div>
-      </div> -->
       <div id="modal" class="modal-overlay">
         <div class="modal-window">
           <div class="col-xs-12" style="padding-top: 5%">
@@ -159,6 +156,10 @@
       </div>
       <!-- 모달 테스트 끝 -->
     </div>
+    <!-- TODO: 탑버튼 추가_정주희 -->
+    <a class="topbutton" href="#">
+      <img src="@/assets/images_jung/iconUp_48.png"/>
+    </a>
   </div>
 </template>
 
@@ -286,6 +287,10 @@ export default {
 </script>
 
 <style scoped>
+h4 {
+  color: aliceblue;
+  margin-right: 10%;
+}
 .user-hero {
   height: 385px;
   background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
@@ -417,8 +422,15 @@ export default {
   margin-right: 0%;
   border-radius: 5px;
 }
-h4 {
-  color: aliceblue;
-  margin-right: 10%;
+
+/* 탑버튼 추가 _정주희 */
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
 }
 </style>
