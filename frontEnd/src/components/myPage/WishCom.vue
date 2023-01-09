@@ -96,9 +96,9 @@
               v-model="opendt"
               @change="getOpendtWishlist"
               >
-                <option selected value="20">-- 전체 --</option>
-                <option value="2023">-- 2023 --</option>
-                <option value="2022">-- 2022 --</option>
+                <option selected value="20"> 전체 </option>
+                <option value="2023"> 2023 </option>
+                <option value="2022"> 2022 </option>
               </select>
             </div>
 
@@ -210,7 +210,7 @@ export default {
             console.log(err);
           });
     },
-
+    // 위시리스트 영화 opendt로 검색
     getOpendtWishlist() {
       WishlistDataService
           .getOpendtMovie(this.opendt)
