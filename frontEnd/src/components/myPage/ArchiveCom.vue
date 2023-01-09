@@ -452,6 +452,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           alert("리뷰 저장");
+          this.editReview = new Review();
           // window.location.reload();
           this.getReview();
           // this.newReview()
