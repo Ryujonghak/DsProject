@@ -274,10 +274,6 @@
                 <li>
                   <router-link to="/allMovie">전체보기</router-link>
                 </li>
-<!-- 
-                <li>
-                  <router-link to="/boxoffice02">박스오피스</router-link>
-                </li> -->
                 <li class="dropdown first">
                   <a
                     class="btn btn-default dropdown-toggle lv1 happy"
@@ -301,10 +297,6 @@
                     </li>
                   </ul>
                 </li>
-
-                <!-- <li>
-                  <router-link to="/board-admin">test</router-link>
-                </li> -->
               </ul>
             </div>
             <!-- 로고 -->
@@ -786,7 +778,8 @@ input {
 //   float: right !important;
 // }
 .menu-left{
-  margin-left: 30% !important;
+  margin-left: 50% !important;
+  justify-content: end !important;
 }
 
 #logoutlink{

@@ -202,8 +202,9 @@ export default {
           .then((response) => {
             this.message = response.message;
             this.successful = true;
-            alert("회원가입이 완료되었습니다.")
+            alert("회원가입이 완료되었습니다.홈으로 이동됩니다")
             this.user = new User();
+            this.$router.push("/");
           })
           .catch((error) => {
             this.successful = false; 

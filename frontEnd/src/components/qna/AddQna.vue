@@ -42,7 +42,7 @@
           <tr>
             <th scope="row">
               |
-              <label for="name">이름</label>
+              <label for="name">ID</label>
               <em class="font-orange">*</em>
             </th>
             <td>
@@ -52,7 +52,7 @@
                 class="input-text boxing"
                 value
                 maxlength="4"
-                v-model="CurrentUser.name"
+                v-model="CurrentUser.username"
               />
          
             </td>
@@ -163,7 +163,7 @@ export default {
         // email: "",
         username: "",
         // phone: null,
-        name: "",
+        // name: "",
       },
       qna: {
         qid:null,
@@ -178,7 +178,7 @@ export default {
       // alert("클릭되냐");
 
       let data = {
-        qwriter: this.CurrentUser.name,
+        qwriter: this.CurrentUser.username,
         qtitle: this.qna.qtitle,
         qcontent:this.qna.qcontent
       };
