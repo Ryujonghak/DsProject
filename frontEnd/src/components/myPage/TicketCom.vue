@@ -95,7 +95,7 @@
           <!-- 오른쪽 본문 내용 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
-              <p>나의 예매정보 <span>{{ reservedMovie }}</span> in total</p>
+              <p>나의 관람 할 영화정보 <span>{{ reservedMovie }}</span> in total</p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
@@ -130,10 +130,10 @@
                               {{ data.movienm }}
                               </router-link>
                             </h6>
-                            
                             <p class="rate">
+                              <!-- 네이버 평점 -->
                               <i class="ion-android-star"></i
-                              ><span>{{ data.raiting }}</span> /5
+                              ><span>{{ data.raiting }}</span> /10   
                             </p>
                             <p>감독: {{ data.directors }}</p>
                             <p class="describe">
@@ -169,7 +169,7 @@
                               <p class="movie-detail-content col-xs-4">
                                 결제금액
                               </p>
-                              <p class="col-xs-4">{{watchedMovie.cnt * watchedMovie.price}}원 ( {{ watchedMovie.cnt }}x{{ watchedMovie.price }} )</p>
+                              <p class="col-xs-4">{{watchedMovie.rcount * watchedMovie.price}}원 ( {{ watchedMovie.rcount }}x{{ watchedMovie.price }} )</p>
                               <!-- TODO: 예매취소 버튼 - 클릭이벤트 -->
                               <div class="col-xs-4">
                                 <a href="#" class="redbtn" @click="deleteTicket"
@@ -250,38 +250,20 @@
               <div class="blank"></div>
             </div>
 
+            <!-- TODO: 이 부분은 추후 삭제!!!!!! -->
             <div class="watchedArea">
-              <!-- 본 영화 내역 -->
               <div class="topbar-filter user">
-                <p>나의 관람한 영화 <span>{{ watchedMovie }}</span> in total</p>
+                <p>나의 관람한 영화 --> 내정보의 나의 아카이브로 통합하기. 이 페이지는 관람할 영화만 뜨도록 <span>{{ watchedMovie }}</span> in total</p>
                 <select>
                   <option value="range">-- 2022년 --</option>
                   <option value="saab">-- 2021년 --</option>
                 </select>
               </div>
-              <!-- 페이지  -->
-              <!-- <div class="topbar-filter">
-                <label>Movies per page:</label>
-                <select>
-                  <option value="range">20 Movies</option>
-                  <option value="saab">10 Movies</option>
-                </select>
-                <div class="pagination2">
-                  <span>Page 1 of 1:</span>
-                  <a class="active" href="#">1</a>
-                  <a href="#"><i class="ion-arrow-right-b"></i></a>
-                </div>
-              </div> -->
-              <!-- 본 영화 -->
-              <!-- TODO: review말고 본 영화 watched로 바꿔야... -->
-              <!-- <div class="row" v-for="(data, index) in watched" v-bind:Key="index"> -->
               <div class="row" v-for="(data, index) in movie" v-bind:key="index">
                 <div class="col-xs-12 movie-item-style-2 userrate">
-                  <!-- 포스터 -->
                   <div class="col-xs-2">
                     <img src="images/uploads/mv1.jpg" alt="" />
                   </div>
-                  <!-- 영화정보 -->
                   <div class="col-xs-8">
                     <div class="mv-item-infor">
                       <h6>
@@ -292,7 +274,7 @@
                       <!-- 별점 -->
                       <p class="rate">
                         <i class="ion-android-star"></i>
-                        <span>{{ data.raiting }}</span> /5
+                        <span>{{ data.raiting }}</span> /10
                       </p>
                       <p>상영시간: {{ data.showtm }}분 <a>{{ data.watchgradenm }}</a></p>
                       <span class="time sm">{{ data.scheNo }}</span>
@@ -302,22 +284,18 @@
                       <span class="time sm-text">{{ data.startTime }} ~ {{ data.endTime }}</span>
                     </div>
                   </div>
-                  <!-- 영화정보 끝 -->
-                  <!-- 버튼 -->
                   <div class="col-xs-2">
                     <div class="movie-item-style-2">
-                      <!-- 버튼 -->
                       <router-link :to="'/archive/' + data.moviecd">
                         <a href="" class="redbtn">관람평</a>
                       </router-link>
                     </div>
                   </div>
-                  <!-- 버튼 끝 -->
                 </div>
               </div>
             </div>
 
-            <!-- 2. 예매 내역 상세보기 -->
+            <!-- 2. 예매 내역 상세보기 하드코딩 -->
             <!-- <div class="page-single userfav_list">
               <div class="container">
                 <div class="row ipad-width2">

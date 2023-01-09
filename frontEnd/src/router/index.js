@@ -209,6 +209,11 @@ const routes = [
     component: () => import("@/views/choi/ReservInfoCom.vue"),
     beforeEnter: ifAdmin
   },
+  {
+    path: "/SeatTest/:moviecd",
+    name: "SeatTest",
+    component: () => import("@/views/choi/SeatTest.vue"),
+  },
 
   // 김철원
   {

@@ -24,7 +24,7 @@
                         >
                           <h1 class="col-xs-12" style="width: 1000px">
                             <!--              movie.prdtyear 를 opendt로 변경 아직 안함(의도는 개봉년도이나, prdtyear는 제작연도로, 올빼미 등의 경우 2021로 표기됨 FIXME: 정주희 수정-->
-                            <a href="#"
+                            <a
                               >{{ currentMovie.movienm
                               }}<span>{{ mYear }}</span></a
                             >
@@ -158,7 +158,11 @@ export default {
   },
   methods: {
     showSeatPage() {
-      this.seatPage = !this.seatPage;
+      if (this.$store.state.auth.user == null) {
+        alert("로그인이 필요한 서비스 입니다.");
+      } else {
+        this.seatPage = !this.seatPage;
+      }
     },
     changeUrl() {
       // TODO: 배경에 유튜브 비디오를 넣기 위해서 주소에서 필요한 부분만 잘라와야 합니다.

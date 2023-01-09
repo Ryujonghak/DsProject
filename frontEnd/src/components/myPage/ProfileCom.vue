@@ -119,7 +119,8 @@
                 <p>Others</p>
                 <ul>
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
-                  <li><a href="#" @click="modal(data)">탈퇴하기</a></li>
+                  <li><a href="#" @click="modal()">탈퇴하기</a></li>
+                  <!-- <li><a href="#" @click="deleteId()">탈퇴하기</a></li> -->
                 </ul>
               </div>
             </div>
@@ -279,7 +280,7 @@
         <div class="modal-window">
           <div class="col-xs-12" style="padding-top: 5%">
             <div class="title col-xs-12">
-              <h6>이 회원을 정말 삭제하시겠습니까?</h6>
+              <h6>회원정보가 삭제됩니다. <br>탈퇴하시겠습니까? </h6>
             </div>
           </div>
           <div class="content col-xs-12" style="text-align: center">
@@ -343,6 +344,7 @@ export default {
       console.log("username: " + this.username);
       userService
           .getUserUsername(this.username)
+          // .getUserUsername(this.$store.state.auth.user.username)
           .then((response) => {
             this.user = response.data;
             console.log("getUser this.user: ", this.user);
@@ -351,31 +353,12 @@ export default {
           .catch((err) => console.log(err));
     },
 
-    // 로그아웃 함수 -> 공통함수 호출 : FIXME: 로그아웃 안 됨. 그리고 alert("로그아웃이 완료되었습니다") 추가해야함
+    // 로그아웃 함수
     logout() {
       // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
-    // 패스워드찾기 버튼 클릭시 실행됨 -> (유효성 검사) TODO: 비번질문 답 입력 후 제출버튼 클릭
-    // TODO: 무조건 alert 보안질문 불일치로 넘어감..ㅋ
-    // findpwd() {
-    //    var objanswer = document.getElementById("answer");
-    //   alert(this.objanswer)
-    //   if (this.objanswer.value == null) {
-    //     alert("비밀번호 확인용 질문의 정답을 입력하세요")
-    //   } else {
-    //     if (this.objanswer.value == this.User.answer) {
-    //       // this.updatePwd(this.User.id, changePwd, this.User);
-    //       alert("보안질문 일치");
-    //       this.changePwdForm = true;  // v-show 숨겨진거 보이기
-    //
-    //     } else {
-    //       this.changePwdForm = false;
-    //       alert("보안질문 불일치");
-    //     }
-    //   }
-    // },
 
     // 회원정보수정
     updateUser() {
@@ -448,49 +431,86 @@ export default {
 
     // 수빈이 회원삭제함수 참고
     // 탈퇴버튼 클릭시 열리는 모달창
-    modal(data){
-      this.user = data;
+    modal(){
+      alert("모달 실행");
+      // this.currentUser = this.user;
+      // this.currentUser = data;
+
+      // alert(this.currentUser)
       const modal = document.getElementById("modal");
       modal.style.display="flex";
     },
-    // 탈퇴하기 --- username으로 삭제하는 함수 필요..!! FIXME: delete(username)
+    // 탈퇴하기 - 모달창 버전
     deleteUser() {
+      // alert("되나?")
+      console.log("user.id", this.user.id)
       userService.delete(this.user.id)
         .then((response) => {
           console.log(response.data);
           // this.retrieveUser();
-          this.user.splice(this.user.indexOf(this.user.id), 1);
-          console.log("*********8")
-          console.log(this.user)
-          console.log("********8")
-
-          // 모달 끄기
+          // this.user.splice(this.user.indexOf(this.user.id), 1);
+          console.log(this.user.id)
+          alert("탈퇴가 완료되었습니다.");
           const modal = document.getElementById("modal");
           modal.style.display = "none";
+          this.logout();
+          this.$router.push("/");
+          // 모달 끄기
         })
         .catch((e) => {
           console.log(e);
           // window.location.reload();
         });
     },
+    // 모달창 없이 바로 탈퇴하기
     // deleteId() {
     //   userService
-    //       .delete(this.currentUser.id)
-    //       .then((response) => {
-    //         console.log(response.data);
-    //         this.user.splice(this.user.indexOf(this.currentUser.id), 1);
-    //         console.log(this.user);
-    //         alert("탈퇴가 완료되었습니다.");
-    //         this.$router.push("/");
-    //       })
-    //       .catch((e) => {
-    //         console.log(e);
-    //       });
+    //     .delete(this.user.id)
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       alert("탈퇴가 완료되었습니다.");
+    //       this.logout();
+    //       this.$router.push("/");
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
     // },
   },
   mounted() {
     custom();
-    this.getUser(); // 종학이 백엔드 데이터
+    this.getUser(); // 백엔드 데이터
+
+    // 모달창 관련
+    const modal = document.getElementById("modal");
+    function modalOn() {
+      modal.style.display = "flex";
+    }
+    function isModalOn() {
+      return modal.style.display === "flex";
+    }
+    function modalOff() {
+      modal.style.display = "none";
+    }
+    const btnModal = document.getElementById("btn-modal");
+    btnModal.addEventListener("click", (e) => {
+      modalOn(e);
+    });
+    const closeBtn2 = modal.querySelector(".closebtn");
+    closeBtn2.addEventListener("click", (e) => {
+      modalOff(e);
+    });
+    modal.addEventListener("click", (e) => {
+      const evTarget = e.target;
+      if (evTarget.classList.contains("modal-overlay")) {
+        modalOff(e);
+      }
+    });
+    window.addEventListener("keyup", (e) => {
+      if (isModalOn() && e.key === "Escape") {
+        modalOff(e);
+      }
+    });
   },
 };
 </script>
@@ -512,5 +532,101 @@ export default {
   /* max-width: 100%; */
   max-width: 120px;
   vertical-align: middle;
+}
+
+
+/* 모달 */
+/* 테스트 */
+#modal.modal-overlay {
+  /* width: 100%;
+  height: 100%; */
+  width: 100%;
+  height: 2000px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background: rgba(255, 255, 255, 0.25); */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  /* backdrop-filter: blur(1.5px); */
+  /* -webkit-backdrop-filter: blur(1.5px); */
+  border-radius: 10px;
+  /* border: 1px solid rgba(255, 255, 255, 0.18); */
+}
+#modal .modal-window {
+  background: white;
+  /* background: rgba(69, 139, 197, 0.7); */
+  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+  /* backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px); */
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 20%;
+  height: 7%;
+  position: relative;
+  top: -265px;
+  padding: 10px;
+}
+#modal .title {
+  padding-left: 0;
+  display: inline;
+  font-size: 5%;
+  color: black;
+}
+#modal .title h2 {
+  display: inline;
+}
+#modal .close-area {
+  display: inline;
+  float: right;
+  padding-right: 0;
+  margin-right: 0;
+  cursor: pointer;
+  /* border: 200px; */
+  /* text-shadow: 1px 1px 2px black; */
+  color: grey;
+}
+
+#modal .content {
+  margin-top: 20px;
+  padding: 0px 10px;
+  /* text-shadow: 1px 1px 2px gray; */
+  color: black;
+}
+
+#modal .closebtn {
+  font-family: "Dosis", sans-serif;
+  font-size: 100%;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 48%;
+  /* height: 1%; */
+  background-color: grey;
+  padding: 3% 7%;
+  margin-top: 7%;
+  margin-right: 4%;
+  border-radius: 5px;
+}
+
+#modal .finbtn {
+  font-family: "Dosis", sans-serif;
+  font-size: 100%;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 48%;
+  /* height: 1%; */
+  background-color: #dd003f;
+  padding: 3% 7%;
+  margin-top: 7%;
+  margin-right: 0%;
+  border-radius: 5px;
 }
 </style>

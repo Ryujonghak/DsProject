@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.MoviedetailReservationDto;
 import com.example.backend.model.Reservation;
 import com.example.backend.service.ReservationService;
 import lombok.extern.slf4j.Slf4j;
@@ -84,6 +85,22 @@ public class ReservationController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
                 return new ResponseEntity<>(reservationList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/reservation/mylist/{reservno}")
+    public ResponseEntity<Object> ResList(@PathVariable Long reservno) {
+        try {
+            List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationService.ResList(reservno);
+
+            if(moviedetailReservationDtoList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(moviedetailReservationDtoList, HttpStatus.OK);
             }
         } catch (Exception e) {
             log.debug(e.getMessage());

@@ -161,20 +161,17 @@
                   <div class="topbar-filter">
                     <!-- <router-link to ="/archive/:moviecd"
                       ><p>나의 아카이브 <span>{{ reviewTotalCount }}</span> in total</p></router-link> -->
-                    <p>나의 아카이브 <span>{{ movie.totalItems }}</span> in total</p>
+                    <p>나의 아카이브 <span>{{ watchedMovieTotalCount }}</span> in total</p>
                     <a href="userfavoritegrid.html" class="grid"
                       ><i class="ion-grid"></i
                     ></a>
                   </div>
                   <!-- 나의 아카이브 내용 시작 -->
-                  <!-- TODO: 본 영화 정보 받아오기 :  -->
+                  <!-- TODO: 예매내역 정보 받아오기 :  -->
                   <div class="flex-wrap-movielist">
                     <!-- 아카이브 시작 -->
-                    <!-- todo) watchedMovie.posterurln 인데 일단 movie로 찍음 -->
-                    <!-- <div class="movie-item-style-2 movie-item-style-1" v-for="(data, index) in watchedMovie" v-bind:key="index"> -->
                     <div class="movie-item-style-2 movie-item-style-1" 
-                    v-for="(data, index) in movie" v-bind:key="index">
-                      <!-- todo) 영화정보 -->
+                    v-for="(data, index) in watchedMovie" v-bind:key="index">
                         <img :src="data.posterurln" alt="poster" />
                         <!-- 영화 라벨 -->
                         <div class="mv-item-infor">
@@ -222,7 +219,6 @@
                     </div>
                     <!-- 아카이브 끝 -->
 
-
                     <!-- 아카이브 상영작 하드코딩 -->
                     <!-- <div class="movie-item-style-2 movie-item-style-1">
                       <img :src="watchedMovie.posterURL" alt="poster" />
@@ -266,6 +262,18 @@
                       </div>
                     </div> -->
                   </div>
+                  
+                  <!-- 페이징 -->
+                  <b-pagination
+                        v-model="page"
+                        :total-rows="watchedMovie.totalItems"
+                        :per-page="pageSize"
+                        pills
+                        size="sm"
+                        prev-text="<"
+                        next-text=">"
+                        @change="handlePageChange"
+                    ></b-pagination>
                 </div>
               </div>
             </div>
@@ -287,7 +295,8 @@
 // import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
-import MovieDataService from "@/services/MovieDataService";
+// import MovieDataService from "@/services/MovieDataService";
+import ReservationDataService from "@/services/ReservationDataService";
 
 export default {
   // data: () => ({
@@ -295,8 +304,10 @@ export default {
   // }),
   data() {
     return {
-      movie: [],    // 예매한 영화(watched) 가져와야되는데 일단 없어서 전체영화 가져옴
-      
+      // movie: [],    // 전체 탑텐 영화
+      watchedMovie: [],   // 예매한 영화
+      watchedMovieTotalCount: 0,  // 본 영화 갯수
+
       CurrentUser: {
         email: "",
         password: "",
@@ -312,30 +323,36 @@ export default {
 
       // FIXME: 예매한 영화.. 작성중
       // watchedMovie: [],
-      watchedMovie: {
-        username: "", // 아이디
-        paidDate: "", // 예매일자
-        reservNo: "", // 예매번호
-        openDt: "2022", // 개봉년도
-        movieNm: "눈의 여왕5: 스노우 프린세스와 미러랜드의 비밀", // 영화제목   -> title로 바꿔야하나?
-        posterURL:
-          "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
-        directors: "제임스카메론", // 감독 (최대7자)
-        rating: 4.3, // 평점(관람객)
-        starRating: 3.5, // 나중에 백엔드에서 평점 가져오기 (정수로 받아야 합니다,,)
-        showTm: "192", // 상영시간
-        watchGradeNm: "12세관람가", // 관람등급
-        scheNo: "2022/12/28", // 상영스케쥴
-        seatNo: "I3", // 좌석번호
-        cnt: "1", // 예매수량
-        price: "15000", // 금액
-      },
+      // watchedMovie: {
+      //   username: "", // 아이디
+      //   paidDate: "", // 예매일자
+      //   reservNo: "", // 예매번호
+      //   openDt: "2022", // 개봉년도
+      //   movieNm: "눈의 여왕5: 스노우 프린세스와 미러랜드의 비밀", // 영화제목   -> title로 바꿔야하나?
+      //   posterURL:
+      //     "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
+      //   directors: "제임스카메론", // 감독 (최대7자)
+      //   rating: 4.3, // 평점(관람객)
+      //   starRating: 3.5, // 나중에 백엔드에서 평점 가져오기 (정수로 받아야 합니다,,)
+      //   showTm: "192", // 상영시간
+      //   watchGradeNm: "12세관람가", // 관람등급
+      //   scheNo: "2022/12/28", // 상영스케쥴
+      //   seatNo: "I3", // 좌석번호
+      //   cnt: "1", // 예매수량
+      //   price: "15000", // 금액
+      // },
       // TODO: 리뷰
       review: [],
       // reviewMovie: {
       //   userStarRating: 2, // 사용자별점
       //   userReview: "", // 리뷰내용
       // },
+
+      // 페이징을 위한 변수 정의
+      page: 1, // 현재 페이지
+      count: 0, // 전체 데이터 건수
+      pageSize: 5, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      pageSizes: [5, 10, 15], // select box 에 넣을 기본 데이터
     };
   },
   methods: {
@@ -370,26 +387,47 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
-    // 영화 전체 조회 요청하는 함수 -> 예매한 것만 가져오게 변경 필요 FIXME:
-    getMovieInfo() {
-      MovieDataService.getMovieAll()
+    // 영화 탑텐 조회 요청
+    // getMovieInfo() {
+    //   MovieDataService.getMovieAll()
+    //     .then((response) => {
+    //       this.movie = response.data;
+    //       console.log(response.data);
+  // 
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // },
+
+    
+    getReservMovieInfo() {
+    // 본 영화 전체 조회 요청
+      ReservationDataService.getUsernameReservation(this.user.username, this.page -1, this.pageSize)
         .then((response) => {
-          this.movie = response.data;
+          this.watchedMovie = response.data;
           console.log(response.data);
 
-          // 가져온 이미지 url 개수
-          // this.imageUrlLength = this.movie.imgurl.length;
-          // 썸네일 이미지 2장만 보이게 설정
+          this.watchedMovieTotalCount = this.watchedMovie.totalItems;
+          console.log("this.watchedMovieTotalCount", this.watchedMovieTotalCount);
         })
         .catch((e) => {
           console.log(e);
         });
     },
+
+    // 페이징
+    handlePageChange(value){
+    this.page = value;
+    this.getReview();
+    },
+
   },
   mounted() {
     custom();
-    this.getUser(); // 종학이 백엔드 데이터
-    this.getMovieInfo();
+    this.getUser(); // 엔드 데이터
+    // this.getMovieInfo(); // 영화 탑텐
+    getReservMovieInfo(); // 본 영화 조회
   },
 };
 </script>
