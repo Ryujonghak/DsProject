@@ -297,7 +297,7 @@
                         </div>
                         <div
                           class="mv-user-review-item"
-                          v-for="(data, index) in review.review"
+                          v-for="(data, index) in review"
                           :key="index"
                         >
                           <div class="user-infor">
@@ -327,24 +327,18 @@
                             {{ data.rucontent }}
                           </p>
                         </div>
-                        <!-- FIXME: 페이징 처리 고민중 -->
-                        <!-- <div class="topbar-filter">
-                          <label>Reviews per page:</label>
-                          <select>
-                            <option value="range">5 Reviews</option>
-                            <option value="saab">10 Reviews</option>
-                          </select>
-                          <div class="pagination2">
-                            <span>Page 1 of 6:</span>
-                            <a class="active" href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
-                            <a href="#">5</a>
-                            <a href="#">6</a>
-                            <a href="#"><i class="ion-arrow-right-b"></i></a>
-                          </div>
-                        </div> -->
+                        <!-- Todo : page 바 시작 -->
+                        <div class="col-md-12">
+                          <b-pagination
+                            v-model="page"
+                            :total-rows="count"
+                            :per-page="pageSize"
+                            prev-text="<"
+                            next-text=">"
+                            @change="handlePageChange"
+                          ></b-pagination>
+                        </div>
+                        <!-- Todo : page 바 끝 -->
                       </div>
                     </div>
                     <!-- 2) 리뷰 파트 끝 -->
@@ -413,7 +407,6 @@
 
 <script>
 /* eslint-disable */
-import custom from "@/assets/js/custom.js";
 import MovieDataService from "@/services/MovieDataService";
 import Review from "@/model/review";
 import ReviewDataService from "@/services/ReviewDataService";
@@ -422,8 +415,7 @@ import WishlistDataService from "@/services/WishlistDataService";
 
 export default {
   mounted() {
-    // custom();
-    //  this.$route.params.moviecd : 이전페이지에서 전송한 매개변수는 $route.params 안에 있음
+    // this.$route.params.moviecd : 이전페이지에서 전송한 매개변수는 $route.params 안에 있음
     // $route 객체 : 주로 url 매개변수 정보들이 있음
     // router/index.js 상세페이지 url의 매개변수명 : :moviecd
     this.getMovie(this.$route.params.moviecd);
@@ -435,14 +427,12 @@ export default {
   },
   data() {
     return {
-      // moviecd: this.$route.params.moviecd,
       // 찜하기 기능
       wishlist: new Wishlist(),
 
-      // username: this.$store.state.auth.user.username,
       movie: null,
       boxoffice: null,
-      review: null,
+      review: [],
 
       overview: true,
       reviews: false,
@@ -460,9 +450,7 @@ export default {
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
       count: 0, // 전체 데이터 건수
-      pageSize: 20, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
-
-      pageSizes: [3, 6, 9], // select box 에 넣을 기본 데이터
+      pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
     };
   },
   methods: {
@@ -491,16 +479,17 @@ export default {
     getReview(moviecd) {
       ReviewDataService.getBycode(moviecd, this.page - 1, this.pageSize)
         .then((response) => {
-          this.review = response.data;
-          console.log("**********");
-          console.log(response.data);
-          console.log("**********");
+          const { review, totalItems } = response.data;
+          this.review = review;
+          this.count = totalItems;
 
-          // TODO: 백엔드에게 빈배열 리턴하라고 요청하기...
+          // this.review = response.data;
+
+          // 백엔드에게 빈배열 리턴하라고 요청하기...
           // 이 코드 지우면 첫번째 리뷰를 등록할 장소가 없어서 undefined 에러남...
-          if (!response.data) {
-            this.review = { review: [] };
-          }
+          // if (!response.data) {
+          //   this.review = { review: [] };
+          // }
 
           // this.addReview.rwuser = this.$store.state.auth.user.username;
           console.log(response.data);
@@ -524,7 +513,7 @@ export default {
         ReviewDataService.create(this.addReview)
           .then((response) => {
             // this.addReview.rid = response.data.rid;
-            this.review.review.push(response.data);
+            this.review.push(response.data);
             // this.addReview.rucontent = "";
             // this.addReview.rurating = 0;
 
@@ -534,7 +523,6 @@ export default {
           .catch((e) => {
             alert("리뷰저장 실패");
             console.log(e);
-            alert(this.review.rid);
           });
       } else {
         alert("로그인이 필요합니다.");
@@ -644,6 +632,12 @@ export default {
       } else {
         return false;
       }
+    },
+    // 페이지 번호 변경시 실행되는 함수(재조회)
+    handlePageChange(value) {
+      this.page = value; // 매개변수값으로 현재페이지 변경
+      // 재조회 함수 호출
+      this.getReview(this.movie.moviecd)
     },
   },
 };

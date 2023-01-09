@@ -124,7 +124,6 @@
                 </div>
               </div>
             </div>
-            <!-- 테스트 페이징 시작 -->
             <!-- Todo : page 바 시작 -->
             <div class="col-md-12">
               <b-pagination
