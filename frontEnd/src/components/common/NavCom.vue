@@ -331,14 +331,14 @@
                 <!-- 고객센터 -->
 
                 <li class="dropdown first">
-                  <a
+                  <router-link to="/notice"
                     class="btn btn-default dropdown-toggle lv1"
                     data-toggle="dropdown"
                     data-hover="dropdown"
                   >
                     고객센터
                     <i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </a>
+                </router-link >
                   <ul class="dropdown-menu level1">
                     <li>
                       <router-link to="/notice">공지사항</router-link>
