@@ -95,7 +95,6 @@ export default {
       searchMname: "",
       currentMovie: null,
 
-
       //페이징을 위한 변수 정의
       page: 1,
       count: 0,

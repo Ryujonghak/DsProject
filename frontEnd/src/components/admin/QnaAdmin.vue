@@ -87,7 +87,7 @@
                   <thead>
                     <tr>
                       <th scope="col">번호</th>
-                      <th scope="col">이름</th>
+                      <th scope="col">ID</th>
                       <th scope="col">제목</th>
                       <th scope="col">내용</th>
                       <th scope="col">답변상태</th>
