@@ -286,10 +286,8 @@ export default {
 
 <style scoped>
 .user-hero {
-  background: url(@/assets/images_choi/Views/choi/admin/movie-theater03.png)
-    no-repeat;
-  /* height: 598px; */
-  width: 100%;
+  height: 385px;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
 }
 .editbtn {
   font-family: "Dosis", sans-serif;
