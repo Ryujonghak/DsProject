@@ -125,12 +125,12 @@
                       <tr>
                         <td>
                           <div class="mv-item-infor">
-                            <h6><a href="#">DS 서면</a></h6>
+                            <h6><router-link to="/SeomyeonCinema">DS 서면</router-link></h6>
                           </div>
                         </td>
                         <td>
                           <div class="mv-item-infor">
-                            <h6><a href="#">DS 해운대</a></h6>
+                            <h6><router-link to="/CentumCinema">DS 센텀시티</router-link></h6>
                           </div>
                         </td>
                         <td>
@@ -188,7 +188,7 @@
                           </div>
                           <p class="rate">
                             <i class="ion-android-star"></i
-                            ><span>{{ data.rating }}</span> /5
+                            ><span>{{ data.raiting }}</span> /5
                           </p>
                         </div>
                       <!-- todo) 영화에 마우스 올리면 나오는 관람정보: 리뷰하러가기 -->
