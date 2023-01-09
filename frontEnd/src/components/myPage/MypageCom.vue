@@ -167,7 +167,7 @@
                     ></a>
                   </div>
                   <!-- 나의 아카이브 내용 시작 -->
-                  <!-- TODO: 본 영화 정보 받아오기 :  -->
+                  <!-- TODO: 예매내역 정보 받아오기 :  -->
                   <div class="flex-wrap-movielist">
                     <!-- 아카이브 시작 -->
                     <div class="movie-item-style-2 movie-item-style-1" 
