@@ -107,7 +107,7 @@
             <div id="reviews" class="tab review">
               <div class="row" style="padding: 3%">
                 <div class="reviewForm">
-                  <h2>{{ movie.movienm }}</h2>
+                  <h2 class="MovieName">{{ movie.movienm }}</h2>
                   <div class="rv-hd">
                     <!-- <div
                       class="div"
@@ -541,6 +541,11 @@ export default {
 
 .review-form-style {
   color: #999;
+}
+
+.MovieName{
+  /* color: rgb(60,127,186); */
+  color: rgb(45,113,191);
 }
 
 .list {
