@@ -189,6 +189,10 @@
                             <p>{{ movie.genrenm }}</p>
                           </div>
                           <div class="sb-it">
+                            <h6>관람등급:</h6>
+                            <p>{{ movie.watchgradenm }}</p>
+                          </div>
+                          <div class="sb-it">
                             <h6>개봉:</h6>
                             <p>{{ movie.opendt }}</p>
                           </div>
@@ -566,6 +570,11 @@ export default {
       this.tempImgUrl[1] = this.movie.imgurl[1];
       // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
       this.starRating = Math.floor(this.movie.raiting);
+
+      if (this.movie.watchgradenm.includes(",")) {
+        this.movie.watchgradenm =
+          this.movie.watchgradenm.split(",")[0];
+      }
     },
     likeSave() {
       if (this.wishlist.username == null) {
@@ -637,7 +646,7 @@ export default {
     handlePageChange(value) {
       this.page = value; // 매개변수값으로 현재페이지 변경
       // 재조회 함수 호출
-      this.getReview(this.movie.moviecd)
+      this.getReview(this.movie.moviecd);
     },
   },
 };
