@@ -483,7 +483,7 @@ export default {
         });
     },
     getReview(moviecd) {
-      ReviewDataService.getBycode(moviecd, this.page - 1, 10000000) // 모든 리뷰를 가져기 위하여 임의로 준 수.
+      ReviewDataService.getBycode(moviecd, this.page - 1, 10000000) // 모든 리뷰를 가져오기 위하여 임의로 준 수.
         .then((response) => {
           const currentUserName = this.$store.state.auth.user.username
           const pastReviews = response.data.review.filter(r => r.rwuser == currentUserName )
@@ -534,15 +534,11 @@ export default {
           this.addReview.rid = response.data.rid;
           console.log(response.data);
           this.getReview(this.movie.moviecd);
-          // this.review.push(response.data);
-          // this.addReview.rucontent = "";
-          // this.addReview.rurating = 0;
 
-          alert("리뷰 저장");
+          alert("리뷰가 저장되었습니다.");
           this.addReview = new Review();
         })
         .catch((e) => {
-          alert("리뷰저장 실패");
           console.log(e);
         });
     },
