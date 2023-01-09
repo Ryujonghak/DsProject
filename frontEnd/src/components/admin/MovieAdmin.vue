@@ -115,6 +115,10 @@
                         장르 : {{ data.genrenm }}
                       </p>
                       <p>
+                        개봉예정여부:
+                        <a href="#"> {{ data.prdtstatnm }}</a>
+                      </p>
+                      <p>
                         감독: <a href="#">{{ data.directors }}</a>
                       </p>
                       <p>
