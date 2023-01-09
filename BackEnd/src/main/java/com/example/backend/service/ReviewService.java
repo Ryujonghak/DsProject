@@ -18,8 +18,8 @@ public class ReviewService {
         return reviewPage;
     }
 
-    public Page<Review> findAllByMovienmContainingOrderByRid(String movienm, Pageable pageable) {
-        Page<Review> reviewPage = reviewRepository.findAllByMovienmContainingOrderByRid(movienm, pageable);
+    public Page<Review> findAllByMovienmContainingOrderByRidDesc(String movienm, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByMovienmContainingOrderByRidDesc(movienm, pageable);
 
         return reviewPage;
     }
@@ -30,8 +30,8 @@ public class ReviewService {
         return reviewPage;
     }
 
-    public Page<Review> findAllByMoviecd(String moviecd, Pageable pageable) {
-        Page<Review> reviewPage = reviewRepository.findAllByMoviecd(moviecd, pageable);
+    public Page<Review> findAllByMoviecdOrderByRidDesc(String moviecd, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByMoviecdOrderByRidDesc(moviecd, pageable);
 
         return reviewPage;
     }

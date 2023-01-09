@@ -1516,6 +1516,7 @@ input[name="tab_item"] {
 
 .titleDate{
   text-align: center;
+  color: gray
 }
 
 /* 상영시간표 영화포스터 */
