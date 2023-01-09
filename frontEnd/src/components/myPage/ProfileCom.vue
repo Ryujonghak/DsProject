@@ -44,7 +44,8 @@
                 />
                 <!-- <img src="images/uploads/user-img.png" alt="" /> -->
                 <br/>
-                <a href="#" class="redbtn">Change avatar</a>
+                <!-- <a href="#" class="redbtn">Change avatar</a> -->
+                <!-- <a href="#" class="redbtn">프로필 수정</a> -->
               </div>
               <!-- 프로필 이미지 업로드 추가 v-else -->
               <!-- <div
@@ -117,11 +118,8 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <!--                  TODO: logout 클릭이벤트-->
-                  <!--                  <li><a href="#">Log out</a></li>-->
-                  <!--                  <li><a @click="logout">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
-                  <li><a href="#" @click.prevent="deleteId">탈퇴하기</a></li>
+                  <li><a href="#" @click="modal(data)">탈퇴하기</a></li>
                 </ul>
               </div>
             </div>
@@ -276,6 +274,21 @@
         </div>
       </div>
     </div>
+      <!-- 모달 테스트 시작 -->
+      <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+          <div class="col-xs-12" style="padding-top: 5%">
+            <div class="title col-xs-12">
+              <h6>이 회원을 정말 삭제하시겠습니까?</h6>
+            </div>
+          </div>
+          <div class="content col-xs-12" style="text-align: center">
+            <a id="btn-modal" class="closebtn col-xs-6">아니요</a>
+            <a id="btn-modal" class="finbtn col-xs-6" @click="deleteUser">예</a>
+          </div>
+        </div>
+      </div>
+      <!-- 모달 테스트 끝 -->
   </div>
 </template>
 
@@ -384,7 +397,7 @@ export default {
       // 수정완료시 그 전페이지로 강제이동
       // this.$router.push("/mypage");
     },
-
+    // 패스워드 질문 일치여부
     findPwd() {
       alert("findPwd 실행")
       if (this.answer == this.user.answer) {
@@ -404,6 +417,7 @@ export default {
         alert("비밀번호 답변이 정확하지 않습니다.")
       }
     },
+    // 패스워드 변경
     updatePwd() {
       alert("updatePwd 실행")
       if(this.password == this.password2) {
@@ -432,18 +446,47 @@ export default {
       // this.$router.push("/mypage");
     },
 
-    // 탈퇴하기
-    deleteId() {
-      userService
-          .delete()
-          .then((response) => {
-            console.log(response.data);
-            alert("탈퇴가 완료되었습니다.");
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+    // 수빈이 회원삭제함수 참고
+    // 탈퇴버튼 클릭시 열리는 모달창
+    modal(data){
+      this.user = data;
+      const modal = document.getElementById("modal");
+      modal.style.display="flex";
     },
+    // 탈퇴하기 --- username으로 삭제하는 함수 필요..!! FIXME: delete(username)
+    deleteUser() {
+      userService.delete(this.user.id)
+        .then((response) => {
+          console.log(response.data);
+          // this.retrieveUser();
+          this.user.splice(this.user.indexOf(this.user.id), 1);
+          console.log("*********8")
+          console.log(this.user)
+          console.log("********8")
+
+          // 모달 끄기
+          const modal = document.getElementById("modal");
+          modal.style.display = "none";
+        })
+        .catch((e) => {
+          console.log(e);
+          // window.location.reload();
+        });
+    },
+    // deleteId() {
+    //   userService
+    //       .delete(this.currentUser.id)
+    //       .then((response) => {
+    //         console.log(response.data);
+    //         this.user.splice(this.user.indexOf(this.currentUser.id), 1);
+    //         console.log(this.user);
+    //         alert("탈퇴가 완료되었습니다.");
+    //         this.$router.push("/");
+    //       })
+    //       .catch((e) => {
+    //         console.log(e);
+    //       });
+    // },
   },
   mounted() {
     custom();

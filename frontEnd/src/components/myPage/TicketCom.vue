@@ -127,10 +127,10 @@
                           <div class="mv-item-infor">
                             <h6>
                               <router-link :to="'/allMovie/' + data.moviecd">
-                                <a href="#">
-                                {{ data.movienm }}</a>
+                              {{ data.movienm }}
                               </router-link>
                             </h6>
+                            
                             <p class="rate">
                               <i class="ion-android-star"></i
                               ><span>{{ data.raiting }}</span> /5
@@ -284,12 +284,10 @@
                   <!-- 영화정보 -->
                   <div class="col-xs-8">
                     <div class="mv-item-infor">
-                      
                       <h6>
-                        <router-link :to="'/allMovie/' + data.moviecd">
-                          <a href="#">
-                          {{ data.movienm }} <span>({{ data.opendt }})</span></a>
-                        </router-link>
+                      <router-link :to="'/allMovie/' + data.moviecd">
+                      {{ data.movienm }}
+                        <span> ({{ data.opendt }}) </span></router-link>
                       </h6>
                       <!-- 별점 -->
                       <p class="rate">
@@ -308,60 +306,10 @@
                   <!-- 버튼 -->
                   <div class="col-xs-2">
                     <div class="movie-item-style-2">
-                    
-                      <!-- FIXME: 버튼 클릭시 클릭이벤트-영화정보.title 넘겨줘야함 -->
-                      <a href="/archive" class="redbtn" @click="goReview"
-                        >관람평</a
-                      >
-                      <!-- <router-link :to="'/archive/' + data.moviecd">
-                        <a href="#" class="redbtn">관람평</a>
-                      </router-link> -->
-
-                    </div>
-                  </div>
-                  <!-- 버튼 끝 -->
-                </div>
-              </div>
-
-
-              <!-- 본 영화 -->
-              <div class="row">
-                <div class="col-xs-12 movie-item-style-2 userrate">
-                  <!-- 포스터 -->
-                  <div class="col-xs-2">
-                    <img src="images/uploads/mv1.jpg" alt="" />
-                  </div>
-                  <!-- 영화정보 -->
-                  <div class="col-xs-8">
-                    <div class="mv-item-infor">
-                      <h6>
-                        <a href="#">{{ watchedMovie.movieNm }} <span>({{ watchedMovie.openDt }})</span></a>
-                      </h6>
-                      <!-- 별점 -->
-                      <p class="rate">
-                        <i class="ion-android-star"></i>
-                        <span>{{ watchedMovie.rating }}</span> /5
-                      </p>
-                      <p>상영시간: {{ watchedMovie.showTm }}분 <a>{{ watchedMovie.watchGradeNm }}</a></p>
-                      <span class="time sm">{{ watchedMovie.scheNo }}</span>
-                      <br />
-                      <span class="time sm">{{ watchedMovie.theaterId }} {{ watchedMovie.screen }} {{ watchedMovie.cnt }}명</span>
-                      <br />
-                      <span class="time sm-text">{{ watchedMovie.startTime }} ~ {{ watchedMovie.endTime }}</span>
-                    </div>
-                  </div>
-                  <!-- 영화정보 끝 -->
-                  <!-- 버튼 -->
-                  <div class="col-xs-2">
-                    <div class="movie-item-style-2">
-                      <router-link to="/mypage/">
-                        <a href="#" class="redbtn">관람평</a>
-                      </router-link> 
-                      
-                      <!-- <router-link :to="'/archive/' + data.moviecd">
-                        <a href="#" class="redbtn">관람평</a>
-                      </router-link> -->
-
+                      <!-- 버튼 -->
+                      <router-link :to="'/archive/' + data.moviecd">
+                        <a href="" class="redbtn">관람평</a>
+                      </router-link>
                     </div>
                   </div>
                   <!-- 버튼 끝 -->
@@ -489,21 +437,6 @@
               </div>
             </div> -->
             <!-- 페이지 -->
-            <!-- <ul class="pagination">
-              <li class="icon-prev">
-                <a href="#"><i class="ion-ios-arrow-left"></i></a>
-              </li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">21</a></li>
-              <li><a href="#">22</a></li>
-              <li class="icon-next">
-                <a href="#"><i class="ion-ios-arrow-right"></i></a>
-              </li>
-            </ul> -->
             <b-pagination
                 v-model="page"
                 :total-rows="movie.totalItems"
@@ -531,6 +464,7 @@
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
 import MovieDataService from "@/services/MovieDataService";
+import ReservationDataService from "@/services/ReservationDataService";
 
 export default {
   // data: () => ({
@@ -560,34 +494,8 @@ export default {
       ////////////////////////////////////////////////////////////////////////////
       // FIXME: 예매한 영화.. 작성중
       movie: [],
+      
 
-      // watched: [],
-      // watchedMovie: {
-      //   username: "", // 아이디
-      //   paidDate: "", // 예매일자
-      //   reservNo: "221228001", // 예매번호
-      //   openDt: "2022", // 개봉년도
-      //   movieNm: "눈의 여왕5: 스노우 프린세스와 미러랜드의 비밀", // 영화제목   -> title로 바꿔야하나?
-      //   posterURL:
-      //     "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
-      //   directors: "제임스카메론", // 감독
-      //   rating: 4.3, // 평점(관람객)
-      //   starRating: 3.5, // 나중에 백엔드에서 평점 가져오기 (정수로 받아야 합니다,,)
-      //   showTm: "192", // 상영시간
-      //   watchGradeNm: "12세관람가", // 관람등급
-      //   scheNo: "2022/12/28", // 상영스케쥴 - 날짜
-      //   startTime: "18:00",    // 상영스케쥴 - 시간
-      //   endTime: "21:12",    // 상영스케쥴 - 시간
-      //   theaterId: "DS서면", // 관람극장 지점
-      //   screen: "1관",  // 스크린번호
-      //   seatNo1: "E03", // 좌석번호
-      //   seatNo2: "E04", // 좌석번호
-      //   seatNo3: "", // 좌석번호
-      //   seatNo4: "", // 좌석번호
-      //   seatNo5: "", // 좌석번호
-      //   cnt: "2", // 예매수량
-      //   price: "15000", // 금액
-      // },
       // TODO: 리뷰
       reviewMovie: {
         userStarRating: 2, // 사용자별점
@@ -655,13 +563,14 @@ export default {
     },
 
 
-    // TODO: 클릭이벤트 - 예매번호 rno로? 티켓예매취소 함수 -- 아직함수없음 FIXME:
-    deleteTicket(rno) {
-      MovieDataService.delete(rno)
+    // TODO: 예매번호 티켓예매취소 함수 FIXME:
+    deleteTicket(reservno) {
+      MovieDataService.delete(reservno)
       .then((response) => {
             console.log(response.data);
-            alert("문의사항이 삭제되었습니다.");
-            this.getQna();      
+            alert("예매내역이 삭제되었습니다.");
+            
+            // this.getQna();      
             // this.$router.push("/mypage");
           })
           .catch((e) => {
@@ -693,10 +602,11 @@ export default {
 
 
 <style scoped>
-.box-image {
-  width: 55px;
-  height: 70px;
+
+.movie-item-style-2 .mv-item-infor .describe {
+  width: 530px;
 }
+
 
 .movie-item-style-2 {
   padding-top: 20px;
