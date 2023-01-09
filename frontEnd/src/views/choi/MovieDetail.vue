@@ -508,7 +508,7 @@ export default {
     },
     saveReview() {
       let test = false;
-      console.log("this.review.review.length", this.review.length);
+      console.log("리뷰 갯수", this.review.length);
       for (let i = 0; i < this.review.length; i++) {
         if (this.review[i].username == this.$store.state.auth.user.username) {
           test = false;
