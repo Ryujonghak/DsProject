@@ -36,6 +36,12 @@ public class ReservationService {
         return reservationPage;
     }
 
+    public Page<Reservation> findAllByRusername(String rusername, Pageable pageable) {
+        Page<Reservation> reservationPage = reservationRepository.findAllByRusername(rusername, pageable);
+
+        return reservationPage;
+    }
+
     public List<Reservation> findByReservno(Long reservno) {
         List<Reservation> reservationList = reservationRepository.findByReservno(reservno);
 

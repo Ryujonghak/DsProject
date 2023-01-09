@@ -51,12 +51,12 @@ public class ReservationController {
     }
 
     @GetMapping("/reservation/search")
-    public ResponseEntity<Object> getAll(@RequestParam(required = false) String username,
+    public ResponseEntity<Object> findAllByRusername(@RequestParam(required = false) String rusername,
                                          @RequestParam(defaultValue = "0") int page,
                                          @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Reservation> reservationPage = reservationService.findAllByUsername(username, pageable);
+            Page<Reservation> reservationPage = reservationService.findAllByRusername(rusername, pageable);
 
 
             Map<String, Object> response = new HashMap<>();
