@@ -639,17 +639,19 @@
       this.date();
     },
     mounted() {
+      this.openning();
       window.scrollTo({ top: 2250, behavior: "smooth" });
     },
     data() {
       return {
         data1: this.movieProps2, //영화데이터 받아오기
-        data2: [],
-        
+        data2: [],     
+        reservation : new Reservation(),
+        i : 1,  
         모달 : true,
         좌석: true,  // 좌석페이지 v-show
         결제후페이지 : false,
-        reservation : new Reservation(),
+
         
         영화이름 : "",
         서면 : true,
@@ -702,7 +704,8 @@
         selects998: [ "1A1", "N"], // data2에 있는 좌석데이터를 담는곳 센텀시티
         selects903: ["N"], // 좌석 상태를 날리는 배열 좌석예매할때쓰임
         selects904: ["Y"], // 좌석 상태를 날리는 배열 좌석취소할때쓰임
-        i : 1,        
+        
+        
         ticketinfor : [
               { 
                 cinema: '',
@@ -716,6 +719,16 @@
         this.결제후페이지 = true;
         this.모달 = false;
         this.좌석 = false;
+        this.addReservation();
+      },
+      openning(){
+        BookingService.openningseat()
+        .then((response) =>{
+          console.log(response.data);
+        })
+        .catch(error =>{
+          console.log(error);
+        })
       },
     getSeatAll() {
     BookingService.getSeatAll()
@@ -983,6 +996,7 @@
         this.reservation.rcount = this.adultcount + this.teencount;
         this.reservation.price = "100";
         this.reservation.paiddate = new Date();
+        this.reservation.location = this.ticketinfor.cinema;
         this.reservation.scno = null;
         
         ReservationDataService.create(this.$store.state.auth.user.username,this.reservation)
@@ -1081,18 +1095,17 @@
           //콜백 함수
           if (rsp.success) {
             //결제 성공
-			alert("결제성공")
-      this.addReservation();
-      this.seattest97();
-      this.결제후페이지 = true;
-      this.seatcount();
+            this.addReservation();
+            alert("결제성공")
+            this.seattest97();
+            this.결제후페이지 = true;
+            this.seatcount();
           } else {
             //결제 실패
-			alert("결제실패")
+            alert("결제실패")
           }
         }
-      );
-    },
+      );},
     },
   }
   </script>

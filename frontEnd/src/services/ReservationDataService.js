@@ -12,7 +12,7 @@ class ReservationDataService {
     create(username, data) {
         console.log(username);
         console.log(data);
-        return http.post("/reservation", username, data);
+        return http.post(`/reservation/${username}`, data);
     }
 
     update(reservno, username, data) {

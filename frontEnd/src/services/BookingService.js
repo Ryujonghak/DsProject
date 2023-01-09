@@ -45,8 +45,13 @@ class BookingService {
   }
 
 
-  resetseat() {
+  openningseat() {
     return http.post(`/opentheater`);
+  }
+
+  // schedule
+  resetseat() {
+    return http.post(`/schedule`);
   }
 
 }
