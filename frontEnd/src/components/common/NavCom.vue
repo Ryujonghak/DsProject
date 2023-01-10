@@ -284,7 +284,7 @@
                 <router-link to="/">
                   <img
                     class="logo"
-                    src="@/assets/images_kang/Components/common/Navcom/Logo_test6.png"
+                    src="@/assets/images_kang/Components/common/Navcom/Logo_test13.png"
                     width="119"
                     height="58"
                 /></router-link>
