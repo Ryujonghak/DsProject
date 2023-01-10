@@ -7,6 +7,8 @@ reservno,
 username,
 // --     예약자 성함
 name,
+// --     예약자 ID
+rusername,
 // --     상영스케쥴id (참조테이블: tb_schedule)
 rno,
 // --     영화코드 (참조테이블: tb_schedule)
@@ -23,13 +25,14 @@ paiddate,
 location,
 seat,
 starttime,
-emdtime,
+endtime,
 // --     스케쥴 id
 scno
     ) {
         this.reservno = reservno;
         this.username = username;
         this.name = name;
+        this.rusername = rusername;
         this.rno = rno;
         this.moviecd = moviecd;
         this.movienm = movienm;
@@ -39,7 +42,7 @@ scno
         this.location = location;
         this.seat = seat;
         this.starttime = starttime;
-        this.emdtime = emdtime;
+        this.endtime = endtime;
         this.scno = scno;
     }
 }

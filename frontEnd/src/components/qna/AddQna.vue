@@ -5,31 +5,34 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>1:1 문의하기</h1>
-              <ul class="breadcumb">
+              <h1 style="text-align: left">1:1 문의하기</h1>
+              <ul class="breadcumb" style="text-align: left">
                 <li class="active"><router-link to="/">Home</router-link></li>
+                <li>
+                  <span class="ion-ios-arrow-right"></span>Question in person
+                </li>
               </ul>
-            </div>
-            <!-- 안내메세지 -->
-            <div class="information">
-              <strong style="color: aliceblue"
-                >-1:1 문의글 답변 운영시간 10:00 ~ 19:00</strong
-              ><br />
-              <strong style="color: aliceblue"
-                >-접수 후 48시간 안에 답변 드리겠습니다.</strong
-              ><br />
-              <strong style="color: aliceblue"
-                >-문의내역은 MY-PAGE에서 확인이 가능합니다.</strong
-              ><br />
-              <strong style="color: aliceblue"
-                >- <em class="font-orange">*</em> 는 필수입력값 입니다.</strong
-              ><br />
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
+      <!-- 안내메세지 -->
+      <div class="information" style="text-align: left;margin-top: 5%;">
+        <strong style="color: aliceblue"
+          >- 1:1 문의글 답변 운영시간 10:00 ~ 19:00</strong
+        ><br />
+        <strong style="color: aliceblue"
+          >- 접수 후 48시간 안에 답변 드리겠습니다.</strong
+        ><br />
+        <strong style="color: aliceblue"
+          >- 문의내역은 MY-PAGE에서 확인이 가능합니다.</strong
+        ><br />
+        <strong style="color: aliceblue"
+          >- <em class="font-orange">*</em> 는 필수입력값 입니다.</strong
+        ><br />
+      </div>
       <!-- qna 테이블시작 -->
       <table class="qnabox">
         <colgroup>
@@ -54,7 +57,6 @@
                 maxlength="4"
                 v-model="CurrentUser.username"
               />
-         
             </td>
             <!-- <th scope="row">
               |
@@ -73,7 +75,7 @@
               />
               <div id="error_mail" class="result-email result-check"></div>
             </td> -->
-          </tr> 
+          </tr>
           <!-- <tr>
             <th scope="row">
               |
@@ -140,23 +142,21 @@
       </div>
       <!-- 전송버튼 끝 -->
     </div>
-    
+
     <!-- TODO: 탑버튼 추가_정주희 -->
     <a class="topbutton" id="back-to-top" href="#">
-      <img src="@/assets/images_jung/iconUp_48.png"/>
+      <img src="@/assets/images_jung/iconUp_48.png" />
     </a>
   </div>
 </template>
 
 <script>
-/* eslint-disable */ 
+/* eslint-disable */
 import QnaDataService from "@/services/QnaDataService.js";
 import userService from "@/services/user.service";
 
-
 export default {
-  mounted() {
-  },
+  mounted() {},
   data() {
     return {
       CurrentUser: {
@@ -166,21 +166,20 @@ export default {
         // name: "",
       },
       qna: {
-        qid:null,
+        qid: null,
         qtitle: "",
         qcontent: "",
       },
     };
   },
   methods: {
-
     createQna() {
       // alert("클릭되냐");
 
       let data = {
         qwriter: this.CurrentUser.username,
         qtitle: this.qna.qtitle,
-        qcontent:this.qna.qcontent
+        qcontent: this.qna.qcontent,
       };
 
       // let data = {
@@ -196,8 +195,7 @@ export default {
           this.qna.qid = response.data.qid;
           console.log(response.data);
           alert("등록이 완료되었습니다. 홈으로이동합니다.");
-          this.$router.push("/")
-        
+          this.$router.push("/");
         })
         // 실패하면 .catch() 에러메세지가 전송됨
         .catch((e) => {
@@ -227,7 +225,6 @@ export default {
   mounted() {
     this.getUser();
   },
-
 };
 </script>
 
@@ -236,7 +233,7 @@ export default {
   border: 2px solid;
   color: aliceblue;
   padding: 5%;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 .qna {
   background: black;
@@ -277,11 +274,18 @@ tbody {
 .common-hero {
   height: 385px;
   /* // background: url("../images/uploads/user-hero-bg.jpg") no-repeat; */
-  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat !important;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png")
+    no-repeat !important;
 }
 
 /* TODO: 탑버튼 추가_정주희*/
-.topbutton{
-    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
 }
 </style>

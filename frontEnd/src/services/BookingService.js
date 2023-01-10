@@ -7,6 +7,9 @@ class BookingService {
   getSeatAll() {
     return http.get(`/theater/allSeat`);
   }
+  getScheduleAll() {
+    return http.get(`/schedule`);
+  }
 
   // http://localhost:8000/api/theater/setSeat/{{seatposition}}/{{seatyn}}
   // 공지사항 수정 함수
@@ -50,8 +53,9 @@ class BookingService {
   }
 
   // schedule
-  resetseat() {
-    return http.post(`/schedule`);
+  createSchedule(data) {
+    console.log(data)
+    return http.post(`/schedule`,data);
   }
 
 }

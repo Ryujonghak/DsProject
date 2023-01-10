@@ -29,46 +29,51 @@ import java.util.List;
 @Where(clause = "DELETE_YN = 'N'")
 @SQLDelete(sql = "UPDATE TB_SCHEDULE SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE SCNO = ?")
 public class Schedule extends BaseTimeEntity {
-        @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE
-                , generator = "SQ_SCHE_GENERATOR"
-        )
-        @Column
-        private Long scno;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE
+            , generator = "SQ_SCHE_GENERATOR"
+    )
+    @Column
+    private Long scno;
 
-      @ManyToOne(fetch = FetchType.LAZY)
-      @JoinColumn(name = "moviecd", updatable = false)
-      private MovieDetail movieDetail;
+//    TODO: Mapping 해제(230110_류종학)
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "tid", updatable = false)
-        private Theater theater;
+//      @ManyToOne(fetch = FetchType.LAZY)
+//      @JoinColumn(name = "moviecd", updatable = false)
+//      private MovieDetail movieDetail;
 
-        @Column
-        private Date starttime;
+//        @ManyToOne(fetch = FetchType.LAZY)
+//        @JoinColumn(name = "tid", updatable = false)
+//        private Theater theater;
 
-        @Column
-        private Date endtime;
+    @Column
+    private String moviecd;
 
-       public String getMovieCd()
-       {
-               return this.movieDetail.getMoviecd();
-       }
+    @Column
+    private String movienm;
 
-       public String getMovieNm()
-       {
-               return this.movieDetail.getMovienm();
-       }
+    @Column
+    private String showtm;
 
-       public List<Seat> getSeats()
-       {
-               return this.theater.getSeatList();
-       }
+    @Column
+    private String startday;
 
-       public String getShowtm()
-       {
-               return this.movieDetail.getShowtm();
-       }
+    @Column
+    private String starttime;
 
+    @Column
+    private String endday;
+
+    @Column
+    private String endtime;
+
+    @Column
+    private String location;
+
+    @Column
+    private Long tid;
+
+    @Column
+    private Integer sno;
 
 }

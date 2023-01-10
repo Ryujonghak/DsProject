@@ -36,16 +36,28 @@ public class ReservationService {
         return reservationPage;
     }
 
+    public Page<Reservation> findAllByRusername(String rusername, Pageable pageable) {
+        Page<Reservation> reservationPage = reservationRepository.findAllByRusername(rusername, pageable);
+
+        return reservationPage;
+    }
+
     public List<Reservation> findByReservno(Long reservno) {
         List<Reservation> reservationList = reservationRepository.findByReservno(reservno);
 
         return reservationList;
     }
 
-    public List<MoviedetailReservationDto> selectNativeJoin(){
-        List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationRepository.selectNativeJoin();
+    public List<MoviedetailReservationDto> ResList(Long reservno){
+        List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationRepository.ResList(reservno);
 
         return moviedetailReservationDtoList;
+    }
+
+    public Page<MoviedetailReservationDto> ResPage(Long reservno, Pageable pageable){
+        Page<MoviedetailReservationDto> moviedetailReservationDtoPage = reservationRepository.ResPage(reservno, pageable);
+
+        return moviedetailReservationDtoPage;
     }
 
     public Reservation save(String username, Reservation reservation) {

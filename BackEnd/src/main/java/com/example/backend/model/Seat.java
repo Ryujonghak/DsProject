@@ -26,14 +26,11 @@ import javax.persistence.*;
 //@Where(clause = "DELETE_YN = 'N'")
 //@SQLDelete(sql = "UPDATE TB_SEAT SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE SEATPOSITION = ?")
 public class Seat {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_SEAT_GENERATOR")
-//    @Column(columnDefinition = "NUMBER")
-//    private Integer sno;
-
-
-
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_SEAT_GENERATOR")
+    @Column(columnDefinition = "NUMBER")
+    private Integer sno;
+
     @Column(columnDefinition = "VARCHAR2(4)", name = "SEATPOSITION")
     private String seatposition;
 
@@ -46,7 +43,6 @@ public class Seat {
     private Theater theater;
 
 
-
     public Seat(String seatposition, String status, Theater theater) {
         this.seatposition = seatposition;
         this.seatyn = status;
@@ -54,15 +50,13 @@ public class Seat {
     }
 
 
-    private Seat setSeat(String seatposition, String status, int tid)
-    {
-       Seat seat = new Seat();
-       if(getSeatposition().substring(0).equals(Integer.toString(tid)) )
-       {
-           seat.seatposition = seatposition;
-           seat.seatyn = status;
-       }
-       return seat;
+    private Seat setSeat(String seatposition, String status, int tid) {
+        Seat seat = new Seat();
+        if (getSeatposition().substring(0).equals(Integer.toString(tid))) {
+            seat.seatposition = seatposition;
+            seat.seatyn = status;
+        }
+        return seat;
     }
 
     public Seat(String seatposition, String status) {
@@ -70,14 +64,9 @@ public class Seat {
         this.seatyn = status;
     }
 
-    public Seat(String seatposition)
-    {
+    public Seat(String seatposition) {
         this.seatposition = seatposition;
     }
-
-
-
-
 
 
 }

@@ -272,4 +272,73 @@ VALUES (SQ_WISHLIST.NEXTVAL,
         '9.35',
         '20221123');
 
+-- Schedule FakeData 추가
+INSERT INTO TB_SCHEDULE
+VALUES (SQ_SCHE.NEXTVAL,
+        '20227762',
+        '올빼미',
+        '220',
+        '20230110',
+        '10:00',
+        '20230110',
+        '18:00',
+        'centum',
+        1,
+        1,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
+INSERT INTO TB_SCHEDULE
+VALUES (SQ_SCHE.NEXTVAL,
+        '20227762',
+        '올빼미',
+        '220',
+        '20230110',
+        '12:00',
+        '20230110',
+        '18:00',
+        'centum',
+        2,
+        2,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
+INSERT INTO TB_SCHEDULE
+VALUES (SQ_SCHE.NEXTVAL,
+        '20227762',
+        '올빼미',
+        '220',
+        '20230110',
+        '14:00',
+        '20230110',
+        '18:00',
+        'busan',
+        3,
+        3,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
+INSERT INTO TB_SCHEDULE
+VALUES (SQ_SCHE.NEXTVAL,
+        '20227762',
+        '올빼미',
+        '220',
+        '20230110',
+        '16:00',
+        '20230110',
+        '18:00',
+        'busan',
+        4,
+        4,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
 COMMIT;

@@ -14,6 +14,7 @@ import java.util.List;
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     Page<Reservation> findAll(Pageable pageable);
     Page<Reservation> findAllByUser(User user, Pageable pageable);
+    Page<Reservation> findAllByRusername(String rusername, Pageable pageable);
 
     List<Reservation> findByReservno(Long reservno);
 
@@ -22,6 +23,22 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             "DM.SHOWTM, DM.WATCHGRADENM " +
             "FROM DETAIL_MOVIE DM, TB_RESERVATION R " +
             "WHERE " +
-            "DM.moviecd = r.moviecd AND r.reservno = :reservno", nativeQuery = true)
-    List<MoviedetailReservationDto> selectNativeJoin(@Param("reservno") Long reservno);
+            "DM.moviecd = r.moviecd AND r.reservno = :reservno ", nativeQuery = true)
+    List<MoviedetailReservationDto> ResList(@Param("reservno") Long reservno);
+
+    @Query(value = "SELECT R.RESERVNO, R.RCOUNT, R.LOCATION, R.PRICE, R.SEAT, R.STARTTIME, " +
+            "R.ENDTIME, DM.MOVIECD, DM.MOVIENM, DM.RAITING, DM.POSTERURLN, DM.OPENDT, DM.DIRECTORS, " +
+            "DM.SHOWTM, DM.WATCHGRADENM " +
+            "FROM DETAIL_MOVIE DM, TB_RESERVATION R " +
+            "WHERE " +
+            "DM.moviecd = r.moviecd AND r.reservno = :reservno ", nativeQuery = true)
+    Page<MoviedetailReservationDto> ResPage(@Param("reservno") Long reservno, Pageable pageable);
+
+    @Query(value = "SELECT R.RESERVNO, R.RCOUNT, R.LOCATION, R.PRICE, R.SEAT, R.STARTTIME, " +
+            "R.ENDTIME, DM.MOVIECD, DM.MOVIENM, DM.RAITING, DM.POSTERURLN, DM.OPENDT, DM.DIRECTORS, " +
+            "DM.SHOWTM, DM.WATCHGRADENM " +
+            "FROM DETAIL_MOVIE DM, TB_RESERVATION R " +
+            "WHERE " +
+            "DM.moviecd = r.moviecd AND r.rusername = :rusername ", nativeQuery = true)
+    Page<MoviedetailReservationDto> ResPageTime(@Param("rusername") String rusername, Pageable pageable);
 }
