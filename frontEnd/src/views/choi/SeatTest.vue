@@ -16,6 +16,7 @@
         "
       ></div>
       <div class="container">
+        <div><h2>최아리입니다.</h2></div>
         <div class="row">
           <div>
             <div class="blog-detail-ct">
