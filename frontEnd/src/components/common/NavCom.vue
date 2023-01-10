@@ -351,21 +351,20 @@
             </div>
             <!-- 오른쪾메뉴 -->
             <div class="col-xs-5 navbar-menu">
-              <ul class="nav navbar-nav flex-child-menu menu-right col-xs-12">
-                <li class="col-xs-4"></li>
+              <ul class="nav navbar-nav flex-child-menu menu-right col-xs-12" style=" margin-left: 0%">
+                <li class="col-xs-3"></li>
                 <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
-                <div class="col-xs-4" v-show="currentUser">
+                <div class="col-xs-5" v-show="currentUser">
                   <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
                   <li class="dropdown first" v-show="!showAdminBoard">
                     <router-link
                       to="/mypage"
                       class="btn btn-default dropdown-toggle lv1"
-                      style="margin-left: 44%"
                       data-toggle="dropdown"
                       data-hover="dropdown"
                     >
                       MY PAGE
-                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                      <i class="fa fa-angle-down" aria-hidden="true" style="margin-right:0%"></i>
                     </router-link>
                     <ul class="dropdown-menu level1">
                       <li>
@@ -424,12 +423,13 @@
                 <li
                   v-show="!currentUser"
                   class="col-xs-4 btn signupLink"
-                  style="width: 31%"
+                  style="width: 127px"
                 >
                   <router-link to="/signup">sign up</router-link>
                 </li>
 
                 <!-- 로그인성공시 signup -> logout변경 -->
+                <!-- <div v-if="currentUser"> -->
                 <li
                   v-show="currentUser"
                   class="dropdown first logoutLink col-xs-4"
