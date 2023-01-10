@@ -53,8 +53,8 @@
 
           <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="movie-single-ct main-content">
-              <h6 style="margin-bottom: 1%; color: #abb7c4">
-                현재 박스오피스 {{ boxoffice.rank }} 위
+              <h6 style="margin-bottom: 1%; color: #abb7c4" v-show="showBoxoffice">
+                현재 박스오피스 {{ boxofficeRank }} 위
               </h6>
               <h1 class="bd-hd" style="margin-bottom: 40px">
                 {{ movie.movienm }}<span>{{ mYear }}</span>
@@ -446,6 +446,8 @@ export default {
 
       movie: null,
       boxoffice: null,
+      showBoxoffice: false,
+      boxofficeRank: 0,
       review: [],
       alreadyReviewed: false,
 
@@ -472,7 +474,8 @@ export default {
     getBoxoffice(moviecd) {
       MovieDataService.getBoxoffice(moviecd)
         .then((response) => {
-          this.boxoffice = response.data.BoxOffice[0];
+          this.boxofficeRank = response.data.BoxOffice[0].rank;
+          this.showBoxoffice = true;
           console.log(response.data.BoxOffice);
         })
         .catch((e) => {
