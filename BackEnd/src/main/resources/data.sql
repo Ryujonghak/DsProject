@@ -341,4 +341,17 @@ VALUES (SQ_SCHE.NEXTVAL,
         NULL,
         NULL);
 
+-- Seat FakeData 추가
+INSERT INTO TB_SEAT
+VALUES (SQ_SEAT.NEXTVAL,
+        'A1',
+        'Y',
+        1);
+INSERT INTO TB_SEAT
+VALUES (SQ_SEAT.NEXTVAL,
+        'F1',
+        'Y',
+        1);
+
+
 COMMIT;

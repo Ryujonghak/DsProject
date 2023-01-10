@@ -19,22 +19,11 @@ import java.util.List;
  */
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, Long> {
+    Seat findAllBySeatpositionAndScno(String seatposition, Long scno);
 
-//    public List<Seat> countByTidEquals(long tid);
-//
-//    @Query(value="select count(*) from tb_seat s where s.seatstatus like %:seatcondition% and s.tid = %:tid%",nativeQuery = true )
-//    public List<Seat> countByTidAndSeatstatusEquals(long tid, String seatcondition);
+    List<Seat> findAllBySeatyn(String seatyn);
 
-//    public List<Seat> CountByTid(long tid);
+    Seat findBySeatpositionAndScno(String seatposition, Long scno);
 
-//    Optional<Seat> findByTid(long tid);
-
-    List<Seat> findAllBySeatyn(long tid);
-
-    public Seat findAllBySeatposition(String seatposition);
-
-
-
-
-
+    List<Seat> findAllByScno(Long scno);
 }

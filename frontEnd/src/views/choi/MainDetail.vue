@@ -160,6 +160,7 @@ export default {
     showSeatPage() {
       if (this.$store.state.auth.user == null) {
         alert("로그인이 필요한 서비스 입니다.");
+
       } else {
         this.seatPage = !this.seatPage;
       }

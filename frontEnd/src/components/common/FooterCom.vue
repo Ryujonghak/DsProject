@@ -30,16 +30,16 @@
             <h4>고객센터</h4>
             <ul>
               <li><router-link to="/notice">공지사항</router-link></li>
-              <li><router-link to="/addqna">QnA</router-link></li>
+              <li><router-link to="/addqna">QNA</router-link></li>
               <li><router-link to="/faq">FAQ</router-link></li>
             </ul>
           </div>
           <div class="flex-child-ft item4">
             <h4>MY PAGE</h4>
             <ul>
-              <li><router-link to="/mypage">내정보</router-link></li>
-              <li><router-link to="/myticket">나의예매내역</router-link></li>
-              <li><router-link to="/archive">무비타임라인</router-link></li>
+              <li><a  @click="mypage">내정보</a></li>
+              <li><a  @click="myticket">나의예매내역</a></li>
+              <!-- <li><router-link to="/archive">무비타임라인</router-link></li> -->
             </ul>
           </div>
           <div class="flex-child-ft item5">
@@ -54,7 +54,7 @@
       </div>
       <div class="ft-copyright">
         <div class="ft-left">
-          <p>© 2022 DONGSUNG TEAM1</p>
+          <p>© 2022 DONGSUNG TEAM1 : 류종학 , 문영석 , 강수빈 , 최아리 , 정주희 , 김철원</p>
         </div>
         <div class="backtotop">
           <p>
@@ -69,7 +69,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+
+methods: {
+  myticket(){
+      if (this.$store.state.auth.user == null) {
+        alert("로그인이 필요한 서비스 입니다.");
+    }else{
+      this.$router.push("/myticket")
+    }
+  },
+  mypage(){
+    if (this.$store.state.auth.user == null) {
+        alert("로그인이 필요한 서비스 입니다.");
+    }else{
+      this.$router.push("/mypage")
+    }
+  }
+},
+};
 </script>
 
 <style lang="scss" scoped>
