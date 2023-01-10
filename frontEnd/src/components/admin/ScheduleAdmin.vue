@@ -108,6 +108,7 @@
                   <col style="width: 10%" />
                   <col style="width: 15%" />
                   <col style="width: 15%" />
+                  <col style="width: 15%" />
                   <col style="width: auto" />
                   <col style="width: 15%" />
                 </colgroup>
@@ -116,6 +117,7 @@
                     <th scope="col">번호</th>
                     <th scope="col">영화이름</th>
                     <th scope="col">영화코드</th>
+                    <th scope="col">상영날짜</th>
                     <th scope="col">시작시간(지점)</th>
                     <th scope="col">Delete</th>
                   </tr>
@@ -125,6 +127,7 @@
                     <td>{{ data.scno }}</td>
                     <td>{{ data.movienm }}</td>
                     <td>{{ data.moviecd }}</td>
+                    <td>{{ data.startday }}</td>
                     <td>{{ data.starttime }} ({{ data.location }})</td>
                     <td><button class="deletebtn" @click="deleteSchedule(data)">삭제하기</button></td>
                   </tr>

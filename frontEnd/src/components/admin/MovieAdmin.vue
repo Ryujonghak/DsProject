@@ -329,7 +329,7 @@ button:active {
 .user-hero {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
-  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test16.png") no-repeat;
 }
 
 /* 탑버튼 추가 _정주희 */
