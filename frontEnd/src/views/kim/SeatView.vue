@@ -225,8 +225,8 @@
                         <!--  위 공백처리 -->
                         <div style="margin-bottom: 80px; width: 100%;"></div>
                         <!-- TODO:  -->
-                        <span style=" color: white; font-size: 24px;">시간을 선택해 주세요</span>
-                        <span style=" color: white; font-size: 24px;">관람인원을 선택해 주세요</span>
+                        <span v-show="runningTime" style=" color: white; font-size: 24px;">시간을 선택해 주세요</span>
+                        <span v-show="People" style=" color: white; font-size: 24px;">관람인원을 선택해 주세요</span>
                       </div>
                       <div style="width:780px">
                         <!--  -->
@@ -646,7 +646,6 @@
                         style="font-size: 30px; font-weight: bold;">{{moviestarttime}}</span> ~ <span>{{movieendtime}}</span>
                     </div>
                     <div style="position: absolute; top: 150px; left: 250px; color: black; width: 80px; "><img style="margin-top: 0;" src="@/assets/images_kim/Views/ModalView/QRcode.png" alt=""></div>
-                    <!-- TODO: 성인인지 청소년인지 확인하는 함수 만들어야 됨 -->
                     <div v-show="adult" style="position: absolute; top: 220px; left: 40px;"><span>성인 </span> <span
                         style="font-size: 16px; font-weight: bold;">{{ adultcount }}</span></div>
                     <div v-show="teen" style="position: absolute; top: 220px; left: 40px;"><span>청소년 </span> <span
@@ -736,6 +735,8 @@ export default {
       data2: [], // 몰루
       reservation: new Reservation(),  // 모델 받아옴 // 나중에 정보를 담아서 백엔드에 보낼꺼임
 
+      People: false,
+      runningTime: true,
       모달: true,                // 좌석선택하기 전에 좌석을 클릭못하게 막는 모달창
       좌석: true,                // 좌석페이지 v-show
       payment: false,        // 결제 후에 보여주는 페이지 v-show
@@ -939,6 +940,7 @@ export default {
       this.time1 = true;                     // v-for문 가 보임  클릭을 하고 넘어 갔을때 선택된게 남아 있는걸 방지하고자 만듬
       this.selectedday = String(this.yy) + String(this.mm) + String(this.dd);   // 영화관을 클릭하면 오늘 날짜가 들어감
       this.selectPerson = 0;
+      this.runningTime = true;
       this.resetinfor();
       this.resetSeat();
       if (value == 'centum') {
@@ -976,6 +978,8 @@ export default {
       this.ticketinfo.tickettime = value;           // 선택된 시간을 티켓 정보에 넣음
       this.time1 = !this.time1;                     // v-show
       this.selectPerson = 1;                         // 시간이 선택되어야 인원을 클릭할 수 있게 만듬 그래야 화면이 이상하게 안나옴
+      this.runningTime = false;
+      this.People = true
       this.resetinfor();
       this.resetSeat();                 // 좌석 보기 싫음
       this.getfFndByMoviecdAndLocationAndStartdayAndStarttime();       // 시간을 선택하면 실행됨
@@ -1073,6 +1077,7 @@ export default {
       } else {
         this.adultcount--;
         this.totalpay = this.totalpay - 100;
+        
         if ((this.teencount + this.adultcount) == this.selected.length && this.selected.length != 0) {
           this.결제하기 = true;
         }
@@ -1298,6 +1303,7 @@ export default {
       this.selectPerson = 0;                         // 시간이 선택되어야 인원을 클릭할 수 있게 만듬 그래야 화면이 이상하게 안나옴
       this.time1 = true;
       this.resetSeat();                              // 좌석 보기 싫음
+      this.runningTime = true;
       let temp;
       if (value == 'day1') {
         this.day1 = false;
