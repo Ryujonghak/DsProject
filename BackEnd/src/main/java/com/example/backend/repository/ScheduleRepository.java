@@ -1,6 +1,8 @@
 package com.example.backend.repository;
 
 import com.example.backend.model.Schedule;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -16,4 +18,8 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     List<Schedule> findAllByMoviecdAndLocationAndStartday(String moviecd, String location, String startday);
 
     List<Schedule> findByMoviecdAndLocationAndStartdayAndStarttime(String moviecd, String location, String startday, String starttime);
+
+
+    Page<Schedule> findAllByMovienmContaining(String moviecd, Pageable pageable);
+    Page<Schedule> findAllByLocation(String location, Pageable pageable);
 }

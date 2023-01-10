@@ -4,6 +4,8 @@ import com.example.backend.model.Schedule;
 import com.example.backend.repository.ScheduleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,6 +44,18 @@ public class ScheduleService {
         List<Schedule> scheduleList = scheduleRepository.findByMoviecdAndLocationAndStartdayAndStarttime(moviecd, location, startday, starttime);
 
         return scheduleList;
+    }
+
+    public Page<Schedule> findAllByMovienmContaining(String movienm, Pageable pageable) {
+        Page<Schedule> schedulePage = scheduleRepository.findAllByMovienmContaining(movienm, pageable);
+
+        return schedulePage;
+    }
+
+    public Page<Schedule> findAllByLocation (String location, Pageable pageable) {
+        Page<Schedule> schedulePage = scheduleRepository.findAllByLocation(location, pageable);
+
+        return schedulePage;
     }
 
     public Schedule save(Schedule schedule) {
