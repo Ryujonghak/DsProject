@@ -225,6 +225,10 @@ export default {
 </script>
 
 <style scoped>
+.user-hero {
+  height: 385px;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test16.png") no-repeat;
+}
 .editbtn {
   font-family: "Dosis", sans-serif;
   font-size: 100%;
