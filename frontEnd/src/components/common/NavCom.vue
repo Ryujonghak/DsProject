@@ -430,7 +430,6 @@
                 </li>
 
                 <!-- 로그인성공시 signup -> logout변경 -->
-                <!-- <div v-if="currentUser"> -->
                 <li
                   v-show="currentUser"
                   class="dropdown first logoutLink col-xs-4"
