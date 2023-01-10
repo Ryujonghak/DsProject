@@ -201,18 +201,20 @@
                             style="width: 330px;  margin-bottom: 0; color: gray;  padding: 15px 0 5px 0;  font-size: 16px; font-weight: bold; color: white; border-bottom: 1px solid gray;">
                           상영시간
                         </p>
-                        <button v-for="(item,index) in schedule2" :key="index" v-show="time1"
+                        <button v-for="(item,index) in schedule2" :key="index" 
                           @click="selectedtime(item.starttime)" 
                           style="width: 70px;  height: 80px; float: left; border: 0;background-color: black; margin-right: 5px; margin-top: 5px;">
                           <p style="color: white;margin-bottom: 10px;">2D</p>
-                          <h4 style="color: white;padding: 9px 24px 9px 9px; margin-left: 3px;">{{ item.starttime }}</h4>
+                          <h4 class="selected-btn">{{ item.starttime }}</h4>
                         </button>
-
+<!-- 
                         <button v-show="!time1" @click="unselectedtime()"
                           style="width: 70px; border-radius: 20px; height: 80px; float: left; border: 0;background-color:black;  margin-right: 5px;margin-top: 5px;">
                           <p style="color: white;margin-bottom: 10px;">2D</p>
                           <h4 style="color: black;padding: 9px 22px 9px 9px; margin-left: 3px; background-color: white; width: 55px; ">{{ ticketinfor.tickettime }}</h4>
-                        </button>
+                        </button> -->
+
+                        
 
                         
 
@@ -616,9 +618,7 @@
                         }}일</p>
                       <p style="margin: 0 0 0 20px;">관람극장 : {{ ticketinfor.cinema }}</p>
                       <span style="margin-right: 5px; margin-left: 20px; color: #abb7c4;">관람좌석 :</span><span
-                        v-for="(seat,index) in selected" v-bind:key="index">{{
-                        seat
-                      }}{{ (index + 1 < selected.length) ? ', ' : '' }}</span>
+                        v-for="(seat,index) in selected" v-bind:key="index">{{seat}}{{ (index + 1 < selected.length) ? ', ' : '' }}</span>
                       <div style="border-bottom: 1px solid #1D1E2C; margin-top: 20px; "></div>
                       <p style="margin-top:20px; margin-bottom: 20px; margin-left: 20px;">결제금액 : {{ totalpay }} 원</p>
                       <div style="margin-top: 80px;">
@@ -857,6 +857,7 @@ export default {
 
     cinema(value) {
       this.time1 = true;
+      this.selectedday = String(this.yy)+String(this.mm)+String(this.dd);
       if (value == 'centum') {
       this.ticketinfor.cinema = "센텀시티";
       this.defaultcinema = 'centum';
@@ -1391,7 +1392,16 @@ export default {
 .font2 {
   color: white;
   position: relative;
-  left: 96%;
+  left: 95%;
+}
+.selected-btn {
+  color: white;padding: 9px 24px 9px 9px; margin-left: 3px;
+}
+.selected-btn:hover {
+  color: black;padding: 9px 22px 9px 9px; margin-left: 3px; background-color: white; width: 55px;
+}
+.selected-btn:focus {
+  color: black;padding: 9px 22px 9px 9px; margin-left: 3px; background-color: white; width: 55px;
 }
 </style>
   
