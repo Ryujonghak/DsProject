@@ -3321,6 +3321,16 @@ export default {
       moviestarttime: "", // 결제후 영화관 정보
       movieendtime: "", // 결제후 영화관 정보
       seattest2: [], // Scon로 검색한 결과가 나옴  []
+      schedule_1: null,
+      schedule_2: null,
+      schedule_3: null,
+      schedule_4: null,
+
+      ticketinfor: [], // 티켓정보를 담는 배열
+      firstCheck: false,
+      secondCheck: false,
+      thirdCheck: false,
+      fourthCheck: false,
 
       seattable: [], // 시간을 선택하면 그날 영화관,날짜,상영시간을 클릭하면 데이터가 여기에 담김
       selectPerson: 0, // 시간을 선택해야 인원을 선택할 수 있게 만드는 변수? 몰?루 졸려서 아무생각안남
