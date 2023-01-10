@@ -708,6 +708,7 @@ import custom from "@/assets/js/custom";
 import Reservation from "@/model/Reservation";
 // import ReservationDataService from "@/services/ReservationDataService";
 import ScheduleDataService from "@/services/ScheduleDataService"
+// import SeatDataService from "@/services/SeatDataService"
 
 export default {
   props: ["movieProps2"],
@@ -835,6 +836,7 @@ export default {
       this.좌석 = false;
       this.addReservation();
     },
+
     getFindAllByMoviecdAndLocationAndStartday(){
       var moviecd2 = this.moviecd
       var tempcinema = this.defaultcinema //이건 영화관을 담는거
@@ -1096,12 +1098,12 @@ export default {
       this.modalpeople = false;
       this.totalpay = this.totalpay + 100;
     },
-    CentumSeatCinema() {            // 데이터 베이스에서 자리가 있는지 확인
+    CentumSeatCinema() {                        // 데이터 베이스에서 자리가 있는지 확인
       let j = 0;
       for (let i = 0; i < 60; i++) {
         if (this.data2[i].seatyn == 'N') {      // 자리가 있으면 1를 줌
           this.Seat[j] = 1;
-        } else {                     // 자리가 없으면 0
+        } else {                                // 자리가 없으면 0
           this.Seat[j] = 0;
         }
         j++;
