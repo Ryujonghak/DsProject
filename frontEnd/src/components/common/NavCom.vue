@@ -797,7 +797,7 @@ input {
   margin-left: 5%;
 }
 .first-space {
-  width: 40%;
+  width: 100px;
 }
 .second-space {
   margin-right: 5%;
