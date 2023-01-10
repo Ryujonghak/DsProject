@@ -5,9 +5,10 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>Notice 공지사항</h1>
-              <ul class="breadcumb">
+              <h1 style="text-align: left">Notice 공지사항</h1>
+              <ul class="breadcumb" style="text-align: left">
                 <li class="active"><router-link to="/">Home</router-link></li>
+                <li><span class="ion-ios-arrow-right"></span>notice</li>
               </ul>
             </div>
           </div>

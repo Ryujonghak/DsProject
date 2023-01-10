@@ -5,19 +5,10 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1>FAQ 자주묻는질문</h1>
-              <ul class="breadcumb">
-                <div class="information">
-                  <strong style="color: aliceblue"
-                    >- 다른 질문사항은 1:1 문의 게시판을 이용해주세요</strong
-                  ><br/>
-                  <p style="color: aliceblue"
-                    >- 아래 버튼을 누르면 문의페이지로 이동합니다.</p
-                  >
-                </div>
-                <button class="qnabtn">
-                  <router-link to="/addqna" style="color:aliceblue !important;"><strong>1:1문의하기</strong></router-link>
-                </button>
+              <h1 style="text-align: left">FAQ 자주묻는질문</h1>
+              <ul class="breadcumb" style="text-align: left">
+                <li class="active"><router-link to="/">Home</router-link></li>
+                <li><span class="ion-ios-arrow-right"></span>FAQ</li>
               </ul>
             </div>
           </div>
@@ -28,6 +19,19 @@
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <section class="section section-faq">
         <div class="container mx-auto">
+          <div class="information" style="margin-top: 5%;">
+            <strong style="color: aliceblue"
+              >- 다른 질문사항은 1:1 문의 게시판을 이용해주세요</strong
+            ><br />
+            <p style="color: aliceblue">
+              - 아래 버튼을 누르면 문의페이지로 이동합니다.
+            </p>
+            <button class="qnabtn">
+              <router-link to="/addqna" style="color: aliceblue !important"
+                ><strong>1:1문의하기</strong></router-link
+              >
+            </button>
+          </div>
           <div class="faq-box">
             <h1 style="color: aliceblue">FAQ</h1>
             <ul>
@@ -85,7 +89,8 @@
                   <div>
                     - <strong>로그인 화면 하단에 ID/PW찾기 버튼</strong>을 통해
                     확인하실 수 있습니다. <br />아이디 찾기의 경우, 기존
-                    회원정보에 등록된 아이디찾기 질문에대한 정답을 통해 확인이 가능합니다.
+                    회원정보에 등록된 아이디찾기 질문에대한 정답을 통해 확인이
+                    가능합니다.
                   </div>
                 </div>
               </li>
@@ -165,7 +170,7 @@ export default {
   border: 2px solid;
   color: aliceblue;
   padding: 30px;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .faq-box__question {
@@ -216,7 +221,7 @@ export default {
 
 .qnabtn {
   border-radius: 25px;
-  margin-top: 2%;
+  margin-top: 1%;
   /* color: black !important; */
   background: #8c52ff;
 }

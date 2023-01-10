@@ -268,8 +268,7 @@ export default {
     no-repeat center;
 }
 .common-hero {
-  background: url("@/assets/images_choi/Views/choi/admin/movie-theater03.png")
-    no-repeat;
+  background: url("@/assets/images_choi/Views/choi/admin/movie-theater03.png") !important;
 }
 .search-numbers {
   padding: 0;
