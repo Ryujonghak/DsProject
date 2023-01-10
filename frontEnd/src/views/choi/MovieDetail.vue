@@ -633,7 +633,6 @@ export default {
             console.log(res.data);
             alert("Delete");
             this.getWishlist();
-            // alert(this.wishlist);
           })
           .catch((err) => {
             alert("찜 지우기 에러");
