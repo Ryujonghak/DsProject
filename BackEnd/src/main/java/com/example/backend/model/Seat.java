@@ -1,6 +1,5 @@
 package com.example.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,44 +28,22 @@ public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_SEAT_GENERATOR")
     @Column(columnDefinition = "NUMBER")
-    private Integer sno;
+    private Long sno;
 
-    @Column(columnDefinition = "VARCHAR2(4)", name = "SEATPOSITION")
+    @Column(columnDefinition = "VARCHAR2(4)")
     private String seatposition;
 
     @Column(columnDefinition = "VARCHAR2(1)", name = "SEATYN")
     private String seatyn;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "tid", updatable = false)
-    @JsonBackReference
-    private Theater theater;
+    @Column(columnDefinition = "NUMBER")
+    private Long scno;
 
 
-    public Seat(String seatposition, String status, Theater theater) {
+    public Seat(String seatposition, String seatyn, Long scno) {
         this.seatposition = seatposition;
-        this.seatyn = status;
-        setTheater(theater);
+        this.seatyn = seatyn;
+        this.scno = scno;
     }
-
-
-    private Seat setSeat(String seatposition, String status, int tid) {
-        Seat seat = new Seat();
-        if (getSeatposition().substring(0).equals(Integer.toString(tid))) {
-            seat.seatposition = seatposition;
-            seat.seatyn = status;
-        }
-        return seat;
-    }
-
-    public Seat(String seatposition, String status) {
-        this.seatposition = seatposition;
-        this.seatyn = status;
-    }
-
-    public Seat(String seatposition) {
-        this.seatposition = seatposition;
-    }
-
-
 }
+

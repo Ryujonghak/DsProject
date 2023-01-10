@@ -2,7 +2,6 @@ package com.example.backend.controller;
 
 import com.example.backend.model.Schedule;
 import com.example.backend.service.ScheduleService;
-import com.example.backend.service.TheaterSeatService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,12 +21,6 @@ import java.util.Map;
 public class ScheduleController {
     @Autowired
     ScheduleService scheduleService;
-
-    @Autowired
-    TheaterSeatService theaterSeatService;
-
-    @Autowired
-    SeatTheaController seatTheaController;
 
     @GetMapping("/schedule/movienm")
     public ResponseEntity<Object> findAllByMovienmContaining(
@@ -174,10 +167,6 @@ public class ScheduleController {
     @PostMapping("/schedule")
     public ResponseEntity<Object> create(@RequestBody Schedule schedule) {
         try {
-
-            seatTheaController.OpenningTheater();
-
-
             Schedule newSchedule = scheduleService.save(schedule);
 
             return new ResponseEntity<>(newSchedule, HttpStatus.OK);
