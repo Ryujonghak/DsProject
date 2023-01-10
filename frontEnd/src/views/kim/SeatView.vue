@@ -3494,6 +3494,22 @@ export default {
       this.day4 = true; // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
       this.day5 = true; // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
       console.log(this.paymentcinema);
+
+
+      // FIXME: 버튼 색상 초기화
+      var first = document.getElementById("first-div");
+      var second = document.getElementById("second-div");
+      var third = document.getElementById("third-div");
+      var fourth = document.getElementById("fourth-div");
+
+      this.firstCheck = false;
+      this.secondCheck = false;
+      this.thirdCheck = false;
+      this.fourthCheck = false;
+      first.style.backgroundColor = "#FFFFFF";
+      second.style.backgroundColor = "#FFFFFF";
+      third.style.backgroundColor = "#FFFFFF";
+      fourth.style.backgroundColor = "#FFFFFF";
     },
 
     selectedtime(value) {
