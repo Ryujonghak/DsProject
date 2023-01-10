@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.MoviedetailReservationDto;
 import com.example.backend.model.Reservation;
 import com.example.backend.service.ReservationService;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -49,12 +51,12 @@ public class ReservationController {
     }
 
     @GetMapping("/reservation/search")
-    public ResponseEntity<Object> getAll(@RequestParam(required = false) String username,
+    public ResponseEntity<Object> findAllByRusername(@RequestParam(required = false) String rusername,
                                          @RequestParam(defaultValue = "0") int page,
                                          @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Reservation> reservationPage = reservationService.findAllByUsername(username, pageable);
+            Page<Reservation> reservationPage = reservationService.findAllByRusername(rusername, pageable);
 
 
             Map<String, Object> response = new HashMap<>();
@@ -67,6 +69,38 @@ public class ReservationController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
                 return new ResponseEntity<>(response, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/reservation/searchById/{reservno}")
+    public ResponseEntity<Object> getById(@PathVariable Long reservno) {
+        try {
+            List<Reservation> reservationList = reservationService.findByReservno(reservno);
+
+            if(reservationList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(reservationList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/reservation/mylist/{reservno}")
+    public ResponseEntity<Object> ResList(@PathVariable Long reservno) {
+        try {
+            List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationService.ResList(reservno);
+
+            if(moviedetailReservationDtoList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(moviedetailReservationDtoList, HttpStatus.OK);
             }
         } catch (Exception e) {
             log.debug(e.getMessage());

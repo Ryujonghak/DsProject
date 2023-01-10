@@ -6,7 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
-              <h4 style="color:aliceblue">영화등록 페이지</h4>
+              <h4 style="color: aliceblue">영화등록 페이지</h4>
             </div>
           </div>
         </div>
@@ -15,18 +15,19 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width2"></div>
-        <!-- 시작 -->
+        <!--  영화등록 테이블 시작 -->
         <div class="container">
           <table class="AddMovieBox" style="margin-top: 5%">
             <colgroup>
               <!-- <col style="width: 5%" /> -->
               <col style="width: 15%" />
               <col style="width: 10%" />
-              <col style="width: 15%" />
               <col style="width: auto" />
+              <col style="width: 15%" />
               <col style="width: 15%" />
             </colgroup>
             <tbody>
+              <!-- 첫번째줄 -->
               <tr>
                 <th scope="row" class="noticelabel">
                   |
@@ -44,7 +45,7 @@
                   |
                   <label for="noticeTitle">ID</label>
                 </th>
-                <td colspan="1">
+                <td colspan="2">
                   <input
                     type="text"
                     name="title"
@@ -58,75 +59,65 @@
                   |
                   <label for="noticeTitle">장르</label>
                 </th>
-                <td colspan="1">
+                <td colspan="2">
                   <input
                     type="text"
                     name="title"
                     id="qnaTitle"
                     class="boxing input-text"
                     maxlength="100"
-                   v-model="movie.genrenm"
+                    v-model="movie.genrenm"
+                  />
+                </td>
+              </tr>
+              <!-- 첫번째줄 끝 -->
+              <!-- 두번째줄 -->
+              <tr>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">러닝타임</label>
+                </th>
+                <td colspan="2">
+                  <input
+                    type="text"
+                    name="title"
+                    id="qnaTitle"
+                    class="boxing input-text"
+                    maxlength="100"
+                    v-model="movie.showtm"
                   />
                 </td>
                 <th scope="row" class="noticelabel">
                   |
-                  <label for="noticeTitle">개봉연도</label>
+                  <label for="noticeTitle">감독</label>
                 </th>
-                <td colspan="1">
+                <td colspan="2">
                   <input
                     type="text"
                     name="title"
-                    id="prdyear"
+                    id="qnaTitle"
                     class="boxing input-text"
                     maxlength="100"
-                   v-model="movie.prdtyear"
+                    v-model="movie.directors"
+                  />
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">캐스트</label>
+                </th>
+                <td colspan="2">
+                  <input
+                    type="text"
+                    name="title"
+                    id="qnaTitle"
+                    class="boxing input-text"
+                    maxlength="100"
+                    v-model="movie.actor"
                   />
                 </td>
               </tr>
-              <tr>
-              <th scope="row" class="noticelabel">
-                |
-                <label for="noticeTitle">러닝타임</label>
-              </th>
-              <td colspan="2">
-                <input
-                  type="text"
-                  name="title"
-                  id="qnaTitle"
-                  class="boxing input-text"
-                  maxlength="100"
-                  v-model="movie.showtm"
-                />
-              </td>
-              <th scope="row" class="noticelabel">
-                |
-                <label for="noticeTitle">감독</label>
-              </th>
-              <td colspan="1">
-                <input
-                  type="text"
-                  name="title"
-                  id="qnaTitle"
-                  class="boxing input-text"
-                  maxlength="100"
-                 v-model="movie.directors"
-                />
-              </td>
-              <th scope="row" class="noticelabel">
-                |
-                <label for="noticeTitle">캐스트</label>
-              </th>
-              <td colspan="3">
-                <input
-                  type="text"
-                  name="title"
-                  id="qnaTitle"
-                  class="boxing input-text"
-                  maxlength="100"
-                  v-model="movie.actor"
-                />
-              </td>
-            </tr>
+              <!-- 두번째줄 끝 -->
+              <!-- 세번째줄 -->
               <tr>
                 <th scope="row" class="noticelabel">
                   |
@@ -147,156 +138,229 @@
                   </div>
                 </td>
               </tr>
+              <!-- 세번째줄 끝 -->
+              <!-- 네번째줄 -->
               <tr>
-              <th scope="row" class="noticelabel">
-                |
-                <label for="noticeTitle">포스터 이미지</label>
-              </th>
-              <td colspan="2">
-                <ul class="footer-button-plus">
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">포스터 이미지</label>
+                </th>
+                <td colspan="2">
+                  <ul class="footer-button-plus">
+                    <input
+                      type="text"
+                      id="file"
+                      class="inputfile"
+                      v-model="movie.posterurln"
+                    />
+                  </ul>
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">개봉일</label>
+                </th>
+                <td colspan="2">
                   <input
                     type="text"
-                    id="file"
-                    class="inputfile"
-                    v-model="movie.posterurln"
+                    name="title"
+                    id="qnaTitle"
+                    class="boxing input-text"
+                    maxlength="100"
+                    v-model="movie.opendt"
                   />
-                </ul>
-              </td>
-              <th scope="row" class="noticelabel">
-                |
-                <label for="noticeTitle">개봉일</label>
-              </th>
-              <td colspan="1">
-                <input
-                  type="text"
-                  name="title"
-                  id="qnaTitle"
-                  class="boxing input-text"
-                  maxlength="100"
-                  v-model="movie.opendt"
-                />
-                
-              </td>
-              <th scope="row" class="noticelabel">
-                |
-                <label for="noticeTitle">관람등급</label>
-              </th>
-              <td colspan="3">
-              <select name="관람등급" id="age" v-model="movie.watchgradenm">
-                <option value="전체관람가">ALL</option>
-                <option value="12세이상관람가">12+</option>
-                <option value="15세이상관람가">15+</option>
-                <option value="청소년관람불가">19+</option>
-              </select>
-            </td>
-          </tr>
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">관람등급</label>
+                </th>
+                <td colspan="2">
+                  <select name="관람등급" id="age" v-model="movie.watchgradenm">
+                    <option value="전체관람가">ALL</option>
+                    <option value="12세이상관람가">12+</option>
+                    <option value="15세이상관람가">15+</option>
+                    <option value="청소년관람불가">19+</option>
+                  </select>
+                </td>
+              </tr>
+              <!-- 네번째줄 끝  -->
+              <!-- 다섯번째 줄 -->
+              <tr>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">영화코드</label>
+                </th>
+                <td colspan="2">
+                  <ul class="footer-button-plus">
+                    <input
+                      type="text"
+                      id="file"
+                      class="inputfile"
+                      v-model="movie.moviecd"
+                    />
+                  </ul>
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">개봉(예정)</label>
+                </th>
+                <td colspan="2">
+                  <select
+                    name="개봉예정"
+                    id="prdtstatnm"
+                    v-model="movie.prdtstatnm"
+                  >
+                    <option value="개봉">개봉</option>
+                    <option value="개봉예정">개봉예정</option>
+                  </select>
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">개봉연도</label>
+                </th>
+                <td colspan="2">
+                  <input
+                    type="text"
+                    name="title"
+                    id="prdyear"
+                    class="boxing input-text"
+                    maxlength="100"
+                    v-model="movie.prdtyear"
+                  />
+                </td>
+              </tr>
+              <!-- 다섯번째 줄 끝 -->
             </tbody>
           </table>
           <div class="search">
-            <button type="submit" class="regbtn" style="float: right" @click="saveMovie()">
+            <button
+              type="submit"
+              class="regbtn"
+              style="float: right"
+              @click="saveMovie()"
+            >
               등록하기
             </button>
           </div>
         </div>
+        <!-- 끝 -->
       </div>
     </div>
+    <!-- TODO: 탑버튼 추가_정주희 -->
+    <a class="topbutton" href="#">
+      <img src="@/assets/images_jung/iconUp_48.png" />
+    </a>
   </div>
 </template>
 
 <script>
-import MovieDataService from '@/services/MovieDataService';
+import MovieDataService from "@/services/MovieDataService";
 export default {
   data() {
     return {
       // imgURL: "",
       movie: {
-        id:null,
-        opendt: "",
-        watchgradenm: "",
-        movienm:"",
-        // raiting: "",
-        plot:"",
-        showtm: "",
-        genrenm:"",
-        directors:"",
-        actor:"",
-        posterurln:"",
-        prdtyear:""
+        id: null, //키값
+        moviecd: "", //영화코드
+        opendt: "", //개봉날짜
+        watchgradenm: "전체관람가", //관람등급
+        movienm: "", //영화이름
+        plot: "", //영화줄거리
+        showtm: "", //러닝타임
+        genrenm: "", //장르
+        directors: "", //감독
+        actor: "", //출연진
+        posterurln: "", //포스터
+        prdtyear: "", // 제작년도
+        prdtstatnm: "개봉", // 개봉작 or 개봉예정작
       },
     };
   },
   methods: {
-    saveMovie(){
-      let data={
+    //영화 등록함수
+    saveMovie() {
+      let data = {
         id: this.movie.id,
+        moviecd: this.movie.moviecd,
         opendt: this.movie.opendt,
         watchgradenm: this.movie.watchgradenm,
-        movienm:this.movie.movienm,
-        // raiting: this.movie.raiting,
-        plot:this.movie.plot,
+        movienm: this.movie.movienm,
+        plot: this.movie.plot,
         showtm: this.movie.showtm,
-        genrenm:this.movie.genrenm,
-        directors:this.movie.directors,
-        actor:this.movie.actor,
-        posterurln:this.movie.posterurln,
-        prdtyear:this.movie.prdtyear
-      }
+        genrenm: this.movie.genrenm,
+        directors: this.movie.directors,
+        actor: this.movie.actor,
+        posterurln: this.movie.posterurln,
+        prdtyear: this.movie.prdtyear,
+        prdtstatnm: this.movie.prdtstatnm,
+      };
       MovieDataService.create(data)
-      .then(response => {
-        this.movie.id = response.data.id;
-        console.log(response.data);
-        alert("등록되었습니다.");
-        this.$router.push("/movie-admin");
-      })
-      .catch(e => {
-        console.log(e);
-      })
-    }
-  
+        .then((response) => {
+          this.movie.id = response.data.id;
+          console.log(response.data);
+          alert("등록되었습니다.");
+          this.$router.push("/movie-admin");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .AddMovieBox {
-  background:inherit;
+  background: inherit;
   color: aliceblue;
 }
-th, td {
-    border-bottom: 2px solid aliceblue;
-    padding: 10px;
-  }
-tr{
+th,
+td {
+  border-bottom: 2px solid aliceblue;
+  padding: 10px;
+}
+tr {
   margin-bottom: 1%;
 }
 textarea {
-    width: 100%;
-    height: 6.25em;
-    border: none;
-    resize: none;
-  }
-  .regbtn {
-  background: #DD003F;
-  color:aliceblue;
+  width: 100%;
+  height: 6.25em;
+  border: none;
+  resize: none;
+}
+.regbtn {
+  background: #dd003f;
+  color: aliceblue;
   border-radius: 25px !important;
   box-shadow: none !important;
   width: 10%;
   padding: 1%;
 }
-button{
+button {
   border: none !important;
 }
 button:active {
-  outline: none !important; 
+  outline: none !important;
   box-shadow: none !important;
 }
 .user-hero {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
-  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png")
+    no-repeat;
 }
 h4 {
   color: aliceblue;
   margin-right: 10%;
+}
+
+/* 탑버튼 추가 _정주희 */
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
 }
 </style>

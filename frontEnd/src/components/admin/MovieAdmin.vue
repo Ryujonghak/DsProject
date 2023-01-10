@@ -78,7 +78,7 @@
                     <div class="fiter" style="width:40% !important;">
                     <label>Sort by:</label>
                     <select v-model="selectedValue" v-on:change="getMovieDesc()">
-                      <option value="" selected>전체보기</option>
+                      <!-- <option value="dateAll" >전체보기</option> -->
                       <option value="dateDesc" >개봉일자 최신순</option>
                       <option value="dateAsc" >개봉일자 오래된순</option>
                     </select>
@@ -113,6 +113,10 @@
                         <span>관람등급 : {{ data.watchgradenm }}</span>
                         <span>개봉일자: {{ data.opendt }}</span>
                         장르 : {{ data.genrenm }}
+                      </p>
+                      <p>
+                        개봉예정여부:
+                        <a href="#"> {{ data.prdtstatnm }}</a>
                       </p>
                       <p>
                         감독: <a href="#">{{ data.directors }}</a>
@@ -151,6 +155,10 @@
         </div>
       </div>
     </div>
+    <!-- TODO: 탑버튼 추가_정주희 -->
+    <a class="topbutton" href="#">
+      <img src="@/assets/images_jung/iconUp_48.png"/>
+    </a>
   </div>
 </template>
 
@@ -318,5 +326,16 @@ button:active {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
   background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png") no-repeat;
+}
+
+/* 탑버튼 추가 _정주희 */
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
 }
 </style>

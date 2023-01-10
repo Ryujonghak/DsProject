@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.MoviedetailReservationDto;
 import com.example.backend.model.Reservation;
 import com.example.backend.model.User;
 import com.example.backend.repository.ReservationRepository;
@@ -35,11 +36,29 @@ public class ReservationService {
         return reservationPage;
     }
 
+    public Page<Reservation> findAllByRusername(String rusername, Pageable pageable) {
+        Page<Reservation> reservationPage = reservationRepository.findAllByRusername(rusername, pageable);
+
+        return reservationPage;
+    }
+
+    public List<Reservation> findByReservno(Long reservno) {
+        List<Reservation> reservationList = reservationRepository.findByReservno(reservno);
+
+        return reservationList;
+    }
+
+    public List<MoviedetailReservationDto> ResList(Long reservno){
+        List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationRepository.ResList(reservno);
+
+        return moviedetailReservationDtoList;
+    }
+
     public Reservation save(String username, Reservation reservation) {
 //        현재 로그인중인 계정 정보를 상입
-//        Optional<User> optionalUser = userRepository.findByUsername(username);
-//        User user = optionalUser.get();
-//        reservation.setUser(user);
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        User user = optionalUser.get();
+        reservation.setUser(user);
 
         Reservation newReservation = reservationRepository.save(reservation);
 

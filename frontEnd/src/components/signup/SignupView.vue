@@ -95,7 +95,7 @@
           v-model="user.email"
             id="signup-email"
             type="email"
-            placeholder="이메일양식(@)을 입력하세요"
+            placeholder="이메일양식(@)을 입력하세요(중복 불가)"
           />
         </span>
       </div>
@@ -108,7 +108,7 @@
             class="signup-input"
             style="width: 100%; margin: 10px 0px 0px 0px"
           >
-            <input id="signup-phone" type="text" placeholder="전화번호 입력" 
+            <input id="signup-phone" type="text" placeholder="01012341234 형식으로 입력하세요(-제외)" 
             v-model="user.phone"/>
           </span>
         </div>
@@ -202,7 +202,7 @@ export default {
           .then((response) => {
             this.message = response.message;
             this.successful = true;
-            alert("회원가입이 완료되었습니다.홈으로 이동됩니다")
+            alert("회원가입이 완료되었습니다. 홈으로 이동됩니다")
             this.user = new User();
             this.$router.push("/");
           })

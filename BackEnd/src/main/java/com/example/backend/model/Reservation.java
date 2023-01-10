@@ -37,12 +37,16 @@ public class Reservation extends BaseTimeEntity {
     @Column
     private Long reservno;
 
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "username")
-//    @JsonBackReference
-//    private User user;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "username")
+    @JsonBackReference
+    private User user;
+
     @Column
-    private String username;
+    private String name;
+
+    @Column
+    private String rusername;
 
     @Column
 //    예매번호
@@ -72,18 +76,20 @@ public class Reservation extends BaseTimeEntity {
     private String location;
 
     @Column
+//    영화 상영관
+    private String seat;
+
+    @Column
+//    영화 상영관
+    private String starttime;
+
+    @Column
+//    영화 상영관
+    private String endtime;
+
+    @Column
 //    스케쥴 넘버
     private Long scno;
 }
-
-//    RESERVNO    NUMBER PRIMARY KEY,
-//    USERNAME    VARCHAR2(255),
-//    SCHEDULENO  NUMBER,
-//    MOVIECD     VARCHAR2(255),
-//    MOVIENM     VARCHAR2(255),
-//    RCOUNT      NUMBER,
-//    PRICE       NUMBER,
-//    PAIDDATE    DATE
-
 
 
