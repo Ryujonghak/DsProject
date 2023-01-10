@@ -718,11 +718,9 @@
                         >
                           상영시간
                         </p>
-                        <button
-                          v-for="(item, index) in schedule2"
-                          :key="index"
-                          v-show="time1"
-                          @click="selectedtime(item.starttime)"
+                        <!-- 첫번째 시간 -->
+                        <div
+                          class="col-xs-3"
                           style="
                             width: 70px;
                             height: 80px;
@@ -734,36 +732,125 @@
                           "
                         >
                           <p style="color: white; margin-bottom: 10px">2D</p>
-                          <h4 class="selected-btn">{{ item.starttime }}</h4>
-                        </button>
-
-                        <button
-                          v-show="!time1"
-                          @click="unselectedtime()"
-                          style="
-                            width: 70px;
-                            border-radius: 20px;
-                            height: 80px;
-                            float: left;
-                            border: 0;
-                            background-color: black;
-                            margin-right: 5px;
-                            margin-top: 5px;
-                          "
-                        >
-                          <p style="color: white; margin-bottom: 10px">2D</p>
-                          <h4
+                          <button
+                            id="first-div"
+                            v-if="schedule_1 != null"
+                            @click="
+                              [selectedtime(schedule_1.starttime), coloredBtn()]
+                            "
                             style="
                               color: black;
-                              padding: 9px 22px 9px 9px;
-                              margin-left: 3px;
-                              background-color: white;
-                              width: 55px;
+                              font-family: 'Dosis', sans-serif;
+                              font-weight: bold;
+                              font-size: 18px;
+                              margin-top: 15px;
+                              border-radius: 9px;
+                              border: none;
                             "
                           >
-                            {{ ticketinfo.tickettime }}
-                          </h4>
-                        </button>
+                            {{ schedule_1.starttime }}
+                          </button>
+                        </div>
+                        <!-- 두번째 시간 -->
+                        <div
+                          class="col-xs-3"
+                          style="
+                            width: 70px;
+                            height: 80px;
+                            float: left;
+                            border: 0;
+                            background-color: black;
+                            margin-right: 5px;
+                            margin-top: 5px;
+                          "
+                        >
+                          <p style="color: white; margin-bottom: 10px">2D</p>
+                          <button
+                            id="second-div"
+                            v-if="schedule_2 != null"
+                            @click="
+                              [selectedtime(schedule_2.starttime), coloredBtn()]
+                            "
+                            style="
+                              color: black;
+                              font-family: 'Dosis', sans-serif;
+                              font-weight: bold;
+                              font-size: 18px;
+                              margin-top: 15px;
+                              border-radius: 9px;
+                              border: none;
+                            "
+                          >
+                            {{ schedule_2.starttime }}
+                          </button>
+                        </div>
+                        <!-- 세번째 시간 -->
+                        <div
+                          class="col-xs-3"
+                          style="
+                            width: 70px;
+                            height: 80px;
+                            float: left;
+                            border: 0;
+                            background-color: black;
+                            margin-right: 5px;
+                            margin-top: 5px;
+                          "
+                        >
+                          <p style="color: white; margin-bottom: 10px">2D</p>
+                          <button
+                            id="third-div"
+                            v-if="schedule_3 != null"
+                            @click="
+                              [selectedtime(schedule_3.starttime), coloredBtn()]
+                            "
+                            style="
+                              color: black;
+                              font-family: 'Dosis', sans-serif;
+                              font-weight: bold;
+                              font-size: 18px;
+                              margin-top: 15px;
+                              border-radius: 9px;
+                              border: none;
+                            "
+                          >
+                            {{ schedule_3.starttime }}
+                          </button>
+                        </div>
+                        <!-- 네번째 시간 -->
+                        <div
+                          class="col-xs-3"
+                          style="
+                            width: 70px;
+                            height: 80px;
+                            float: left;
+                            border: 0;
+                            background-color: black;
+                            margin-right: 5px;
+                            margin-top: 5px;
+                          "
+                        >
+                          <p style="color: white; margin-bottom: 10px">2D</p>
+                          <button
+                            id="fourth-div"
+                            v-if="schedule_4 != null"
+                            @click="
+                              [selectedtime(schedule_4.starttime), coloredBtn()]
+                            "
+                            style="
+                              color: black;
+                              font-family: 'Dosis', sans-serif;
+                              font-weight: bold;
+                              font-size: 18px;
+                              margin-top: 15px;
+                              border-radius: 9px;
+                              border: none;
+                            "
+                          >
+                            {{ schedule_4.starttime }}
+                          </button>
+                        </div>
+                      </div>
                       </div>
                       <div
                         v-show="모달"
