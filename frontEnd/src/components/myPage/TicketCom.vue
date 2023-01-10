@@ -127,7 +127,7 @@
                           <div class="mv-item-infor">
                             <h6>
                               <router-link :to="'/allMovie/' + data.moviecd">
-                              {{ data.movienm }}
+                              {{ data.movienm }} (결제일:{{ data.paiddate }})
                               </router-link>
                             </h6>
                             <p class="rate">
@@ -195,7 +195,7 @@
             <!-- TODO: 이 부분은 추후 삭제!!!!!!!!!!!!!!!!!!!!!!! -->
             <div class="watchedArea">
               <div class="topbar-filter user">
-                <p>나의 관람한 영화 --> 내정보의 나의 아카이브로 통합하기. 이 페이지는 관람할 영화만 뜨도록 <span>{{ watchedMovie }}</span> in total</p>
+                <p>나의 예매내역 --> 이 탭 삭제하기. 마이페이지 아카이브에 넣기.  or 원래는 이 공간에 모든 예매내역 나옴(상영전/후) 페이징 부딪힌대서 분리하는거라... <span>{{ watchedMovie }}</span> in total</p>
                 <select>
                   <option value="range">-- 2022년 --</option>
                   <option value="saab">-- 2021년 --</option>

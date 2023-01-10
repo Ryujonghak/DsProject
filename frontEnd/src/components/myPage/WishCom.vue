@@ -176,7 +176,8 @@ export default {
       message: "",
       movie: [],
       totalMovie: 0,
-      opendt: null,
+      opendt: "20",
+      
 
       //페이징을 위한 변수 정의
       // page: 1,
