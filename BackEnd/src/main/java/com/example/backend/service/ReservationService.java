@@ -54,6 +54,12 @@ public class ReservationService {
         return moviedetailReservationDtoList;
     }
 
+    public Page<MoviedetailReservationDto> ResPage(Long reservno, Pageable pageable){
+        Page<MoviedetailReservationDto> moviedetailReservationDtoPage = reservationRepository.ResPage(reservno, pageable);
+
+        return moviedetailReservationDtoPage;
+    }
+
     public Reservation save(String username, Reservation reservation) {
 //        현재 로그인중인 계정 정보를 상입
         Optional<User> optionalUser = userRepository.findByUsername(username);

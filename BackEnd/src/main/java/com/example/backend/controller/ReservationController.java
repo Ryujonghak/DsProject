@@ -52,8 +52,8 @@ public class ReservationController {
 
     @GetMapping("/reservation/search")
     public ResponseEntity<Object> findAllByRusername(@RequestParam(required = false) String rusername,
-                                         @RequestParam(defaultValue = "0") int page,
-                                         @RequestParam(defaultValue = "3") int size) {
+                                                     @RequestParam(defaultValue = "0") int page,
+                                                     @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
             Page<Reservation> reservationPage = reservationService.findAllByRusername(rusername, pageable);
@@ -81,7 +81,7 @@ public class ReservationController {
         try {
             List<Reservation> reservationList = reservationService.findByReservno(reservno);
 
-            if(reservationList.isEmpty()) {
+            if (reservationList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
                 return new ResponseEntity<>(reservationList, HttpStatus.OK);
@@ -97,10 +97,37 @@ public class ReservationController {
         try {
             List<MoviedetailReservationDto> moviedetailReservationDtoList = reservationService.ResList(reservno);
 
-            if(moviedetailReservationDtoList.isEmpty()) {
+            if (moviedetailReservationDtoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
                 return new ResponseEntity<>(moviedetailReservationDtoList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/reservation/mypage")
+    public ResponseEntity<Object> getAll(
+            @RequestParam(required = false) Long reservno,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size) {
+        try {
+            Pageable pageable = PageRequest.of(page, size);
+            Page<MoviedetailReservationDto> reservationPage = reservationService.ResPage(reservno, pageable);
+
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("reservation", reservationPage.getContent());
+            response.put("currentPage", reservationPage.getNumber());
+            response.put("totalItems", reservationPage.getTotalElements());
+            response.put("totalPages", reservationPage.getTotalPages());
+
+            if (reservationPage.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(response, HttpStatus.OK);
             }
         } catch (Exception e) {
             log.debug(e.getMessage());
@@ -143,7 +170,7 @@ public class ReservationController {
     public ResponseEntity<Object> delete(@PathVariable Long reservno) {
         try {
             boolean delSuccess = reservationService.removeById(reservno);
-            if(delSuccess) {
+            if (delSuccess) {
 //                삭제 성공시
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {
