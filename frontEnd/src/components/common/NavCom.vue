@@ -268,7 +268,7 @@
             <!-- 로고 -->
             <div class="col-xs-2">
               <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header" id="back-to-top">
+              <div class="navbar-header" >
                 <div
                   class="navbar-toggle"
                   data-toggle="collapse"
