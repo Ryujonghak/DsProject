@@ -95,6 +95,7 @@
                     <col style="width: 15%" />
                     <col style="width: 55%" />
                     <col style="width: 15%" />
+                    <col style="width: 15%" />
                   </colgroup>
                   <thead>
                     <tr>
@@ -102,6 +103,7 @@
                       <th scope="col">영화명</th>
                       <th scope="col">작성자 ID</th>
                       <th scope="col">리뷰</th>
+                      <th scope="col">등록시간</th>
                       <th scope="col">Delete Btn</th>
                     </tr>
                   </thead>
@@ -114,6 +116,8 @@
                       <td>{{ data.movienm }}</td>
                       <td>{{ data.rwuser }}</td>
                       <td>{{ data.rucontent }}</td>
+                      <td>{{ data.insertTime }}</td>
+
                       <td>
                         <button class="deletebtn" @click="deletebtn(data)">
                           삭제

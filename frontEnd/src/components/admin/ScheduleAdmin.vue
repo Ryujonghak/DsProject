@@ -69,7 +69,7 @@
             <div class="fiter" style="width: 40% !important">
               <label>지점 선택:</label>
               <select v-model="location" v-on:change="getlocation()">
-                <option  value="">전체</option>
+                <option value="1">전체</option>
                 <option value="seomyeon">서면점</option>
                 <option value="centum">센텀점</option>
                 <option value="busan">부산대점</option>
@@ -373,7 +373,6 @@
           <div class="col-md-12">
             <b-pagination
               v-model="page"
-              :total-rows="schedule.totalItems"
               :per-page="pageSize"
               prev-text="Prev"
               next-text="Next"
@@ -395,7 +394,7 @@ export default {
     return {
       board: false,
       schedule: [],
-      location:"",
+      location:"1",
       currentSchedule:{
         scno: null, //키값
         moviecd:"", //영화코드
@@ -471,7 +470,7 @@ export default {
 
     //지점별조회
     getlocation(){
-      if( this.location == ""){
+      if( this.location == "1"){
         this.retrieveSchedule();
       }else{
       ScheduleDataService.findAllByLocation(
@@ -508,6 +507,7 @@ export default {
           console.log(response.data);
           alert("등록되었습니다.");
           this.retrieveSchedule();
+          this.regSchedule = false;
         })
         .catch((e) => {
           console.log(e);
