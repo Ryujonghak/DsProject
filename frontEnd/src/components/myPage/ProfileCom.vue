@@ -131,7 +131,7 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="form-style-1 user-pro" action="">
               <form action="" class="user">
-                <h4>프로필 수정</h4>
+                <h4>프로필</h4>
                 <div class="row">
                   <div class="col-md-6 form-it">
                     <label>이름</label>
@@ -192,7 +192,7 @@
 
               <!-- 비밀번호 수정 -->
               <form action="" class="password">
-                <h4>비밀번호 수정</h4>
+                <h4>비밀번호</h4>
                 <div class="row">
                   <div class="col-md-6 form-it">
                     <label>비밀번호 확인용 질문</label>
