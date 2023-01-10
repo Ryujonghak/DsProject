@@ -530,7 +530,7 @@ export default {
           // alert(JSON.stringify(test));
         })
         .catch((e) => {
-          alert("리뷰 실패");
+          // alert("리뷰 실패");
           console.log(e);
         });
     },
@@ -570,9 +570,6 @@ export default {
       this.overview = false;
       this.reviews = true;
       this.media = false;
-      // alert(this.movie.plot)
-      // window.location.reload();
-      // console.log(this.movie)
     },
     toMedia() {
       this.overview = false;
@@ -614,7 +611,7 @@ export default {
     },
     likeSave() {
       if (this.wishlist.username == null) {
-        alert("get");
+        // alert("get");
         this.wishlist = new Wishlist();
         this.wishlist.username = this.$store.state.auth.user.username;
         this.wishlist.moviecd = this.$route.params.moviecd;
@@ -627,22 +624,22 @@ export default {
           .then((res) => {
             this.wishlist = res.data;
             console.log("wishlist: ", this.wishlist);
-            alert("create");
+            // alert("create");
             // this.getWishlist();
           })
           .catch((err) => {
-            alert("찜 하기 에러");
+            // alert("찜 하기 에러");
             console.log(err);
           });
       } else {
         WishlistDataService.delete(this.wishlist.wid)
           .then((res) => {
             console.log(res.data);
-            alert("Delete");
+            // alert("Delete");
             this.getWishlist();
           })
           .catch((err) => {
-            alert("찜 지우기 에러");
+            // alert("찜 지우기 에러");
             console.log(err);
           });
       }
