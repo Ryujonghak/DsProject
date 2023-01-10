@@ -128,9 +128,8 @@
                           :key="index"
                         >
                           <!-- todo) 이미지크기...  -->
-                          <img :src="data.posterurln" alt="poster" />
+                          <img src="@/assets/images_choi/Views/choi/AllMovie/test_image.jpeg" alt="poster" />
                           <div class="mv-item-infor">
-                           
                             <div>
                               <div class="col-xs-8">
                                 <h6>
@@ -182,9 +181,9 @@
                                 관람극장
                               </p>
                               <p class="col-xs-6">
-                                {{ data.theaterId }}
+                                {{ data.location }}
                                 {{ data.screen }}
-                                {{ data.startTime }}
+                                {{ data.starttime }}
                               </p>
                             </div>
                             <div class="col-xs-12">
@@ -192,11 +191,7 @@
                                 관람좌석
                               </p>
                               <p class="col-xs-6">
-                                {{ data.seatNo1 }}
-                                {{ data.seatNo2 }}
-                                {{ data.seatNo3 }}
-                                {{ data.seatNo4 }}
-                                {{ data.seatNo5 }}
+                                {{ data.seat }}
                               </p>
                             </div>
                             <p class="describe col-xs-12"></p>
@@ -220,6 +215,82 @@
                             </div>
                           </div>
                         </div>
+
+
+                           <!-- 예매한 영화 하드코딩 -->
+                           <div class="movie-item-style-2">
+                          <!-- todo) 이미지크기...  -->
+                          <img src="@/assets/images_jung/movie-theater02.jpg" alt="">
+                          <div class="mv-item-infor">
+                            <div>
+                              <div class="col-xs-8">
+                                <h6>
+                                    영웅
+                                </h6>
+                                <p class="rate">
+                                  <!-- 네이버 평점 -->
+                                  <i class="ion-android-star"></i
+                                  ><span>8</span> /10
+                                </p>
+                                <p>감독: 김영웅</p>
+                                <p class="describe">
+                                  상영시간: 120 분
+                                  <a>12세관람가</a>
+                                </p>
+                              </div>
+                              <div class="col-xs-4">
+                                  <div class="col-xs-8">
+                                    <div class="movie-item-style-2">
+                                        <button>리뷰 GO</button>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                예매번호
+                              </p>
+                              <p class="col-xs-6"> 20230110001 </p>
+                            </div>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                상영날짜
+                              </p>
+                              <p class="col-xs-6">20230111</p>
+                            </div>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                관람극장
+                              </p>
+                              <p class="col-xs-6"> 서면 18:00
+                              </p>
+                            </div>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                관람좌석
+                              </p>
+                              <p class="col-xs-6">
+                                H23
+                              </p>
+                            </div>
+                            <p class="describe col-xs-12"></p>
+                            <div class="col-xs-12">
+                              <p class="movie-detail-content col-xs-4">
+                                결제금액
+                              </p>
+                              <p class="col-xs-4"> 20000원 ( 10000 x 2 )
+                              </p>
+                              <!-- TODO: 예매취소 버튼 - 클릭이벤트 -->
+                              <div class="col-xs-4">
+                                <a href="#" class="redbtn" @click="deleteTicket"
+                                  >예매취소</a
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -391,6 +462,7 @@ export default {
 
 .movie-item-style-2 {
   padding-top: 20px;
+  padding-bottom: 50px;
 }
 
 .blank {

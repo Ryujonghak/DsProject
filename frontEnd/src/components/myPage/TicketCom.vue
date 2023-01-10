@@ -144,32 +144,32 @@
                               <p class="movie-detail-content col-xs-4">
                                 예매번호
                               </p>
-                              <p class="col-xs-6">{{ watchedMovie.reservNo }}</p>
+                              <p class="col-xs-6">{{ watchedMovie.reservno }}</p>
                             </div>
                             <div class="col-xs-12">
                               <p class="movie-detail-content col-xs-4">
                                 상영날짜
                               </p>
-                              <p class="col-xs-6">{{ watchedMovie.scheNo }}</p>
+                              <p class="col-xs-6"> {{ data.startday }}</p>
                             </div>
                             <div class="col-xs-12">
                               <p class="movie-detail-content col-xs-4">
                                 관람극장
                               </p>
-                              <p class="col-xs-6">{{ watchedMovie.theaterId }} {{ watchedMovie.screen }} {{ watchedMovie.startTime }}</p>
+                              <p>{{ data.location }}<span class="time sm-text">{{ data.starttime }} ~ {{ data.endtime }}</span></p>
                             </div>
                             <div class="col-xs-12">
                               <p class="movie-detail-content col-xs-4">
                                 관람좌석
                               </p>
-                              <p class="col-xs-6">{{ watchedMovie.seatNo1 }} {{ watchedMovie.seatNo2 }} {{ watchedMovie.seatNo3 }} {{ watchedMovie.seatNo4 }} {{ watchedMovie.seatNo5 }}</p>
+                              <p class="col-xs-6">{{ data.seat }}</p>
                             </div>
                             <p class="describe col-xs-12"></p>
                             <div class="col-xs-12">
                               <p class="movie-detail-content col-xs-4">
                                 결제금액
                               </p>
-                              <p class="col-xs-4">{{watchedMovie.rcount * watchedMovie.price}}원 ( {{ watchedMovie.rcount }}x{{ watchedMovie.price }} )</p>
+                              <p class="col-xs-4">{{data.rcount * data.price}}원 ( {{ data.rcount }}x{{ data.price }} )</p>
                               <!-- TODO: 예매취소 버튼 - 클릭이벤트 -->
                               <div class="col-xs-4">
                                 <a href="#" class="redbtn" @click="deleteTicket"
@@ -179,65 +179,7 @@
                             </div>
                           </div>
                         </div>
-                        <!-- 예매한 영화 2 -->
-                        <div class="movie-item-style-2">
-                          <!-- todo) 이미지크기...  -->
-                          <img :src="watchedMovie.posterURL" alt="poster" />
-                          <div class="mv-item-infor">
-                            <h6>
-                              <!-- todo) 영화 상세보기 링크 변경 -->
-                              <a href="moviesingle.html"
-                                >{{ watchedMovie.movieNm }} <span>({{ watchedMovie.openDt }})</span></a
-                              >
-                            </h6>
-                            <p class="rate">
-                              <i class="ion-android-star"></i
-                              ><span>{{ watchedMovie.rating }}</span> /5
-                            </p>
-                            <p>감독: {{ watchedMovie.directors }}</p>
-                            <p class="describe">
-                              상영시간: {{ watchedMovie.showTm }}분 <a>{{ watchedMovie.watchGradeNm}}</a>
-                            </p>
-
-                            <div class="col-xs-12">
-                              <p class="movie-detail-content col-xs-4">
-                                예매번호
-                              </p>
-                              <p class="col-xs-6">{{ watchedMovie.reservNo }}</p>
-                            </div>
-                            <div class="col-xs-12">
-                              <p class="movie-detail-content col-xs-4">
-                                상영날짜
-                              </p>
-                              <p class="col-xs-6">{{ watchedMovie.scheNo }}</p>
-                            </div>
-                            <div class="col-xs-12">
-                              <p class="movie-detail-content col-xs-4">
-                                관람극장
-                              </p>
-                              <p class="col-xs-6">{{ watchedMovie.theaterId }} {{ watchedMovie.screen }} {{ watchedMovie.startTime }}</p>
-                            </div>
-                            <div class="col-xs-12">
-                              <p class="movie-detail-content col-xs-4">
-                                관람좌석
-                              </p>
-                              <p class="col-xs-6">{{ watchedMovie.seatNo1 }} {{ watchedMovie.seatNo2 }} {{ watchedMovie.seatNo3 }} {{ watchedMovie.seatNo4 }} {{ watchedMovie.seatNo5 }}</p>
-                            </div>
-                            <p class="describe col-xs-12"></p>
-                            <div class="col-xs-12">
-                              <p class="movie-detail-content col-xs-4">
-                                결제금액
-                              </p>
-                              <p class="col-xs-4">{{watchedMovie.cnt * watchedMovie.price}}원 ( {{ watchedMovie.cnt }}x{{ watchedMovie.price }} )</p>
-                              <!-- TODO: 예매취소 버튼 - 클릭이벤트 -->
-                              <div class="col-xs-4">
-                                <a href="#" class="redbtn" @click="deleteTicket"
-                                  >예매취소</a
-                                >
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                  
                       </div>
                     </div>
                   </div>
@@ -250,7 +192,7 @@
               <div class="blank"></div>
             </div>
 
-            <!-- TODO: 이 부분은 추후 삭제!!!!!! -->
+            <!-- TODO: 이 부분은 추후 삭제!!!!!!!!!!!!!!!!!!!!!!! -->
             <div class="watchedArea">
               <div class="topbar-filter user">
                 <p>나의 관람한 영화 --> 내정보의 나의 아카이브로 통합하기. 이 페이지는 관람할 영화만 뜨도록 <span>{{ watchedMovie }}</span> in total</p>
@@ -281,7 +223,8 @@
                       <br />
                       <span class="time sm">{{ data.theaterId }} {{ data.screen }} {{ data.cnt }}명</span>
                       <br />
-                      <span class="time sm-text">{{ data.startTime }} ~ {{ data.endTime }}</span>
+                      <p><span class="time sm-text"> 18:00 ~ 20:00</span></p>
+                      <!-- <span class="time sm-text">{{ data.startTime }} ~ {{ data.endTime }}</span> -->
                     </div>
                   </div>
                   <div class="col-xs-2">
@@ -581,13 +524,19 @@ export default {
 
 <style scoped>
 
+.a.redbtn{
+  height: 30px;
+}
+
 .movie-item-style-2 .mv-item-infor .describe {
   width: 530px;
 }
 
 
 .movie-item-style-2 {
+  height: 360px;
   padding-top: 20px;
+  padding-bottom: 50px;
 }
 
 .blank {
