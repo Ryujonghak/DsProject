@@ -52,6 +52,9 @@
                     </ul>
                   </li>
                   <li>
+                    <router-link to="/schedule-admin">스케쥴 관리</router-link>
+                  </li>
+                  <li>
                     <router-link to="/payment-admin">예매 내역</router-link>
                   </li>
                 </ul>
@@ -265,8 +268,7 @@ button:active {
 .user-hero {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
-  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png")
-    no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test16.png") no-repeat;
 }
 //셀렉트박스 width 조정  icon 수정
 .topbar-filter select{

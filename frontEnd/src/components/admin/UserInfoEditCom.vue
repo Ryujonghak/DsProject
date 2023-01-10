@@ -51,6 +51,9 @@
                     </ul>
                   </li>
                   <li>
+                    <router-link to="/schedule-admin">스케쥴 관리</router-link>
+                  </li>
+                  <li>
                     <router-link to="/payment-admin">예매 내역</router-link>
                   </li>
                 </ul>
