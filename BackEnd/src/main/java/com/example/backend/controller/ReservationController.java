@@ -109,7 +109,7 @@ public class ReservationController {
     }
 
     @GetMapping("/reservation/mypage")
-    public ResponseEntity<Object> getAll(
+    public ResponseEntity<Object> ResPage(
             @RequestParam(required = false) Long reservno,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size) {

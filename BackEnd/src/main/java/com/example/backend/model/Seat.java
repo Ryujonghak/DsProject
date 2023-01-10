@@ -26,17 +26,10 @@ import javax.persistence.*;
 //@Where(clause = "DELETE_YN = 'N'")
 //@SQLDelete(sql = "UPDATE TB_SEAT SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE SEATPOSITION = ?")
 public class Seat {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_SEAT_GENERATOR")
-//    @Column(columnDefinition = "NUMBER")
-//    private Integer sno;
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_SEAT_GENERATOR")
     @Column(columnDefinition = "NUMBER")
     private Integer sno;
-
 
     @Column(columnDefinition = "VARCHAR2(4)", name = "SEATPOSITION")
     private String seatposition;
