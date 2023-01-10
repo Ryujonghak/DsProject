@@ -1,3 +1,4 @@
+<script src="../../model/Seat.js"></script>
 <template>
   <div>
     <div style="background-color: black; position:relative;" class="page-single movie_list">
@@ -707,8 +708,10 @@ import BookingService from "@/services/BookingService";
 import custom from "@/assets/js/custom";
 import Reservation from "@/model/Reservation";
 // import ReservationDataService from "@/services/ReservationDataService";
-import ScheduleDataService from "@/services/ScheduleDataService"
-// import SeatDataService from "@/services/SeatDataService"
+import ScheduleDataService from "@/services/ScheduleDataService";
+import SeatDataService from "@/services/SeatDataService";
+import Seat from "@/model/Seat.js";
+
 
 export default {
   props: ["movieProps2"],
@@ -803,7 +806,7 @@ export default {
       // selectedseata: [1,1,1,1,1,1,1,1,1,1,1,1,1,1]
       selects99: [],
 
-      Seat: [], // data2에 있는 좌석데이터를 담는곳
+      Seat: new Seat(),
 
       selects998: ["1A1", "N"], // data2에 있는 좌석데이터를 담는곳 센텀시티
       selects903: ["N"], // 좌석 상태를 날리는 배열 좌석예매할때쓰임
@@ -909,6 +912,7 @@ export default {
       .then((response) => {
         this.seattable = response.data;
         console.log(response.data)
+        this.getSeatScno(this.seattable[0].scno);
       })
       .catch(error =>{
         console.log(error);
@@ -916,6 +920,17 @@ export default {
     },
     unselectedtime() {
       this.time1 = !this.time1;
+    },
+    getSeatScno(scno) {
+      SeatDataService.getScno(scno)
+      .then(response => {
+        this.seat = response.data;
+        console.log(this.seat);
+      })
+          .catch(error => {
+            console.log(error);
+          })
+
     },
 
     colorChange(item){
