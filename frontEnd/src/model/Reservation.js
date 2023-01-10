@@ -25,7 +25,7 @@ paiddate,
 location,
 seat,
 starttime,
-emdtime,
+endtime,
 // --     스케쥴 id
 scno
     ) {
@@ -42,7 +42,7 @@ scno
         this.location = location;
         this.seat = seat;
         this.starttime = starttime;
-        this.emdtime = emdtime;
+        this.endtime = emdtime;
         this.scno = scno;
     }
 }

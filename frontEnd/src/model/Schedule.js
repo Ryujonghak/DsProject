@@ -9,6 +9,7 @@ export default class Schedule {
         starttime,
         endtday,
         endtime,
+        location,
         tid,
         sno
     ) {
@@ -20,6 +21,7 @@ export default class Schedule {
         this.starttime = starttime;
         this.endtday = endtday;
         this.endtime = endtime;
+        this.location = location;
         this.tid = tid;
         this.sno = sno;
     }
