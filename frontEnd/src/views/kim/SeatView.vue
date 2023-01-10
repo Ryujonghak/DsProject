@@ -201,18 +201,20 @@
                             style="width: 330px;  margin-bottom: 0; color: gray;  padding: 15px 0 5px 0;  font-size: 16px; font-weight: bold; color: white; border-bottom: 1px solid gray;">
                           상영시간
                         </p>
-                        <button v-for="(item,index) in schedule2" :key="index" v-show="시간1"
-                                @click="selectedtime(item.starttime)" 
-                                style="width: 70px;  height: 80px; float: left; border: 0;background-color: black; margin-right: 5px; margin-top: 5px;">
+                        <button v-for="(item,index) in schedule2" :key="index" v-show="time1"
+                          @click="selectedtime(item.starttime)" 
+                          style="width: 70px;  height: 80px; float: left; border: 0;background-color: black; margin-right: 5px; margin-top: 5px;">
                           <p style="color: white;margin-bottom: 10px;">2D</p>
                           <h4 style="color: white;padding: 9px 24px 9px 9px; margin-left: 3px;">{{ item.starttime }}</h4>
                         </button>
 
-                        <button v-show="!시간1" @click="unselectedtime()"
-                        style="width: 70px; border-radius: 20px; height: 80px; float: left; border: 0;background-color:black;  margin-right: 5px;margin-top: 5px;">
-                        <p style="color: white;margin-bottom: 10px;">2D</p>
-                        <h4 style="color: black;padding: 9px 22px 9px 9px; margin-left: 3px; background-color: white; width: 55px; ">{{ ticketinfor.tickettime }}</h4>
-                        </button>   
+                        <button v-show="!time1" @click="unselectedtime()"
+                          style="width: 70px; border-radius: 20px; height: 80px; float: left; border: 0;background-color:black;  margin-right: 5px;margin-top: 5px;">
+                          <p style="color: white;margin-bottom: 10px;">2D</p>
+                          <h4 style="color: black;padding: 9px 22px 9px 9px; margin-left: 3px; background-color: white; width: 55px; ">{{ ticketinfor.tickettime }}</h4>
+                        </button>
+
+                        
 
 
 
@@ -775,7 +777,7 @@ export default {
       }, // v-bind  : 색변경
 
       schedule: [],
-
+      selected9 : "", // 이거 라디오버튼 가지고 온거라 그럼
 
       day1: false,
       day2: true,
@@ -795,7 +797,7 @@ export default {
 
 
       시간: ["16:00", "19:30"], // 나중에 테스트 할 시간 데이터
-      시간1: true,
+      time1: true,
       시간2: true,
 
       selected: [], // 선택된 좌석 담는 배열
@@ -854,6 +856,7 @@ export default {
     },
 
     cinema(value) {
+      this.time1 = true;
       if (value == 'centum') {
       this.ticketinfor.cinema = "센텀시티";
       this.defaultcinema = 'centum';
@@ -887,12 +890,18 @@ export default {
     selectedtime(value) {                             // 선택된 시간값을 받음
       this.ticketinfor.tickettime = value;          // 선택된 시간을 티켓 정보에 넣음
       console.log(this.ticketinfor.tickettime);
-      this.시간1 = !this.시간1;
+      this.time1 = !this.time1;
       
     },
-
     unselectedtime() {
-      this.시간1 = !this.시간1;
+      this.time1 = !this.time1;
+    },
+
+    colorChange(item){
+    this.schedule2.forEach(el => {
+        el.clicked = false;
+      });
+      item.clicked = true;
     },
 
 
