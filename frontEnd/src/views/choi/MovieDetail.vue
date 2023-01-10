@@ -411,6 +411,10 @@
     <!-- <div >
       <SeatView :movieProps2="movie" />
     </div> -->
+    <!-- TODO: 탑버튼 추가_정주희 -->
+    <a class="topbutton" href="#">
+      <img src="@/assets/images_jung/iconUp_48.png"/>
+    </a>
   </div>
 </template>
 
@@ -849,4 +853,16 @@ export default {
 }
 
 /* 부모를 벗어나지 않고 내부 이미지만 확대 */
+
+
+/* TODO: 탑버튼 추가 _정주희*/
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
+}
 </style>

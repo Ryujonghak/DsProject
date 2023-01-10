@@ -432,7 +432,7 @@ export default {
     // 수빈이 회원삭제함수 참고
     // 탈퇴버튼 클릭시 열리는 모달창
     modal(){
-      alert("모달 실행");
+      // alert("모달 실행");
       // this.currentUser = this.user;
       // this.currentUser = data;
 

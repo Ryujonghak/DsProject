@@ -199,7 +199,7 @@
                           </h6>
                         </div>
                         <p>
-                          {{ data.scheNo }} <br />
+                          {{ data.startday }} | {{ data.starttime }} <br />
                           상영시간: {{ data.showtm }}분 <br />
                           감독: {{ data.directors }}
                         </p>

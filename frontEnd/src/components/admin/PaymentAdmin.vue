@@ -51,6 +51,9 @@
                       </li>
                     </ul>
                   </li>
+                  <li>
+                    <router-link to="/schedule-admin">스케쥴 관리</router-link>
+                  </li>
                   <li class="active">
                     <router-link to="/payment-admin">예매 내역</router-link>
                   </li>
@@ -281,8 +284,7 @@ button:active {
 .user-hero {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
-  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png")
-    no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test16.png") no-repeat;
 }
 h4 {
   color: aliceblue;
@@ -298,11 +300,11 @@ h4 {
 .searchbtn{
   box-sizing: border-box;
   border-radius: 4px;
-  border: 1px solid #414141;
-  color: #ffffff !important;
+  border: none !important;
+  color:black !important;
   text-align: center;
   vertical-align: middle;
-  background-color: #414141;
+  background-color: #F5B409;
   display: inline !important;
   padding: 6px 12px;
 }
