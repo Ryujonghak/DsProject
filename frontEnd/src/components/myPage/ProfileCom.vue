@@ -362,7 +362,7 @@ export default {
 
     // 회원정보수정
     updateUser() {
-      alert("updateUser 실행")
+      // alert("updateUser 실행")
       // console.log(this.user);
       console.log("update this.user: ", this.user);
       // if()
@@ -382,7 +382,7 @@ export default {
     },
     // 패스워드 질문 일치여부
     findPwd() {
-      alert("findPwd 실행")
+      // alert("findPwd 실행")
       if (this.answer == this.user.answer) {
         userService
             .getFindByPassword(this.user.username, this.answer)
@@ -402,7 +402,7 @@ export default {
     },
     // 패스워드 변경
     updatePwd() {
-      alert("updatePwd 실행")
+      // alert("updatePwd 실행")
       if(this.password == this.password2) {
         // console.log(this.user);
         console.log("update this.user: ", this.user);
