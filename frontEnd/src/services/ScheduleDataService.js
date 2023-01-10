@@ -34,6 +34,14 @@ class ScheduleDataService {
     delete(scno) {
         return http.delete(`/schedule/${scno}`);
     }
+
+    findAllByLocation(location, page, size) {
+        return http.get(`/schedule/location?location=${location}&page=${page}&size=${size}`)
+    }
+
+    findAllByMovienmContaining(movienm, page, size) {
+        return http.get(`/schedule/movienm?location=${location}&page=${page}&size=${size}`)
+    }
 }
 
 export default new ScheduleDataService();

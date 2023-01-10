@@ -330,7 +330,7 @@ textarea {
 .regbtn {
   background:#F5B409;
   color:black;
-  border-radius: 25px !important;
+  border-radius: 5px !important;
   box-shadow: none !important;
   width: 10%;
   padding: 1%;
