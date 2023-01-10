@@ -3484,6 +3484,10 @@ export default {
         this.Seomyeon = true;
         this.Busan = true;
         this.Theater = 1;
+        this.schedule_1 = null;
+        this.schedule_2 = null;
+        this.schedule_3 = null;
+        this.schedule_4 = null;
       } else if (value == "seomyeon") {
         this.paymentcinema = "서면";
         this.defaultcinema = value;
@@ -3491,6 +3495,10 @@ export default {
         this.Seomyeon = false;
         this.Busan = true;
         this.Theater = 2;
+        this.schedule_1 = null;
+        this.schedule_2 = null;
+        this.schedule_3 = null;
+        this.schedule_4 = null;
       } else if (value == "busan") {
         this.paymentcinema = "부산대";
         this.defaultcinema = "busan";
@@ -3498,6 +3506,10 @@ export default {
         this.Seomyeon = true;
         this.Busan = false;
         this.Theater = 3;
+        this.schedule_1 = null;
+        this.schedule_2 = null;
+        this.schedule_3 = null;
+        this.schedule_4 = null;
       }
       this.getFindAllByMoviecdAndLocationAndStartday();
       this.day1 = false; // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
