@@ -166,9 +166,14 @@
                       ><i class="ion-grid"></i
                     ></a>
                   </div>
+
+                  <div v-if="emptyArchive == true" class="noArchive">
+                    <h3>예매내역이 없습니다.</h3>
+                  </div>
+
                   <!-- 나의 아카이브 내용 시작 -->
                   <!-- TODO: 예매내역 정보 받아오기 :  -->
-                  <div class="flex-wrap-movielist">
+                  <div class="flex-wrap-movielist" v-if="emptyArchive == false">
                     <!-- 아카이브 시작 -->
                     <div class="movie-item-style-2 movie-item-style-1" 
                     v-for="(data, index) in watchedMovie" v-bind:key="index">
@@ -308,6 +313,8 @@ export default {
       watchedMovie: [],   // 예매한 영화
       watchedMovieTotalCount: 0,  // 본 영화 갯수
 
+      emptyArchive: true, // 아카이브 없는지 체크
+
       CurrentUser: {
         email: "",
         password: "",
@@ -381,6 +388,15 @@ export default {
         .catch((err) => console.log(err));
     },
 
+    findArchive() {
+      if(this.wishlist.length == 0) {
+        this.emptyArchive = true;
+      } else {
+        this.emptyArchive = false;
+      }
+      console.log("findArchive", this.watchedMovie);
+    },
+
     // 로그아웃 함수 -> 공통함수 호출
     logout() {
       // this.$store.dispatch("모듈명/함수명")
@@ -407,6 +423,8 @@ export default {
         .then((response) => {
           this.watchedMovie = response.data;
           console.log(response.data);
+          this.findArchive();  // 예매내역(아카이브) 확인함수 추가
+
 
           this.watchedMovieTotalCount = this.watchedMovie.totalItems;
           console.log("this.watchedMovieTotalCount", this.watchedMovieTotalCount);
@@ -472,10 +490,16 @@ export default {
   vertical-align: middle;
 }
 
-/* 환영 글자색 변경 */
+/* 환영, 아카이브없음 글자색 변경 */
 .welcome {
+  color: rgb(221, 252, 56);
+}
+
+.noArchive{
   color:lightslategray;
 }
+
+
 
 /* TODO: 탑버튼 추가 */
 .topbutton{
