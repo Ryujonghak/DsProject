@@ -42,7 +42,7 @@ scno
         this.location = location;
         this.seat = seat;
         this.starttime = starttime;
-        this.endtime = emdtime;
+        this.endtime = endtime;
         this.scno = scno;
     }
 }
