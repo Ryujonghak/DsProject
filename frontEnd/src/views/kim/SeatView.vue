@@ -864,12 +864,14 @@ export default {
       this.Seomyeon = true;
       this.Busan = true;
       this.getFindAllByMoviecdAndLocationAndStartday()
+      this.Theater = 1;
       }else if(value == 'seomyeon'){
       this.ticketinfor.cinema = "서면";
       this.defaultcinema = 'seomyeon';
       this.centum = true;
       this.Seomyeon = false;
       this.Busan = true;
+      this.Theater = 2;
       this.getFindAllByMoviecdAndLocationAndStartday()
       }else{
       this.ticketinfor.cinema = "부산대";             // 티켓정보에 선택한 영화관을 넣음
@@ -877,6 +879,7 @@ export default {
       this.centum = true;
       this.Seomyeon = true;
       this.Busan = false;
+      this.Theater = 3;
       this.getFindAllByMoviecdAndLocationAndStartday()
       }
 
@@ -1113,23 +1116,23 @@ export default {
       }
     },
     
-    // Schedulecreate(){
+    Schedulecreate(){
 
-    //   this.Scheduldata.moviecd = this.data1.moviecd;
-    //   this.Scheduldata.movienm = this.data1.movienm;
-    //   this.Scheduldata.showtm = this.data1.showtm;
-    //   this.Scheduldata.tid = this.Theater;
-    //   this.Scheduldata.starttime = "12:30";
-    //   this.Scheduldata.endtime = "14:10";
+      this.Scheduldata.moviecd = this.data1.moviecd;
+      this.Scheduldata.movienm = this.data1.movienm;
+      this.Scheduldata.showtm = this.data1.showtm;
+      this.Scheduldata.tid = this.Theater;
+      this.Scheduldata.starttime = "12:30";
+      this.Scheduldata.endtime = "14:10";
 
-    //   BookingService.createSchedule(this.Scheduldata)
-    //   .then((response) =>{
-    //     console.log(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   })
-    // },
+      BookingService.createSchedule(this.Scheduldata)
+      .then((response) =>{
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
 
 
     // week(value) {
@@ -1201,103 +1204,65 @@ export default {
       //     console.log(error);
       //   })
       // },
-      // week(value) {
-      //   let temp;
-      //   if(this.ticketinfor.selectedday != null){
-      //     this.ticketinfor.selectedday = '';
-      //   }
-      //   if( value == 'day1'){
-      //       this.오늘 = false;
-      //       this.내일 = true;
-      //       this.요일3 = true;
-      //       this.요일4 = true;
-      //       this.요일5 = true;
-      //         temp = Number(this.dd);
-      //       this.ticketinfor.selectedday = temp;
-      //   }else if ( value == 'day2'){
-      //       this.오늘 = true;
-      //       this.내일 = false;
-      //       this.요일3 = true;
-      //       this.요일4 = true;
-      //       this.요일5 = true;
-      //       temp = Number(this.dd) + 1;
-      //       this.ticketinfor.selectedday = temp;
-      //   }else if ( value == 'day3'){
-      //       this.오늘 = true;
-      //       this.내일 = true;
-      //       this.요일3 = false;
-      //       this.요일4 = true;
-      //       this.요일5 = true;
-      //       temp = Number(this.dd) + 2;
-      //       this.ticketinfor.selectedday = temp;
-      //   }
-      //   else if ( value == 'day4'){
-      //       this.오늘 = true;
-      //       this.내일 = true;
-      //       this.요일3 = true;
-      //       this.요일4 = false;
-      //       this.요일5 = true;
-      //       temp = Number(this.dd) + 3;
-      //       this.ticketinfor.selectedday = temp;
+    week(value) {
+        let temp;
+        if( value == 'day1'){
+            this.day1 = false;
+            this.day2 = true;
+            this.day3 = true;
+            this.day4 = true;
+            this.day5 = true;
+            temp = Number(this.dd);
+            this.ticketinfor.selectedday = temp;
+            this.selectedday = String(this.yy)+String(this.mm)+String(temp);
+            this.getFindAllByMoviecdAndLocationAndStartday();
+        }else if ( value == 'day2'){
+            this.day1 = true;
+            this.day2 = false;
+            this.day3  = true;
+            this.day4  = true;
+            this.day5  = true;
+            temp = Number(this.dd) + 1;
+            this.ticketinfor.selectedday = temp;
+            this.selectedday = String(this.yy)+String(this.mm)+String(temp);
+            this.getFindAllByMoviecdAndLocationAndStartday();
+        }else if ( value == 'day3'){
+            this.day1= true;
+            this.day2= true;
+            this.day3 = false;
+            this.day4 = true;
+            this.day5 = true;
+            temp = Number(this.dd) + 2;
+            this.ticketinfor.selectedday = temp;
+            this.selectedday = String(this.yy)+String(this.mm)+String(temp);
+            this.getFindAllByMoviecdAndLocationAndStartday();
+        }
+        else if ( value == 'day4'){
+            this.day1= true;
+            this.day2= true;
+            this.day3 = true;
+            this.day4 = false;
+            this.day5 = true;
+            temp = Number(this.dd) + 3;
+            this.ticketinfor.selectedday = temp;
+            this.selectedday = String(this.yy)+String(this.mm)+String(temp);
+            this.getFindAllByMoviecdAndLocationAndStartday();
+        }
+        else if (value == 'day5') {
+        this.day1 = true;
+        this.day2 = true;
+        this.day3 = true;  // 버튼 색 변경
+        this.day4 = true;  // 버튼 색 변경
+        this.day5 = false;  // 버튼 색 변경
+        temp = Number(this.dd) + 4;
+        this.ticketinfor.selectedday = temp;
+        this.selectedday = String(this.yy)+String(this.mm)+String(temp);
+        this.getFindAllByMoviecdAndLocationAndStartday();
+      }
 
-      //   }
 
-      //   temp = Number(this.dd) + 1; // 내일 날짜를 티켓 정보에 넣음
-      //   this.ticketinfor.selectedday = temp;
-      // } else if (value == 'day3') {
-      //   this.day1 = true;
-      //   this.day2 = true;
-      //   this.day3 = false;  // 버튼 색 변경
-      //   this.day4 = true;  // 버튼 색 변경
-      //   this.day5 = true;  // 버튼 색 변경
-
-        // let dd3 = this.dd + 2
-        // for (temp2 = 0; temp2 < this.tempschedule.length; temp2++) {
-        //   if (this.tempschedule[temp2].starttime.substr(8, 2) == dd3) {            // ex) 09
-        //     this.scheduletime.push(this.tempschedule[temp2].starttime.substr(11, 5)) // 시간
-
-        //   }
-        // }
-
-      //   temp = Number(this.dd) + 2; // 내일 날짜를 티켓 정보에 넣음
-      //   this.ticketinfor.selectedday = temp;
-      // } else if (value == 'day4') {
-      //   this.day1 = true;
-      //   this.day2 = true;
-      //   this.day3 = true;  // 버튼 색 변경
-      //   this.day4 = false;  // 버튼 색 변경
-      //   this.day5 = true;  // 버튼 색 변경
-
-        // let dd3 = this.dd + 2
-        // for (temp2 = 0; temp2 < this.tempschedule.length; temp2++) {
-        //   if (this.tempschedule[temp2].starttime.substr(8, 2) == dd3) {            // ex) 09
-        //     this.scheduletime.push(this.tempschedule[temp2].starttime.substr(11, 5)) // 시간
-
-        //   }
-        // }
-
-      //   this.ticketinfor.selectedday = temp;
-      // } else if (value == 'day5') {
-      //   this.day1 = true;
-      //   this.day2 = true;
-      //   this.day3 = true;  // 버튼 색 변경
-      //   this.day4 = true;  // 버튼 색 변경
-      //   this.day5 = false;  // 버튼 색 변경
-
-        // let dd3 = this.dd + 2
-        // for (temp2 = 0; temp2 < this.tempschedule.length; temp2++) {
-        //   if (this.tempschedule[temp2].starttime.substr(8, 2) == dd3) {            // ex) 09
-        //     this.scheduletime.push(this.tempschedule[temp2].starttime.substr(11, 5)) // 시간
-
-        //   }
-        // }
-
-    //     this.ticketinfor.selectedday = temp;
-    //   }
-
-    //   this.modalday = false; // 모달글씨 사라짐
-    //   this.modaloff();  // 모달에 전부 false이면 모달이 꺼짐 근데 생각해보니깐 날짜나, 인원을 클릭했으면 사라지게 하면 될듯
-    // },
+      console.log(this.ticketinfor.selectedday);
+    },
     date() {
       var date = new Date();
       this.yy = date.getFullYear(); // 년도
