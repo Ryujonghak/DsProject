@@ -720,7 +720,9 @@ export default {
 
   },
   mounted() {
-    window.scrollTo({top: 2250, behavior: "smooth"});
+    // window.scrollTo({top: 2250, behavior: "smooth"});  // 맥에서 높이 적당함
+    window.scrollTo({top: 2400, behavior: "smooth"});     // 윈도우에서 높이 적당함
+    
     this.selectedday = this.dateY;
     this.defaultcinema = "centum";
     this.paymentcinema = "센텀시티";
@@ -903,7 +905,7 @@ export default {
       this.payment = true;
       this.모달 = false;
       this.좌석 = false;
-      // this.addReservation();
+      this.addReservation();
       this.seatcount();
     },
 
