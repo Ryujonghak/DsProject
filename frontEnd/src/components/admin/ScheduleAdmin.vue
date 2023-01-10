@@ -109,7 +109,8 @@
                   <col style="width: 15%" />
                   <col style="width: 15%" />
                   <col style="width: 15%" />
-                  <col style="width: auto" />
+                  <col style="width: 15%" />
+                  <col style="width: 15%" />
                   <col style="width: 15%" />
                 </colgroup>
                 <thead>
@@ -119,6 +120,7 @@
                     <th scope="col">영화코드</th>
                     <th scope="col">상영날짜</th>
                     <th scope="col">시작시간(지점)</th>
+                    <th scope="col">EDIT</th>
                     <th scope="col">Delete</th>
                   </tr>
                 </thead>
@@ -129,6 +131,7 @@
                     <td>{{ data.moviecd }}</td>
                     <td>{{ data.startday }}</td>
                     <td>{{ data.starttime }} ({{ data.location }})</td>
+                    <td><button class="editbtn" @click="setActiveSchedule(data,index)">EDIT</button></td>
                     <td><button class="deletebtn" @click="deleteSchedule(data)">삭제하기</button></td>
                   </tr>
                 </tbody>
@@ -136,6 +139,120 @@
             </div>
           </div>
           <!--공지사항 테이블 끝  -->
+
+          <!-- 영화 스케쥴 수정 시작 -->
+          <div class="container" v-show="edittable">
+            <h2 style="color:aliceblue; margin-left: 10%;">schedule 수정 테이블</h2>
+          <table class="AddMovieBox" style="margin-top: 5%">
+            <colgroup>
+              <!-- <col style="width: 5%" /> -->
+              <col style="width: 15%" />
+              <col style="width: 10%" />
+              <col style="width: auto" />
+              <col style="width: 15%" />
+              <col style="width: 15%" />
+            </colgroup>
+            <tbody>
+              <!-- 첫번째줄 -->
+              <tr>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="name">영화코드</label>
+                </th>
+                <td colspan="2"  class="adschedule">
+                  <input
+                    type="text"
+                    id="name"
+                    class="input-text boxing"
+                    v-model="editSchedule.moviecd"
+                  
+                  />
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">영화이름</label>
+                </th>
+                <td colspan="2"  class="adschedule">
+                  <input
+                    type="text"
+                    name="title"
+                    id="qnaTitle"
+                    class="boxing input-text"
+                    maxlength="100"
+                    v-model="editSchedule.movienm"
+                  />
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">러닝타임</label>
+                </th>
+                <td colspan="2"  class="adschedule">
+                  <input
+                    type="text"
+                    name="title"
+                    id="qnaTitle"
+                    class="boxing input-text"
+                    maxlength="100"
+                    v-model="editSchedule.showtm"
+                  />
+                </td>
+              </tr>
+              <!-- 첫번째줄 끝 -->
+              <!-- 두번째줄 시작 -->
+              <tr>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="name">상영날짜(6자리)</label>
+                </th>
+                <td colspan="2" class="adschedule">
+                  <input
+                    type="text"
+                    id="name"
+                    class="input-text boxing"
+                    v-model="editSchedule.startday"
+                  />
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">영화시작시간</label>
+                </th>
+                <td colspan="2"  class="adschedule">
+                  <input
+                    type="text"
+                    name="title"
+                    id="qnaTitle"
+                    class="boxing input-text"
+                    maxlength="100"
+                    v-model="editSchedule.starttime"
+                  />
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">지점</label>
+                </th>
+                <td colspan="2"  class="adschedule">
+                  <select style="background:inherit; color:aliceblue" v-model="editSchedule.location">
+                <option value="seomyeon">서면점</option>
+                <option value="centum">센텀점</option>
+                <option value="busan">부산대점</option>
+              </select>
+                </td>
+              </tr>
+              <!-- 두번째줄 끝 -->
+            </tbody>
+          </table>
+          <div class="search">
+            <button
+              type="submit"
+              class="regbtn"
+              style="float: right"
+             @click="changeSchedule()"
+            >
+              수정하기
+            </button>
+          </div>
+        </div>
+          <!-- 영화 스케쥴 수정 끝 -->
 
            <!-- 영화 스케쥴 추가 시작 -->
            <div class="container" v-show="regSchedule">
@@ -253,16 +370,16 @@
 
           <!-- <!— 페이징 + 전체 목록 시작 —> -->
           <!-- <!— 페이징 양식 시작 —> -->
-          <!-- <div class="col-md-12">
+          <div class="col-md-12">
             <b-pagination
               v-model="page"
-              :total-rows="notice.totalItems"
+              :total-rows="schedule.totalItems"
               :per-page="pageSize"
               prev-text="Prev"
               next-text="Next"
               @change="handlePageChange"
             ></b-pagination>
-          </div> -->
+          </div>
           <!-- <!— 페이징 양식 끝 —> -->
           <!-- 필터 페이지네이션 -->
         </div>
@@ -291,6 +408,11 @@ export default {
       },
       //등록 폼 vshow
       regSchedule:false,
+
+      //수정 폼 vshow
+      edittable:false,
+      editSchedule: [],
+      currentIndex: -1,
 
          // 페이징을 위한 변수 정의
          page: 1, // 현재 페이지
@@ -323,6 +445,11 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    },
+
+    handlePageChange(value) {
+      this.page = value; // 매개변수값으로 현재페이지 변경
+      this.retrieveSchedule();
     },
 
     //영화이름조회
@@ -380,6 +507,27 @@ export default {
           this.currentSchedule.scno = response.data.scno;
           console.log(response.data);
           alert("등록되었습니다.");
+          this.retrieveSchedule();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    // 목록을 클릭했을때 현재 객체, 인덱스번호를 저장하는 함수
+    setActiveSchedule(data, index) {
+      this.editSchedule = data;
+      this.currentIndex = index;
+      this.edittable = !this.edittable; // update vshow
+    },
+
+    //스케쥴 수정함수
+    changeSchedule(){
+      this.regSchedule = false;
+      ScheduleDataService.update(this.editSchedule.scno, this.editSchedule)
+      .then((response) => {
+          console.log(response.data);
+          alert("업데이트 되었습니다.");
+          this.edittable=false;
           this.retrieveSchedule();
         })
         .catch((e) => {
@@ -514,5 +662,11 @@ button:active {
 h4 {
   color: aliceblue;
   margin-right: 10%;
+}
+.editbtn{
+  background-color: #f5b409;
+  color: black !important;
+  border-radius: 5px;
+  margin-top: 6%;
 }
 </style>

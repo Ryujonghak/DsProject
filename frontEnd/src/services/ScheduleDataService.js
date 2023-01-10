@@ -29,7 +29,7 @@ class ScheduleDataService {
 
     update(scno, data) {
         console.log(data);
-        return http.put('/schedule/${scno}', data);
+        return http.put(`/schedule/${scno}`, data);
     }
 
     delete(scno) {

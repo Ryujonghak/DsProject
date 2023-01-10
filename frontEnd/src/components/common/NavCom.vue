@@ -397,6 +397,9 @@
                         <router-link to="/board-admin">게시판관리</router-link>
                       </li>
                       <li>
+                        <router-link to="/schedule-admin">스케쥴관리</router-link>
+                      </li>
+                      <li>
                         <router-link to="/payment-admin">예매관리</router-link>
                       </li>
                     </ul>
