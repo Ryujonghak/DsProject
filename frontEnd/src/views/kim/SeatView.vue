@@ -3337,6 +3337,85 @@ export default {
     };
   },
   methods: {
+        // FIXME: 상영시간별 버튼 색상 주기 함수 추가
+        coloredBtn() {
+      var first = document.getElementById("first-div");
+      var second = document.getElementById("second-div");
+      var third = document.getElementById("third-div");
+      var fourth = document.getElementById("fourth-div");
+
+      first.onclick = function () {
+        this.firstCheck = !this.firstCheck;
+        if (this.firstCheck == true) {
+          this.secondCheck = false;
+          this.thirdCheck = false;
+          this.fourthCheck = false;
+          first.style.backgroundColor = "#FFFFFF";
+          second.style.backgroundColor = "grey";
+          third.style.backgroundColor = "grey";
+          fourth.style.backgroundColor = "grey";
+        } else {
+          first.style.backgroundColor = "#FFFFFF";
+          second.style.backgroundColor = "#FFFFFF";
+          third.style.backgroundColor = "#FFFFFF";
+          fourth.style.backgroundColor = "#FFFFFF";
+        }
+      };
+
+      second.onclick = function () {
+        this.secondCheck = !this.secondCheck;
+        if (this.secondCheck == true) {
+          this.firstCheck = false;
+          this.thirdCheck = false;
+          this.fourthCheck = false;
+          first.style.backgroundColor = "grey";
+          second.style.backgroundColor = "#FFFFFF";
+          third.style.backgroundColor = "grey";
+          fourth.style.backgroundColor = "grey";
+        } else {
+          first.style.backgroundColor = "#FFFFFF";
+          second.style.backgroundColor = "#FFFFFF";
+          third.style.backgroundColor = "#FFFFFF";
+          fourth.style.backgroundColor = "#FFFFFF";
+        }
+      };
+
+      third.onclick = function () {
+        this.thirdCheck = !this.thirdCheck;
+        if (this.thirdCheck == true) {
+          this.firstCheck = false;
+          this.secondCheck = false;
+          this.fourthCheck = false;
+          first.style.backgroundColor = "grey";
+          second.style.backgroundColor = "grey";
+          third.style.backgroundColor = "#FFFFFF";
+          fourth.style.backgroundColor = "grey";
+        } else {
+          first.style.backgroundColor = "#FFFFFF";
+          second.style.backgroundColor = "#FFFFFF";
+          third.style.backgroundColor = "#FFFFFF";
+          fourth.style.backgroundColor = "#FFFFFF";
+        }
+      };
+
+      fourth.onclick = function () {
+        this.fourthCheck = !this.fourthCheck;
+        if (this.fourthCheck == true) {
+          this.firstCheck = false;
+          this.secondCheck = false;
+          this.thirdCheck = false;
+          first.style.backgroundColor = "grey";
+          second.style.backgroundColor = "grey";
+          third.style.backgroundColor = "grey";
+          fourth.style.backgroundColor = "#FFFFFF";
+        } else {
+          first.style.backgroundColor = "#FFFFFF";
+          second.style.backgroundColor = "#FFFFFF";
+          third.style.backgroundColor = "#FFFFFF";
+          fourth.style.backgroundColor = "#FFFFFF";
+        }
+      };
+    },
     test99() {
       this.payment = true;
       this.모달 = false;
