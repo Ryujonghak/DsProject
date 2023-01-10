@@ -68,6 +68,9 @@ public class Schedule extends BaseTimeEntity {
     private String endtime;
 
     @Column
+    private String location;
+
+    @Column
     private Long tid;
 
     @Column

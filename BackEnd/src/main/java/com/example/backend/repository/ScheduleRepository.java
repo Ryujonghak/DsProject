@@ -11,8 +11,9 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     List<Schedule> findByScno(Long scno);
 
     List<Schedule> findAllByMoviecd(String moviecd);
+    List<Schedule> findAllByMoviecdAndLocation(String moviecd, String location);
 
-    List<Schedule> findAllByMoviecdAndStartday(String moviecd, String startday);
+    List<Schedule> findAllByMoviecdAndLocationAndStartday(String moviecd, String location, String startday);
 
-    List<Schedule> findByMoviecdAndStartdayAndStarttime(String moviecd, String startday, String starttime);
+    List<Schedule> findByMoviecdAndLocationAndStartdayAndStarttime(String moviecd, String location, String startday, String starttime);
 }
