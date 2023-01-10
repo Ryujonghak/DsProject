@@ -8,8 +8,9 @@
             <router-link to="/">
               <img
                 class="logo"
-                src="../../../public/images/logo8.png"
+                src="@/assets/images_kang/Components/common/Navcom/Logo_test13.png"
                 alt=""
+                style="width:150px;"
             /></router-link>
             <!-- <p>
               5th Avenue st, manhattan<br />

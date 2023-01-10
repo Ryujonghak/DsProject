@@ -52,6 +52,9 @@
                     </ul>
                   </li>
                   <li>
+                    <router-link to="/schedule-admin">스케쥴 관리</router-link>
+                  </li>
+                  <li>
                     <router-link to="/payment-admin">예매 내역</router-link>
                   </li>
                 </ul>
@@ -280,7 +283,7 @@ export default {
 
     //답변 등록하기 버튼 클릭시
     registerAnswer() {
-      if (this.qnaanswer != null) {
+      if (this.qnaanswer != "") {
         this.editQna.qanswer = this.qnaanswer;
         QnaDataService.update(this.editQna.qid, this.editQna)
           .then((response) => {
@@ -296,7 +299,7 @@ export default {
             console.log(e);
           });
       } else {
-        alert("실패");
+        alert("내용을 입력해주세요.");
         this.successAnswer = false;
       }
     },
@@ -360,9 +363,9 @@ textarea {
   // margin-left: 20%;
 }
 .regbtn {
-  background: rgb(255, 255, 0);
+  background: #F5B409;
   color: black;
-  border-radius: 20px;
+  border-radius: 5px;
   vertical-align: middle !important;
 }
 button {
@@ -375,7 +378,7 @@ button:active {
 .successbtn {
   background: rgb(83, 255, 74);
   color: black;
-  border-radius: 20px;
+  border-radius: 5px;
   vertical-align: middle !important;
 }
 .topbar-filter {
@@ -388,9 +391,9 @@ button:active {
     no-repeat;
 }
 .deletebtn {
-  background: red !important;
+  background: #DD003F!important;
   color: aliceblue !important;
-  border-radius: 20px;
+  border-radius: 5px;
   margin-top: 6%;
 }
 .topbar-filter p {
@@ -402,11 +405,13 @@ button:active {
   margin-left:20%;
 }
 .regbtn2{
-  background: rgb(255, 255, 0);
+  background:#F5B409;
   color: black;
-  border-radius: 20px;
+  border-radius: 5px;
   vertical-align: middle !important;
   margin-left: 20% ;
+  width: 100px;
+  height:25px;
 }
 h4 {
   color: aliceblue;

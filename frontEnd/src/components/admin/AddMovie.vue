@@ -328,8 +328,8 @@ textarea {
   resize: none;
 }
 .regbtn {
-  background: #dd003f;
-  color: aliceblue;
+  background:#F5B409;
+  color:black;
   border-radius: 25px !important;
   box-shadow: none !important;
   width: 10%;

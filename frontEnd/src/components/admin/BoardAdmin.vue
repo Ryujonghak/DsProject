@@ -48,6 +48,9 @@
                     </ul>
                   </li>
                   <li>
+                    <router-link to="/schedule-admin">스케쥴 관리</router-link>
+                  </li>
+                  <li>
                     <router-link to="/payment-admin">예매 내역</router-link>
                   </li>
                 </ul>
@@ -369,12 +372,14 @@ export default {
 
     // 글쓰기 버튼 클릭시 글쓰기 테이블나옴
     writeNotice() {
-      this.registerNotice = !this.registerNotice;
       this.update = false;
+      this.registerNotice = !this.registerNotice;
+   
     },
 
     // 등록하기 버튼 클릭시 생성
     createNotice() {
+      if(this.addnotice.ntype !="" &&this.addnotice.ntitle !="" &&this.addnotice.ncontent !="" ){
       let data = {
         ntype: this.addnotice.ntype,
         ntitle: this.addnotice.ntitle,
@@ -391,6 +396,9 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+      }else{
+        alert("내용을 입력해주세요")
+      }
     },
     //왼쪽 메뉴바 slide효과
     boardclick() {
@@ -453,11 +461,11 @@ td {
 }
 .btn_col2 {
   box-sizing: border-box;
-  border-radius: 25px;
+  border-radius: 5px;
   color: black !important;
   text-align: center;
   vertical-align: middle;
-  background: rgb(255, 255, 0);
+  background:#F5B409;
   display: inline !important;
   padding: 1%;
   width: 10%;
@@ -468,7 +476,7 @@ td {
 }
 .btn_col {
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid #414141;
   color: #ffffff !important;
   text-align: center;
@@ -483,8 +491,8 @@ td {
 }
 .editbtn {
   color: black;
-  background: rgb(255, 255, 0);
-  border-radius: 25px;
+  background: #F5B409;
+  border-radius: 5px;
   width: 50%;
 }
 button {
@@ -519,8 +527,8 @@ textarea {
 }
 .delbtn {
   color: black;
-  background: rgb(255, 0, 0);
-  border-radius: 25px;
+  background: #DD003F;
+  border-radius: 5px;
   width: 50%;
   margin-left: 1%;
   margin-top: 6%;

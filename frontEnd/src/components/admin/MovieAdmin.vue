@@ -53,6 +53,9 @@
                     </ul>
                   </li>
                   <li>
+                    <router-link to="/schedule-admin">스케쥴 관리</router-link>
+                  </li>
+                  <li>
                     <router-link to="/payment-admin">예매 내역</router-link>
                   </li>
                 </ul>
@@ -292,9 +295,10 @@ h6 {
 }
 .regbtn {
   // margin-top: 2% !important;
-  background: rgb(255, 255, 0);
+  background: #F5B409;
+  color: black !important;
   width: 10%;
-  border-radius: 25px;
+  border-radius: 5px;
   padding: 1%;
   margin-bottom: 1%;
 }
