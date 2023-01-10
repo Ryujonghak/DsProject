@@ -102,7 +102,11 @@
               </select>
             </div>
 
-            <div class="flex-wrap-movielist">
+            <div v-if="emptyWish == true" class="noWish">
+              <h3>찜한 영화가 없습니다.</h3>
+            </div>
+
+            <div class="flex-wrap-movielist" v-if="emptyWish == false">
               <!-- 상영작 1 -->
               <div
                   class="movie-item-style-2 movie-item-style-1 portfolio-item 2022"
@@ -178,6 +182,8 @@ export default {
       totalMovie: 0,
       opendt: "20",
       
+      emptyWish: true,  
+
 
       //페이징을 위한 변수 정의
       // page: 1,
@@ -199,6 +205,8 @@ export default {
           .then((res) => {
             this.wishlist = res.data;
             this.totalMovie = this.wishlist.length;
+            this.findWish();  // 찜한 내역 확인함수 추가
+
 
             console.log(this.$store.state.auth.user.username);
             console.log(this.$route.params.moviecd);
@@ -229,6 +237,14 @@ export default {
           .catch(err => {
             console.log(err);
           });
+    },
+    findWish() {
+      if(this.wishlist.length == 0) {
+        this.emptyWish = true;
+      } else {
+        this.emptyWish = false;
+      }
+      console.log("findWish", this.wishlist);
     },
 
     getUser() {
@@ -295,4 +311,8 @@ export default {
   opacity: 0.8;
 }
 
+/* 찜한내역없음 */
+.noWish {
+  color:lightslategray;
+}
 </style>
