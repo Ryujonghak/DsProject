@@ -24,7 +24,9 @@ paiddate,
 // --     상영관
 location,
 seat,
+startday,
 starttime,
+endtday,
 endtime,
 // --     스케쥴 id
 scno
@@ -41,8 +43,10 @@ scno
         this.paiddate = paiddate;
         this.location = location;
         this.seat = seat;
-        this.starttime = starttime;
-        this.endtime = endtime;
+        this.startday = startday; //상영날짜 (230110)
+        this.starttime = starttime; //영화시작시간 11:55
+        this.endtday = endtday; // 상영끝나는날짜
+        this.endtime = endtime; //영화 끝나는시간
         this.scno = scno;
     }
 }

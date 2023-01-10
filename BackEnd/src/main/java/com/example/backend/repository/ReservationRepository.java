@@ -13,8 +13,7 @@ import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     Page<Reservation> findAll(Pageable pageable);
-    Page<Reservation> findAllByUser(User user, Pageable pageable);
-    Page<Reservation> findAllByRusername(String rusername, Pageable pageable);
+    Page<Reservation> findAllByUsername(String username, Pageable pageable);
 
     List<Reservation> findByReservno(Long reservno);
 
@@ -39,6 +38,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             "DM.SHOWTM, DM.WATCHGRADENM " +
             "FROM DETAIL_MOVIE DM, TB_RESERVATION R " +
             "WHERE " +
-            "DM.moviecd = r.moviecd AND r.rusername = :rusername ", nativeQuery = true)
-    Page<MoviedetailReservationDto> ResPageTime(@Param("rusername") String rusername, Pageable pageable);
+            "DM.moviecd = r.moviecd AND r.username = :username ", nativeQuery = true)
+    Page<MoviedetailReservationDto> ResPageTime(@Param("username") String rusername, Pageable pageable);
 }

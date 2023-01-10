@@ -10,8 +10,6 @@ export default class Schedule {
         endtday,
         endtime,
         location,
-        tid,
-        sno,
     ) {
         this.scno = scno;  //생성번호 (key)
         this.moviec = moviecd; //영화코드
@@ -22,7 +20,5 @@ export default class Schedule {
         this.endtday = endtday; // 상영끝나는날짜
         this.endtime = endtime; //영화 끝나는시간
         this.location = location;  //상영관 (서면)
-        this.tid = tid; 
-        this.sno = sno;
     }
 }
