@@ -32,8 +32,12 @@ public class Seat {
 //    private Integer sno;
 
 
-
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_SEAT_GENERATOR")
+    @Column(columnDefinition = "NUMBER")
+    private Integer sno;
+
+
     @Column(columnDefinition = "VARCHAR2(4)", name = "SEATPOSITION")
     private String seatposition;
 
@@ -46,7 +50,6 @@ public class Seat {
     private Theater theater;
 
 
-
     public Seat(String seatposition, String status, Theater theater) {
         this.seatposition = seatposition;
         this.seatyn = status;
@@ -54,15 +57,13 @@ public class Seat {
     }
 
 
-    private Seat setSeat(String seatposition, String status, int tid)
-    {
-       Seat seat = new Seat();
-       if(getSeatposition().substring(0).equals(Integer.toString(tid)) )
-       {
-           seat.seatposition = seatposition;
-           seat.seatyn = status;
-       }
-       return seat;
+    private Seat setSeat(String seatposition, String status, int tid) {
+        Seat seat = new Seat();
+        if (getSeatposition().substring(0).equals(Integer.toString(tid))) {
+            seat.seatposition = seatposition;
+            seat.seatyn = status;
+        }
+        return seat;
     }
 
     public Seat(String seatposition, String status) {
@@ -70,14 +71,9 @@ public class Seat {
         this.seatyn = status;
     }
 
-    public Seat(String seatposition)
-    {
+    public Seat(String seatposition) {
         this.seatposition = seatposition;
     }
-
-
-
-
 
 
 }
