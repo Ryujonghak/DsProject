@@ -105,7 +105,7 @@
                               센텀시티</h5>
                           </button>
 
-                          <button v-show="Seomyeon" @click="cinema('Seomyeon')"
+                          <button v-show="Seomyeon" @click="cinema('seomyeon')"
                                   style="width: 110px;  height: 24px; float: left; border: 0;background-color: black; margin-top: 5px;">
                             <h5 style="color: white;padding: 9px 9px 9px 9px; margin-left: 3px;">서면</h5>
                           </button>
@@ -115,7 +115,7 @@
                               서면</h5>
                           </button>
 
-                          <button v-show="Busan" @click="cinema('Busan')"
+                          <button v-show="Busan" @click="cinema('busan')"
                                   style="width: 110px;  height: 24px; float: left; border: 0;background-color: black;  margin-top: 5px;">
                             <h5 style="color: white;padding: 9px 9px 9px 9px; margin-left: 3px;">부산대</h5>
                           </button>
@@ -201,17 +201,21 @@
                             style="width: 330px;  margin-bottom: 0; color: gray;  padding: 15px 0 5px 0;  font-size: 16px; font-weight: bold; color: white; border-bottom: 1px solid gray;">
                           상영시간
                         </p>
-                        <button v-for="(item,index) in tid1time" :key="index" v-bind:style="mybtn"
-                                @click="selectedtime(item)" 
-                                style="width: 70px;  height: 80px; float: left; border: 0;background-color: white; margin-right: 5px; margin-top: 5px;">
+                        <button v-for="(item,index) in schedule2" :key="index" v-show="시간1"
+                                @click="selectedtime(item.starttime)" 
+                                style="width: 70px;  height: 80px; float: left; border: 0;background-color: black; margin-right: 5px; margin-top: 5px;">
                           <p style="color: white;margin-bottom: 10px;">2D</p>
-                          <h4 style="color: white;padding: 9px 24px 9px 9px; margin-left: 3px;">{{ item }}</h4>
+                          <h4 style="color: white;padding: 9px 24px 9px 9px; margin-left: 3px;">{{ item.starttime }}</h4>
                         </button>
-                        <!-- <button v-show="!시간1"  v-for="item in scheduletime" v-bind:key="item.id"
+
+                        <button v-show="!시간1" @click="unselectedtime()"
                         style="width: 70px; border-radius: 20px; height: 80px; float: left; border: 0;background-color:black;  margin-right: 5px;margin-top: 5px;">
                         <p style="color: white;margin-bottom: 10px;">2D</p>
-                        <h4 style="color: black;padding: 9px 22px 9px 9px; margin-left: 3px; background-color: white; width: 55px; ">{{ item }}</h4>
-                        </button>    -->
+                        <h4 style="color: black;padding: 9px 22px 9px 9px; margin-left: 3px; background-color: white; width: 55px; ">{{ ticketinfor.tickettime }}</h4>
+                        </button>   
+
+
+
                       </div>
                       <div v-show="모달"
                            style="position: absolute; width: 820px;height: 400px; background-color: rgba(0,0,0,.6);  top:300px; right: -30px; z-index: 99; text-align: center;">
@@ -704,6 +708,7 @@ import BookingService from "@/services/BookingService";
 import custom from "@/assets/js/custom";
 import Reservation from "@/model/Reservation";
 import ReservationDataService from "@/services/ReservationDataService";
+import ScheduleDataService from "@/services/ScheduleDataService"
 
 export default {
   props: ["movieProps2"],
@@ -712,28 +717,40 @@ export default {
     custom();
     this.date();
     // this.Schedulecreate();  // 스케쥴 만드는 함수
-    this.getSeatAll();
+    // this.getSeatAll(); 
+    
+    
   },
   mounted() {
     // this.openning();
     window.scrollTo({top: 2250, behavior: "smooth"});
-
-    this.getscheduleall(); // 이건 나중에 실
+    this.selectedday = this.dateY;
+    this.defaultcinema = "centum";
+    this.moviecd = this.data1.moviecd
+    
+    this.getFindAllByMoviecdAndLocationAndStartday()    
   },
   data() {
     return {
       data1: this.movieProps2, //영화데이터 받아오기
       data2: [],
       reservation: new Reservation(),
-      i: 1,
+      
       모달: false,
       좌석: true,  // 좌석페이지 v-show
       결제후페이지: false,
 
       영화이름: "",
-      Seomyeon: true,
-      centum: true,
+      centum: false,
+      Seomyeon: true,      
       Busan: true,
+      moviecd : "",
+
+      defaultcinema : "",
+      selectedday: "",       // 
+    
+
+
       결제후: false,
       amount: 100, // 임시 결제 금액
       totalpay: 0,
@@ -758,9 +775,7 @@ export default {
       }, // v-bind  : 색변경
 
       schedule: [],
-      scheduleday: [],
-      scheduletime: [],
-      tempschedule: [],
+
 
       day1: false,
       day2: true,
@@ -770,6 +785,7 @@ export default {
 
 
       요일: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
+      dateY : "",
       yy: "",
       mm: "",
       dd: "",
@@ -789,8 +805,6 @@ export default {
 
       Seat: [], // data2에 있는 좌석데이터를 담는곳
 
-      Theater: 0, // 선택한 영화관 번호 저장하는 곳
-
       selects998: ["1A1", "N"], // data2에 있는 좌석데이터를 담는곳 센텀시티
       selects903: ["N"], // 좌석 상태를 날리는 배열 좌석예매할때쓰임
       selects904: ["Y"], // 좌석 상태를 날리는 배열 좌석취소할때쓰임
@@ -805,19 +819,10 @@ export default {
         endtime: "",
       },
 
-      ticketinfor: [
-        ], // 티켓정보를 담는 배열
+      schedule2 : [],
 
-      movienm: this.movieProps2.movienm,
-      tid1: [],
-      tid1day: [],
-      tid1time: [],
-      tid2: [],
-      tid2day: [],
-      tid2time: [],
-      tid3: [],
-      tid3day: [],
-      tid3time: [],
+      ticketinfor: [], // 티켓정보를 담는 배열
+      
 
     };
   },
@@ -828,95 +833,66 @@ export default {
       this.좌석 = false;
       this.addReservation();
     },
-    getscheduleall() {
-      BookingService.getScheduleAll()
-          .then((response) => {
-            this.schedule = response.data;
-            for (let i = 0; i < response.data.length; i++) {
-              if (response.data[i].movienm == this.movienm) {
-                if (response.data[i].tid == 1) {
-                  this.tid1.push(response.data[i]);
+    getFindAllByMoviecdAndLocationAndStartday(){
+      var moviecd2 = this.moviecd
+      var tempcinema = this.defaultcinema //이건 영화관을 담는거
+      var tempday =  this.selectedday     //이건 날짜을 담는거
 
-                } else if (response.data[i].tid == 2) {
-                  this.tid2.push(response.data[i]);
-                } else if (response.data[i].tid == 3) {
-                  this.tid3.push(response.data[i]);
-                } else {
-                  alert("Error");
-                }
-              }
-            }
-            console.log("tid1", this.tid1);
-            console.log("tid2", this.tid2);
-            console.log("tid3", this.tid3);
-            // console.log(this.schedule);
-            this.ticketinfor.selectedday = this.dd;
-            console.log("티켓 정보", this.ticketinfor);
+      console.log(moviecd2);
+      console.log(tempcinema);
+      console.log(tempday);
 
-
-          })
-          .catch(error => {
-            console.log(error);
-          })
+      ScheduleDataService.getFindAllByMoviecdAndLocationAndStartday(moviecd2,tempcinema,tempday)
+      .then((response) => {
+        this.schedule2 = response.data
+        console.log(response.data);
+        // alert(response.data)
+      })
+      .catch(error =>{
+        console.log(error);
+      })
     },
+
     cinema(value) {
       if (value == 'centum') {
-      // this.CentumSeatCinema();
       this.ticketinfor.cinema = "센텀시티";
+      this.defaultcinema = 'centum';
       this.centum = false;
       this.Seomyeon = true;
       this.Busan = true;
-      this.tid1time = [];
-      for(let i = 0; i < this.tid1.length; i++) {
-        if(this.tid1[i].starttime.substr(8,2) == this.dd){
-          this.tid1time.push(this.tid1[i].starttime.substr(11,5));
-        }
-      }
-      }else if(value == 'Seomyeon'){
+      this.getFindAllByMoviecdAndLocationAndStartday()
+      }else if(value == 'seomyeon'){
       this.ticketinfor.cinema = "서면";
+      this.defaultcinema = 'seomyeon';
       this.centum = true;
       this.Seomyeon = false;
       this.Busan = true;
-      for(let i = 0; i < this.tid2.length; i++) {
-        if(this.tid2[i].starttime.substr(8,2) == this.dd){
-          this.tid2time.push(this.tid2[i].starttime.substr(11,5));
-        }
-      }
+      this.getFindAllByMoviecdAndLocationAndStartday()
       }else{
-      this.ticketinfor.cinema = "부산대";                 // 티켓정보에 선택한 영화관을 넣음
-      for(let i = 0; i < this.tid3.length; i++) {
-        if(this.tid3[i].starttime.substr(8,2) == this.dd){
-          this.tid3time.push(this.tid3[i].starttime.substr(11,5));
-        }
-      }
+      this.ticketinfor.cinema = "부산대";             // 티켓정보에 선택한 영화관을 넣음
+      this.defaultcinema = 'busan';
       this.centum = true;
       this.Seomyeon = true;
       this.Busan = false;
+      this.getFindAllByMoviecdAndLocationAndStartday()
       }
 
-
-
-
-      this.day1 = false;
-      this.day2 = true;
-      this.day3 = true;
-      this.day4 = true;
-      this.day5 = true;
-
-      let temp = value;
-      console.log(temp);
-      //   this.centum = false;
-      // //   for (let i = 0; i < this.tid1.length; i++) {
-      // //     // alert(this.tid1[i].starttime);
-      // //     if((this.tid1[ {
-      //
-      //     // }
-      //   }
-      // }
+      this.day1 = false;                              // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함  
+      this.day2 = true;                               // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
+      this.day3 = true;                               // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
+      this.day4 = true;                               // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
+      this.day5 = true;                               // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함 
     },
+
     selectedtime(value) {                             // 선택된 시간값을 받음
       this.ticketinfor.tickettime = value;          // 선택된 시간을 티켓 정보에 넣음
       console.log(this.ticketinfor.tickettime);
+      this.시간1 = !this.시간1;
+      
+    },
+
+    unselectedtime() {
+      this.시간1 = !this.시간1;
     },
 
 
@@ -929,16 +905,16 @@ export default {
     //     console.log(error);
     //   })
     // },
-    getSeatAll() {
-      BookingService.getSeatAll()
-          .then((response) => {
-            this.data2 = response.data;
-            console.log("check", this.data2);
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-    },
+    // getSeatAll() {
+    //   BookingService.getSeatAll()
+    //       .then((response) => {
+    //         this.data2 = response.data;
+    //         console.log("check", this.data2);
+    //       })
+    //       .catch((e) => {
+    //         console.log(e);
+    //       });
+    // },
     seattest97() {
       for (let i = 0; i < this.selected.length; i++) {
         BookingService.SelectSeat(this.selected[i], this.selects903[0])
@@ -1157,6 +1133,7 @@ export default {
         this.day5 = true;  // 버튼 색 변경
 
         temp = Number(this.dd);
+        
         this.ticketinfor.selectedday = temp;
       } else if (value == 'day2') {
         this.day1 = true;
@@ -1225,8 +1202,14 @@ export default {
       var date = new Date();
       this.yy = date.getFullYear(); // 년도
       this.mm = date.getMonth() + 1; // 월 , 달
+      console.log(this.mm);
+      if (this.mm < 10) {
+        this.mm = "0" + this.mm;
+      }
       this.dd = date.getDate(); // 일수
       this.day = date.getDay(); // 요일
+      
+      this.dateY = String(this.yy)+String(this.mm)+String(this.dd);
 
       let i = this.day;
       for (i; i <= 6; i++) {
@@ -1236,6 +1219,7 @@ export default {
       for (j; j < this.day; j++) {
         this.순서 += j;
       }
+      // console.log(this.dateY);
     },
     requestPay: function () {
       //1. 객체 초기화 (가맹점 식별코드 삽입)

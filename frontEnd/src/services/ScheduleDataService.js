@@ -14,6 +14,7 @@ class ScheduleDataService {
     }
 
     getFindAllByMoviecdAndLocationAndStartday(moviecd, location, startday) {
+        console.log(moviecd, location, startday);
         return http.get(`/schedule/searchMoviecdAndLocationAndStartday/${moviecd}/${location}/${startday}`);
     }
 
