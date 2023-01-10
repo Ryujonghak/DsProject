@@ -43,7 +43,7 @@
                     border-top: #faf8f1 1px solid;
                     padding: 5px;
                     border-left: 1px solid #faf8f1;
-                    color: #503396;
+                    color: #F5B409;
                   "
                 >
                   <span>극장정보</span>
@@ -122,7 +122,7 @@
                     border-top: #faf8f1 1px solid;
                     padding: 5px;
                     border-left: 1px solid #faf8f1;
-                    color: #503396;
+                    color: #F5B409;
                   "
                 >
                   <span>이벤트</span>
@@ -162,7 +162,7 @@
                     border-top: #faf8f1 1px solid;
                     padding: 5px;
                     border-left: 1px solid #faf8f1;
-                    color: #503396;
+                    color: #F5B409;
                   "
                 >
                   <span>상영시간표</span>
@@ -794,7 +794,7 @@
                       alt=""
                     />
                     <div style="margin-top: 30px">
-                      빠른 실내에 다시 찾아 뵙겠습니다.
+                      빠른 시일내에 다시 찾아 뵙겠습니다.
                     </div>
                   </div>
                 </div>

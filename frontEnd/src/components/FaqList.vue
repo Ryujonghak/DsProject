@@ -5,10 +5,19 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1 style="text-align: left">FAQ 자주묻는질문</h1>
-              <ul class="breadcumb" style="text-align: left">
-                <li class="active"><router-link to="/">Home</router-link></li>
-                <li><span class="ion-ios-arrow-right"></span>FAQ</li>
+              <h1>FAQ 자주묻는질문</h1>
+              <ul class="breadcumb">
+                <div class="information">
+                  <strong style="color: aliceblue"
+                    >- 다른 질문사항은 1:1 문의 게시판을 이용해주세요</strong
+                  ><br/>
+                  <p style="color: aliceblue"
+                    >- 아래 버튼을 누르면 문의페이지로 이동합니다.</p
+                  >
+                </div>
+                <button class="qnabtn">
+                  <router-link to="/addqna" style="color:black !important;"><strong>1:1문의하기</strong></router-link>
+                </button>
               </ul>
             </div>
           </div>
@@ -43,9 +52,10 @@
                   <div>
                     -개인정보 보호에 대한 관계 법령에 의거하여, 서비스를 1년이상
                     이용하지 않은 고객은 휴면상태로 전환됩니다.<br />
-                    휴면계정으로 전환된 고객의 경우 홈페이지 및 어플 로그인 후
+                    휴면상태인 계정은
                     <br />
-                    본인 인증 또는 [ID/PW 찾기]에서 본인 인증으로 찾기 시도시<br />
+                    <strong style="color:#F5B409">본인 인증 또는 [ID/PW 찾기]에서 본인 인증으로 찾기 시도시</strong>
+                    <br />
                     활동 계정으로 변경됩니다. 휴면계정 복구는 1년 동안 가능하며
                     <br />
                     경과 시 탈퇴처리 되며 개인정보는 파기됩니다.
@@ -60,7 +70,7 @@
                   <div>
                     - 상영관 내 외부 음식 반입은 가능하나 영화 관람 시 다른
                     고객님에게 방해가 되지않은 품목에 한하여 반입 가능합니다.<br />
-                    <strong
+                    <strong style="color:#F5B409;"
                       >강한냄새 및 지속적인 소음이 발생하는 품목은 취식 후
                       입장해주시길 부탁</strong
                     >드리며,<br />
@@ -87,7 +97,7 @@
                 </div>
                 <div class="faq-box__answer">
                   <div>
-                    - <strong>로그인 화면 하단에 ID/PW찾기 버튼</strong>을 통해
+                    - <strong style="color:#F5B409;">로그인 화면 하단에 ID/PW찾기 버튼</strong>을 통해
                     확인하실 수 있습니다. <br />아이디 찾기의 경우, 기존
                     회원정보에 등록된 아이디찾기 질문에대한 정답을 통해 확인이
                     가능합니다.
@@ -100,7 +110,7 @@
                 </div>
                 <div class="faq-box__answer">
                   <div>
-                    - <strong>안내견 제외,</strong> 반려동물의 경우 상영관 동반
+                    - <strong style="color:#F5B409;">안내견 제외,</strong> 반려동물의 경우 상영관 동반
                     입장이 불가능한 점 이용에 참고부탁드립니다.<br />
                     상영관 내 돌발상황 발생 및 알러지 보유 고객 등 다른
                     고객으로부터 불편이 접수 될 수 있어<br />
@@ -114,25 +124,25 @@
                 </div>
                 <div class="faq-box__answer">
                   <div class="age">
-                    - <strong>전체 관람가</strong> : 모든 연령의 고객이 관람
+                    - <strong style="color:#F5B409">전체 관람가</strong> : 모든 연령의 고객이 관람
                     가능
                   </div>
                   <div class="age">
-                    -<strong>12세 이상 관람가</strong> : 만12세 이상(주민등록상
+                    -<strong style="color:#F5B409">12세 이상 관람가</strong> : 만12세 이상(주민등록상
                     생일기준) 관람 가능 <br />
                     만12세 미만 고객은 보호자(성인) 동반 시 관람 가능
                   </div>
                   <div class="age">
-                    -<strong>15세 이상 관람가</strong> :만15세 이상(주민등록상
+                    -<strong style="color:#F5B409">15세 이상 관람가</strong> :만15세 이상(주민등록상
                     생일기준) 관람 가능<br />
                     만15세 미만 고객은 보호자(성인 동반 시 관람 가능
                   </div>
                   <div class="age">
-                    -<strong>청소년 관람 불가</strong> :만18세 이상(주민등록상
+                    -<strong style="color:#F5B409">청소년 관람 불가</strong> :만18세 이상(주민등록상
                     생일기준) 관람 가능<br />
                     - 만18세 이상이더라도 고등학교 재학중인 경우 관람 불가<br />
                     - 신분증 지참 필수 (티켓 구매, 입장 시 신분증 확인 必)<br />
-                    <strong style="color: purple"
+                    <strong style="color:#F5B409"
                       >만18세 미만 고객은 보호자(성인) 동반 시에도 관람
                       불가</strong
                     >
@@ -223,7 +233,7 @@ export default {
   border-radius: 25px;
   margin-top: 1%;
   /* color: black !important; */
-  background: #8c52ff;
+  background:#F5B409
 }
 button {
   border: none !important;

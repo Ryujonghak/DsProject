@@ -126,6 +126,14 @@ const routes = [
     component: () => import("@/components/admin/PaymentAdmin.vue"),
     beforeEnter: ifAdmin
   },
+  
+  //스케쥴관리 페이지
+  {
+    path: "/schedule-admin",
+    name: "schedule-admin",
+    component: () => import("@/components/admin/ScheduleAdmin.vue"),
+    beforeEnter: ifAdmin
+  },
 
   //TODO   정주희 Part_mypage
   {

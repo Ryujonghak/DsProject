@@ -381,9 +381,9 @@ textarea {
   resize: none;
 }
 .regbtn {
-  background: #dd003f;
-  color: aliceblue;
-  border-radius: 25px !important;
+  background:#F5B409;
+  color:black;
+  border-radius: 5px !important;
   box-shadow: none !important;
   width: 10%;
   padding: 1%;
@@ -398,8 +398,7 @@ button:active {
 .user-hero {
   height: 385px;
   // background: url("../images/uploads/user-hero-bg.jpg") no-repeat;
-  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test8.png")
-    no-repeat;
+  background: url("../../assets/images_kang/Components/common/Navcom/back-img-test16.png") no-repeat;
 }
 h4 {
   color: aliceblue;

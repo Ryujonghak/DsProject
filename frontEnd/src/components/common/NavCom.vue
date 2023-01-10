@@ -43,7 +43,7 @@
           <div class="row">
             <div class="remember" col-xs-12>
               <button @click="toggleShow()" class="findbtn">
-                아이디찾기 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
+                아이디찾기 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|
               </button>
               <button @click="togglePwd()" class="findbtn">비밀번호찾기</button>
             </div>
@@ -208,16 +208,6 @@
               <!-- 고객님의 아이디는 user.username 입니다. -->
             </label>
           </div>
-          <!-- <div class="row">
-            <label for="textbox">
-              <input
-                type="text"
-                name="hidden"
-                id="hidden"
-                required
-              />
-            </label>
-          </div> -->
           <div class="row">
             <button type="submit" @click="successlogin()">Login</button>
           </div>
@@ -260,15 +250,13 @@
     <header class="ht-header">
       <div class="container">
         <nav class="navbar navbar-default navbar-custom">
-          <!-- Collect the nav links, forms, and other content for toggling -->
           <div
             class="collapse navbar-collapse flex-parent"
             id="bs-example-navbar-collapse-1"
           >
             <!-- 로고 -->
             <div class="col-xs-2">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
+              <div class="navbar-header" >
                 <div
                   class="navbar-toggle"
                   data-toggle="collapse"
@@ -352,9 +340,8 @@
             <!-- 오른쪾메뉴 -->
             <div class="col-xs-5 navbar-menu">
               <ul class="nav navbar-nav flex-child-menu menu-right col-xs-12">
-                <li class="first-space"></li>
-                <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
-                <div class="second-space" style="padding-left: 5%;" v-show="currentUser">
+                <li class="col-xs-4"></li>
+                <div class="col-xs-4" v-show="currentUser">
                   <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
                   <li class="dropdown first" v-show="!showAdminBoard">
                     <a
