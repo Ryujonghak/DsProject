@@ -82,7 +82,7 @@
                 <div class="rate">
                   <i class="ion-android-star"></i>
                   <p>
-                    <span>{{ movie.raiting }}</span> /10<br />
+                    <span>{{ tempRating }}</span> /5<br />
                   </p>
                 </div>
                 <div class="rate-star">
@@ -455,6 +455,7 @@ export default {
 
       addReview: new Review(),
 
+      tempRating: 0, // 가져온 평점을 5점 만점으로 바꿔주기 위한 변수
       starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
       userReview: "",
       userStarRaing: 3,
@@ -596,8 +597,10 @@ export default {
       this.mYear = this.movie.opendt.substr(0, 4);
 
       if (this.movie.raiting != null) {
+        // 들어오는 api 평점 5점 만점으로 하기 위해서
+        this.tempRating = (this.movie.raiting /2).toFixed(2)
         // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
-        this.starRating = Math.floor(this.movie.raiting);
+        this.starRating = Math.floor(this.tempRating);
       }
 
       // 관람등급 데이터가 2번 연달아 붙여서 오는 경우가 있어서 그 경우 잘라주기
