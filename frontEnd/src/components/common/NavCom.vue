@@ -788,5 +788,5 @@ input {
 }
 .second-space {
   margin-right: 5%;
-}
+} 
 </style>
