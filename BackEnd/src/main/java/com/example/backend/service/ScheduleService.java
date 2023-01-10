@@ -38,4 +38,20 @@ public class ScheduleService {
         return scheduleList;
     }
 
+    public Schedule save(Schedule schedule) {
+        Schedule newSchedule = scheduleRepository.save(schedule);
+
+        return newSchedule;
+    }
+
+    public boolean removeById(Long scno) {
+        if (scheduleRepository.existsById(scno)) {
+            scheduleRepository.deleteById(scno);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

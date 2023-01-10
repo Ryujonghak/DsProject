@@ -56,18 +56,21 @@ public class Schedule extends BaseTimeEntity {
     private String showtm;
 
     @Column
-    private Date startday;
+    private String startday;
 
     @Column
     private String starttime;
 
     @Column
-    private Date endday;
+    private String endday;
 
     @Column
-    private Date endtime;
+    private String endtime;
 
     @Column
     private Long tid;
+
+    @Column
+    private Integer sno;
 
 }
