@@ -749,7 +749,7 @@ export default {
       moviecd : "",
 
       defaultcinema : "",
-      selectedday: "",       // 
+      selectedday: "",       // 날짜
     
 
 
@@ -1298,22 +1298,26 @@ export default {
     //   this.modalday = false; // 모달글씨 사라짐
     //   this.modaloff();  // 모달에 전부 false이면 모달이 꺼짐 근데 생각해보니깐 날짜나, 인원을 클릭했으면 사라지게 하면 될듯
     // },
-    // date() {
-    //   var date = new Date();
-    //   this.yy = date.getFullYear(); // 년도
-    //   this.mm = date.getMonth() + 1; // 월 , 달
-    //   this.dd = date.getDate(); // 일수
-    //   this.day = date.getDay(); // 요일
+    date() {
+      var date = new Date();
+      this.yy = date.getFullYear(); // 년도
+      this.mm = date.getMonth() + 1; // 월 , 달
+      if(this.mm < 10) {
+        this.mm = "0"+this.mm;
+      }
+      this.dd = date.getDate(); // 일수
+      this.day = date.getDay(); // 요일
 
-    //   let i = this.day;
-    //   for (i; i <= 6; i++) {
-    //     this.순서 += i;
-    //   }
-    //   let j = 0;
-    //   for (j; j < this.day; j++) {
-    //     this.순서 += j;
-    //   }
-    // },
+      this.dateY = String(this.yy)+String(this.mm)+String(this.dd);
+      let i = this.day;
+      for (i; i <= 6; i++) {
+        this.순서 += i;
+      }
+      let j = 0;
+      for (j; j < this.day; j++) {
+        this.순서 += j;
+      }
+    },
     requestPay: function () {
       //1. 객체 초기화 (가맹점 식별코드 삽입)
       var IMP = window.IMP;
