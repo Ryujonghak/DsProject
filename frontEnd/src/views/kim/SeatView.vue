@@ -851,7 +851,6 @@
                           </button>
                         </div>
                       </div>
-                      </div>
                       <div
                         v-show="모달"
                         style="
@@ -3337,8 +3336,8 @@ export default {
     };
   },
   methods: {
-        // FIXME: 상영시간별 버튼 색상 주기 함수 추가
-        coloredBtn() {
+    // FIXME: 상영시간별 버튼 색상 주기 함수 추가
+    coloredBtn() {
       var first = document.getElementById("first-div");
       var second = document.getElementById("second-div");
       var third = document.getElementById("third-div");
@@ -3494,7 +3493,6 @@ export default {
       this.day4 = true; // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
       this.day5 = true; // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
       console.log(this.paymentcinema);
-
 
       // FIXME: 버튼 색상 초기화
       var first = document.getElementById("first-div");
