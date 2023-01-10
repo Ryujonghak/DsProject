@@ -26,14 +26,20 @@ public class ScheduleService {
         return scheduleList;
     }
 
-    public List<Schedule> findAllByMoviecdAndStartday(String moviecd, String startday) {
-        List<Schedule> scheduleList = scheduleRepository.findAllByMoviecdAndStartday(moviecd, startday);
+    public List<Schedule> findAllByMoviecdAndLocation(String moviecd, String location) {
+        List<Schedule> scheduleList = scheduleRepository.findAllByMoviecdAndLocation(moviecd, location);
 
         return scheduleList;
     }
 
-    public List<Schedule> findByMoviecdAndStartdayAndStarttime(String moviecd, String startday, String starttime) {
-        List<Schedule> scheduleList = scheduleRepository.findByMoviecdAndStartdayAndStarttime(moviecd, startday, starttime);
+    public List<Schedule> findAllByMoviecdAndLocationAndStartday(String moviecd, String location, String startday) {
+        List<Schedule> scheduleList = scheduleRepository.findAllByMoviecdAndLocationAndStartday(moviecd, location, startday);
+
+        return scheduleList;
+    }
+
+    public List<Schedule> findByMoviecdAndLocationAndStartdayAndStarttime(String moviecd, String location, String startday, String starttime) {
+        List<Schedule> scheduleList = scheduleRepository.findByMoviecdAndLocationAndStartdayAndStarttime(moviecd, location, startday, starttime);
 
         return scheduleList;
     }
