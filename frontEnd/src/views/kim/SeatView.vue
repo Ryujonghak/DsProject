@@ -806,11 +806,7 @@ export default {
       },
 
       ticketinfor: [
-        {
-          cinema: '',
-          selectedday: '',
-          tickettime: '',
-        }], // 티켓정보를 담는 배열
+        ], // 티켓정보를 담는 배열
 
       movienm: this.movieProps2.movienm,
       tid1: [],
@@ -864,48 +860,48 @@ export default {
           })
     },
     cinema(value) {
-      // if (value == 'centum') {
-      // // this.CentumSeatCinema();
-      // this.ticketinfor.cinema = "센텀시티";
-      // this.centum = false;
-      // this.Seomyeon = true;
-      // this.Busan = true;
-      // this.tid1time = [];
-      // for(let i = 0; i < this.tid1.length; i++) {
-      //   if(this.tid1[i].starttime.substr(8,2) == this.dd){
-      //     this.tid1time.push(this.tid1[i].starttime.substr(11,5));
-      //   }
-      // }
-      // }else if(value == 'Seomyeon'){
-      // this.ticketinfor.cinema = "서면";
-      // this.centum = true;
-      // this.Seomyeon = false;
-      // this.Busan = true;
-      // for(let i = 0; i < this.tid2.length; i++) {
-      //   if(this.tid2[i].starttime.substr(8,2) == this.dd){
-      //     this.tid2time.push(this.tid2[i].starttime.substr(11,5));
-      //   }
-      // }
-      // }else{
-      // this.ticketinfor.cinema = "부산대";                 // 티켓정보에 선택한 영화관을 넣음
-      // for(let i = 0; i < this.tid3.length; i++) {
-      //   if(this.tid3[i].starttime.substr(8,2) == this.dd){
-      //     this.tid3time.push(this.tid3[i].starttime.substr(11,5));
-      //   }
-      // }
-      // this.centum = true;
-      // this.Seomyeon = true;
-      // this.Busan = false;
-      // }
+      if (value == 'centum') {
+      // this.CentumSeatCinema();
+      this.ticketinfor.cinema = "센텀시티";
+      this.centum = false;
+      this.Seomyeon = true;
+      this.Busan = true;
+      this.tid1time = [];
+      for(let i = 0; i < this.tid1.length; i++) {
+        if(this.tid1[i].starttime.substr(8,2) == this.dd){
+          this.tid1time.push(this.tid1[i].starttime.substr(11,5));
+        }
+      }
+      }else if(value == 'Seomyeon'){
+      this.ticketinfor.cinema = "서면";
+      this.centum = true;
+      this.Seomyeon = false;
+      this.Busan = true;
+      for(let i = 0; i < this.tid2.length; i++) {
+        if(this.tid2[i].starttime.substr(8,2) == this.dd){
+          this.tid2time.push(this.tid2[i].starttime.substr(11,5));
+        }
+      }
+      }else{
+      this.ticketinfor.cinema = "부산대";                 // 티켓정보에 선택한 영화관을 넣음
+      for(let i = 0; i < this.tid3.length; i++) {
+        if(this.tid3[i].starttime.substr(8,2) == this.dd){
+          this.tid3time.push(this.tid3[i].starttime.substr(11,5));
+        }
+      }
+      this.centum = true;
+      this.Seomyeon = true;
+      this.Busan = false;
+      }
 
 
-      // this.오늘 = false;
-      // this.내일 = false;
-      // this.요일3 = false;
 
-      // this.day1 = false;
-      // this.day2 = false;
-      // this.day3 = false;
+
+      this.day1 = false;
+      this.day2 = true;
+      this.day3 = true;
+      this.day4 = true;
+      this.day5 = true;
 
       let temp = value;
       console.log(temp);
@@ -1098,109 +1094,6 @@ export default {
       this.modalpeople = false;
       this.totalpay = this.totalpay + 100;
     },
-    // cinema(value) {
-    //     this.Seomyeon = true;
-    //     this.centum = true;
-    //     this.Busan = true;
-    //     let temp;
-
-    //     this.오늘 = false;
-    //     this.내일 = false;
-    //     this.요일3 = false;
-
-    //     this.day1 = false;
-    //     this.day2 = false;
-    //     this.day3 = false;
-
-    //     this.scheduletime = [];
-    //     this.scheduleday = [];
-    //   if(value == 'Seomyeon'){
-    //     this.Seomyeon = false;
-    //     this.Theater = 2;
-
-    //     for(temp = 0; temp<this.schedule.length; temp++){
-    //       if(this.schedule[temp].tid == 2){
-    //         this.scheduleday.push(this.schedule[temp].starttime.substr(8,2)); // 날짜 자르기
-    //         this.tempschedule.push(this.schedule[temp]); // 영화관에 해당하는 정보들 넘기기
-    //       }
-    //     }
-    //     for( let i = 0; i < this.scheduleday.length; i++) {
-    //       if(this.scheduleday[i] == this.dd){
-    //         this.오늘 = true;
-    //       }
-    //       if(this.scheduleday[i] == this.dd+1){
-    //         this.내일 = true;
-    //       }
-    //       if(this.scheduleday[i] == this.dd+2){
-    //         this.요일3 = true;
-    //       }
-    //     }
-    //     // this.CentumSeatCinema();  // 날짜를 클릭을 하면 좌석이 생기게 해야됨.
-    //     for(let i = 0; i<this.selected.length; i++) {      // 좌석 색 초기화,선택된거랑
-    //       this.Seatupdate(this.selected[i]);
-    //     }
-    //     this.selected = [];
-
-    //   }else if(value == 'centum') {
-    //     this.centum = false;
-    //     this.Theater = 1;
-
-    //     for(temp = 0; temp<this.schedule.length; temp++){
-    //       if(this.schedule[temp].tid == 1){
-    //         this.scheduleday.push(this.schedule[temp].starttime.substr(8,2)); // 날짜 자르기
-    //         this.tempschedule.push(this.schedule[temp]); // 영화관에 해당하는 정보들 넘기기
-    //       }
-    //     }
-    //     for( let i = 0; i < this.scheduleday.length; i++) {
-    //       if(this.scheduleday[i] == this.dd){
-    //         this.오늘 = true;
-    //       }
-    //       if(this.scheduleday[i] == this.dd+1){
-    //         this.내일 = true;
-    //       }
-    //       if(this.scheduleday[i] == this.dd+2){
-    //         this.요일3 = true;
-    //       }
-    //     }
-    //     // this.CentumSeatCinema();  // 날짜를 클릭을 하면 좌석이 생기게 해야됨.
-    //     for(let i = 0; i<this.selected.length; i++) {      // 좌석 색 초기화,선택된거랑
-    //       this.Seatupdate(this.selected[i]);
-    //     }
-    //     this.selected = [];
-    //   }else if(value == 'Busan') {
-    //     this.Busan = false;
-    //     this.Theater = 3;
-
-    //     for(temp = 0; temp<this.schedule.length; temp++){
-    //       if(this.schedule[temp].tid == 3){
-    //         this.scheduleday.push(this.schedule[temp].starttime.substr(8,2)); // 날짜 자르기
-    //         this.tempschedule.push(this.schedule[temp]); // 영화관에 해당하는 정보들 넘기기
-    //       }
-    //     }
-    //     for( let i = 0; i < this.scheduleday.length; i++) {
-    //       if(this.scheduleday[i] == this.dd){
-    //         this.오늘 = true;
-    //       }
-    //       if(this.scheduleday[i] == this.dd+1){
-    //         this.내일 = true;
-    //       }
-    //       if(this.scheduleday[i] == this.dd+2){
-    //         this.요일3 = true;
-    //       }
-    //     }
-    //     // this.CentumSeatCinema();  // 날짜를 클릭을 하면 좌석이 생기게 해야됨.
-    //     for(let i = 0; i<this.selected.length; i++) {      // 좌석 색 초기화,선택된거랑
-    //       this.Seatupdate(this.selected[i]);
-    //     }
-    //     this.selected = [];
-    //   }
-    //   this.modalcinema = false;
-    //   this.ticketinfor.cinema = value;
-    //   this.modaloff();
-    //   // console.log(this.tempschedule);
-    // },
-
-
     CentumSeatCinema() {            // 데이터 베이스에서 자리가 있는지 확인
       let j = 0;
       for (let i = 0; i < 60; i++) {
@@ -1234,28 +1127,7 @@ export default {
         j++;
       }
     },
-    // 팝콘 구매
-    popcorn() {
-      alert("현재 스토어서비스는 준비중입니다.")
-    },
-    addReservation() {
-      this.reservation.username = this.$store.state.auth.user.username;
-      this.reservation.moviecd = this.data1.moviecd;
-      this.reservation.movienm = this.data1.movienm;
-      this.reservation.rcount = this.adultcount + this.teencount;
-      this.reservation.price = "100";
-      this.reservation.paiddate = new Date();
-      this.reservation.location = this.ticketinfor.cinema;
-      this.reservation.scno = null;
-
-      ReservationDataService.create(this.$store.state.auth.user.username, this.reservation)
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch(error => {
-            console.log(error);
-          })
-    },
+    
     // Schedulecreate(){
 
     //   this.Scheduldata.moviecd = this.data1.moviecd;
@@ -1277,10 +1149,6 @@ export default {
 
     week(value) {
       let temp;
-      let temp2; // 스케쥴에 쓰이는 템프
-
-      this.scheduletime = [];
-
       if (value == 'day1') {
         this.day1 = false;
         this.day2 = true;
@@ -1288,18 +1156,7 @@ export default {
         this.day4 = true;  // 버튼 색 변경
         this.day5 = true;  // 버튼 색 변경
 
-
-
-
-
-        let dd1 = this.dd;
-        for (temp2 = 0; temp2 < this.tempschedule.length; temp2++) {
-          if (this.tempschedule[temp2].starttime.substr(8, 2) == dd1) {            // ex) 09
-            this.scheduletime.push(this.tempschedule[temp2].starttime.substr(11, 5)) // 시간
-          }
-        }
-
-        temp = Number(this.dd); // 오늘 날짜를 티켓 정보에 넣음
+        temp = Number(this.dd);
         this.ticketinfor.selectedday = temp;
       } else if (value == 'day2') {
         this.day1 = true;
@@ -1307,87 +1164,9 @@ export default {
         this.day3 = true;  // 버튼 색 변경
         this.day4 = true;  // 버튼 색 변경
         this.day5 = true;  // 버튼 색 변경
-        let dd2 = this.dd + 1
-        for (temp2 = 0; temp2 < this.tempschedule.length; temp2++) {
-          if (this.tempschedule[temp2].starttime.substr(8, 2) == dd2) {            // ex) 09
-            this.scheduletime.push(this.tempschedule[temp2].starttime.substr(11, 5)) // 시간
 
-          }
-<<<<<<< Updated upstream
-          j++;
-        }
-      },
-      // 팝콘 구매
-      popcorn() {
-        alert("현재 스토어서비스는 준비중입니다.")
-      },
-      addReservation(){
-        this.reservation.username = this.$store.state.auth.user.username;
-        this.reservation.name = "강수빈"; // 현재 하드코딩상태 getUser 함수 생성하여 데이터 넣어야함. (류종학, 230109)
-        this.reservation.rusername =  this.$store.state.auth.user.username;
-        this.reservation.moviecd = this.data1.moviecd;
-        this.reservation.movienm = this.data1.movienm;
-        this.reservation.rcount = this.adultcount + this.teencount;
-        this.reservation.price = "100";
-        this.reservation.paiddate = new Date();
-        this.reservation.location = this.ticketinfor.cinema;
-        this.reservation.seat = "A1";
-        this.reservation.starttime =  new Date();
-        this.reservation.emdtime =  new Date();
-
-        this.reservation.scno = null;
         
-        ReservationDataService.create(this.$store.state.auth.user.username,this.reservation)
-        .then((response) =>{
-          console.log(response.data);
-        })
-        .catch(error =>{
-          console.log(error);
-        })
-      },
-      week(value) {
-        let temp;
-        if(this.ticketinfor.selectedday != null){
-          this.ticketinfor.selectedday = '';
-        }
-        if( value == 'day1'){
-            this.오늘 = false;
-            this.내일 = true;
-            this.요일3 = true;
-            this.요일4 = true;
-            this.요일5 = true;
-              temp = Number(this.dd);
-            this.ticketinfor.selectedday = temp;
-        }else if ( value == 'day2'){
-            this.오늘 = true;
-            this.내일 = false;
-            this.요일3 = true;
-            this.요일4 = true;
-            this.요일5 = true;
-            temp = Number(this.dd) + 1;
-            this.ticketinfor.selectedday = temp;
-        }else if ( value == 'day3'){
-            this.오늘 = true;
-            this.내일 = true;
-            this.요일3 = false;
-            this.요일4 = true;
-            this.요일5 = true;
-            temp = Number(this.dd) + 2;
-            this.ticketinfor.selectedday = temp;
-        }
-        else if ( value == 'day4'){
-            this.오늘 = true;
-            this.내일 = true;
-            this.요일3 = true;
-            this.요일4 = false;
-            this.요일5 = true;
-            temp = Number(this.dd) + 3;
-            this.ticketinfor.selectedday = temp;
-=======
->>>>>>> Stashed changes
-        }
-
-        temp = Number(this.dd) + 1; // 내일 날짜를 티켓 정보에 넣음
+        temp = Number(this.dd) +1;
         this.ticketinfor.selectedday = temp;
       } else if (value == 'day3') {
         this.day1 = true;
@@ -1396,15 +1175,7 @@ export default {
         this.day4 = true;  // 버튼 색 변경
         this.day5 = true;  // 버튼 색 변경
 
-        // let dd3 = this.dd + 2
-        // for (temp2 = 0; temp2 < this.tempschedule.length; temp2++) {
-        //   if (this.tempschedule[temp2].starttime.substr(8, 2) == dd3) {            // ex) 09
-        //     this.scheduletime.push(this.tempschedule[temp2].starttime.substr(11, 5)) // 시간
-
-        //   }
-        // }
-
-        temp = Number(this.dd) + 2; // 내일 날짜를 티켓 정보에 넣음
+        temp = Number(this.dd) +2;
         this.ticketinfor.selectedday = temp;
       } else if (value == 'day4') {
         this.day1 = true;
@@ -1413,14 +1184,7 @@ export default {
         this.day4 = false;  // 버튼 색 변경
         this.day5 = true;  // 버튼 색 변경
 
-        // let dd3 = this.dd + 2
-        // for (temp2 = 0; temp2 < this.tempschedule.length; temp2++) {
-        //   if (this.tempschedule[temp2].starttime.substr(8, 2) == dd3) {            // ex) 09
-        //     this.scheduletime.push(this.tempschedule[temp2].starttime.substr(11, 5)) // 시간
-
-        //   }
-        // }
-
+        temp = Number(this.dd) +3;
         this.ticketinfor.selectedday = temp;
       } else if (value == 'day5') {
         this.day1 = true;
@@ -1429,20 +1193,34 @@ export default {
         this.day4 = true;  // 버튼 색 변경
         this.day5 = false;  // 버튼 색 변경
 
-        // let dd3 = this.dd + 2
-        // for (temp2 = 0; temp2 < this.tempschedule.length; temp2++) {
-        //   if (this.tempschedule[temp2].starttime.substr(8, 2) == dd3) {            // ex) 09
-        //     this.scheduletime.push(this.tempschedule[temp2].starttime.substr(11, 5)) // 시간
-
-        //   }
-        // }
-
+        temp = Number(this.dd) +4;
         this.ticketinfor.selectedday = temp;
       }
-
-      this.modalday = false; // 모달글씨 사라짐
-      this.modaloff();  // 모달에 전부 false이면 모달이 꺼짐 근데 생각해보니깐 날짜나, 인원을 클릭했으면 사라지게 하면 될듯
-    },
+      console.log(this.ticketinfor)
+    },  
+    addReservation(){
+      this.reservation.username = this.$store.state.auth.user.username;
+      this.reservation.name = "강수빈"; // 현재 하드코딩상태 getUser 함수 생성하여 데이터 넣어야함. (류종학, 230109)
+      this.reservation.rusername =  this.$store.state.auth.user.username;
+      this.reservation.moviecd = this.data1.moviecd;
+      this.reservation.movienm = this.data1.movienm;
+      this.reservation.rcount = this.adultcount + this.teencount;
+      this.reservation.price = "100";
+      this.reservation.paiddate = new Date();
+      this.reservation.location = this.ticketinfor.cinema;
+      this.reservation.seat = "A1";
+      this.reservation.starttime =  new Date();
+      this.reservation.emdtime =  new Date();
+      this.reservation.scno = null;
+      
+      ReservationDataService.create(this.$store.state.auth.user.username,this.reservation)
+      .then((response) =>{
+        console.log(response.data);
+      })
+      .catch(error =>{
+        console.log(error);
+      })
+    },         
     date() {
       var date = new Date();
       this.yy = date.getFullYear(); // 년도
@@ -1490,10 +1268,10 @@ export default {
               alert("결제실패")
             }
           }
-      );
+        )
+      },
     },
-  },
-}
+  }
 </script>
 
 <style lang="scss" scoped>
