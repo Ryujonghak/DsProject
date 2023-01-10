@@ -318,7 +318,7 @@
                 <router-link to="/">
                   <img
                     class="logo"
-                    src="@/assets/images_kang/Components/common/Navcom/logo.png"
+                    src="@/assets/images_kang/Components/common/Navcom/Logo_test6.png"
                     width="119"
                     height="58"
                 /></router-link>
