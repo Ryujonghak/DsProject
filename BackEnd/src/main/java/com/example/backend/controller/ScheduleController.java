@@ -21,6 +21,9 @@ public class ScheduleController {
     @Autowired
     TheaterSeatService theaterSeatService;
 
+    @Autowired
+    SeatTheaController seatTheaController;
+
     @GetMapping("/schedule")
     public ResponseEntity<Object> getSchedule() {
         try {
@@ -53,10 +56,10 @@ public class ScheduleController {
         }
     }
 
-    @GetMapping("/schedule/searchMoviecdAndStartday/{moviecd}/{startday}")
-    public ResponseEntity<Object> findAllByMoviecdAndStartday(@PathVariable String moviecd, @PathVariable String startday) {
+    @GetMapping("/schedule/searchMoviecdAndLocation/{moviecd}/{location}")
+    public ResponseEntity<Object> findAllByMoviecdAndLocation(@PathVariable String moviecd, @PathVariable String location) {
         try {
-            List<Schedule> scheduleList = scheduleService.findAllByMoviecdAndStartday(moviecd, startday);
+            List<Schedule> scheduleList = scheduleService.findAllByMoviecdAndLocation(moviecd, location);
 
             if (scheduleList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -69,12 +72,33 @@ public class ScheduleController {
         }
     }
 
-    @GetMapping("/schedule/searchMoviecdAndStartdayAndStarttime/{moviecd}/{startday}/{starttime}")
-    public ResponseEntity<Object> findByMoviecdAndStartdayAndStarttime(@PathVariable String moviecd,
-                                                                       @PathVariable String startday,
-                                                                       @PathVariable String starttime) {
+    @GetMapping("/schedule/searchMoviecdAndLocationAndStartday/{moviecd}/{location}/{startday}")
+    public ResponseEntity<Object> findAllByMoviecdAndLocationAndStartday(@PathVariable String moviecd,
+                                                                         @PathVariable String location,
+                                                                         @PathVariable String startday
+    ) {
         try {
-            List<Schedule> scheduleList = scheduleService.findByMoviecdAndStartdayAndStarttime(moviecd, startday, starttime);
+            List<Schedule> scheduleList = scheduleService.findAllByMoviecdAndLocationAndStartday(moviecd, location, startday);
+
+            if (scheduleList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(scheduleList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/schedule/searchMoviecdAndLocationAndStartdayAndStarttime/{moviecd}/{location}/{startday}/{starttime}")
+    public ResponseEntity<Object> findByMoviecdAndLocationAndStartdayAndStarttime(@PathVariable String moviecd,
+                                                                                  @PathVariable String location,
+                                                                                  @PathVariable String startday,
+                                                                                  @PathVariable String starttime
+    ) {
+        try {
+            List<Schedule> scheduleList = scheduleService.findByMoviecdAndLocationAndStartdayAndStarttime(moviecd, location, startday, starttime);
 
             if (scheduleList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -90,6 +114,10 @@ public class ScheduleController {
     @PostMapping("/schedule")
     public ResponseEntity<Object> create(@RequestBody Schedule schedule) {
         try {
+
+            seatTheaController.OpenningTheater();
+
+
             Schedule newSchedule = scheduleService.save(schedule);
 
             return new ResponseEntity<>(newSchedule, HttpStatus.OK);

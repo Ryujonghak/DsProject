@@ -4,6 +4,7 @@ export default class Schedule {
         scno,
         moviecd,
         movienm,
+        showtm,
         startday,
         starttime,
         endtday,
@@ -14,6 +15,7 @@ export default class Schedule {
         this.scno = scno;
         this.moviec = moviecd;
         this.movienm = movienm;
+        this.showtm = showtm;
         this.startday = startday;
         this.starttime = starttime;
         this.endtday = endtday;
