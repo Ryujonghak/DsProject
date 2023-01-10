@@ -6,7 +6,7 @@
           <div class="col-md-12">
             <div class="hero-ct">
               <h1>ADMIN PAGE</h1>
-              <h4>예약내역 관리 페이지</h4>
+              <h4>예매내역 관리 페이지</h4>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@
                 id="select_value"
                 name="inputBox"
                 type="text"
-                placeholder="username을 입력하세요"
+                placeholder="id를 입력하세요."
                 style="width: 20%"
                 v-model="rusername"
               />
