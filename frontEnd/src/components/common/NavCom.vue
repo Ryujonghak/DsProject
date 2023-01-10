@@ -357,15 +357,14 @@
                 <div class="second-space" style="padding-left: 5%;" v-show="currentUser">
                   <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
                   <li class="dropdown first" v-show="!showAdminBoard">
-                    <a
-                      to="/mypage"
+                    <router-link to="/mypage"
                       class="btn btn-default dropdown-toggle lv1"
                       data-toggle="dropdown"
                       data-hover="dropdown"
                     >
                       MY PAGE
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </a>
+                    </router-link>
                     <ul class="dropdown-menu level1">
                       <li>
                         <router-link to="/mypage">내정보</router-link>
@@ -396,6 +395,9 @@
                       </li>
                       <li>
                         <router-link to="/board-admin">게시판관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/schedule-admin">스케쥴관리</router-link>
                       </li>
                       <li>
                         <router-link to="/payment-admin">예매관리</router-link>
