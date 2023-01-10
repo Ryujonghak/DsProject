@@ -240,14 +240,14 @@
                           <!-- 좌석 A 시작 -->
                           <div class="seat-p">
                             <span class="font">A</span>
-                            <div style="position: absolute; left:145px; top: 0px;">
-                              <button @click="addSeatAll('A01')" v-show="seatAll[0].seatyn == 'N'" class="seat-bg">1
+                            <!-- <div style="position: absolute; left:145px; top: 0px;">
+                              <button @click="addSeatAll('A01')" v-show="seatdataAll[0]. == 'N'" class="seat-bg">1
                               </button>
                               <button @click="deleteseat('A01')" v-show="seatAll[0].seatyn == 'S'"
                                       class="seat-bg2">1
                               </button>
                               <button v-show="seatAll[0].seatyn == 'Y'" class="seat-bg3" disabled>1</button>
-                            </div>
+                            </div> -->
                             <!--                            <div style="position: absolute; left:185px; top: 0px;">-->
                             <!--                              <button @click="addseat('A02')" v-show="SeatAll[1] == 1" class="seat-bg">2</button>-->
                             <!--                              <button @click="deleteseat('A02')" v-show="SeatAll[1] == 2" class="seat-bg2">2</button>-->
@@ -713,7 +713,7 @@ import Reservation from "@/model/Reservation";
 import ScheduleDataService from "@/services/ScheduleDataService";
 import SeatDataService from "@/services/SeatDataService";
 import Seat from "@/model/Seat.js";
-import SeatAll from "@/model/SeatAll";
+// import SeatAll from "@/model/SeatAll";
 
 
 export default {
@@ -740,26 +740,25 @@ export default {
   data() {
     return {
       data1: this.movieProps2, //영화데이터 받아오기
-      data2: [],
-      reservation: new Reservation(),
+      data2: [], // 몰루
+      reservation: new Reservation(),  // 모델 받아옴 // 나중에 정보를 담아서 백엔드에 보낼꺼임
 
-      모달: true,
-      좌석: true,  // 좌석페이지 v-show
-      결제후페이지: false,
+      모달: true,                // 좌석선택하기 전에 좌석을 클릭못하게 막는 모달창
+      좌석: true,                // 좌석페이지 v-show
+      결제후페이지: false,        // 결제 후에 보여주는 페이지 v-show
 
-      영화이름: "",
-      centum: false,
-      Seomyeon: true,
-      Busan: true,
-      moviecd: "",
+      
+      centum: false,             // 센텀시티 버튼 누르면 색 변경되는 v-show
+      Seomyeon: true,            // 센텀시티 버튼 누르면 색 변경되는 v-show
+      Busan: true,              // 센텀시티 버튼 누르면 색 변경되는 v-show
+      moviecd: "",               // moviecd 코드를 받아와서 저장하는 곳
+      defaultcinema: "",         // 화면이 생길때 센텀시티를 넣고 조회 가능하게 하는곳
+      selectedday: "",       // 날짜 위랑 동일
 
-      defaultcinema: "",
-      selectedday: "",       // 날짜
 
-
-      결제후: false,
+      
       amount: 100, // 임시 결제 금액
-      totalpay: 0,
+      totalpay: 0,     // 마지막 결제 금액
       결제하기: false, // 좌석숫자랑 인원수랑 맞으면 true로 바뀜
       adultcount: 0, //  성인 인원수 카운트
       teencount: 0, //  청소년 인원수 카운트
@@ -775,19 +774,11 @@ export default {
       teen: false,       // 청소년만 예매한 경우
       adultteen: false, // 성인,청소년 둘다 있을 경우
 
-
-      mybtn: {
-        backgroundColor: "white"
-      }, // v-bind  : 색변경
-
-      schedule: [],
-      selected9: "", // 이거 라디오버튼 가지고 온거라 그럼
-
-      day1: false,
-      day2: true,
-      day3: true,
-      day4: true,
-      day5: true,
+      day1: false,     // 첫화면에 들어오면 day1 버튼이 선택 된것 처럼 보이게 함
+      day2: true,      // 날짜가 선택되면 false가 되면서 색깔이 바뀜
+      day3: true,      // 날짜가 선택되면 false가 되면서 색깔이 바뀜
+      day4: true,      // 날짜가 선택되면 false가 되면서 색깔이 바뀜
+      day5: true,      // 날짜가 선택되면 false가 되면서 색깔이 바뀜
 
 
       요일: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
@@ -795,89 +786,87 @@ export default {
       yy: "",
       mm: "",
       dd: "",
-      selectday: 0,
       day: 0,
       순서: [], // 요일을 순서대로 나오게 하는 거
 
 
-      시간: ["16:00", "19:30"], // 나중에 테스트 할 시간 데이터
       time1: true,
-      시간2: true,
 
       selected: [], // 선택된 좌석 담는 배열
 
       // selectedseata: [1,1,1,1,1,1,1,1,1,1,1,1,1,1]
       selects99: [],
 
-      Seat: new Seat(),
-      seatAll: [
-        new Seat(null, 'A1', 'N', 1),
-        new Seat(null, 'A2', 'N', 1),
-        new Seat(null, 'A3', 'N', 1),
-        new Seat(null, 'A4', 'N', 1),
-        new Seat(null, 'A5', 'N', 1),
-        new Seat(null, 'A6', 'N', 1),
-        new Seat(null, 'A7', 'N', 1),
-        new Seat(null, 'A8', 'N', 1),
-        new Seat(null, 'A9', 'N', 1),
-        new Seat(null, 'A10', 'N', 1),
-        new Seat(null, 'B1', 'N', 1),
-        new Seat(null, 'B2', 'N', 1),
-        new Seat(null, 'B3', 'N', 1),
-        new Seat(null, 'B4', 'N', 1),
-        new Seat(null, 'B5', 'N', 1),
-        new Seat(null, 'B6', 'N', 1),
-        new Seat(null, 'B7', 'N', 1),
-        new Seat(null, 'B8', 'N', 1),
-        new Seat(null, 'B9', 'N', 1),
-        new Seat(null, 'B10', 'N', 1),
-        new Seat(null, 'C1', 'N', 1),
-        new Seat(null, 'C2', 'N', 1),
-        new Seat(null, 'C3', 'N', 1),
-        new Seat(null, 'C4', 'N', 1),
-        new Seat(null, 'C5', 'N', 1),
-        new Seat(null, 'C6', 'N', 1),
-        new Seat(null, 'C7', 'N', 1),
-        new Seat(null, 'C8', 'N', 1),
-        new Seat(null, 'C9', 'N', 1),
-        new Seat(null, 'C10', 'N', 1),
-        new Seat(null, 'D1', 'N', 1),
-        new Seat(null, 'D2', 'N', 1),
-        new Seat(null, 'D3', 'N', 1),
-        new Seat(null, 'D4', 'N', 1),
-        new Seat(null, 'D5', 'N', 1),
-        new Seat(null, 'D6', 'N', 1),
-        new Seat(null, 'D7', 'N', 1),
-        new Seat(null, 'D8', 'N', 1),
-        new Seat(null, 'D9', 'N', 1),
-        new Seat(null, 'D10', 'N', 1),
-        new Seat(null, 'E1', 'N', 1),
-        new Seat(null, 'E2', 'N', 1),
-        new Seat(null, 'E3', 'N', 1),
-        new Seat(null, 'E4', 'N', 1),
-        new Seat(null, 'E5', 'N', 1),
-        new Seat(null, 'E6', 'N', 1),
-        new Seat(null, 'E7', 'N', 1),
-        new Seat(null, 'E8', 'N', 1),
-        new Seat(null, 'E9', 'N', 1),
-        new Seat(null, 'E10', 'N', 1),
-        new Seat(null, 'F1', 'N', 1),
-        new Seat(null, 'F2', 'N', 1),
-        new Seat(null, 'F3', 'N', 1),
-        new Seat(null, 'F4', 'N', 1),
-        new Seat(null, 'F5', 'N', 1),
-        new Seat(null, 'F6', 'N', 1),
-        new Seat(null, 'F7', 'N', 1),
-        new Seat(null, 'F8', 'N', 1),
-        new Seat(null, 'F9', 'N', 1),
-        new Seat(null, 'F10', 'N', 1)],
+      Seat: new Seat(),         // 모름
+      seatdataAll33 :[],  //seatdataAll 에 있는 배열을 옮기고 싶음
+      seatdataAll: [     
+        new Seat(null, "A1", "N", 1),
+        new Seat(null, "A2", "N", 1),
+        new Seat(null, "A3", "N", 1),
+        new Seat(null, "A4", "N", 1),
+        new Seat(null, "A5", "N", 1),
+        new Seat(null, "A6", "N", 1),
+        new Seat(null, "A7", "N", 1),
+        new Seat(null, "A8", "N", 1),
+        new Seat(null, "A9", "N", 1),
+        new Seat(null, "A10", "N", 1),
+        new Seat(null, "B1", "N", 1),
+        new Seat(null, "B2", "N", 1),
+        new Seat(null, "B3", "N", 1),
+        new Seat(null, "B4", "N", 1),
+        new Seat(null, "B5", "N", 1),
+        new Seat(null, "B6", "N", 1),
+        new Seat(null, "B7", "N", 1),
+        new Seat(null, "B8", "N", 1),
+        new Seat(null, "B9", "N", 1),
+        new Seat(null, "B10", 'N', 1),
+        new Seat(null, "C1", "N", 1),
+        new Seat(null, "C2", "N", 1),
+        new Seat(null, "C3", "N", 1),
+        new Seat(null, "C4", "N", 1),
+        new Seat(null, "C5", "N", 1),
+        new Seat(null, "C6", "N", 1),
+        new Seat(null, "C7", "N", 1),
+        new Seat(null, "C8", "N", 1),
+        new Seat(null, "C9", "N", 1),
+        new Seat(null, "C10", "N", 1),
+        new Seat(null, "D1", "N", 1),
+        new Seat(null, "D2", "N", 1),
+        new Seat(null, "D3", "N", 1),
+        new Seat(null, "D4", "N", 1),
+        new Seat(null, "D5", "N", 1),
+        new Seat(null, "D6", "N", 1),
+        new Seat(null, "D7", "N", 1),
+        new Seat(null, "D8", "N", 1),
+        new Seat(null, "D9", "N", 1),
+        new Seat(null, "D10", "N", 1),
+        new Seat(null, "E1", "N", 1),
+        new Seat(null, "E2", "N", 1),
+        new Seat(null, "E3", "N", 1),
+        new Seat(null, "E4", "N", 1),
+        new Seat(null, "E5", "N", 1),
+        new Seat(null, "E6", "N", 1),
+        new Seat(null, "E7", "N", 1),
+        new Seat(null, "E8", "N", 1),
+        new Seat(null, "E9", "N", 1),
+        new Seat(null, "E10", "N", 1),
+        new Seat(null, "F1", "N", 1),
+        new Seat(null, "F2", "N", 1),
+        new Seat(null, "F3", "N", 1),
+        new Seat(null, "F4", "N", 1),
+        new Seat(null, "F5", "N", 1),
+        new Seat(null, "F6", "N", 1),
+        new Seat(null, "F7", "N", 1),
+        new Seat(null, "F8", "N", 1),
+        new Seat(null, "F9", "N", 1),
+        new Seat(null, "F10", "N", 1)],
 
       selects998: ["1A1", "N"], // data2에 있는 좌석데이터를 담는곳 센텀시티
       selects903: ["N"], // 좌석 상태를 날리는 배열 좌석예매할때쓰임
       selects904: ["Y"], // 좌석 상태를 날리는 배열 좌석취소할때쓰임
 
 
-      Scheduldata: {
+      Scheduldata: {     // 선택 정보를 모델에 담아서 보냄
         moviecd: "",
         movienm: "",
         showtm: "",
@@ -886,31 +875,22 @@ export default {
         endtime: "",
       },
 
-      schedule2: [],
+      schedule2: [],   // 무비코드 + 영화관 + 날짜 = 그날에 해당되는 시간을 받아 옴
 
       ticketinfor: [], // 티켓정보를 담는 배열\
+      seattest60: [],  // 좌석 배열
 
 
-      seattable: [], // 영화관,날짜,상영시간을 클릭하면 데이터가 여기에 담김
+      seattest2 : [], // Scon로 검색한 결과가 나옴  []
+
+
+      seattable: [], // 시간을 선택하면 그날 영화관,날짜,상영시간을 클릭하면 데이터가 여기에 담김
 
 
     };
   },
   methods: {
-    addSeatAll(data) {
-      for (let i = 0; i < this.seatAll.seat.length; i++) {
-        if (this.SeatAll[i].seatposition == data) {
-          this.SeatAll[i].seatyn = "S";
-        }
-      }
-    },
-    deleteseat(data) {
-      for (let i = 0; i < this.seatAll.seat.length; i++) {
-        if (this.SeatAll[i].seatposition == data) {
-          this.SeatAll[i].seatyn = "N";
-        }
-      }
-    },
+    
     test99() {
       this.결제후페이지 = true;
       this.모달 = false;
@@ -918,7 +898,7 @@ export default {
       this.addReservation();
     },
 
-    getFindAllByMoviecdAndLocationAndStartday() {
+    getFindAllByMoviecdAndLocationAndStartday() {  // 무비코드 + 영화관 + 날짜 = 그날에 해당되는 시간을 받아 옴
       var moviecd2 = this.moviecd
       var tempcinema = this.defaultcinema //이건 영화관을 담는거
       var tempday = this.selectedday     //이건 날짜을 담는거
@@ -931,7 +911,6 @@ export default {
           .then((response) => {
             this.schedule2 = response.data
             console.log(response.data);
-            // alert(response.data)
           })
           .catch(error => {
             console.log(error);
@@ -939,24 +918,22 @@ export default {
     },
 
     cinema(value) {
-      this.time1 = true;
-      this.selectedday = String(this.yy) + String(this.mm) + String(this.dd);
+      this.time1 = true;                     // v-for문 가 보임  클릭을 하고 넘어 갔을때 선택된게 남아 있는걸 방지하고자 만듬
+      this.selectedday = String(this.yy) + String(this.mm) + String(this.dd);   // 영화관을 클릭하면 오늘 날짜가 들어감
       if (value == 'centum') {
-        this.ticketinfor.cinema = "센텀시티";
-        this.defaultcinema = 'centum';
+        this.ticketinfor.cinema = "센텀시티";  // 티켓 정보에 센텀 시티가 넘어감
+        this.defaultcinema = value;          // 선택한 날짜에 센텀시티가 들어감
         this.centum = false;
         this.Seomyeon = true;
         this.Busan = true;
-        this.getFindAllByMoviecdAndLocationAndStartday()
         this.Theater = 1;
       } else if (value == 'seomyeon') {
         this.ticketinfor.cinema = "서면";
-        this.defaultcinema = 'seomyeon';
+        this.defaultcinema = value;
         this.centum = true;
         this.Seomyeon = false;
         this.Busan = true;
         this.Theater = 2;
-        this.getFindAllByMoviecdAndLocationAndStartday()
       } else {
         this.ticketinfor.cinema = "부산대";             // 티켓정보에 선택한 영화관을 넣음
         this.defaultcinema = 'busan';
@@ -964,9 +941,8 @@ export default {
         this.Seomyeon = true;
         this.Busan = false;
         this.Theater = 3;
-        this.getFindAllByMoviecdAndLocationAndStartday()
       }
-
+      this.getFindAllByMoviecdAndLocationAndStartday()
       this.day1 = false;                              // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함  
       this.day2 = true;                               // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
       this.day3 = true;                               // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
@@ -974,14 +950,14 @@ export default {
       this.day5 = true;                               // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함 
     },
 
-    selectedtime(value) {                             // 선택된 시간값을 받음
-      this.ticketinfor.tickettime = value;          // 선택된 시간을 티켓 정보에 넣음
-      console.log(this.ticketinfor.tickettime);
-      this.time1 = !this.time1;
+    selectedtime(value) {                            // 선택된 시간값을 받음 ex) "12:00"
+      this.ticketinfor.tickettime = value;           // 선택된 시간을 티켓 정보에 넣음
+      this.time1 = !this.time1;                     // v-show
       this.getfFndByMoviecdAndLocationAndStartdayAndStarttime();       // 시간을 선택하면 실행됨
+      this.SeatSet();
     },
 
-    getfFndByMoviecdAndLocationAndStartdayAndStarttime() {
+    getfFndByMoviecdAndLocationAndStartdayAndStarttime() {       //  그날 스케쥴에 있는 scno를 비교하기 위해서 쓰임
       var moviecd2 = this.moviecd;
       var tempcinema = this.defaultcinema; //이건 영화관을 담는거
       var tempday = this.selectedday;     //이건 날짜을 담는거
@@ -996,33 +972,21 @@ export default {
             console.log(error);
           })
     },
-    unselectedtime() {
-      this.time1 = !this.time1;
-    },
-    getSeatScno(scno) {
+    
+    getSeatScno(scno) {             // 스케쥴번호에 해당하는 좌석 상태를 가져옴
       SeatDataService.getScno(scno)
           .then(response => {
-            this.seat = response.data;
-            console.log(this.seat);
+            this.seattest2 = response.data;
+            console.log(this.seattest2);
           })
           .catch(error => {
             console.log(error);
           })
 
     },
-
-    colorChange(item) {
-      this.schedule2.forEach(el => {
-        el.clicked = false;
-      });
-      item.clicked = true;
+    unselectedtime() {   // 시간
+      this.time1 = !this.time1;
     },
-
-    getSeat() {
-      this.seatAll = new SeatAll();
-      console.log("this.SeatAll", this.seatAll);
-    },
-
 
     // openning(){
     //   BookingService.openningseat()
@@ -1033,6 +997,7 @@ export default {
     //     console.log(error);
     //   })
     // },
+
     // getSeatAll() {
     //   BookingService.getSeatAll()
     //       .then((response) => {
@@ -1043,17 +1008,17 @@ export default {
     //         console.log(e);
     //       });
     // },
-    seattest97() {
-      for (let i = 0; i < this.selected.length; i++) {
-        BookingService.SelectSeat(this.selected[i], this.selects903[0])
-            .then((response) => {
-              console.log(response.data);
-            })
-            .catch((e) => {
-              console.log(e);
-            });
-      }
-    },
+    // seattest97() {
+    //   for (let i = 0; i < this.selected.length; i++) {
+    //     BookingService.SelectSeat(this.selected[i], this.selects903[0])
+    //         .then((response) => {
+    //           console.log(response.data);
+    //         })
+    //         .catch((e) => {
+    //           console.log(e);
+    //         });
+    //   }
+    // },
     seatcount() {                                          // 티켓이미지 안에 들어갈 함수
       if (this.adultcount != 0 && this.teencount != 0) {    // 성인과 청소년을 함께 예매한경우
         this.adultteen = true;                            // 성인과 청소년 글자가 true가 되고
@@ -1066,45 +1031,45 @@ export default {
     modaloff() {
       this.모달 = false;
     },
-    seat(value) {               // 클릭을 하면 selected 배열에 담음
-      if (this.adultcount + this.teencount == 0) {
-        alert("인원을 선택해 주십시오.")
+    // seat(value) {               // 클릭을 하면 selected 배열에 담음
+    //   if (this.adultcount + this.teencount == 0) {
+    //     alert("인원을 선택해 주십시오.")
 
-      } else if (this.adultcount + this.teencount == this.selected.length) {
-        alert("관람인원을 초과하셨습니다.")
-      } else {
-        this.selected.push(value); // value에 A14가 나온다고 치고 그럼 
-        let tempVal = value.substr(0, 1); // 이러면 제일 앞에 있는 알파벳만 짤려서 나옴
-        console.log(tempVal);
-        let tempVal2 = value.substring(1, value.length); // 뒤의 숫자만 짤려서 나옴 10
-        console.log(tempVal2);
-        let tempB;
-        for (let i = 0; i < 1; i++) {     // 알파벳이 무엇인지 알고 그걸 실행 시키면 
-          if (tempVal == 'A') {
-            this.Seat[tempVal2 - 1] = 2;
-          } else if (tempVal == 'B') {
-            tempB = Number(tempVal2) + 10;
-            this.Seat[tempB - 1] = 2;
-          } else if (tempVal == 'C') {
-            tempB = Number(tempVal2) + 20;
-            this.Seat[tempB - 1] = 2;
-          } else if (tempVal == 'D') {
-            tempB = Number(tempVal2) + 30;
-            this.Seat[tempB - 1] = 2;
-          } else if (tempVal == 'E') {
-            tempB = Number(tempVal2) + 40;
-            this.Seat[tempB - 1] = 2;
-          } else if (tempVal == 'F') {
-            tempB = Number(tempVal2) + 50;
-            this.Seat[tempB - 1] = 2;
-          }
-        }
-        // console.log(tempVal2+10 -1);
-        if ((this.adultcount + this.teencount == this.selected.length) && (this.adultcount + this.teencount != 0)) {
-          this.결제하기 = true;
-        }
-      }
-    },
+    //   } else if (this.adultcount + this.teencount == this.selected.length) {
+    //     alert("관람인원을 초과하셨습니다.")
+    //   } else {
+    //     this.selected.push(value); // value에 A14가 나온다고 치고 그럼 
+    //     let tempVal = value.substr(0, 1); // 이러면 제일 앞에 있는 알파벳만 짤려서 나옴
+    //     console.log(tempVal);
+    //     let tempVal2 = value.substring(1, value.length); // 뒤의 숫자만 짤려서 나옴 10
+    //     console.log(tempVal2);
+    //     let tempB;
+    //     for (let i = 0; i < 1; i++) {     // 알파벳이 무엇인지 알고 그걸 실행 시키면 
+    //       if (tempVal == 'A') {
+    //         this.Seat[tempVal2 - 1] = 2;
+    //       } else if (tempVal == 'B') {
+    //         tempB = Number(tempVal2) + 10;
+    //         this.Seat[tempB - 1] = 2;
+    //       } else if (tempVal == 'C') {
+    //         tempB = Number(tempVal2) + 20;
+    //         this.Seat[tempB - 1] = 2;
+    //       } else if (tempVal == 'D') {
+    //         tempB = Number(tempVal2) + 30;
+    //         this.Seat[tempB - 1] = 2;
+    //       } else if (tempVal == 'E') {
+    //         tempB = Number(tempVal2) + 40;
+    //         this.Seat[tempB - 1] = 2;
+    //       } else if (tempVal == 'F') {
+    //         tempB = Number(tempVal2) + 50;
+    //         this.Seat[tempB - 1] = 2;
+    //       }
+    //     }
+    //     // console.log(tempVal2+10 -1);
+    //     if ((this.adultcount + this.teencount == this.selected.length) && (this.adultcount + this.teencount != 0)) {
+    //       this.결제하기 = true;
+    //     }
+    //   }
+    // },
     // deleteseat(value) {            // 클릭을 하면 selected 배열에서 삭제를 함
     //   for (let i = 0; i < 5; i++) {
     //     if (this.selected[i] == value) {  // F10 이면
@@ -1140,79 +1105,25 @@ export default {
       }
       this.결제하기 = false;
     },
-    adultmins() {
-      if (this.adultcount == 0) {
-        alert("인원선택은 최소 1명 입니다.")
-      } else if ((this.teencount + this.adultcount) == this.selected.length) {
-        alert("좌석을 취소해 주세요.")
-      } else {
-        this.adultcount--;
-        if ((this.teencount + this.adultcount) == this.selected.length && this.selected.length != 0) {
-          this.결제하기 = true;
-        }
-        if (this.adultcount == 0) {
-          this.성인 = false;
-        }
-      }
-      this.totalpay = this.totalpay - 100;
-    },
-    adultplus() {
-      if (this.adultcount + this.teencount == 5) {
-        alert("인원선택은 최대 5명까지 입니다.")
-      } else {
-        this.adultcount++;
-        this.결제하기 = false;
-        this.성인 = true;
-        this.modaloff();
-      }
-      this.modalpeople = false;
-      this.totalpay = this.totalpay + 100;
-    },
-    teenmins() {
-      if (this.teencount == 0) {
-        alert("인원선택은 최소 1명 입니다.")
-      } else if ((this.teencount + this.adultcount) == this.selected.length) {
-        alert("좌석을 취소해 주세요.")
-      } else {
-        this.teencount--;
-        if (this.teencount == 0) {
-          this.청소년 = false;
-        }
-        if ((this.teencount + this.adultcount) == this.selected.length && this.selected.length != 0) {
-          this.결제하기 = true;
-        }
-      }
-      this.totalpay = this.totalpay - 100;
-    },
-    teenplus() {
-      if (this.adultcount + this.teencount == 5) {
-        alert("인원선택은 최대 5명까지 입니다.")
-      } else {
-        this.teencount++;
-        this.결제하기 = false;
-        this.청소년 = true;
-        this.modaloff();
-      }
-      this.modalpeople = false;
-      this.totalpay = this.totalpay + 100;
-    },
-    SeatSet() {                        // 데이터 베이스에서 자리가 있는지 확인
-      for (let i = 0; i < this.seat.length; i++) {
-        for (let j = 0; j < this.SeatAll.length; j++) {
-          if (this.saat[i].seatposition = this.seatAll[j].seatposition) {
-            this.seatAll[j].seatyn = "Y";
+    
+    SeatSet() {                        // 데이터 베이스에서 자리가 있는지 확인  TODO:
+      for (let i = 0; i < this.seattest2.length; i++) {   // 2번돔  Y가 들어옴 Y 는 좌석이 선택 된거임
+        for (let j = 0; j < 60; j++) {
+          if (this.seattest2[i].seatposition = this.seatdataAll[j].seatposition) {
+              this.seatdataAll[j].seatyn =  "Y";
+              console.log(this.seattest2[i].seatposition);
           }
         }
       }
-      // console.log(this.seatAll);
+      console.log(this.seatdataAll);
     },
     // SeomyeonCinema() {
     //   let j = 0;
     //   for (let i =0; i <60; i++) {
     //     if (this.SeatAll[i].seatyn == 'N') {      // 자리가 있으면 true를 줌
-    //       this.Seat[j] = 1;
+    //       this.Seattest[j] = 1;
     //     } else {                     // 자리가 없으면 false
-    //       this.Seat[j] = 0;
+    //       this.Seattest[j] = 0;
     //     }
     //     j++;
     //   }
