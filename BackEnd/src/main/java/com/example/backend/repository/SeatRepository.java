@@ -24,4 +24,6 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
     List<Seat> findAllBySeatyn(String seatyn);
 
     Seat findBySeatpositionAndScno(String seatposition, Long scno);
+
+    List<Seat> findAllByScno(Long scno);
 }
