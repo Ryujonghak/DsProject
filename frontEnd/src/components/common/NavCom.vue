@@ -418,7 +418,7 @@
                 <li
                   v-show="!currentUser"
                   class="btn signupLink third-space"
-                  style="width: 96.1px"
+                  style="width: 100px; text-align: center;"
                 >
                   <router-link to="/signup">sign up</router-link>
                 </li>
