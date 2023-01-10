@@ -9,6 +9,10 @@ class SeatDataService {
         return http.get(`/seat/seatstatus/${seatyn}`);
     }
 
+    getScno(scno) {
+        return http.get(`/seat/${scno}`);
+    }
+
     create(data) {
         return http.post(`/seat`, data);
     }

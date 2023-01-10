@@ -29,6 +29,11 @@ public class SeatService {
         return statuslist;
     }
 
+    public List<Seat> findAllByScno(Long scno) {
+        List<Seat> statuslist = seatRepository.findAllByScno(scno);
+        return statuslist;
+    }
+
     public Seat updateSeat(String seatposition, Long scno, String seatyn) {
         Seat targetSeat = seatRepository.findBySeatpositionAndScno(seatposition, scno);
         targetSeat.setSeatyn(seatyn);
