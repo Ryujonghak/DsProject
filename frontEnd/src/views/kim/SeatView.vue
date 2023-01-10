@@ -349,7 +349,7 @@
                                 <button v-show="seattest60[19] == 0" class="seat-bg3" disabled>10</button>
                               </div>
                               <span class="font2">B</span>
-                            
+                            </div>
                             <!-- 좌석 C 시작 -->
                             <div class="seat-p">
                               <span class="font">C</span>
@@ -695,7 +695,7 @@
       </div>
       </div>
     </div>
-  </div>
+
 
 </template>
 
