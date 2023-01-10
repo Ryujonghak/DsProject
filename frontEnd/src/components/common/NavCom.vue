@@ -265,44 +265,10 @@
             class="collapse navbar-collapse flex-parent"
             id="bs-example-navbar-collapse-1"
           >
-            <div class="col-xs-5 navbar-menu">
-              <ul class="nav navbar-nav flex-child-menu menu-left">
-                <li class="hidden">
-                  <a href="#page-top"></a>
-                </li>
-
-                <li>
-                  <router-link to="/allMovie">전체보기</router-link>
-                </li>
-                <li class="dropdown first">
-                  <a
-                    class="btn btn-default dropdown-toggle lv1 happy"
-                    data-toggle="dropdown"
-                    data-hover="dropdown"
-                  >
-                    영화관<i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </a>
-                  <ul class="dropdown-menu level1">
-                    <li>
-                      <router-link to="/SeomyeonCinema">서면</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/CentumCinema">센텀시티</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/BusanCinema">부산대</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/theaterBusan">전체 상영관</router-link>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
             <!-- 로고 -->
             <div class="col-xs-2">
               <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
+              <div class="navbar-header" id="back-to-top">
                 <div
                   class="navbar-toggle"
                   data-toggle="collapse"
@@ -324,21 +290,51 @@
                 /></router-link>
               </div>
             </div>
-            <!-- 오른쪾메뉴 -->
             <div class="col-xs-5 navbar-menu">
-              <ul class="nav navbar-nav flex-child-menu menu-right col">
-
-                <!-- 고객센터 -->
-
+              <ul
+                class="col-xs-12 nav navbar-nav flex-child-menu menu-left"
+                style="text-align: center; margin-left: 0%"
+              >
+                <li>
+                  <router-link to="/allMovie">전체보기</router-link>
+                </li>
                 <li class="dropdown first">
-                  <router-link to="/notice"
+                  <a
+                    class="btn btn-default dropdown-toggle lv1 happy"
+                    data-toggle="dropdown"
+                    data-hover="dropdown"
+                  >
+                    영화관<i
+                      class="fa fa-angle-down"
+                      aria-hidden="true"
+                      style="margin-left: 0%"
+                    ></i>
+                  </a>
+                  <ul class="dropdown-menu level1">
+                    <li>
+                      <router-link to="/SeomyeonCinema">서면</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/CentumCinema">센텀시티</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/BusanCinema">부산대</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/theaterBusan">전체 상영관</router-link>
+                    </li>
+                  </ul>
+                </li>
+                <!-- 고객센터 -->
+                <li class="dropdown first" style="padding-right: 0%">
+                  <a
                     class="btn btn-default dropdown-toggle lv1"
                     data-toggle="dropdown"
                     data-hover="dropdown"
                   >
                     고객센터
                     <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </router-link >
+                  </a>
                   <ul class="dropdown-menu level1">
                     <li>
                       <router-link to="/notice">공지사항</router-link>
@@ -351,19 +347,26 @@
                     </li>
                   </ul>
                 </li>
-
+              </ul>
+            </div>
+            <!-- 오른쪾메뉴 -->
+            <div class="col-xs-5 navbar-menu">
+              <ul class="nav navbar-nav flex-child-menu menu-right col-xs-12">
+                <li class="col-xs-4"></li>
                 <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
-                <div v-show="currentUser">
+                <div class="col-xs-4" v-show="currentUser">
                   <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
-                  <li class="dropdown first" v-if="!showAdminBoard">
-                    <router-link to="/mypage"
+                  <li class="dropdown first" v-show="!showAdminBoard">
+                    <router-link
+                      to="/mypage"
                       class="btn btn-default dropdown-toggle lv1"
+                      style="margin-left: 44%"
                       data-toggle="dropdown"
                       data-hover="dropdown"
                     >
                       MY PAGE
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </router-link>>
+                    </router-link>
                     <ul class="dropdown-menu level1">
                       <li>
                         <router-link to="/mypage">내정보</router-link>
@@ -375,49 +378,73 @@
                     </ul>
                   </li>
                   <!-- 회원 로그인시 마이페이지 끝  -->
-                </div>
-
-                <!-- 어드민 로그인시 어드민 나브바 시작-->
-                <li class="dropdown first" v-if="showAdminBoard">
-                  <a
-                    class="btn btn-default dropdown-toggle lv1"
-                    data-toggle="dropdown"
-                    data-hover="dropdown"
+                  <!-- 어드민 로그인시 어드민 나브바 시작-->
+                  <li
+                    class="dropdown first"
+                    style="
+                      text-align: left;
+                      padding-left: 0%;
+                      padding-right: 0%;
+                    "
+                    v-show="showAdminBoard"
                   >
-                    ADMIN <i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </a>
-                  <ul class="dropdown-menu level1">
-                    <li>
-                      <router-link to="/userInfoAdmin">회원관리</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/board-admin">게시판관리</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/payment-admin">예매관리</router-link>
-                    </li>
-                  </ul>
-                </li>
-                <!-- 어드민 로그인시 어드민 나브바 끝-->
+                    <a
+                      class="btn btn-default dropdown-toggle lv1"
+                      style="text-align: left; padding-left: 56.5%"
+                      data-toggle="dropdown"
+                      data-hover="dropdown"
+                    >
+                      ADMIN <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu level1">
+                      <li>
+                        <router-link to="/userInfoAdmin">회원관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/board-admin">게시판관리</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/payment-admin">예매관리</router-link>
+                      </li>
+                    </ul>
+                  </li>
+                  <!-- 어드민 로그인시 어드민 나브바 끝-->
+                </div>
 
                 <!-- 로그인 회원가입 창 -->
 
-                <li v-if="!currentUser" class="loginLink">
+                <li
+                  v-show="!currentUser"
+                  class="col-xs-4 loginLink"
+                  style="text-align: right; padding-left: 0%"
+                >
                   <a href="#">LOG In</a>
                 </li>
 
-                <li v-if="!currentUser" class="btn signupLink">
+                <li
+                  v-show="!currentUser"
+                  class="col-xs-4 btn signupLink"
+                  style="width: 31%"
+                >
                   <router-link to="/signup">sign up</router-link>
                 </li>
 
                 <!-- 로그인성공시 signup -> logout변경 -->
                 <!-- <div v-if="currentUser"> -->
-                  <li v-if="currentUser"
-                   class="dropdown first logoutLink" id="logoutlink">
-                    <a class="btn btn-default dropdown-toggle lv1"
+                <li
+                  v-show="currentUser"
+                  class="dropdown first logoutLink col-xs-4"
+                  id="logoutlink"
+                >
+                  <a
+                    class="btn btn-default dropdown-toggle lv1"
                     data-toggle="dropdown"
-                    data-hover="dropdown" href="#" @click.prevent="logout">LOG Out</a>
-                  </li>
+                    data-hover="dropdown"
+                    href="#"
+                    @click.prevent="logout"
+                    >LOG Out</a
+                  >
+                </li>
                 <!-- </div> -->
               </ul>
             </div>
@@ -483,8 +510,8 @@ export default {
     },
   },
   methods: {
-      // 로그인 버튼 클릭시 실행되는 함수
-      handleLogin() {
+    // 로그인 버튼 클릭시 실행되는 함수
+    handleLogin() {
       // 로그인 로직 처리
       this.loading = true;
       // vee-validate 함수 findid처리 방법
@@ -714,18 +741,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .logo {
-//   margin-left: %;
-// }
+
 .navbar-menu {
   margin-top: 2%;
 }
 
-// .hi{
-//   justify-content: space-between;
-//   margin-left: 3%;
-
-//
 .img-fluid {
   margin: 1%;
 }
@@ -766,28 +786,19 @@ input {
   text-transform: lowercase !important;
 }
 
-// #hidden{
-//   background: none !important;
-// }
 .tohomelogin {
   background: none !important;
   color: black !important;
 }
-// .navbar-nav .navbar-menu{
-//   justify-content: space-between !important;
-//   float: right !important;
-// }
-.menu-left{
-  margin-left: 50% !important;
+
+#logoutlink {
   justify-content: end !important;
 }
 
-#logoutlink{
-  justify-content: end !important;
+.nav .navbar-nav .flex-child-menu .menu-right .col {
+  justify-content: space-between !important;
 }
-
-.nav .navbar-nav .flex-child-menu .menu-right .col{
-justify-content: space-between !important;
+.menu-left li {
+  margin-left: 5%;
 }
-
 </style>
