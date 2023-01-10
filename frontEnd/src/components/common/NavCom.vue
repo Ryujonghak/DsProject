@@ -268,7 +268,7 @@
             <!-- 로고 -->
             <div class="col-xs-2">
               <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header" >
+              <div class="navbar-header">
                 <div
                   class="navbar-toggle"
                   data-toggle="collapse"
@@ -290,7 +290,7 @@
                 /></router-link>
               </div>
             </div>
-            <div class="col-xs-5 navbar-menu">
+            <div class="col-xs-5 navbar-menu" style="padding-left:0%">
               <ul
                 class="col-xs-12 nav navbar-nav flex-child-menu menu-left"
                 style="text-align: center; margin-left: 0%"
@@ -352,21 +352,20 @@
             <!-- 오른쪾메뉴 -->
             <div class="col-xs-5 navbar-menu">
               <ul class="nav navbar-nav flex-child-menu menu-right col-xs-12">
-                <li class="col-xs-4"></li>
+                <li class="first-space"></li>
                 <!-- TODO: 회원 로그인시 마이페이지 : 비로그인시 마이페이지 숨김 -->
-                <div class="col-xs-4" v-show="currentUser">
+                <div class="second-space" style="padding-left: 5%;" v-show="currentUser">
                   <!-- 회원 로그인시 마이페이지 : 로그인 user일시 admin 메뉴 숨김 -->
                   <li class="dropdown first" v-show="!showAdminBoard">
-                    <router-link
+                    <a
                       to="/mypage"
                       class="btn btn-default dropdown-toggle lv1"
-                      style="margin-left: 44%"
                       data-toggle="dropdown"
                       data-hover="dropdown"
                     >
                       MY PAGE
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </router-link>
+                    </a>
                     <ul class="dropdown-menu level1">
                       <li>
                         <router-link to="/mypage">내정보</router-link>
@@ -381,16 +380,11 @@
                   <!-- 어드민 로그인시 어드민 나브바 시작-->
                   <li
                     class="dropdown first"
-                    style="
-                      text-align: left;
-                      padding-left: 0%;
-                      padding-right: 0%;
-                    "
+                    
                     v-show="showAdminBoard"
                   >
                     <a
                       class="btn btn-default dropdown-toggle lv1"
-                      style="text-align: left; padding-left: 56.5%"
                       data-toggle="dropdown"
                       data-hover="dropdown"
                     >
@@ -415,7 +409,7 @@
 
                 <li
                   v-show="!currentUser"
-                  class="col-xs-4 loginLink"
+                  class="loginLink second-space"
                   style="text-align: right; padding-left: 0%"
                 >
                   <a href="#">LOG In</a>
@@ -423,20 +417,23 @@
 
                 <li
                   v-show="!currentUser"
-                  class="col-xs-4 btn signupLink"
-                  style="width: 31%"
+                  class="btn signupLink third-space"
+                  style="width: 96.1px"
                 >
                   <router-link to="/signup">sign up</router-link>
                 </li>
 
                 <!-- 로그인성공시 signup -> logout변경 -->
+                <!-- <div v-if="currentUser"> -->
                 <li
                   v-show="currentUser"
-                  class="dropdown first logoutLink col-xs-4"
+                  class="dropdown first logoutLink third-space"
+                  style="margin-left: 3%"
                   id="logoutlink"
                 >
                   <a
                     class="btn btn-default dropdown-toggle lv1"
+                    style="width: 96.1px"
                     data-toggle="dropdown"
                     data-hover="dropdown"
                     href="#"
@@ -740,7 +737,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .navbar-menu {
   margin-top: 2%;
 }
@@ -799,5 +795,11 @@ input {
 }
 .menu-left li {
   margin-left: 5%;
+}
+.first-space {
+  width: 40%;
+}
+.second-space {
+  margin-right: 5%;
 }
 </style>
