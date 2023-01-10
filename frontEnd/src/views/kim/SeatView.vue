@@ -201,18 +201,18 @@
                             style="width: 330px;  margin-bottom: 0; color: gray;  padding: 15px 0 5px 0;  font-size: 16px; font-weight: bold; color: white; border-bottom: 1px solid gray;">
                           상영시간
                         </p>
-                        <button v-for="(item,index) in schedule2" :key="index" 
+                        <button v-for="(item,index) in schedule2" :key="index"  v-show="time1"
                           @click="selectedtime(item.starttime)" 
                           style="width: 70px;  height: 80px; float: left; border: 0;background-color: black; margin-right: 5px; margin-top: 5px;">
                           <p style="color: white;margin-bottom: 10px;">2D</p>
                           <h4 class="selected-btn">{{ item.starttime }}</h4>
                         </button>
-<!-- 
+
                         <button v-show="!time1" @click="unselectedtime()"
                           style="width: 70px; border-radius: 20px; height: 80px; float: left; border: 0;background-color:black;  margin-right: 5px;margin-top: 5px;">
                           <p style="color: white;margin-bottom: 10px;">2D</p>
                           <h4 style="color: black;padding: 9px 22px 9px 9px; margin-left: 3px; background-color: white; width: 55px; ">{{ ticketinfor.tickettime }}</h4>
-                        </button> -->
+                          </button>
 
                         
 
@@ -225,12 +225,9 @@
                            style="position: absolute; width: 820px;height: 400px; background-color: rgba(0,0,0,.6);  top:300px; right: -30px; z-index: 99; text-align: center;">
                         <!--  위 공백처리 -->
                         <div style="margin-bottom: 80px; width: 100%;"></div>
-                        <!-- TODO: 콤마 처리생각해야됨 01-09 -->
-                        <span style=" color: white; font-size: 24px;" v-if="modalcinema">영화관</span>
-                        <span style=" color: white; font-size: 24px;" v-if="modalday"> 날짜</span>
-                        <span style=" color: white; font-size: 24px;" v-if="modaltime"> 시간</span>
-                        <span style=" color: white; font-size: 24px;" v-if="modalpeople"> 관람인원</span>
-                        <span style=" color: white; font-size: 24px;">을 선택해 주세요</span>
+                        <!-- TODO:  -->
+                        <span style=" color: white; font-size: 24px;">시간을 선택해 주세요</span>
+                        <span style=" color: white; font-size: 24px;">관람인원을 선택해 주세요</span>
                       </div>
                       <div style="width:780px">
                         <!--  -->
@@ -738,7 +735,7 @@ export default {
       data2: [],
       reservation: new Reservation(),
       
-      모달: false,
+      모달: true,
       좌석: true,  // 좌석페이지 v-show
       결제후페이지: false,
 
@@ -823,7 +820,10 @@ export default {
 
       schedule2 : [],
 
-      ticketinfor: [], // 티켓정보를 담는 배열
+      ticketinfor: [], // 티켓정보를 담는 배열\
+
+
+      seattable : [], // 영화관,날짜,상영시간을 클릭하면 데이터가 여기에 담김
       
 
     };
@@ -895,7 +895,22 @@ export default {
       this.ticketinfor.tickettime = value;          // 선택된 시간을 티켓 정보에 넣음
       console.log(this.ticketinfor.tickettime);
       this.time1 = !this.time1;
-      
+      this.getfFndByMoviecdAndLocationAndStartdayAndStarttime();       // 시간을 선택하면 실행됨
+    },
+
+    getfFndByMoviecdAndLocationAndStartdayAndStarttime() {
+      var moviecd2 = this.moviecd;
+      var tempcinema = this.defaultcinema; //이건 영화관을 담는거
+      var tempday =  this.selectedday;     //이건 날짜을 담는거
+      var temptime = this.ticketinfor.tickettime;
+      ScheduleDataService.getfFndByMoviecdAndLocationAndStartdayAndStarttime(moviecd2,tempcinema,tempday,temptime)
+      .then((response) => {
+        this.seattable = response.data;
+        console.log(response.data)
+      })
+      .catch(error =>{
+        console.log(error);
+      })
     },
     unselectedtime() {
       this.time1 = !this.time1;
@@ -949,9 +964,7 @@ export default {
       }
     },
     modaloff() {
-      if ((this.modalcinema == false && this.modalday == false) && (this.modaltime == false && this.modalpeople == false)) {
-        this.모달 = false;
-      }
+      this.모달 = false;
     },
     seat(value) {               // 클릭을 하면 selected 배열에 담음
       if (this.adultcount + this.teencount == 0) {
