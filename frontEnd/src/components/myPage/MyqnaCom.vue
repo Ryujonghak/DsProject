@@ -107,7 +107,7 @@
 
             <!-- TODO: v-if 넘어오는 데이터 없으면 뜨도록 -->
             <!-- <div> -->
-            <div v-if="emptyQna == true">
+            <div v-if="emptyQna == true" class="noQna">
               <h3>문의내역이 없습니다.</h3>
             </div>
 
@@ -526,6 +526,10 @@ textarea {
   resize: none;
 }
 
+/* 문의내역없음 */
+.noQna {
+  color:lightslategray;
+}
 /*
 .form-style-1 {
     background-color:none;

@@ -104,7 +104,7 @@
                     src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
                     alt="user"
                   />
-                  <div>
+                  <div class="welcome">
                     <!-- <p>{{ CurrentUser.id }} choichoi</p> -->
                     <h3>{{ CurrentUser.name }} 님</h3>
                     <h3>환영해요!</h3>
@@ -470,6 +470,11 @@ export default {
   /* max-width: 100%; */
   max-width: 120px;
   vertical-align: middle;
+}
+
+/* 환영 글자색 변경 */
+.welcome {
+  color:lightslategray;
 }
 
 /* TODO: 탑버튼 추가 */

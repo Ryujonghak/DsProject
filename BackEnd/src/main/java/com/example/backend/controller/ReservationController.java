@@ -51,12 +51,12 @@ public class ReservationController {
     }
 
     @GetMapping("/reservation/search")
-    public ResponseEntity<Object> findAllByRusername(@RequestParam(required = false) String rusername,
+    public ResponseEntity<Object> findAllByRusername(@RequestParam(required = false) String username,
                                                      @RequestParam(defaultValue = "0") int page,
                                                      @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Reservation> reservationPage = reservationService.findAllByRusername(rusername, pageable);
+            Page<Reservation> reservationPage = reservationService.findAllByUsername(username, pageable);
 
 
             Map<String, Object> response = new HashMap<>();
@@ -135,15 +135,10 @@ public class ReservationController {
         }
     }
 
-    @PostMapping("/reservation/{username}")
-    public ResponseEntity<Object> create(@PathVariable String username,
-                                         @RequestBody Reservation reservation) {
+    @PostMapping("/reservation")
+    public ResponseEntity<Object> create(@RequestBody Reservation reservation) {
         try {
-            log.debug("-------------- create 시작 ----------");
-            log.debug(username);
-            log.debug(String.valueOf(reservation));
-
-            Reservation newReservation = reservationService.save(username, reservation);
+            Reservation newReservation = reservationService.save(reservation);
 
             return new ResponseEntity<>(newReservation, HttpStatus.OK);
         } catch (Exception e) {
@@ -154,10 +149,9 @@ public class ReservationController {
 
     @PutMapping("/reservation/{reservno}")
     public ResponseEntity<Object> update(@PathVariable Long reservno,
-                                         @RequestBody String username,
                                          @RequestBody Reservation reservation) {
         try {
-            Reservation newReservation = reservationService.save(username, reservation);
+            Reservation newReservation = reservationService.save(reservation);
 
             return new ResponseEntity<>(newReservation, HttpStatus.OK);
         } catch (Exception e) {

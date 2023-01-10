@@ -222,8 +222,8 @@ CREATE TABLE TB_SCHEDULE
     ENDDAY      VARCHAR2(255),
     ENDTIME     VARCHAR2(255),
     LOCATION    VARCHAR2(255),
-    TID         NUMBER,
-    SNO         NUMBER,
+
+--     BaseTimeEntity Part
 --     삭제플래그
     DELETE_YN   VARCHAR2(1) DEFAULT 'N',
 --     작성일시
@@ -240,12 +240,10 @@ CREATE TABLE TB_RESERVATION
 (
 --     예매고유번호
     RESERVNO    NUMBER NOT NULL PRIMARY KEY,
---     로그인ID (참조테이블: TB_USER)
+--     예약자 ID
     USERNAME    VARCHAR2(1000),
 --     예약자 이름
     NAME        VARCHAR2(1000),
---     예약자 ID
-    RUSERNAME   VARCHAR2(1000),
 --     상영스케쥴ID (참조테이블: TB_SCHEDULE)
     RNO         VARCHAR2(1000),
 --     영화코드 (참조테이블: TB_SCHEDULE)
@@ -260,8 +258,12 @@ CREATE TABLE TB_RESERVATION
     PAIDDATE    VARCHAR2(255),
 --     상영관
     LOCATION    VARCHAR2(255),
+--     좌석정보
     SEAT        VARCHAR2(255),
+--     상영시간 정보
+    STARTDAY    VARCHAR2(255),
     STARTTIME   VARCHAR2(255),
+    ENDDAY      VARCHAR2(255),
     ENDTIME     VARCHAR2(255),
 --     스케쥴 ID
     SCNO        NUMBER,

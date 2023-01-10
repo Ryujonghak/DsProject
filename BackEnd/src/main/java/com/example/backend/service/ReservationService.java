@@ -29,15 +29,7 @@ public class ReservationService {
     }
 
     public Page<Reservation> findAllByUsername(String username, Pageable pageable) {
-        Optional<User> optionalUser = userRepository.findByUsername(username);
-        User user = optionalUser.get();
-        Page<Reservation> reservationPage = reservationRepository.findAllByUser(user, pageable);
-
-        return reservationPage;
-    }
-
-    public Page<Reservation> findAllByRusername(String rusername, Pageable pageable) {
-        Page<Reservation> reservationPage = reservationRepository.findAllByRusername(rusername, pageable);
+        Page<Reservation> reservationPage = reservationRepository.findAllByUsername(username, pageable);
 
         return reservationPage;
     }
@@ -60,12 +52,8 @@ public class ReservationService {
         return moviedetailReservationDtoPage;
     }
 
-    public Reservation save(String username, Reservation reservation) {
+    public Reservation save( Reservation reservation) {
 //        현재 로그인중인 계정 정보를 상입
-        Optional<User> optionalUser = userRepository.findByUsername(username);
-        User user = optionalUser.get();
-        reservation.setUser(user);
-
         Reservation newReservation = reservationRepository.save(reservation);
 
         return newReservation;
