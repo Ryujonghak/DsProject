@@ -3441,6 +3441,19 @@ export default {
         .then((response) => {
           this.schedule2 = response.data;
           console.log(response.data);
+
+          if (this.schedule2[0] != null) {
+            this.schedule_1 = this.schedule2[0];
+          }
+          if (this.schedule2[1] != null) {
+            this.schedule_2 = this.schedule2[1];
+          }
+          if (this.schedule2[2] != null) {
+            this.schedule_3 = this.schedule2[2];
+          }
+          if (this.schedule2[3] != null) {
+            this.schedule_4 = this.schedule2[3];
+          }
         })
         .catch((error) => {
           console.log(error);
