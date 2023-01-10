@@ -229,6 +229,49 @@
                 </td>
               </tr>
               <!-- 다섯번째 줄 끝 -->
+              <!-- 여섯번째 줄 : 정보를 추가로 받기위한 평점과 유튜브 주소창 (최아리 추가) -->
+              <tr>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">영화평점(최대10점)</label>
+                </th>
+                <td colspan="2">
+                  <ul class="footer-button-plus">
+                    <input
+                      type="text"
+                      id="file"
+                      class="inputfile"
+                      v-model="movie.raiting"
+                    />
+                  </ul>
+                </td>
+                <th scope="row" class="noticelabel">
+                  |
+                  <label for="noticeTitle">유튜브 예고편 주소</label>
+                </th>
+                <td colspan="5">
+                  <input
+                    type="text"
+                    name="title"
+                    id="prdyear"
+                    class="boxing input-text"
+                    maxlength="100"
+                    v-model="movie.utubeurl"
+                  />
+                </td>
+              </tr>
+              <div
+                style="
+                  width: 300%;
+                  margin-top: 5%;
+                  margin-left: 455%;
+                  color: #abb7c4;
+                  font-size: small;
+                "
+              >
+                <h6>*유튜브 주소 예시: https://youtu.be/dKWbgcKkn20</h6>
+              </div>
+              <!-- 여섯번째 줄 끝 -->
             </tbody>
           </table>
           <div class="search">
@@ -272,37 +315,47 @@ export default {
         posterurln: "", //포스터
         prdtyear: "", // 제작년도
         prdtstatnm: "개봉", // 개봉작 or 개봉예정작
+        raiting: null, // 영화 평점
+        utubeurl: "", // 유튜브 예고편 주소
       },
     };
   },
   methods: {
     //영화 등록함수
     saveMovie() {
-      let data = {
-        id: this.movie.id,
-        moviecd: this.movie.moviecd,
-        opendt: this.movie.opendt,
-        watchgradenm: this.movie.watchgradenm,
-        movienm: this.movie.movienm,
-        plot: this.movie.plot,
-        showtm: this.movie.showtm,
-        genrenm: this.movie.genrenm,
-        directors: this.movie.directors,
-        actor: this.movie.actor,
-        posterurln: this.movie.posterurln,
-        prdtyear: this.movie.prdtyear,
-        prdtstatnm: this.movie.prdtstatnm,
-      };
-      MovieDataService.create(data)
-        .then((response) => {
-          this.movie.id = response.data.id;
-          console.log(response.data);
-          alert("등록되었습니다.");
-          this.$router.push("/movie-admin");
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      // 영화평점이 10점이 초과가 되면 넘어가지 않도록 if (최아리 추가)
+      if (this.movie.raiting > 10) {
+        alert("영화평점을 10점 미만으로 다시 입력하세요.");
+      } else {
+        let data = {
+          id: this.movie.id,
+          moviecd: this.movie.moviecd,
+          opendt: this.movie.opendt,
+          watchgradenm: this.movie.watchgradenm,
+          movienm: this.movie.movienm,
+          plot: this.movie.plot,
+          showtm: this.movie.showtm,
+          genrenm: this.movie.genrenm,
+          directors: this.movie.directors,
+          actor: this.movie.actor,
+          posterurln: this.movie.posterurln,
+          prdtyear: this.movie.prdtyear,
+          prdtstatnm: this.movie.prdtstatnm,
+          raiting: this.movie.raiting,
+          utubeurl: this.movie.utubeurl,
+        };
+        MovieDataService.create(data)
+          .then((response) => {
+            this.movie.id = response.data.id;
+            console.log(response.data);
+            alert("등록되었습니다.");
+            alert(this.movie.raiting);
+            this.$router.push("/movie-admin");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
     },
   },
 };
