@@ -39,7 +39,7 @@
             <ul>
               <li><router-link to="/mypage">내정보</router-link></li>
               <li><router-link to="/myticket">나의예매내역</router-link></li>
-              <li><router-link to="/archive">무비타임라인</router-link></li>
+              <!-- <li><router-link to="/archive">무비타임라인</router-link></li> -->
             </ul>
           </div>
           <div class="flex-child-ft item5">
@@ -54,7 +54,7 @@
       </div>
       <div class="ft-copyright">
         <div class="ft-left">
-          <p>© 2022 DONGSUNG TEAM1</p>
+          <p>© 2022 DONGSUNG TEAM1 : 류종학 , 문영석 , 강수빈 , 최아리 , 정주희 , 김철원</p>
         </div>
         <div class="backtotop">
           <p>
