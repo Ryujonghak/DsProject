@@ -32,7 +32,7 @@ public class ReservationService {
     }
 
     public Page<Reservation> findAllByUsername(String username, Pageable pageable) {
-        Page<Reservation> reservationPage = reservationRepository.findAllByUsername(username, pageable);
+        Page<Reservation> reservationPage = reservationRepository.findAllByUsernameContaining(username, pageable);
 
         return reservationPage;
     }

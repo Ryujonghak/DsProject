@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     Page<Reservation> findAll(Pageable pageable);
-    Page<Reservation> findAllByUsername(String username, Pageable pageable);
+    Page<Reservation> findAllByUsernameContaining(String username, Pageable pageable);
 
     List<Reservation> findByReservno(Long reservno);
 
