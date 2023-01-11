@@ -2633,12 +2633,7 @@
                             />
                             예매 완료
                           </span>
-                          <button
-                            @click="test99()"
-                            style="width: 100px; height: 50px"
-                          >
-                            결제후 페이지 가기(임시)
-                          </button>
+                          
                         </div>
                       </div>
                     </div>
@@ -3419,11 +3414,7 @@ export default {
       };
     },
     test99() {
-      this.payment = true;
-      this.모달 = false;
-      this.좌석 = false;
-      this.addReservation();
-      this.seatcount();
+      
     },
 
     getFindAllByMoviecdAndLocationAndStartday() {
@@ -3870,6 +3861,10 @@ export default {
     },
 
     addReservation() {
+      let seatname = "";
+      for(let i = 0; i < this.selected.length; i++) {
+        seatname += ", " + this.selected[i]
+      } 
       this.reservation.username =this.$store.state.auth.user.username;
       this.reservation.name = this.CurrentUser.name; // 현재 하드코딩상태 getUser 함수 생성하여 데이터 넣어야함. (류종학, 230109)
       this.reservation.moviecd = this.data1.moviecd;
@@ -3880,7 +3875,7 @@ export default {
       this.reservation.rno = null;
       this.reservation.startday = this.selectedday; // 선택한 날짜
       this.reservation.location = this.defaultcinema;
-      this.reservation.seat = this.selected;
+      this.reservation.seat = seatname;
       this.reservation.starttime = this.moviestarttime;
       this.reservation.endtime = this.movieendtime;
 
@@ -4017,11 +4012,16 @@ export default {
           //콜백 함수
           if (rsp.success) {
             //결제 성공
-            this.addReservation();
-            alert("결제성공");
-            this.seattest97();
             this.payment = true;
+            this.모달 = false;
+            this.좌석 = false;
+            this.addReservation();
             this.seatcount();
+            alert(this.payment);
+            alert("결제성공");
+
+
+            
           } else {
             //결제 실패
             alert("결제실패");
