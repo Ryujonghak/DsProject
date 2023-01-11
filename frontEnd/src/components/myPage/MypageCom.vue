@@ -403,7 +403,6 @@ export default {
 
           this.findArchive();  // 예매내역(아카이브) 확인함수 추가
 
-
           this.watchedMovieTotalCount = response.data.totalItems;
           console.log("this.watchedMovieTotalCount", this.watchedMovieTotalCount);
         })
@@ -473,6 +472,7 @@ export default {
   color: rgb(221, 252, 56);
 }
 
+/* 예매내역 없음 */
 .noArchive{
   color:lightslategray;
 }
