@@ -4002,7 +4002,7 @@ export default {
           pg: "html5_inicis",
           pay_method: "card",
           merchant_uid: "merchant_" + new Date().getTime(),
-          name: "영화티켓",
+          name: this.data1.movienm,
           amount: this.totalpay,
           buyer_tel: "000-0000-0000",
           buyer_name: this.CurrentUser.name,
