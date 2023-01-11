@@ -197,6 +197,8 @@
                         >
                           결제하기
                         </button>
+                        <input type="text" name="inputValue" :value="test1002"/>
+                        <p>{{ test1002 }}</p>
                         <button
                           v-show="!결제하기"
                           v-on:click="requestPay"
@@ -3334,6 +3336,14 @@ export default {
       test1002: 0,
     };
   },
+  computed: {
+    checkTest() {
+      if(this.test1002 == "A") {
+        alert("결제성공");
+      } else {
+        alert("결제실패");
+      }
+  },
   methods: {
     // FIXME: 상영시간별 버튼 색상 주기 함수 추가
     coloredBtn() {
@@ -3893,6 +3903,7 @@ export default {
           console.log(error);
         });
     },
+    },
     week(value) {
       this.resetinfor();
       this.selectPerson = 0; // 시간이 선택되어야 인원을 클릭할 수 있게 만듬 그래야 화면이 이상하게 안나옴
@@ -4012,26 +4023,28 @@ export default {
         function (rsp) {
           //콜백 함수
           if (rsp.success) {
-            frontEnd.$data.test1002 = 1;
-            alert(this.test1002)
             alert("결제성공");
+            var test1002 = rsp.success;
+            $('input[name=inputValue]').attr('value',"A");
 
 
             
           } else {
             //결제 실패
             alert("결제실패");
+            // var test1002 = rsp.success;
+            // $('input[name=inputValue]').attr('value',"B");
           }
         }
       );
-      if(frontEnd.$data.test1002 == 1) {
-                    //결제 성공
-                    this.payment = true;
-            this.모달 = false;
-            this.좌석 = false;
-            this.addReservation();
-            this.seatcount();
-      }
+      // if(frontEnd.$data.test1002 == 1) {
+      //               //결제 성공
+      //               this.payment = true;
+      //       this.모달 = false;
+      //       this.좌석 = flse;
+      //       this.addReservation();
+      //       this.seatcount();
+      // }
     },
   },
 };
