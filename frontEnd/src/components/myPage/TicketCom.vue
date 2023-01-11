@@ -92,10 +92,10 @@
           </div>
           <!-- 공통 왼쪽 메뉴 끝 -->
 
-          <!-- 오른쪽 본문 내용 -->
-          <div class="col-md-9 col-sm-12 col-xs-12">
+        <!-- 오른쪽 본문 내용 -->
+        <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
-              <p>나의 관람 할 영화정보 <span>{{ reservedMovie }}</span> in total</p>
+                <p>나의 예매내역 <span>{{ watchedMovieTotalCount }}</span> in total</p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
@@ -119,58 +119,92 @@
                   <div class="row ipad-width2">
                     <div class="col-md-9 col-sm-12 col-xs-12">
                       <div class="flex-wrap-movielist user-fav-list">
-                        <!-- 예매한 영화 1 -->
-                        <!-- <div class="movie-item-style-2" v-for="(data, index) in Watchedmovie" :key="index"> -->
-                        <div class="movie-item-style-2" v-for="(data, index) in movie" :key="index">
+                        <!-- 예매한 영화 -->
+                        <div
+                          class="movie-item-style-2"
+                          v-for="(data, index) in watchedMovie.reservation"
+                          :key="index"
+                        >
                           <!-- todo) 이미지크기...  -->
                           <img :src="data.posterurln" alt="poster" />
                           <div class="mv-item-infor">
-                            <h6>
-                              <router-link :to="'/allMovie/' + data.moviecd">
-                              {{ data.movienm }} (결제일:{{ data.paiddate }})
-                              </router-link>
-                            </h6>
-                            <p class="rate">
-                              <!-- 네이버 평점 -->
-                              <i class="ion-android-star"></i
-                              ><span>{{ data.raiting }}</span> /10   
-                            </p>
-                            <p>감독: {{ data.directors }}</p>
-                            <p class="describe">
-                              상영시간: {{ data.showtm }}분 <a>{{ data.watchgradenm}}</a>
-                            </p>
+                            <div>
+                              <div class="col-xs-8">
+                                <h6>
+                                  <router-link
+                                    :to="'/allMovie/' + data.moviecd"
+                                  >
+                                    {{ data.movienm }}
+                                  </router-link>
+                                </h6>
+                                <p class="rate">
+                                  <!-- 네이버 평점 -->
+                                  <i class="ion-android-star"></i
+                                  ><span>{{ data.raiting }}</span> /10
+                                </p>
+                                <p>감독: {{ data.directors }}</p>
+                                <p class="describe">
+                                  상영시간: {{ data.showtm }}분
+                                  <a>{{ data.watchgradenm }}</a>
+                                </p>
+                              </div>
+                              <div class="col-xs-4">
+                                  <div class="col-xs-8">
+                                    <div class="movie-item-style-2">
+                                      <router-link :to="'/archive/' + data.moviecd">
+                                      <!-- <router-link to="/archive"> -->
+                                        <!-- <button>리뷰 GO</button> -->
+                                      </router-link>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
 
                             <div class="col-xs-12">
                               <p class="movie-detail-content col-xs-4">
                                 예매번호
                               </p>
-                              <p class="col-xs-6">{{ watchedMovie.reservno }}</p>
+                              <p class="col-xs-6">
+                                {{ data.reservno }}
+                              </p>
                             </div>
                             <div class="col-xs-12">
                               <p class="movie-detail-content col-xs-4">
                                 상영날짜
                               </p>
-                              <p class="col-xs-6"> {{ data.startday }}</p>
+                              <p class="col-xs-6">{{ data.startday }}</p>
                             </div>
                             <div class="col-xs-12">
                               <p class="movie-detail-content col-xs-4">
                                 관람극장
                               </p>
-                              <p>{{ data.location }}<span class="time sm-text">{{ data.starttime }} ~ {{ data.endtime }}</span></p>
+                              <p class="col-xs-6">
+                                {{ data.location }}
+                                {{ data.screen }}
+                                {{ data.starttime }}
+                              </p>
                             </div>
                             <div class="col-xs-12">
                               <p class="movie-detail-content col-xs-4">
                                 관람좌석
                               </p>
-                              <p class="col-xs-6">{{ data.seat }}</p>
+                              <p class="col-xs-6">
+                                {{ data.seat }}
+                              </p>
                             </div>
                             <p class="describe col-xs-12"></p>
                             <div class="col-xs-12">
                               <p class="movie-detail-content col-xs-4">
                                 결제금액
                               </p>
-                              <p class="col-xs-4">{{data.rcount * data.price}}원 ( {{ data.rcount }}x{{ data.price }} )</p>
-                              <!-- TODO: 예매취소 버튼 - 클릭이벤트 -->
+                              <p class="col-xs-4">
+                                {{ data.rcount * data.price }}원
+                                ( {{ data.rcount }}x{{
+                                  data.price
+                                }}
+                                )
+                              </p>
+                              <!-- TODO: 예매취소 버튼 - 날짜 지났으면비활성화 -->
                               <div class="col-xs-4">
                                 <a href="#" class="redbtn" @click="deleteTicket"
                                   >예매취소</a
@@ -179,7 +213,7 @@
                             </div>
                           </div>
                         </div>
-                  
+
                       </div>
                     </div>
                   </div>
@@ -192,181 +226,16 @@
               <div class="blank"></div>
             </div>
 
-            <!-- TODO: 이 부분은 추후 삭제!!!!!!!!!!!!!!!!!!!!!!! -->
-            <div class="watchedArea">
-              <div class="topbar-filter user">
-                <p>나의 예매내역 --> 이 탭 삭제하기. 마이페이지 아카이브에 넣기.  or 원래는 이 공간에 모든 예매내역 나옴(상영전/후) 페이징 부딪힌대서 분리하는거라... <span>{{ watchedMovie }}</span> in total</p>
-                <select>
-                  <option value="range">-- 2022년 --</option>
-                  <option value="saab">-- 2021년 --</option>
-                </select>
-              </div>
-              <div class="row" v-for="(data, index) in movie" v-bind:key="index">
-                <div class="col-xs-12 movie-item-style-2 userrate">
-                  <div class="col-xs-2">
-                    <img src="images/uploads/mv1.jpg" alt="" />
-                  </div>
-                  <div class="col-xs-8">
-                    <div class="mv-item-infor">
-                      <h6>
-                      <router-link :to="'/allMovie/' + data.moviecd">
-                      {{ data.movienm }}
-                        <span> ({{ data.opendt }}) </span></router-link>
-                      </h6>
-                      <!-- 별점 -->
-                      <p class="rate">
-                        <i class="ion-android-star"></i>
-                        <span>{{ data.raiting }}</span> /10
-                      </p>
-                      <p>상영시간: {{ data.showtm }}분 <a>{{ data.watchgradenm }}</a></p>
-                      <span class="time sm">{{ data.scheNo }}</span>
-                      <br />
-                      <span class="time sm">{{ data.theaterId }} {{ data.screen }} {{ data.cnt }}명</span>
-                      <br />
-                      <p><span class="time sm-text"> 18:00 ~ 20:00</span></p>
-                      <!-- <span class="time sm-text">{{ data.startTime }} ~ {{ data.endTime }}</span> -->
-                    </div>
-                  </div>
-                  <div class="col-xs-2">
-                    <div class="movie-item-style-2">
-                      <router-link :to="'/archive/' + data.moviecd">
-                        <a href="" class="redbtn">관람평</a>
-                      </router-link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 2. 예매 내역 상세보기 하드코딩 -->
-            <!-- <div class="page-single userfav_list">
-              <div class="container">
-                <div class="row ipad-width2">
-                  <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="topbar-filter user">
-                      <p>예매내역 상세보기<span>1 movies</span> in total</p>
-                      <select>
-                        <option value="range">-- 2022년 --</option>
-                        <option value="saab">-- 2021년 --</option>
-                      </select>
-                    </div>
-
-                    <div class="flex-wrap-movielist user-fav-list">
-                      <div class="movie-item-style-2">
-                        <img src="images/poster/영웅.jpg" alt="" />
-                        <div class="mv-item-infor">
-                          <h6>
-                            <a href="moviesingle.html"
-                              >영웅 <span>(2022)</span></a
-                            >
-                          </h6>
-                          <p class="rate">
-                            <i class="ion-android-star"></i><span>8.1</span> /10
-                          </p>
-                          <p>Director: 윤제균</p>
-                          <p class="describe">
-                            Run Time: 120분 <a>12세 관람가</a>
-                          </p>
-
-                          <div class="col-xs-12">
-                            <p class="movie-detail-content col-xs-4">
-                              예매번호
-                            </p>
-                            <p class="col-xs-6">{{}}</p>
-                          </div>
-                          <div class="col-xs-12">
-                            <p class="movie-detail-content col-xs-4">
-                              상영날짜
-                            </p>
-                            <p class="col-xs-6">{{}}</p>
-                          </div>
-                          <div class="col-xs-12">
-                            <p class="movie-detail-content col-xs-4">관람극장</p>
-                            <p class="col-xs-6">{{}}</p>
-                          </div>
-                          <div class="col-xs-12">
-                            <p class="movie-detail-content col-xs-4">
-                              관람좌석
-                            </p>
-                            <p class="col-xs-6">{{}}</p>
-                          </div>
-                          <p class="describe col-xs-12"></p>
-                          <div class="col-xs-12">
-                            <p class="movie-detail-content col-xs-4">
-                              결제금액
-                            </p>
-                            <p class="col-xs-4">{{}}</p>
-                            <div class="col-xs-4">
-                              <a href="#" class="redbtn">예매취소</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="movie-item-style-2">
-                        <img src="images/poster/영웅.jpg" alt="" />
-                        <div class="mv-item-infor">
-                          <h6>
-                            <a href="moviesingle.html"
-                              >영웅 <span>(2022)</span></a
-                            >
-                          </h6>
-                          <p class="rate">
-                            <i class="ion-android-star"></i><span>8.1</span> /10
-                          </p>
-                          <p>Director: 윤제균</p>
-                          <p class="describe">
-                            Run Time: 120분 <a>12세 관람가</a>
-                          </p>
-                          <div class="col-xs-12">
-                            <p class="movie-detail-content col-xs-4">
-                              예매번호
-                            </p>
-                            <p class="col-xs-6">{{}}</p>
-                          </div>
-                          <div class="col-xs-12">
-                            <p class="movie-detail-content col-xs-4">
-                              상영날짜
-                            </p>
-                            <p class="col-xs-6">{{}}</p>
-                          </div>
-                          <div class="col-xs-12">
-                            <p class="movie-detail-content col-xs-4">관람극장</p>
-                            <p class="col-xs-6">{{}}</p>
-                          </div>
-                          <div class="col-xs-12">
-                            <p class="movie-detail-content col-xs-4">
-                              관람좌석
-                            </p>
-                            <p class="col-xs-6">{{}}</p>
-                          </div>
-                          <p class="describe col-xs-12"></p>
-                          <div class="col-xs-12">
-                            <p class="movie-detail-content col-xs-4">
-                              결제금액
-                            </p>
-                            <p class="col-xs-4">{{}}</p>
-                            <div class="col-xs-4">
-                              <a href="#" class="redbtn">예매취소</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
             <!-- 페이지 -->
             <b-pagination
-                v-model="page"
-                :total-rows="movie.totalItems"
-                :per-page="pageSize"
-                pills
-                size="sm"
-                prev-text="<"
-                next-text=">"
-                @change="handlePageChange"
+              v-model="page"
+              :total-rows="watchedMovie.totalItems"
+              :per-page="pageSize"
+              pills
+              size="sm"
+              prev-text="<"
+              next-text=">"
+              @change="handlePageChange"
             ></b-pagination>
           </div>
         </div>
@@ -374,7 +243,7 @@
     </div>
     <!-- TODO: 탑버튼 추가 -->
     <a class="topbutton" href="#">
-      <img src="@/assets/images_jung/iconUp_48.png"/>
+      <img src="@/assets/images_jung/iconUp_48.png" />
     </a>
   </div>
 </template>
@@ -384,7 +253,6 @@
 // import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
-import MovieDataService from "@/services/MovieDataService";
 import ReservationDataService from "@/services/ReservationDataService";
 
 export default {
@@ -398,7 +266,7 @@ export default {
         password: "",
         username: "",
         phone: null,
-        year: null, 
+        year: null,
         month: null,
         day: null,
         name: "",
@@ -406,22 +274,9 @@ export default {
       },
       message: "",
 
-      ///////////////////////////////////////////////////////////////////////////
-      reservedlist: null, // 예매했고, 상영 전 영화(날짜 이전)
-      reservedMovie: 0,   // 예매했고, 상영 전 영화(날짜 이전) 갯수
+      watchedMovie: [],   // 예매한 영화
+      watchedMovieTotalCount: 0,  // 본 영화 갯수
 
-      watchedlist: null,  // 예매했고, 상영 후 영화(날짜 지남)
-      watchedMovie: 0,    // 예매했고, 상영 후 영화(날짜 지남) 갯수
-      ////////////////////////////////////////////////////////////////////////////
-      // FIXME: 예매한 영화.. 작성중
-      movie: [],
-      
-
-      // TODO: 리뷰
-      reviewMovie: {
-        userStarRating: 2, // 사용자별점
-        userReview: "", // 리뷰내용
-      },
       // 예매 테이블 추가
       unbooking: false,
 
@@ -458,45 +313,50 @@ export default {
         .catch((err) => console.log(err));
     },
 
-    // TODO: 예매했고, 상영 전 영화(날짜 이전) 가져오기 -- 아직함수없음 FIXME:
-    // 영화 전체 조회 요청하는 함수 -> 변경 필요 
-    getReservedMovie() {
 
-    },
-    getMovieInfo() {
-      MovieDataService.getMovieAll()
+    // TODO: 예매한 영화 가져오기
+    getWatchedMovie() {
+     // 본 영화 전체 조회 요청
+      ReservationDataService.getRespage(this.$store.state.auth.user.username, this.page -1, this.pageSize)
         .then((response) => {
-          this.movie = response.data;
+          this.watchedMovie = response.data;
+          console.log("this.watchedMovie", this.watchedMovie);
           console.log(response.data);
-          this.reservedMovie = this.reservedlist.length;
+
+          this.watchedMovieTotalCount = response.data.totalItems;
+
+          this.findArchive();  // 예매내역(아카이브) 확인함수 추가
+         
+          console.log("this.watchedMovieTotalCount", this.watchedMovieTotalCount);
         })
         .catch((e) => {
           console.log(e);
         });
     },
-    // TODO: 예매했고, 상영 후 영화(날짜 지남) 가져오기  -- 아직함수없음 FIXME:
-    getWatchedMovie() {
-      MovieDataService.getWatchedMovie()
-      .then()
-      this.watchedlist = response.data;
-      console.log(response.data);
-      this.watchedMovie = this.watchedlist.length;
+
+    
+    findArchive() {
+      if(this.watchedMovie.length == 0) {
+        this.emptyArchive = true;
+      } else {
+        this.emptyArchive = false;
+      }
+      console.log("findArchive", this.watchedMovie);
     },
-
-
+    
     // TODO: 예매번호 티켓예매취소 함수 FIXME:
     deleteTicket(reservno) {
-      MovieDataService.delete(reservno)
-      .then((response) => {
-            console.log(response.data);
-            alert("예매내역이 삭제되었습니다.");
-            
-            // this.getQna();      
-            // this.$router.push("/mypage");
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+      ReservationDataService.delete(reservno)
+        .then((response) => {
+          console.log(response.data);
+          alert("예매내역이 삭제되었습니다.");
+
+          // this.getQna();
+          // this.$router.push("/mypage");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
 
     // 로그아웃 함수 -> 공통함수 호출
@@ -505,36 +365,28 @@ export default {
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
       this.$router.push("/"); // 강제 홈페이지로 이동
     },
-    
+
     // 페이지 출력 갯수 변경
     handlePageChange(value) {
-    this.page = value;
-    this.getQna();
+      this.page = value;
+      this.getQna();
     },
   },
   // created가 mounted보다 더 빨리 실행됨. 데이터 들어가기전에 떠야하는건 created에 넣어야 함
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
-    this.getMovieInfo();  // 전체 영화
+    this.getWatchedMovie(); // 예매내역
   },
 };
 </script>
 
-
 <style scoped>
-
-.a.redbtn{
-  height: 30px;
-}
-
 .movie-item-style-2 .mv-item-infor .describe {
   width: 530px;
 }
 
-
 .movie-item-style-2 {
-  height: 360px;
   padding-top: 20px;
   padding-bottom: 50px;
 }
@@ -543,11 +395,11 @@ export default {
   padding-top: 10%;
 }
 
-.page-single.userfav_list{
+.page-single.userfav_list {
   padding: 0px;
 }
 
-.watchedArea{
+.watchedArea {
   margin-top: 100px;
 }
 
@@ -570,7 +422,13 @@ export default {
 }
 
 /* TODO: 탑버튼 추가 */
-.topbutton{
-    position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
+.topbutton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  opacity: 0.8;
 }
 </style>

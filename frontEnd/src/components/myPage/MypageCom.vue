@@ -393,7 +393,6 @@ export default {
     //     });
     // },
 
-    
     getReservMovieInfo() {
     // 본 영화 전체 조회 요청
       ReservationDataService.getRespage(this.$store.state.auth.user.username, this.page -1, this.pageSize)
@@ -405,7 +404,7 @@ export default {
           this.findArchive();  // 예매내역(아카이브) 확인함수 추가
 
 
-          this.watchedMovieTotalCount = this.watchedMovie.totalItems;
+          this.watchedMovieTotalCount = response.data.totalItems;
           console.log("this.watchedMovieTotalCount", this.watchedMovieTotalCount);
         })
         .catch((e) => {
