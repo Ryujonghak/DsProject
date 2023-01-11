@@ -3859,7 +3859,7 @@ export default {
 
     addReservation() {
       this.reservation.username = this.$store.state.auth.user.username;
-      this.reservation.name = "강수빈"; // 현재 하드코딩상태 getUser 함수 생성하여 데이터 넣어야함. (류종학, 230109)
+      this.reservation.name = this.$store.state.auth.user.name; // 현재 하드코딩상태 getUser 함수 생성하여 데이터 넣어야함. (류종학, 230109)
       this.reservation.rusername = this.$store.state.auth.user.username;
       this.reservation.moviecd = this.data1.moviecd;
       this.reservation.movienm = this.data1.movienm;
