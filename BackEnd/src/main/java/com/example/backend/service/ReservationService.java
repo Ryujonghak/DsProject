@@ -64,13 +64,22 @@ public class ReservationService {
 
         // 포맷 적용
         String formatedNow = now.format(formatter);
-        String rno =  formatedNow +reservation.getReservno();
-        reservation.setRno(rno);
+
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm:SS");
+
+        // 포맷 적용
+        String formatedNow2 = now.format(formatter);
+        reservation.setPaiddate(formatedNow2);
+
 
 //        현재 로그인중인 계정 정보를 상입
-        Reservation newReservation = reservationRepository.save(reservation);
+        Reservation newReservation1 = reservationRepository.save(reservation);
+        String rno =  formatedNow +newReservation1.getReservno();
+        newReservation1.setRno(rno);
 
-        return newReservation;
+        Reservation newReservation2 = reservationRepository.save(newReservation1);
+
+        return newReservation2;
     }
 
     public Boolean removeById(Long reservno) {
