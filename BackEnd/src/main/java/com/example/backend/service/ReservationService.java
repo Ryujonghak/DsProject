@@ -10,6 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,13 +49,24 @@ public class ReservationService {
         return moviedetailReservationDtoList;
     }
 
-    public Page<MoviedetailReservationDto> ResPage(Long reservno, Pageable pageable){
-        Page<MoviedetailReservationDto> moviedetailReservationDtoPage = reservationRepository.ResPage(reservno, pageable);
+    public Page<MoviedetailReservationDto> ResPage(String username, Pageable pageable){
+        Page<MoviedetailReservationDto> moviedetailReservationDtoPage = reservationRepository.ResPageTime(username, pageable);
 
         return moviedetailReservationDtoPage;
     }
 
     public Reservation save( Reservation reservation) {
+        // 현재 날짜 구하기
+        LocalDate now = LocalDate.now();
+
+        // 포맷 정의
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+
+        // 포맷 적용
+        String formatedNow = now.format(formatter);
+        String rno =  formatedNow +reservation.getReservno();
+        reservation.setRno(rno);
+
 //        현재 로그인중인 계정 정보를 상입
         Reservation newReservation = reservationRepository.save(reservation);
 

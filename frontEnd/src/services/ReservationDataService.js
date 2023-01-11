@@ -13,8 +13,8 @@ class ReservationDataService {
         return http.get(`reservation/searchById/${reservno}`)
     }
 
-    getRespage(reservno, page, size) {
-        return http.get(`/reservation/mypage?reservno=${reservno}&page=${page}&size=${size}`)
+    getRespage(username, page, size) {
+        return http.get(`/reservation/mypage?username=${username}&page=${page}&size=${size}`)
     }
 
     create(username, data) {

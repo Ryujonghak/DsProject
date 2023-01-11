@@ -345,7 +345,8 @@ VALUES (SQ_SEAT.NEXTVAL,
         'Y',
         1);
 
-INSERT INTO TB_SCHEDULE
+-- Reservation FakeData 추가
+INSERT INTO TB_RESERVATION
 VALUES (SQ_RESERV.NEXTVAL,
         'kang',
         '강수빈',
@@ -367,5 +368,26 @@ VALUES (SQ_RESERV.NEXTVAL,
         NULL,
         NULL);
 
+INSERT INTO TB_RESERVATION
+VALUES (SQ_RESERV.NEXTVAL,
+        'forbob',
+        '강수빈',
+        '2200',
+        '20227762',
+        '올빼미',
+        '1',
+        '100',
+        'NULL',
+        'centum',
+        'A1',
+        '20230111',
+        '15:00',
+        '20230110',
+        '18:00',
+        1,
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
 
 COMMIT;

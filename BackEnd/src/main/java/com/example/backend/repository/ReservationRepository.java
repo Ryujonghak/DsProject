@@ -39,5 +39,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             "FROM DETAIL_MOVIE DM, TB_RESERVATION R " +
             "WHERE " +
             "DM.moviecd = r.moviecd AND r.username = :username ", nativeQuery = true)
-    Page<MoviedetailReservationDto> ResPageTime(@Param("username") String rusername, Pageable pageable);
+    Page<MoviedetailReservationDto> ResPageTime(@Param("username") String username, Pageable pageable);
 }
