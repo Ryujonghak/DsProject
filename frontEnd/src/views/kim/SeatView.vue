@@ -3331,6 +3331,7 @@ export default {
 
       seattable: [], // 시간을 선택하면 그날 영화관,날짜,상영시간을 클릭하면 데이터가 여기에 담김
       selectPerson: 0, // 시간을 선택해야 인원을 선택할 수 있게 만드는 변수? 몰?루 졸려서 아무생각안남
+      test1002: 0,
     };
   },
   methods: {
@@ -3992,9 +3993,10 @@ export default {
         this.순서 += j;
       }
     },
-    requestPay: function () {
+    requestPay() {
       //1. 객체 초기화 (가맹점 식별코드 삽입)
       var IMP = window.IMP;
+      var test1002 = 0;
       IMP.init("imp03367585");
       //3. 결제창 호출
       IMP.request_pay(
@@ -4011,13 +4013,7 @@ export default {
         function (rsp) {
           //콜백 함수
           if (rsp.success) {
-            //결제 성공
-            this.payment = true;
-            this.모달 = false;
-            this.좌석 = false;
-            this.addReservation();
-            this.seatcount();
-            alert(this.payment);
+            test1002 = 1;
             alert("결제성공");
 
 
@@ -4028,6 +4024,14 @@ export default {
           }
         }
       );
+      if(test1002 == 1) {
+                    //결제 성공
+                    this.payment = true;
+            this.모달 = false;
+            this.좌석 = false;
+            this.addReservation();
+            this.seatcount();
+      }
     },
   },
 };
