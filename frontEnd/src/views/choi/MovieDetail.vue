@@ -543,6 +543,7 @@ export default {
     saveReview() {
       if (this.alreadyReviewed) {
         alert("이미 리뷰를 남기셨습니다.");
+        this.addReview = new Review();
         return;
       }
 
