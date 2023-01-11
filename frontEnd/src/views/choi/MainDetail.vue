@@ -182,7 +182,7 @@ export default {
     likeSave() {
       // alert("저장되었습니다. 마이페이지에서 확인 가능합니다 :)");
       if (this.wishlist.username == null) {
-        alert("get");
+        // alert("get");
         this.wishlist = new Wishlist();
         this.wishlist.username = this.$store.state.auth.user.username;
         this.wishlist.moviecd = this.currentMovie.moviecd;

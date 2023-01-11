@@ -608,7 +608,7 @@ $(function () {
       var successful = document.execCommand("copy");
       input_clip.blur();
       if (successful) {
-        alert("URL이 복사되었습니다. 원하시는 곳에 붙여넣기 해 주세요."); // 링크복사 시 화면 크기 고정
+        // alert("URL이 복사되었습니다. 원하시는 곳에 붙여넣기 해 주세요."); 
         $("html")
           .find("meta[name=viewport]")
           .attr(
@@ -616,10 +616,10 @@ $(function () {
             "width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes"
           );
       } else {
-        alert("이 브라우저는 지원하지 않습니다.");
+        // alert("이 브라우저는 지원하지 않습니다.");
       }
     } catch (err) {
-      alert("이 브라우저는 지원하지 않습니다.");
+      // alert("이 브라우저는 지원하지 않습니다.");
     }
   }); //클립보드 복사
 });
