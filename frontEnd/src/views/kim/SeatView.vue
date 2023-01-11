@@ -185,7 +185,7 @@
                       <div style="width: 100%; clear: both">
                         <button
                           v-show="결제하기"
-                          v-on:click="[requestPay(),seatcount(),addReservation()]"
+                          v-on:click="[requestPay(),seatcount(),addReservation(),plusSeat()]"
                           style="
                             width: 100%;
                             height: 60px;
@@ -199,7 +199,7 @@
                         </button>
                         <button
                           v-show="!결제하기"
-                          v-on:click="[requestPay(),seatcount(),addReservation()]"
+                          v-on:click="[requestPay(),seatcount(),addReservation(),plusSeat()]"
                           style="
                             width: 100%;
                             height: 60px;
@@ -3859,6 +3859,17 @@ export default {
           // console.log(response.data);
         })
         .catch((err) => console.log(err));
+    },
+    plusSeat(){
+      for(let i=0; i <  this.selected.length; i++) {
+        SeatDataService.create(this.selected[0])
+        .then(response => {
+          console(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+      }
     },
 
     addReservation() {
