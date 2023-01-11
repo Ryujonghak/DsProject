@@ -3900,6 +3900,10 @@ export default {
         temp = Number(this.dd);
         this.ticketinfo.selectedday = temp;
         this.selectedday = String(this.yy) + String(this.mm) + String(temp);
+        this.schedule_1 = null;
+        this.schedule_2 = null;
+        this.schedule_3 = null;
+        this.schedule_4 = null;
         this.getFindAllByMoviecdAndLocationAndStartday();
       } else if (value == "day2") {
         this.day1 = true;
@@ -3910,6 +3914,10 @@ export default {
         temp = Number(this.dd) + 1;
         this.ticketinfo.selectedday = temp;
         this.selectedday = String(this.yy) + String(this.mm) + String(temp);
+        this.schedule_1 = null;
+        this.schedule_2 = null;
+        this.schedule_3 = null;
+        this.schedule_4 = null;
         this.getFindAllByMoviecdAndLocationAndStartday();
       } else if (value == "day3") {
         this.day1 = true;
@@ -3920,6 +3928,10 @@ export default {
         temp = Number(this.dd) + 2;
         this.ticketinfo.selectedday = temp;
         this.selectedday = String(this.yy) + String(this.mm) + String(temp);
+        this.schedule_1 = null;
+        this.schedule_2 = null;
+        this.schedule_3 = null;
+        this.schedule_4 = null;
         this.getFindAllByMoviecdAndLocationAndStartday();
       } else if (value == "day4") {
         this.day1 = true;
@@ -3930,6 +3942,10 @@ export default {
         temp = Number(this.dd) + 3;
         this.ticketinfo.selectedday = temp;
         this.selectedday = String(this.yy) + String(this.mm) + String(temp);
+        this.schedule_1 = null;
+        this.schedule_2 = null;
+        this.schedule_3 = null;
+        this.schedule_4 = null;
         this.getFindAllByMoviecdAndLocationAndStartday();
       } else if (value == "day5") {
         this.day1 = true;
@@ -3940,6 +3956,10 @@ export default {
         temp = Number(this.dd) + 4;
         this.ticketinfo.selectedday = temp;
         this.selectedday = String(this.yy) + String(this.mm) + String(temp);
+        this.schedule_1 = null;
+        this.schedule_2 = null;
+        this.schedule_3 = null;
+        this.schedule_4 = null;
         this.getFindAllByMoviecdAndLocationAndStartday();
       }
       console.log(this.ticketinfo.selectedday);
