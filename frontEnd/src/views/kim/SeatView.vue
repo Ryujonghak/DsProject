@@ -731,7 +731,7 @@
                             margin-top: 5px;
                           "
                         >
-                          <p style="color: white; margin-bottom: 10px">2D</p>
+                          <p style="color: white; margin-bottom: 10px" v-if="schedule_1 != null">2D</p>
                           <button
                             id="first-div"
                             v-if="schedule_1 != null"
@@ -764,7 +764,7 @@
                             margin-top: 5px;
                           "
                         >
-                          <p style="color: white; margin-bottom: 10px">2D</p>
+                          <p style="color: white; margin-bottom: 10px" v-if="schedule_2 != null">2D</p>
                           <button
                             id="second-div"
                             v-if="schedule_2 != null"
@@ -797,7 +797,7 @@
                             margin-top: 5px;
                           "
                         >
-                          <p style="color: white; margin-bottom: 10px">2D</p>
+                          <p style="color: white; margin-bottom: 10px" v-if="schedule_3 != null">2D</p>
                           <button
                             id="third-div"
                             v-if="schedule_3 != null"
@@ -830,7 +830,7 @@
                             margin-top: 5px;
                           "
                         >
-                          <p style="color: white; margin-bottom: 10px">2D</p>
+                          <p style="color: white; margin-bottom: 10px" v-if="schedule_4 != null">2D</p>
                           <button
                             id="fourth-div"
                             v-if="schedule_4 != null"
