@@ -95,9 +95,7 @@
           <!-- 오른쪽 본문 내용 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
-              <p>
-                나의 예매내역 <span>{{ reservationCount }}</span> in total
-              </p>
+                <p>나의 예매내역 <span>{{ watchedMovieTotalCount }}</span> in total</p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
@@ -124,11 +122,11 @@
                         <!-- 예매한 영화 -->
                         <div
                           class="movie-item-style-2"
-                          v-for="(data, index) in reservation.reservation"
+                          v-for="(data, index) in watchedMovie.reservation"
                           :key="index"
                         >
                           <!-- todo) 이미지크기...  -->
-                          <img src="@/assets/images_choi/Views/choi/AllMovie/test_image.jpeg" alt="poster" />
+                          <img :src="data.posterurln" alt="poster" />
                           <div class="mv-item-infor">
                             <div>
                               <div class="col-xs-8">
@@ -155,7 +153,7 @@
                                     <div class="movie-item-style-2">
                                       <router-link :to="'/archive/' + data.moviecd">
                                       <!-- <router-link to="/archive"> -->
-                                        <button>리뷰 GO</button>
+                                        <!-- <button>리뷰 GO</button> -->
                                       </router-link>
                                     </div>
                                   </div>
@@ -174,7 +172,7 @@
                               <p class="movie-detail-content col-xs-4">
                                 상영날짜
                               </p>
-                              <p class="col-xs-6">{{ data.insertTime }}</p>
+                              <p class="col-xs-6">{{ data.startday }}</p>
                             </div>
                             <div class="col-xs-12">
                               <p class="movie-detail-content col-xs-4">
@@ -206,82 +204,7 @@
                                 }}
                                 )
                               </p>
-                              <!-- TODO: 예매취소 버튼 - 클릭이벤트 -->
-                              <div class="col-xs-4">
-                                <a href="#" class="redbtn" @click="deleteTicket"
-                                  >예매취소</a
-                                >
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-
-                           <!-- 예매한 영화 하드코딩 -->
-                           <div class="movie-item-style-2">
-                          <!-- todo) 이미지크기...  -->
-                          <img src="@/assets/images_jung/movie-theater02.jpg" alt="">
-                          <div class="mv-item-infor">
-                            <div>
-                              <div class="col-xs-8">
-                                <h6>
-                                    영웅
-                                </h6>
-                                <p class="rate">
-                                  <!-- 네이버 평점 -->
-                                  <i class="ion-android-star"></i
-                                  ><span>8</span> /10
-                                </p>
-                                <p>감독: 김영웅</p>
-                                <p class="describe">
-                                  상영시간: 120 분
-                                  <a>12세관람가</a>
-                                </p>
-                              </div>
-                              <div class="col-xs-4">
-                                  <div class="col-xs-8">
-                                    <div class="movie-item-style-2">
-                                        <button>리뷰 GO</button>
-                                    </div>
-                                  </div>
-                              </div>
-                            </div>
-
-                            <div class="col-xs-12">
-                              <p class="movie-detail-content col-xs-4">
-                                예매번호
-                              </p>
-                              <p class="col-xs-6"> 20230110001 </p>
-                            </div>
-                            <div class="col-xs-12">
-                              <p class="movie-detail-content col-xs-4">
-                                상영날짜
-                              </p>
-                              <p class="col-xs-6">20230111</p>
-                            </div>
-                            <div class="col-xs-12">
-                              <p class="movie-detail-content col-xs-4">
-                                관람극장
-                              </p>
-                              <p class="col-xs-6"> 서면 18:00
-                              </p>
-                            </div>
-                            <div class="col-xs-12">
-                              <p class="movie-detail-content col-xs-4">
-                                관람좌석
-                              </p>
-                              <p class="col-xs-6">
-                                H23
-                              </p>
-                            </div>
-                            <p class="describe col-xs-12"></p>
-                            <div class="col-xs-12">
-                              <p class="movie-detail-content col-xs-4">
-                                결제금액
-                              </p>
-                              <p class="col-xs-4"> 20000원 ( 10000 x 2 )
-                              </p>
-                              <!-- TODO: 예매취소 버튼 - 클릭이벤트 -->
+                              <!-- TODO: 예매취소 버튼 - 날짜 지났으면비활성화 -->
                               <div class="col-xs-4">
                                 <a href="#" class="redbtn" @click="deleteTicket"
                                   >예매취소</a
@@ -306,7 +229,7 @@
             <!-- 페이지 -->
             <b-pagination
               v-model="page"
-              :total-rows="reservation.totalItems"
+              :total-rows="watchedMovie.totalItems"
               :per-page="pageSize"
               pills
               size="sm"
@@ -351,10 +274,8 @@ export default {
       },
       message: "",
 
-      ///////////////////////////////////////////////////////////////////////////
-      reservation: [], // 예매한 영화 전체
-      reservationCount: 0, 
-      ///////////////////////////////////////////////////////////////////////////
+      watchedMovie: [],   // 예매한 영화
+      watchedMovieTotalCount: 0,  // 본 영화 갯수
 
       // 예매 테이블 추가
       unbooking: false,
@@ -392,32 +313,37 @@ export default {
         .catch((err) => console.log(err));
     },
 
-    // 영화 전체 조회 요청하는 함수
-    // getMovieInfo() {
-    //   MovieDataService.getMovieAll()
-    //     .then((response) => {
-    //       this.movie = response.data;
-    //       console.log(response.data);
-    //       this.reservedMovie = this.reservedlist.length;
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
 
     // TODO: 예매한 영화 가져오기
     getWatchedMovie() {
-      ReservationDataService.getUsernameReservation(this.username, this.page -1, this.pageSize)
-      .then((response) => {
-          this.reservation = response.data;
+     // 본 영화 전체 조회 요청
+      ReservationDataService.getRespage(this.$store.state.auth.user.username, this.page -1, this.pageSize)
+        .then((response) => {
+          this.watchedMovie = response.data;
+          console.log("this.watchedMovie", this.watchedMovie);
           console.log(response.data);
-          this.reservationCount = this.reservation.length;
+
+          this.watchedMovieTotalCount = response.data.totalItems;
+
+          this.findArchive();  // 예매내역(아카이브) 확인함수 추가
+         
+          console.log("this.watchedMovieTotalCount", this.watchedMovieTotalCount);
         })
         .catch((e) => {
           console.log(e);
         });
     },
 
+    
+    findArchive() {
+      if(this.watchedMovie.length == 0) {
+        this.emptyArchive = true;
+      } else {
+        this.emptyArchive = false;
+      }
+      console.log("findArchive", this.watchedMovie);
+    },
+    
     // TODO: 예매번호 티켓예매취소 함수 FIXME:
     deleteTicket(reservno) {
       ReservationDataService.delete(reservno)

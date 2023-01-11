@@ -4,11 +4,14 @@ public interface MoviedetailReservationDto {
 //    Reservation Part
     Long getReservno(); // 예매번호
     String getLocation(); // 상영관
+    String getStartday(); // 상영 시작시간
     String getStarttime(); // 상영 시작시간
+    String getEndday(); // 상영 종료시간
     String getEndtime(); // 상영 종료시간
     String getSeat(); // 좌석
     String getPrice(); // 금액
     String getRcount(); // 관람인원
+    String getRno();
 
 //    MovieDetail Part
     String getMoviecd(); // 무비 코드
