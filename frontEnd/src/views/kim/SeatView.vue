@@ -185,7 +185,7 @@
                       <div style="width: 100%; clear: both">
                         <button
                           v-show="결제하기"
-                          v-on:click="requestPay"
+                          v-on:click="[requestPay(),seatcount(),addReservation()]"
                           style="
                             width: 100%;
                             height: 60px;
@@ -199,7 +199,7 @@
                         </button>
                         <button
                           v-show="!결제하기"
-                          v-on:click="requestPay"
+                          v-on:click="[requestPay(),seatcount(),addReservation()]"
                           style="
                             width: 100%;
                             height: 60px;
@@ -4013,7 +4013,7 @@ export default {
           //콜백 함수
           if (rsp.success) {
             alert("결제가 되었습니다! 마이페이지에서 확인해주세요 :)");
-            window.location.reload();
+            window.location.replace('/myticket');
           } else {
             //결제 실패
             alert("결제실패");
