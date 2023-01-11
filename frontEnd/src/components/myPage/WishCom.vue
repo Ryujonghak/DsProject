@@ -115,9 +115,14 @@
                 <img :src="data.posterurln" alt="poster"/>
                 <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
                 <div class="hvr-inner">
-                  <router-link to="/reserveTicket">
+                  <!-- <router-link to="/reserveTicket">
                     예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link>
+                  </router-link> -->
+                  <router-link
+                      :to="'/SeatTest/' + data.moviecd"
+                      >예매하기 
+                      <i class="ion-android-arrow-dropright"></i
+                    ></router-link>
                 </div>
                 <!-- 제목 -->
                 <div class="mv-item-infor">
@@ -318,5 +323,11 @@ export default {
 
 .mytitle{
   color: azure;
+}
+
+/* 셀렉트박스 아이콘 */
+.topbar-filter select{
+  width: 35% !important;
+  background: url(../../../public/images/uploads/drop-icon.png) no-repeat right 20px center;
 }
 </style>

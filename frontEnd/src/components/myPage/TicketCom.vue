@@ -96,7 +96,7 @@
         <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
               <p class="mytitle">나의 예매내역 <span>{{ watchedMovieTotalCount }}</span> in total</p>
-              <a href="userfavoritegrid.html" class="grid"
+              <a href="/myticket" class="grid"
                 ><i class="ion-grid"></i
               ></a>
               <!-- <select>

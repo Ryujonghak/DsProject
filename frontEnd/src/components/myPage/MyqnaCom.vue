@@ -96,7 +96,7 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
               <p class="mytitle">나의 문의내역 <span>{{ totalQna }}</span> in total</p>
-              <a href="userfavoritegrid.html" class="grid"
+              <a href="/myqna" class="grid"
                 ><i class="ion-grid"></i
               ></a>
               <!-- <select class="form-select" v-model="searchSelect">

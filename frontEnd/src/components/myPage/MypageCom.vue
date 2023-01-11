@@ -162,7 +162,7 @@
                     <!-- <router-link to ="/archive/:moviecd"
                       ><p>나의 아카이브 <span>{{ reviewTotalCount }}</span> in total</p></router-link> -->
                     <p class="mytitle">나의 아카이브 <span>{{ watchedMovieTotalCount }}</span> in total</p>
-                    <a href="userfavoritegrid.html" class="grid"
+                    <a href="/mypage" class="grid"
                       ><i class="ion-grid"></i
                     ></a>
                   </div>
