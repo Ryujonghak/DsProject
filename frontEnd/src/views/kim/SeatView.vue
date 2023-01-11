@@ -4005,7 +4005,7 @@ export default {
           name: "영화티켓",
           amount: this.totalpay,
           buyer_tel: "000-0000-0000",
-          buyer_name: "홍길동",
+          buyer_name: this.CurrentUser.name,
           buyer_email: "gildong@gmail.com",
         },
         function (rsp) {
