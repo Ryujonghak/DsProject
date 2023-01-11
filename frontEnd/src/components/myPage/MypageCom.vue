@@ -166,12 +166,17 @@
                       ><i class="ion-grid"></i
                     ></a>
                   </div>
+
+                  <div v-if="emptyArchive == true" class="noArchive">
+                    <h3>예매내역이 없습니다.</h3>
+                  </div>
+
                   <!-- 나의 아카이브 내용 시작 -->
                   <!-- TODO: 예매내역 정보 받아오기 :  -->
-                  <div class="flex-wrap-movielist">
+                  <div class="flex-wrap-movielist" v-if="emptyArchive == false">
                     <!-- 아카이브 시작 -->
                     <div class="movie-item-style-2 movie-item-style-1" 
-                    v-for="(data, index) in watchedMovie" v-bind:key="index">
+                    v-for="(data, index) in watchedMovie.reservation" v-bind:key="index">
                         <img :src="data.posterurln" alt="poster" />
                         <!-- 영화 라벨 -->
                         <div class="mv-item-infor">
@@ -199,10 +204,16 @@
                           </h6>
                         </div>
                         <p>
+                          상영시간: {{ data.showtm }}분 <br />
+                          관람일자 :
+                          {{ data.startday }}<br />
+                          {{ data.starttime }}  ~ {{ data.endtime }}<br>
+                        </p>
+                        <!-- <p>
                           {{ data.startday }} | {{ data.starttime }} <br />
                           상영시간: {{ data.showtm }}분 <br />
                           감독: {{ data.directors }}
-                        </p>
+                        </p> -->
                         <!-- 리뷰테이블에서 사용자 평점 가져오기
                         <p class="time sm-text">
                           나의 별점
@@ -308,6 +319,8 @@ export default {
       watchedMovie: [],   // 예매한 영화
       watchedMovieTotalCount: 0,  // 본 영화 갯수
 
+      emptyArchive: true, // 아카이브 없는지 체크
+
       CurrentUser: {
         email: "",
         password: "",
@@ -321,33 +334,6 @@ export default {
       },
       message: "",
 
-      // FIXME: 예매한 영화.. 작성중
-      // watchedMovie: [],
-      // watchedMovie: {
-      //   username: "", // 아이디
-      //   paidDate: "", // 예매일자
-      //   reservNo: "", // 예매번호
-      //   openDt: "2022", // 개봉년도
-      //   movieNm: "눈의 여왕5: 스노우 프린세스와 미러랜드의 비밀", // 영화제목   -> title로 바꿔야하나?
-      //   posterURL:
-      //     "https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m665_443_2", // 포스터 주소는 1개만 받으면 됩니다.",  // 영화포스터이미지
-      //   directors: "제임스카메론", // 감독 (최대7자)
-      //   rating: 4.3, // 평점(관람객)
-      //   starRating: 3.5, // 나중에 백엔드에서 평점 가져오기 (정수로 받아야 합니다,,)
-      //   showTm: "192", // 상영시간
-      //   watchGradeNm: "12세관람가", // 관람등급
-      //   scheNo: "2022/12/28", // 상영스케쥴
-      //   seatNo: "I3", // 좌석번호
-      //   cnt: "1", // 예매수량
-      //   price: "15000", // 금액
-      // },
-      // TODO: 리뷰
-      review: [],
-      // reviewMovie: {
-      //   userStarRating: 2, // 사용자별점
-      //   userReview: "", // 리뷰내용
-      // },
-
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
       count: 0, // 전체 데이터 건수
@@ -356,13 +342,11 @@ export default {
     };
   },
   methods: {
-    getUser(username) {
+    getUser() {
       // 종학이 백엔드 데이터 받는 함수
-      username = this.$store.state.auth.user.username;
       // username = "forbob";
-      console.log(username);
       userService
-        .getUserUsername(username)
+        .getUserUsername(this.$store.state.auth.user.username)
         .then((response) => {
           this.CurrentUser = {
             email: response.data.email,
@@ -379,6 +363,15 @@ export default {
           // console.log(response.data);
         })
         .catch((err) => console.log(err));
+    },
+
+    findArchive() {
+      if(this.watchedMovie.length == 0) {
+        this.emptyArchive = true;
+      } else {
+        this.emptyArchive = false;
+      }
+      console.log("findArchive", this.watchedMovie);
     },
 
     // 로그아웃 함수 -> 공통함수 호출
@@ -403,10 +396,14 @@ export default {
     
     getReservMovieInfo() {
     // 본 영화 전체 조회 요청
-      ReservationDataService.getUsernameReservation(this.user.username, this.page -1, this.pageSize)
+      ReservationDataService.getRespage(this.$store.state.auth.user.username, this.page -1, this.pageSize)
         .then((response) => {
           this.watchedMovie = response.data;
+          console.log("this.watchedMovie", this.watchedMovie);
           console.log(response.data);
+
+          this.findArchive();  // 예매내역(아카이브) 확인함수 추가
+
 
           this.watchedMovieTotalCount = this.watchedMovie.totalItems;
           console.log("this.watchedMovieTotalCount", this.watchedMovieTotalCount);
@@ -427,7 +424,7 @@ export default {
     custom();
     this.getUser(); // 엔드 데이터
     // this.getMovieInfo(); // 영화 탑텐
-    getReservMovieInfo(); // 본 영화 조회
+    this.getReservMovieInfo(); // 본 영화 조회
   },
 };
 </script>
@@ -472,10 +469,16 @@ export default {
   vertical-align: middle;
 }
 
-/* 환영 글자색 변경 */
+/* 환영, 아카이브없음 글자색 변경 */
 .welcome {
+  color: rgb(221, 252, 56);
+}
+
+.noArchive{
   color:lightslategray;
 }
+
+
 
 /* TODO: 탑버튼 추가 */
 .topbutton{

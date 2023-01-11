@@ -110,12 +110,12 @@ public class ReservationController {
 
     @GetMapping("/reservation/mypage")
     public ResponseEntity<Object> ResPage(
-            @RequestParam(required = false) Long reservno,
+            @RequestParam(required = false) String username,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
-            Page<MoviedetailReservationDto> reservationPage = reservationService.ResPage(reservno, pageable);
+            Page<MoviedetailReservationDto> reservationPage = reservationService.ResPage(username, pageable);
 
 
             Map<String, Object> response = new HashMap<>();
