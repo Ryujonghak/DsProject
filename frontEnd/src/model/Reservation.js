@@ -32,7 +32,7 @@ scno
         this.reservno = reservno;
         this.username = username;
         this.name = name;
-        this.rusername = rusername;
+        // this.username = username;
         this.rno = rno;
         this.moviecd = moviecd;
         this.movienm = movienm;
