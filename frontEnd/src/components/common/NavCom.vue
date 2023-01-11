@@ -65,7 +65,7 @@
             /></a>
             <a
               class="img-fluid"
-              href="http://localhost:8000/oauth2/authorization/naver"
+              href="http://192.168.0.65:8000/oauth2/authorization/naver"
               role="button"
               ><img
                 src="@/assets/images_kang/Components/common/Navcom/btn_naverSignUp.png.png"

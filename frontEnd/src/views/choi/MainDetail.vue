@@ -195,7 +195,7 @@ export default {
           .then((res) => {
             this.wishlist = res.data;
             console.log("wishlist: ", this.wishlist);
-            alert("create");
+            // alert("create");
             // this.getWishlist();
           })
           .catch((err) => {
@@ -205,7 +205,7 @@ export default {
         WishlistDataService.delete(this.wishlist.wid)
           .then((res) => {
             console.log(res.data);
-            alert("Delete");
+            // alert("Delete");
             this.getWishlist();
             // alert(this.wishlist);
           })
