@@ -3993,10 +3993,9 @@ export default {
         this.순서 += j;
       }
     },
-    requestPay() {
+    requestPay : function() {
       //1. 객체 초기화 (가맹점 식별코드 삽입)
       var IMP = window.IMP;
-      var test1002 = 0;
       IMP.init("imp03367585");
       //3. 결제창 호출
       IMP.request_pay(
@@ -4013,7 +4012,8 @@ export default {
         function (rsp) {
           //콜백 함수
           if (rsp.success) {
-            test1002 = 1;
+            frontEnd.$data.test1002 = 1;
+            alert(this.test1002)
             alert("결제성공");
 
 
@@ -4024,7 +4024,7 @@ export default {
           }
         }
       );
-      if(test1002 == 1) {
+      if(frontEnd.$data.test1002 == 1) {
                     //결제 성공
                     this.payment = true;
             this.모달 = false;
