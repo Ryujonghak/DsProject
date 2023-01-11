@@ -2633,12 +2633,7 @@
                             />
                             예매 완료
                           </span>
-                          <button
-                            @click="test99()"
-                            style="width: 100px; height: 50px"
-                          >
-                            결제후 페이지 가기(임시)
-                          </button>
+                          
                         </div>
                       </div>
                     </div>
@@ -2662,7 +2657,7 @@
                       <span style="font-size: 24px; font-weight: bold">
                         {{ data1.movienm }}</span
                       ><span style="font-size: 24px; font-weight: bold"
-                        >(날짜를 뭘로 해야됨? 이거 물어봐야함)</span
+                        >(2022)</span
                       >
                       <br />
                       <p style="margin: 10px 0 0 0">
@@ -3024,6 +3019,7 @@ import ReservationDataService from "@/services/ReservationDataService";
 import ScheduleDataService from "@/services/ScheduleDataService";
 import SeatDataService from "@/services/SeatDataService";
 import Seat from "@/model/Seat.js";
+import userService from "@/services/user.service";
 // import SeatAll from "@/model/SeatAll";
 // import user from "@/services/user.service"       // 유저 조회해서 하는건가?
 
@@ -3044,6 +3040,7 @@ export default {
     this.paymentcinema = "센텀시티";
     this.moviecd = this.data1.moviecd;
     this.ticketinfo.selectedday = this.dd;
+    this.getUser();
 
     this.getFindAllByMoviecdAndLocationAndStartday();
   },
@@ -3296,6 +3293,7 @@ export default {
         new Seat(null, "F9", "N", 1),
         new Seat(null, "F10", "N", 1),
       ],
+      currentUser: this.$store.state.auth.user.username,
 
       selects998: ["1A1", "N"], // data2에 있는 좌석데이터를 담는곳 센텀시티
       selects903: ["N"], // 좌석 상태를 날리는 배열 좌석예매할때쓰임
@@ -3416,11 +3414,7 @@ export default {
       };
     },
     test99() {
-      this.payment = true;
-      this.모달 = false;
-      this.좌석 = false;
-      this.addReservation();
-      this.seatcount();
+      
     },
 
     getFindAllByMoviecdAndLocationAndStartday() {
@@ -3440,7 +3434,7 @@ export default {
       )
         .then((response) => {
           this.schedule2 = response.data;
-          console.log(response.data);
+          console.log("스케쥴이 있으면 나옴 : ",response.data);
 
           if (this.schedule2[0] != null) {
             this.schedule_1 = this.schedule2[0];
@@ -3831,13 +3825,13 @@ export default {
       }
       this.결제하기 = false;
     },
-    Schedulecreate() {
+    Schedulecreate() { 
       this.Scheduldata.moviecd = this.data1.moviecd;
       this.Scheduldata.movienm = this.data1.movienm;
       this.Scheduldata.showtm = this.data1.showtm;
       this.Scheduldata.tid = this.Theater;
-      this.Scheduldata.starttime = "12:30";
-      this.Scheduldata.endtime = "14:10";
+      this.Scheduldata.starttime = this.moviestarttime;
+      this.Scheduldata.endtime = this.movieendtime;
 
       BookingService.createSchedule(this.Scheduldata)
         .then((response) => {
@@ -3852,27 +3846,41 @@ export default {
     popcorn() {
       alert("현재 스토어서비스는 준비중입니다.");
     },
-    getUserUsername() {
-      // TODO: 유저로 조회 하는 함수 만들어서  밑에 reservation에 넣어야 함
-      alert("모르겠습니다.");
+    getUser() {
+      // 종학이 백엔드 데이터 받는 함수
+      
+      // username = "forbob";
+      userService
+        .getUserUsername(this.$store.state.auth.user.username)
+        .then((response) => {
+         this.CurrentUser = response.data;
+          console.log("찍히냐????",this.CurrentUser);
+          // console.log(response.data);
+        })
+        .catch((err) => console.log(err));
     },
 
     addReservation() {
-      this.reservation.username = this.$store.state.auth.user.username;
-      this.reservation.name = "강수빈"; // 현재 하드코딩상태 getUser 함수 생성하여 데이터 넣어야함. (류종학, 230109)
-      this.reservation.rusername = this.$store.state.auth.user.username;
+      let seatname = "";
+      for(let i = 0; i < this.selected.length; i++) {
+        seatname += ", " + this.selected[i]
+      } 
+      this.reservation.username =this.$store.state.auth.user.username;
+      this.reservation.name = this.CurrentUser.name; // 현재 하드코딩상태 getUser 함수 생성하여 데이터 넣어야함. (류종학, 230109)
       this.reservation.moviecd = this.data1.moviecd;
       this.reservation.movienm = this.data1.movienm;
       this.reservation.rcount = this.adultcount + this.teencount;
       this.reservation.price = this.totalpay;
-      this.reservation.paiddate = new Date();
-      this.reservation.location = this.paymentcinema;
-      this.reservation.seat = this.selected;
-      this.reservation.starttime = new Date();
-      this.reservation.emdtime = new Date();
+      this.reservation.paiddate = null;
+      this.reservation.rno = null;
+      this.reservation.startday = this.selectedday; // 선택한 날짜
+      this.reservation.location = this.defaultcinema;
+      this.reservation.seat = seatname;
+      this.reservation.starttime = this.moviestarttime;
+      this.reservation.endtime = this.movieendtime;
 
-      this.reservation.scno = null;
-
+      this.reservation.scno = this.seattable[0].scno;
+      console.log("유저데이터",this.$store.state.auth.user);
       ReservationDataService.create(
         this.$store.state.auth.user.username,
         this.reservation
@@ -4004,11 +4012,16 @@ export default {
           //콜백 함수
           if (rsp.success) {
             //결제 성공
-            this.addReservation();
-            alert("결제성공");
-            this.seattest97();
             this.payment = true;
+            this.모달 = false;
+            this.좌석 = false;
+            this.addReservation();
             this.seatcount();
+            alert(this.payment);
+            alert("결제성공");
+
+
+            
           } else {
             //결제 실패
             alert("결제실패");
