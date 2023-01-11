@@ -95,7 +95,7 @@
         <!-- 오른쪽 본문 내용 -->
         <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
-                <p>나의 예매내역 <span>{{ watchedMovieTotalCount }}</span> in total</p>
+              <p>나의 예매내역 <span>{{ watchedMovieTotalCount }}</span> in total</p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
@@ -119,9 +119,15 @@
                   <div class="row ipad-width2">
                     <div class="col-md-9 col-sm-12 col-xs-12">
                       <div class="flex-wrap-movielist user-fav-list">
+
+                        <div v-if="emptyArchive == true" class="noArchive">
+                          <h3>예매내역이 없습니다.</h3>
+                        </div>
+
                         <!-- 예매한 영화 -->
+                        <div v-if="emptyArchive == false">
                         <div
-                          class="movie-item-style-2"
+                          class="movie-item-style-2" 
                           v-for="(data, index) in watchedMovie.reservation"
                           :key="index"
                         >
@@ -213,7 +219,7 @@
                             </div>
                           </div>
                         </div>
-
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -276,6 +282,7 @@ export default {
 
       watchedMovie: [],   // 예매한 영화
       watchedMovieTotalCount: 0,  // 본 영화 갯수
+      emptyArchive: true, // 아카이브 없는지 체크
 
       // 예매 테이블 추가
       unbooking: false,
@@ -313,7 +320,6 @@ export default {
         .catch((err) => console.log(err));
     },
 
-
     // TODO: 예매한 영화 가져오기
     getWatchedMovie() {
      // 본 영화 전체 조회 요청
@@ -322,18 +328,16 @@ export default {
           this.watchedMovie = response.data;
           console.log("this.watchedMovie", this.watchedMovie);
           console.log(response.data);
+          
+          this.findArchive();  // 예매내역(아카이브) 확인함수 추가
 
           this.watchedMovieTotalCount = response.data.totalItems;
-
-          this.findArchive();  // 예매내역(아카이브) 확인함수 추가
-         
           console.log("this.watchedMovieTotalCount", this.watchedMovieTotalCount);
         })
         .catch((e) => {
           console.log(e);
         });
     },
-
     
     findArchive() {
       if(this.watchedMovie.length == 0) {
@@ -400,8 +404,9 @@ export default {
   padding: 0px;
 }
 
-.watchedArea {
-  margin-top: 100px;
+/* 예매내역 없음 */
+.noArchive{
+  color:lightslategray;
 }
 
 /* 배경이미지 : 아리걸로 통일 */
