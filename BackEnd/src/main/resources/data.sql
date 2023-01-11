@@ -333,6 +333,21 @@ VALUES (SQ_SCHE.NEXTVAL,
         NULL,
         NULL);
 
+INSERT INTO TB_SCHEDULE
+VALUES (SQ_SCHE.NEXTVAL,
+        '20196478',
+        '영웅',
+        '220',
+        '20230111',
+        '17:00',
+        '20230110',
+        '18:00',
+        'busan',
+        'N',
+        TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+        NULL,
+        NULL);
+
 -- Seat FakeData 추가
 INSERT INTO TB_SEAT
 VALUES (SQ_SEAT.NEXTVAL,
