@@ -324,10 +324,4 @@ export default {
 .mytitle{
   color: azure;
 }
-
-/* 셀렉트박스 아이콘 */
-.topbar-filter select{
-  width: 35% !important;
-  background: url(../../../public/images/uploads/drop-icon.png) no-repeat right 20px center;
-}
 </style>
