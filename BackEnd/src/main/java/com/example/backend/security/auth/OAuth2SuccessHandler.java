@@ -88,7 +88,8 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         log.info("{}", jwt);
 
-        targetUrl = UriComponentsBuilder.fromUriString("http://localhost:8080/auth-redirect")
+//        targetUrl = UriComponentsBuilder.fromUriString("http://localhost:8080/auth-redirect")
+        targetUrl = UriComponentsBuilder.fromUriString("http://192.168.0.65:8080/auth-redirect")
                 .queryParam("accessToken", jwt)
                 .queryParam("username", username)
                 .queryParam("email", email)
