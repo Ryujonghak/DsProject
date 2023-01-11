@@ -9,7 +9,7 @@
         <!-- TODO: 메인에서 영상의 크기만 전체화면으로 넓게 보여주고 나머지 아래 부분은 중앙 정렬해서 보기에 더 다채롭도록 css 변경, 밑 포스터는 가리지 않고 살짝 보이도록 함 (최아리 수정) -->
         <iframe
           class="video"
-          src="https://www.youtube.com/embed/yIkZB1hAK4M?rel=0&loop=1&playlist=yIkZB1hAK4M&autoplay=1&mute=1"
+          src="https://www.youtube.com/embed/7MjKspiRQ-g?rel=0&loop=1&playlist=7MjKspiRQ-g&autoplay=1&mute=1"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
