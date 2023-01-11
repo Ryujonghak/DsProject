@@ -372,7 +372,6 @@
                       <li>
                         <router-link to="/myticket">나의예매내역</router-link>
                       </li>
-                      <li><router-link to="/mytest">test</router-link></li>
                     </ul>
                   </li>
                   <!-- 회원 로그인시 마이페이지 끝  -->

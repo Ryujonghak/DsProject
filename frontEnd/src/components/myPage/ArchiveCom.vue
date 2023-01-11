@@ -97,7 +97,7 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <!-- 2) 리뷰 파트 시작 -->
             <div class="topbar-filter user">
-              <p>나의 리뷰: 영화 관람평가</p>
+              <p class="mytitle">나의 리뷰: 영화 관람평가</p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
@@ -208,7 +208,7 @@
 
             <!-- 나의 리뷰 메뉴바  -->
             <div class="topbar-filter user">
-              <p>
+              <p class="mytitle">
                 나의 리뷰 <span> {{ reviewTotalCount }} </span> in total
               </p>
               <a href="userfavoritegrid.html" class="grid"
@@ -606,6 +606,10 @@ export default {
   /* max-width: 100%; */
   max-width: 120px;
   vertical-align: middle;
+}
+
+.mytitle{
+  color: azure;
 }
 
 /* TODO: 탑버튼 추가 */

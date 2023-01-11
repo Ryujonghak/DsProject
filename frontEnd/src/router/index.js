@@ -173,11 +173,6 @@ const routes = [
     component: () => import("../components/myPage/MyqnaCom"),
   },
   {
-    path: "/mytest",
-    name: "mytest",
-    component: () => import("../components/myPage/testCom.vue"),
-  },
-  {
     path: "/theaterBusan",
     name: "theaterBusan",
     component: () => import("../views/jung/TheaterBusan.vue"),

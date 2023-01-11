@@ -95,7 +95,7 @@
         <!-- 오른쪽 본문 내용 -->
         <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
-              <p>나의 예매내역 <span>{{ watchedMovieTotalCount }}</span> in total</p>
+              <p class="mytitle">나의 예매내역 <span>{{ watchedMovieTotalCount }}</span> in total</p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
@@ -425,6 +425,10 @@ export default {
   /* max-width: 100%; */
   max-width: 120px;
   vertical-align: middle;
+}
+
+.mytitle{
+  color: azure;
 }
 
 /* TODO: 탑버튼 추가 */

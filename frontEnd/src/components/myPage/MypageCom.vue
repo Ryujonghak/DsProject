@@ -161,7 +161,7 @@
                   <div class="topbar-filter">
                     <!-- <router-link to ="/archive/:moviecd"
                       ><p>나의 아카이브 <span>{{ reviewTotalCount }}</span> in total</p></router-link> -->
-                    <p>나의 아카이브 <span>{{ watchedMovieTotalCount }}</span> in total</p>
+                    <p class="mytitle">나의 아카이브 <span>{{ watchedMovieTotalCount }}</span> in total</p>
                     <a href="userfavoritegrid.html" class="grid"
                       ><i class="ion-grid"></i
                     ></a>
@@ -477,7 +477,9 @@ export default {
   color:lightslategray;
 }
 
-
+.mytitle{
+  color: azure;
+}
 
 /* TODO: 탑버튼 추가 */
 .topbutton{

@@ -95,7 +95,7 @@
           <!-- 오른쪽 본문 내용 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user">
-              <p>나의 문의내역 <span>{{ totalQna }}</span> in total</p>
+              <p class="mytitle">나의 문의내역 <span>{{ totalQna }}</span> in total</p>
               <a href="userfavoritegrid.html" class="grid"
                 ><i class="ion-grid"></i
               ></a>
@@ -529,6 +529,10 @@ textarea {
 /* 문의내역없음 */
 .noQna {
   color:lightslategray;
+}
+
+.mytitle{
+  color: azure;
 }
 /*
 .form-style-1 {

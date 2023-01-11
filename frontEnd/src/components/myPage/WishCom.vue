@@ -91,7 +91,7 @@
           <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="topbar-filter user" id="portfolio-filters">
               <!-- <p>나의 찜한 영화 <span>{{ totalMovie }}</span> in total</p> -->
-              <p>나의 찜한 영화 <span>{{ totalMovie }}</span> in total</p>
+              <p class="mytitle">나의 찜한 영화 <span>{{ totalMovie }}</span> in total</p>
               <select class="form-select" 
               v-model="opendt"
               @change="getOpendtWishlist"
@@ -314,5 +314,9 @@ export default {
 /* 찜한내역없음 */
 .noWish {
   color:lightslategray;
+}
+
+.mytitle{
+  color: azure;
 }
 </style>
