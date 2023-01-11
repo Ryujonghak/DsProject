@@ -5,8 +5,8 @@ class ReservationDataService {
         return http.get(`/reservation/all?page=${page}&size=${size}`)
     }
 
-    getUsernameReservation(rusername, page, size) {
-        return http.get(`/reservation/search?rusername=${rusername}&page=${page}&size=${size}`)
+    getUsernameReservation(username, page, size) {
+        return http.get(`/reservation/search?username=${username}&page=${page}&size=${size}`)
     }
 
     getReservation(reservno) {

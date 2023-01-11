@@ -176,7 +176,7 @@
                   <div class="flex-wrap-movielist" v-if="emptyArchive == false">
                     <!-- 아카이브 시작 -->
                     <div class="movie-item-style-2 movie-item-style-1" 
-                    v-for="(data, index) in watchedMovie" v-bind:key="index">
+                    v-for="(data, index) in watchedMovie.reservation" v-bind:key="index">
                         <img :src="data.posterurln" alt="poster" />
                         <!-- 영화 라벨 -->
                         <div class="mv-item-infor">
@@ -363,13 +363,11 @@ export default {
     };
   },
   methods: {
-    getUser(username) {
+    getUser() {
       // 종학이 백엔드 데이터 받는 함수
-      username = this.$store.state.auth.user.username;
       // username = "forbob";
-      console.log(username);
       userService
-        .getUserUsername(username)
+        .getUserUsername(this.$store.state.auth.user.username)
         .then((response) => {
           this.CurrentUser = {
             email: response.data.email,
@@ -389,7 +387,7 @@ export default {
     },
 
     findArchive() {
-      if(this.wishlist.length == 0) {
+      if(this.watchedMovie.length == 0) {
         this.emptyArchive = true;
       } else {
         this.emptyArchive = false;
@@ -419,10 +417,12 @@ export default {
     
     getReservMovieInfo() {
     // 본 영화 전체 조회 요청
-      ReservationDataService.getUsernameReservation(this.user.username, this.page -1, this.pageSize)
+      ReservationDataService.getRespage(this.$store.state.auth.user.username, this.page -1, this.pageSize)
         .then((response) => {
           this.watchedMovie = response.data;
+          console.log("this.watchedMovie", this.watchedMovie);
           console.log(response.data);
+
           this.findArchive();  // 예매내역(아카이브) 확인함수 추가
 
 
@@ -445,7 +445,7 @@ export default {
     custom();
     this.getUser(); // 엔드 데이터
     // this.getMovieInfo(); // 영화 탑텐
-    getReservMovieInfo(); // 본 영화 조회
+    this.getReservMovieInfo(); // 본 영화 조회
   },
 };
 </script>
