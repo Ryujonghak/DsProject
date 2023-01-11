@@ -400,7 +400,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[0] }}</router-link>
+                                                <a>{{ 부산대[0] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -410,7 +410,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[1] }}</router-link>
+                                                <a>{{ 부산대[1] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -420,7 +420,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[2] }}</router-link>
+                                                <a>{{ 부산대[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -478,7 +478,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[0] }}</router-link>
+                                                <a>{{ 부산대[0] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -488,7 +488,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[1] }}</router-link>
+                                                <a>{{ 부산대[1] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -498,7 +498,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[2] }}</router-link>
+                                                <a>{{ 부산대[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -555,7 +555,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[0] }}</router-link>
+                                                <a>{{ 부산대[0] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -565,7 +565,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[1] }}</router-link>
+                                                <a>{{ 부산대[1] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -575,7 +575,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[2] }}</router-link>
+                                                <a>{{ 부산대[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -632,7 +632,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[0] }}</router-link>
+                                                <a>{{ 부산대[0] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -642,7 +642,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[1] }}</router-link>
+                                                <a>{{ 부산대[1] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -652,7 +652,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[2] }}</router-link>
+                                                <a>{{ 부산대[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -709,7 +709,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[0] }}</router-link>
+                                                <a>{{ 부산대[0] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -719,7 +719,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[1] }}</router-link>
+                                                <a>{{ 부산대[1] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -729,7 +729,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 부산대[2] }}</router-link>
+                                                <a>{{ 부산대[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>

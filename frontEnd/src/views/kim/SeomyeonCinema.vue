@@ -399,7 +399,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <a>{{ 서면[0] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -409,7 +409,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <a>{{ 서면[1] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -419,7 +419,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
+                                                <a>{{ 서면[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -476,7 +476,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <a>{{ 서면[0] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -486,7 +486,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <a>{{ 서면[1] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -496,7 +496,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
+                                                <a>{{ 서면[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -553,7 +553,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <a>{{ 서면[0] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -563,7 +563,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <a>{{ 서면[1] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -573,7 +573,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
+                                                <a>{{ 서면[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -630,7 +630,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <a>{{ 서면[0] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -640,7 +640,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <a>{{ 서면[1] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -650,7 +650,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
+                                                <a>{{ 서면[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -707,7 +707,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[0] }}</router-link>
+                                                <a>{{ 서면[0] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -717,7 +717,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[1] }}</router-link>
+                                                <a>{{ 서면[1] }}</a>
                                                 <br>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
@@ -727,7 +727,7 @@
                                                 <!-- 시작시간, 끝나는 시간 -->
                                                 <br>
                                                 <br>
-                                                <router-link to="/reserveTicket">{{ 서면[2] }}</router-link>
+                                                <a>{{ 서면[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
