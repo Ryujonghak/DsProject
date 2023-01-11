@@ -53,7 +53,10 @@
 
           <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="movie-single-ct main-content">
-              <h6 style="margin-bottom: 1%; color: #abb7c4" v-show="showBoxoffice">
+              <h6
+                style="margin-bottom: 1%; color: #abb7c4"
+                v-show="showBoxoffice"
+              >
                 현재 박스오피스 {{ boxofficeRank }} 위
               </h6>
               <h1 class="bd-hd" style="margin-bottom: 40px">
@@ -307,12 +310,17 @@
                           :key="index"
                         >
                           <div class="user-infor">
-                            <img
-                              src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
-                              alt="user"
-                              style="width: 5%"
-                            />
-                            <div>
+                            <div class="col-xs-2">
+                              <img
+                                src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
+                                alt="user"
+                                style="width: 50%;margin-left: 5%;"
+                              />
+                              <p class="time" style="fontsize: 100%;margin-left: 10%;">
+                                {{ data.rwuser }}
+                              </p>
+                            </div>
+                            <div class="col-xs-10" style="padding-left:0%">
                               <div class="rate-star">
                                 <span
                                   class="rate-star-result"
@@ -324,14 +332,11 @@
                                   ></i
                                 ></span>
                               </div>
-                              <p class="time" style="fontsize: 100%">
-                                {{ data.rwuser }}
+                              <p style="margin-top: 2%; color: white">
+                                {{ data.rucontent }}
                               </p>
                             </div>
                           </div>
-                          <p style="margin-top: 2%">
-                            {{ data.rucontent }}
-                          </p>
                         </div>
                         <!-- Todo : page 바 시작 -->
                         <div class="col-md-12">
@@ -413,7 +418,7 @@
     </div> -->
     <!-- TODO: 탑버튼 추가_정주희 -->
     <a class="topbutton" href="#">
-      <img src="@/assets/images_jung/iconUp_48.png"/>
+      <img src="@/assets/images_jung/iconUp_48.png" />
     </a>
   </div>
 </template>
@@ -850,7 +855,6 @@ export default {
 }
 
 /* 부모를 벗어나지 않고 내부 이미지만 확대 */
-
 
 /* TODO: 탑버튼 추가 _정주희*/
 .topbutton {
