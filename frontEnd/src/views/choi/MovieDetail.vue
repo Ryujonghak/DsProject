@@ -305,18 +305,19 @@
                           </div>
                         </div>
                         <div
-                          class="mv-user-review-item"
+                          class="mv-user-review-item col-xs-12"
+                          style="padding-left:0%"
                           v-for="(data, index) in review"
                           :key="index"
                         >
                           <div class="user-infor">
-                            <div class="col-xs-2">
+                            <div class="col-xs-2" style="padding-left:0%">
                               <img
                                 src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
                                 alt="user"
                                 style="width: 50%;margin-left: 5%;"
                               />
-                              <p class="time" style="fontsize: 100%;margin-left: 10%;">
+                              <p class="time" style="fontsize: 100%;margin-left: 15%;">
                                 {{ data.rwuser }}
                               </p>
                             </div>
