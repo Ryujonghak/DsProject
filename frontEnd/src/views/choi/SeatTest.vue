@@ -2,7 +2,7 @@
 <template>
   <div>
     <div
-      style="background-color: black; position: relative; padding-top: 10%;" 
+      style="background-color: black; position: relative; padding-top: 10%"
       class="page-single movie_list"
     >
       <div
@@ -185,7 +185,14 @@
                       <div style="width: 100%; clear: both">
                         <button
                           v-show="결제하기"
-                          v-on:click="requestPay"
+                          v-on:click="
+                            [
+                              requestPay(),
+                              seatcount(),
+                              addReservation(),
+                              plusSeat(),
+                            ]
+                          "
                           style="
                             width: 100%;
                             height: 60px;
@@ -199,7 +206,14 @@
                         </button>
                         <button
                           v-show="!결제하기"
-                          v-on:click="requestPay"
+                          v-on:click="
+                            [
+                              requestPay(),
+                              seatcount(),
+                              addReservation(),
+                              plusSeat(),
+                            ]
+                          "
                           style="
                             width: 100%;
                             height: 60px;
@@ -922,14 +936,14 @@
                               style="position: absolute; left: 145px; top: 0px"
                             >
                               <button
-                                @click="addseat('A01')"
+                                @click="addseat('A1')"
                                 v-show="seattest60[0] == 1"
                                 class="seat-bg"
                               >
                                 1
                               </button>
                               <button
-                                @click="deleteseat('A01')"
+                                @click="deleteseat('A1')"
                                 v-show="seattest60[0] == 2"
                                 class="seat-bg2"
                               >
@@ -947,14 +961,14 @@
                               style="position: absolute; left: 185px; top: 0px"
                             >
                               <button
-                                @click="addseat('A02')"
+                                @click="addseat('A2')"
                                 v-show="seattest60[1] == 1"
                                 class="seat-bg"
                               >
                                 2
                               </button>
                               <button
-                                @click="deleteseat('A02')"
+                                @click="deleteseat('A2')"
                                 v-show="seattest60[1] == 2"
                                 class="seat-bg2"
                               >
@@ -972,14 +986,14 @@
                               style="position: absolute; left: 225px; top: 0px"
                             >
                               <button
-                                @click="addseat('A03')"
+                                @click="addseat('A3')"
                                 v-show="seattest60[2] == 1"
                                 class="seat-bg"
                               >
                                 3
                               </button>
                               <button
-                                @click="deleteseat('A03')"
+                                @click="deleteseat('A3')"
                                 v-show="seattest60[2] == 2"
                                 class="seat-bg2"
                               >
@@ -997,14 +1011,14 @@
                               style="position: absolute; left: 325px; top: 0px"
                             >
                               <button
-                                @click="addseat('A04')"
+                                @click="addseat('A4')"
                                 v-show="seattest60[3] == 1"
                                 class="seat-bg"
                               >
                                 4
                               </button>
                               <button
-                                @click="deleteseat('A04')"
+                                @click="deleteseat('A4')"
                                 v-show="seattest60[3] == 2"
                                 class="seat-bg2"
                               >
@@ -1022,14 +1036,14 @@
                               style="position: absolute; left: 365px; top: 0px"
                             >
                               <button
-                                @click="addseat('A05')"
+                                @click="addseat('A5')"
                                 v-show="seattest60[4] == 1"
                                 class="seat-bg"
                               >
                                 5
                               </button>
                               <button
-                                @click="deleteseat('A05')"
+                                @click="deleteseat('A5')"
                                 v-show="seattest60[4] == 2"
                                 class="seat-bg2"
                               >
@@ -1047,14 +1061,14 @@
                               style="position: absolute; left: 405px; top: 0px"
                             >
                               <button
-                                @click="addseat('A06')"
+                                @click="addseat('A6')"
                                 v-show="seattest60[5] == 1"
                                 class="seat-bg"
                               >
                                 6
                               </button>
                               <button
-                                @click="deleteseat('A06')"
+                                @click="deleteseat('A6')"
                                 v-show="seattest60[5] == 2"
                                 class="seat-bg2"
                               >
@@ -1072,14 +1086,14 @@
                               style="position: absolute; left: 445px; top: 0px"
                             >
                               <button
-                                @click="addseat('A07')"
+                                @click="addseat('A7')"
                                 v-show="seattest60[6] == 1"
                                 class="seat-bg"
                               >
                                 7
                               </button>
                               <button
-                                @click="deleteseat('A07')"
+                                @click="deleteseat('A7')"
                                 v-show="seattest60[6] == 2"
                                 class="seat-bg2"
                               >
@@ -1097,14 +1111,14 @@
                               style="position: absolute; left: 545px; top: 0px"
                             >
                               <button
-                                @click="addseat('A08')"
+                                @click="addseat('A8')"
                                 v-show="seattest60[7] == 1"
                                 class="seat-bg"
                               >
                                 8
                               </button>
                               <button
-                                @click="deleteseat('A08')"
+                                @click="deleteseat('A8')"
                                 v-show="seattest60[7] == 2"
                                 class="seat-bg2"
                               >
@@ -1122,14 +1136,14 @@
                               style="position: absolute; left: 585px; top: 0px"
                             >
                               <button
-                                @click="addseat('A09')"
+                                @click="addseat('A9')"
                                 v-show="seattest60[8] == 1"
                                 class="seat-bg"
                               >
                                 9
                               </button>
                               <button
-                                @click="deleteseat('A09')"
+                                @click="deleteseat('A9')"
                                 v-show="seattest60[8] == 2"
                                 class="seat-bg2"
                               >
@@ -1181,14 +1195,14 @@
                               "
                             >
                               <button
-                                @click="addseat('B01')"
+                                @click="addseat('B1')"
                                 v-show="seattest60[10] == 1"
                                 class="seat-bg"
                               >
                                 1
                               </button>
                               <button
-                                @click="deleteseat('B01')"
+                                @click="deleteseat('B1')"
                                 v-show="seattest60[10] == 2"
                                 class="seat-bg2"
                               >
@@ -1210,14 +1224,14 @@
                               "
                             >
                               <button
-                                @click="addseat('B02')"
+                                @click="addseat('B2')"
                                 v-show="seattest60[11] == 1"
                                 class="seat-bg"
                               >
                                 2
                               </button>
                               <button
-                                @click="deleteseat('B02')"
+                                @click="deleteseat('B2')"
                                 v-show="seattest60[11] == 2"
                                 class="seat-bg2"
                               >
@@ -1239,14 +1253,14 @@
                               "
                             >
                               <button
-                                @click="addseat('B03')"
+                                @click="addseat('B3')"
                                 v-show="seattest60[12] == 1"
                                 class="seat-bg"
                               >
                                 3
                               </button>
                               <button
-                                @click="deleteseat('B03')"
+                                @click="deleteseat('B3')"
                                 v-show="seattest60[12] == 2"
                                 class="seat-bg2"
                               >
@@ -1268,14 +1282,14 @@
                               "
                             >
                               <button
-                                @click="addseat('B04')"
+                                @click="addseat('B4')"
                                 v-show="seattest60[13] == 1"
                                 class="seat-bg"
                               >
                                 4
                               </button>
                               <button
-                                @click="deleteseat('B04')"
+                                @click="deleteseat('B4')"
                                 v-show="seattest60[13] == 2"
                                 class="seat-bg2"
                               >
@@ -1297,14 +1311,14 @@
                               "
                             >
                               <button
-                                @click="addseat('B05')"
+                                @click="addseat('B5')"
                                 v-show="seattest60[14] == 1"
                                 class="seat-bg"
                               >
                                 5
                               </button>
                               <button
-                                @click="deleteseat('B05')"
+                                @click="deleteseat('B5')"
                                 v-show="seattest60[14] == 2"
                                 class="seat-bg2"
                               >
@@ -1326,14 +1340,14 @@
                               "
                             >
                               <button
-                                @click="addseat('B06')"
+                                @click="addseat('B6')"
                                 v-show="seattest60[15] == 1"
                                 class="seat-bg"
                               >
                                 6
                               </button>
                               <button
-                                @click="deleteseat('B06')"
+                                @click="deleteseat('B6')"
                                 v-show="seattest60[15] == 2"
                                 class="seat-bg2"
                               >
@@ -1355,14 +1369,14 @@
                               "
                             >
                               <button
-                                @click="addseat('B07')"
+                                @click="addseat('B7')"
                                 v-show="seattest60[16] == 1"
                                 class="seat-bg"
                               >
                                 7
                               </button>
                               <button
-                                @click="deleteseat('B07')"
+                                @click="deleteseat('B7')"
                                 v-show="seattest60[16] == 2"
                                 class="seat-bg2"
                               >
@@ -1384,14 +1398,14 @@
                               "
                             >
                               <button
-                                @click="addseat('B08')"
+                                @click="addseat('B8')"
                                 v-show="seattest60[17] == 1"
                                 class="seat-bg"
                               >
                                 8
                               </button>
                               <button
-                                @click="deleteseat('B08')"
+                                @click="deleteseat('B8')"
                                 v-show="seattest60[17] == 2"
                                 class="seat-bg2"
                               >
@@ -1413,14 +1427,14 @@
                               "
                             >
                               <button
-                                @click="addseat('B09')"
+                                @click="addseat('B9')"
                                 v-show="seattest60[18] == 1"
                                 class="seat-bg"
                               >
                                 9
                               </button>
                               <button
-                                @click="deleteseat('B09')"
+                                @click="deleteseat('B9')"
                                 v-show="seattest60[18] == 2"
                                 class="seat-bg2"
                               >
@@ -1472,14 +1486,14 @@
                               style="position: absolute; left: 145px; top: 85px"
                             >
                               <button
-                                @click="addseat('C01')"
+                                @click="addseat('C1')"
                                 v-show="seattest60[20] == 1"
                                 class="seat-bg"
                               >
                                 1
                               </button>
                               <button
-                                @click="deleteseat('C01')"
+                                @click="deleteseat('C1')"
                                 v-show="seattest60[20] == 2"
                                 class="seat-bg2"
                               >
@@ -1497,14 +1511,14 @@
                               style="position: absolute; left: 185px; top: 85px"
                             >
                               <button
-                                @click="addseat('C02')"
+                                @click="addseat('C2')"
                                 v-show="seattest60[21] == 1"
                                 class="seat-bg"
                               >
                                 2
                               </button>
                               <button
-                                @click="deleteseat('C02')"
+                                @click="deleteseat('C2')"
                                 v-show="seattest60[21] == 2"
                                 class="seat-bg2"
                               >
@@ -1522,14 +1536,14 @@
                               style="position: absolute; left: 225px; top: 85px"
                             >
                               <button
-                                @click="addseat('C03')"
+                                @click="addseat('C3')"
                                 v-show="seattest60[22] == 1"
                                 class="seat-bg"
                               >
                                 3
                               </button>
                               <button
-                                @click="deleteseat('C03')"
+                                @click="deleteseat('C3')"
                                 v-show="seattest60[22] == 2"
                                 class="seat-bg2"
                               >
@@ -1547,14 +1561,14 @@
                               style="position: absolute; left: 325px; top: 85px"
                             >
                               <button
-                                @click="addseat('C04')"
+                                @click="addseat('C4')"
                                 v-show="seattest60[23] == 1"
                                 class="seat-bg"
                               >
                                 4
                               </button>
                               <button
-                                @click="deleteseat('C04')"
+                                @click="deleteseat('C4')"
                                 v-show="seattest60[23] == 2"
                                 class="seat-bg2"
                               >
@@ -1572,14 +1586,14 @@
                               style="position: absolute; left: 365px; top: 85px"
                             >
                               <button
-                                @click="addseat('C05')"
+                                @click="addseat('C5')"
                                 v-show="seattest60[24] == 1"
                                 class="seat-bg"
                               >
                                 5
                               </button>
                               <button
-                                @click="deleteseat('C05')"
+                                @click="deleteseat('C5')"
                                 v-show="seattest60[24] == 2"
                                 class="seat-bg2"
                               >
@@ -1597,14 +1611,14 @@
                               style="position: absolute; left: 405px; top: 85px"
                             >
                               <button
-                                @click="addseat('C06')"
+                                @click="addseat('C6')"
                                 v-show="seattest60[25] == 1"
                                 class="seat-bg"
                               >
                                 6
                               </button>
                               <button
-                                @click="deleteseat('C06')"
+                                @click="deleteseat('C6')"
                                 v-show="seattest60[25] == 2"
                                 class="seat-bg2"
                               >
@@ -1622,14 +1636,14 @@
                               style="position: absolute; left: 445px; top: 85px"
                             >
                               <button
-                                @click="addseat('C07')"
+                                @click="addseat('C7')"
                                 v-show="seattest60[26] == 1"
                                 class="seat-bg"
                               >
                                 7
                               </button>
                               <button
-                                @click="deleteseat('C07')"
+                                @click="deleteseat('C7')"
                                 v-show="seattest60[26] == 2"
                                 class="seat-bg2"
                               >
@@ -1647,14 +1661,14 @@
                               style="position: absolute; left: 545px; top: 85px"
                             >
                               <button
-                                @click="addseat('C08')"
+                                @click="addseat('C8')"
                                 v-show="seattest60[27] == 1"
                                 class="seat-bg"
                               >
                                 8
                               </button>
                               <button
-                                @click="deleteseat('C08')"
+                                @click="deleteseat('C8')"
                                 v-show="seattest60[27] == 2"
                                 class="seat-bg2"
                               >
@@ -1672,14 +1686,14 @@
                               style="position: absolute; left: 585px; top: 85px"
                             >
                               <button
-                                @click="addseat('C09')"
+                                @click="addseat('C9')"
                                 v-show="seattest60[28] == 1"
                                 class="seat-bg"
                               >
                                 9
                               </button>
                               <button
-                                @click="deleteseat('C09')"
+                                @click="deleteseat('C9')"
                                 v-show="seattest60[28] == 2"
                                 class="seat-bg2"
                               >
@@ -1731,14 +1745,14 @@
                               "
                             >
                               <button
-                                @click="addseat('D01')"
+                                @click="addseat('D1')"
                                 v-show="seattest60[30] == 1"
                                 class="seat-bg"
                               >
                                 1
                               </button>
                               <button
-                                @click="deleteseat('D01')"
+                                @click="deleteseat('D1')"
                                 v-show="seattest60[30] == 2"
                                 class="seat-bg2"
                               >
@@ -1760,14 +1774,14 @@
                               "
                             >
                               <button
-                                @click="addseat('D02')"
+                                @click="addseat('D2')"
                                 v-show="seattest60[31] == 1"
                                 class="seat-bg"
                               >
                                 2
                               </button>
                               <button
-                                @click="deleteseat('D02')"
+                                @click="deleteseat('D2')"
                                 v-show="seattest60[31] == 2"
                                 class="seat-bg2"
                               >
@@ -1789,14 +1803,14 @@
                               "
                             >
                               <button
-                                @click="addseat('D03')"
+                                @click="addseat('D3')"
                                 v-show="seattest60[32] == 1"
                                 class="seat-bg"
                               >
                                 3
                               </button>
                               <button
-                                @click="deleteseat('D03')"
+                                @click="deleteseat('D3')"
                                 v-show="seattest60[32] == 2"
                                 class="seat-bg2"
                               >
@@ -1818,14 +1832,14 @@
                               "
                             >
                               <button
-                                @click="addseat('D04')"
+                                @click="addseat('D4')"
                                 v-show="seattest60[33] == 1"
                                 class="seat-bg"
                               >
                                 4
                               </button>
                               <button
-                                @click="deleteseat('D04')"
+                                @click="deleteseat('D4')"
                                 v-show="seattest60[33] == 2"
                                 class="seat-bg2"
                               >
@@ -1847,14 +1861,14 @@
                               "
                             >
                               <button
-                                @click="addseat('D05')"
+                                @click="addseat('D5')"
                                 v-show="seattest60[34] == 1"
                                 class="seat-bg"
                               >
                                 5
                               </button>
                               <button
-                                @click="deleteseat('D05')"
+                                @click="deleteseat('D5')"
                                 v-show="seattest60[34] == 2"
                                 class="seat-bg2"
                               >
@@ -1876,14 +1890,14 @@
                               "
                             >
                               <button
-                                @click="addseat('D06')"
+                                @click="addseat('D6')"
                                 v-show="seattest60[35] == 1"
                                 class="seat-bg"
                               >
                                 6
                               </button>
                               <button
-                                @click="deleteseat('D06')"
+                                @click="deleteseat('D6')"
                                 v-show="seattest60[35] == 2"
                                 class="seat-bg2"
                               >
@@ -1905,14 +1919,14 @@
                               "
                             >
                               <button
-                                @click="addseat('D07')"
+                                @click="addseat('D7')"
                                 v-show="seattest60[36] == 1"
                                 class="seat-bg"
                               >
                                 7
                               </button>
                               <button
-                                @click="deleteseat('D07')"
+                                @click="deleteseat('D7')"
                                 v-show="seattest60[36] == 2"
                                 class="seat-bg2"
                               >
@@ -1934,14 +1948,14 @@
                               "
                             >
                               <button
-                                @click="addseat('D08')"
+                                @click="addseat('D8')"
                                 v-show="seattest60[37] == 1"
                                 class="seat-bg"
                               >
                                 8
                               </button>
                               <button
-                                @click="deleteseat('D08')"
+                                @click="deleteseat('D8')"
                                 v-show="seattest60[37] == 2"
                                 class="seat-bg2"
                               >
@@ -1963,14 +1977,14 @@
                               "
                             >
                               <button
-                                @click="addseat('D09')"
+                                @click="addseat('D9')"
                                 v-show="seattest60[38] == 1"
                                 class="seat-bg"
                               >
                                 9
                               </button>
                               <button
-                                @click="deleteseat('D09')"
+                                @click="deleteseat('D9')"
                                 v-show="seattest60[38] == 2"
                                 class="seat-bg2"
                               >
@@ -2026,14 +2040,14 @@
                               "
                             >
                               <button
-                                @click="addseat('E01')"
+                                @click="addseat('E1')"
                                 v-show="seattest60[40] == 1"
                                 class="seat-bg"
                               >
                                 1
                               </button>
                               <button
-                                @click="deleteseat('E01')"
+                                @click="deleteseat('E1')"
                                 v-show="seattest60[40] == 2"
                                 class="seat-bg2"
                               >
@@ -2055,14 +2069,14 @@
                               "
                             >
                               <button
-                                @click="addseat('E02')"
+                                @click="addseat('E2')"
                                 v-show="seattest60[41] == 1"
                                 class="seat-bg"
                               >
                                 2
                               </button>
                               <button
-                                @click="deleteseat('E02')"
+                                @click="deleteseat('E2')"
                                 v-show="seattest60[41] == 2"
                                 class="seat-bg2"
                               >
@@ -2084,14 +2098,14 @@
                               "
                             >
                               <button
-                                @click="addseat('E03')"
+                                @click="addseat('E3')"
                                 v-show="seattest60[42] == 1"
                                 class="seat-bg"
                               >
                                 3
                               </button>
                               <button
-                                @click="deleteseat('E03')"
+                                @click="deleteseat('E3')"
                                 v-show="seattest60[42] == 2"
                                 class="seat-bg2"
                               >
@@ -2113,14 +2127,14 @@
                               "
                             >
                               <button
-                                @click="addseat('E04')"
+                                @click="addseat('E4')"
                                 v-show="seattest60[43] == 1"
                                 class="seat-bg"
                               >
                                 4
                               </button>
                               <button
-                                @click="deleteseat('E04')"
+                                @click="deleteseat('E4')"
                                 v-show="seattest60[43] == 2"
                                 class="seat-bg2"
                               >
@@ -2142,14 +2156,14 @@
                               "
                             >
                               <button
-                                @click="addseat('E05')"
+                                @click="addseat('E5')"
                                 v-show="seattest60[44] == 1"
                                 class="seat-bg"
                               >
                                 5
                               </button>
                               <button
-                                @click="deleteseat('E05')"
+                                @click="deleteseat('E5')"
                                 v-show="seattest60[44] == 2"
                                 class="seat-bg2"
                               >
@@ -2171,14 +2185,14 @@
                               "
                             >
                               <button
-                                @click="addseat('E06')"
+                                @click="addseat('E6')"
                                 v-show="seattest60[45] == 1"
                                 class="seat-bg"
                               >
                                 6
                               </button>
                               <button
-                                @click="deleteseat('E06')"
+                                @click="deleteseat('E6')"
                                 v-show="seattest60[45] == 2"
                                 class="seat-bg2"
                               >
@@ -2200,14 +2214,14 @@
                               "
                             >
                               <button
-                                @click="addseat('E07')"
+                                @click="addseat('E7')"
                                 v-show="seattest60[46] == 1"
                                 class="seat-bg"
                               >
                                 7
                               </button>
                               <button
-                                @click="deleteseat('E07')"
+                                @click="deleteseat('E7')"
                                 v-show="seattest60[46] == 2"
                                 class="seat-bg2"
                               >
@@ -2229,14 +2243,14 @@
                               "
                             >
                               <button
-                                @click="addseat('E08')"
+                                @click="addseat('E8')"
                                 v-show="seattest60[47] == 1"
                                 class="seat-bg"
                               >
                                 8
                               </button>
                               <button
-                                @click="deleteseat('E08')"
+                                @click="deleteseat('E8')"
                                 v-show="seattest60[47] == 2"
                                 class="seat-bg2"
                               >
@@ -2258,14 +2272,14 @@
                               "
                             >
                               <button
-                                @click="addseat('E09')"
+                                @click="addseat('E9')"
                                 v-show="seattest60[48] == 1"
                                 class="seat-bg"
                               >
                                 9
                               </button>
                               <button
-                                @click="deleteseat('E09')"
+                                @click="deleteseat('E9')"
                                 v-show="seattest60[48] == 2"
                                 class="seat-bg2"
                               >
@@ -2321,14 +2335,14 @@
                               "
                             >
                               <button
-                                @click="addseat('F01')"
+                                @click="addseat('F1')"
                                 v-show="seattest60[50] == 1"
                                 class="seat-bg"
                               >
                                 1
                               </button>
                               <button
-                                @click="deleteseat('F01')"
+                                @click="deleteseat('F1')"
                                 v-show="seattest60[50] == 2"
                                 class="seat-bg2"
                               >
@@ -2350,14 +2364,14 @@
                               "
                             >
                               <button
-                                @click="addseat('F02')"
+                                @click="addseat('F2')"
                                 v-show="seattest60[51] == 1"
                                 class="seat-bg"
                               >
                                 2
                               </button>
                               <button
-                                @click="deleteseat('F02')"
+                                @click="deleteseat('F2')"
                                 v-show="seattest60[51] == 2"
                                 class="seat-bg2"
                               >
@@ -2379,14 +2393,14 @@
                               "
                             >
                               <button
-                                @click="addseat('F03')"
+                                @click="addseat('F3')"
                                 v-show="seattest60[52] == 1"
                                 class="seat-bg"
                               >
                                 3
                               </button>
                               <button
-                                @click="deleteseat('F03')"
+                                @click="deleteseat('F3')"
                                 v-show="seattest60[52] == 2"
                                 class="seat-bg2"
                               >
@@ -2408,14 +2422,14 @@
                               "
                             >
                               <button
-                                @click="addseat('F04')"
+                                @click="addseat('F4')"
                                 v-show="seattest60[53] == 1"
                                 class="seat-bg"
                               >
                                 4
                               </button>
                               <button
-                                @click="deleteseat('F04')"
+                                @click="deleteseat('F4')"
                                 v-show="seattest60[53] == 2"
                                 class="seat-bg2"
                               >
@@ -2437,14 +2451,14 @@
                               "
                             >
                               <button
-                                @click="addseat('F05')"
+                                @click="addseat('F5')"
                                 v-show="seattest60[54] == 1"
                                 class="seat-bg"
                               >
                                 5
                               </button>
                               <button
-                                @click="deleteseat('F05')"
+                                @click="deleteseat('F5')"
                                 v-show="seattest60[54] == 2"
                                 class="seat-bg2"
                               >
@@ -2466,14 +2480,14 @@
                               "
                             >
                               <button
-                                @click="addseat('F06')"
+                                @click="addseat('F6')"
                                 v-show="seattest60[55] == 1"
                                 class="seat-bg"
                               >
                                 6
                               </button>
                               <button
-                                @click="deleteseat('F06')"
+                                @click="deleteseat('F6')"
                                 v-show="seattest60[55] == 2"
                                 class="seat-bg2"
                               >
@@ -2495,14 +2509,14 @@
                               "
                             >
                               <button
-                                @click="addseat('F07')"
+                                @click="addseat('F7')"
                                 v-show="seattest60[56] == 1"
                                 class="seat-bg"
                               >
                                 7
                               </button>
                               <button
-                                @click="deleteseat('F07')"
+                                @click="deleteseat('F7')"
                                 v-show="seattest60[56] == 2"
                                 class="seat-bg2"
                               >
@@ -2524,14 +2538,14 @@
                               "
                             >
                               <button
-                                @click="addseat('F08')"
+                                @click="addseat('F8')"
                                 v-show="seattest60[57] == 1"
                                 class="seat-bg"
                               >
                                 8
                               </button>
                               <button
-                                @click="deleteseat('F08')"
+                                @click="deleteseat('F8')"
                                 v-show="seattest60[57] == 2"
                                 class="seat-bg2"
                               >
@@ -2553,14 +2567,14 @@
                               "
                             >
                               <button
-                                @click="addseat('F09')"
+                                @click="addseat('F9')"
                                 v-show="seattest60[58] == 1"
                                 class="seat-bg"
                               >
                                 9
                               </button>
                               <button
-                                @click="deleteseat('F09')"
+                                @click="deleteseat('F9')"
                                 v-show="seattest60[58] == 2"
                                 class="seat-bg2"
                               >
@@ -3447,6 +3461,26 @@ export default {
       };
     },
 
+    plusSeat() {
+      for (let i = 0; i < this.selected.length; i++) {
+        let data = new Seat(
+          null,
+          this.selected[i],
+          "Y",
+          this.seattable[0].scno
+        );
+        SeatDataService.create(data)
+          .then((response) => {
+            console.log("********");
+            console.log(response.data);
+            console.log("********");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    },
+
     getFindAllByMoviecdAndLocationAndStartday() {
       // 무비코드 + 영화관 + 날짜 = 그날에 해당되는 시간을 받아 옴
       var moviecd2 = this.moviecd;
@@ -4042,10 +4076,11 @@ export default {
           //콜백 함수
           if (rsp.success) {
             alert("결제가 되었습니다! 마이페이지에서 확인해주세요 :)");
-            window.location.replace('/');
+            window.location.replace("/myticket");
           } else {
             //결제 실패
             alert("결제실패");
+            window.location.replace("/");
           }
         }
       );
