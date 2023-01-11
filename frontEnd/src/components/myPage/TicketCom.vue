@@ -206,7 +206,7 @@
                               </p>
                               <!-- TODO: 예매취소 버튼 - 날짜 지났으면비활성화 -->
                               <div class="col-xs-4">
-                                <a href="#" class="redbtn" @click="deleteTicket"
+                                <a href="#" class="redbtn" @click="deleteTicket(data.reservno)"
                                   >예매취소</a
                                 >
                               </div>
@@ -353,6 +353,7 @@ export default {
 
           // this.getQna();
           // this.$router.push("/mypage");
+          this.getWatchedMovie();
         })
         .catch((e) => {
           console.log(e);

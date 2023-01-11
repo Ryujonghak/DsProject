@@ -28,7 +28,7 @@ class ReservationDataService {
     }
 
     delete(reservno) {
-        return http.delete(`/review/deletion/${reservno}`);
+        return http.delete(`/reservation/deletion/${reservno}`);
     }
 }
 
