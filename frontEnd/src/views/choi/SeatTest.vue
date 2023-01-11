@@ -4042,7 +4042,7 @@ export default {
           //콜백 함수
           if (rsp.success) {
             alert("결제가 되었습니다! 마이페이지에서 확인해주세요 :)");
-            window.location.reload();
+            window.location.replace('/');
           } else {
             //결제 실패
             alert("결제실패");
