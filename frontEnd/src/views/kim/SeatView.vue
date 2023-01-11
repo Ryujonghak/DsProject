@@ -4012,26 +4012,14 @@ export default {
         function (rsp) {
           //콜백 함수
           if (rsp.success) {
-            frontEnd.$data.test1002 = 1;
-            alert(this.test1002)
-            alert("결제성공");
-
-
-            
+            alert("결제가 되었습니다! 마이페이지에서 확인해주세요 :)");
+            window.location.reload();
           } else {
             //결제 실패
             alert("결제실패");
           }
         }
       );
-      if(frontEnd.$data.test1002 == 1) {
-                    //결제 성공
-                    this.payment = true;
-            this.모달 = false;
-            this.좌석 = false;
-            this.addReservation();
-            this.seatcount();
-      }
     },
   },
 };
