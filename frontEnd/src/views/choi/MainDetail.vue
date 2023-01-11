@@ -55,7 +55,7 @@
                               ><i class="ion-ios-heart"></i>찜하기 완료</a
                             >
 
-                            <a href="#" class="parent-btn" id="sh-link"
+                            <a class="parent-btn" id="sh-link"
                               ><i class="ion-android-share-alt"></i>공유하기</a
                             >
                           </div>
