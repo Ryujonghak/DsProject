@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <!--  -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <!--Google Font-->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600" />
+  <!-- Mobile specific meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="format-detection" content="telephone-no" />
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/plugins.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- ALERT  -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css"> -->
+</head>
+
+<body>
+  <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+  <div id="app">
+  </div>
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/plugins.js"></script>
+  <script src="/js/plugins2.js"></script>
+  <script src="/js/custom.js"></script>
+
+
+  <!-- TODO: myPage-WishCom.vue 에서 ISOTOPE 사용-->
+  <!-- isotope 이미지 겹침 문제로 사용 . 사진이 다 뜨기 전에 시작되어버려서 문제 발생 -->
+  <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.js"></script>
+  <!-- isotope : 사진 이미지 정렬, 배열 등을 시각적으로 표현해주는 소팅 라이브러리 -->
+  <!-- https://isotope.metafizzy.co/  -->
+  <!-- https://www.isotope.coms -->
+  <script src="/lib/isotope/isotope.pkgd.min.js"></script>
+  <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> -->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+  <!-- ALERT -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script> -->
+</body>
+
+</html>
