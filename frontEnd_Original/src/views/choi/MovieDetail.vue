@@ -76,9 +76,9 @@
                   ><i class="ion-ios-heart"></i>찜하기 완료</a
                 >
                 <!-- <div class="hover-bnt"> -->
-                <!-- <a href="#" class="parent-btn" id="sh-link"
+                <a href="#" class="parent-btn" id="sh-link"
                   ><i class="ion-android-share-alt"></i>공유하기</a
-                > -->
+                >
                 <!-- </div> -->
               </div>
               <div class="movie-rate">
