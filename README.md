@@ -34,6 +34,7 @@
     - `Bootstrap`
     - `Vee validate`
 - BackEnd
+    - `Spring Boot`
     - `Spring Security`
     - `lombok`
     - `JWT`
