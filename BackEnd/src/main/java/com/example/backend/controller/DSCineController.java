@@ -83,7 +83,6 @@ public class DSCineController {
         }
     }
 
-
     //    `/movie/?movienm=${movienm}&page=${page}&size=${size}`
     // http://localhost:8000/api/movie/?movienm=
 
