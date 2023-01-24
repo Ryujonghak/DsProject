@@ -57,8 +57,8 @@ public class NMovieApi {
             DailyMovieRepository dailyMovieRepository;
 
     //발급키
-    String clientId = "j5NG5CkLzfCuIvlLSY_2";
-    String clientSecret = "rLPIELDosA";
+    String clientId = "네이버 발급키를 사용하세요.";
+    String clientSecret = "발급키를 사용하세요.";
 
     @GetMapping("/nmovie")
     public void nmovie() {

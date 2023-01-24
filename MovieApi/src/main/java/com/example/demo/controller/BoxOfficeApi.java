@@ -41,7 +41,7 @@ public class BoxOfficeApi {
     DetailMovieRepository detailMovieRepository;
 
     //발급키
-    String key = "f9440f7e99cce6b022597815a3cb5571";
+    String key = "영화진흥위원회 Api 발급키를 사용하세요.";
 
     String  movieCd ="";
 

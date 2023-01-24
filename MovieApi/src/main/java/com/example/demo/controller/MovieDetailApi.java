@@ -57,9 +57,9 @@ public class MovieDetailApi {
 
 
     //발급키
-    String key = "f9440f7e99cce6b022597815a3cb5571";
+    String key = "발급키를 사용하세요.";
 
-    String kmkey = "8AB6K050D2Q94G2O6512";
+    String kmkey = "KMDB 발급키를 사용하세요.";
 
     String movieCd = "";
 
