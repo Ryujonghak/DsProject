@@ -148,7 +148,7 @@ export default {
   },
   // TODO: vue props 설명 추가 (최아리 추가)
   // 1. 앞의 페이지에서 보낸 movieProps를 받습니다.
-  // 2. 그리고 'currentMovie: this.movieProps' 받은 데이터를 currentMovie 안에 넣어서 이용합니다. (넣지않고 바로 사용해도 괜찮지만 가독성을 위해 넣어줌)
+  // 2. 그리고 'currentMovie: this.movieProps' 받은 데이터를 currentMovie 안에 넣어서 이용합니다. (가독성을 위해 넣어줌)
   props: ["movieProps"],
   data() {
     return {
