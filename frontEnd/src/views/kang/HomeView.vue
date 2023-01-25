@@ -60,13 +60,23 @@
     <div style="width: 100%; height: 350px"></div>
 
     <!-- TODO: 메인디테일뷰 컴포넌트 v-if로 보여주는 부분, 프롭스로 다른 컴포넌트로 데이터 전달하는 부분 추가 (최아리 추가) -->
+    <!-- TODO: vue props 설명 추가 (최아리 추가) -->
+    <!-- 1. 우리의 목적은 한 페이지 안에서 '전체 목록 -> 상세 -> 예매' 까지 가능해야 하기 때문에 제일 아래 부분에 <DetailCom/> 를 우선적으로 넣어줍니다. -->
+    <!-- 2. 그리고 v-if="detailPage" 를 걸어줘서 위의 목록에서 클릭을 해야 상세 페이지가 보이게 설정합니다. -->
+    <!-- 3. 위의 목록에서 포스터와 영화 제목에  @click="showDetail(data)" 이렇게 클릭이벤트를 걸어주고 클릭시 각각의 데이터를 포함해서 currentMovie 안에 데이터를 넣어줍니다. (showDetail(data) 함수 참고) -->
+    <!-- 4. 마지막으로 <DetailCom :movieProps="currentMovie" /> 이런식으로 :보낼프롭스명="보낼데이터" 자식 컴포넌트에 데이터를 넘겨줍니다. -->
+    <!-- 5. MainDetail 페이지로.. -->
+
+    <!-- 바로 밑의 div는 필요없어 보이지만 빼면 위의 목록 슬라이드가 모두 깨져버려서 일단 넣어뒀습니다. -->
     <div>
       <DetailCom />
     </div>
+
+    <!-- 데이터를 넘겨받은 메인디테일 부분 시작 -->
     <div v-if="detailPage">
       <DetailCom :movieProps="currentMovie" />
     </div>
-    <!-- 메인디테일뷰 컴포넌트 추가 끝 -->
+    <!-- 데이터를 넘겨받은 메인디테일 부분 끝 -->
 
     <!-- TODO: 탑버튼 추가_정주희 -->
     <a class="topbutton" href="#">
