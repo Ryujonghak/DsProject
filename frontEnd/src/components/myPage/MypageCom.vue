@@ -1,14 +1,5 @@
 <template>
   <div>
-    <!--preloading-->
-    <!-- <div id="preloader">
-      <img class="logo" src="images/logo1.png" alt="" width="119" height="58" />
-      <div id="status">
-        <span></span>
-        <span></span>
-      </div>
-    </div> -->
-
     <!-- 상단 페이지 제목 -->
     <div class="hero user-hero">
       <div class="container">
@@ -31,12 +22,10 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width">
-          <!-- todo: 이부분 나브 다른 Mypage 컴포넌트들 공통 -->
           <!-- 공통 왼쪽 메뉴 시작 -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-img">
-                <!-- src="images/uploads/user-img.png" -->
                 <img
                   class="profileImg"
                   src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
@@ -85,7 +74,6 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
                 </ul>
               </div>
@@ -99,21 +87,17 @@
             <div class="col-xs-11 movie-item-style-2 userrate">
               <div class="row">
                 <div class="col-xs-3 mv-user-review-item">
-                  <!-- <div class="user-infor"> -->
                   <img
                     src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
                     alt="user"
                   />
                   <div class="welcome">
-                    <!-- <p>{{ CurrentUser.id }} choichoi</p> -->
                     <h3>{{ CurrentUser.name }} 님</h3>
                     <h3>환영해요!</h3>
-                    <!-- </div> -->
                   </div>
                 </div>
 
                 <div class="col-xs-6 mv-user-review-item">
-                  <!-- <div class="user-infor"> -->
                   <h6>즐겨찾는 영화관</h6>
                   <div>
                     <table>
@@ -159,8 +143,6 @@
                 <div class="col-md-8 col-sm-12 col-xs-12">
                   <!-- 아카이브 나브 -->
                   <div class="topbar-filter">
-                    <!-- <router-link to ="/archive/:moviecd"
-                      ><p>나의 아카이브 <span>{{ reviewTotalCount }}</span> in total</p></router-link> -->
                     <p class="mytitle">나의 아카이브 <span>{{ watchedMovieTotalCount }}</span> in total</p>
                     <a href="/mypage" class="grid"
                       ><i class="ion-grid"></i
@@ -171,8 +153,7 @@
                     <h3>예매내역이 없습니다.</h3>
                   </div>
 
-                  <!-- 나의 아카이브 내용 시작 -->
-                  <!-- TODO: 예매내역 정보 받아오기 :  -->
+                  <!-- 나의 아카이브 내용 시작 : 예매내역 정보 받아오기 -->
                   <div class="flex-wrap-movielist" v-if="emptyArchive == false">
                     <!-- 아카이브 시작 -->
                     <div class="movie-item-style-2 movie-item-style-1" 
@@ -193,7 +174,7 @@
                             ><span>{{ data.raiting }}</span> /5
                           </p>
                         </div>
-                      <!-- todo) 영화에 마우스 올리면 나오는 관람정보: 리뷰하러가기 -->
+                      <!-- 영화에 마우스 올리면 나오는 관람정보: 리뷰하러가기 -->
                       <div class="hvr-inner">
                         <div class="movieTitle">
                           <h6>
@@ -209,69 +190,15 @@
                           {{ data.startday }}<br />
                           {{ data.starttime }}  ~ {{ data.endtime }}<br>
                         </p>
-                        <!-- <p>
-                          {{ data.startday }} | {{ data.starttime }} <br />
-                          상영시간: {{ data.showtm }}분 <br />
-                          감독: {{ data.directors }}
-                        </p> -->
-                        <!-- 리뷰테이블에서 사용자 평점 가져오기
-                        <p class="time sm-text">
-                          나의 별점
-                          <i class="ion-android-star"></i
-                          ><span>{{ data.userStarRating }}</span>
-                        </p> -->
-                        <!-- TODO: 버튼 클릭시 클릭이벤트-영화정보.movieNm 넘겨줘야함 -->
+                       
+                        <!-- 버튼 클릭시 클릭이벤트-영화정보(moviecd) 넘겨주기 -->
                         <router-link :to="'/archive/' + data.moviecd">
                           나의 리뷰 작성하기
                         </router-link>
-                        <!-- <h6>Best Musical movie</h6> -->
                       </div>
                       <!-- 영화에 마우스 올리면 나오는 관람정보: 리뷰를 위한 영화정보 끝 -->
                     </div>
                     <!-- 아카이브 끝 -->
-
-                    <!-- 아카이브 상영작 하드코딩 -->
-                    <!-- <div class="movie-item-style-2 movie-item-style-1">
-                      <img :src="watchedMovie.posterURL" alt="poster" />
-                      <div class="hvr-inner">
-                        <div class="movieTitle">
-                          <h6>
-                            <router-link to="/movieDetail">
-                              {{ watchedMovie.movieNm }}
-                              <span
-                                >({{ watchedMovie.openDt }})</span
-                              ></router-link
-                            >
-                          </h6>
-                        </div>
-                        <p>
-                          {{ watchedMovie.scheNo }} <br />
-                          상영시간: {{ watchedMovie.showTm }}분 <br />
-                          감독: {{ watchedMovie.directors }}
-                        </p>
-                        <p class="time sm-text">
-                          나의 별점
-                          <i class="ion-android-star"></i
-                          ><span>{{ reviewMovie.userStarRating }}</span>
-                        </p>
-                        <router-link to="/archive" @click="goReview"
-                          >나의 리뷰 작성하기</router-link
-                        >
-                      </div>
-                      <div class="mv-item-infor">
-                        <div class="movieTitle-2">
-                          <h6>
-                            <a href="/movieDetail">{{
-                              watchedMovie.movieNm
-                            }}</a>
-                          </h6>
-                        </div>
-                        <p class="rate">
-                          <i class="ion-android-star"></i
-                          ><span>{{ watchedMovie.rating }}</span> /5
-                        </p>
-                      </div>
-                    </div> -->
                   </div>
                   
                   <!-- 페이징 -->
@@ -292,7 +219,7 @@
         </div>
       </div>
     </div>
-    <!-- TODO: 탑버튼 추가 -->
+    <!-- 탑버튼  -->
     <a class="topbutton" href="#">
       <img src="@/assets/images_jung/iconUp_48.png"/>
     </a>
@@ -303,19 +230,13 @@
 <script>
 /* eslint-disable */
 
-// import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
-// import MovieDataService from "@/services/MovieDataService";
 import ReservationDataService from "@/services/ReservationDataService";
 
 export default {
-  // data: () => ({
-  //   images: "",
-  // }),
   data() {
     return {
-      // movie: [],    // 전체 탑텐 영화
       watchedMovie: [],   // 예매한 영화
       watchedMovieTotalCount: 0,  // 본 영화 갯수
 
@@ -342,9 +263,8 @@ export default {
     };
   },
   methods: {
+    // 로그인 한 사용자정보 가져오기
     getUser() {
-      // 종학이 백엔드 데이터 받는 함수
-      // username = "forbob";
       userService
         .getUserUsername(this.$store.state.auth.user.username)
         .then((response) => {
@@ -360,7 +280,6 @@ export default {
             answer: response.data.answer,
           };
           console.log(this.CurrentUser);
-          // console.log(response.data);
         })
         .catch((err) => console.log(err));
     },
@@ -374,27 +293,14 @@ export default {
       console.log("findArchive", this.watchedMovie);
     },
 
-    // 로그아웃 함수 -> 공통함수 호출
+    // 로그아웃
     logout() {
-      // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
-      this.$router.push("/"); // 강제 홈페이지로 이동
+      this.$router.push("/"); 
     },
-    // 영화 탑텐 조회 요청
-    // getMovieInfo() {
-    //   MovieDataService.getMovieAll()
-    //     .then((response) => {
-    //       this.movie = response.data;
-    //       console.log(response.data);
-  // 
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
 
-    getReservMovieInfo() {
     // 본 영화 전체 조회 요청
+    getReservMovieInfo() {
       ReservationDataService.getRespage(this.$store.state.auth.user.username, this.page -1, this.pageSize)
         .then((response) => {
           this.watchedMovie = response.data;
@@ -420,27 +326,13 @@ export default {
   },
   mounted() {
     custom();
-    this.getUser(); // 엔드 데이터
-    // this.getMovieInfo(); // 영화 탑텐
+    this.getUser();
     this.getReservMovieInfo(); // 본 영화 조회
   },
 };
 </script>
 
 <style scoped>
-.box-image {
-  width: 55px;
-  height: 70px;
-}
-
-.movie-detail-content {
-  padding-left: 0;
-}
-
-.movie-detail-content-bottom {
-  padding-bottom: 10px;
-}
-
 /* 영화제목 div 크기지정 */
 .movieTitle {
   height: 50px;
@@ -481,7 +373,7 @@ export default {
   color: azure;
 }
 
-/* TODO: 탑버튼 추가 */
+/* 탑버튼 */
 .topbutton{
     position:fixed; bottom:15px; right:15px; width:40px; height:40px; z-index:1; opacity:0.8;
 }

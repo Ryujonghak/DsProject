@@ -1,13 +1,5 @@
 <template>
   <div>
-    <!--preloading-->
-    <!-- <div id="preloader">
-      <img class="logo" src="images/logo1.png" alt="" width="119" height="58" />
-      <div id="status">
-        <span></span>
-        <span></span>
-      </div>
-    </div> -->
 
     <!-- 상단 페이지 제목 -->
     <div class="hero user-hero">
@@ -31,12 +23,10 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width">
-          <!-- todo: 이부분 나브 다른 Mypage 컴포넌트들 공통 -->
           <!-- 공통 왼쪽 메뉴 시작 -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-img">
-                <!-- src="images/uploads/user-img.png" -->
                 <img
                     class="profileImg"
                     src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
@@ -84,7 +74,6 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
                 </ul>
               </div>
@@ -99,21 +88,14 @@
               <a href="/myqna" class="grid"
                 ><i class="ion-grid"></i
               ></a>
-              <!-- <select class="form-select" v-model="searchSelect">
-                <option>-- name --</option>
-                <option>-- 답변완료 --</option>
-              </select> -->
             </div>
 
-            <!-- TODO: v-if 넘어오는 데이터 없으면 뜨도록 -->
-            <!-- <div> -->
             <div v-if="emptyQna == true" class="noQna">
               <h3>문의내역이 없습니다.</h3>
             </div>
 
-            <!-- <div class="myqnaArea"> -->
+            <!-- 모든 qna -->
             <div class="myqnaArea" v-if="emptyQna == false">
-              <!-- 모든 qna -->
               <table class="qnabox">
                 <colgroup>
                   <col style="width: 20px"/>
@@ -137,9 +119,7 @@
                   </th>
                 </tr>
                 </thead>
-                <!-- data의 qna[] 배열 안의 qna에서 totalItems까지 다 담아옴 그래서 qna.qna -->
                 <tbody v-for="(data, index) in qna.qna" :key="index">
-                <!-- <tbody v-for="(data, index) in myqna" :key="index"> -->
                 <tr>
                   <td class="myqnaTd">{{ data.qtitle }}</td>
                   <td class="myqnaTd">{{ data.qcontent }}</td>
@@ -149,13 +129,6 @@
                       Delete
                     </button>
                   </td>
-
-                  <!-- <td class="myqnaTd">{{ data.qwriter }}</td> -->
-                  <!-- <td>
-                <router-link :to="'/qna/select/' + data.name"
-                  ><span class="badge bg-success">Edit</span></router-link
-                >
-              </td> -->
                 </tr>
                 </tbody>
               </table>
@@ -176,7 +149,7 @@
                 @change="handlePageChange"
             ></b-pagination>
 
-            <!-- TODO: 추가문의 시작 -->
+            <!-- 추가문의 시작 -->
             <div class="buttonArea">
               <a href="#" class="redbtn" @click="addQnaForm()">추가문의</a>
             </div>
@@ -234,12 +207,12 @@
                 >
               </div>
             </div>
-            <!-- TODO: 추가문의 끝 -->
+            <!-- 추가문의 끝 -->
           </div>
         </div>
       </div>
     </div>
-    <!-- TODO: 탑버튼 추가 -->
+    <!-- 탑버튼 -->
     <a class="topbutton" href="#">
       <img src="@/assets/images_jung/iconUp_48.png"/>
     </a>
@@ -271,7 +244,6 @@ export default {
       submitted: true,
       // 빈 값으로 넘겨도 기본 값 writer로 검색
       searchSelect: "", // 기본값
-      // searchKeyword: "" ,
       searchKeyword: "", // 검색어
 
       emptyQna: true,
@@ -286,9 +258,8 @@ export default {
     };
   },
   methods: {
-    // 백엔드 데이터 받는 함수 + username으로 qna 조회
+    // 로그인 한 사용자정보 가져오기 + username으로 qna 조회
     getUser() {
-      // username = this.$store.state.auth.user.username;
       console.log("username: " + this.username);
       userService
           .getUserUsername(this.username)
@@ -297,29 +268,16 @@ export default {
             this.qwriter = this.user.name;  // 사용자이름으로 qna 검색
             console.log("getUser this.user: ", this.user);
             console.log("getUser response.data: ", response.data);
-            // FIXME: user 정보 가져오는걸 성공하면 this.searchKeyword = this.user.name; 이렇게 값 넣고 함수 실행!
+            // this.searchKeyword = this.user.name; 
             this.getQna();
           })
           .catch((err) => console.log(err));
     },
-    // 로그아웃 함수 -> 공통함수 호출
+    // 로그아웃
     logout() {
-      // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
-      this.$router.push("/"); // 강제 홈페이지로 이동
+      this.$router.push("/");
     },
-    // 전체조회
-    // getQna() {
-    //   qnaDataService
-    //       .getAll(this.searchSelect, this.searchKeyword, this.page - 1,
-    //           this.pageSize)
-    //       .then(response => {
-    //         console.log("getQna response.data: ", response.data);
-    //         this.qna = response.data; // data 안에서 qna만 표시
-    //         console.log("qna: ", this.qna);
-    //       })
-    //       .catch((err) => console.log(err));
-    // },
 
     // 내꺼만 조회하기
     getQna() {
@@ -345,7 +303,7 @@ export default {
       this.getQna();
     },
 
-    // 삭제
+    // qna 삭제
     deletebtn(qid) {
       qnaDataService
           .delete(qid)
@@ -353,7 +311,6 @@ export default {
             console.log(response.data);
             alert("문의사항이 삭제되었습니다.");
             this.getQna();      
-            // this.$router.push("/mypage");
           })
           .catch((e) => {
             console.log(e);
@@ -362,20 +319,16 @@ export default {
     addQnaForm() {
       this.addform = !this.addform;
     },
-    // qna 추가
+    // 추가 qna 등록하기
     createQna() {
       this.addQna.qwriter = this.username;
       qnaDataService
           .create(this.addQna)
-          // 성공하면 then() 결과가 전송됨
           .then((response) => {
             console.log(response.data);
             alert("등록이 완료되었습니다");
             this.getQna();      
-            // this.$router.push("/mypage");
-            // window.location.reload();
           })
-          // 실패하면 .catch() 에러메세지가 전송됨
           .catch((e) => {
             console.log(e);
           });
@@ -392,8 +345,6 @@ export default {
   mounted() {
     custom();
     this.getUser(); // 종학이 백엔드 데이터
-    // FIXME: 언니 원래 여기서 QNA까지 실행했었는데 그렇게 하니까 searchKeyword이 유저함수에서 값을 늦게 받아오는 경우가 생겨서 그냥 유저 받아오는거 성공하면 바로 QNA함수 실행되도록 안에 넣어뒀어!
-    // this.getQna();
   },
 };
 </script>
@@ -409,10 +360,6 @@ export default {
 
 .qnabox2 {
   color: #fff;
-}
-
-.qna {
-  background: black;
 }
 
 .buttonArea {
@@ -462,12 +409,8 @@ tbody {
   margin-bottom: 5%;
 }
 
-/* .information {
-  margin-top: 3%;
-  margin-left: 10%;
-} */
 
-/* 배경이미지 : 아리걸로 통일 */
+/* 배경이미지*/
 .user-hero {
   background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
   /* height: 598px; */
@@ -485,7 +428,7 @@ tbody {
   vertical-align: middle;
 }
 
-/* TODO: 탑버튼 추가 */
+/* 탑버튼 */
 .topbutton {
   position: fixed;
   bottom: 15px;
@@ -534,10 +477,4 @@ textarea {
 .mytitle{
   color: azure;
 }
-/*
-.form-style-1 {
-    background-color:none;
-    border: none;
-    padding: 15px;
-} */
 </style>

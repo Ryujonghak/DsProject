@@ -1,13 +1,5 @@
 <template>
   <div v-if="wishlist != null">
-    <!--preloading-->
-    <!-- <div id="preloader">
-      <img class="logo" src="images/logo1.png" alt="" width="119" height="58" />
-      <div id="status">
-        <span></span>
-        <span></span>
-      </div>
-    </div> -->
 
     <!-- 상단 페이지 제목 -->
     <div class="hero user-hero">
@@ -31,12 +23,10 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width">
-          <!-- todo: 이부분 나브 다른 Mypage 컴포넌트들 공통 -->
           <!-- 공통 왼쪽 메뉴 시작 -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-img">
-                <!-- src="images/uploads/user-img.png" -->
                 <img class="profileImg" src="@/assets/images_choi/Views/choi/MovieDetail/user.png" alt=""/>
                 <br/>
               </div>
@@ -80,7 +70,6 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
                 </ul>
               </div>
@@ -115,47 +104,29 @@
                 <img :src="data.posterurln" alt="poster"/>
                 <!-- 영화에 마우스 올리면 나오는 상세페이지 이동 버튼 -->
                 <div class="hvr-inner">
-                  <!-- <router-link to="/reserveTicket">
-                    예매하기 <i class="ion-android-arrow-dropright"></i>
-                  </router-link> -->
                   <router-link
                       :to="'/SeatTest/' + data.moviecd"
                       >예매하기 
                       <i class="ion-android-arrow-dropright"></i
                     ></router-link>
                 </div>
-                <!-- 제목 -->
+                <!-- 영화정보 -->
                 <div class="mv-item-infor">
-
                   <router-link :to="'/allMovie/' + data.moviecd">
                     <h6><a>{{ data.movienm }}({{ data.opendt }})</a></h6>
                   </router-link>
-
                   <p class="rate">
                     <i class="ion-android-star"></i><span>{{ data.raiting }}</span> /10
-                    <!-- <i class="ion-android-star"></i><span>{{ movie.userRating }}</span> /10 -->
                   </p>
                 </div>
+
               </div>
             </div>
-
-            <!-- 페이지 -->
-            <!-- <b-pagination
-                v-model="page"
-                :total-rows="qna.totalItems"
-                :per-page="pageSize"
-                pills
-                size="sm"
-                prev-text="<"
-                next-text=">"
-                @change="handlePageChange"
-            ></b-pagination> -->
-
           </div>
         </div>
       </div>
     </div>
-    <!-- TODO: 탑버튼 추가 -->
+    <!-- 탑버튼 -->
     <a class="topbutton" href="#">
       <img src="@/assets/images_jung/iconUp_48.png"/>
     </a>
@@ -164,19 +135,13 @@
 
 <script>
 /* eslint-disable */
-// import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
 import User from "@/model/user";
 import WishlistDataService from "@/services/WishlistDataService";
-import MovieDetail from "@/views/choi/MovieDetail.vue";
-import MovieDataService from "@/services/MovieDataService";
 
 export default {
 
-  // data: () => ({
-  //   images: "",
-  // }),
   data() {
     return {
       wishlist: null,
@@ -189,14 +154,6 @@ export default {
       
       emptyWish: true,  
 
-
-      //페이징을 위한 변수 정의
-      // page: 1,
-      // count: 0,
-      // pageSize: 5,
-      // pageSizes: [5, 10, 15],
-      // searchSelect: "", // 기본값
-      // searchKeyword: "" ,
       selected: "",
       prdtyear: "",
     };
@@ -205,20 +162,15 @@ export default {
     // 찜한 결과 가져오기
     getWishlist() {
       WishlistDataService
-          // .getUsernameMovie(this.$store.state.auth.user.username)
           .getUsernameMovie(this.username)
           .then((res) => {
             this.wishlist = res.data;
             this.totalMovie = this.wishlist.length;
             this.findWish();  // 찜한 내역 확인함수 추가
 
-
             console.log(this.$store.state.auth.user.username);
             console.log(this.$route.params.moviecd);
-            // console.log(res.data);
             console.log("wishlist: ", this.wishlist);
-            // alert("get");
-            // this.getMovie();
           })
           .catch(err => {
             console.log(err);
@@ -234,10 +186,7 @@ export default {
 
             console.log(this.$store.state.auth.user.username);
             console.log(this.$route.params.moviecd);
-            // console.log(res.data);
             console.log("wishlist: ", this.wishlist);
-            // alert("get");
-            // this.getMovie();
           })
           .catch(err => {
             console.log(err);
@@ -252,45 +201,35 @@ export default {
       console.log("findWish", this.wishlist);
     },
 
+    // 로그인 한 사용자정보 가져오기
     getUser() {
-      // username = this.$store.state.auth.user.username;
       console.log("username: " + this.username);
       userService
           .getUserUsername(this.username)
           .then((response) => {
             this.user = response.data;
             console.log("getUser this.user: ", this.user);
-            // console.log("getUser response.data: ", response.data);
           })
           .catch((err) => console.log(err));
     },
-    // 로그아웃 함수 -> 공통함수 호출
+    // 로그아웃
     logout() {
-      // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
-      this.$router.push("/"); // 강제 홈페이지로 이동
+      this.$router.push("/");
     },
-
-    // 페이지 출력 갯수 변경
-    // handlePageChange(value) {
-    // this.page = value;
-    // this.getQna();
-    // },
-    
   },
   mounted() {
     custom();
-    this.getUser(); // 종학이 백엔드 데이터
+    this.getUser(); 
     this.getWishlist();
   },
 };
 </script>
 
 <style scoped>
-/* 배경이미지 : 아리걸로 통일 */
+/* 배경이미지 */
 .user-hero {
   background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
-  /* height: 598px; */
   width: 100%;
 }
 
@@ -298,14 +237,12 @@ export default {
 .profileImg {
   -ms-interpolation-mode: bicubic;
   border: 0;
-  /* height: auto; */
   max-height: 120px;
-  /* max-width: 100%; */
   max-width: 120px;
   vertical-align: middle;
 }
 
-/* TODO: 탑버튼 추가 */
+/* 탑버튼 */
 .topbutton {
   position: fixed;
   bottom: 15px;

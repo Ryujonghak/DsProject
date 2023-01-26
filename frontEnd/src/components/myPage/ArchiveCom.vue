@@ -1,14 +1,5 @@
 <template>
   <div>
-    <!--preloading-->
-    <!-- <div id="preloader">
-        <img class="logo" src="images/logo1.png" alt="" width="119" height="58" />
-        <div id="status">
-          <span></span>
-          <span></span>
-        </div>
-      </div> -->
-
     <!-- 상단 페이지 제목 -->
     <div class="hero user-hero">
       <div class="container">
@@ -31,12 +22,10 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width">
-          <!-- todo: 이부분 나브 다른 Mypage 컴포넌트들 공통 -->
           <!-- 공통 왼쪽 메뉴 시작 -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-img">
-                <!-- src="images/uploads/user-img.png" -->
                 <img
                   class="profileImg"
                   src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
@@ -85,7 +74,6 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
                 </ul>
               </div>
@@ -109,13 +97,6 @@
                 <div class="reviewForm">
                   <h2 class="MovieName">{{ movie.movienm }}</h2>
                   <div class="rv-hd">
-                    <!-- <div
-                      class="div"
-                      v-for="(data, index) in movie"
-                      :key="index"
-                    >
-                      <h2>{{ data.movienm }}</h2>
-                    </div> -->
                   </div>
                   <div>
                     <div class="rv-hd">
@@ -181,7 +162,6 @@
                       </form>
 
                       <!-- 리뷰등록 버튼 -->
-                      <!-- <div v-if="!submitted"> -->
                       <div>
                         <div class="col-xs-3">
                           <a href="#" class="redbtn" @click="saveReview"
@@ -191,15 +171,6 @@
                         <!-- 등록버튼 끝 -->
                       </div>
                     </div>
-                    <!-- 
-                    <div v-else>
-                      <div class="alert alert-success" role="alert">
-                        관람평이 등록되었습니다.!
-                      </div>
-                      <router-link to="/archive" class="alert alert-success"
-                        >뒤로</router-link
-                      >
-                    </div> -->
                   </div>
                 </div>
               </div>
@@ -239,12 +210,11 @@
                         >{{ data.watchgradenm }}
                       </a>
                     </p>
-                    <!--                    <span class="time sm">{{ data.scheNo }}</span>-->
                     <br />
                   </div>
                 </div>
 
-                <!-- 영화정보 : 하드코딩이었음 (review에 )-->
+                <!-- 영화정보 -->
                 <div class="col-xs-8">
                   <div class="row" style="padding: 3%">
                     <div class="user-infor">
@@ -278,27 +248,9 @@
                 </div>
                 <!-- 리뷰삭제 버튼 끝 -->
               </div>
-
-              <!-- 리뷰 : 3 -->
             </div>
             <!-- 나의 리뷰 조회 끝 -->
 
-            <!-- 페이지 -->
-            <!-- <ul class="pagination">
-              <li class="icon-prev">
-                <a href="#"><i class="ion-ios-arrow-left"></i></a>
-              </li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">21</a></li>
-              <li><a href="#">22</a></li>
-              <li class="icon-next">
-                <a href="#"><i class="ion-ios-arrow-right"></i></a>
-              </li>
-            </ul> -->
             <!-- 페이징처리-->
             <!-- total-rows : 전체 데이터 개수 -->
             <!-- per-page : 1페이지 당 개수 -->
@@ -317,7 +269,7 @@
         </div>
       </div>
     </div>
-    <!-- TODO: 탑버튼 추가 -->
+    <!-- 탑버튼 -->
     <a class="topbutton" href="#">
       <img src="@/assets/images_jung/iconUp_48.png" />
     </a>
@@ -327,7 +279,6 @@
 <script>
 /* eslint-disable */
 
-// import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
 // User
 import User from "@/model/user";
@@ -359,11 +310,8 @@ export default {
       submitted: false, // 리뷰작성후 버튼 클릭시 true로 변경
 
       // Movie Part
-      movie: [], // 임시로 movie로 출력확인 - 나중에 예매한 영화 들어오면 지울거임
+      movie: [],
       moviecd: this.$route.params.moviecd,
-      // starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
-      // userReview: "",
-      // userStarRaing: 3,
 
       // 페이징을 위한 변수 정의
       page: 1, // 현재 페이지
@@ -371,14 +319,13 @@ export default {
       pageSize: 5, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
       pageSizes: [5, 10, 15], // select box 에 넣을 기본 데이터
 
-      // TODO: 리뷰를 한번이라도 쓴 사람들은 더 이상 쓸 수 없도록 하는 코드 (최아리 추가) -1
+      // 리뷰 중복방지 - 1
       alreadyReviewed: false,
     };
   },
   methods: {
-    // 백엔드 데이터 받는 함수
+    // 로그인 한 사용자정보 가져오기
     getUser() {
-      // username = this.$store.state.auth.user.username;
       console.log("username: " + this.username);
       userService
         .getUserUsername(this.username)
@@ -393,16 +340,11 @@ export default {
     },
     // 아리 별점
     cutNames() {
-      // this.watchedMovie.starRating = Math.floor(this.watchedMovie.rating);
       this.watchedMovie.starRating = Math.floor(this.watchedMovie.rating);
-      // alert(this.movie.starRating);
     },
     // 리뷰 출력 : username으로 검색, 가져오기
     getReview() {
-      // alert("this.user.name: " + this.user.name);
-      // alert("this.moviecd: " + this.moviecd);
-
-      // TODO: 리뷰를 한번이라도 쓴 사람들은 더 이상 쓸 수 없도록 하는 코드 (최아리 추가) -2
+      // 리뷰 중복방지 - 2
       ReviewDataService.getBycode(this.moviecd, this.page - 1, 10000000) // 모든 리뷰를 가져오기 위하여 임의로 준 수.
         .then((response) => {
           const pastReviews = response.data.review.filter(
@@ -414,11 +356,7 @@ export default {
           console.log(e);
         });
 
-      ReviewDataService.getRwuser(
-        this.user.username,
-        this.page - 1,
-        this.pageSize
-      )
+      ReviewDataService.getRwuser(this.user.username, this.page - 1, this.pageSize)
         .then((response) => {
           this.review = response.data;
           console.log("response.data: ", response.data);
@@ -434,7 +372,7 @@ export default {
     },
     // 새로운 리뷰 저장 함수
     saveReview() {
-      // TODO: 리뷰를 한번이라도 쓴 사람들은 더 이상 쓸 수 없도록 하는 코드 (최아리 추가) -3
+      // 리뷰 중복방지 -3
       if (this.alreadyReviewed) {
         alert("이미 리뷰를 남기셨습니다.");
         this.editReview = new Review();
@@ -470,26 +408,23 @@ export default {
       this.review = [new Review()];
     },
 
-    // FIXME: 리뷰 삭제
+    // 리뷰 삭제
     deleteReview(data) {
       alert("클릭");
       this.review = data;
       var test = this.review.rid;
       alert(JSON.stringify(test));
-      // ReviewDataService.delete(this.review.moviecd)   // 영화코드로 삭제하기  FIXME:
-      ReviewDataService.delete(this.review.rid) // 리뷰 사용자로 삭제하기 ? 리뷰번호로 삭제되는듯
+      ReviewDataService.delete(this.review.rid)
         .then((response) => {
           console.log(response.data);
           alert("리뷰가 삭제되었습니다.");
-          window.location.reload(); // 홈으로 새고
-          // this.$router.push("/archive/:moviecd");    // FIXME: 새고 어떻게하니..ㅋ
-          // this.getMovieData();
+          window.location.reload();
         })
         .catch((e) => {
           console.log(e);
         });
     },
-
+    // 영화정보 가져오기
     getMovieData() {
       MovieDataService.getMovieDetail(this.moviecd)
         .then((response) => {
@@ -503,9 +438,8 @@ export default {
     },
     // 로그아웃
     logout() {
-      // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
-      this.$router.push("/"); // 강제 홈페이지로 이동
+      this.$router.push("/"); 
     },
 
     // 페이징
@@ -590,7 +524,7 @@ export default {
   margin-top: 10%;
 }
 
-/* 배경이미지 : 아리걸로 통일 */
+/* 배경이미지 */
 .user-hero {
   background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
   /* height: 598px; */
@@ -612,7 +546,7 @@ export default {
   color: azure;
 }
 
-/* TODO: 탑버튼 추가 */
+/* 탑버튼 */
 .topbutton {
   position: fixed;
   bottom: 15px;

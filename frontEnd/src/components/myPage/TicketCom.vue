@@ -1,13 +1,5 @@
 <template>
   <div>
-    <!--preloading-->
-    <!-- <div id="preloader">
-      <img class="logo" src="images/logo1.png" alt="" width="119" height="58" />
-      <div id="status">
-        <span></span>
-        <span></span>
-      </div>
-    </div> -->
 
     <!-- 상단 페이지 제목 -->
     <div class="hero user-hero">
@@ -31,12 +23,10 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width">
-          <!-- todo: 이부분 나브 다른 Mypage 컴포넌트들 공통 -->
           <!-- 공통 왼쪽 메뉴 시작 -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-img">
-                <!-- src="images/uploads/user-img.png" -->
                 <img
                   class="profileImg"
                   src="@/assets/images_choi/Views/choi/MovieDetail/user.png"
@@ -84,7 +74,6 @@
               <div class="user-fav">
                 <p>Others</p>
                 <ul>
-                  <!--                  <li><a href="#">Log out</a></li>-->
                   <li><a href="#" @click.prevent="logout">Log out</a></li>
                 </ul>
               </div>
@@ -99,21 +88,14 @@
               <a href="/myticket" class="grid"
                 ><i class="ion-grid"></i
               ></a>
-              <!-- <select>
-                <option value="range">-- 2022년 --</option>
-                <option value="saab">-- 2021년 --</option>
-              </select> -->
             </div>
 
-            <!-- TODO: v-show 걸어야 함! -->
             <div v-show="unbooking">
               <h3>예매내역이 없습니다.</h3>
             </div>
 
             <!-- 예매내역 -->
-            <!-- TODO: v-show 걸어야 함! -->
             <div v-show="!unbooking">
-              <!-- <div> -->
               <div class="page-single userfav_list">
                 <div class="container">
                   <div class="row ipad-width2">
@@ -131,8 +113,8 @@
                           v-for="(data, index) in watchedMovie.reservation"
                           :key="index"
                         >
-                          <!-- todo) 이미지크기...  -->
                           <img :src="data.posterurln" alt="poster" />
+
                           <div class="mv-item-infor">
                             <div>
                               <div class="col-xs-8">
@@ -158,8 +140,6 @@
                                   <div class="col-xs-8">
                                     <div class="movie-item-style-2">
                                       <router-link :to="'/archive/' + data.moviecd">
-                                      <!-- <router-link to="/archive"> -->
-                                        <!-- <button>리뷰 GO</button> -->
                                       </router-link>
                                     </div>
                                   </div>
@@ -210,7 +190,6 @@
                                 }}
                                 )
                               </p>
-                              <!-- TODO: 예매취소 버튼 - 날짜 지났으면비활성화 -->
                               <div class="col-xs-4">
                                 <a href="#" class="redbtn" @click="deleteTicket(data.reservno)"
                                   >예매취소</a
@@ -247,7 +226,7 @@
         </div>
       </div>
     </div>
-    <!-- TODO: 탑버튼 추가 -->
+    <!-- 탑버튼 -->
     <a class="topbutton" href="#">
       <img src="@/assets/images_jung/iconUp_48.png" />
     </a>
@@ -256,15 +235,11 @@
 
 <script>
 /* eslint-disable */
-// import axios from "axios";   // 프로필이미지 업로드
 import custom from "@/assets/js/custom";
 import userService from "@/services/user.service";
 import ReservationDataService from "@/services/ReservationDataService";
 
 export default {
-  // data: () => ({
-  //   images: "",
-  // }),
   data() {
     return {
       CurrentUser: {
@@ -296,9 +271,8 @@ export default {
   },
   methods: {
     getUser(username) {
-      // 종학이 백엔드 데이터 받는 함수
+      // 로그인 한 사용자정보 가져오기
       username = this.$store.state.auth.user.username;
-      // username = "forbob";
       console.log(username);
       userService
         .getUserUsername(username)
@@ -315,14 +289,12 @@ export default {
             answer: response.data.answer,
           };
           console.log(this.CurrentUser);
-          // console.log(response.data);
         })
         .catch((err) => console.log(err));
     },
 
-    // TODO: 예매한 영화 가져오기
+    // 예매한 영화 가져오기
     getWatchedMovie() {
-     // 본 영화 전체 조회 요청
       ReservationDataService.getRespage(this.$store.state.auth.user.username, this.page -1, this.pageSize)
         .then((response) => {
           this.watchedMovie = response.data;
@@ -348,15 +320,13 @@ export default {
       console.log("findArchive", this.watchedMovie);
     },
     
-    // TODO: 예매번호 티켓예매취소 함수 FIXME:
+    // 예매취소
     deleteTicket(reservno) {
       ReservationDataService.delete(reservno)
         .then((response) => {
           console.log(response.data);
           alert("예매내역이 삭제되었습니다.");
 
-          // this.getQna();
-          // this.$router.push("/mypage");
           this.getWatchedMovie();
         })
         .catch((e) => {
@@ -364,11 +334,10 @@ export default {
         });
     },
 
-    // 로그아웃 함수 -> 공통함수 호출
+    // 로그아웃
     logout() {
-      // this.$store.dispatch("모듈명/함수명")
       this.$store.dispatch("auth/logout"); // 공통함수 logout 호출
-      this.$router.push("/"); // 강제 홈페이지로 이동
+      this.$router.push("/");
     },
 
     // 페이지 출력 갯수 변경
@@ -377,10 +346,9 @@ export default {
       this.getQna();
     },
   },
-  // created가 mounted보다 더 빨리 실행됨. 데이터 들어가기전에 떠야하는건 created에 넣어야 함
   mounted() {
     custom();
-    this.getUser(); // 종학이 백엔드 데이터
+    this.getUser(); 
     this.getWatchedMovie(); // 예매내역
   },
 };
@@ -409,7 +377,7 @@ export default {
   color:lightslategray;
 }
 
-/* 배경이미지 : 아리걸로 통일 */
+/* 배경이미지 */
 .user-hero {
   background: url(@/assets/images_jung/movie-theater02.jpg) no-repeat;
   /* height: 598px; */
@@ -431,7 +399,7 @@ export default {
   color: azure;
 }
 
-/* TODO: 탑버튼 추가 */
+/* 탑버튼 */
 .topbutton {
   position: fixed;
   bottom: 15px;
