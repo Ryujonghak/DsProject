@@ -248,12 +248,6 @@ const routes = [
     name: "SeomyeonCinema",
     component: () => import("@/views/kim/SeomyeonCinema.vue"),
   },
-  {
-    path: "/testkim",
-    name: "testkim",
-    component: () => import("@/views/kim/TestVue.vue"),
-  },
-
 ];
 
 /* eslint-disable */
@@ -262,22 +256,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
-// 인터셉터
-// TODO: 아래 소스로 불법적인 접근을 하면 강제 로그인페이지로 이동
-// 않하면 서버쪽 권한체크로 에러코드를 화면에 보이게 만듬
-// router.beforeEach((to, from, next) => {
-//   const publicPages = ['/login', '/register', '/home'];
-//   const authRequired = !publicPages.includes(to.path);
-//   const loggedIn = localStorage.getItem('user');
-
-//   // trying to access a restricted page + not logged in
-//   // redirect to login page
-//   if (authRequired && !loggedIn) {
-//     next('/login');
-//   } else {
-//     next();
-//   }
-// });
 
 export default router;
