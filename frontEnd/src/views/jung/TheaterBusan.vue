@@ -44,7 +44,6 @@
                           <div class="row" v-for="(dataAll, indexAll) in movie" v-bind:key="indexAll">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                               <div class="title-hd-sm">
-                                <!-- 제목클릭시 영화디테일로 이동하도록 라우터링크로 감싸줌 -->
                                 <router-link :to="'/allMovie/' + dataAll.moviecd">
                                   <span class="time">{{ dataAll.movienm }}
                                     <i class="ion-ios-arrow-right"></i>
@@ -85,22 +84,22 @@
                                       <div
                                         class="mv-user-review-item col-xs-2"
                                       >
-                                      <a to="/SeatTest" @click="schInfo">{{ 서면[0] }}<p>(서면)</p></a>
-                                      <a>{{ 센텀[0] }}<p>(센텀시티)</p></a>
-                                      <a>{{ 부산대[0] }}<p>(부산대)</p></a>
+                                      <a to="/SeatTest" @click="schInfo">{{ seomyeon[0] }}<p>(서면)</p></a>
+                                      <a>{{ centum[0] }}<p>(센텀시티)</p></a>
+                                      <a>{{ pnu[0] }}<p>(부산대)</p></a>
                                       </div>
                                       
                                       <div
                                         class="mv-user-review-item col-xs-2"
                                       >
-                                      <a>{{ 서면[1] }}<p>(서면)</p></a>
-                                      <a>{{ 센텀[1] }}<p>(센텀시티)</p></a>
-                                      <a>{{ 부산대[1] }}<p>(부산대)</p></a>
+                                      <a>{{ seomyeon[1] }}<p>(서면)</p></a>
+                                      <a>{{ centum[1] }}<p>(센텀시티)</p></a>
+                                      <a>{{ pnu[1] }}<p>(부산대)</p></a>
                                       </div>
                                       <div
                                         class="mv-user-review-item col-xs-2"
                                       >
-                                      <a>{{ 서면[2] }}<p>(서면)</p></a>
+                                      <a>{{ seomyeon[2] }}<p>(서면)</p></a>
                                       </div>
                                     </div>
                                   </div>
@@ -109,11 +108,10 @@
                             </div>
                           </div>
                           <!-- 전체 상영시간표 끝-->
-                          <!-- 탑 버튼 추가 -->
+                          <!-- 탑 버튼 -->
                           <a class="topbutton" href="#">
                              <img src="@/assets/images_jung/iconUp_48.png"/>
                           </a>
-                          <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                        
                         </div>
                       </div>
@@ -123,27 +121,27 @@
                     <div id="aaaa" class="tab review">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
+                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ Day[dayOrder[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                             <div class="topbar-filter">
-                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}입니다.</p>
+                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}입니다.</p>
                             </div>
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 서면 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
                               <!-- 선택창 시작 -->
                               <input id="all" type="radio" name="tab_item" checked/>
-                              <label class="tab_item" for="all">{{ 요일[순서[0]] }}</label>
+                              <label class="tab_item" for="all">{{ Day[dayOrder[0]] }}</label>
                               <input id="tuesday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="tuesday">{{ 요일[순서[1]] }}</label>
+                              <label class="tab_item" for="tuesday">{{ Day[dayOrder[1]] }}</label>
                               <input id="wednesday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="wednesday">{{ 요일[순서[2]] }}</label>
+                              <label class="tab_item" for="wednesday">{{ Day[dayOrder[2]] }}</label>
                               <input id="thursday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="thursday">{{ 요일[순서[3]] }}</label>
+                              <label class="tab_item" for="thursday">{{ Day[dayOrder[3]] }}</label>
                               <input id="friday" type="radio" name="tab_item" />
-                              <label class="tab_item" for="friday">{{ 요일[순서[4]] }}</label>
+                              <label class="tab_item" for="friday">{{ Day[dayOrder[4]] }}</label>
                               <!-- 선택창 끝 -->
 
                               <!-- todo) 탭2 : 서면 ---- 탭 시간표 선택 >>> 월요일 -->
@@ -184,29 +182,25 @@
                                             </div>
 
                                             <div class="user-infor col-ms-6">
-                                              <!-- TODO: 시간표 추가하고 싶으면 col-xs-1로 변경 -->
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[0] }}</a>
+                                                <a>{{ seomyeon[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[1] }}</a>
+                                                <a>{{ seomyeon[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[2] }}</a>
+                                                <a>{{ seomyeon[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -262,24 +256,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[0] }}</a>
+                                                <a>{{ seomyeon[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[1] }}</a>
+                                                <a>{{ seomyeon[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[2] }}</a>
+                                                <a>{{ seomyeon[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -334,24 +325,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[0] }}</a>
+                                                <a>{{ seomyeon[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[1] }}</a>
+                                                <a>{{ seomyeon[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[2] }}</a>
+                                                <a>{{ seomyeon[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -406,24 +394,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[0] }}</a>
+                                                <a>{{ seomyeon[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[1] }}</a>
+                                                <a>{{ seomyeon[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[2] }}</a>
+                                                <a>{{ seomyeon[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -478,24 +463,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[0] }}</a>
+                                                <a>{{ seomyeon[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[1] }}</a>
+                                                <a>{{ seomyeon[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 서면[2] }}</a>
+                                                <a>{{ seomyeon[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -511,14 +493,12 @@
                               <!-- 내용 끝 -->
                             </div>
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
-                            <!-- 탑 버튼 추가 -->
+                            <!-- 탑 버튼 -->
                             <a class="topbutton" href="#">
                              <img src="@/assets/images_jung/iconUp_48.png"/>
                             </a>
-                            <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                           </div>
                         </div>
-                        <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                       </div>
                     </div>
 
@@ -526,27 +506,26 @@
                     <div id="bbbb" class="tab">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
+                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ Day[dayOrder[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
-                            <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                             <div class="topbar-filter">
-                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}입니다.</p>
+                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}입니다.</p>
                             </div>
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 센텀시티 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
                               <!-- 선택창 시작 -->
                               <input id="all2" type="radio" name="tab_item" checked/>
-                              <label class="tab_item" for="all2">{{ 요일[순서[0]] }}</label>
+                              <label class="tab_item" for="all2">{{ Day[dayOrder[0]] }}</label>
                               <input id="tuesday2" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="tuesday2">{{ 요일[순서[1]] }}</label>
+                              <label class="tab_item" for="tuesday2">{{ Day[dayOrder[1]] }}</label>
                               <input id="wednesday2" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="wednesday2">{{ 요일[순서[2]] }}</label>
+                              <label class="tab_item" for="wednesday2">{{ Day[dayOrder[2]] }}</label>
                               <input id="thursday2" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="thursday2">{{ 요일[순서[3]] }}</label>
+                              <label class="tab_item" for="thursday2">{{ Day[dayOrder[3]] }}</label>
                               <input id="friday2" type="radio" name="tab_item" />
-                              <label class="tab_item" for="friday2">{{ 요일[순서[4]] }}</label>
+                              <label class="tab_item" for="friday2">{{ Day[dayOrder[4]] }}</label>
                               <!-- 선택창 끝 -->
 
                               <!-- todo) 탭2 : 센텀시티 ---- 탭 시간표 선택 >>> 월요일 -->
@@ -591,24 +570,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[0] }}</a>
+                                                <a>{{ centum[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[1] }}</a>
+                                                <a>{{ centum[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[2] }}</a>
+                                                <a>{{ centum[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -663,24 +639,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[0] }}</a>
+                                                <a>{{ centum[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[1] }}</a>
+                                                <a>{{ centum[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[2] }}</a>
+                                                <a>{{ centum[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -735,24 +708,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[0] }}</a>
+                                                <a>{{ centum[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[1] }}</a>
+                                                <a>{{ centum[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[2] }}</a>
+                                                <a>{{ centum[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -807,24 +777,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[0] }}</a>
+                                                <a>{{ centum[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[1] }}</a>
+                                                <a>{{ centum[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[2] }}</a>
+                                                <a>{{ centum[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -879,24 +846,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[0] }}</a>
+                                                <a>{{ centum[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[1] }}</a>
+                                                <a>{{ centum[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[2] }}</a>
+                                                <a>{{ centum[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -916,7 +880,6 @@
                             <a class="topbutton" href="#">
                              <img src="@/assets/images_jung/iconUp_48.png"/>
                             </a>
-                            <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                           </div>
                         </div>
                       </div>
@@ -926,27 +889,26 @@
                     <div id="cccc" class="tab">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ 요일[순서[4]] }}</h4>
+                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ Day[dayOrder[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
-                            <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                             <div class="topbar-filter">
-                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ 요일[순서[0]] }}입니다.</p>
+                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}입니다.</p>
                             </div>
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
                              <!-- 선택창 시작 -->
                              <input id="all3" type="radio" name="tab_item" checked/>
-                              <label class="tab_item" for="all3">{{ 요일[순서[0]] }}</label>
+                              <label class="tab_item" for="all3">{{ Day[dayOrder[0]] }}</label>
                               <input id="tuesday3" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="tuesday3">{{ 요일[순서[1]] }}</label>
+                              <label class="tab_item" for="tuesday3">{{ Day[dayOrder[1]] }}</label>
                               <input id="wednesday3" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="wednesday3">{{ 요일[순서[2]] }}</label>
+                              <label class="tab_item" for="wednesday3">{{ Day[dayOrder[2]] }}</label>
                               <input id="thursday3" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="thursday3">{{ 요일[순서[3]] }}</label>
+                              <label class="tab_item" for="thursday3">{{ Day[dayOrder[3]] }}</label>
                               <input id="friday3" type="radio" name="tab_item" />
-                              <label class="tab_item" for="friday3">{{ 요일[순서[4]] }}</label>
+                              <label class="tab_item" for="friday3">{{ Day[dayOrder[4]] }}</label>
                               <!-- 선택창 끝 -->
 
                               <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 월요일 -->
@@ -991,24 +953,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 부산대[0] }}</a>
+                                                <a>{{ pnu[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 부산대[1] }}</a>
+                                                <a>{{ pnu[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[2] }}</a>
+                                                <a>{{ centum[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -1063,24 +1022,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 부산대[0] }}</a>
+                                                <a>{{ pnu[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 부산대[1] }}</a>
+                                                <a>{{ pnu[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[2] }}</a>
+                                                <a>{{ centum[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -1135,24 +1091,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 부산대[0] }}</a>
+                                                <a>{{ pnu[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 부산대[1] }}</a>
+                                                <a>{{ pnu[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[2] }}</a>
+                                                <a>{{ centum[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -1207,24 +1160,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 부산대[0] }}</a>
+                                                <a>{{ pnu[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 부산대[1] }}</a>
+                                                <a>{{ pnu[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[2] }}</a>
+                                                <a>{{ centum[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -1276,24 +1226,21 @@
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 부산대[0] }}</a>
+                                                <a>{{ pnu[0] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 부산대[1] }}</a>
+                                                <a>{{ pnu[1] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                               <div
                                                 class="mv-user-review-item col-xs-2"
                                               >
                                                 <br />
-                                                <!-- 시작시간, 끝나는 시간 -->
-                                                <a>{{ 센텀[2] }}</a>
+                                                <a>{{ centum[2] }}</a>
                                                 <p>{{ data.showtm }}'</p>
                                               </div>
                                             </div>
@@ -1307,12 +1254,10 @@
                             </div>
                             <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
 
-                            <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
-                            <!-- 탑 버튼 추가 -->
+                            <!-- 탑 버튼 -->
                             <a class="topbutton" href="#">
                              <img src="@/assets/images_jung/iconUp_48.png"/>
                             </a>
-                            <!-- <a target="_blank" href="https://icons8.com/icon/63247/%EC%9B%90-%EC%85%B0%EB%B8%8C%EB%A1%A0-%EC%B5%9C%EB%8C%80">원 셰브론 최대</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
                           </div>
                         </div>
                       </div>
@@ -1331,28 +1276,23 @@
 <script>
 import custom from "@/assets/js/custom";
 import MovieDataService from "@/services/MovieDataService";
-
+/* eslint-disable */
 export default {
   data() {
     return {
       movie: [],
 
-      요일: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
-      yy: "",
-      mm: "",
-      dd: "",
-      day: 0,
-      순서: [], // 요일을 순서대로 나오게 하는 거
-      서면: ["10:30", "16:00", "19:30"], // 나중에 테스트 할 시간 데이터
-      센텀: ["10:30", "16:00"], // 나중에 테스트 할 시간 데이터
-      부산대: ["10:30", "16:00"], // 나중에 테스트 할 시간 데이터
+      Day: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
+      yy: "", // 년도
+      mm: "", // 월
+      dd: "", // 일
+      today: 0, 
+      dayOrder: [], // 요일을 순서대로 출력
+      seomyeon: ["10:30", "16:00", "19:30"], // 나중에 테스트 할 시간 데이터
+      centum: ["10:30", "16:00"], // 나중에 테스트 할 시간 데이터
+      pnu: ["10:30", "16:00"], // 나중에 테스트 할 시간 데이터
       selectedday : [], // 선택된 날짜를 담는 
       
-      // searchMname: "",
-      // // 페이징을 위한 변수 정의
-      // page: 1, // 현재 페이지
-      // count: 0, // 전체 데이터 건수
-      // pageSize: 5, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
     };
   },
   methods: {
@@ -1374,15 +1314,15 @@ export default {
         this.yy = date.getFullYear(); // 년도
         this.mm = date.getMonth() + 1; // 월 , 달
         this.dd = date.getDate(); // 일수
-        this.day = date.getDay(); // 요일
+        this.today = date.getDay(); // 요일
   
-        let i = this.day;
+        let i = this.today;
         for (i; i <= 6; i++) {
-          this.순서 += i;
+          this.dayOrder += i;
         }
         let j = 0;
-        for (j; j < this.day; j++) {
-          this.순서 += j;
+        for (j; j < this.today; j++) {
+          this.dayOrder += j;
         }
       },
     // 클릭시 날짜 정보 넘기기 
