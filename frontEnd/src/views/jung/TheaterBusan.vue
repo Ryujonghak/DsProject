@@ -121,27 +121,27 @@
                     <div id="aaaa" class="tab review">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ day[dayOrder[4]] }}</h4>
+                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ Day[dayOrder[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <!-- <a href="#" class="redbtn">자주가는 영화관 등록</a> -->
                             <div class="topbar-filter">
-                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ day[dayOrder[0]] }}입니다.</p>
+                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}입니다.</p>
                             </div>
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 서면 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
                               <!-- 선택창 시작 -->
                               <input id="all" type="radio" name="tab_item" checked/>
-                              <label class="tab_item" for="all">{{ day[dayOrder[0]] }}</label>
+                              <label class="tab_item" for="all">{{ Day[dayOrder[0]] }}</label>
                               <input id="tuesday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="tuesday">{{ day[dayOrder[1]] }}</label>
+                              <label class="tab_item" for="tuesday">{{ Day[dayOrder[1]] }}</label>
                               <input id="wednesday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="wednesday">{{ day[dayOrder[2]] }}</label>
+                              <label class="tab_item" for="wednesday">{{ Day[dayOrder[2]] }}</label>
                               <input id="thursday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="thursday">{{ day[dayOrder[3]] }}</label>
+                              <label class="tab_item" for="thursday">{{ Day[dayOrder[3]] }}</label>
                               <input id="friday" type="radio" name="tab_item" />
-                              <label class="tab_item" for="friday">{{ day[dayOrder[4]] }}</label>
+                              <label class="tab_item" for="friday">{{ Day[dayOrder[4]] }}</label>
                               <!-- 선택창 끝 -->
 
                               <!-- todo) 탭2 : 서면 ---- 탭 시간표 선택 >>> 월요일 -->
@@ -506,26 +506,26 @@
                     <div id="bbbb" class="tab">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ day[dayOrder[4]] }}</h4>
+                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ Day[dayOrder[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <div class="topbar-filter">
-                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ day[dayOrder[0]] }}입니다.</p>
+                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}입니다.</p>
                             </div>
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 센텀시티 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
                               <!-- 선택창 시작 -->
                               <input id="all2" type="radio" name="tab_item" checked/>
-                              <label class="tab_item" for="all2">{{ day[dayOrder[0]] }}</label>
+                              <label class="tab_item" for="all2">{{ Day[dayOrder[0]] }}</label>
                               <input id="tuesday2" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="tuesday2">{{ day[dayOrder[1]] }}</label>
+                              <label class="tab_item" for="tuesday2">{{ Day[dayOrder[1]] }}</label>
                               <input id="wednesday2" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="wednesday2">{{ day[dayOrder[2]] }}</label>
+                              <label class="tab_item" for="wednesday2">{{ Day[dayOrder[2]] }}</label>
                               <input id="thursday2" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="thursday2">{{ day[dayOrder[3]] }}</label>
+                              <label class="tab_item" for="thursday2">{{ Day[dayOrder[3]] }}</label>
                               <input id="friday2" type="radio" name="tab_item" />
-                              <label class="tab_item" for="friday2">{{ day[dayOrder[4]] }}</label>
+                              <label class="tab_item" for="friday2">{{ Day[dayOrder[4]] }}</label>
                               <!-- 선택창 끝 -->
 
                               <!-- todo) 탭2 : 센텀시티 ---- 탭 시간표 선택 >>> 월요일 -->
@@ -889,26 +889,26 @@
                     <div id="cccc" class="tab">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ day[dayOrder[4]] }}</h4>
+                          <h4 class="titleDate">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ Day[dayOrder[4]] }}</h4>
                           <br />
                           <div class="rv-hd">
                             <div class="topbar-filter">
-                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ day[dayOrder[0]] }}입니다.</p>
+                              <p>DS CINEMA | 오늘은 {{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}입니다.</p>
                             </div>
                             <!-- 안쪽탭 ---------------------------------------------------------------------------->
                             <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택-->
                             <div class="InsideTab">
                              <!-- 선택창 시작 -->
                              <input id="all3" type="radio" name="tab_item" checked/>
-                              <label class="tab_item" for="all3">{{ day[dayOrder[0]] }}</label>
+                              <label class="tab_item" for="all3">{{ Day[dayOrder[0]] }}</label>
                               <input id="tuesday3" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="tuesday3">{{ day[dayOrder[1]] }}</label>
+                              <label class="tab_item" for="tuesday3">{{ Day[dayOrder[1]] }}</label>
                               <input id="wednesday3" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="wednesday3">{{ day[dayOrder[2]] }}</label>
+                              <label class="tab_item" for="wednesday3">{{ Day[dayOrder[2]] }}</label>
                               <input id="thursday3" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="thursday3">{{ day[dayOrder[3]] }}</label>
+                              <label class="tab_item" for="thursday3">{{ Day[dayOrder[3]] }}</label>
                               <input id="friday3" type="radio" name="tab_item" />
-                              <label class="tab_item" for="friday3">{{ day[dayOrder[4]] }}</label>
+                              <label class="tab_item" for="friday3">{{ Day[dayOrder[4]] }}</label>
                               <!-- 선택창 끝 -->
 
                               <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 월요일 -->
@@ -1282,22 +1282,17 @@ export default {
     return {
       movie: [],
 
-      day: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
-      yy: "",
-      mm: "",
-      dd: "",
-      day: 0,
+      Day: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
+      yy: "", // 년도
+      mm: "", // 월
+      dd: "", // 일
+      today: 0, 
       dayOrder: [], // 요일을 순서대로 출력
       seomyeon: ["10:30", "16:00", "19:30"], // 나중에 테스트 할 시간 데이터
       centum: ["10:30", "16:00"], // 나중에 테스트 할 시간 데이터
       pnu: ["10:30", "16:00"], // 나중에 테스트 할 시간 데이터
       selectedday : [], // 선택된 날짜를 담는 
       
-      // searchMname: "",
-      // // 페이징을 위한 변수 정의
-      // page: 1, // 현재 페이지
-      // count: 0, // 전체 데이터 건수
-      // pageSize: 5, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
     };
   },
   methods: {
@@ -1319,14 +1314,14 @@ export default {
         this.yy = date.getFullYear(); // 년도
         this.mm = date.getMonth() + 1; // 월 , 달
         this.dd = date.getDate(); // 일수
-        this.day = date.getDay(); // 요일
+        this.today = date.getDay(); // 요일
   
-        let i = this.day;
+        let i = this.today;
         for (i; i <= 6; i++) {
           this.dayOrder += i;
         }
         let j = 0;
-        for (j; j < this.day; j++) {
+        for (j; j < this.today; j++) {
           this.dayOrder += j;
         }
       },
