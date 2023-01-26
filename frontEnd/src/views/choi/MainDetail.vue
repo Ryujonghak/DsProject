@@ -23,7 +23,6 @@
                           style="padding-top: 50px; width: 1000px"
                         >
                           <h1 class="col-xs-12" style="width: 1000px">
-                            <!--              movie.prdtyear 를 opendt로 변경 아직 안함(의도는 개봉년도이나, prdtyear는 제작연도로, 올빼미 등의 경우 2021로 표기됨 FIXME: 정주희 수정-->
                             <a
                               >{{ currentMovie.movienm
                               }}<span>{{ mYear }}</span></a
@@ -38,10 +37,6 @@
                               class="parent-btn"
                               ><i class="ion-play"></i>상세보기 ></router-link
                             >
-                            <!--                            <a href="#" class="parent-btn" @click="likeSave"-->
-                            <!--                              ><i class="ion-ios-heart-outline"></i>찜하기</a-->
-                            <!--                            >-->
-
                             <a
                               v-show="wishlist.username == null"
                               class="parent-btn"
@@ -146,6 +141,9 @@ export default {
   components: {
     SeatView,
   },
+  // TODO: vue props 설명 추가 (최아리 추가)
+  // 1. 앞의 페이지에서 보낸 movieProps를 받습니다.
+  // 2. 그리고 'currentMovie: this.movieProps' 받은 데이터를 currentMovie 안에 넣어서 이용합니다. (가독성을 위해 넣어줌)
   props: ["movieProps"],
   data() {
     return {
