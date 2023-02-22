@@ -248,11 +248,7 @@ const routes = [
     name: "SeomyeonCinema",
     component: () => import("@/views/kim/SeomyeonCinema.vue"),
   },
-  {
-    path: "/testkim",
-    name: "testkim",
-    component: () => import("@/views/kim/TestVue.vue"),
-  },
+
 
 ];
 
