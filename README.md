@@ -57,8 +57,8 @@
 
 > **핵심기능 및 서비스 (Key Features and Services)** 
 
-- `ImPort 결제 Api` : ImPort사의 결제 Api를 이용하여 결제서비스 기능 구현 (Implementation of payment service using ImPort's payment API)
-- `JWT login` : JWT 토큰을 이용한 사이트 자체 로그인 기능 구현 (Implementation of site-specific login function using JWT token)
+- `ImPort 결제 Api` : ImPort사의 결제 Api를 이용하여 결제서비스 기능 구현
+- `JWT login` : JWT 토큰을 이용한 사이트 자체 로그인 기능 구현
 - `social login`
     - `Google login API`
     - `Naver login API`
