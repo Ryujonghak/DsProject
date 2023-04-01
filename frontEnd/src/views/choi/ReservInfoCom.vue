@@ -14,7 +14,6 @@
     <div class="page-single">
       <div class="container">
         <div class="row ipad-width2">
-          <!-- 왼쪽 메뉴바 시작 -->
           <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="user-information">
               <div class="user-fav">
@@ -36,9 +35,7 @@
               </div>
             </div>
           </div>
-          <!-- 왼쪽 메뉴바 끝 -->
           <div class="col-md-9 col-sm-12 col-xs-12">
-            <!-- TODO: 바로 밑 div 데이터 받아서 v-for 예정입니다. -->
             <div class="col-md-9 col-sm-12 col-xs-12">
               <div class="movie-item-style-2 userrate">
                 <div class="mv-item-infor">
@@ -138,7 +135,7 @@
                 </div>
               </div>
             </div>
-            <!-- 아래 페이징 시작 -->
+
             <div class="col-md-9 col-sm-12 col-xs-12">
               <div class="topbar-filter">
                 <label>Movies per page:</label>
@@ -153,7 +150,6 @@
                 </div>
               </div>
             </div>
-            <!-- 아래 페이징 끝 -->
           </div>
         </div>
       </div>
