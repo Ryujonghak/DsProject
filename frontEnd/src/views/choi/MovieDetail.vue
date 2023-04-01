@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- TODO: 영화 상세보기 페이지입니다. 메인 케러셀 -> 메인 디테일 -> 상세보기 통해서도 올 수 있고 전체 영화보기를 통해서도 들어올 수 있습나다. -->
+    <!-- 영화 상세보기 페이지입니다. 메인 케러셀 -> 메인 디테일 -> 상세보기 통해서도 올 수 있고 전체 영화보기를 통해서도 들어올 수 있습나다. -->
     <div class="hero mv-single-hero">
       <div class="container">
         <div class="row">
@@ -12,7 +12,6 @@
     <div class="page-single movie-single movie_single">
       <div class="container">
         <div class="row ipad-width2">
-          <!-- 왼쪽 사이드 바 시작 -->
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="movie-img">
               <img :src="movie.posterurln" alt="poster" style="width: 310px" />
@@ -24,7 +23,6 @@
                     >
                   </div>
                   <div>
-                    <!-- TODO: 유튜브 URL, 영화 이름, 예매 페이지 연결 등 백엔드 데이터 받아와야 하는 곳 -->
                     <a
                       :href="movie.utubeurl"
                       class="item item-2 redbtn fancybox-media hvr-grow"
@@ -49,7 +47,6 @@
               </div>
             </div>
           </div>
-          <!-- 왼쪽 사이드 바 끝 -->
 
           <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="movie-single-ct main-content">
@@ -75,11 +72,11 @@
                   @click="likeSave"
                   ><i class="ion-ios-heart"></i>찜하기 완료</a
                 >
-                <!-- <div class="hover-bnt"> -->
-                <!-- <a href="#" class="parent-btn" id="sh-link"
+                <div class="hover-bnt">
+                <a href="#" class="parent-btn" id="sh-link"
                   ><i class="ion-android-share-alt"></i>공유하기</a
-                > -->
-                <!-- </div> -->
+                >
+                </div>
               </div>
               <div class="movie-rate">
                 <div class="rate">
@@ -101,13 +98,8 @@
 
               <div class="movie-tabs">
                 <div class="tabs">
-                  <!-- <ul class="tab-links tabs-mv">
-                    <li class="active" @click="toOverview"><a>영화정보</a></li>
-                    <li><a @click="toReview">평점 및 관람평</a></li>
-                    <li><a @click="toMedia">포스터/스틸컷</a></li>
-                  </ul> -->
                   <div class="tab-content">
-                    <!-- 1) 영화 정보 시작 -->
+                    <!-- 1) 영화정보 (Movie Information) -->
                     <div class="tab active" v-show="overview">
                       <ul class="tabs-mv tab-bar">
                         <li>
@@ -137,8 +129,6 @@
                               ></a>
                             </div>
                           </div>
-                          <!-- 표지 이미지들 (최대 4개까지 가져오고싶음) -->
-                          <!-- 이미지 가져오기 test 시작 -->
                           <span class="mvsingle-item ov-item">
                             <a
                               v-for="(data, index) in tempImgUrl"
@@ -151,12 +141,9 @@
                                 alt="썸네일"
                             /></a>
                           </span>
-                          <!-- 이미지 가져오기 test 끝 -->
                           <div class="title-hd-sm">
                             <h4>출연/대표작</h4>
                           </div>
-                          <!-- 목록 불러오기 테스트 시작 -->
-                          <!-- 2번째 실험 시작 -->
                           <div class="mvcast-item">
                             <ul class="col-xs-6">
                               <li
@@ -179,11 +166,8 @@
                               </li>
                             </ul>
                           </div>
-                          <!-- 목록 불러오기 테스트 끝 -->
                         </div>
 
-                        <!-- 오른쪽 사이드 바 시작 -->
-                        <!-- TODO: 감독, 장르, 개봉일, 러닝타임 등 데이터 가져오기 -->
                         <div class="col-md-4 col-xs-12 col-sm-12">
                           <div class="sb-it">
                             <h6>감독:</h6>
@@ -206,12 +190,10 @@
                             <p>{{ movie.showtm }}분</p>
                           </div>
                         </div>
-                        <!-- 오른쪽 사이드 바 끝 -->
                       </div>
                     </div>
-                    <!-- 1) 영화 정보 끝 -->
 
-                    <!-- 2) 리뷰 파트 시작 -->
+                    <!-- 2) 평점 및 관람평 (Ratings and Reviews) -->
                     <div id="reviewPart" class="tab active" v-show="reviews">
                       <ul class="tabs-mv tab-bar">
                         <li>
@@ -245,7 +227,6 @@
                             method="post"
                           >
                             <fieldset>
-                              <!-- <span class="review-form-style">별점을 선택해주세요</span> -->
                               <input
                                 type="radio"
                                 name="reviewStar"
@@ -294,7 +275,6 @@
                             </div>
                           </form>
                           <div class="col-xs-3">
-                            <!-- 리뷰 작성 버튼에 함수 걸어주기 -->
                             <a
                               href="#"
                               class="redbtn"
@@ -339,7 +319,7 @@
                             </div>
                           </div>
                         </div>
-                        <!-- Todo : page 바 시작 -->
+
                         <div class="col-md-12">
                           <b-pagination
                             v-model="page"
@@ -350,12 +330,10 @@
                             @change="handlePageChange"
                           ></b-pagination>
                         </div>
-                        <!-- Todo : page 바 끝 -->
                       </div>
                     </div>
-                    <!-- 2) 리뷰 파트 끝 -->
 
-                    <!-- 3) 스틸컷 시작 -->
+                    <!-- 3) 스틸컷 (Posters & Photos) -->
                     <div class="tab active" v-show="media">
                       <ul class="tabs-mv tab-bar">
                         <li>
@@ -405,7 +383,6 @@
                         </div>
                       </div>
                     </div>
-                    <!-- 3) 스틸컷 끝 -->
                   </div>
                 </div>
               </div>
@@ -414,9 +391,6 @@
         </div>
       </div>
     </div>
-    <!-- <div >
-      <SeatView :movieProps2="movie" />
-    </div> -->
     <!-- TODO: 탑버튼 추가_정주희 -->
     <a class="topbutton" href="#">
       <img src="@/assets/images_jung/iconUp_48.png" />
@@ -435,23 +409,16 @@ import SeatView from "@/views/kim/SeatView.vue";
 
 export default {
   mounted() {
-    // this.emptyReview(); // 로그인 유무 확인(by류종학, 230109)
-    // this.$route.params.moviecd : 이전페이지에서 전송한 매개변수는 $route.params 안에 있음
-    // $route 객체 : 주로 url 매개변수 정보들이 있음
-    // router/index.js 상세페이지 url의 매개변수명 : :moviecd
     this.getMovie(this.$route.params.moviecd);
     this.getBoxoffice(this.$route.params.moviecd);
     this.getReview(this.$route.params.moviecd);
     this.getWishlist();
-    // custom();
-    // this.cutNames();
   },
   components: {
     SeatView,
   },
   data() {
     return {
-      // 찜하기 기능
       wishlist: new Wishlist(),
 
       movie: null,
@@ -467,17 +434,16 @@ export default {
 
       addReview: new Review(),
 
-      starRating: 0, // 가져온 평점을 내림함수로 정수 만들어주기 위한 변수
+      starRating: 0,
       userReview: "",
       userStarRaing: 3,
       tempImgUrl: [],
       imageUrlLength: 0,
       mYear: 0,
 
-      // 페이징을 위한 변수 정의
-      page: 1, // 현재 페이지
-      count: 0, // 전체 데이터 건수
-      pageSize: 3, // 한페이지당 몇개를 화면에 보여줄지 결정하는 변수
+      page: 1,
+      count: 0,
+      pageSize: 3,
     };
   },
   methods: {
@@ -492,7 +458,7 @@ export default {
           console.log(e);
         });
     },
-    // 영화코드(moviecd)로 조회 요청하는 함수
+
     getMovie(moviecd) {
       MovieDataService.getMoviecd(moviecd)
         .then((response) => {
@@ -504,8 +470,9 @@ export default {
           console.log(e);
         });
     },
+
     getReview(moviecd) {
-      ReviewDataService.getBycode(moviecd, this.page - 1, 10000000) // 모든 리뷰를 가져오기 위하여 임의로 준 수.
+      ReviewDataService.getBycode(moviecd, this.page - 1, 10000000)
         .then((response) => {
           const currentUserName = this.$store.state.auth.user.username;
           const pastReviews = response.data.review.filter(
@@ -522,24 +489,13 @@ export default {
           this.review = review;
           this.count = totalItems;
 
-          // this.review = response.data;
-
-          // 백엔드에게 빈배열 리턴하라고 요청하기...
-          // 이 코드 지우면 첫번째 리뷰를 등록할 장소가 없어서 undefined 에러남...
-          // if (!response.data) {
-          //   this.review = { review: [] };
-          // }
-
-          // this.addReview.rwuser = this.$store.state.auth.user.username;
           console.log(response.data);
-          // var test = this.review;
-          // alert(JSON.stringify(test));
         })
         .catch((e) => {
-          // alert("리뷰 실패");
           console.log(e);
         });
     },
+
     saveReview() {
       if (this.alreadyReviewed) {
         alert("이미 리뷰를 남기셨습니다.");
@@ -584,7 +540,6 @@ export default {
       this.media = true;
     },
     cutNames() {
-      // 배우, 배역, 이미지 잘라주기
       if (this.movie.actor != null) {
         this.movie.actor = this.movie.actor.split(",");
       }
@@ -595,30 +550,24 @@ export default {
 
       if (this.movie.imgurl != null) {
         this.movie.imgurl = this.movie.imgurl.split(",");
-        // 가져온 이미지 url 개수
         this.imageUrlLength = this.movie.imgurl.length;
 
-        // 썸네일 이미지 2장만 보이게 설정
         this.tempImgUrl[0] = this.movie.imgurl[0];
         this.tempImgUrl[1] = this.movie.imgurl[1];
       }
 
-      // 개봉일에서 연도만 잘라주기
       this.mYear = this.movie.opendt.substr(0, 4);
 
       if (this.movie.raiting != null) {
-        // 데이터 들어온 평점 내림하기 (별 반복문 돌리기 위해서)
         this.starRating = Math.floor(this.movie.raiting);
       }
 
-      // 관람등급 데이터가 2번 연달아 붙여서 오는 경우가 있어서 그 경우 잘라주기
       if (this.movie.watchgradenm.includes(",")) {
         this.movie.watchgradenm = this.movie.watchgradenm.split(",")[0];
       }
     },
     likeSave() {
       if (this.wishlist.username == null) {
-        // alert("get");
         this.wishlist = new Wishlist();
         this.wishlist.username = this.$store.state.auth.user.username;
         this.wishlist.moviecd = this.$route.params.moviecd;
@@ -631,22 +580,17 @@ export default {
           .then((res) => {
             this.wishlist = res.data;
             console.log("wishlist: ", this.wishlist);
-            // alert("create");
-            // this.getWishlist();
           })
           .catch((err) => {
-            // alert("찜 하기 에러");
             console.log(err);
           });
       } else {
         WishlistDataService.delete(this.wishlist.wid)
           .then((res) => {
             console.log(res.data);
-            // alert("Delete");
             this.getWishlist();
           })
           .catch((err) => {
-            // alert("찜 지우기 에러");
             console.log(err);
           });
       }
@@ -665,31 +609,22 @@ export default {
 
           console.log(this.$store.state.auth.user.username);
           console.log(this.$route.params.moviecd);
-          // console.log(res.data);
           console.log("wishlist: ", this.wishlist);
-          // alert("get");
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    // TODO: 수정해야함.
     emptyReview() {
-      // alert("emptyReview");
-      // alert(this.$store.state.auth.user.username);
       if (this.$store.state.auth.user == null) {
-        // alert("Not Login");
         return false;
       } else {
-        // alert("Login");
         return true;
       }
     },
 
-    // 페이지 번호 변경시 실행되는 함수(재조회)
     handlePageChange(value) {
-      this.page = value; // 매개변수값으로 현재페이지 변경
-      // 재조회 함수 호출
+      this.page = value;
       this.getReview(this.movie.moviecd);
     },
   },
@@ -716,8 +651,6 @@ export default {
   color: #abb7c4;
   font-weight: bold;
   text-transform: uppercase;
-  /* margin-bottom: 15px; */
-  /* margin-right: 20px; */
 }
 
 .tab-bar li .not-selected {
@@ -743,18 +676,14 @@ export default {
   position: fixed;
 }
 
-/*movie single hero*/
-/* TODO: 이미지 이걸로 통일하는거 어떤지 물어보기 */
 .mv-single-hero {
   background: url(@/assets/images_choi/Views/choi/MovieDetail/movie-theater02.jpg)
     no-repeat;
-  /* height: 598px; */
   width: 100%;
 }
 
 .watched-people {
   font-size: 500%;
-  /* text-align: center; */
   color: grey;
   margin-top: 15%;
 }
@@ -768,13 +697,10 @@ export default {
   margin-right: 1%;
 }
 
-/* 리뷰쓰기 css */
 #myform fieldset {
   display: inline-block;
   direction: rtl;
   border: 0;
-  /* width: 500%; */
-  /* height: 300%; */
 }
 
 #myform fieldset legend {
@@ -829,36 +755,6 @@ export default {
   margin: auto;
 }
 
-/* .small-thumnail {
-  width: 20%;
-  height: 50%;
-} */
-
-/* 테스트 추가 */
-.scale {
-  transform: scale(1);
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
-  transition: all 0.3s ease-in-out; /* 부드러운 모션을 위해 추가*/
-}
-
-.scale:hover {
-  transform: scale(1 z);
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
-}
-
-.img {
-  overflow: hidden;
-}
-
-/* 부모를 벗어나지 않고 내부 이미지만 확대 */
-
-/* TODO: 탑버튼 추가 _정주희*/
 .topbutton {
   position: fixed;
   bottom: 15px;

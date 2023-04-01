@@ -126,7 +126,7 @@ const routes = [
     component: () => import("@/components/admin/PaymentAdmin.vue"),
     beforeEnter: ifAdmin
   },
-  
+
   //스케쥴관리 페이지
   {
     path: "/schedule-admin",
@@ -206,17 +206,17 @@ const routes = [
     component: () => import("@/views/choi/ReservInfoCom.vue"),
     beforeEnter: ifAdmin
   },
-  {
-    path: "/SeatTest/:moviecd",
-    name: "SeatTest",
-    component: () => import("@/views/choi/SeatTest.vue"),
-  },
 
   // 김철원
   {
     path: "/SeatView",
     name: "SeatView",
     component: () => import("@/views/kim/SeatView.vue"),
+  },
+  {
+    path: "/SeatTest/:moviecd",
+    name: "SeatTest",
+    component: () => import("@/views/kim/SeatTest.vue"),
   },
   {
     path: "/BusanCinema",
