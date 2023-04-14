@@ -1,22 +1,22 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import store from '../store'
+import store from "../store";
 
 Vue.use(VueRouter);
 
 // TODO: 어드민 유저만 어드민 페이지에 들어갈 수 있도록 기능 -> 나브바만 바꿔주는 것이 아니라 주소를 쳐서 들어가는 경우도 어드민이 아니면 막도록 (최아리 추가)
 function ifAdmin(to, from, next) {
-  const role = store.state.auth.user.roles[0]
+  const role = store.state.auth.user.roles[0];
 
-  console.log("Checking the user's role...")
-  if (role == 'ROLE_ADMIN') {
-    console.log("Admin confirmed. Accessing admin pages...")
-    next()
-    return
+  console.log("Checking the user's role...");
+  if (role == "ROLE_ADMIN") {
+    console.log("Admin confirmed. Accessing admin pages...");
+    next();
+    return;
   }
-  console.log("Not authorized. Returning back to the main page...")
+  console.log("Not authorized. Returning back to the main page...");
 
-  router.push('/')
+  router.push("/");
 }
 
 const routes = [
@@ -91,14 +91,14 @@ const routes = [
     path: "/board-admin",
     name: "board-admin",
     component: () => import("@/components/admin/BoardAdmin.vue"),
-    beforeEnter: ifAdmin
+    beforeEnter: ifAdmin,
   },
   // 영화관리 페이지
   {
     path: "/movie-admin",
     name: "movie-admin",
     component: () => import("@/components/admin/MovieAdmin.vue"),
-    beforeEnter: ifAdmin
+    beforeEnter: ifAdmin,
   },
   // 영화 추가 페이지
   {
@@ -111,7 +111,7 @@ const routes = [
     path: "/review-admin",
     name: "review-admin",
     component: () => import("@/components/admin/ReviewAdmin.vue"),
-    beforeEnter: ifAdmin
+    beforeEnter: ifAdmin,
   },
   // 1:1 문의 답변 페이지
   {
@@ -124,7 +124,7 @@ const routes = [
     path: "/payment-admin",
     name: "payment-admin",
     component: () => import("@/components/admin/PaymentAdmin.vue"),
-    beforeEnter: ifAdmin
+    beforeEnter: ifAdmin,
   },
 
   //스케쥴관리 페이지
@@ -132,7 +132,7 @@ const routes = [
     path: "/schedule-admin",
     name: "schedule-admin",
     component: () => import("@/components/admin/ScheduleAdmin.vue"),
-    beforeEnter: ifAdmin
+    beforeEnter: ifAdmin,
   },
 
   //TODO   정주희 Part_mypage
@@ -192,19 +192,19 @@ const routes = [
     path: "/userInfoAdmin",
     name: "userInfoAdmin",
     component: () => import("@/components/admin/UserInfoCom.vue"),
-    beforeEnter: ifAdmin
+    beforeEnter: ifAdmin,
   },
   {
     path: "/userInfoAdmin/:username",
     name: "userInfoEditAdmin",
     component: () => import("@/components/admin/UserInfoEditCom.vue"),
-    beforeEnter: ifAdmin
+    beforeEnter: ifAdmin,
   },
   {
     path: "/reservInfoAdmin",
     name: "reservInfoAdmin",
     component: () => import("@/views/choi/ReservInfoCom.vue"),
-    beforeEnter: ifAdmin
+    beforeEnter: ifAdmin,
   },
 
   // 김철원
@@ -213,11 +213,7 @@ const routes = [
     name: "SeatView",
     component: () => import("@/views/kim/SeatView.vue"),
   },
-  {
-    path: "/SeatTest/:moviecd",
-    name: "SeatTest",
-    component: () => import("@/views/kim/SeatTest.vue"),
-  },
+
   {
     path: "/BusanCinema",
     name: "BusanCinema",

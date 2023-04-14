@@ -5,8 +5,8 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-ct">
-              <h1 style="text-align:left">DS CINEMA 부산대</h1>
-              <ul class="breadcumb" style="text-align:left">
+              <h1 style="text-align: left">DS CINEMA 부산대</h1>
+              <ul class="breadcumb" style="text-align: left">
                 <li class="active">
                   <router-link to="/">Home</router-link>
                 </li>
@@ -43,7 +43,7 @@
                     border-top: #faf8f1 1px solid;
                     padding: 5px;
                     border-left: 1px solid #faf8f1;
-                    color: #F5B409;
+                    color: #f5b409;
                   "
                 >
                   <span>극장정보</span>
@@ -122,7 +122,7 @@
                     border-top: #faf8f1 1px solid;
                     padding: 5px;
                     border-left: 1px solid #faf8f1;
-                    color: #F5B409;
+                    color: #f5b409;
                   "
                 >
                   <span>이벤트</span>
@@ -162,7 +162,7 @@
                     border-top: #faf8f1 1px solid;
                     padding: 5px;
                     border-left: 1px solid #faf8f1;
-                    color:#F5B409;
+                    color: #f5b409;
                   "
                 >
                   <span>상영시간표</span>
@@ -247,79 +247,364 @@
                       </button>
                     </div>
                     <div style="margin: 25px">
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.1228860184788!2d129.08764711554218!3d35.22831086228438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356893eadd1d30fd%3A0xceae3aedbd055a80!2z67aA7IKw6rSR7Jet7IucIOq4iOygleq1rCDspJHslZnrjIDroZwgMTYwNw!5e0!3m2!1sko!2skr!4v1672760900700!5m2!1sko!2skr" 
-                        width="450" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.1228860184788!2d129.08764711554218!3d35.22831086228438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356893eadd1d30fd%3A0xceae3aedbd055a80!2z67aA7IKw6rSR7Jet7IucIOq4iOygleq1rCDspJHslZnrjIDroZwgMTYwNw!5e0!3m2!1sko!2skr!4v1672760900700!5m2!1sko!2skr"
+                        width="450"
+                        height="500"
+                        style="border: 0"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                      >
+                      </iframe>
                     </div>
                   </div>
                 </div>
                 <div v-show="bus">
-                    <div style="position: absolute; width: 600px; height: 400px; background-color: white; z-index: 30; left: 300px; top: -30px; border-radius: 10px; border: 1px solid ;">
-                      <div style="width: 100%; height: 50px;border-radius: 10px 10px 0 0; padding-bottom: 5px; border-bottom: 1px solid #405266;">
-                        <span style="font-size: 24px;color: black; width: 400px; padding-top: 7px;padding-left: 20px; float: left;">대중교통</span>
-                        <button @click="busopen()" style="width: 40px;background-color: white; height: 40px; float: right; margin-right: 10px; margin-top: 5px; border: 0;"><img style="width: 30px;margin: 0;" src="@/assets/images_kim/Views/ModalView/xx.png" alt=""></button>
-                      </div>
-                      <div style="width: 50px; height: 50px; float: left;">
-                        <img style="margin: 50px 40px 0 30px;" src="@/assets/images_kim/Views/ModalView/free-icon-bus-4274245.png" alt="">
-                      </div>
-                      <div style="width: 480px; margin-left: 70px; float: right; ">
-                        <p style="margin-bottom:0;color: black;font-size: 18px; font-weight: bold;">버스로 오시는길</p>
-                        <p style="margin-bottom:0;color: black;"> · 시내버스</p>
-                        <p style="margin-bottom:0;color: black;">347, 144, 130, 130-1, 29, 29-1, 49-1, 51, 77, 80, 80-1, 100, 100-1, 121, 144, 178, 183, 202, 301</p>
-                      </div>
-                      <div style="width: 50px; height: 50px; float: left;">
-                        <img style="margin: 50px 40px 0 30px;" src="@/assets/images_kim/Views/ModalView/free-icon-subway-2385488.png" alt="">
-                      </div>
-                      <div style="width: 480px; margin-left: 70px; float: right; ">
-                        <p style="margin-bottom:0;color: black;font-size: 18px; font-weight: bold;">지하철로 오시는 길</p>
-                        <p style="margin-bottom:0;color: black;"> · 1호선 부산대역</p>
-                        <p style="margin-bottom:0;color: black;">2번 출구 (전방 횡단보도 이용 > 우측 횡단보도 이용 > <br> 도보 직진 100미터 > 좌측 건물 진입 1층)</p>
-                      </div>
+                  <div
+                    style="
+                      position: absolute;
+                      width: 600px;
+                      height: 400px;
+                      background-color: white;
+                      z-index: 30;
+                      left: 300px;
+                      top: -30px;
+                      border-radius: 10px;
+                      border: 1px solid;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 100%;
+                        height: 50px;
+                        border-radius: 10px 10px 0 0;
+                        padding-bottom: 5px;
+                        border-bottom: 1px solid #405266;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 24px;
+                          color: black;
+                          width: 400px;
+                          padding-top: 7px;
+                          padding-left: 20px;
+                          float: left;
+                        "
+                        >대중교통</span
+                      >
+                      <button
+                        @click="busopen()"
+                        style="
+                          width: 40px;
+                          background-color: white;
+                          height: 40px;
+                          float: right;
+                          margin-right: 10px;
+                          margin-top: 5px;
+                          border: 0;
+                        "
+                      >
+                        <img
+                          style="width: 30px; margin: 0"
+                          src="@/assets/images_kim/Views/ModalView/xx.png"
+                          alt=""
+                        />
+                      </button>
                     </div>
+                    <div style="width: 50px; height: 50px; float: left">
+                      <img
+                        style="margin: 50px 40px 0 30px"
+                        src="@/assets/images_kim/Views/ModalView/free-icon-bus-4274245.png"
+                        alt=""
+                      />
+                    </div>
+                    <div style="width: 480px; margin-left: 70px; float: right">
+                      <p
+                        style="
+                          margin-bottom: 0;
+                          color: black;
+                          font-size: 18px;
+                          font-weight: bold;
+                        "
+                      >
+                        버스로 오시는길
+                      </p>
+                      <p style="margin-bottom: 0; color: black">· 시내버스</p>
+                      <p style="margin-bottom: 0; color: black">
+                        347, 144, 130, 130-1, 29, 29-1, 49-1, 51, 77, 80, 80-1,
+                        100, 100-1, 121, 144, 178, 183, 202, 301
+                      </p>
+                    </div>
+                    <div style="width: 50px; height: 50px; float: left">
+                      <img
+                        style="margin: 50px 40px 0 30px"
+                        src="@/assets/images_kim/Views/ModalView/free-icon-subway-2385488.png"
+                        alt=""
+                      />
+                    </div>
+                    <div style="width: 480px; margin-left: 70px; float: right">
+                      <p
+                        style="
+                          margin-bottom: 0;
+                          color: black;
+                          font-size: 18px;
+                          font-weight: bold;
+                        "
+                      >
+                        지하철로 오시는 길
+                      </p>
+                      <p style="margin-bottom: 0; color: black">
+                        · 1호선 부산대역
+                      </p>
+                      <p style="margin-bottom: 0; color: black">
+                        2번 출구 (전방 횡단보도 이용 > 우측 횡단보도 이용 >
+                        <br />
+                        도보 직진 100미터 > 좌측 건물 진입 1층)
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div v-show="car">
-                    <div style="position: absolute; width: 600px; height: 200px; background-color: white; z-index: 30; left: 300px; top: 0ㅔㅌ; border-radius: 10px; border: 1px solid ;">
-                      <div style="width: 100%; height: 50px;border-radius: 10px 10px 0 0; padding-bottom: 5px; border-bottom: 1px solid #405266;">
-                        <span style="font-size: 24px;color: black; width: 400px; padding-top: 7px;padding-left: 20px; float: left;">자가용</span>
-                        <button @click="caropen()" style="width: 40px;background-color: white; height: 40px; float: right; margin-right: 10px; margin-top: 5px; border: 0;"><img style="width: 30px;margin: 0;" src="@/assets/images_kim/Views/ModalView/xx.png" alt=""></button>
-                      </div>
-                      <div style="width: 50px; height: 50px; float: left;">
-                        <img style="margin: 50px 40px 0 30px;" src="@/assets/images_kim/Views/ModalView/free-icon-car-635651.png" alt="">
-                      </div>
-                      <div style="width: 480px; margin-left: 70px; float: right; ">
-                        <p style="margin-bottom:0;color: black;font-size: 18px; font-weight: bold;">자가용으로 오시는길</p>
-                        <p style="margin-bottom:0;color: black;"> · 네비게이션 이용 시 부산 금정구 중앙대로 1607 or 오투시네마로 검색</p>
-                      </div>
+                  <div
+                    style="
+                      position: absolute;
+                      width: 600px;
+                      height: 200px;
+                      background-color: white;
+                      z-index: 30;
+                      left: 300px;
+                      top: 0ㅔㅌ;
+                      border-radius: 10px;
+                      border: 1px solid;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 100%;
+                        height: 50px;
+                        border-radius: 10px 10px 0 0;
+                        padding-bottom: 5px;
+                        border-bottom: 1px solid #405266;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 24px;
+                          color: black;
+                          width: 400px;
+                          padding-top: 7px;
+                          padding-left: 20px;
+                          float: left;
+                        "
+                        >자가용</span
+                      >
+                      <button
+                        @click="caropen()"
+                        style="
+                          width: 40px;
+                          background-color: white;
+                          height: 40px;
+                          float: right;
+                          margin-right: 10px;
+                          margin-top: 5px;
+                          border: 0;
+                        "
+                      >
+                        <img
+                          style="width: 30px; margin: 0"
+                          src="@/assets/images_kim/Views/ModalView/xx.png"
+                          alt=""
+                        />
+                      </button>
                     </div>
+                    <div style="width: 50px; height: 50px; float: left">
+                      <img
+                        style="margin: 50px 40px 0 30px"
+                        src="@/assets/images_kim/Views/ModalView/free-icon-car-635651.png"
+                        alt=""
+                      />
+                    </div>
+                    <div style="width: 480px; margin-left: 70px; float: right">
+                      <p
+                        style="
+                          margin-bottom: 0;
+                          color: black;
+                          font-size: 18px;
+                          font-weight: bold;
+                        "
+                      >
+                        자가용으로 오시는길
+                      </p>
+                      <p style="margin-bottom: 0; color: black">
+                        · 네비게이션 이용 시 부산 금정구 중앙대로 1607 or
+                        오투시네마로 검색
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <img style="width:100%; margin-bottom: 0;" src="@/assets/images_kim/Views/ModalView/CGVdongnae.jpg" alt="">
-                <div style="background-color: black; opacity: 0.8; position: absolute; width: 100%; bottom: 0; left: 0; height: 250px;">
-                    <div style="margin-left: 20px; margin-top: 20px;">
-                        <h2 style="margin-bottom: 10px;">부산대</h2>
-                     <span > &nbsp;&nbsp;&nbsp; · 총 상영관 수 1개관 · 총 좌석수 97석</span>
-                     <p style="margin: 0; margin-top: 10px; color: white; font-size: 18px; font-weight: bold;">부산 금정구 중앙대로 1607 (부곡동)</p>
-                    </div>
+                <img
+                  style="width: 100%; margin-bottom: 0"
+                  src="@/assets/images_kim/Views/ModalView/CGVdongnae.jpg"
+                  alt=""
+                />
+                <div
+                  style="
+                    background-color: black;
+                    opacity: 0.8;
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+                    left: 0;
+                    height: 250px;
+                  "
+                >
+                  <div style="margin-left: 20px; margin-top: 20px">
+                    <h2 style="margin-bottom: 10px">부산대</h2>
+                    <span>
+                      &nbsp;&nbsp;&nbsp; · 총 상영관 수 1개관 · 총 좌석수
+                      97석</span
+                    >
+                    <p
+                      style="
+                        margin: 0;
+                        margin-top: 10px;
+                        color: white;
+                        font-size: 18px;
+                        font-weight: bold;
+                      "
+                    >
+                      부산 금정구 중앙대로 1607 (부곡동)
+                    </p>
+                  </div>
 
-                    <button @click="mapopen()"   style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; height: 1px">
-                        <div style="margin-top: 20px; margin-left: 20px; width: 80px; height: 80px; background-color: white; border-radius: 40px;">
-                            <img style="width: 50px;  margin-top: 15px; margin-bottom: 20px;" src="@/assets/images_kim/Views/ModalView/free-icon-map-1321246.png" alt="">
-                        </div>
-                        <span style="font-size: 18px; position: absolute; top: 50px; right: -140px;">지도</span>
-                    </button>
-                    <button @click="busopen()"   style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; left: 140px; height: 1px;">
-                        <div style="margin-top: 20px; margin-left: 20px; width: 80px; height: 80px; background-color: white; border-radius: 40px;">
-                            <img style="width: 50px;  margin-top: 15px; margin-bottom: 20px;" src="@/assets/images_kim/Views/ModalView/free-icon-bus-4274245.png" alt="">
-                        </div>
-                        <span style="font-size: 18px; position: absolute; top: 50px; right: -180px;">대중교통</span>
-                    </button>
-                    <button @click="caropen()"  style="position: relative; background-color: black; opacity: 1;width: 1px;top: 20px; left: 310px; height: 1px;">
-                        <div style="margin-top: 20px; margin-left: 20px; width: 80px; height: 80px; background-color: white; border-radius: 40px;">
-                            <img style="width: 50px; margin-top: 15px; margin-bottom: 20px;" src="@/assets/images_kim/Views/ModalView/free-icon-car-635651.png" alt="">
-                        </div>
-                        <span style="font-size: 18px; position: absolute; top: 50px; right: -160px;">자가용</span>
-                    </button>
+                  <button
+                    @click="mapopen()"
+                    style="
+                      position: relative;
+                      background-color: black;
+                      opacity: 1;
+                      width: 1px;
+                      top: 20px;
+                      height: 1px;
+                    "
+                  >
+                    <div
+                      style="
+                        margin-top: 20px;
+                        margin-left: 20px;
+                        width: 80px;
+                        height: 80px;
+                        background-color: white;
+                        border-radius: 40px;
+                      "
+                    >
+                      <img
+                        style="
+                          width: 50px;
+                          margin-top: 15px;
+                          margin-bottom: 20px;
+                        "
+                        src="@/assets/images_kim/Views/ModalView/free-icon-map-1321246.png"
+                        alt=""
+                      />
+                    </div>
+                    <span
+                      style="
+                        font-size: 18px;
+                        position: absolute;
+                        top: 50px;
+                        right: -140px;
+                      "
+                      >지도</span
+                    >
+                  </button>
+                  <button
+                    @click="busopen()"
+                    style="
+                      position: relative;
+                      background-color: black;
+                      opacity: 1;
+                      width: 1px;
+                      top: 20px;
+                      left: 140px;
+                      height: 1px;
+                    "
+                  >
+                    <div
+                      style="
+                        margin-top: 20px;
+                        margin-left: 20px;
+                        width: 80px;
+                        height: 80px;
+                        background-color: white;
+                        border-radius: 40px;
+                      "
+                    >
+                      <img
+                        style="
+                          width: 50px;
+                          margin-top: 15px;
+                          margin-bottom: 20px;
+                        "
+                        src="@/assets/images_kim/Views/ModalView/free-icon-bus-4274245.png"
+                        alt=""
+                      />
+                    </div>
+                    <span
+                      style="
+                        font-size: 18px;
+                        position: absolute;
+                        top: 50px;
+                        right: -180px;
+                      "
+                      >대중교통</span
+                    >
+                  </button>
+                  <button
+                    @click="caropen()"
+                    style="
+                      position: relative;
+                      background-color: black;
+                      opacity: 1;
+                      width: 1px;
+                      top: 20px;
+                      left: 310px;
+                      height: 1px;
+                    "
+                  >
+                    <div
+                      style="
+                        margin-top: 20px;
+                        margin-left: 20px;
+                        width: 80px;
+                        height: 80px;
+                        background-color: white;
+                        border-radius: 40px;
+                      "
+                    >
+                      <img
+                        style="
+                          width: 50px;
+                          margin-top: 15px;
+                          margin-bottom: 20px;
+                        "
+                        src="@/assets/images_kim/Views/ModalView/free-icon-car-635651.png"
+                        alt=""
+                      />
+                    </div>
+                    <span
+                      style="
+                        font-size: 18px;
+                        position: absolute;
+                        top: 50px;
+                        right: -160px;
+                      "
+                      >자가용</span
+                    >
+                  </button>
                 </div>
-               
               </div>
 
               <!-- 상영시간표 시작  ------------------------------------------------------------------------------------------------>
@@ -332,407 +617,445 @@
                   color: white;
                 "
               >
-                 <!-- TODO) 탭2 : 부산대 -->
-                 <div id="aaaa" class="tab review">
-                      <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                          <h4 class="timeline">{{ yy }}년 {{ mm }}월 {{ dd }}일 {{ Day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd+4 }}일 {{ Day[dayOrder[4]] }}</h4>
-                          <br />
-                          <div class="rv-hd">
-                            <!-- 안쪽탭 ---------------------------------------------------------------------------->
-                            <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택-->
-                            <div class="InsideTab">
-                              <!-- 선택창 시작 -->
-                              <input id="all" type="radio" name="tab_item" checked/>
-                              <label class="tab_item" for="all">{{ Day[dayOrder[0]] }}</label>
-                              <input id="tuesday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="tuesday">{{ Day[dayOrder[1]] }}</label>
-                              <input id="wednesday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="wednesday">{{ Day[dayOrder[2]] }}</label>
-                              <input id="thursday" type="radio" name="tab_item"/>
-                              <label class="tab_item" for="thursday">{{ Day[dayOrder[3]] }}</label>
-                              <input id="friday" type="radio" name="tab_item" />
-                              <label class="tab_item" for="friday">{{ Day[dayOrder[4]] }}</label>
-                              <!-- 선택창 끝 -->
+                <!-- TODO) 탭2 : 부산대 -->
+                <div id="aaaa" class="tab review">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <h4 class="timeline">
+                        {{ yy }}년 {{ mm }}월 {{ dd }}일
+                        {{ Day[dayOrder[0]] }}(오늘) ~ {{ mm }}월 {{ dd + 4 }}일
+                        {{ Day[dayOrder[4]] }}
+                      </h4>
+                      <br />
+                      <div class="rv-hd">
+                        <!-- 안쪽탭 ---------------------------------------------------------------------------->
+                        <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택-->
+                        <div class="InsideTab">
+                          <!-- 선택창 시작 -->
+                          <input
+                            id="all"
+                            type="radio"
+                            name="tab_item"
+                            checked
+                          />
+                          <label class="tab_item" for="all">{{
+                            Day[dayOrder[0]]
+                          }}</label>
+                          <input id="tuesday" type="radio" name="tab_item" />
+                          <label class="tab_item" for="tuesday">{{
+                            Day[dayOrder[1]]
+                          }}</label>
+                          <input id="wednesday" type="radio" name="tab_item" />
+                          <label class="tab_item" for="wednesday">{{
+                            Day[dayOrder[2]]
+                          }}</label>
+                          <input id="thursday" type="radio" name="tab_item" />
+                          <label class="tab_item" for="thursday">{{
+                            Day[dayOrder[3]]
+                          }}</label>
+                          <input id="friday" type="radio" name="tab_item" />
+                          <label class="tab_item" for="friday">{{
+                            Day[dayOrder[4]]
+                          }}</label>
+                          <!-- 선택창 끝 -->
 
-                              <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 월요일 -->
-                              <div class="tab_content" id="all_content">
-                                <!-- 월요일 시간표 시작 -->
-                                <div class="topbar-filter">
-                                  <div class="mv-user-review-item">
-                                    <!-- 상영작 1 ~ 8 시작-->
-                                    <div v-for="(data, index) in movie" v-bind:key="index">
-                                      <div class="movieIng">
-                                        <router-link :to="'/allMovie/' + data.moviecd">
-                                          <span class="movieTitle">{{ data.movienm }}
-                                            <i class="ion-ios-arrow-right"></i>
-                                          </span>
-                                        </router-link>
-                                        <div class="col row">
-                                          <div class="col-ms-10">
-                                            <div class="user-infor col-ms-6">
-                                              <div class="col-xs-2">
-                                                <img
-                                                  :src="data.posterurln"
-                                                  alt="poster"
-                                                  class="poster_thumb"
-                                                />
-                                              </div>
-                                              <div class="col-xs-3 movieInfo">
-                                                <br>
-                                                <span>
-                                                  {{ data.genrenm}}
-                                                </span> 
-                                                <span>
-                                                  {{ data.showtm}}분,
-                                                </span>
-                                                <span>{{data.opendt}}개봉</span>
-                                              </div>
-                                              <div class="col-xs-1"></div>
-                                            </div>
+                          <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 월요일 -->
+                          <div class="tab_content" id="all_content">
+                            <!-- 월요일 시간표 시작 -->
+                            <div class="topbar-filter">
+                              <div class="mv-user-review-item">
+                                <!-- 상영작 1 ~ 8 시작-->
+                                <div
+                                  v-for="(data, index) in movie"
+                                  v-bind:key="index"
+                                >
+                                  <div class="movieIng">
+                                    <router-link
+                                      :to="'/allMovie/' + data.moviecd"
+                                    >
+                                      <span class="movieTitle"
+                                        >{{ data.movienm }}
+                                        <i class="ion-ios-arrow-right"></i>
+                                      </span>
+                                    </router-link>
+                                    <div class="col row">
+                                      <div class="col-ms-10">
+                                        <div class="user-infor col-ms-6">
+                                          <div class="col-xs-2">
+                                            <img
+                                              :src="data.posterurln"
+                                              alt="poster"
+                                              class="poster_thumb"
+                                            />
+                                          </div>
+                                          <div class="col-xs-3 movieInfo">
+                                            <br />
+                                            <span>
+                                              {{ data.genrenm }}
+                                            </span>
+                                            <span> {{ data.showtm }}분, </span>
+                                            <span>{{ data.opendt }}개봉</span>
+                                          </div>
+                                          <div class="col-xs-1"></div>
+                                        </div>
 
-                                            <div class="user-infor col-ms-6">
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[0] }}</a>
-                                                <br>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[1] }}</a>
-                                                <br>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[2] }}</a>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                            </div>
+                                        <div class="user-infor col-ms-6">
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[0] }}</a>
+                                            <br />
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[1] }}</a>
+                                            <br />
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[2] }}</a>
+                                            <p>{{ data.showtm }}'</p>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <!-- 상영작 1 ~ 8 끝-->
                                   </div>
                                 </div>
-                                <!-- 월요일 시간표 끝 -->
+                                <!-- 상영작 1 ~ 8 끝-->
                               </div>
-
-                              <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 화요일 -->
-                            <div class="tab_content" id="tuesday_content">
-                                <!-- 화요일 시간표 시작 -->
-                                <div class="topbar-filter">
-                                  <div class="mv-user-review-item">
-                                    <!-- 상영작 1 ~ 8 시작-->
-                                    <div v-for="(data, index) in movie" v-bind:key="index">
-                                      <div class="movieIng">
-                                        <router-link :to="'/allMovie/' + data.moviecd">
-                                          <span class="movieTitle">{{ data.movienm }}
-                                            <i class="ion-ios-arrow-right"></i>
-                                          </span>
-                                        </router-link>
-                                        <div class="col row">
-                                          <div class="col-ms-10">
-                                            <div class="user-infor col-ms-6">
-                                              <div class="col-xs-2">
-                                                <img
-                                                  :src="data.posterurln"
-                                                  alt="poster"
-                                                  class="poster_thumb"
-                                                />
-                                              </div>
-                                              <div class="col-xs-3 movieInfo">
-                                                <br>
-                                                <span>
-                                                  {{ data.genrenm}}
-                                                </span> 
-                                                <span>
-                                                  {{ data.showtm}}분,
-                                                </span>
-                                                <span>{{data.opendt}}개봉</span>
-                                              </div>
-                                              <div class="col-xs-1"></div>
-                                            </div>
-
-                                            <div class="user-infor col-ms-6">
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[0] }}</a>
-                                                <br>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[1] }}</a>
-                                                <br>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[2] }}</a>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <!-- 상영작 1 ~ 8 끝-->
-                                  </div>
-                                </div>
-                                <!-- 화요일 시간표 끝 -->
-                              </div>
-                              <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 수요일 -->
-                              <div class="tab_content" id="wednesday_content">
-                                <!-- 수요일 시간표 시작 -->
-                                <div class="topbar-filter">
-                                  <div class="mv-user-review-item">
-                                    <!-- 상영작 1 ~ 8 시작-->
-                                    <div v-for="(data, index) in movie" v-bind:key="index">
-                                      <div class="movieIng">
-                                        <router-link :to="'/allMovie/' + data.moviecd">
-                                          <span class="movieTitle">{{ data.movienm }}
-                                            <i class="ion-ios-arrow-right"></i>
-                                          </span>
-                                        </router-link>
-                                        <div class="col row">
-                                          <div class="col-ms-10">
-                                            <div class="user-infor col-ms-6">
-                                              <div class="col-xs-2">
-                                                <img
-                                                  :src="data.posterurln"
-                                                  alt="poster"
-                                                  class="poster_thumb"
-                                                />
-                                              </div>
-                                              <div class="col-xs-3 movieInfo">
-                                                <br>
-                                                <span>
-                                                  {{ data.genrenm}}
-                                                </span> 
-                                                <span>
-                                                  {{ data.showtm}}분,
-                                                </span>
-                                                <span>{{data.opendt}}개봉</span>
-                                              </div>
-                                              <div class="col-xs-1"></div>
-                                            </div>
-
-                                            <div class="user-infor col-ms-6">
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[0] }}</a>
-                                                <br>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[1] }}</a>
-                                                <br>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[2] }}</a>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <!-- 상영작 1 ~ 8 끝-->
-                                  </div>
-                                </div>
-                                <!-- 수요일 시간표 끝 -->
-                              </div>
-                              <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 목요일 -->
-                              <div class="tab_content" id="thursday_content">
-                                <!-- 목요일 시간표 시작 -->
-                                <div class="topbar-filter">
-                                  <div class="mv-user-review-item">
-                                    <!-- 상영작 1 ~ 8 시작-->
-                                    <div v-for="(data, index) in movie" v-bind:key="index">
-                                      <div class="movieIng">
-                                        <router-link :to="'/allMovie/' + data.moviecd">
-                                          <span class="movieTitle">{{ data.movienm }}
-                                            <i class="ion-ios-arrow-right"></i>
-                                          </span>
-                                        </router-link>
-                                        <div class="col row">
-                                          <div class="col-ms-10">
-                                            <div class="user-infor col-ms-6">
-                                              <div class="col-xs-2">
-                                                <img
-                                                  :src="data.posterurln"
-                                                  alt="poster"
-                                                  class="poster_thumb"
-                                                />
-                                              </div>
-                                              <div class="col-xs-3 movieInfo">
-                                                <br>
-                                                <span>
-                                                  {{ data.genrenm}}
-                                                </span> 
-                                                <span>
-                                                  {{ data.showtm}}분,
-                                                </span>
-                                                <span>{{data.opendt}}개봉</span>
-                                              </div>
-                                              <div class="col-xs-1"></div>
-                                            </div>
-
-                                            <div class="user-infor col-ms-6">
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[0] }}</a>
-                                                <br>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[1] }}</a>
-                                                <br>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[2] }}</a>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <!-- 상영작 1 ~ 8 끝-->
-                                  </div>
-                                </div>
-                                <!-- 목요일 시간표 끝 -->
-                              </div>
-                              <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 금요일 -->
-                              <div class="tab_content" id="friday_content">
-                                <!-- 금요일 시간표 시작 -->
-                                <div class="topbar-filter">
-                                  <div class="mv-user-review-item">
-                                    <!-- 상영작 1 ~ 8 시작-->
-                                    <div v-for="(data, index) in movie" v-bind:key="index">
-                                      <div class="movieIng">
-                                        <router-link :to="'/allMovie/' + data.moviecd">
-                                          <span class="movieTitle">{{ data.movienm }}
-                                            <i class="ion-ios-arrow-right"></i>
-                                          </span>
-                                        </router-link>
-                                        <div class="col row">
-                                          <div class="col-ms-10">
-                                            <div class="user-infor col-ms-6">
-                                              <div class="col-xs-2">
-                                                <img
-                                                  :src="data.posterurln"
-                                                  alt="poster"
-                                                  class="poster_thumb"
-                                                />
-                                              </div>
-                                              <div class="col-xs-3 movieInfo">
-                                                <br>
-                                                <span>
-                                                  {{ data.genrenm}}
-                                                </span> 
-                                                <span>
-                                                  {{ data.showtm}}분,
-                                                </span>
-                                                <span>{{data.opendt}}개봉</span>
-                                              </div>
-                                              <div class="col-xs-1"></div>
-                                            </div>
-
-                                            <div class="user-infor col-ms-6">
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[0] }}</a>
-                                                <br>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[1] }}</a>
-                                                <br>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                              <div
-                                                class="mv-user-review-item col-xs-2"
-                                              >
-                                                <br>
-                                                <br>
-                                                <a>{{ pnu[2] }}</a>
-                                                <p>{{ data.showtm }}'</p>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <!-- 상영작 1 ~ 8 끝-->
-                                  </div>
-                                </div>
-                                <!-- 금요일 시간표 끝 -->
-                              </div>
-                              <!-- 내용 끝 -->
                             </div>
-                            <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
-                            <!-- 탑 버튼 추가 -->
-                            <a class="topbutton" href="#">
-                             <img src="@/assets/images_jung/iconUp_48.png"/>
-                            </a>
+                            <!-- 월요일 시간표 끝 -->
                           </div>
+
+                          <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 화요일 -->
+                          <div class="tab_content" id="tuesday_content">
+                            <!-- 화요일 시간표 시작 -->
+                            <div class="topbar-filter">
+                              <div class="mv-user-review-item">
+                                <!-- 상영작 1 ~ 8 시작-->
+                                <div
+                                  v-for="(data, index) in movie"
+                                  v-bind:key="index"
+                                >
+                                  <div class="movieIng">
+                                    <router-link
+                                      :to="'/allMovie/' + data.moviecd"
+                                    >
+                                      <span class="movieTitle"
+                                        >{{ data.movienm }}
+                                        <i class="ion-ios-arrow-right"></i>
+                                      </span>
+                                    </router-link>
+                                    <div class="col row">
+                                      <div class="col-ms-10">
+                                        <div class="user-infor col-ms-6">
+                                          <div class="col-xs-2">
+                                            <img
+                                              :src="data.posterurln"
+                                              alt="poster"
+                                              class="poster_thumb"
+                                            />
+                                          </div>
+                                          <div class="col-xs-3 movieInfo">
+                                            <br />
+                                            <span>
+                                              {{ data.genrenm }}
+                                            </span>
+                                            <span> {{ data.showtm }}분, </span>
+                                            <span>{{ data.opendt }}개봉</span>
+                                          </div>
+                                          <div class="col-xs-1"></div>
+                                        </div>
+
+                                        <div class="user-infor col-ms-6">
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[0] }}</a>
+                                            <br />
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[1] }}</a>
+                                            <br />
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[2] }}</a>
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- 상영작 1 ~ 8 끝-->
+                              </div>
+                            </div>
+                            <!-- 화요일 시간표 끝 -->
+                          </div>
+                          <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 수요일 -->
+                          <div class="tab_content" id="wednesday_content">
+                            <!-- 수요일 시간표 시작 -->
+                            <div class="topbar-filter">
+                              <div class="mv-user-review-item">
+                                <!-- 상영작 1 ~ 8 시작-->
+                                <div
+                                  v-for="(data, index) in movie"
+                                  v-bind:key="index"
+                                >
+                                  <div class="movieIng">
+                                    <router-link
+                                      :to="'/allMovie/' + data.moviecd"
+                                    >
+                                      <span class="movieTitle"
+                                        >{{ data.movienm }}
+                                        <i class="ion-ios-arrow-right"></i>
+                                      </span>
+                                    </router-link>
+                                    <div class="col row">
+                                      <div class="col-ms-10">
+                                        <div class="user-infor col-ms-6">
+                                          <div class="col-xs-2">
+                                            <img
+                                              :src="data.posterurln"
+                                              alt="poster"
+                                              class="poster_thumb"
+                                            />
+                                          </div>
+                                          <div class="col-xs-3 movieInfo">
+                                            <br />
+                                            <span>
+                                              {{ data.genrenm }}
+                                            </span>
+                                            <span> {{ data.showtm }}분, </span>
+                                            <span>{{ data.opendt }}개봉</span>
+                                          </div>
+                                          <div class="col-xs-1"></div>
+                                        </div>
+
+                                        <div class="user-infor col-ms-6">
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[0] }}</a>
+                                            <br />
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[1] }}</a>
+                                            <br />
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[2] }}</a>
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- 상영작 1 ~ 8 끝-->
+                              </div>
+                            </div>
+                            <!-- 수요일 시간표 끝 -->
+                          </div>
+                          <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 목요일 -->
+                          <div class="tab_content" id="thursday_content">
+                            <!-- 목요일 시간표 시작 -->
+                            <div class="topbar-filter">
+                              <div class="mv-user-review-item">
+                                <!-- 상영작 1 ~ 8 시작-->
+                                <div
+                                  v-for="(data, index) in movie"
+                                  v-bind:key="index"
+                                >
+                                  <div class="movieIng">
+                                    <router-link
+                                      :to="'/allMovie/' + data.moviecd"
+                                    >
+                                      <span class="movieTitle"
+                                        >{{ data.movienm }}
+                                        <i class="ion-ios-arrow-right"></i>
+                                      </span>
+                                    </router-link>
+                                    <div class="col row">
+                                      <div class="col-ms-10">
+                                        <div class="user-infor col-ms-6">
+                                          <div class="col-xs-2">
+                                            <img
+                                              :src="data.posterurln"
+                                              alt="poster"
+                                              class="poster_thumb"
+                                            />
+                                          </div>
+                                          <div class="col-xs-3 movieInfo">
+                                            <br />
+                                            <span>
+                                              {{ data.genrenm }}
+                                            </span>
+                                            <span> {{ data.showtm }}분, </span>
+                                            <span>{{ data.opendt }}개봉</span>
+                                          </div>
+                                          <div class="col-xs-1"></div>
+                                        </div>
+
+                                        <div class="user-infor col-ms-6">
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[0] }}</a>
+                                            <br />
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[1] }}</a>
+                                            <br />
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[2] }}</a>
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- 상영작 1 ~ 8 끝-->
+                              </div>
+                            </div>
+                            <!-- 목요일 시간표 끝 -->
+                          </div>
+                          <!-- todo) 탭2 : 부산대 ---- 탭 시간표 선택 >>> 금요일 -->
+                          <div class="tab_content" id="friday_content">
+                            <!-- 금요일 시간표 시작 -->
+                            <div class="topbar-filter">
+                              <div class="mv-user-review-item">
+                                <!-- 상영작 1 ~ 8 시작-->
+                                <div
+                                  v-for="(data, index) in movie"
+                                  v-bind:key="index"
+                                >
+                                  <div class="movieIng">
+                                    <router-link
+                                      :to="'/allMovie/' + data.moviecd"
+                                    >
+                                      <span class="movieTitle"
+                                        >{{ data.movienm }}
+                                        <i class="ion-ios-arrow-right"></i>
+                                      </span>
+                                    </router-link>
+                                    <div class="col row">
+                                      <div class="col-ms-10">
+                                        <div class="user-infor col-ms-6">
+                                          <div class="col-xs-2">
+                                            <img
+                                              :src="data.posterurln"
+                                              alt="poster"
+                                              class="poster_thumb"
+                                            />
+                                          </div>
+                                          <div class="col-xs-3 movieInfo">
+                                            <br />
+                                            <span>
+                                              {{ data.genrenm }}
+                                            </span>
+                                            <span> {{ data.showtm }}분, </span>
+                                            <span>{{ data.opendt }}개봉</span>
+                                          </div>
+                                          <div class="col-xs-1"></div>
+                                        </div>
+
+                                        <div class="user-infor col-ms-6">
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[0] }}</a>
+                                            <br />
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[1] }}</a>
+                                            <br />
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                          <div
+                                            class="mv-user-review-item col-xs-2"
+                                          >
+                                            <br />
+                                            <br />
+                                            <a>{{ pnu[2] }}</a>
+                                            <p>{{ data.showtm }}'</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- 상영작 1 ~ 8 끝-->
+                              </div>
+                            </div>
+                            <!-- 금요일 시간표 끝 -->
+                          </div>
+                          <!-- 내용 끝 -->
                         </div>
+                        <!-- 안쪽탭 끝 ---------------------------------------------------------------------------->
+                        <!-- 탑 버튼 추가 -->
+                        <a class="topbutton" href="#">
+                          <img src="@/assets/images_jung/iconUp_48.png" />
+                        </a>
                       </div>
                     </div>
-
+                  </div>
+                </div>
               </div>
               <!-- 상영시간표 끝  ------------------------------------------------------------------------------------------------>
 
@@ -807,7 +1130,7 @@ export default {
 
       // 상영시간표
       movie: [],
-      Day : [
+      Day: [
         "일요일",
         "월요일",
         "화요일",
@@ -829,12 +1152,12 @@ export default {
     // 영화코드(moviecd)로 조회 요청하는 함수
     getMovieInfo() {
       MovieDataService.getMovieAll()
-        .then((response) => {
+        .then(response => {
           this.movie = response.data;
           console.log("response.data: ", response.data);
           console.log("MovieData: ", this.movie);
         })
-        .catch((e) => {
+        .catch(e => {
           console.log(e);
         });
     },
@@ -1018,7 +1341,7 @@ input:checked + .tab_item {
 
 .movieInfo {
   margin-top: 10px;
-  color:cadetblue;
+  color: cadetblue;
 }
 
 .movieIng {
@@ -1042,11 +1365,11 @@ input:checked + .tab_item {
   margin-bottom: 0%;
 }
 
-.user-infor{
+.user-infor {
   color: #333333;
 }
 
-.timeline{
+.timeline {
   text-align: center;
   margin-block: 20px;
 }
