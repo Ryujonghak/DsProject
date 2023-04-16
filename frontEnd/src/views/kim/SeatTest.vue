@@ -283,4 +283,20 @@ export default {
   padding-top: 5px;
   margin-top: 10px;
 }
+
+.paybtn-black {
+  height: 60px;
+  border: 1px solid #333;
+  background-color: black;
+  color: white;
+  margin-top: 10px;
+}
+
+.paybtn-white {
+  height: 60px;
+  border: 1px solid #333;
+  background-color: white;
+  color: black;
+  margin-top: 10px;
+}
 </style>
