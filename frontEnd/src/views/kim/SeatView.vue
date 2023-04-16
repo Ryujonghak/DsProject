@@ -145,7 +145,7 @@
                     {{ data1.movienm }}
                   </p>
                 </div>
-                <!-- 영화관 및 상영시간 시작 -->
+                <!-- 영화관 -->
                 <div class="col-md-12 reset-padding">
                   <div class="col-md-6 reset-padding">
                     <span>{{ data1.watchgradenm }}</span>
@@ -190,7 +190,7 @@
                     </button>
                   </div>
                 </div>
-                <!-- 영화관 및 상영시간 끝 -->
+                <!-- 영화관 끝 -->
                 <!-- 날짜, 시간 버튼 시작 -->
                 <div class="col-md-12 reset-padding">
                   <!-- 날짜 버튼 시작 -->

@@ -13,7 +13,7 @@
                   <!-- <img
                       class="col-md-12 reset-padding"
                       style="margin-top: 0; margin-bottom: 10px"
-                      :src="data1.posterurln"
+                      :src="currentMovie.posterurln"
                       alt="PosterImg"
                     /> -->
                   <img
@@ -90,15 +90,7 @@
                 </div>
                 <!-- 청소년 결제 금액 표시 끝 -->
                 <!-- 토탈 금액 표시 시작 -->
-                <div
-                  class="col-md-12 reset-padding"
-                  style="
-                    color: #dd003f;
-                    border-top: 1px solid #dd003f;
-                    padding-top: 5px;
-                    margin-top: 10px;
-                  "
-                >
+                <div class="col-md-12 reset-padding payment">
                   <span style="float: left"> 결제 금액 </span>
                   <span style="float: right">
                     {{ teencount * 100 + adultcount * 100 }} 원
@@ -119,6 +111,30 @@
                 </div>
                 <!-- 결제 버튼 끝 -->
               </div>
+              <div
+                class="col-md-8 reset-padding"
+                style="padding-left: 20px; color: #fff"
+              >
+                <!-- 영화 제목 -->
+                <div
+                  class="col-md-12 reset-padding"
+                  style="margin-bottom: 20px"
+                >
+                  <!-- FIXME: 백엔드에서 가져올 수 없어서 주석 처리하고. 임시 포스터 영화 제목 입력함 -->
+                  <!-- <h6>
+                      {{ currentMovie.movienm }}
+                    </h6> -->
+                  <h2>샤잠! 신들의 분노</h2>
+                </div>
+                <!-- 영화관 -->
+                <CinemaCom
+                  :currentMovie="currentMovie"
+                  @select-cinema="Cinema"
+                />
+                <!-- 영화관 -->
+                <!-- 날짜, 상영시간  -->
+                <div class="col-md-12 reset-padding"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -128,9 +144,15 @@
 </template>
 
 <script>
+import CinemaCom from "./CinemaCom.vue";
 export default {
+  props: ["movieProps2"],
+  components: {
+    CinemaCom,
+  },
   data() {
     return {
+      currentMovie: this.movieProps2,
       adultcount: 0,
       teencount: 0,
       selectedseat: [],
@@ -154,6 +176,9 @@ export default {
       } else {
         this.teencount += 1;
       }
+    },
+    Cinema(value) {
+      console.log(value);
     },
     onPayment() {
       // 아임포트 결제창
@@ -229,7 +254,6 @@ export default {
 
 .seat-count-text {
   font-size: 20px;
-  margin-right: 10px;
   color: #fff;
 }
 
@@ -243,25 +267,20 @@ export default {
 }
 .count-wrap button {
   border: 0;
-  background: #ddd;
+  background: #ffffff;
   color: #020d18;
   width: 30px;
   height: 30px;
 }
-
-.paybtn-black {
-  height: 60px;
-  border: 1px solid #333;
-  background-color: black;
-  color: white;
-  margin-top: 10px;
+.count-wrap button:hover {
+  background: #f4eee0;
+  transition: 0.5s all ease-in;
 }
 
-.paybtn-white {
-  height: 60px;
-  border: 1px solid #333;
-  background-color: white;
-  color: black;
+.payment {
+  color: #dd003f;
+  border-top: 1px solid #dd003f;
+  padding-top: 5px;
   margin-top: 10px;
 }
 </style>
