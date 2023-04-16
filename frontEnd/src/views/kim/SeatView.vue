@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div class="page-single movie_list bg-black">
@@ -11,93 +10,124 @@
               <div class="col-md-4 reset-padding">
                 <!-- 선택된 이미지 -->
                 <div class="col-md-12 reset-padding">
-                  <img class="col-md-12 reset-padding" style="margin-top: 0; margin-bottom: 10px;"
-                    :src="data1.posterurln" alt="PosterImg">
+                  <img
+                    class="col-md-12 reset-padding"
+                    style="margin-top: 0; margin-bottom: 10px"
+                    :src="data1.posterurln"
+                    alt="PosterImg"
+                  />
                 </div>
                 <!-- 인원수 체크 성인 & 청소년 -->
                 <div class="col-md-12 reset-padding">
                   <!-- 성인 인원수 선택 시작 -->
                   <div class="col-md-6 display-li-b reset-padding">
                     <span class="seat-count-text">성인</span>
-                    <button @click="adultmins()" class="mg-right10">
-                      -
-                    </button>
+                    <button @click="adultmins()" class="mg-right10">-</button>
                     <span class="seat-count-text">{{ adultcount }}</span>
-                    <button @click="adultplus()" class="mg-right10">
-                      +
-                    </button>
+                    <button @click="adultplus()" class="mg-right10">+</button>
                   </div>
                   <!-- 성인 인원수 선택 끝 -->
                   <!-- 청소년 인원수 선택 시작 -->
-                  <div class="col-md-6 display-li-b reset-padding" style="text-align: right;">
+                  <div
+                    class="col-md-6 display-li-b reset-padding"
+                    style="text-align: right"
+                  >
                     <span class="seat-count-text">청소년</span>
-                    <button @click="teenmins()" class="mg-right10">
-                      -
-                    </button>
+                    <button @click="teenmins()" class="mg-right10">-</button>
                     <span class="seat-count-text">{{ teencount }}</span>
-                    <button @click="teenplus()" class="mg-right10">
-                      +
-                    </button>
+                    <button @click="teenplus()" class="mg-right10">+</button>
                   </div>
                   <!-- 청소년 인원수 선택 끝 -->
                 </div>
                 <!-- 선택한 좌석 ex) A01,A02 시작 -->
-                <div class="col-md-12 reset-padding" style="margin: 10px 0;">
+                <div class="col-md-12 reset-padding" style="margin: 10px 0">
                   <div class="col-md-4 display-li-b reset-padding">
-                    <span class="seat-count-text">
-                      선택 좌석
-                    </span>
+                    <span class="seat-count-text"> 선택 좌석 </span>
                   </div>
                   <div class="col-md-8 display-li-b reset-padding">
-                    <span class="seat-count-text" v-for="(seat, index) in selected" v-bind:key="index">
-                      {{ seat }}{{ index + 1 < selected.length ? ", " : "" }} </span>
+                    <span
+                      class="seat-count-text"
+                      v-for="(seat, index) in selected"
+                      v-bind:key="index"
+                    >
+                      {{ seat }}{{ index + 1 < selected.length ? ", " : "" }}
+                    </span>
                   </div>
                 </div>
                 <!-- 선택한 좌석 ex) A01,A02 끝 -->
                 <!-- 성인 결제 금액 표시 시작 -->
                 <div class="col-md-12 seat-count-text reset-padding">
-                  <div style="float: left;" class="col-md-4 display-li-b reset-padding">
+                  <div
+                    style="float: left"
+                    class="col-md-4 display-li-b reset-padding"
+                  >
                     성인
                   </div>
-                  <div style="float: right; text-align: right;" class="col-md-4 display-li-b reset-padding">
-                    {{ adultcount * 100}} 원
+                  <div
+                    style="float: right; text-align: right"
+                    class="col-md-4 display-li-b reset-padding"
+                  >
+                    {{ adultcount * 100 }} 원
                   </div>
-                  <div style="float: right; text-align: right;" class="col-md-4 display-li-b reset-padding">
+                  <div
+                    style="float: right; text-align: right"
+                    class="col-md-4 display-li-b reset-padding"
+                  >
                     {{ adultcount }}
                   </div>
                 </div>
                 <!-- 성인 결제 금액 표시 끝 -->
                 <!-- 청소년 결제 금액 표시 시작 -->
                 <div class="col-md-12 seat-count-text reset-padding">
-                  <div style="float: left;" class="col-md-4 display-li-b reset-padding">
+                  <div
+                    style="float: left"
+                    class="col-md-4 display-li-b reset-padding"
+                  >
                     청소년
                   </div>
-                  <div style="float: right; text-align: right;" class="col-md-4 display-li-b reset-padding">
-                    {{ teencount * 100}} 원
+                  <div
+                    style="float: right; text-align: right"
+                    class="col-md-4 display-li-b reset-padding"
+                  >
+                    {{ teencount * 100 }} 원
                   </div>
-                  <div style="float: right; text-align: right;" class="col-md-4 display-li-b reset-padding">
+                  <div
+                    style="float: right; text-align: right"
+                    class="col-md-4 display-li-b reset-padding"
+                  >
                     {{ teencount }}
                   </div>
                 </div>
                 <!-- 청소년 결제 금액 표시 끝 -->
                 <!-- 토탈 금액 표시 시작 -->
-                <div class="col-md-12 reset-padding seat-count-text"
-                  style="color: #dd003f; border-top: 1px solid #dd003f; padding-top: 5px; margin-top: 10px;">
-                  <span style="float: left;">
-                    결제 금액
-                  </span>
-                  <span style="float: right;">
-                    {{ totalpay }} 원
-                  </span>
+                <div
+                  class="col-md-12 reset-padding seat-count-text"
+                  style="
+                    color: #dd003f;
+                    border-top: 1px solid #dd003f;
+                    padding-top: 5px;
+                    margin-top: 10px;
+                  "
+                >
+                  <span style="float: left"> 결제 금액 </span>
+                  <span style="float: right"> {{ totalpay }} 원 </span>
                 </div>
                 <!-- 토탈 금액 표시 끝 -->
                 <!-- 결제 버튼 시작 -->
                 <!-- plusSeat() 이거는 결제가 끝나고 날라가면 됨 -->
                 <div class="col-md-12 reset-padding">
-                  <button class="col-md-12 reset-padding paybtn-black" v-show="!paybtn" disabled>
+                  <button
+                    class="col-md-12 reset-padding paybtn-black"
+                    v-show="!paybtn"
+                    disabled
+                  >
                     결제하기
                   </button>
-                  <button class="col-md-12 reset-padding paybtn-white" v-show="paybtn" @click="onPayment()">
+                  <button
+                    class="col-md-12 reset-padding paybtn-white"
+                    v-show="paybtn"
+                    @click="onPayment()"
+                  >
                     결제하기
                   </button>
                 </div>
@@ -105,10 +135,13 @@
               </div>
               <!-- 포스터 및 관람객인원 선택 끝 -->
               <!-- 좌석 및 영화관, 날짜, 시간 선택 시작 -->
-              <div class="col-md-8 reset-padding" style="padding-left: 20px; color: white;">
+              <div
+                class="col-md-8 reset-padding"
+                style="padding-left: 20px; color: white"
+              >
                 <!-- 영화 제목 -->
                 <div class="col-md-12 reset-padding">
-                  <p style="font-size: 38px; font-weight: bold;">
+                  <p style="font-size: 38px; font-weight: bold">
                     {{ data1.movienm }}
                   </p>
                 </div>
@@ -116,26 +149,42 @@
                 <div class="col-md-12 reset-padding">
                   <div class="col-md-6 reset-padding">
                     <span>{{ data1.watchgradenm }}</span>
-                    <img class="timeimg" src="@/assets/images_kim/Views/ModalView/free-icon-time-6659457.png" alt="">
-                    <span style="margin-left: 10px" >{{ data1.showtm }}분</span>
+                    <img
+                      class="timeimg"
+                      src="@/assets/images_kim/Views/ModalView/free-icon-time-6659457.png"
+                      alt=""
+                    />
+                    <span style="margin-left: 10px">{{ data1.showtm }}분</span>
                   </div>
                   <div class="col-md-6 reset-padding">
                     <p class="title-text">영화관</p>
-                    <button @click="cinema('centum')" v-show="centum" class="cinema-btn">
-                      <h5 style="padding: 9px;">센텀시티</h5>
-                    </button >
+                    <button
+                      @click="cinema('centum')"
+                      v-show="centum"
+                      class="cinema-btn"
+                    >
+                      <h5 style="padding: 9px">센텀시티</h5>
+                    </button>
                     <button v-show="!centum" class="cinema-btn">
                       <h5 class="selected-cinema-btn">센텀시티</h5>
                     </button>
-                    <button @click="cinema('seomyeon')" v-show="seomyeon" class="cinema-btn">
-                      <h5 style="padding: 9px;">서면</h5>
-                    </button >
+                    <button
+                      @click="cinema('seomyeon')"
+                      v-show="seomyeon"
+                      class="cinema-btn"
+                    >
+                      <h5 style="padding: 9px">서면</h5>
+                    </button>
                     <button v-show="!seomyeon" class="cinema-btn">
                       <h5 class="selected-cinema-btn">서면</h5>
                     </button>
-                    <button @click="cinema('busan')" v-show="busan" class="cinema-btn">
-                      <h5 style="padding: 9px;">부산대</h5>
-                    </button >
+                    <button
+                      @click="cinema('busan')"
+                      v-show="busan"
+                      class="cinema-btn"
+                    >
+                      <h5 style="padding: 9px">부산대</h5>
+                    </button>
                     <button v-show="!busan" class="cinema-btn">
                       <h5 class="selected-cinema-btn">부산대</h5>
                     </button>
@@ -145,56 +194,61 @@
                 <!-- 날짜, 시간 버튼 시작 -->
                 <div class="col-md-12 reset-padding">
                   <!-- 날짜 버튼 시작 -->
-                  <div class="col-md-6 reset-padding" style="padding-right: 20px;" >
-                    <p class="title-text"> {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘)</p>
+                  <div
+                    class="col-md-6 reset-padding"
+                    style="padding-right: 20px"
+                  >
+                    <p class="title-text">
+                      {{ yy }}년 {{ mm }}월 {{ dd }}일 (오늘)
+                    </p>
                     <button v-show="day1" @click="week('day1')" class="day-btn">
-                      <p style="margin-bottom: 10px;">오늘</p>
+                      <p style="margin-bottom: 10px">오늘</p>
                       <h4 class="day-h4">{{ dd }}</h4>
                     </button>
-                    <button v-show="!day1"  class="day-btn2">
-                      <p style="margin-bottom: 10px;">오늘</p>
+                    <button v-show="!day1" class="day-btn2">
+                      <p style="margin-bottom: 10px">오늘</p>
                       <h4 class="day-h4-bg">{{ dd }}</h4>
                     </button>
                     <!-- 내일 -->
                     <button v-show="day2" @click="week('day2')" class="day-btn">
-                      <p style="margin-bottom: 10px;">내일</p>
-                      <h4 class="day-h4">{{ dd+1 }}</h4>
+                      <p style="margin-bottom: 10px">내일</p>
+                      <h4 class="day-h4">{{ dd + 1 }}</h4>
                     </button>
                     <button v-show="!day2" class="day-btn2">
-                      <p style="margin-bottom: 10px;">내일</p>
-                      <h4 class="day-h4-bg">{{ dd+1 }}</h4>
+                      <p style="margin-bottom: 10px">내일</p>
+                      <h4 class="day-h4-bg">{{ dd + 1 }}</h4>
                     </button>
                     <!-- 내일 -->
                     <!-- 모레 TODO: dd + N 을 했을때 문제점 달이 바뀔때 1일이 되는게 아니라 그달의 마지막날 +N이 됨 -->
                     <!-- Day.js 를 사용해서 고칠순 있음 01/14 -->
                     <button v-show="day3" @click="week('day3')" class="day-btn">
-                      <p style="margin-bottom: 10px;">{{ 요일[순서[2]] }}</p>
-                      <h4 class="day-h4">{{ dd+2 }}</h4>
+                      <p style="margin-bottom: 10px">{{ 요일[순서[2]] }}</p>
+                      <h4 class="day-h4">{{ dd + 2 }}</h4>
                     </button>
                     <button v-show="!day3" class="day-btn2">
-                      <p style="margin-bottom: 10px;">{{ 요일[순서[2]] }}</p>
-                      <h4 class="day-h4-bg">{{ dd+2 }}</h4>
+                      <p style="margin-bottom: 10px">{{ 요일[순서[2]] }}</p>
+                      <h4 class="day-h4-bg">{{ dd + 2 }}</h4>
                     </button>
                     <!-- 모레 -->
 
                     <!-- 글피 -->
                     <button v-show="day4" @click="week('day4')" class="day-btn">
-                      <p style="margin-bottom: 10px;">{{ 요일[순서[3]] }}</p>
-                      <h4 class="day-h4">{{ dd+3 }}</h4>
+                      <p style="margin-bottom: 10px">{{ 요일[순서[3]] }}</p>
+                      <h4 class="day-h4">{{ dd + 3 }}</h4>
                     </button>
                     <button v-show="!day4" class="day-btn2">
-                      <p style="margin-bottom: 10px;">{{ 요일[순서[3]] }}</p>
-                      <h4 class="day-h4-bg">{{ dd+3 }}</h4>
+                      <p style="margin-bottom: 10px">{{ 요일[순서[3]] }}</p>
+                      <h4 class="day-h4-bg">{{ dd + 3 }}</h4>
                     </button>
                     <!-- 글피 -->
                     <!-- 그글피 -->
                     <button v-show="day5" @click="week('day5')" class="day-btn">
-                      <p style="margin-bottom: 10px;">{{ 요일[순서[4]] }}</p>
-                      <h4 class="day-h4">{{ dd+4 }}</h4>
+                      <p style="margin-bottom: 10px">{{ 요일[순서[4]] }}</p>
+                      <h4 class="day-h4">{{ dd + 4 }}</h4>
                     </button>
                     <button v-show="!day5" class="day-btn2">
-                      <p style="margin-bottom: 10px;">{{ 요일[순서[4]] }}</p>
-                      <h4 class="day-h4-bg">{{ dd+4 }}</h4>
+                      <p style="margin-bottom: 10px">{{ 요일[순서[4]] }}</p>
+                      <h4 class="day-h4-bg">{{ dd + 4 }}</h4>
                     </button>
                     <!-- 그글피 -->
                   </div>
@@ -208,38 +262,63 @@
                 </div>
                 <!-- 날짜, 시간 버튼 끝 -->
                 <!-- 좌석 선택전 모달창 -->
-                <div v-show="modal" style="position: relative;">
+                <div v-show="modal" style="position: relative">
                   <div class="seat-modal">
                     <div style="margin-bottom: 50px; width: 100%"></div>
                     <!-- 위 공백 처리 -->
-                    <span v-show="modaltime" style="font-size:24px;">시간을 선택해 주세요</span>
-                    <span v-show="modalpeople" style="font-size: 24px">관람인원을 선택해 주세요</span>
+                    <span v-show="modaltime" style="font-size: 24px"
+                      >시간을 선택해 주세요</span
+                    >
+                    <span v-show="modalpeople" style="font-size: 24px"
+                      >관람인원을 선택해 주세요</span
+                    >
                   </div>
                 </div>
                 <!-- 좌석 선택전 모달창 -->
                 <!-- 스크린 이미지 , 좌석 시작 -->
                 <div class="col-md-12 reset-padding">
                   <!-- 스크린 이미지 시작 -->
-                  <img style="height: 30px" class="col-md-12 reset-padding" src="../../assets/images_kim/Views/ModalView/SCREEN.jpg"  alt=""/>
-                  <p style="text-align: center"> S &nbsp;&nbsp;&nbsp; C &nbsp;&nbsp;&nbsp; R &nbsp;&nbsp;&nbsp; E &nbsp;&nbsp;&nbsp; E &nbsp;&nbsp;&nbsp; N</p>
+                  <img
+                    style="height: 30px"
+                    class="col-md-12 reset-padding"
+                    src="../../assets/images_kim/Views/ModalView/SCREEN.jpg"
+                    alt=""
+                  />
+                  <p style="text-align: center">
+                    S &nbsp;&nbsp;&nbsp; C &nbsp;&nbsp;&nbsp; R
+                    &nbsp;&nbsp;&nbsp; E &nbsp;&nbsp;&nbsp; E &nbsp;&nbsp;&nbsp;
+                    N
+                  </p>
                   <!-- 스크린 이미지 끝 -->
                   <!-- 좌석 시작 -->
                   <!-- FIXME: 선택한 좌석 이벤트 버스로 SeatView로 보내면됨. 인텔리제이 끝나서 백엔드 실행할 수 없음 -->
-                  <MoveSeat /> 
-                
+                  <MoveSeat />
+
                   <!-- 좌석 끝 -->
                   <!-- 좌석 type 이미지 시작 -->
-                  <div style="text-align: center;padding-top: 32px;">
+                  <div style="text-align: center; padding-top: 32px">
                     <span style="margin: 9px">
-                      <img class="seat-type" src="../../assets/images_kim/Views/ModalView/seat-img1.jpg" alt=""/>
+                      <img
+                        class="seat-type"
+                        src="../../assets/images_kim/Views/ModalView/seat-img1.jpg"
+                        alt=""
+                      />
                       선택 가능
                     </span>
                     <span style="margin: 9px">
-                      <img class="seat-type" src="../../assets/images_kim/Views/ModalView/seat-img2.jpg" alt=""/>
+                      <img
+                        class="seat-type"
+                        src="../../assets/images_kim/Views/ModalView/seat-img2.jpg"
+                        alt=""
+                      />
                       선택 좌석
                     </span>
-                    <span style="margin: 9;">
-                      <img class="seat-type" src="../../assets/images_kim/Views/ModalView/seat-img3.jpg" alt=""/>
+                    <span style="margin: 9">
+                      <img
+                        class="seat-type"
+                        src="../../assets/images_kim/Views/ModalView/seat-img3.jpg"
+                        alt=""
+                      />
                       예매 완료
                     </span>
                   </div>
@@ -253,9 +332,12 @@
             <div v-show="payment">
               <div class="col-md-8" style="height: 600px">
                 <div class="col-md-5" style="float: left; margin-top: 3%">
-                  <img style="height: 500px" :src="data1.posterurln" alt=""/>
+                  <img style="height: 500px" :src="data1.posterurln" alt="" />
                 </div>
-                <div class="col-md-7" style="float: right; margin-top: 8%; color: white">
+                <div
+                  class="col-md-7"
+                  style="float: right; margin-top: 8%; color: white"
+                >
                   <span style="font-size: 24px; font-weight: bold">
                     {{ data1.movienm }}
                   </span>
@@ -263,11 +345,11 @@
                     (2022)
                   </span>
                   <br />
-                  <p style="margin: 10px 0 0 0">
-                    감독 : {{ data1.directors }}
-                  </p>
+                  <p style="margin: 10px 0 0 0">감독 : {{ data1.directors }}</p>
                   <p style="margin: 0">상영시간 : {{ data1.showtm }} 분</p>
-                  <div style="border-bottom: 1px solid #1d1e2c;margin-top: 10px;"></div>
+                  <div
+                    style="border-bottom: 1px solid #1d1e2c; margin-top: 10px"
+                  ></div>
                   <p style="margin: 20px 0 0 20px">
                     예매번호 : {{ data1.showtm }} 종학이형이 넘겨줘야됨
                   </p>
@@ -278,90 +360,309 @@
                   <p style="margin: 0 0 0 20px">
                     관람극장 : {{ paymentcinema }}
                   </p>
-                  <span style="margin-right: 5px;margin-left: 20px;color: #abb7c4; ">
+                  <span
+                    style="margin-right: 5px; margin-left: 20px; color: #abb7c4"
+                  >
                     관람좌석 :
-                    </span>
-                    <span v-for="(seat, index) in selected" v-bind:key="index">
-                    {{ seat }}{{ index + 1 < selected.length ? ", " : "" }}</span>
-                  <div style="border-bottom: 1px solid #1d1e2c;margin-top: 20px;"></div>
-                  <p style="margin-top: 20px;margin-bottom: 20px;margin-left: 20px;">
+                  </span>
+                  <span v-for="(seat, index) in selected" v-bind:key="index">
+                    {{ seat
+                    }}{{ index + 1 < selected.length ? ", " : "" }}</span
+                  >
+                  <div
+                    style="border-bottom: 1px solid #1d1e2c; margin-top: 20px"
+                  ></div>
+                  <p
+                    style="
+                      margin-top: 20px;
+                      margin-bottom: 20px;
+                      margin-left: 20px;
+                    "
+                  >
                     결제금액 : {{ totalpay }} 원
                   </p>
                   <div style="margin-top: 80px; margin-left: 30%">
                     <router-link to="/mypage">
-                      <button style="width: 150px;height: 55px;background-color: #dd003f;color: white;border: 0;border-radius: 8px;margin-left: 20px;">
+                      <button
+                        style="
+                          width: 150px;
+                          height: 55px;
+                          background-color: #dd003f;
+                          color: white;
+                          border: 0;
+                          border-radius: 8px;
+                          margin-left: 20px;
+                        "
+                      >
                         마이페이지
                       </button>
                     </router-link>
                   </div>
                 </div>
               </div>
-              <div  class="col-md-4"  style="    height: 580px;    text-align: center;    position: relative;  ">
-                <img style="margin:0; width:100%" src="@/assets/images_kim/Views/ModalView/Ticket.png" alt=""/>
-                <div style="position: absolute;top: 15px;left: 40px;width: 70%;text-align: left;">
-                  <span style="font-size: 18px; font-weight: bold">{{data1.movienm}}</span>
-                  <p style="margin-bottom: 0;margin-top: -5px;font-weight: bold;">2D</p>
+              <div
+                class="col-md-4"
+                style="height: 580px; text-align: center; position: relative"
+              >
+                <img
+                  style="margin: 0; width: 100%"
+                  src="@/assets/images_kim/Views/ModalView/Ticket.png"
+                  alt=""
+                />
+                <div
+                  style="
+                    position: absolute;
+                    top: 15px;
+                    left: 40px;
+                    width: 70%;
+                    text-align: left;
+                  "
+                >
+                  <span style="font-size: 18px; font-weight: bold">{{
+                    data1.movienm
+                  }}</span>
+                  <p
+                    style="
+                      margin-bottom: 0;
+                      margin-top: -5px;
+                      font-weight: bold;
+                    "
+                  >
+                    2D
+                  </p>
                 </div>
-                <div style="position: absolute;top: 95px;left: 40px;color: black;">
+                <div
+                  style="
+                    position: absolute;
+                    top: 95px;
+                    left: 40px;
+                    color: black;
+                  "
+                >
                   <h6>
                     <span style="font-size: 16px; color: blueviolet">DS</span>
-                      CINEMA
-                    <span style="font-size: 16px; color: red">{{paymentcinema}}</span>
+                    CINEMA
+                    <span style="font-size: 16px; color: red">{{
+                      paymentcinema
+                    }}</span>
                   </h6>
                 </div>
-                <div style="position: absolute;top: 140px;left: 40px;color: black;font-weight: bold;  ">
+                <div
+                  style="
+                    position: absolute;
+                    top: 140px;
+                    left: 40px;
+                    color: black;
+                    font-weight: bold;
+                  "
+                >
                   {{ mm }}/{{ ticketinfo.selectedday }}
                 </div>
-                <div style="position: absolute;top: 160px;left: 40px;color: black;  ">
+                <div
+                  style="
+                    position: absolute;
+                    top: 160px;
+                    left: 40px;
+                    color: black;
+                  "
+                >
                   <span style="font-size: 30px; font-weight: bold">
-                    {{moviestarttime}}
-                  </span> ~ 
+                    {{ moviestarttime }}
+                  </span>
+                  ~
                   <span>{{ movieendtime }}</span>
                 </div>
-                <div style="position: absolute;top: 150px;left: 250px;color: black;width: 80px;">
-                  <img style="margin-top: 0" src="@/assets/images_kim/Views/ModalView/QRcode.png" alt=""/>
+                <div
+                  style="
+                    position: absolute;
+                    top: 150px;
+                    left: 250px;
+                    color: black;
+                    width: 80px;
+                  "
+                >
+                  <img
+                    style="margin-top: 0"
+                    src="@/assets/images_kim/Views/ModalView/QRcode.png"
+                    alt=""
+                  />
                 </div>
-                <div v-show="adult" style="position: absolute; top: 220px; left: 40px">
+                <div
+                  v-show="adult"
+                  style="position: absolute; top: 220px; left: 40px"
+                >
                   <span>성인</span>
-                  <span style="font-size: 16px; font-weight: bold">{{adultcount}}</span>
+                  <span style="font-size: 16px; font-weight: bold">{{
+                    adultcount
+                  }}</span>
                 </div>
-                <div v-show="teen" style="position: absolute; top: 220px; left: 40px">
+                <div
+                  v-show="teen"
+                  style="position: absolute; top: 220px; left: 40px"
+                >
                   <span>청소년 </span>
-                  <span style="font-size: 16px; font-weight: bold">{{teencount}}</span>
+                  <span style="font-size: 16px; font-weight: bold">{{
+                    teencount
+                  }}</span>
                 </div>
-                <div v-show="adultteen" style="position: absolute; top: 220px; left: 40px">
+                <div
+                  v-show="adultteen"
+                  style="position: absolute; top: 220px; left: 40px"
+                >
                   <span>성인</span>
-                  <span style="font-size: 16px; font-weight: bold">{{adultcount}}</span><span>,청소년 </span>
-                  <span style="font-size: 16px; font-weight: bold">{{teencount}}</span>
+                  <span style="font-size: 16px; font-weight: bold">{{
+                    adultcount
+                  }}</span
+                  ><span>,청소년 </span>
+                  <span style="font-size: 16px; font-weight: bold">{{
+                    teencount
+                  }}</span>
                 </div>
-                <div style="position: absolute;top: 250px;left: 40px;width: 170px;height: 30px;border-radius: 10px;background-color: skyblue;line-height: 30px;">
-                  <span  style=""  v-for="(seat, index) in selected"  v-bind:key="index"  >{{ seat  }}{{ index + 1 < selected.length ? ", " : "" }}</span>
+                <div
+                  style="
+                    position: absolute;
+                    top: 250px;
+                    left: 40px;
+                    width: 170px;
+                    height: 30px;
+                    border-radius: 10px;
+                    background-color: skyblue;
+                    line-height: 30px;
+                  "
+                >
+                  <span
+                    style=""
+                    v-for="(seat, index) in selected"
+                    v-bind:key="index"
+                    >{{ seat
+                    }}{{ index + 1 < selected.length ? ", " : "" }}</span
+                  >
                 </div>
-                <div style="color: gray;position: absolute;top: 290px;left: 40px;font-size: 12px;">
+                <div
+                  style="
+                    color: gray;
+                    position: absolute;
+                    top: 290px;
+                    left: 40px;
+                    font-size: 12px;
+                  "
+                >
                   <span>· 극장 이용 시 마스크 착용은 필수입니다.</span>
                 </div>
-                <div style="color: gray;position: absolute;top: 305px;left: 48px;font-size: 12px;">
+                <div
+                  style="
+                    color: gray;
+                    position: absolute;
+                    top: 305px;
+                    left: 48px;
+                    font-size: 12px;
+                  "
+                >
                   <span>(미착용 시 입장 제한)</span>
                 </div>
-                <div style="color: gray;position: absolute;top: 320px;left: 48px;font-size: 12px;"><span>입장 지연에 따른 관람 불편을 최소화하기 위해</span>
+                <div
+                  style="
+                    color: gray;
+                    position: absolute;
+                    top: 320px;
+                    left: 48px;
+                    font-size: 12px;
+                  "
+                >
+                  <span>입장 지연에 따른 관람 불편을 최소화하기 위해</span>
                 </div>
-                <div style="color: gray;position: absolute;top: 335px;left: 48px;font-size: 12px;">
+                <div
+                  style="
+                    color: gray;
+                    position: absolute;
+                    top: 335px;
+                    left: 48px;
+                    font-size: 12px;
+                  "
+                >
                   <span>본 영화는 10분 후 상영이 시작됩니다.</span>
                 </div>
-                <div style="color: gray;position: absolute;top: 355px;left: 40px;font-size: 12px;">
+                <div
+                  style="
+                    color: gray;
+                    position: absolute;
+                    top: 355px;
+                    left: 40px;
+                    font-size: 12px;
+                  "
+                >
                   <span>· 영화 상영시작시간 15분 전까지 취소가 가능하며</span>
                 </div>
-                <div  style="color: gray;position: absolute;top: 370px;left: 48px;font-size: 12px;">
+                <div
+                  style="
+                    color: gray;
+                    position: absolute;
+                    top: 370px;
+                    left: 48px;
+                    font-size: 12px;
+                  "
+                >
                   <span>캡쳐화면은 입장이 제한될 수 있습니다.</span>
                 </div>
-                <div style="position: absolute;top: 450px;left: 48px;font-weight: bold;height: 10px;z-index: 2;">
+                <div
+                  style="
+                    position: absolute;
+                    top: 450px;
+                    left: 48px;
+                    font-weight: bold;
+                    height: 10px;
+                    z-index: 2;
+                  "
+                >
                   역시, 영화에는 팝콘이지?!
                 </div>
-                <div style="position: absolute;top: 460px;left: 48px;font-weight: bold;height: 10px;background-color: yellow;width: 45%;z-index: 1;"></div>
-                <div style="position: absolute;top: 445px;left: 0px;font-weight: bold;width: 90%;"><img style="width: 30%; margin: 0; float: right" src="@/assets/images_kim/Views/ModalView/free-icon-popcorn-864781.png"    alt=""  />
+                <div
+                  style="
+                    position: absolute;
+                    top: 460px;
+                    left: 48px;
+                    font-weight: bold;
+                    height: 10px;
+                    background-color: yellow;
+                    width: 45%;
+                    z-index: 1;
+                  "
+                ></div>
+                <div
+                  style="
+                    position: absolute;
+                    top: 445px;
+                    left: 0px;
+                    font-weight: bold;
+                    width: 90%;
+                  "
+                >
+                  <img
+                    style="width: 30%; margin: 0; float: right"
+                    src="@/assets/images_kim/Views/ModalView/free-icon-popcorn-864781.png"
+                    alt=""
+                  />
                 </div>
-                <div style="position: absolute;top: 500px;left: 40px;width: 50%;height: 8%;">
-                  <button  @click="popcorn()"  style="width: 100%;height: 100%;background-color: #dd003f;border-radius: 5px;color: white;border: 0;">
+                <div
+                  style="
+                    position: absolute;
+                    top: 500px;
+                    left: 40px;
+                    width: 50%;
+                    height: 8%;
+                  "
+                >
+                  <button
+                    @click="popcorn()"
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      background-color: #dd003f;
+                      border-radius: 5px;
+                      color: white;
+                      border: 0;
+                    "
+                  >
                     구매하기
                   </button>
                 </div>
@@ -384,13 +685,12 @@ import ScheduleDataService from "@/services/ScheduleDataService";
 import SeatDataService from "@/services/SeatDataService";
 import Seat from "@/model/Seat.js";
 import userService from "@/services/user.service";
-import MoveSeat from "./MoveSeat.vue"
+import MoveSeat from "./MoveSeat.vue";
 // import SeatAll from "@/model/SeatAll";
-
 
 export default {
   props: ["movieProps2"],
-  components : {
+  components: {
     MoveSeat,
   },
   created() {
@@ -427,12 +727,12 @@ export default {
       seomyeon: true, // 영화관 버튼 누르면 색 변경되는 v-show
       busan: true, //    영화관 버튼 누르면 색 변경되는 v-show
 
-      modalpeople: false,  // 인원 선택시 모달창 없어짐
-      modaltime: true,     // 시간선택시 모달창에서 글자 사라짐
+      modalpeople: false, // 인원 선택시 모달창 없어짐
+      modaltime: true, // 시간선택시 모달창에서 글자 사라짐
 
       moviecd: "", // moviecd 코드를 받아와서 저장하는 곳
       selectedcinema: "", // 화면이 생길때 센텀시티를 넣고 조회 하기위해 만듬
-      selectedday: "",   // 날짜 위랑 동일
+      selectedday: "", // 날짜 위랑 동일
 
       adult: false, // 성인만 예매한 경우
       teen: false, // 청소년만 예매한 경우
@@ -444,7 +744,15 @@ export default {
       day4: true, // 날짜가 선택되면 false가 되면서 색깔이 바뀜
       day5: true, // 날짜가 선택되면 false가 되면서 색깔이 바뀜
 
-      요일: [ "일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일",],
+      요일: [
+        "일요일",
+        "월요일",
+        "화요일",
+        "수요일",
+        "목요일",
+        "금요일",
+        "토요일",
+      ],
       dateY: "",
       yy: "",
       mm: "",
@@ -453,8 +761,9 @@ export default {
       순서: [], // 요일을 순서대로 나오게 하는 거
 
       Seat: new Seat(), // 모름
-      seatdataAll: [],    // 이전에 예매한 좌석과 비교할때 쓰임
-      seatAll: [          // 고정 좌석
+      seatdataAll: [], // 이전에 예매한 좌석과 비교할때 쓰임
+      seatAll: [
+        // 고정 좌석
         new Seat(null, "A1", "N", 1),
         new Seat(null, "A2", "N", 1),
         new Seat(null, "A3", "N", 1),
@@ -532,14 +841,13 @@ export default {
       schedule2: [], // 무비코드 + 영화관 + 날짜 = 그날에 해당되는 시간을 받아 옴
       seattest2: [], // Scon로 검색한 결과가 나옴  []
 
-
-      selected: [],   // 선택된 좌석 담는 배열
+      selected: [], // 선택된 좌석 담는 배열
       ticketinfo: [], // 티켓정보를 담는 배열
       seattest60: [], // 좌석 배열
 
-      paymentcinema: "",  // 결제후 영화관 정보
+      paymentcinema: "", // 결제후 영화관 정보
       moviestarttime: "", // 결제후 영화관 정보
-      movieendtime: "",   // 결제후 영화관 정보
+      movieendtime: "", // 결제후 영화관 정보
 
       selectPerson: 0, // 시간을 선택해야 인원을 선택할 수 있게 만듬
 
@@ -577,7 +885,8 @@ export default {
       }
     },
     adultplus() {
-      if (this.adultcount != 0) {                // 스케쥴 데이터가 없어서 임시로 변경함 원래는 this.selectPerson == 0 이게 들어가야 함
+      if (this.adultcount != 0) {
+        // 스케쥴 데이터가 없어서 임시로 변경함 원래는 this.selectPerson == 0 이게 들어가야 함
         alert("상영시간을 선택하세요.");
       } else {
         if (this.adultcount + this.teencount == 5) {
@@ -622,13 +931,14 @@ export default {
         }
       }
     },
-    schedule_null(){
+    schedule_null() {
       this.schedule_1 = null;
       this.schedule_2 = null;
       this.schedule_3 = null;
       this.schedule_4 = null;
     },
-    week(value) {                // 날짜 선택함수
+    week(value) {
+      // 날짜 선택함수
       this.resetinfor();
       this.selectPerson = 0; // 시간이 선택되어야 인원을 클릭할 수 있게 만듬 그래야 화면이 이상하게 안나옴
       this.modaltime = true;
@@ -695,24 +1005,24 @@ export default {
         this.순서 += j;
       }
     },
-    onPayment() {              // 아임포트 결제창
+    onPayment() {
+      // 아임포트 결제창
       /* 1. 가맹점 식별하기 */
       const { IMP } = window;
-      IMP.init('imp03367585');
+      IMP.init("imp03367585");
 
       /* 2. 결제 데이터 정의하기 */
       const data = {
-        pg: 'html5_inicis',                           // PG사
-        pay_method: 'card',                           // 결제수단
-        merchant_uid: `mid_${new Date().getTime()}`,   // 주문번호
-        amount: 100,                                 // 결제금액
-        name: '아임포트 결제 데이터 분석',                  // 주문명
-        buyer_name: '홍길동',                           // 구매자 이름
-        buyer_tel: '01012341234',                     // 구매자 전화번호
-        buyer_email: 'example@example',               // 구매자 이메일
-        buyer_addr: '신사동 661-16',                    // 구매자 주소
-        buyer_postcode: '06018',                      // 구매자 우편번호
-
+        pg: "html5_inicis", // PG사
+        pay_method: "card", // 결제수단
+        merchant_uid: `mid_${new Date().getTime()}`, // 주문번호
+        amount: 100, // 결제금액
+        name: "아임포트 결제 데이터 분석", // 주문명
+        buyer_name: "홍길동", // 구매자 이름
+        buyer_tel: "01012341234", // 구매자 전화번호
+        buyer_email: "example@example", // 구매자 이메일
+        buyer_addr: "신사동 661-16", // 구매자 주소
+        buyer_postcode: "06018", // 구매자 우편번호
       };
 
       /* 4. 결제 창 호출하기 */
@@ -720,31 +1030,27 @@ export default {
     },
     callback(response) {
       /* 3. 콜백 함수 정의하기 */
-      const {
-        success,
-        merchant_uid,
-        error_msg,
-      } = response;
+      const { success, merchant_uid, error_msg } = response;
 
       if (success) {
-        alert('결제 성공');
+        alert("결제 성공");
         console.log(merchant_uid);
         this.payment = true;
         this.modal = false;
         this.Seatpage = false;
-        this.plusSeat(),
-        this.addReservation();
+        this.plusSeat(), this.addReservation();
         this.seatcount();
       } else {
         alert(`결제 실패: ${error_msg}`);
       }
     },
-    addReservation() {                              // 유저 정보를 DB에 보내는 함수 // 결제 끝났을때 사용
+    addReservation() {
+      // 유저 정보를 DB에 보내는 함수 // 결제 끝났을때 사용
       let seatname = "";
       for (let i = 0; i < this.selected.length; i++) {
         seatname += this.selected[i];
-        if(i+1 < this.selected.length){
-          seatname += ", "
+        if (i + 1 < this.selected.length) {
+          seatname += ", ";
         }
       }
       this.reservation.username = this.$store.state.auth.user.username;
@@ -767,23 +1073,29 @@ export default {
         this.$store.state.auth.user.username,
         this.reservation
       )
-        .then((response) => {
+        .then(response => {
           console.log(response.data);
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
     },
-    plusSeat() {                                       // 결제끝났을때 예매한 좌석 정보 생성
+    plusSeat() {
+      // 결제끝났을때 예매한 좌석 정보 생성
       for (let i = 0; i < this.selected.length; i++) {
-        let data = new Seat(null, this.selected[i], "Y", this.seattable[0].scno);
+        let data = new Seat(
+          null,
+          this.selected[i],
+          "Y",
+          this.seattable[0].scno
+        );
         SeatDataService.create(data)
-          .then((response) => {
+          .then(response => {
             console.log("********");
             console.log(response.data);
             console.log("********");
           })
-          .catch((error) => {
+          .catch(error => {
             console.log(error);
           });
       }
@@ -791,11 +1103,11 @@ export default {
     getUser() {
       userService
         .getUserUsername(this.$store.state.auth.user.username)
-        .then((response) => {
+        .then(response => {
           this.CurrentUser = response.data;
           console.log(this.CurrentUser);
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     },
     // 팝콘 구매
     popcorn() {
@@ -811,10 +1123,10 @@ export default {
       this.Scheduldata.endtime = this.movieendtime;
 
       BookingService.createSchedule(this.Scheduldata)
-        .then((response) => {
+        .then(response => {
           console.log(response.data);
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
     },
@@ -892,7 +1204,10 @@ export default {
           }
         }
         // console.log(tempVal2+10 -1);
-        if ( this.adultcount + this.teencount == this.selected.length && this.adultcount + this.teencount != 0) {
+        if (
+          this.adultcount + this.teencount == this.selected.length &&
+          this.adultcount + this.teencount != 0
+        ) {
           this.paybtn = true;
         }
       }
@@ -919,7 +1234,8 @@ export default {
       this.resetinfor();
       this.getfFndByMoviecdAndLocationAndStartdayAndStarttime(); // 시간을 선택하면 실행됨
     },
-    getfFndByMoviecdAndLocationAndStartdayAndStarttime() {  //  그날 스케쥴에 있는 scno를 비교하기 위해서 쓰임
+    getfFndByMoviecdAndLocationAndStartdayAndStarttime() {
+      //  그날 스케쥴에 있는 scno를 비교하기 위해서 쓰임
       var moviecd2 = this.moviecd;
       var tempcinema = this.selectedcinema; //이건 영화관을 담는거
       var tempday = this.selectedday; //이건 날짜을 담는거
@@ -931,21 +1247,21 @@ export default {
         tempday,
         temptime
       )
-        .then((response) => {
+        .then(response => {
           this.seattable = response.data;
           this.moviestarttime = this.seattable[0].starttime;
           this.movieendtime = this.seattable[0].endtime;
           console.log(response.data); // scno가 나옴
           this.getSeatScno(this.seattable[0].scno);
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
     },
     // 스케쥴번호에 해당하는 좌석 상태를 가져옴
     getSeatScno(scno) {
       SeatDataService.getScno(scno)
-        .then((response) => {
+        .then(response => {
           var temp;
           this.seattest2 = [];
           temp = response.data;
@@ -956,7 +1272,7 @@ export default {
           // console.log(this.seattest2);
           this.SeatSet();
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
     },
@@ -992,7 +1308,7 @@ export default {
       }
       console.log(this.seattest60);
     },
-    
+
     cinema(value) {
       if (value == "centum") {
         this.paymentcinema = "센텀시티";
@@ -1013,12 +1329,12 @@ export default {
         this.busan = false;
         this.Theater = 3;
       }
-      this.modal = false
+      this.modal = false;
       this.selectedday = String(this.yy) + String(this.mm) + String(this.dd); // 영화관을 클릭하면 오늘 날짜가 들어감
       this.selectPerson = 0;
       this.modaltime = true;
       this.resetinfor();
-      this.selectedcinema = value;  // 선택한 영화관이 들어감
+      this.selectedcinema = value; // 선택한 영화관이 들어감
       this.schedule_null();
       this.getFindAllByMoviecdAndLocationAndStartday();
       this.day1 = false; // 영화관을 변경을 하면 날짜는 오늘 날짜인 버튼을 보이게함
@@ -1044,7 +1360,7 @@ export default {
       fourth.style.backgroundColor = "#FFFFFF";
     },
     // FIXME: 상영시간별 버튼 색상 주기 함수 추가      // 아리누나가 만든듯
-    coloredBtn() {   
+    coloredBtn() {
       var first = document.getElementById("first-div");
       var second = document.getElementById("second-div");
       var third = document.getElementById("third-div");
@@ -1137,8 +1453,8 @@ export default {
         tempcinema,
         tempday
       )
-        .then((response) => {
-          this.schedule2 = response.data;                         
+        .then(response => {
+          this.schedule2 = response.data;
           console.log("스케쥴이 있으면 나옴 : ", response.data); // 아리누나가 작성한듯
 
           if (this.schedule2[0] != null) {
@@ -1154,11 +1470,11 @@ export default {
             this.schedule_4 = this.schedule2[3];
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
     },
-    resetinfor() {            
+    resetinfor() {
       this.modal = true; // 이게 들어가야 인원수를 다시 클릭하라고 할 수 있음 그래야 좌석이 초기화 됨
       this.adultcount = 0; // 금액 초기화
       this.teencount = 0; // 금액 초기화
@@ -1166,7 +1482,6 @@ export default {
       this.paybtn = false;
       this.selected = [];
     },
-
   },
 };
 </script>
@@ -1220,14 +1535,14 @@ export default {
   color: black;
   margin-top: 10px;
 }
-.timeimg{
+.timeimg {
   width: 30px;
   height: 30px;
   background-color: white;
   margin-left: 20px;
 }
 
-.title-text{
+.title-text {
   color: gray;
   padding: 25px 0 5px 0;
   margin-bottom: 10px;
@@ -1236,22 +1551,22 @@ export default {
   color: white;
   border-bottom: 1px solid gray;
 }
-.cinema-btn{
+.cinema-btn {
   width: 30%;
   height: 10%;
   float: left;
   border: 0;
   background-color: black;
-  margin-top: 5px;;
+  margin-top: 5px;
 }
-.selected-cinema-btn{
+.selected-cinema-btn {
   color: black;
   padding: 9px 9px 9px 9px;
   margin-left: 3px;
   background-color: white;
   border-radius: 9px;
 }
-.day-btn{
+.day-btn {
   width: 55px;
   height: 80px;
   float: left;
@@ -1260,7 +1575,7 @@ export default {
   margin-right: 5px;
   margin-top: 5px;
 }
-.day-btn2{
+.day-btn2 {
   width: 55px;
   border-radius: 20px;
   height: 80px;
@@ -1271,18 +1586,18 @@ export default {
   margin-top: 5px;
 }
 
-.day-h4{
+.day-h4 {
   padding: 9px 25px 9px 13px;
   margin-left: 3px;
 }
-.day-h4-bg{
+.day-h4-bg {
   color: black;
   padding: 9px 25px 9px 13px;
   margin-left: 3px;
   background-color: white;
   border-radius: 18px;
 }
-.seat-modal{
+.seat-modal {
   position: absolute;
   width: 100%;
   height: 400px;
@@ -1357,7 +1672,7 @@ export default {
   position: relative;
   left: 90%;
 }
-.seat-type{
+.seat-type {
   width: 13px;
   height: 13px;
   margin-top: 0px;
