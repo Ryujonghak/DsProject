@@ -4,12 +4,8 @@
     <DateButton
       v-for="(date, index) in dates"
       :key="index"
-      :id="index"
-      :year="date.year"
-      :month="date.month"
-      :dayNumber="date.dayNumber"
-      :day="date.day"
-      @select-day="selectedDay()"
+      :date="date"
+      @select-day="selectedDay"
     />
     <!-- 시간 버튼 시작 -->
     <div class="col-md-6 reset-padding">
@@ -24,7 +20,7 @@
 <script>
 import DateButton from "./DateButton.vue";
 export default {
-  mounted() {
+  created() {
     this.getDate();
   },
   components: {
@@ -32,49 +28,30 @@ export default {
   },
   data() {
     return {
-      week: [
-        "월요일",
-        "화요일",
-        "수요일",
-        "목요일",
-        "금요일",
-        "토요일",
-        "일요일",
-      ],
       dates: [],
       dateY: "", // 영화관 + 날짜 = 시간조회로 사용됨
-      year: 0,
-      month: 0,
-      dayNumber: 0,
-      day: 0,
     };
   },
   methods: {
     getDate() {
       let date = new Date();
-      this.year = 0;
-      this.month = 1;
-      this.dayNumber = 2;
-      this.day = 3;
       for (let i = 0; i < 14; i++) {
-        date.setDate(date.getDate() + 1);
+        date.setDate(date.getDate() + (i == 0 ? 0 : 1));
         if (date.getDate() === 1) {
           date.setMonth(date.getMonth());
         }
-        const day = [
-          date.getFullYear(),
-          date.getMonth() + 1,
-          date.getDate(),
-          date.getDay(),
-          i,
-        ];
+        const day = {
+          year: date.getFullYear(),
+          month: date.getMonth() + 1,
+          dayNumber: date.getDate(),
+          day: date.getDay(),
+          id: i,
+          active: false,
+        };
         this.dates.push(day);
       }
       this.dateY =
         String(this.year) + String(this.month) + String(this.dayNumber); // 20230416 이렇게 보내야 됨
-      // FIXME: 1. 콘솔로그 찍을때 처음에 다 나옴.
-      // FIXME: 2. 날짜에 0을 추가했는데 추가가 안됨. 고쳐야됨.
-      // FIXME: 3. 객체배열에 year = ?? 이렇게 담고 싶은데 0으로 담김
 
       // if (this.dates[i].month < 10) {
       //   this.dates[i].month = "0" + this.dates[i].month;
