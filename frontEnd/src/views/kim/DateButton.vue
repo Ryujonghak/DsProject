@@ -1,16 +1,17 @@
 <template>
   <!-- 날짜 버튼 시작 -->
-  <div
-    class="col-md-6 reset-padding"
-    style="padding-right: 20px; display: inline-block"
-  >
-    <p v-if="today" class="title-text">
-      {{ date.year }}년 {{ date.month }}월 {{ date.dayNumber }}일 (오늘)
-    </p>
+  <div>
     <!-- 내일 -->
-    <button @click="selectedDay" class="day-btn">
-      <p style="margin-bottom: 10px">오늘 내일 수정</p>
-      <h4 class="day-h4">{{ date.dayNumber }}</h4>
+    <button @click="selectedDay" class="day-btn" style="position: relative">
+      <p
+        v-if="date.id == 0"
+        style="margin: 10px 0; position: absolute; top: 0px; left: 13px"
+      >
+        오늘
+      </p>
+      <p v-else-if="date.id == 1" style="margin: 3px 0">내일</p>
+      <p v-else style="margin: 3px 0">{{ week[date.day] }}</p>
+      <h4 :class="btnActive ? 'day-h4-bg' : 'day-h4'">{{ date.dayNumber }}</h4>
     </button>
     <!-- <button class="day-btn2">
       <p style="margin-bottom: 10px">내일</p>
@@ -67,15 +68,6 @@ export default {
 </script>
 
 <style scoped>
-.title-text {
-  color: gray;
-  /* padding: 25px 0 5px 0; */
-  /* margin-bottom: 10px; */
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  border-bottom: 1px solid gray;
-}
 .reset-padding {
   padding: 0;
 }
@@ -83,12 +75,10 @@ export default {
   width: 55px;
   height: 80px;
   border-radius: 20px;
-
   float: left;
   border: 0;
   background-color: black;
   margin-right: 5px;
-  margin-top: 5px;
 }
 .day-btn2 {
   width: 55px;
@@ -102,8 +92,7 @@ export default {
 }
 
 .day-h4 {
-  padding: 9px 25px 9px 13px;
-  margin-left: 3px;
+  margin: 0;
 }
 .day-h4-bg {
   color: black;

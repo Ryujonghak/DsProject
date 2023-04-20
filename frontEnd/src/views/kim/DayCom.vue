@@ -1,12 +1,18 @@
 <template>
   <!-- 날짜, 시간 버튼 시작 -->
   <div class="col-md-12 reset-padding">
-    <DateButton
-      v-for="(date, index) in dates"
-      :key="index"
-      :date="date"
-      @select-day="selectedDay"
-    />
+    <div class="col-md-6 reset-padding" style="padding-right: 20px">
+      <p class="title-text">
+        {{ dates[0].year }}년 {{ dates[0].month }}월 {{ dates[0].dayNumber }}일
+        (오늘)
+      </p>
+      <DateButton
+        v-for="(date, index) in dates"
+        :key="index"
+        :date="date"
+        @select-day="selectedDay"
+      />
+    </div>
     <!-- 시간 버튼 시작 -->
     <div class="col-md-6 reset-padding">
       <p class="title-text">상영시간</p>
@@ -58,11 +64,28 @@ export default {
       // }
     },
     selectedDay(id) {
-      console.log(id);
-      // 선택된 날짜 출력하고 active로 css 컨트롤 할꺼임
+      this.dates = this.dates.map(date => {
+        if (date.id !== id) {
+          return { ...date, active: false };
+        } else {
+          return { ...date, active: true };
+        }
+      });
+
+      console.log(this.dates);
     },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.title-text {
+  color: gray;
+  /* padding: 25px 0 5px 0; */
+  /* margin-bottom: 10px; */
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border-bottom: 1px solid gray;
+}
+</style>
