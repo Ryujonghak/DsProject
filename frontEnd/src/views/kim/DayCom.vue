@@ -1,17 +1,32 @@
 <template>
   <!-- 날짜, 시간 버튼 시작 -->
   <div class="col-md-12 reset-padding">
-    <div class="col-md-6 reset-padding" style="padding-right: 20px">
-      <p class="title-text">
+    <div class="col-md-6 c-slider reset-padding">
+      <p class="title-text" style="">
         {{ dates[0].year }}년 {{ dates[0].month }}월 {{ dates[0].dayNumber }}일
         (오늘)
       </p>
-      <DateButton
-        v-for="(date, index) in dates"
-        :key="index"
-        :date="date"
-        @select-day="selectedDay"
-      />
+      <div
+        class="c-slides"
+        :style="{
+          transform: 'translateX(' + -currentIndex * slideWidth + 'px)',
+        }"
+      >
+        <div class="c-slide">
+          <DateButton
+            v-for="(date, index) in dates"
+            :key="index"
+            :date="date"
+            @select-day="selectedDay"
+          />
+        </div>
+      </div>
+      <button class="prev" @click="prevSlide">
+        <i class="bx bx-chevron-left"></i>
+      </button>
+      <button class="next" @click="nextSlide">
+        <i class="bx bx-chevron-right"></i>
+      </button>
     </div>
     <!-- 시간 버튼 시작 -->
     <div class="col-md-6 reset-padding">
@@ -36,12 +51,15 @@ export default {
     return {
       dates: [],
       dateY: "", // 영화관 + 날짜 = 시간조회로 사용됨
+      currentIndex: 0,
+      slideWidth: 278,
+      screenWidth: 0,
     };
   },
   methods: {
     getDate() {
       let date = new Date();
-      for (let i = 0; i < 14; i++) {
+      for (let i = 0; i < 12; i++) {
         date.setDate(date.getDate() + (i == 0 ? 0 : 1));
         if (date.getDate() === 1) {
           date.setMonth(date.getMonth());
@@ -72,20 +90,66 @@ export default {
         }
       });
 
-      console.log(this.dates);
+      // console.log(this.dates);
+    },
+    nextSlide() {
+      if (this.currentIndex == 2) {
+        return;
+      }
+      this.currentIndex++;
+    },
+    prevSlide() {
+      if (this.currentIndex == 0) {
+        return;
+      }
+      this.currentIndex--;
     },
   },
 };
 </script>
 
 <style scoped>
+.reset-padding {
+  padding: 0;
+}
 .title-text {
   color: gray;
-  /* padding: 25px 0 5px 0; */
-  /* margin-bottom: 10px; */
   font-size: 16px;
   font-weight: bold;
   color: white;
   border-bottom: 1px solid gray;
+  padding-right: 20px;
+}
+.c-slider {
+  padding: 0 10px;
+  overflow: hidden;
+  height: 150px;
+}
+.c-slides {
+  display: flex;
+  transition: transform 0.5s ease-out;
+}
+.c-slide {
+  flex: 0 0 1000px;
+  /* margin-left: 2px; */
+}
+
+.prev {
+  position: absolute;
+  top: 25px;
+  left: -10px;
+  height: 110px;
+  width: 20px;
+  background-color: transparent;
+  border: 0;
+}
+.next {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  height: 110px;
+  width: 20px;
+  background-color: black;
+  border: 0;
 }
 </style>

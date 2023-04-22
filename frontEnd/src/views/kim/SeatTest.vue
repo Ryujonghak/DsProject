@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="page-single movie_list bg-black">
+    <div
+      class="page-single movie_list bg-black"
+      style="background-color: black"
+    >
       <div class="container">
         <div class="row">
           <div class="blog-detail-ct">
@@ -11,11 +14,11 @@
                 <div class="col-md-12 reset-padding">
                   <!-- FIXME: 선택한 이미지 정보를 받아 올 수 없어서. 임시 이미지로 씀.  -->
                   <!-- <img
-                      class="col-md-12 reset-padding"
-                      style="margin-top: 0; margin-bottom: 10px"
-                      :src="currentMovie.posterurln"
-                      alt="PosterImg"
-                    /> -->
+                    class="col-md-12 reset-padding"
+                    style="margin-top: 0; margin-bottom: 10px"
+                    :src="currentMovie.posterurln"
+                    alt="PosterImg"
+                  /> -->
                   <img
                     class="col-md-12 reset-padding"
                     style="margin-top: 0; margin-bottom: 10px"
@@ -121,10 +124,10 @@
                   style="margin-bottom: 20px"
                 >
                   <!-- FIXME: 백엔드에서 가져올 수 없어서 주석 처리하고. 임시 포스터 영화 제목 입력함 -->
-                  <!-- <h6>
-                      {{ currentMovie.movienm }}
-                    </h6> -->
-                  <h2>샤잠! 신들의 분노</h2>
+                  <!-- <h2 style="margin-left: 33%">
+                    {{ currentMovie.movienm }}
+                  </h2> -->
+                  <h2 style="margin-left: 33%">샤잠! 신들의 분노</h2>
                 </div>
                 <!-- 영화관 -->
                 <CinemaCom
@@ -132,8 +135,9 @@
                   @select-cinema="Cinema"
                 />
                 <!-- 영화관 -->
-                <!-- 날짜, 상영시간  -->
-                <div class="col-md-12 reset-padding"></div>
+                <!-- 날짜, 상영시간 -->
+                <DayCom />
+                <!-- 날짜, 상영시간 끝 -->
               </div>
             </div>
           </div>
@@ -145,10 +149,12 @@
 
 <script>
 import CinemaCom from "./CinemaCom.vue";
+import DayCom from "./DayCom.vue";
 export default {
   props: ["movieProps2"],
   components: {
     CinemaCom,
+    DayCom,
   },
   data() {
     return {
