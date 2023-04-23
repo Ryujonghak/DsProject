@@ -43,12 +43,11 @@ export default {
     todayActive() {
       if (this.date.id === 0) {
         this.today = true;
-        this.$emit("today", this.date);
-        // FIXME: 이거 그냥 Vuex로 사용할 예정.
+        this.$emit("today", this.date); // 버튼 위에 텍스트 및 예 20일 이런거 보냄
       }
     },
     selectedDay() {
-      this.$emit("select-day", this.date.id);
+      this.$emit("select-day", this.date.id, this.date);
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <!-- 영화관 -->
-  <div class="col-md-12 reset-padding">
+  <div class="col-md-12 reset-padding" style="padding-left: 10px">
     <div class="col-md-6 reset-padding">
       <!-- FIXME: 백엔드에서 가져올 수 없어서 주석 처리하고. 관람이용가  -->
       <!-- <span>{{ currentMovie.watchgradenm }}</span> -->
@@ -77,7 +77,7 @@ export default {
 }
 .cinema {
   margin-bottom: 5px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   font-size: 16px;
   font-weight: bold;
   color: white;

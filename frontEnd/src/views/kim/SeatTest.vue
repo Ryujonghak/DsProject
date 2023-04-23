@@ -107,7 +107,7 @@
                     class="col-md-12 reset-padding"
                     :class="!payment ? 'paybtn-black' : 'paybtn-white'"
                     :disabled="!payment"
-                    @click="onPayment()"
+                    @click="payment()"
                   >
                     결제하기
                   </button>
@@ -132,11 +132,11 @@
                 <!-- 영화관 -->
                 <CinemaCom
                   :currentMovie="currentMovie"
-                  @select-cinema="Cinema"
+                  @select-cinema="selectedcinema"
                 />
                 <!-- 영화관 -->
                 <!-- 날짜, 상영시간 -->
-                <DayCom />
+                <DayCom :currentMovie="currentMovie" :selectedcinema="cinema" />
                 <!-- 날짜, 상영시간 끝 -->
               </div>
             </div>
@@ -162,6 +162,7 @@ export default {
       adultcount: 0,
       teencount: 0,
       selectedseat: [],
+      cinema: "",
       payment: false,
     };
   },
@@ -183,8 +184,8 @@ export default {
         this.teencount += 1;
       }
     },
-    Cinema(value) {
-      console.log(value);
+    selectedcinema(value) {
+      this.cinema = value;
     },
     onPayment() {
       // 아임포트 결제창

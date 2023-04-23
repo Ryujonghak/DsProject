@@ -1,8 +1,8 @@
 <template>
   <!-- 날짜, 시간 버튼 시작 -->
-  <div class="col-md-12 reset-padding">
+  <div class="col-md-12 reset-padding" style="margin-top: 10px">
     <div class="col-md-6 c-slider reset-padding">
-      <p class="title-text" style="">
+      <p class="title-text">
         {{ dates[0].year }}년 {{ dates[0].month }}월 {{ dates[0].dayNumber }}일
         (오늘)
       </p>
@@ -17,7 +17,8 @@
             v-for="(date, index) in dates"
             :key="index"
             :date="date"
-            @select-day="selectedDay"
+            @select-day="selectDay"
+            @today="today"
           />
         </div>
       </div>
@@ -29,9 +30,18 @@
       </button>
     </div>
     <!-- 시간 버튼 시작 -->
-    <div class="col-md-6 reset-padding">
+    <div class="col-md-6 reset-padding" style="padding: 0 0 0 5px">
       <p class="title-text">상영시간</p>
-      <!-- 시간은 아직 -->
+      <div v-if="schedules.length !== 0">
+        <RunningTimeCom
+          v-for="(schedule, index) in schedules"
+          :key="index"
+          :schedule="schedule"
+        />
+      </div>
+      <div v-else style="margin: 20px 0 0 0">
+        <h3>조회 가능한 상영시간이 없습니다. 조건을 변경해주세요.</h3>
+      </div>
     </div>
     <!-- 시간 버튼 끝 -->
   </div>
@@ -40,20 +50,26 @@
 
 <script>
 import DateButton from "./DateButton.vue";
+import RunningTimeCom from "./RunningTimeCom.vue";
+import ScheduleDataService from "@/services/ScheduleDataService";
 export default {
+  props: ["currentMovie", "selectedcinema"],
   created() {
-    this.getDate();
+    this.getDate(); // 날짜 생성
+    this.today(); // 초기값으로 영화관 + 오늘 날짜
+    this.getFindAllByMoviecdAndLocationAndStartday(); // 선택한 영화 + 선택한 영화관 + 선택한 날짜 = 그날에 해당되는 영화시간 받아옴
   },
   components: {
     DateButton,
+    RunningTimeCom,
   },
   data() {
     return {
       dates: [],
-      dateY: "", // 영화관 + 날짜 = 시간조회로 사용됨
       currentIndex: 0,
       slideWidth: 278,
-      screenWidth: 0,
+      selectedday: "", // 영화관 + 날짜 = 시간조회로 사용됨
+      schedules: [],
     };
   },
   methods: {
@@ -72,16 +88,17 @@ export default {
           id: i,
           active: false,
         };
+        if (day.month < 10) {
+          day.month = "0" + (date.getMonth() + 1);
+        }
         this.dates.push(day);
       }
-      this.dateY =
-        String(this.year) + String(this.month) + String(this.dayNumber); // 20230416 이렇게 보내야 됨
-
-      // if (this.dates[i].month < 10) {
-      //   this.dates[i].month = "0" + this.dates[i].month;
-      // }
     },
-    selectedDay(id) {
+    today(date) {
+      this.selectedday =
+        String(date.year) + String(date.month) + String(date.dayNumber); // 20230416 이렇게 보내야 됨
+    },
+    selectDay(id, date) {
       this.dates = this.dates.map(date => {
         if (date.id !== id) {
           return { ...date, active: false };
@@ -89,8 +106,8 @@ export default {
           return { ...date, active: true };
         }
       });
-
-      // console.log(this.dates);
+      this.today(date);
+      this.getFindAllByMoviecdAndLocationAndStartday();
     },
     nextSlide() {
       if (this.currentIndex == 2) {
@@ -104,6 +121,20 @@ export default {
       }
       this.currentIndex--;
     },
+    // 무비코드 + 영화관 + 날짜 = 그날에 해당되는 시간을 받아 옴
+    getFindAllByMoviecdAndLocationAndStartday() {
+      ScheduleDataService.getFindAllByMoviecdAndLocationAndStartday(
+        this.currentMovie.moviecd,
+        this.selectedcinema,
+        this.selectedday
+      )
+        .then(response => {
+          this.schedules = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
@@ -113,12 +144,13 @@ export default {
   padding: 0;
 }
 .title-text {
-  color: gray;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
   font-size: 16px;
   font-weight: bold;
   color: white;
   border-bottom: 1px solid gray;
-  padding-right: 20px;
+  line-height: 1.5;
 }
 .c-slider {
   padding: 0 10px;
