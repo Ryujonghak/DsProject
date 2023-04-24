@@ -1,10 +1,15 @@
 <template>
-  <div style="position: relative">
-    <span style="position: absolute; top: 0; left: 50px">2D</span>
-    <button class="runningtime-btn">
+  <div style="display: inline-block">
+    <span style="padding-left: 50px">2D</span>
+    <br />
+    <button
+      @click="selectedTime"
+      class="runningtime-btn"
+      :class="schedule.active ? 'active' : ''"
+    >
       <!-- :class="cinema == 'centum' ? 'active' : ''" -->
-      <h5>11 : 00</h5>
-      <!-- <h5>{{ schedule.starttime }}</h5> -->
+      <!-- <h5>11 : 00</h5> -->
+      <h5>{{ schedule.starttime }}</h5>
     </button>
   </div>
 </template>
@@ -12,23 +17,26 @@
 <script>
 export default {
   props: ["schedule"],
+  methods: {
+    selectedTime() {
+      this.$emit("select-time", this.schedule.scno, this.schedule.starttime);
+    },
+  },
 };
 </script>
 
 <style scoped>
 .runningtime-btn {
   width: 110px;
-  float: left;
   border: 0;
   background-color: #fff;
-  margin: 27px 5px 5px;
+  margin: 5px;
 }
 .runningtime-btn h5 {
   padding: 9px;
   color: black;
 }
 .active {
-  color: black;
-  background-color: #fff;
+  border: 1px yellow solid;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <!-- 날짜, 시간 버튼 시작 -->
   <div class="col-md-12 reset-padding" style="margin-top: 10px">
-    <div class="col-md-6 c-slider reset-padding">
+    <div class="col-md-6 c-slider">
       <p class="title-text">
         {{ dates[0].year }}년 {{ dates[0].month }}월 {{ dates[0].dayNumber }}일
         (오늘)
@@ -30,13 +30,17 @@
       </button>
     </div>
     <!-- 시간 버튼 시작 -->
-    <div class="col-md-6 reset-padding" style="padding: 0 0 0 5px">
+    <div
+      class="col-md-6"
+      style="padding: 0 0 0 5px; overflow: hidden; height: 110px"
+    >
       <p class="title-text">상영시간</p>
       <div v-if="schedules.length !== 0">
         <RunningTimeCom
           v-for="(schedule, index) in schedules"
           :key="index"
           :schedule="schedule"
+          @select-time="selecttime"
         />
       </div>
       <div v-else style="margin: 20px 0 0 0">
@@ -52,6 +56,7 @@
 import DateButton from "./DateButton.vue";
 import RunningTimeCom from "./RunningTimeCom.vue";
 import ScheduleDataService from "@/services/ScheduleDataService";
+import SeatDataService from "@/services/SeatDataService";
 export default {
   props: ["currentMovie", "selectedcinema"],
   created() {
@@ -69,7 +74,15 @@ export default {
       currentIndex: 0,
       slideWidth: 278,
       selectedday: "", // 영화관 + 날짜 = 시간조회로 사용됨
-      schedules: [],
+      selectedtime: "",
+      // FIXME: 백엔드랑 연결을 할 수 없으니깐. 임시 데이터 넣음.
+      schedules: [
+        { starttime: "11 : 00", active: false, scno: 0 },
+        { starttime: "12 : 00", active: false, scno: 1 },
+        { starttime: "13 : 00", active: false, scno: 2 },
+        { starttime: "14 : 00", active: false, scno: 3 },
+      ],
+      seattable: [],
     };
   },
   methods: {
@@ -109,6 +122,17 @@ export default {
       this.today(date);
       this.getFindAllByMoviecdAndLocationAndStartday();
     },
+    selecttime(scno, time) {
+      this.schedules = this.schedules.map(schedule => {
+        if (schedule.scno !== scno) {
+          return { ...schedule, active: false };
+        } else {
+          return { ...schedule, active: false };
+        }
+      });
+      // 스케쥴 번호를 받아 왔으니. 백엔드에 scno로 조회후 좌석 정보를 받아오면 됨.
+      this.selectedtime = time;
+    },
     nextSlide() {
       if (this.currentIndex == 2) {
         return;
@@ -135,6 +159,35 @@ export default {
           console.log(error);
         });
     },
+  },
+  // 여러개의 scno를 받아 왔으니 영화코드 + 영화관 + 날짜 + 시간 = 스케쥴 번호를 특정해서 받아옴.
+  getfFndByMoviecdAndLocationAndStartdayAndStarttime() {
+    ScheduleDataService.getfFndByMoviecdAndLocationAndStartdayAndStarttime(
+      this.currentMovie.moviecd,
+      this.selectedcinema,
+      this.selectedday,
+      this.selectedtime
+    )
+      .then(response => {
+        // response.data.scno 를 하면 스케쥴 번호, 스케쥴 번호로 좌석 정보 조회
+        this.getSeatScno(response.data.scno);
+        // this.$emit("getseat", response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  },
+  // 스케쥴번호에 해당하는 좌석 상태를 가져옴
+  getSeatScno(scno) {
+    SeatDataService.getScno(scno).then(response => {
+      var temp;
+      temp = response.data;
+      for (let i = 0; i < temp.length; i++) {
+        this.seattable.push(temp[i].seatposition);
+      }
+      // 좌석 상태를 받아 왔으니 이제 비교하면 되는거 같은데...
+      // this.
+    });
   },
 };
 </script>
