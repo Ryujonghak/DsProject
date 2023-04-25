@@ -1266,6 +1266,7 @@ export default {
           this.seattest2 = [];
           temp = response.data;
           for (let i = 0; i < temp.length; i++) {
+            // A1 이런게 들어감. temp에는 A2, Y, scno 이렇게 오나봄.
             this.seattest2.push(temp[i].seatposition);
           }
 

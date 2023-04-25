@@ -82,7 +82,7 @@ export default {
         { starttime: "13 : 00", active: false, scno: 2 },
         { starttime: "14 : 00", active: false, scno: 3 },
       ],
-      seattable: [],
+      selectedSeat: [],
     };
   },
   methods: {
@@ -180,13 +180,12 @@ export default {
   // 스케쥴번호에 해당하는 좌석 상태를 가져옴
   getSeatScno(scno) {
     SeatDataService.getScno(scno).then(response => {
-      var temp;
-      temp = response.data;
-      for (let i = 0; i < temp.length; i++) {
-        this.seattable.push(temp[i].seatposition);
-      }
+      response.data.forEach(item => {
+        this.selectedSeat.push(item.seatposition);
+        // A3 이런거 받아옴.
+      });
       // 좌석 상태를 받아 왔으니 이제 비교하면 되는거 같은데...
-      // this.
+      this.$emit("getSeatposition", this.selectedSeat);
     });
   },
 };

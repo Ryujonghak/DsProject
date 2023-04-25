@@ -136,7 +136,15 @@
                 />
                 <!-- 영화관 -->
                 <!-- 날짜, 상영시간 -->
-                <DayCom :currentMovie="currentMovie" :selectedcinema="cinema" />
+                <DayCom
+                  :currentMovie="currentMovie"
+                  :selectedcinema="cinema"
+                  @getSeatposition="getSeatposition"
+                />
+                <MoveSeat
+                  v-show="getSeatpositions.length !== 0"
+                  :getSeatpositions="getSeatpositions"
+                />
                 <!-- 날짜, 상영시간 끝 -->
               </div>
             </div>
@@ -150,11 +158,13 @@
 <script>
 import CinemaCom from "./CinemaCom.vue";
 import DayCom from "./DayCom.vue";
+import MoveSeat from "./MoveSeat.vue";
 export default {
   props: ["movieProps2"],
   components: {
     CinemaCom,
     DayCom,
+    MoveSeat,
   },
   data() {
     return {
@@ -164,6 +174,7 @@ export default {
       selectedseat: [],
       cinema: "",
       payment: false,
+      getSeatpositions: [],
     };
   },
   methods: {
@@ -186,6 +197,9 @@ export default {
     },
     selectedcinema(value) {
       this.cinema = value;
+    },
+    getSeatposition(value) {
+      this.getSeatpositions = value;
     },
     onPayment() {
       // 아임포트 결제창
