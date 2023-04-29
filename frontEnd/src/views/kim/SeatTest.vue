@@ -141,10 +141,7 @@
                   :selectedcinema="cinema"
                   @getSeatposition="getSeatposition"
                 />
-                <MoveSeat
-                  v-show="getSeatpositions.length !== 0"
-                  :getSeatpositions="getSeatpositions"
-                />
+                <MoveSeat :getSeatpositions="getSeatpositions" />
                 <!-- 날짜, 상영시간 끝 -->
               </div>
             </div>
