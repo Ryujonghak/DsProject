@@ -64,7 +64,7 @@
     - `Naver login API`
     - `Kakao login API`
 >
-- `ImPort Payment API' : Implementation of payment service using ImPort's payment API
+- `ImPort Payment API` : Implementation of payment service using ImPort's payment API
 - `JWT login` : Implementation of site-specific login function using JWT token
 - `social login`
     - `Google login API`
