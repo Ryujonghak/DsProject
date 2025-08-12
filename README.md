@@ -5,7 +5,7 @@
 - 팀장 : 류종학 (https://github.com/Ryujonghak)
 - 팀원 
   - 강수빈
-  - 김철원
+  - 김철원 (https://github.com/cheolwon2889)
   - 문영석 
   - 정주희
   - 최아리 (https://github.com/choiari1002)
